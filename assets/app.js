@@ -120,6 +120,16 @@
     var r = state.results[key] || {};
     r.pw = who; state.results[key] = r; saveState();
   }
+  /* field = "hy" | "hr" | "ay" | "ar" (home/away yellow/red) */
+  function setCard(key, field, valStr) {
+    var r = state.results[key] || {};
+    var n = parseInt(valStr, 10);
+    if (valStr === "" || valStr == null || isNaN(n) || n < 0) { delete r[field]; }
+    else { r[field] = n; }
+    if (Object.keys(r).length === 0) { delete state.results[key]; }
+    else { state.results[key] = r; }
+    saveState();
+  }
   function isPlayed(r) { return r && r.h !== undefined && r.a !== undefined; }
 
   /* ---------- Gruppspelets matcher (round-robin, 4 lag) ---------- */
@@ -143,8 +153,15 @@
   }
 
   /* ---------- Tabellberäkning ---------- */
+  /* Fair play-poäng enligt FIFA: gult = -1, rött = -4 (lägre antal kort = bättre). */
+  var FP_YELLOW = -1, FP_RED = -4;
   function emptyStat(team, idx) {
-    return { team: team, idx: idx, pld:0, w:0, d:0, l:0, gf:0, ga:0, gd:0, pts:0 };
+    return { team: team, idx: idx, pld:0, w:0, d:0, l:0, gf:0, ga:0, gd:0, pts:0, yc:0, rc:0, fp:0 };
+  }
+  /* Jämförelse av två lag enligt fullständig FIFA-ordning (utom inbördes möte,
+     som hanteras separat): poäng → målskillnad → gjorda mål → vinster → fair play. */
+  function cmpOverall(y, x) { // returnerar positivt om y ska före x
+    return (y.pts - x.pts) || (y.gd - x.gd) || (y.gf - x.gf) || (y.w - x.w) || (y.fp - x.fp);
   }
   function computeTable(letter) {
     var teams = WC.groups[letter];
@@ -156,14 +173,20 @@
       var H = st[fx.h], A = st[fx.a];
       H.pld++; A.pld++;
       H.gf += r.h; H.ga += r.a; A.gf += r.a; A.ga += r.h;
+      H.yc += (r.hy || 0); H.rc += (r.hr || 0);
+      A.yc += (r.ay || 0); A.rc += (r.ar || 0);
       if (r.h > r.a) { H.w++; A.l++; H.pts += 3; }
       else if (r.h < r.a) { A.w++; H.l++; A.pts += 3; }
       else { H.d++; A.d++; H.pts++; A.pts++; }
     });
-    st.forEach(function (s) { s.gd = s.gf - s.ga; });
-    st.sort(function (x, y) {
-      return (y.pts - x.pts) || (y.gd - x.gd) || (y.gf - x.gf) || (x.idx - y.idx);
+    st.forEach(function (s) {
+      s.gd = s.gf - s.ga;
+      s.fp = s.yc * FP_YELLOW + s.rc * FP_RED;
     });
+    st.sort(function (x, y) {
+      return cmpOverall(y, x) || (x.idx - y.idx);
+    });
+    // Inbördes möte vid lika på poäng+målskillnad+gjorda mål
     var i = 0;
     while (i < st.length) {
       var j = i + 1;
@@ -191,7 +214,9 @@
     });
     group.sort(function (x, y) {
       var mx = mini[x.idx], my = mini[y.idx];
-      return (my.pts - mx.pts) || (my.gd - mx.gd) || (my.gf - mx.gf) || (x.idx - y.idx);
+      // inbördes: poäng → målskillnad → gjorda mål, sedan total: vinster → fair play → lottning
+      return (my.pts - mx.pts) || (my.gd - mx.gd) || (my.gf - mx.gf) ||
+             (y.w - x.w) || (y.fp - x.fp) || (x.idx - y.idx);
     });
     for (var k = 0; k < group.length; k++) st[from + k] = group[k];
   }
@@ -203,7 +228,8 @@
       return { L: L, team: t.team, s: t };
     });
     arr.sort(function (x, y) {
-      return (y.s.pts - x.s.pts) || (y.s.gd - x.s.gd) || (y.s.gf - x.s.gf) || (x.L < y.L ? -1 : 1);
+      // FIFA: poäng → målskillnad → gjorda mål → vinster → fair play → lottning (grupp-bokstav)
+      return cmpOverall(y.s, x.s) || (x.L < y.L ? -1 : 1);
     });
     arr.forEach(function (e, i) { e.qualified = i < 8; });
     var qset = arr.filter(function (e) { return e.qualified; }).map(function (e) { return e.L; });
@@ -334,13 +360,14 @@
     else if (view === "bracket") renderBracket();
     else renderCalendar();
 
+    if (view !== "bracket") { hoverMatch = null; hideAside(); }
     renderTeamDrawer();
   }
 
   /* Re-render utan att störa pågående inmatning (för realtid/timer). */
   function refresh() {
     var a = document.activeElement;
-    if (a && a.classList && a.classList.contains("score")) return;
+    if (a && a.classList && (a.classList.contains("score") || a.classList.contains("card-input"))) return;
     if (a && a.id === "teamSearch") { render(); restoreSearchFocus(); return; }
     render();
   }
@@ -383,6 +410,10 @@
     return "";
   }
 
+  function cardsCell(s) {
+    return '<td class="c-cards"><span class="card-y">' + s.yc + '</span>' +
+           '<span class="card-r">' + s.rc + '</span></td>';
+  }
   function standingsRows(table, opts) {
     opts = opts || {};
     var h = "";
@@ -398,6 +429,7 @@
         '<td>' + s.pld + '</td><td>' + s.w + '</td><td>' + s.d + '</td><td>' + s.l + '</td>' +
         '<td class="c-goals">' + s.gf + '–' + s.ga + '</td>' +
         '<td>' + (s.gd > 0 ? "+" + s.gd : s.gd) + '</td>' +
+        (opts.cards ? cardsCell(s) : "") +
         '<td class="c-pts">' + s.pts + '</td></tr>';
     });
     return h;
@@ -411,8 +443,9 @@
          (anyHost ? '<span class="host-tag">Värdnation</span>' : '') + '</div>';
     h += '<table class="standings"><thead><tr>' +
          '<th class="c-pos">#</th><th class="c-team">Lag</th>' +
-         '<th>S</th><th>V</th><th>O</th><th>F</th><th>Mål</th><th>+/-</th><th class="c-pts">P</th>' +
-         '</tr></thead><tbody>' + standingsRows(table, { thirdQualified: thirdQualified }) + '</tbody></table>';
+         '<th>S</th><th>V</th><th>O</th><th>F</th><th>Mål</th><th>+/-</th>' +
+         '<th class="c-cards" title="Gula / röda kort (fair play)">Kort</th><th class="c-pts">P</th>' +
+         '</tr></thead><tbody>' + standingsRows(table, { thirdQualified: thirdQualified, cards: true }) + '</tbody></table>';
 
     var open = !!expandedGroups[L];
     h += '<button class="matches-toggle" data-toggle-group="' + L + '">' +
@@ -436,6 +469,9 @@
           '<span class="fx-team home"><span class="t-name">' + esc(th.sv) + '</span>' + flagImg(th.iso) + '</span>' +
           '<span class="fx-score">' + scoreInput(fx.key, "h", r.h) + '<span class="dash">–</span>' + scoreInput(fx.key, "a", r.a) + '</span>' +
           '<span class="fx-team away">' + flagImg(ta.iso) + '<span class="t-name">' + esc(ta.sv) + '</span></span>' +
+          '<span class="fx-cards home">' + cardInput(fx.key, "hy", r.hy) + cardInput(fx.key, "hr", r.hr) + '</span>' +
+          '<span class="fx-cards-label">kort</span>' +
+          '<span class="fx-cards away">' + cardInput(fx.key, "ay", r.ay) + cardInput(fx.key, "ar", r.ar) + '</span>' +
           '</div>';
       });
       h += '</div>';
@@ -448,6 +484,12 @@
     return '<input class="score" type="number" min="0" inputmode="numeric" ' +
            'data-key="' + key + '" data-side="' + side + '" value="' + (val === undefined ? "" : val) + '">';
   }
+  function cardInput(key, field, val) {
+    var kind = field.charAt(1) === "y" ? "yellow" : "red";
+    return '<input class="card-input ' + kind + '" type="number" min="0" inputmode="numeric" ' +
+           'title="' + (kind === "yellow" ? "Gula kort" : "Röda kort") + '" ' +
+           'data-card-key="' + key + '" data-card-field="' + field + '" value="' + (val === undefined ? "" : val) + '">';
+  }
 
   function thirdsPanel(thirds) {
     var h = '<section class="card thirds-card">' +
@@ -455,19 +497,26 @@
       '<span class="host-tag info">8 bästa går vidare</span></div>' +
       '<table class="standings thirds-table"><thead><tr>' +
       '<th class="c-pos">#</th><th>Gr</th><th class="c-team">Lag</th>' +
-      '<th>S</th><th>P</th><th>+/-</th><th>Mål</th><th></th></tr></thead><tbody>';
+      '<th>S</th><th>V</th><th>+/-</th><th>Mål</th>' +
+      '<th class="c-cards" title="Gula / röda kort (fair play)">Kort</th>' +
+      '<th class="c-pts">P</th><th></th></tr></thead><tbody>';
     thirds.ranking.forEach(function (e, i) {
-      h += '<tr class="' + (e.qualified ? "r-third-q" : "r-third-o") + '">' +
+      var cls = e.qualified ? "r-third-q" : "r-third-o";
+      if (i === 7) cls += " cut-line"; // sista kvalplatsen
+      h += '<tr class="' + cls + '" data-team="' + e.team.iso + '">' +
         '<td class="c-pos">' + (i + 1) + '</td><td class="c-grp">' + e.L + '</td>' +
         '<td class="c-team"><span class="team">' + flagImg(e.team.iso) +
           '<span class="t-name">' + esc(e.team.sv) + '</span></span></td>' +
-        '<td>' + e.s.pld + '</td><td class="c-pts">' + e.s.pts + '</td>' +
+        '<td>' + e.s.pld + '</td><td>' + e.s.w + '</td>' +
         '<td>' + (e.s.gd > 0 ? "+" + e.s.gd : e.s.gd) + '</td>' +
         '<td class="c-goals">' + e.s.gf + '–' + e.s.ga + '</td>' +
-        '<td>' + (e.qualified ? '<span class="qbadge">✓</span>' : '') + '</td></tr>';
+        cardsCell(e.s) +
+        '<td class="c-pts">' + e.s.pts + '</td>' +
+        '<td>' + (e.qualified ? '<span class="qbadge">✓</span>' : '<span class="xbadge">✗</span>') + '</td></tr>';
     });
-    h += '</tbody></table><p class="note">Rangordning: poäng → målskillnad → gjorda mål. ' +
-      'De 8 bästa treorna placeras automatiskt i slutspelsträdet enligt FIFA:s 495 kombinationer (Annex C).</p></section>';
+    h += '</tbody></table><p class="note">Endast de <strong>8 bästa treorna</strong> går vidare (de 4 sämsta treorna + alla fyror åker ut). ' +
+      'Rangordning enligt FIFA: poäng → målskillnad → gjorda mål → vinster → fair play (färre gula/röda kort) → lottning. ' +
+      'De 8 placeras automatiskt i slutspelsträdet enligt FIFA:s 495 kombinationer (Annex C).</p></section>';
     return h;
   }
 
@@ -484,12 +533,11 @@
     var html = '<div class="page-intro">' +
       '<h2>Slutspelsträd</h2>' +
       '<p>Trädet läses från båda hållen in mot finalen i mitten. <em>Kursiva lag</em> är preliminära. ' +
-      'Håll muspekaren över en match för detaljer och vilka lag som kan hamna där – tabellerna visas till höger.</p>' +
+      'Håll muspekaren över en match för detaljer och vilka lag som kan hamna där.</p>' +
       (ctx.allComplete ? '' :
         '<p class="hint">Gruppspelet är inte färdigspelat – trädet visar nuvarande hypotetiska läge.</p>') +
       '</div>';
 
-    html += '<div class="bracket-layout">';
     html += '<div class="bracket-scroll"><div class="bracket two-sided">';
 
     html += bracketColumn("Sextondelsfinal", BR.leftR32, ctx, tz, "left");
@@ -513,13 +561,11 @@
 
     html += '</div></div>';
 
-    // Sidopanel för "möjliga lag + tabeller"
-    html += '<aside class="bracket-aside" id="bracketAside">' + asideDefault() + '</aside>';
-    html += '</div>';
-
     viewEl.innerHTML = html;
 
+    // Flytande infopanel – visas endast vid hover över en match
     if (hoverMatch && ctx.resolved[hoverMatch]) updateAside(hoverMatch, ctx);
+    else hideAside();
   }
 
   function bracketColumn(title, nums, ctx, tz, side) {
@@ -595,15 +641,15 @@
   }
 
   /* ---------- Sidopanel (möjliga lag + tabeller) ---------- */
-  function asideDefault() {
-    return '<div class="aside-empty"><h3>Möjliga lag</h3>' +
-      '<p>Håll muspekaren över en match i trädet för att se vilka lag som kan hamna där, ' +
-      'och vilka grupptabeller de kommer ifrån.</p></div>';
+  function hideAside() {
+    var el = document.getElementById("bracketAside");
+    if (el) el.classList.remove("show");
   }
 
   function updateAside(matchNo, ctx) {
     var el = document.getElementById("bracketAside");
     if (!el) return;
+    el.classList.add("show");
     var res = ctx.resolved[matchNo];
     var mt = res.match;
     var v = WC.venues[mt.venue];
@@ -1078,6 +1124,13 @@
     var r = state.results[sim.key] || { h: 0, a: 0 };
     if (Math.random() < 0.34) r.h++;
     if (Math.random() < 0.30) r.a++;
+    // kort (gula vanligare än röda) – endast gruppmatcher påverkar fair play-tabellen
+    if (!sim.ko) {
+      if (Math.random() < 0.30) r.hy = (r.hy || 0) + 1;
+      if (Math.random() < 0.30) r.ay = (r.ay || 0) + 1;
+      if (Math.random() < 0.04) r.hr = (r.hr || 0) + 1;
+      if (Math.random() < 0.04) r.ar = (r.ar || 0) + 1;
+    }
     if (sim.minute >= 90) {
       sim.minute = 90;
       if (sim.ko && r.h === r.a) r.pw = Math.random() < 0.5 ? "h" : "a";
@@ -1133,6 +1186,9 @@
     if (el.classList && el.classList.contains("score")) {
       setScore(el.getAttribute("data-key"), el.getAttribute("data-side"), el.value);
       render();
+    } else if (el.classList && el.classList.contains("card-input")) {
+      setCard(el.getAttribute("data-card-key"), el.getAttribute("data-card-field"), el.value);
+      render();
     }
   }
 
@@ -1151,7 +1207,7 @@
     if (sr) { openTeam(sr.getAttribute("data-team-group"), parseInt(sr.getAttribute("data-team-idx"), 10)); return; }
 
     if (t.id === "drawerClose" || t.id === "drawerBackdrop") { closeTeam(); return; }
-    if (t.id === "asideClose") { hoverMatch = null; render(); return; }
+    if (t.id === "asideClose") { hoverMatch = null; hideAside(); return; }
 
     var tg = t.closest && t.closest("[data-toggle-group]");
     if (tg) { var L = tg.getAttribute("data-toggle-group"); expandedGroups[L] = !expandedGroups[L]; render(); return; }
@@ -1177,14 +1233,20 @@
     }
   }
 
+  var asideHideTimer = null;
+  function scheduleAsideHide() {
+    clearTimeout(asideHideTimer);
+    asideHideTimer = setTimeout(function () { hoverMatch = null; hideAside(); }, 250);
+  }
+
   function onOver(e) {
     var mc = e.target.closest && e.target.closest("[data-m]");
     if (mc) {
       var no = parseInt(mc.getAttribute("data-m"), 10);
       showTip(no, e.clientX, e.clientY);
-      if (ui("view", "groups") === "bracket" && no !== hoverMatch) {
-        hoverMatch = no;
-        updateAside(no, getCtx());
+      if (ui("view", "groups") === "bracket") {
+        clearTimeout(asideHideTimer);
+        if (no !== hoverMatch) { hoverMatch = no; updateAside(no, getCtx()); }
       }
     }
   }
@@ -1193,7 +1255,10 @@
   }
   function onOut(e) {
     var mc = e.target.closest && e.target.closest("[data-m]");
-    if (mc && (!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest("[data-m]"))) hideTip();
+    if (mc && (!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest("[data-m]"))) {
+      hideTip();
+      if (ui("view", "groups") === "bracket") scheduleAsideHide();
+    }
   }
 
   function onDocClick(e) {
@@ -1229,6 +1294,11 @@
 
     var banner = document.createElement("div"); banner.id = "liveBanner"; banner.className = "live-banner";
     document.body.appendChild(banner);
+
+    var aside = document.createElement("aside"); aside.id = "bracketAside"; aside.className = "bracket-aside";
+    document.body.appendChild(aside);
+    aside.addEventListener("mouseenter", function () { clearTimeout(asideHideTimer); });
+    aside.addEventListener("mouseleave", scheduleAsideHide);
 
     document.body.addEventListener("change", onChange);
     document.body.addEventListener("input", onInput);
