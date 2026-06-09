@@ -444,9 +444,11 @@
      RENDERING
   ==================================================================== */
   var viewEl;
+  var countdownTimer = null;
 
   function render() {
     var view = ui("view", "groups");
+    document.documentElement.classList.toggle("view-bracket", view === "bracket");
     document.querySelectorAll("[data-nav]").forEach(function (b) {
       b.classList.toggle("active", b.getAttribute("data-nav") === view);
     });
@@ -477,22 +479,23 @@
     ctx.thirds.ranking.forEach(function (e) { if (e.qualified) qualifiedLetters[e.L] = true; });
 
     var html = '<div class="page-intro">' +
-      '<h2>Gruppspel</h2>' +
-      '<p>Topp 2 i varje grupp går vidare. Dessutom går de <strong>8 bästa treorna</strong> vidare. ' +
-      (autoSync.active
-        ? 'Resultat hämtas automatiskt – tabeller, slutspelsträd och kalender uppdateras löpande.'
-        : 'Fyll i resultat – tabeller, slutspelsträd och kalender uppdateras automatiskt.') + '</p>' +
-      '<div class="legend">' +
-        '<span class="lg"><i class="dot adv"></i> Avancerar (1:a/2:a)</span>' +
-        '<span class="lg"><i class="dot third-q"></i> Trea – kvalificerad</span>' +
-        '<span class="lg"><i class="dot third-o"></i> Trea – utanför</span>' +
-      '</div></div>';
+      '<div class="page-intro-main">' +
+        '<h2>Gruppspel</h2>' +
+        '<p>Topp 2 i varje grupp går vidare, plus de <strong>8 bästa treorna</strong>.</p>' +
+        '<div class="legend">' +
+          '<span class="lg"><i class="dot adv"></i> Avancerar (1:a/2:a)</span>' +
+          '<span class="lg"><i class="dot third-q"></i> Trea – kvalificerad</span>' +
+          '<span class="lg"><i class="dot third-o"></i> Trea – utanför</span>' +
+        '</div></div>' +
+      nextMatchesPanel(ctx) +
+      '</div>';
 
     html += '<div class="groups-grid">';
     WC.groupLetters.forEach(function (L) { html += groupCard(L, ctx.tables[L], qualifiedLetters[L]); });
     html += '</div>';
     html += thirdsPanel(ctx.thirds);
     viewEl.innerHTML = html;
+    updateNextCountdown();
   }
 
   function standingsRows(table, opts) {
@@ -517,11 +520,9 @@
 
   function groupCard(L, table, thirdQualified) {
     var fixtures = groupFixtures(L);
-    var anyHost = WC.groups[L].some(function (t) { return t.host; });
     var open = !!expandedGroups[L];
     var h = '<section class="card group-card' + (open ? " is-open" : "") + '">';
-    h += '<div class="group-head"><h3>Grupp ' + L + '</h3>' +
-         (anyHost ? '<span class="host-tag">Värdnation</span>' : '') + '</div>';
+    h += '<div class="group-head"><h3>Grupp ' + L + '</h3></div>';
     h += '<table class="standings"><thead><tr>' +
          '<th class="c-pos">#</th><th class="c-team">Lag</th>' +
          '<th>S</th><th>V</th><th>O</th><th>F</th><th>Mål</th><th>+/-</th>' +
@@ -590,59 +591,207 @@
     rightSF: [102], rightQF: [99,100], rightR16: [91,92,95,96], rightR32: [76,78,79,80,86,88,85,87]
   };
 
+  var BR_HALF = {
+    left: [
+      { title: "Sextondelsfinal", nums: BR.leftR32, round: 0 },
+      { title: "Åttondelsfinal",  nums: BR.leftR16, round: 1 },
+      { title: "Kvartsfinal",     nums: BR.leftQF,  round: 2 },
+      { title: "Semifinal",       nums: BR.leftSF,  round: 3 }
+    ],
+    right: [
+      { title: "Semifinal",       nums: BR.rightSF,  round: 3 },
+      { title: "Kvartsfinal",     nums: BR.rightQF,  round: 2 },
+      { title: "Åttondelsfinal",  nums: BR.rightR16, round: 1 },
+      { title: "Sextondelsfinal", nums: BR.rightR32, round: 0 }
+    ]
+  };
+
+  function bracketGridCol(round, side) {
+    return side === "left" ? round + 1 : 9 - round;
+  }
+
+  function bracketGridRow(round, idx) {
+    var span = Math.pow(2, round);
+    return "grid-row:" + (2 + idx * span) + "/span " + span;
+  }
+
   function renderBracket() {
     var ctx = getCtx();
 
-    var html = '<div class="page-intro">' +
+    var html = '<div class="page-intro bracket-intro">' +
       '<h2>Slutspelsträd</h2>' +
-      '<p>Trädet läses från båda hållen in mot finalen i mitten. <em>Kursiva lag</em> är preliminära. ' +
-      'Håll muspekaren över en match för detaljer och vilka lag som kan hamna där.</p>' +
+      '<p>Finalen i mitten. <em>Kursiva lag</em> är preliminära – klicka › på en match för mer info.</p>' +
       (ctx.allComplete ? '' :
         '<p class="hint">Gruppspelet är inte färdigspelat – trädet visar nuvarande hypotetiska läge.</p>') +
       '</div>';
 
-    html += '<div class="bracket-scroll"><div class="bracket two-sided">';
+    html += '<div class="bracket-scroll"><div class="bracket-wrap">';
+    html += '<svg class="bracket-lines" aria-hidden="true"></svg>';
+    html += '<div class="bracket two-sided">';
 
-    html += bracketColumn("Sextondelsfinal", BR.leftR32, ctx, "left");
-    html += bracketColumn("Åttondelsfinal",  BR.leftR16, ctx, "left");
-    html += bracketColumn("Kvartsfinal",      BR.leftQF,  ctx, "left");
-    html += bracketColumn("Semifinal",        BR.leftSF,  ctx, "left");
+    BR_HALF.left.forEach(function (col) {
+      html += '<div class="round-title" style="grid-column:' + bracketGridCol(col.round, "left") + '">'
+        + col.title + '</div>';
+    });
+    html += '<div class="round-title final-label" style="grid-column:5">Final</div>';
+    BR_HALF.right.forEach(function (col) {
+      html += '<div class="round-title" style="grid-column:' + bracketGridCol(col.round, "right") + '">'
+        + col.title + '</div>';
+    });
 
-    // Mitten: final + brons + pokal
-    html += '<div class="round center-col"><div class="round-body center-body">';
-    html += '<div class="round-title final-label">Final</div>';
-    html += matchCard(ctx.resolved[104], "final");
-    html += championBanner(ctx.resolved[104]);
-    html += '<div class="round-title bronze-title">Bronsmatch</div>';
-    html += matchCard(ctx.resolved[103], "bronze");
-    html += '</div></div>';
+    BR_HALF.left.forEach(function (col) {
+      col.nums.forEach(function (n, idx) {
+        html += matchCard(ctx.resolved[n], null, {
+          side: "left",
+          grid: "grid-column:" + bracketGridCol(col.round, "left") + ";" + bracketGridRow(col.round, idx)
+        });
+      });
+    });
 
-    html += bracketColumn("Semifinal",        BR.rightSF,  ctx, "right");
-    html += bracketColumn("Kvartsfinal",      BR.rightQF,  ctx, "right");
-    html += bracketColumn("Åttondelsfinal",  BR.rightR16, ctx, "right");
-    html += bracketColumn("Sextondelsfinal", BR.rightR32, ctx, "right");
+    html += '<div class="bracket-center-stack" style="grid-column:5;grid-row:2/span 8">' +
+      '<div class="bracket-finals-block">' +
+        championBanner(ctx.resolved[104]) +
+        matchCard(ctx.resolved[104], "final") +
+      '</div>' +
+      '<div class="bracket-bronze-block">' +
+        '<div class="round-title bronze-title">Bronsmatch</div>' +
+        matchCard(ctx.resolved[103], "bronze") +
+      '</div></div>';
 
-    html += '</div></div>';
+    BR_HALF.right.forEach(function (col) {
+      col.nums.forEach(function (n, idx) {
+        html += matchCard(ctx.resolved[n], null, {
+          side: "right",
+          grid: "grid-column:" + bracketGridCol(col.round, "right") + ";" + bracketGridRow(col.round, idx)
+        });
+      });
+    });
+
+    html += '</div></div></div>';
 
     viewEl.innerHTML = html;
+    centerBracketScroll(drawBracketConnectors);
 
     if (hoverMatch && ctx.resolved[hoverMatch]) updateAside(hoverMatch, ctx);
     else hideAside();
   }
 
-  function bracketColumn(title, nums, ctx, side) {
-    var h = '<div class="round side-' + side + '"><div class="round-title">' + title + '</div><div class="round-body">';
-    nums.forEach(function (n) { h += matchCard(ctx.resolved[n]); });
-    h += '</div></div>';
-    return h;
+  function drawBracketConnectors() {
+    requestAnimationFrame(function () {
+      var wrap = viewEl.querySelector(".bracket-wrap");
+      var br = wrap && wrap.querySelector(".bracket");
+      var svg = wrap && wrap.querySelector(".bracket-lines");
+      if (!wrap || !br || !svg) return;
+
+      var wrapRect = wrap.getBoundingClientRect();
+      var paths = [];
+
+      function pos(el) {
+        var r = el.getBoundingClientRect();
+        return {
+          y: r.top - wrapRect.top + r.height / 2,
+          right: r.right - wrapRect.left,
+          left: r.left - wrapRect.left,
+          top: r.top - wrapRect.top,
+          bottom: r.bottom - wrapRect.top,
+          cx: r.left - wrapRect.left + r.width / 2
+        };
+      }
+
+      function forkPair(aEl, bEl, pEl, side) {
+        var a = pos(aEl), b = pos(bEl), p = pos(pEl);
+        var midY = (a.y + b.y) / 2;
+        if (side === "left") {
+          var midX = (Math.max(a.right, b.right) + p.left) / 2;
+          paths.push("M" + a.right + "," + a.y + " H" + midX);
+          paths.push("M" + b.right + "," + b.y + " H" + midX);
+          paths.push("M" + midX + "," + a.y + " V" + b.y);
+          paths.push("M" + midX + "," + midY + " H" + p.left);
+        } else {
+          var midX = (Math.min(a.left, b.left) + p.right) / 2;
+          paths.push("M" + a.left + "," + a.y + " H" + midX);
+          paths.push("M" + b.left + "," + b.y + " H" + midX);
+          paths.push("M" + midX + "," + a.y + " V" + b.y);
+          paths.push("M" + midX + "," + midY + " H" + p.right);
+        }
+      }
+
+      function linkSingle(fromEl, toEl, side) {
+        var f = pos(fromEl), t = pos(toEl);
+        if (side === "left") {
+          var midX = (f.right + t.left) / 2;
+          paths.push("M" + f.right + "," + f.y + " H" + midX);
+          paths.push("M" + midX + "," + f.y + " V" + t.y);
+          paths.push("M" + midX + "," + t.y + " H" + t.left);
+        } else {
+          var midX = (f.left + t.right) / 2;
+          paths.push("M" + f.left + "," + f.y + " H" + midX);
+          paths.push("M" + midX + "," + f.y + " V" + t.y);
+          paths.push("M" + midX + "," + t.y + " H" + t.right);
+        }
+      }
+
+      function linkBronze(aEl, bEl, bronzeEl) {
+        var a = pos(aEl), b = pos(bEl), brz = pos(bronzeEl);
+        var entryY = brz.y;
+
+        paths.push("M" + a.cx + "," + a.bottom + " V" + entryY);
+        paths.push("M" + a.cx + "," + entryY + " H" + brz.left);
+
+        paths.push("M" + b.cx + "," + b.bottom + " V" + entryY);
+        paths.push("M" + b.cx + "," + entryY + " H" + brz.right);
+      }
+
+      ["left", "right"].forEach(function (side) {
+        var half = BR_HALF[side];
+        for (var r = 0; r < half.length - 1; r++) {
+          // Vänster: yttre → inre. Höger: BR_HALF är inre → yttre, vänd parningen.
+          var kids = side === "left" ? half[r].nums : half[r + 1].nums;
+          var pars = side === "left" ? half[r + 1].nums : half[r].nums;
+          for (var j = 0; j < pars.length; j++) {
+            var elA = br.querySelector('[data-m="' + kids[j * 2] + '"]');
+            var elB = br.querySelector('[data-m="' + kids[j * 2 + 1] + '"]');
+            var elP = br.querySelector('[data-m="' + pars[j] + '"]');
+            if (elA && elB && elP) forkPair(elA, elB, elP, side);
+          }
+        }
+      });
+
+      var fin = br.querySelector('[data-m="104"]');
+      var sfL = br.querySelector('[data-m="101"]');
+      var sfR = br.querySelector('[data-m="102"]');
+      var bronze = br.querySelector('[data-m="103"]');
+      if (fin && sfL) linkSingle(sfL, fin, "left");
+      if (fin && sfR) linkSingle(sfR, fin, "right");
+      if (bronze && sfL && sfR) linkBronze(sfL, sfR, bronze);
+
+      var w = wrap.offsetWidth;
+      var h = wrap.offsetHeight;
+      svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+      svg.setAttribute("width", w);
+      svg.setAttribute("height", h);
+      svg.innerHTML = paths.map(function (d) {
+        return '<path d="' + d + '" fill="none" stroke-linecap="square"/>';
+      }).join("");
+    });
+  }
+
+  function centerBracketScroll(cb) {
+    requestAnimationFrame(function () {
+      var sc = viewEl.querySelector(".bracket-scroll");
+      var br = sc && sc.querySelector(".bracket");
+      if (!sc || !br) { if (cb) cb(); return; }
+      sc.scrollLeft = Math.max(0, (br.scrollWidth - sc.clientWidth) / 2);
+      if (cb) requestAnimationFrame(cb);
+    });
   }
 
   function championBanner(fin) {
-    if (!fin.winner || !fin.winner.team) return '<div class="champ-slot empty">🏆 Världsmästare</div>';
+    if (!fin.winner || !fin.winner.team) return '<div class="champ-slot empty final-label">VM-final</div>';
     var c = fin.winner.team;
     return '<div class="champ-slot' + (fin.winner.decided ? " decided" : " prov") + '">' +
-      '<span class="trophy">🏆</span>' + flagImg(c.iso) +
-      '<span class="champ-txt">' + (fin.winner.decided ? "Världsmästare" : "Möjlig mästare") +
+      flagImg(c.iso) +
+      '<span class="champ-txt">VM-final' +
       '<strong>' + esc(bracketTeamName(fin.winner)) + '</strong></span></div>';
   }
 
@@ -661,7 +810,8 @@
     return "?";
   }
 
-  function matchCard(res, variant) {
+  function matchCard(res, variant, opts) {
+    opts = opts || {};
     var m = res.match;
     var when = whenLabels(m);
     var played = res.bothTeams && isPlayed(res.result);
@@ -669,11 +819,12 @@
     var rel = liveNow ? { cls: "live", txt: "LIVE " + sim.minute + "'" } : relativeLabel(m, played, "k:" + m.m);
     var expanded = hoverMatch === m.m;
     var cls = "match" + (variant ? " " + variant : "") + (liveNow ? " live-now" : "") + (expanded ? " expanded" : "");
+    if (opts.side) cls += " side-" + opts.side;
 
     var hWin = res.winner && res.home.team && res.winner.team === res.home.team;
     var aWin = res.winner && res.away.team && res.winner.team === res.away.team;
 
-    var h = '<div class="' + cls + '" data-m="' + m.m + '">';
+    var h = '<div class="' + cls + '" data-m="' + m.m + '"' + (opts.grid ? ' style="' + opts.grid + '"' : '') + '">';
     h += '<div class="m-meta"><span class="m-no">M' + m.m + '</span>' +
          '<span class="m-rel ' + rel.cls + '">' + rel.txt + '</span></div>';
     h += '<div class="m-seed">' + slotSeed(m.home) + ' <span>·</span> ' + slotSeed(m.away) + '</div>';
@@ -858,6 +1009,123 @@
     return (WC.tvBroadcast && WC.tvBroadcast["k:" + m.m]) || "";
   }
 
+  var ROUND_SHORT = { R32: "S16", R16: "Å16", QF: "Kvarts", SF: "Semi", "3RD": "Brons", FINAL: "Final" };
+
+  function countdownParts(targetMs) {
+    var diff = Math.max(0, targetMs - Date.now());
+    var sec = Math.floor(diff / 1000);
+    var days = Math.floor(sec / 86400); sec %= 86400;
+    var hrs = Math.floor(sec / 3600); sec %= 3600;
+    var mins = Math.floor(sec / 60); sec %= 60;
+    return { d: days, h: hrs, m: mins, s: sec };
+  }
+
+  function koTeamsLabel(res) {
+    var h = res.home.team ? bracketTeamName(res.home) : res.home.label;
+    var a = res.away.team ? bracketTeamName(res.away) : res.away.label;
+    return h + " – " + a;
+  }
+
+  /** Nästa (eller pågående) match(er) – alla med samma avspark räknas som samtidiga. */
+  function findNextMatches(ctx) {
+    var items = buildSchedule();
+    var now = Date.now();
+    var twoH = 2 * 3600 * 1000;
+    var candidates = [];
+
+    items.forEach(function (it) {
+      var m, key, label, teams, channel, played, live;
+      if (it.kind === "group") {
+        var fx = it.fx, L = it.letter;
+        key = fx.key;
+        played = isPlayed(getRes(key));
+        if (played) return;
+        m = fx;
+        var th = WC.groups[L][fx.h], ta = WC.groups[L][fx.a];
+        channel = tvLookupGroup(fx, th, ta);
+        label = "Grupp " + L;
+        teams = th.sv + " – " + ta.sv;
+      } else {
+        var res = ctx.resolved[it.m.m];
+        key = "k:" + it.m.m;
+        played = res.bothTeams && isPlayed(getRes(key));
+        if (played) return;
+        m = koMatchDisplay(it.m);
+        channel = tvLookupKo(m);
+        label = (ROUND_SHORT[m.round] || m.round) + " · M" + m.m;
+        teams = koTeamsLabel(res);
+      }
+      var ko = kickoffUTC(m).getTime();
+      var rs = getRes(key);
+      var inPlay = rs && (rs.status === "IN_PLAY" || rs.status === "PAUSED" || rs.status === "LIVE");
+      live = (sim.on && sim.key === key) || inPlay || (ko <= now && ko > now - twoH);
+      if (!live && ko < now - twoH) return;
+      candidates.push({ ko: ko, live: live, label: label, teams: teams, channel: channel });
+    });
+
+    var liveOnes = candidates.filter(function (c) { return c.live; });
+    if (liveOnes.length) return { live: true, kickoff: liveOnes[0].ko, matches: liveOnes };
+
+    var future = candidates.filter(function (c) { return c.ko >= now - twoH; });
+    if (!future.length) return { live: false, kickoff: null, matches: [] };
+
+    future.sort(function (a, b) { return a.ko - b.ko; });
+    var best = future[0].ko;
+    return { live: false, kickoff: best, matches: future.filter(function (c) { return c.ko === best; }) };
+  }
+
+  function nextMatchTimerUnit(id, val, lbl) {
+    return '<span class="nm-unit"><span class="nm-val" id="' + id + '">' + val + '</span><span class="nm-lbl">' + lbl + '</span></span>';
+  }
+
+  function nextMatchesPanel(ctx) {
+    var next = findNextMatches(ctx);
+    if (!next.matches.length) {
+      return '<div class="next-matches empty" id="nextMatches">' +
+        '<span class="nm-title">Nästa match</span>' +
+        '<p class="nm-empty">Inga kvarvarande matcher</p></div>';
+    }
+    var title = next.matches.length > 1 ? "Nästa matcher" : "Nästa match";
+    var h = '<div class="next-matches' + (next.live ? " is-live" : "") + '" id="nextMatches" ' +
+      'data-kickoff="' + (next.kickoff || "") + '" data-live="' + (next.live ? "1" : "0") + '">';
+    h += '<div class="nm-head"><span class="nm-title">' + title + '</span>';
+    if (next.live) {
+      h += '<span class="nm-live"><span class="live-dot"></span>Pågår nu</span>';
+    } else {
+      var p = countdownParts(next.kickoff);
+      h += '<div class="nm-timer" aria-live="polite">' +
+        nextMatchTimerUnit("nm-d", p.d, "d") +
+        nextMatchTimerUnit("nm-h", pad(p.h), "h") +
+        nextMatchTimerUnit("nm-m", pad(p.m), "m") +
+        nextMatchTimerUnit("nm-s", pad(p.s), "s") +
+        "</div>";
+    }
+    h += '</div><div class="nm-list">';
+    next.matches.forEach(function (m) {
+      h += '<div class="nm-item"><span class="nm-meta">' + esc(m.label) + "</span>" +
+        '<span class="nm-teams">' + esc(m.teams) + "</span>" +
+        (m.channel ? tvChHtml(m.channel) : "") + "</div>";
+    });
+    h += "</div></div>";
+    return h;
+  }
+
+  function updateNextCountdown() {
+    var el = document.getElementById("nextMatches");
+    if (!el || el.getAttribute("data-live") === "1") return;
+    var ko = parseInt(el.getAttribute("data-kickoff"), 10);
+    if (!ko) return;
+    var p = countdownParts(ko);
+    var d = document.getElementById("nm-d");
+    var hrs = document.getElementById("nm-h");
+    var mins = document.getElementById("nm-m");
+    var secs = document.getElementById("nm-s");
+    if (d) d.textContent = p.d;
+    if (hrs) hrs.textContent = pad(p.h);
+    if (mins) mins.textContent = pad(p.m);
+    if (secs) secs.textContent = pad(p.s);
+  }
+
   /** Nästa ospelade match + ankardatum för kalender-scroll. */
   function calendarNextMatch(items, ctx) {
     var now = Date.now();
@@ -909,11 +1177,7 @@
     var nextKey = next.nextKey;
     var anchorDate = next.anchorDate;
 
-    var html = '<div class="page-intro">' +
-      '<h2>Kalender</h2>' +
-      '<p>Alla matcher i kronologisk ordning (svensk tid' +
-      (autoSync.active ? ' från football-data' : '') +
-      '). Sändningskanal enligt TV4/SVT. Håll muspekaren över en slutspelsmatch för mer information.</p></div>';
+    var html = '<div class="page-intro"><h2>Kalender</h2></div>';
 
     html += '<div class="cal">';
     var lastDate = null;
@@ -1106,8 +1370,7 @@
     var h = '<div class="drawer-head">' +
       '<span class="dh-flag">' + flagImg(team.iso) + '</span>' +
       '<div class="dh-title"><h3>' + esc(team.sv) + '</h3>' +
-        '<span class="dh-sub">' + esc(team.name) + ' · Grupp ' + L +
-        (team.host ? ' · <span class="host-tag">Värdnation</span>' : '') + '</span></div>' +
+        '<span class="dh-sub">' + esc(team.name) + ' · Grupp ' + L + '</span></div>' +
       '<button class="drawer-close" id="drawerClose" title="Stäng">×</button></div>';
 
     h += '<div class="drawer-body">';
@@ -1464,6 +1727,16 @@
       if (e.key === STORE_KEY) { state = loadState(); refresh(); updateLiveBanner(); }
     });
     setInterval(refresh, 30000); // uppdatera "om X / Pågår" m.m.
+    countdownTimer = setInterval(function () {
+      if (ui("view", "groups") === "groups") updateNextCountdown();
+    }, 1000);
+
+    var bracketLineTimer;
+    window.addEventListener("resize", function () {
+      if (ui("view", "groups") !== "bracket") return;
+      clearTimeout(bracketLineTimer);
+      bracketLineTimer = setTimeout(drawBracketConnectors, 120);
+    });
 
     if (ui("view", "groups") === "calendar") calScrollPending = true;
     render();
