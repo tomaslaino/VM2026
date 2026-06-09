@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VM 2026 – Grupper, Slutspel & Kalender</title>
+  <meta name="description" content="Följ fotbolls-VM 2026 (USA, Mexiko, Kanada). Grupptabeller, slutspelsträd och kalender som uppdateras automatiskt och i realtid.">
+  <link rel="preconnect" href="https://flagcdn.com">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-mark">26</span>
+        <div class="brand-text">
+          <h1>VM 2026</h1>
+          <p>USA · Mexiko · Kanada &nbsp;|&nbsp; 11 juni – 19 juli</p>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Vyer">
+        <button class="seg" data-nav="groups">Grupper</button>
+        <button class="seg" data-nav="bracket">Slutspel</button>
+        <button class="seg" data-nav="calendar">Kalender</button>
+      </nav>
+
+      <div class="search" role="search">
+        <input id="teamSearch" type="search" autocomplete="off" placeholder="Sök lag…" aria-label="Sök lag">
+        <div id="searchResults" class="search-results" hidden></div>
+      </div>
+
+      <div class="controls">
+        <div class="clock" id="clock" title="Svensk tid – uppdateras i realtid">
+          <span class="live-dot"></span><span id="clockTime">--:--:--</span>
+        </div>
+        <div class="tzseg" role="group" aria-label="Tidszon">
+          <button class="seg" data-tz="se">Svensk tid</button>
+          <button class="seg" data-tz="edt">EDT</button>
+        </div>
+        <button id="liveBtn" class="live-btn" title="Spela upp matcherna live (demo)">▶ Simulera live</button>
+        <button id="resetBtn" class="reset" title="Nollställ alla resultat">Nollställ</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="view" class="container"></main>
+
+  <footer class="foot">
+    <p>Statisk turneringsdata: FIFA / Wikipedia (2026 FIFA World Cup). Slutspelets datum är officiella;
+    matchtider (EDT) och gruppspelets datum är preliminära – verifiera mot FIFA.com nära matchdag.
+    Inmatade resultat sparas lokalt i din webbläsare och synkas i realtid mellan öppna flikar.</p>
+    <p class="todo">TODO: Koppla mot ett officiellt data-API (t.ex. API-Football / football-data.org) för att hämta
+    live-resultat automatiskt i stället för manuell inmatning.</p>
+  </footer>
+
+  <script src="assets/annexc.js"></script>
+  <script src="assets/data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
