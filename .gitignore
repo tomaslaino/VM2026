@@ -8,3 +8,14 @@ desktop.ini
 
 # Logs
 *.log
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Hemligheter – committas aldrig
+.env
+
+# Lokalt datalager (genereras av API-anrop)
+server/data/store.json
+server/data/results.json

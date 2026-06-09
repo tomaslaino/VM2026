@@ -31,14 +31,7 @@
       </div>
 
       <div class="controls">
-        <div class="clock" id="clock" title="Svensk tid – uppdateras i realtid">
-          <span class="live-dot"></span><span id="clockTime">--:--:--</span>
-        </div>
-        <div class="tzseg" role="group" aria-label="Tidszon">
-          <button class="seg" data-tz="se">Svensk tid</button>
-          <button class="seg" data-tz="edt">EDT</button>
-        </div>
-        <button id="liveBtn" class="live-btn" title="Spela upp matcherna live (demo)">▶ Simulera live</button>
+        <span id="syncBadge" class="sync-badge" hidden title="Resultat hämtas automatiskt">Auto</span>
         <button id="resetBtn" class="reset" title="Nollställ alla resultat">Nollställ</button>
       </div>
     </div>
@@ -47,15 +40,20 @@
   <main id="view" class="container"></main>
 
   <footer class="foot">
-    <p>Statisk turneringsdata: FIFA / Wikipedia (2026 FIFA World Cup). Slutspelets datum är officiella;
-    matchtider (EDT) och gruppspelets datum är preliminära – verifiera mot FIFA.com nära matchdag.
-    Inmatade resultat sparas lokalt i din webbläsare och synkas i realtid mellan öppna flikar.</p>
-    <p class="todo">TODO: Koppla mot ett officiellt data-API (t.ex. API-Football / football-data.org) för att hämta
-    live-resultat automatiskt i stället för manuell inmatning.</p>
+    <p>Data: FIFA & Wikipedia · Resultat: <a href="https://www.football-data.org/">football-data.org</a> · Tider kan ändras – <a href="https://www.fifa.com/">FIFA.com</a></p>
   </footer>
 
+  <script>
+    /* Backend-URL för live-data.
+       Lämna tom när sidan serveras av Node-servern (samma origin).
+       Ligger sidan på GitHub Pages: sätt din driftade backend-adress här,
+       t.ex. backend: "https://vm2026.onrender.com" */
+    window.VM_CONFIG = { backend: "" };
+  </script>
   <script src="assets/annexc.js"></script>
   <script src="assets/data.js"></script>
   <script src="assets/app.js"></script>
+  <script src="assets/sync.js"></script>
+  <script src="assets/live.js"></script>
 </body>
 </html>
