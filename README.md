@@ -4,6 +4,30 @@ Webbapp för att följa fotbolls-VM 2026 (USA, Mexiko, Kanada): grupptabeller, s
 
 Grupptabellerna och slutspelsträdet räknas ut från matchresultat i realtid – samma logik som vid manuell inmatning, men resultaten hämtas automatiskt från API:t.
 
+## Auto-uppdatering på GitHub Pages (standard, ingen server)
+
+Sidan körs på GitHub Pages och uppdateras automatiskt utan att någon server behöver vara igång:
+
+```
+GitHub Actions (var 10:e min)  →  football-data.org  →  data/results.json (committas)
+                                                                ↓
+                              GitHub Pages serverar filen  →  app.js (tabeller, träd, kalender)
+```
+
+- En schemalagd workflow (`.github/workflows/sync-results.yml`) kör `npm run sync:static`, som hämtar alla VM-matcher och skriver **`data/results.json`**.
+- Ändras något committas filen automatiskt. GitHub Pages publicerar den och sidan läser den direkt (`window.VM_CONFIG.staticResults`).
+- Tabeller räknas ut i webbläsaren från resultaten – ingen separat standings-API behövs.
+
+**Engångsuppsättning – lägg in API-token som secret:**
+
+1. Skaffa gratis token: [football-data.org/client/register](https://www.football-data.org/client/register)
+2. På GitHub: **Settings → Secrets and variables → Actions → New repository secret**
+   - Name: `FOOTBALL_DATA_TOKEN`
+   - Value: din token
+3. Kör workflowen första gången manuellt: **Actions → Synka VM-resultat → Run workflow** (sen sköts allt automatiskt).
+
+> football-data.org gratisplan är **fördröjd** (inte sekundsnabbt live). Det räcker gott för grupptabeller och slutspel. GitHub Actions kör schemat "best effort", oftast var 10:e minut.
+
 ## Snabbstart (lokalt med auto-uppdatering)
 
 Förutsätter [Node.js](https://nodejs.org/) 18+.
@@ -40,7 +64,8 @@ Justera i `.env`: `FD_POLL_LIVE_SECONDS`, `FD_POLL_MATCHDAY_SECONDS`, `FD_POLL_I
 Manuell synk:
 
 ```bash
-npm run sync
+npm run sync          # uppdaterar serverns datalager (server/data/results.json)
+npm run sync:static   # skriver data/results.json som GitHub Pages-sidan läser
 ```
 
 ### API-Football (valfritt – spelarstatistik)
@@ -81,7 +106,7 @@ Tabellen `vm_results` skapas automatiskt vid första sync. Utan `DATABASE_URL` s
 
 ## Bara frontend (utan backend)
 
-Dubbelklicka på `index.html` – då fyller du i resultat manuellt och allt sparas i `localStorage`. Ingen **Auto**-badge.
+På GitHub Pages läser sidan automatiskt `data/results.json` (uppdateras av GitHub Actions) – ingen server behövs. Vill du testa lokalt utan server, servera mappen via t.ex. `npx serve` så att `data/results.json` kan läsas (öppnar du filen direkt via `file://` blockerar webbläsaren ibland inläsningen).
 
 ## Deploya backend
 
@@ -108,7 +133,7 @@ GitHub Pages kan **inte** köra Node. Använd t.ex. [Render](https://render.com/
 2. **Settings → Pages** → branch `main`, mapp **/ (root)**.
 3. Sidan: **https://tomaslaino.github.io/VM2026/**
 
-Utan `VM_CONFIG.backend` pekar sidan på samma host – fungerar bara om du kör `npm start`, inte på ren GitHub Pages.
+Utan `VM_CONFIG.backend` läser sidan den statiska `data/results.json` som GitHub Actions uppdaterar (se [Auto-uppdatering på GitHub Pages](#auto-uppdatering-på-github-pages-standard-ingen-server) ovan) – det är standardläget och kräver ingen server.
 
 ### Egen domän (gravaguld.se)
 

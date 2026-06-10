@@ -137,9 +137,25 @@ body {
   margin: 4px 0 22px;
 }
 .page-intro-main { flex: 1 1 260px; min-width: 0; max-width: 72ch; }
-.page-intro h2 { margin: 0 0 6px; font-size: 24px; letter-spacing: -.4px; }
-.page-intro p { margin: 0; color: var(--ink-soft); max-width: 78ch; }
+.page-intro h2,
+.groups-layout > .page-intro-main h2 { margin: 0 0 6px; font-size: 24px; letter-spacing: -.4px; }
+.page-intro p,
+.groups-layout > .page-intro-main p { margin: 0; color: var(--ink-soft); max-width: 78ch; }
 .page-intro .hint { margin-top: 8px; color: var(--third-q); font-weight: 600; }
+
+.groups-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "intro panels"
+    "groups groups";
+  gap: 16px 20px;
+  align-items: start;
+  margin: 4px 0 22px;
+}
+.groups-layout > .page-intro-main { grid-area: intro; max-width: 72ch; }
+.groups-layout > .next-matches-row { grid-area: panels; }
+.groups-layout > .groups-grid { grid-area: groups; }
 
 .next-matches-row {
   display: grid;
@@ -247,8 +263,27 @@ body {
 .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
 
 /* ---------- Grupp-grid ---------- */
-.groups-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); align-items: start; }
-.group-card { position: relative; overflow: visible; }
+.groups-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
+  align-items: stretch;
+}
+@media (min-width: 1180px) {
+  .groups-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 781px) and (max-width: 1179px) {
+  .groups-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.group-card {
+  position: relative;
+  overflow: visible;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.group-card .standings { flex: 1 1 auto; }
 .group-card.is-open { z-index: 5; }
 .group-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px 10px; }
 .group-head h3 { margin: 0; font-size: 16px; letter-spacing: -.2px; }
@@ -313,11 +348,41 @@ button.nm-spot-row:hover { background: color-mix(in srgb, var(--usa-blue) 10%, t
   flex: 1;
   min-width: 0;
 }
-.c-pos { width: 26px; color: var(--ink-soft); }
+.c-pos { width: 1.75rem; color: var(--ink-soft); }
 .c-team { text-align: left !important; padding-left: 12px !important; }
-.c-pts { font-weight: 800; }
-.c-goals { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
-.c-grp { font-weight: 700; color: var(--ink-soft); }
+.c-pts { font-weight: 800; width: 1.85rem; }
+.c-goals { color: var(--ink-soft); font-variant-numeric: tabular-nums; width: 2.6rem; }
+.c-grp { font-weight: 700; color: var(--ink-soft); width: 1.85rem; }
+.c-stat { width: 1.85rem; }
+.c-status { width: 1.85rem; }
+
+/* Enhetlig tabell – grupper och tredjeplats-ranking */
+.group-card .standings,
+.thirds-card .standings {
+  table-layout: fixed;
+  width: 100%;
+}
+.group-card .standings .c-team,
+.thirds-card .standings .c-team {
+  overflow: hidden;
+  padding-right: 8px !important;
+}
+.group-card .standings .team,
+.thirds-card .standings .team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+}
+.group-card .standings .t-name,
+.thirds-card .standings .t-name {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 .team { display: inline-flex; align-items: center; gap: 9px; }
 .t-name { white-space: nowrap; }
@@ -371,8 +436,22 @@ button.nm-spot-row:hover { background: color-mix(in srgb, var(--usa-blue) 10%, t
 .score:focus { outline: none; border-color: var(--focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 28%, transparent); }
 .score:disabled { opacity: .4; cursor: not-allowed; }
 
-.thirds-card { margin-top: 22px; }
-.note { padding: 10px 16px 16px; margin: 0; color: var(--ink-soft); font-size: 12.5px; }
+.groups-grid > .thirds-card { grid-column: 1 / -1; }
+.thirds-card {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.thirds-card .standings { flex: 1 1 auto; }
+.thirds-card .note {
+  margin: 0;
+  padding: 10px 16px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
 
 /* ====================================================================
    SLUTSPELSTRÄD (tvåsidigt)
@@ -387,6 +466,43 @@ html.view-bracket body {
   background-size: auto, cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+html.view-bracket {
+  height: 100%;
+  overflow: hidden;
+}
+html.view-bracket body {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  height: 100vh;
+  max-height: 100dvh;
+  overflow: hidden;
+}
+html.view-bracket .topbar { flex: none; }
+html.view-bracket main.container {
+  flex: 1 1 0;
+  min-height: 0;
+  height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 18px;
+  padding-bottom: 0;
+}
+html.view-bracket .bracket-shell {
+  flex: 1 1 0;
+  min-height: 0;
+  height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+html.view-bracket .foot {
+  flex: none;
+  margin-top: 0;
+  padding: 10px 20px 14px;
+  font-size: 11px;
 }
 html.view-bracket .page-intro h2,
 html.view-bracket .round-title {
@@ -425,20 +541,45 @@ html.view-bracket .bracket .round-title.bracket-jump.bronze-title:hover {
 .bracket-intro {
   display: block;
   text-align: center;
-  margin: 4px 0 18px;
+  margin: 2px 0 8px;
+  flex: none;
 }
 html.view-bracket .bracket-intro h2 {
   margin: 0;
   width: 100%;
-  font-size: 24px;
+  font-size: 22px;
   letter-spacing: -.4px;
   text-align: center;
 }
 
 .bracket-scroll {
-  overflow-x: auto; -webkit-overflow-scrolling: touch;
-  margin: 0; padding: 8px 12px 22px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0;
+  padding: 8px 4px 4px 12px;
   background: transparent;
+}
+html.view-bracket .bracket-scroll {
+  flex: 1 1 0;
+  min-height: 0;
+  height: 0;
+  width: 100%;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--ink-soft) 50%, var(--line)) transparent;
+}
+html.view-bracket .bracket-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+html.view-bracket .bracket-scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--ink-soft) 45%, transparent);
+  border-radius: 999px;
+}
+html.view-bracket .bracket-scroll::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--ink-soft) 65%, transparent);
 }
 .bracket-wrap {
   position: relative;
@@ -846,6 +987,24 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   .page-intro {
     flex-direction: column;
     align-items: stretch;
+    justify-content: flex-start;
+  }
+  .page-intro-main {
+    flex: 0 0 auto;
+  }
+  .groups-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "intro"
+      "panels"
+      "groups";
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .groups-layout > .next-matches-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    max-width: none;
   }
   .next-matches-row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -913,18 +1072,18 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
     gap: 14px;
     margin-bottom: 18px;
   }
-  .page-intro h2 { font-size: 21px; }
+  .page-intro h2,
+  .groups-layout > .page-intro-main h2 { font-size: 21px; }
+  .groups-layout > .next-matches-row,
   .next-matches-row { grid-template-columns: 1fr; width: 100%; }
 
   .groups-grid { grid-template-columns: 1fr; }
-  .group-card .standings,
-  .thirds-card .standings,
   .cal-group-popup .standings {
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    min-width: 320px;
   }
-  .standings { min-width: 320px; }
 
   /* Kalender */
   .cal-day { grid-template-columns: 56px 1fr; gap: 10px; padding: 10px 0; }
@@ -949,12 +1108,23 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   /* Slutspel */
   html.view-bracket,
   html.view-bracket body { background-attachment: scroll; }
-  .bracket-scroll {
+  html.view-bracket main.container {
+    padding-top: 10px;
+    padding-bottom: 2px;
+  }
+  html.view-bracket .bracket-scroll {
     margin: 0 -14px;
-    padding: 6px 10px 18px;
+    padding: 4px 0 0 10px;
     scroll-padding-inline: 14px;
   }
-  html.view-bracket .bracket-intro h2 { font-size: 20px; }
+  html.view-bracket .bracket-intro {
+    margin: 0 0 6px;
+  }
+  html.view-bracket .bracket-intro h2 { font-size: 18px; }
+  html.view-bracket .foot {
+    padding: 8px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+    font-size: 10px;
+  }
   .bracket-aside {
     width: auto;
     left: 10px;
@@ -974,6 +1144,12 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
     align-items: stretch;
   }
   .live-toast { min-width: 0; max-width: none; width: 100%; }
+}
+
+@media (max-height: 720px) {
+  html.view-bracket .bracket-intro h2 { font-size: 16px; }
+  html.view-bracket .foot { display: none; }
+  html.view-bracket main.container { padding-top: 8px; }
 }
 
 @media (max-width: 560px) {
@@ -1187,8 +1363,26 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 /* Auto-sync badge (football-data) */
 .sync-badge {
   font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
-  color: #fff; background: linear-gradient(90deg, var(--usa-red), color-mix(in srgb, var(--usa-red) 75%, var(--usa-navy)));
-  border: 1px solid color-mix(in srgb, var(--usa-red) 50%, #fff);
+  color: #fff;
   border-radius: 999px; padding: 4px 10px; white-space: nowrap;
 }
-.score[readonly] { opacity: .85; cursor: default; }
+.sync-badge.ok {
+  background: linear-gradient(90deg, var(--usa-red), color-mix(in srgb, var(--usa-red) 75%, var(--usa-navy)));
+  border: 1px solid color-mix(in srgb, var(--usa-red) 50%, #fff);
+}
+.sync-badge.pending {
+  background: color-mix(in srgb, var(--usa-navy) 85%, #fff);
+  border: 1px solid color-mix(in srgb, var(--usa-navy) 50%, #fff);
+}
+.sync-badge.error {
+  background: color-mix(in srgb, #8a3b28 90%, #000);
+  border: 1px solid color-mix(in srgb, #c0392b 45%, #fff);
+}
+
+.score-display {
+  display: inline-block; min-width: 1.4em; text-align: center;
+  font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.score-display.score-empty { color: var(--ink-soft); font-weight: 600; }
+.side .score-display { margin-left: auto; min-width: 1.6em; font-size: 14px; }

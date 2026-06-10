@@ -10,8 +10,7 @@
   var expandedGroups = {};      // letter -> bool (visa matcher)
   var selectedTeam = null;      // { group, idx } för lag-panelen (ej persistent)
   var hoverMatch = null;        // matchnummer med öppen infopanel i slutspelet
-  var sim = { on: false, key: null, ko: null, minute: 0, timer: null }; // live-simulering
-  var autoSync = { active: false, source: null, updatedAt: null }; // football-data via backend
+  var autoSync = { active: false, source: null, updatedAt: null, status: "pending" };
   var apiFixtures = {}; // nyckel -> { date, time, home, away, homeRef, awayRef, status } från API
   var calScrollPending = false; // scrolla till nästa matchdag vid öppning av kalender
   var calGroupOpen = null;      // grupp-bokstav för öppen tabell-popup i kalendern
@@ -112,25 +111,35 @@
     return { cls: "up", txt: "om " + days + (days === 1 ? " dag" : " dagar") };
   }
 
-  /* ---------- Resultathantering ---------- */
+  /* ---------- Resultathantering (endast från API) ---------- */
   function getRes(key) { return state.results[key] || null; }
-  function setScore(key, side, valStr) {
-    var r = state.results[key] || {};
-    if (valStr === "" || valStr == null) {
-      delete r[side];
-    } else {
-      var n = parseInt(valStr, 10);
-      if (isNaN(n) || n < 0) { delete r[side]; } else { r[side] = n; }
-    }
-    if (r.h === undefined && r.a === undefined) { delete state.results[key]; }
-    else { state.results[key] = r; }
-    saveState();
-  }
-  function setPen(key, who) {
-    var r = state.results[key] || {};
-    r.pw = who; state.results[key] = r; saveState();
-  }
   function isPlayed(r) { return r && r.h !== undefined && r.a !== undefined; }
+
+  function isLiveStatus(status) {
+    return status === "IN_PLAY" || status === "PAUSED" || status === "LIVE";
+  }
+
+  function isMatchLive(key) {
+    var fx = getApiFixture(key);
+    if (fx && isLiveStatus(fx.status)) return true;
+    var rs = getRes(key);
+    return rs && isLiveStatus(rs.status);
+  }
+
+  function scoreDisplay(val) {
+    var empty = val === undefined || val === null || val === "";
+    return '<span class="score-display' + (empty ? " score-empty" : "") + '">' + (empty ? "–" : val) + "</span>";
+  }
+
+  function scorePair(r) {
+    r = r || {};
+    return '<span class="fx-score">' + scoreDisplay(r.h) + '<span class="dash">–</span>' + scoreDisplay(r.a) + "</span>";
+  }
+
+  function liveTimeLabel(key, fallback) {
+    if (!isMatchLive(key)) return fallback;
+    return '<span class="fx-live"><span class="live-dot"></span>LIVE</span>';
+  }
 
   function getApiFixture(key) { return apiFixtures[key] || null; }
 
@@ -155,7 +164,7 @@
         var r = results[key];
         if (r.h === undefined || r.a === undefined) continue;
         var cur = state.results[key];
-        if (!cur || cur.h !== r.h || cur.a !== r.a || cur.pw !== r.pw) {
+        if (!cur || cur.h !== r.h || cur.a !== r.a || cur.pw !== r.pw || cur.status !== r.status) {
           state.results[key] = { h: r.h, a: r.a };
           if (r.pw) state.results[key].pw = r.pw;
           if (r.status) state.results[key].status = r.status;
@@ -166,6 +175,7 @@
 
     if (payload.meta) {
       autoSync.active = true;
+      autoSync.status = "ok";
       autoSync.source = payload.meta.source || "football-data";
       autoSync.updatedAt = payload.meta.updatedAt || null;
     }
@@ -173,7 +183,6 @@
     if (changed || fixturesChanged) {
       if (changed) saveState();
       refresh();
-      updateLiveBanner();
       updateSyncBadge();
     } else if (payload.meta) {
       updateSyncBadge();
@@ -181,26 +190,31 @@
     return changed || fixturesChanged;
   }
 
-  function updateSyncBadge() {
-    var el = document.getElementById("syncBadge");
-    var reset = document.getElementById("resetBtn");
-    if (!autoSync.active) {
-      if (el) el.hidden = true;
-      if (reset) reset.hidden = false;
-      return;
-    }
-    if (el) {
-      el.hidden = false;
-      el.textContent = "Auto · football-data";
-      el.title = autoSync.updatedAt
-        ? "Senast uppdaterad: " + new Date(autoSync.updatedAt).toLocaleString("sv-SE")
-        : "Resultat hämtas automatiskt från servern";
-    }
-    if (reset) reset.hidden = true;
-    if (sim.on) stopSim();
+  function setSyncStatus(status) {
+    autoSync.status = status;
+    if (status === "ok") autoSync.active = true;
+    updateSyncBadge();
   }
 
-  function inputsLocked() { return autoSync.active; }
+  function updateSyncBadge() {
+    var el = document.getElementById("syncBadge");
+    if (!el) return;
+    el.hidden = false;
+    el.classList.remove("pending", "ok", "error");
+    if (autoSync.status === "ok" && autoSync.updatedAt) {
+      el.classList.add("ok");
+      el.textContent = "Auto · football-data";
+      el.title = "Senast uppdaterad: " + new Date(autoSync.updatedAt).toLocaleString("sv-SE");
+    } else if (autoSync.status === "error") {
+      el.classList.add("error");
+      el.textContent = "Ingen backend";
+      el.title = "Kunde inte hämta resultat. Kontrollera att servern körs och att VM_CONFIG.backend pekar rätt.";
+    } else {
+      el.classList.add("pending");
+      el.textContent = "Hämtar…";
+      el.title = "Resultat hämtas automatiskt från football-data.org";
+    }
+  }
 
   /* ---------- Gruppspelets matcher (round-robin, 4 lag) ---------- */
   var RR = [ [[0,1],[2,3]], [[0,2],[3,1]], [[3,0],[1,2]] ];
@@ -485,7 +499,7 @@
     var qualifiedLetters = {};
     ctx.thirds.ranking.forEach(function (e) { if (e.qualified) qualifiedLetters[e.L] = true; });
 
-    var html = '<div class="page-intro">' +
+    var html = '<div class="groups-layout">' +
       '<div class="page-intro-main">' +
         '<h2>Gruppspel</h2>' +
         '<p>Topp 2 i varje grupp går vidare, plus de <strong>8 bästa treorna</strong>.</p>' +
@@ -495,12 +509,10 @@
           '<span class="lg"><i class="dot third-o"></i> Trea – utanför</span>' +
         '</div></div>' +
       nextMatchesRow(ctx) +
-      '</div>';
-
-    html += '<div class="groups-grid">';
+      '<div class="groups-grid">';
     WC.groupLetters.forEach(function (L) { html += groupCard(L, ctx.tables[L], qualifiedLetters[L]); });
-    html += '</div>';
     html += thirdsPanel(ctx.thirds);
+    html += '</div></div>';
     viewEl.innerHTML = html;
     updateNextCountdown();
   }
@@ -517,9 +529,10 @@
         '<td class="c-pos">' + (i + 1) + '</td>' +
         '<td class="c-team"><span class="team">' +
           flagImg(s.team.iso) + '<span class="t-name">' + esc(s.team.sv) + '</span></span></td>' +
-        '<td>' + s.pld + '</td><td>' + s.w + '</td><td>' + s.d + '</td><td>' + s.l + '</td>' +
+        '<td class="c-stat">' + s.pld + '</td><td class="c-stat">' + s.w + '</td>' +
+        '<td class="c-stat">' + s.d + '</td><td class="c-stat">' + s.l + '</td>' +
         '<td class="c-goals">' + s.gf + '–' + s.ga + '</td>' +
-        '<td>' + (s.gd > 0 ? "+" + s.gd : s.gd) + '</td>' +
+        '<td class="c-stat">' + (s.gd > 0 ? "+" + s.gd : s.gd) + '</td>' +
         '<td class="c-pts">' + s.pts + '</td></tr>';
     });
     return h;
@@ -532,7 +545,8 @@
     h += '<div class="group-head"><h3>Grupp ' + L + '</h3></div>';
     h += '<table class="standings"><thead><tr>' +
          '<th class="c-pos">#</th><th class="c-team">Lag</th>' +
-         '<th>S</th><th>V</th><th>O</th><th>F</th><th>Mål</th><th>+/-</th>' +
+         '<th class="c-stat">S</th><th class="c-stat">V</th><th class="c-stat">O</th><th class="c-stat">F</th>' +
+         '<th class="c-goals">Mål</th><th class="c-stat">+/-</th>' +
          '<th class="c-pts">P</th>' +
          '</tr></thead><tbody>' + standingsRows(table, { thirdQualified: thirdQualified }) + '</tbody></table>';
 
@@ -545,12 +559,12 @@
         var th = WC.groups[L][fx.h], ta = WC.groups[L][fx.a];
         var r = getRes(fx.key) || {};
         var when = whenLabels(fx);
-        var liveFx = sim.on && sim.key === fx.key;
+        var liveFx = isMatchLive(fx.key);
         h += '<div class="fixture' + (liveFx ? " live" : "") + '">' +
-          '<div class="fx-date">' + (liveFx ? '<span class="fx-live"><span class="live-dot"></span>LIVE ' + sim.minute + "'</span>" : when.dateLabel + ' · ' + when.time) + '</div>' +
+          '<div class="fx-date">' + (liveFx ? liveTimeLabel(fx.key, when.dateLabel + ' · ' + when.time) : when.dateLabel + ' · ' + when.time) + '</div>' +
           '<div class="fx-match">' +
           teamOpenBtn(th, fixtureTeamName(th) + flagImg(th.iso), "fx-team home") +
-          '<span class="fx-score">' + scoreInput(fx.key, "h", r.h) + '<span class="dash">–</span>' + scoreInput(fx.key, "a", r.a) + '</span>' +
+          scorePair(r) +
           teamOpenBtn(ta, flagImg(ta.iso) + fixtureTeamName(ta), "fx-team away") +
           '</div></div>';
       });
@@ -560,19 +574,15 @@
     return h;
   }
 
-  function scoreInput(key, side, val) {
-    var lock = inputsLocked() ? ' readonly tabindex="-1"' : "";
-    return '<input class="score" type="number" min="0" inputmode="numeric" ' +
-           'data-key="' + key + '" data-side="' + side + '" value="' + (val === undefined ? "" : val) + '"' + lock + '>';
-  }
   function thirdsPanel(thirds) {
     var h = '<section class="card thirds-card">' +
       '<div class="group-head"><h3>Ranking – tredjeplacerade lag</h3>' +
       '<span class="host-tag info">8 bästa går vidare</span></div>' +
       '<table class="standings thirds-table"><thead><tr>' +
-      '<th class="c-pos">#</th><th>Gr</th><th class="c-team">Lag</th>' +
-      '<th>S</th><th>V</th><th>+/-</th><th>Mål</th>' +
-      '<th class="c-pts">P</th><th></th></tr></thead><tbody>';
+      '<th class="c-pos">#</th><th class="c-grp">Gr</th><th class="c-team">Lag</th>' +
+      '<th class="c-stat">S</th><th class="c-stat">V</th><th class="c-stat">O</th><th class="c-stat">F</th>' +
+      '<th class="c-goals">Mål</th><th class="c-stat">+/-</th>' +
+      '<th class="c-pts">P</th><th class="c-status">Kval</th></tr></thead><tbody>';
     thirds.ranking.forEach(function (e, i) {
       var cls = e.qualified ? "r-third-q" : "r-third-o";
       if (i === 7) cls += " cut-line"; // sista kvalplatsen
@@ -580,11 +590,12 @@
         '<td class="c-pos">' + (i + 1) + '</td><td class="c-grp">' + e.L + '</td>' +
         '<td class="c-team"><span class="team">' + flagImg(e.team.iso) +
           '<span class="t-name">' + esc(e.team.sv) + '</span></span></td>' +
-        '<td>' + e.s.pld + '</td><td>' + e.s.w + '</td>' +
-        '<td>' + (e.s.gd > 0 ? "+" + e.s.gd : e.s.gd) + '</td>' +
+        '<td class="c-stat">' + e.s.pld + '</td><td class="c-stat">' + e.s.w + '</td>' +
+        '<td class="c-stat">' + e.s.d + '</td><td class="c-stat">' + e.s.l + '</td>' +
         '<td class="c-goals">' + e.s.gf + '–' + e.s.ga + '</td>' +
+        '<td class="c-stat">' + (e.s.gd > 0 ? "+" + e.s.gd : e.s.gd) + '</td>' +
         '<td class="c-pts">' + e.s.pts + '</td>' +
-        '<td>' + (e.qualified ? '<span class="qbadge">✓</span>' : '<span class="xbadge">✗</span>') + '</td></tr>';
+        '<td class="c-status">' + (e.qualified ? '<span class="qbadge">✓</span>' : '<span class="xbadge">✗</span>') + '</td></tr>';
     });
     h += '</tbody></table><p class="note">Endast de <strong>8 bästa treorna</strong> går vidare (de 4 sämsta treorna + alla fyror åker ut). ' +
       'Rangordning enligt FIFA: poäng → målskillnad → gjorda mål → vinster → lottning. ' +
@@ -634,9 +645,9 @@
   function renderBracket() {
     var ctx = getCtx();
 
-    var html = '<div class="page-intro bracket-intro"><h2>Slutspelsträd</h2></div>';
-
-    html += '<div class="bracket-scroll"><div class="bracket-wrap">';
+    var html = '<div class="bracket-shell">' +
+      '<div class="page-intro bracket-intro"><h2>Slutspelsträd</h2></div>' +
+      '<div class="bracket-scroll"><div class="bracket-wrap">';
     html += '<svg class="bracket-lines" aria-hidden="true"></svg>';
     html += '<div class="bracket two-sided">';
 
@@ -676,7 +687,7 @@
       });
     });
 
-    html += '</div></div></div>';
+    html += '</div></div></div></div>';
 
     viewEl.innerHTML = html;
     centerBracketScroll(drawBracketConnectors);
@@ -838,8 +849,9 @@
     var m = res.match;
     var when = whenLabels(m);
     var played = res.bothTeams && isPlayed(res.result);
-    var liveNow = sim.on && sim.key === ("k:" + m.m);
-    var rel = liveNow ? { cls: "live", txt: "LIVE " + sim.minute + "'" } : relativeLabel(m, played, "k:" + m.m);
+    var resKey = "k:" + m.m;
+    var liveNow = isMatchLive(resKey);
+    var rel = liveNow ? { cls: "live", txt: "Pågår nu" } : relativeLabel(m, played, resKey);
     var expanded = hoverMatch === m.m;
     var cls = "match" + (variant ? " " + variant : "") + (liveNow ? " live-now" : "") + (expanded ? " expanded" : "");
     if (opts.side) cls += " side-" + opts.side;
@@ -855,12 +867,11 @@
     h += sideRow(res.away, res, "a", aWin);
 
     var r = res.result;
-    if (played && r.h === r.a) {
-      h += '<div class="pen-row"><span>Straffar:</span>' +
-        '<button class="pen-btn' + (r.pw === "h" ? " on" : "") + '" data-pen="' + m.m + '" data-who="h">' +
-          esc(res.home.team ? res.home.team.sv : "Hemma") + '</button>' +
-        '<button class="pen-btn' + (r.pw === "a" ? " on" : "") + '" data-pen="' + m.m + '" data-who="a">' +
-          esc(res.away.team ? res.away.team.sv : "Borta") + '</button></div>';
+    if (played && r.h === r.a && r.pw) {
+      var penWinner = r.pw === "h"
+        ? (res.home.team ? res.home.team.sv : "Hemma")
+        : (res.away.team ? res.away.team.sv : "Borta");
+      h += '<div class="pen-row"><span>Straffar: ' + esc(penWinner) + " vann</span></div>";
     }
     h += '<div class="m-footer">' +
          '<span class="m-when">' + when.dateLabel + ' · ' + when.time + '</span>' +
@@ -878,11 +889,7 @@
       ? teamOpenBtn(side.team, flagImg(side.team.iso) + '<span class="s-name">' + esc(bracketTeamName(side)) + '</span>', "side-team")
       : '<span class="s-name placeholder">' + esc(side.label) + '</span>';
     var r = res.result || {};
-    var val = r[ha];
-    var disabled = inputsLocked() || !(side.team && res.bothTeams);
-    var scoreCell = '<input class="score k-score" type="number" min="0" inputmode="numeric" ' +
-      'data-key="k:' + res.match.m + '" data-side="' + ha + '" ' + (disabled ? 'disabled readonly ' : '') +
-      'value="' + (val === undefined ? "" : val) + '">';
+    var scoreCell = scoreDisplay(r[ha]);
     return '<div class="' + cls + '">' + inner + scoreCell + '</div>';
   }
 
@@ -1090,7 +1097,7 @@
       var ko = kickoffUTC(m).getTime();
       var rs = getRes(key);
       var inPlay = rs && (rs.status === "IN_PLAY" || rs.status === "PAUSED" || rs.status === "LIVE");
-      live = (sim.on && sim.key === key) || inPlay || (ko <= now && ko > now - twoH);
+      live = inPlay || isMatchLive(key) || (ko <= now && ko > now - twoH);
       if (!live && ko < now - twoH) return;
       candidates.push({
         ko: ko, live: live, label: label, teams: teams, channel: channel,
@@ -1180,7 +1187,7 @@
       var ko = kickoffUTC(m).getTime();
       var rs = getRes(key);
       var inPlay = rs && (rs.status === "IN_PLAY" || rs.status === "PAUSED" || rs.status === "LIVE");
-      var live = (sim.on && sim.key === key) || inPlay || (ko <= now && ko > now - twoH);
+      var live = inPlay || isMatchLive(key) || (ko <= now && ko > now - twoH);
       if (!live && ko < now - twoH) continue;
 
       var channel = mm.kind === "group"
@@ -1488,11 +1495,11 @@
     var r = getRes(fx.key) || {};
     var played = isPlayed(r);
     var when = whenLabels(fx);
-    var live = sim.on && sim.key === fx.key;
+    var live = isMatchLive(fx.key);
     var score = (played || live) ? '<span class="cal-score">' + (r.h || 0) + '–' + (r.a || 0) + '</span>'
                        : '<span class="cal-vs">–</span>';
     return '<div class="' + calRowClass(isNext, isRecent, live ? "is-live" : "") + '">' +
-      '<span class="cal-time">' + (live ? '<span class="cal-livet"><span class="live-dot"></span>' + sim.minute + "'</span>" : when.time) + '</span>' +
+      '<span class="cal-time">' + (live ? liveTimeLabel(fx.key, when.time) : when.time) + '</span>' +
       '<button type="button" class="cal-badge grp cal-group-btn" data-cal-group="' + L + '">Grupp ' + L + '</button>' +
       '<span class="cal-match">' + teamOpenBtn(th, esc(th.sv) + flagImg(th.iso), "cal-side home") +
         score +
@@ -1514,7 +1521,7 @@
     var aName = res.away.team ? esc(bracketTeamName(res.away)) : '<i>' + esc(res.away.label) + '</i>';
     var hFlag = res.home.team ? flagImg(res.home.team.iso) : "";
     var aFlag = res.away.team ? flagImg(res.away.team.iso) : "";
-    var live = sim.on && sim.key === ("k:" + m.m);
+    var live = isMatchLive("k:" + m.m);
     var score = (played || live) ? '<span class="cal-score">' + (r.h || 0) + '–' + (r.a || 0) +
       (played && r.h === r.a && r.pw ? '<sup>S</sup>' : '') + '</span>' : '<span class="cal-vs">–</span>';
     var hHome = res.home.team
@@ -1524,7 +1531,7 @@
       ? teamOpenBtn(res.away.team, aFlag + aName, "cal-side away" + (aProv ? " prov" : ""))
       : '<span class="cal-side away' + (aProv ? " prov" : "") + '">' + aFlag + aName + '</span>';
     return '<div class="' + calRowClass(isNext, isRecent, "ko" + (live ? " is-live" : "")) + '" data-m="' + m.m + '">' +
-      '<span class="cal-time">' + (live ? '<span class="cal-livet"><span class="live-dot"></span>' + sim.minute + "'</span>" : when.time) + '</span>' +
+      '<span class="cal-time">' + (live ? liveTimeLabel("k:" + m.m, when.time) : when.time) + '</span>' +
       '<span class="cal-badge ' + m.round + '">' + (CAL_ROUND[m.round] || m.round) + ' · M' + m.m + '</span>' +
       '<span class="cal-match">' + hHome + score + hAway + '</span>' +
       calVenueCell(tvLookupKo(m), isNext) +
@@ -1782,118 +1789,8 @@
   function hideTip() { tipEl.classList.remove("show"); }
 
   /* ====================================================================
-     LIVE-SIMULERING (demo) – spelar matcherna i realtid och uppdaterar
-     resultat → tabeller → slutspelsträd löpande. Skriver bara i tomma
-     matcher (rör inte resultat du själv matat in).
-  ==================================================================== */
-  function simToggle() { if (inputsLocked()) return; if (sim.on) stopSim(); else startSim(); }
-  function startSim() {
-    sim.on = true; setSimBtn();
-    sim.timer = setInterval(simTick, 1100);
-    simTick();
-  }
-  function stopSim() {
-    sim.on = false;
-    if (sim.timer) clearInterval(sim.timer);
-    sim.timer = null;
-    setSimBtn(); updateLiveBanner(); refresh();
-  }
-  function setSimBtn() {
-    var b = document.getElementById("liveBtn");
-    if (!b) return;
-    b.classList.toggle("on", sim.on);
-    b.textContent = sim.on ? "⏸ Pausa live" : "▶ Simulera live";
-  }
-
-  function nextSimItem() {
-    var ctx = getCtx();
-    var items = buildSchedule();
-    for (var i = 0; i < items.length; i++) {
-      var it = items[i];
-      if (it.kind === "group") {
-        if (getRes(it.fx.key)) continue;
-        return { key: it.fx.key, ko: null };
-      }
-      var res = ctx.resolved[it.m.m];
-      if (!res.bothTeams) continue;
-      var key = "k:" + it.m.m;
-      if (getRes(key)) continue;
-      return { key: key, ko: it.m.m };
-    }
-    return null;
-  }
-
-  function simTick() {
-    if (!sim.key) {
-      var nx = nextSimItem();
-      if (!nx) { stopSim(); flashDone(); return; }
-      sim.key = nx.key; sim.ko = nx.ko; sim.minute = 0;
-      state.results[sim.key] = { h: 0, a: 0 };
-      saveState(); refresh(); updateLiveBanner();
-      return;
-    }
-    sim.minute += 15 + Math.floor(Math.random() * 15);
-    var r = state.results[sim.key] || { h: 0, a: 0 };
-    if (Math.random() < 0.34) r.h++;
-    if (Math.random() < 0.30) r.a++;
-    if (sim.minute >= 90) {
-      sim.minute = 90;
-      if (sim.ko && r.h === r.a) r.pw = Math.random() < 0.5 ? "h" : "a";
-      state.results[sim.key] = r;
-      saveState(); updateLiveBanner(); refresh();
-      sim.key = null; sim.ko = null; sim.minute = 0;
-      return;
-    }
-    state.results[sim.key] = r;
-    saveState(); updateLiveBanner(); refresh();
-  }
-
-  function liveMatchInfo() {
-    if (!sim.key) return null;
-    var r = state.results[sim.key] || { h: 0, a: 0 };
-    if (sim.ko) {
-      var res = getCtx().resolved[sim.ko];
-      return { home: res.home.team, away: res.away.team, r: r, tag: WC.roundNames[res.match.round] + " · M" + sim.ko };
-    }
-    var p = sim.key.split(":"), L = p[1], idx = parseInt(p[2], 10);
-    var fx = groupFixtures(L)[idx];
-    return { home: WC.groups[L][fx.h], away: WC.groups[L][fx.a], r: r, tag: "Grupp " + L };
-  }
-
-  function updateLiveBanner() {
-    var el = document.getElementById("liveBanner");
-    if (!el) return;
-    var info = (sim.on && sim.key) ? liveMatchInfo() : null;
-    if (!info) { el.classList.remove("show"); return; }
-    el.innerHTML =
-      '<span class="lb-live"><span class="live-dot"></span>LIVE ' + sim.minute + "'</span>" +
-      '<span class="lb-tag">' + info.tag + '</span>' +
-      '<span class="lb-match">' + (info.home ? flagImg(info.home.iso) + esc(info.home.sv) : "?") +
-        ' <b>' + info.r.h + ' – ' + info.r.a + '</b> ' +
-        (info.away ? esc(info.away.sv) + flagImg(info.away.iso) : "?") + '</span>' +
-      '<span class="lb-demo">DEMO</span>';
-    el.classList.add("show");
-  }
-
-  function flashDone() {
-    var el = document.getElementById("liveBanner");
-    if (!el) return;
-    el.innerHTML = '<span class="lb-tag">✓ Simulering klar – alla matcher spelade</span><span class="lb-demo">DEMO</span>';
-    el.classList.add("show");
-    setTimeout(function () { if (!sim.on) el.classList.remove("show"); }, 4000);
-  }
-
-  /* ====================================================================
      EVENT-HANTERING
   ==================================================================== */
-  function onChange(e) {
-    if (inputsLocked()) return;
-    var el = e.target;
-    if (el.classList && el.classList.contains("score")) {
-      setScore(el.getAttribute("data-key"), el.getAttribute("data-side"), el.value);
-      render();
-    }
-  }
 
   function onInput(e) {
     if (e.target.id === "teamSearch") renderSearchResults(e.target.value);
@@ -1945,17 +1842,6 @@
     var tg = t.closest && t.closest("[data-toggle-group]");
     if (tg) { var L = tg.getAttribute("data-toggle-group"); expandedGroups[L] = !expandedGroups[L]; render(); return; }
 
-    var pen = t.closest && t.closest("[data-pen]");
-    if (pen) { setPen("k:" + pen.getAttribute("data-pen"), pen.getAttribute("data-who")); render(); return; }
-
-    if (t.id === "resetBtn") {
-      if (inputsLocked()) return;
-      if (confirm("Vill du nollställa alla inmatade resultat?")) {
-        if (sim.on) stopSim();
-        state.results = {}; saveState(); render();
-      }
-      return;
-    }
     // klick på lag → öppna statistikflik (alla vyer)
     var teamEl = t.closest && t.closest("[data-team-open]");
     if (teamEl) {
@@ -2014,9 +1900,6 @@
     var drawer = document.createElement("aside"); drawer.id = "teamDrawer"; drawer.className = "team-drawer";
     document.body.appendChild(drawer);
 
-    var banner = document.createElement("div"); banner.id = "liveBanner"; banner.className = "live-banner";
-    document.body.appendChild(banner);
-
     var calGroupBackdrop = document.createElement("div");
     calGroupBackdrop.id = "calGroupBackdrop";
     calGroupBackdrop.className = "cal-group-backdrop";
@@ -2028,7 +1911,6 @@
 
     var aside = document.createElement("aside"); aside.id = "bracketAside"; aside.className = "bracket-aside";
     document.body.appendChild(aside);
-    document.body.addEventListener("change", onChange);
     document.body.addEventListener("input", onInput);
     document.body.addEventListener("click", onClick);
     document.addEventListener("click", onDocClick);
@@ -2046,7 +1928,7 @@
 
     // Realtid: synk mellan flikar + nedräkningar
     window.addEventListener("storage", function (e) {
-      if (e.key === STORE_KEY) { state = loadState(); refresh(); updateLiveBanner(); }
+      if (e.key === STORE_KEY) { state = loadState(); refresh(); }
     });
     setInterval(refresh, 30000); // uppdatera "om X / Pågår" m.m.
     countdownTimer = setInterval(function () {
@@ -2065,7 +1947,7 @@
     updateSyncBadge();
   }
 
-  window.VMApp = { mergeRemoteResults: mergeRemoteResults, autoSync: autoSync };
+  window.VMApp = { mergeRemoteResults: mergeRemoteResults, setSyncStatus: setSyncStatus, autoSync: autoSync };
 
   document.addEventListener("DOMContentLoaded", init);
 })();

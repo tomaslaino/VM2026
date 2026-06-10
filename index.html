@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0a1628">
   <meta name="color-scheme" content="dark">
   <link rel="preconnect" href="https://flagcdn.com">
-  <link rel="stylesheet" href="assets/styles.css?v=35">
+  <link rel="stylesheet" href="assets/styles.css?v=46">
 </head>
 <body>
   <header class="topbar">
@@ -33,8 +33,7 @@
       </div>
 
       <div class="controls">
-        <span id="syncBadge" class="sync-badge" hidden title="Resultat hämtas automatiskt">Auto</span>
-        <button id="resetBtn" class="reset" title="Nollställ alla resultat">Nollställ</button>
+        <span id="syncBadge" class="sync-badge pending" title="Resultat hämtas från football-data.org">Hämtar…</span>
       </div>
     </div>
   </header>
@@ -46,16 +45,17 @@
   </footer>
 
   <script>
-    /* Backend-URL för live-data.
-       Lämna tom när sidan serveras av Node-servern (samma origin).
-       Ligger sidan på GitHub Pages: sätt din driftade backend-adress här,
-       t.ex. backend: "https://vm2026.onrender.com" */
-    window.VM_CONFIG = { backend: "" };
+    /* Datakälla för resultat/tabeller.
+       - Standard (GitHub Pages): lämna backend tom. Sidan läser den statiska
+         data/results.json som GitHub Actions uppdaterar automatiskt.
+       - Vill du ha en alltid-på-server med WebSocket-realtid: sätt
+         backend: "https://din-app.onrender.com" */
+    window.VM_CONFIG = { backend: "", staticResults: "data/results.json" };
   </script>
   <script src="assets/annexc.js"></script>
   <script src="assets/data.js"></script>
-  <script src="assets/app.js?v=32"></script>
-  <script src="assets/sync.js"></script>
+  <script src="assets/app.js?v=40"></script>
+  <script src="assets/sync.js?v=2"></script>
   <script src="assets/live.js"></script>
 </body>
 </html>

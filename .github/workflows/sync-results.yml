@@ -1,0 +1,52 @@
+name: Synka VM-resultat
+
+# Hämtar matchresultat & schema från football-data.org och committar
+# en statisk data/results.json som sidan (GitHub Pages) läser direkt.
+
+on:
+  schedule:
+    # Var 10:e minut (GitHub kör schemat "best effort", ibland glesare).
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {} # Tillåt manuell körning från Actions-fliken.
+
+# Undvik överlappande körningar.
+concurrency:
+  group: sync-results
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checka ut repo
+        uses: actions/checkout@v4
+
+      - name: Sätt upp Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Installera beroenden
+        run: npm install --no-audit --no-fund
+
+      - name: Hämta resultat från football-data
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+          FD_COMPETITION: WC
+          FD_SEASON: "2026"
+        run: npm run sync:static
+
+      - name: Committa om något ändrats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/results.json
+          if git diff --staged --quiet; then
+            echo "Inga förändringar – hoppar över commit."
+          else
+            git commit -m "Auto-synk VM-resultat $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
