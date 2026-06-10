@@ -634,12 +634,7 @@
   function renderBracket() {
     var ctx = getCtx();
 
-    var html = '<div class="page-intro bracket-intro">' +
-      '<h2>Slutspelsträd</h2>' +
-      '<p>Finalen i mitten. <em>Kursiva lag</em> är preliminära – klicka › på en match för mer info.</p>' +
-      (ctx.allComplete ? '' :
-        '<p class="hint">Gruppspelet är inte färdigspelat – trädet visar nuvarande hypotetiska läge.</p>') +
-      '</div>';
+    var html = '<div class="page-intro bracket-intro"><h2>Slutspelsträd</h2></div>';
 
     html += '<div class="bracket-scroll"><div class="bracket-wrap">';
     html += '<svg class="bracket-lines" aria-hidden="true"></svg>';
@@ -1055,6 +1050,13 @@
     return h + " – " + a;
   }
 
+  /* Datum + tid för kompakta paneler (nästa match, Sverige/Uruguay). */
+  function panelWhenCompact(m, live) {
+    if (live) return "Pågår";
+    var d = parseDateUTC(m.date);
+    return d.getUTCDate() + " " + MONTHS[d.getUTCMonth()] + " · " + (m.edt || "TBC");
+  }
+
   /** Nästa (eller pågående) match(er) – alla med samma avspark räknas som samtidiga. */
   function findNextMatches(ctx) {
     var items = buildSchedule();
@@ -1090,7 +1092,10 @@
       var inPlay = rs && (rs.status === "IN_PLAY" || rs.status === "PAUSED" || rs.status === "LIVE");
       live = (sim.on && sim.key === key) || inPlay || (ko <= now && ko > now - twoH);
       if (!live && ko < now - twoH) return;
-      candidates.push({ ko: ko, live: live, label: label, teams: teams, channel: channel, time: when.time });
+      candidates.push({
+        ko: ko, live: live, label: label, teams: teams, channel: channel,
+        time: when.time, whenText: panelWhenCompact(m, live)
+      });
     });
 
     var liveOnes = candidates.filter(function (c) { return c.live; });
@@ -1109,7 +1114,7 @@
   }
 
   function nextMatchItemHtml(m) {
-    return '<div class="nm-item"><span class="nm-meta">' + esc(m.label) + " · " + esc(m.time) + "</span>" +
+    return '<div class="nm-item"><span class="nm-meta">' + esc(m.label) + " · " + esc(m.whenText) + "</span>" +
       '<span class="nm-teams">' + esc(m.teams) + "</span>" +
       (m.channel ? tvChHtml(m.channel) : "") + "</div>";
   }
@@ -1147,6 +1152,16 @@
     return h + " – " + a;
   }
 
+  /** Kompakt matchrad i Sverige/Uruguay-panelen – kortare namn än referens får plats. */
+  function teamSvSpotlightBase(team) {
+    if (!team || !team.sv) return "";
+    return teamSvFixture(team);
+  }
+
+  function matchTeamsLabelCompact(home, away) {
+    return teamSvSpotlightBase(home) + " – " + teamSvSpotlightBase(away);
+  }
+
   function findTeamNextMatch(ctx, teamIso) {
     var info = findTeamByIso(teamIso);
     if (!info) return null;
@@ -1177,7 +1192,9 @@
         live: live,
         label: mm.label,
         time: when.time,
-        teams: matchTeamsLabel(mm.home, mm.away),
+        whenText: panelWhenCompact(m, live),
+        teams: matchTeamsLabelCompact(mm.home, mm.away),
+        teamsFull: matchTeamsLabel(mm.home, mm.away),
         channel: channel,
         team: info.team
       };
@@ -1193,14 +1210,13 @@
   function teamSpotlightItemHtml(tp) {
     var m = tp.match;
     if (!m) {
-      return '<button type="button" class="nm-spot-row is-empty team-open" data-team-open="' + tp.iso + '">' + flagImg(tp.iso) +
+      return '<button type="button" class="nm-spot-row is-empty team-open" data-team-open="' + tp.iso + '">' +
+        '<span class="nm-spot-when nm-muted">–</span>' +
         '<span class="nm-spot-teams nm-muted">Ingen match</span></button>';
     }
-    var timeTxt = m.live ? "Pågår" : m.time;
     return '<button type="button" class="nm-spot-row team-open' + (m.live ? " is-live" : "") + '" data-team-open="' + tp.iso + '">' +
-      flagImg(tp.iso) +
-      '<span class="nm-spot-time">' + esc(timeTxt) + "</span>" +
-      '<span class="nm-spot-teams">' + esc(m.teams) + "</span>" +
+      '<span class="nm-spot-when">' + esc(m.whenText) + "</span>" +
+      '<span class="nm-spot-teams"' + (m.teamsFull && m.teamsFull !== m.teams ? ' title="' + esc(m.teamsFull) + '"' : "") + ">" + esc(m.teams) + "</span>" +
       spotlightTvHtml(m.channel) +
       "</button>";
   }
