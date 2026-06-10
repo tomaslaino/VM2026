@@ -258,8 +258,8 @@
   }
 
   function setLiveStatus(on) {
-    var dot = document.querySelector(".brand-mark");
-    if (dot) dot.classList.toggle("ws-on", !!on);
+    var badge = document.getElementById("syncBadge");
+    if (badge) badge.classList.toggle("ws-on", !!on);
   }
 
   /* ---------- Init ---------- */

@@ -554,6 +554,33 @@
   var viewEl;
   var countdownTimer = null;
 
+  var HERO_TEXTS = {
+    groups: { title: "Gruppspel", sub: "11 juni – 19 juli · 48 lag · 104 matcher" },
+    bracket: { title: "Slutspel", sub: "32 lag · vägen till finalen 19 juli" },
+    calendar: { title: "Kalender", sub: "Alla matcher · grupp- & slutspelsfas" }
+  };
+
+  /* Vytitel (Gruppspel/Slutspel/Kalender) visas i innehållsytan,
+     inte i bannern – bannern är identisk i alla vyer. */
+  function renderPageIntro(view) {
+    if (!viewEl) return;
+    var t = HERO_TEXTS[view] || HERO_TEXTS.groups;
+    viewEl.insertAdjacentHTML("afterbegin",
+      '<div class="page-intro"><div class="page-intro-main">' +
+      "<h2>" + t.title + "</h2><p>" + t.sub + "</p>" +
+      "</div></div>");
+  }
+
+  /* Sticky-offset: hela headern är sticky men med negativ top så att
+     bara navraden blir kvar synlig högst upp när man scrollar. */
+  function updateHeroSticky() {
+    var header = document.querySelector(".hero-header");
+    if (!header) return;
+    var nav = header.querySelector(".topbar");
+    var navH = nav ? nav.offsetHeight : 0;
+    header.style.top = Math.min(0, navH - header.offsetHeight) + "px";
+  }
+
   function render() {
     var view = ui("view", "groups");
     document.documentElement.classList.toggle("view-bracket", view === "bracket");
@@ -563,10 +590,12 @@
     if (view === "groups") renderGroups();
     else if (view === "bracket") renderBracket();
     else renderCalendar();
+    renderPageIntro(view);
 
     if (view !== "calendar") hideCalGroupPopup();
     if (view !== "bracket") { hoverMatch = null; hideAside(); }
     renderTeamDrawer();
+    updateHeroSticky();
   }
 
   /* Re-render utan att störa pågående inmatning (för realtid/timer). */
@@ -614,14 +643,6 @@
     ctx.thirds.ranking.forEach(function (e) { if (e.qualified) qualifiedLetters[e.L] = true; });
 
     var html = '<div class="groups-layout">' +
-      '<div class="page-intro-main">' +
-        '<h2>Gruppspel</h2>' +
-        '<p>Topp 2 i varje grupp går vidare, plus de <strong>8 bästa treorna</strong>.</p>' +
-        '<div class="legend">' +
-          '<span class="lg"><i class="dot adv"></i> Avancerar (1:a/2:a)</span>' +
-          '<span class="lg"><i class="dot third-q"></i> Trea – kvalificerad</span>' +
-          '<span class="lg"><i class="dot third-o"></i> Trea – utanför</span>' +
-        '</div></div>' +
       nextMatchesRow(ctx) +
       '<div class="groups-grid">';
     WC.groupLetters.forEach(function (L) { html += groupCard(L, ctx.tables[L], qualifiedLetters[L]); });
@@ -656,7 +677,7 @@
     var fixtures = groupFixtures(L);
     var open = !!expandedGroups[L];
     var h = '<section class="card group-card' + (open ? " is-open" : "") + '">';
-    h += '<div class="group-head"><h3>Grupp ' + L + '</h3></div>';
+    h += '<div class="group-head"><h3><span class="group-letter">' + L + '</span>Grupp ' + L + '</h3></div>';
     h += '<table class="standings"><thead><tr>' +
          '<th class="c-pos">#</th><th class="c-team">Lag</th>' +
          '<th class="c-stat">S</th><th class="c-stat">V</th><th class="c-stat">O</th><th class="c-stat">F</th>' +
@@ -789,7 +810,6 @@
     var ctx = getCtx();
 
     var html = '<div class="bracket-shell">' +
-      '<div class="page-intro bracket-intro"><h2>Slutspelsträd</h2></div>' +
       '<div class="bracket-scroll"><div class="bracket-wrap">';
     html += '<svg class="bracket-lines" aria-hidden="true"></svg>';
     html += '<div class="bracket two-sided">';
@@ -1595,9 +1615,9 @@
     var items = buildSchedule();
     var calView = calendarViewState(items, ctx);
 
-    var html = '<div class="page-intro"><h2>Kalender</h2></div>';
-
-    html += '<div class="cal">';
+    var html = '<div class="calendar-layout">' +
+      nextMatchesRow(ctx) +
+      '<div class="cal-shell"><div class="cal">';
     var lastDate = null;
     items.forEach(function (it) {
       if (it.date !== lastDate) {
@@ -1617,8 +1637,9 @@
                                : calGroupRow(it, isNext, isRecent);
     });
     if (lastDate !== null) html += '</div></div>';
-    html += '</div>';
+    html += '</div></div></div>';
     viewEl.innerHTML = html;
+    updateNextCountdown();
 
     if (calScrollPending) {
       calScrollPending = false;
@@ -2116,7 +2137,8 @@
     });
     setInterval(refresh, 30000); // uppdatera "om X / Pågår" m.m.
     countdownTimer = setInterval(function () {
-      if (ui("view", "groups") === "groups") updateNextCountdown();
+      var view = ui("view", "groups");
+      if (view === "groups" || view === "calendar") updateNextCountdown();
     }, 1000);
 
     var bracketLineTimer;
@@ -2125,6 +2147,13 @@
       clearTimeout(bracketLineTimer);
       bracketLineTimer = setTimeout(drawBracketConnectors, 120);
     });
+
+    var heroStickyTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(heroStickyTimer);
+      heroStickyTimer = setTimeout(updateHeroSticky, 80);
+    });
+    window.addEventListener("load", updateHeroSticky);
 
     if (ui("view", "groups") === "calendar") calScrollPending = true;
     render();

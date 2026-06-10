@@ -148,6 +148,14 @@ GitHub Pages kan **inte** köra Node. Använd t.ex. [Render](https://render.com/
 
 Utan `VM_CONFIG.backend` läser sidan den statiska `data/results.json` som GitHub Actions uppdaterar (se [Auto-uppdatering på GitHub Pages](#auto-uppdatering-på-github-pages-standard-ingen-server) ovan) – det är standardläget och kräver ingen server.
 
-### Egen domän (gravaguld.se)
+### Egen domän (gravergrav.se)
+
+Filen `CNAME` i reporoten pekar GitHub Pages mot **gravergrav.se**.
+
+1. **DNS** hos domänregistratorn (ersätt ev. gamla gravaguld.se-poster):
+   - **A** för `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - valfritt **CNAME** för `www` → `tomaslaino.github.io`
+2. När DNS svarar: **GitHub → Settings → Pages → Custom domain** → `gravergrav.se`, aktivera **Enforce HTTPS**.
+3. Ta bort `gravaguld.se` från Custom domain om den fortfarande ligger kvar.
 
 Lägg **inte** till Custom domain förrän DNS är aktiv. Om `github.io` omdirigerar till en domän som inte svarar: ta bort Custom domain under **Settings → Pages**.
