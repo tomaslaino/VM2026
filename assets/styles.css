@@ -1367,8 +1367,8 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   border-radius: 999px; padding: 4px 10px; white-space: nowrap;
 }
 .sync-badge.ok {
-  background: linear-gradient(90deg, var(--usa-red), color-mix(in srgb, var(--usa-red) 75%, var(--usa-navy)));
-  border: 1px solid color-mix(in srgb, var(--usa-red) 50%, #fff);
+  background: linear-gradient(90deg, var(--adv), color-mix(in srgb, var(--adv) 80%, #0a3d2a));
+  border: 1px solid color-mix(in srgb, var(--adv) 55%, #fff);
 }
 .sync-badge.pending {
   background: color-mix(in srgb, var(--usa-navy) 85%, #fff);
