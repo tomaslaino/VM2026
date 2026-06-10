@@ -5,8 +5,8 @@ name: Synka VM-resultat
 
 on:
   schedule:
-    # Var 10:e minut (GitHub kör schemat "best effort", ibland glesare).
-    - cron: "*/10 * * * *"
+    # Var 3:e minut – skriptet hoppar över API-anrop i lugna perioder.
+    - cron: "*/3 * * * *"
   workflow_dispatch: {} # Tillåt manuell körning från Actions-fliken.
 
 # Undvik överlappande körningar.
@@ -37,6 +37,7 @@ jobs:
           FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
           FD_COMPETITION: WC
           FD_SEASON: "2026"
+          SYNC_FORCE: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
         run: npm run sync:static
 
       - name: Committa om något ändrats

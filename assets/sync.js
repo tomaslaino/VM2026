@@ -7,7 +7,7 @@
       Hämtar /api/results och lyssnar på WebSocket för direktuppdatering.
    2. Statiskt läge (standard, GitHub Pages): ingen backend behövs.
       Läser en statisk results.json som GitHub Actions uppdaterar
-      automatiskt med jämna mellanrum. Pollar filen med jämna intervall.
+      automatiskt. Pollar oftare runt matcher, sällan däremellan.
 */
 (function () {
   "use strict";
@@ -17,6 +17,7 @@
   var STATIC_URL = CFG.staticResults || "data/results.json";
   var USE_BACKEND = !!API;
   var pollTimer = null;
+  var lastPayload = null;
 
   function setStatus(status) {
     if (window.VMApp && typeof window.VMApp.setSyncStatus === "function") {
@@ -25,23 +26,32 @@
   }
 
   function apply(payload) {
+    if (payload) lastPayload = payload;
     if (window.VMApp && typeof window.VMApp.mergeRemoteResults === "function") {
       window.VMApp.mergeRemoteResults(payload);
     }
   }
 
-  function resultsUrl() {
-    if (USE_BACKEND) return API + "/api/results";
-    // Cache-busting så GitHub Pages-CDN inte ger en gammal fil.
-    return STATIC_URL + (STATIC_URL.indexOf("?") === -1 ? "?" : "&") + "t=" + Date.now();
+  function pollIntervalMs() {
+    if (USE_BACKEND) {
+      var now = new Date();
+      var start = new Date("2026-06-11T00:00:00Z");
+      var end = new Date("2026-07-20T00:00:00Z");
+      if (now >= start && now <= end) return 60000;
+      return 180000;
+    }
+
+    if (window.VMSyncSchedule && lastPayload) {
+      var plan = window.VMSyncSchedule.getSyncUrgency(lastPayload);
+      return plan.pollSec * 1000;
+    }
+
+    return 180000;
   }
 
-  function pollIntervalMs() {
-    var now = new Date();
-    var start = new Date("2026-06-11T00:00:00Z");
-    var end = new Date("2026-07-20T00:00:00Z");
-    if (now >= start && now <= end) return 60000;
-    return 180000;
+  function resultsUrl() {
+    if (USE_BACKEND) return API + "/api/results";
+    return STATIC_URL + (STATIC_URL.indexOf("?") === -1 ? "?" : "&") + "t=" + Date.now();
   }
 
   function schedulePoll() {

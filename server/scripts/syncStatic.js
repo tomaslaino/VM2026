@@ -4,6 +4,7 @@ import { pathToFileURL } from "node:url";
 import { ROOT, config } from "../config.js";
 import { getMatches, getCallCount } from "../footballData.js";
 import { mapMatchesToFixtures, mapMatchesToResults } from "../mapResults.js";
+import { shouldSyncNow } from "../syncSchedule.js";
 
 /*
   Hämtar alla VM-matcher från football-data.org och skriver en statisk
@@ -15,11 +16,37 @@ import { mapMatchesToFixtures, mapMatchesToResults } from "../mapResults.js";
 
 const OUT_FILE = path.join(ROOT, "data", "results.json");
 
-export async function syncStatic({ log = console.log } = {}) {
+function readCachedSnapshot() {
+  try {
+    if (fs.existsSync(OUT_FILE)) {
+      return JSON.parse(fs.readFileSync(OUT_FILE, "utf8"));
+    }
+  } catch (e) {
+    /* ignorera trasig cache */
+  }
+  return null;
+}
+
+export async function syncStatic({ log = console.log, force = false } = {}) {
   if (config.fdOffline) {
     throw new Error(
       "FOOTBALL_DATA_TOKEN saknas – kan inte hämta resultat. Sätt miljövariabeln och kör igen."
     );
+  }
+
+  const cached = readCachedSnapshot();
+  if (!force) {
+    const plan = shouldSyncNow(cached);
+    if (!plan.sync) {
+      log(
+        `[fd] Hoppar över synk (${plan.level}, senast ${plan.ageSec}s sedan, ` +
+          `väntar ${plan.minSyncGapSec}s).`
+      );
+      return { skipped: true, reason: plan.level };
+    }
+    log(`[fd] Synkar nu (${plan.level}) …`);
+  } else {
+    log("[fd] Tvingad synk …");
   }
 
   log("[fd] Hämtar matcher från football-data …");
@@ -53,7 +80,8 @@ export async function syncStatic({ log = console.log } = {}) {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  syncStatic().catch((e) => {
+  const force = process.env.SYNC_FORCE === "1" || process.argv.includes("--force");
+  syncStatic({ force }).catch((e) => {
     console.error(e.message || e);
     process.exit(1);
   });

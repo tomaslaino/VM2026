@@ -26,7 +26,20 @@ GitHub Actions (var 10:e min)  →  football-data.org  →  data/results.json (c
    - Value: din token
 3. Kör workflowen första gången manuellt: **Actions → Synka VM-resultat → Run workflow** (sen sköts allt automatiskt).
 
-> football-data.org gratisplan är **fördröjd** (inte sekundsnabbt live). Det räcker gott för grupptabeller och slutspel. GitHub Actions kör schemat "best effort", oftast var 10:e minut.
+> football-data.org gratisplan är **fördröjd** (inte sekundsnabbt live). Det räcker gott för grupptabeller och slutspel.
+
+**Uppdateringsfrekvens (smart):**
+
+| Läge | GitHub Actions (hämtar API) | Sidan (läser results.json) |
+|------|----------------------------|----------------------------|
+| Live-match pågår | Var 3:e min (alltid) | Var 30:e sekund |
+| Match startar inom 90 min | Var 3:e min (alltid) | Var 60:e sekund |
+| Match nyligen avslutad | Var 3:e min (alltid) | Var 90:e sekund |
+| Matchdag, lugnt | Var 5:e min | Var 3:e minut |
+| Ingen match idag | Var 30:e min | Var 10:e minut |
+| Utanför VM-perioden | Var 6:e timme | Var 30:e minut |
+
+Workflowen körs var 3:e minut men **hoppar över API-anrop** i lugna perioder för att spara kvot.
 
 ## Snabbstart (lokalt med auto-uppdatering)
 
