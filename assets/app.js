@@ -556,7 +556,7 @@
 
   var HERO_TEXTS = {
     groups: { title: "Gruppspel", sub: "11 juni – 19 juli · 48 lag · 104 matcher" },
-    bracket: { title: "Slutspel", sub: "32 lag · vägen till finalen 19 juli" },
+    bracket: { title: "Slutspel", sub: "" },
     calendar: { title: "Kalender", sub: "Alla matcher · grupp- & slutspelsfas" }
   };
 
@@ -567,7 +567,8 @@
     var t = HERO_TEXTS[view] || HERO_TEXTS.groups;
     viewEl.insertAdjacentHTML("afterbegin",
       '<div class="page-intro"><div class="page-intro-main">' +
-      "<h2>" + t.title + "</h2><p>" + t.sub + "</p>" +
+      "<h2>" + t.title + "</h2>" +
+      (t.sub ? "<p>" + t.sub + "</p>" : "") +
       "</div></div>");
   }
 

@@ -86,7 +86,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 28%;
+  object-position: center 88%;
 }
 .hero-shade {
   position: absolute;
@@ -101,15 +101,16 @@ body {
   position: relative;
   max-width: var(--maxw);
   margin: 0 auto;
-  min-height: clamp(72px, 9vw, 118px);
-  padding: 12px 20px 6px;
+  min-height: clamp(58px, 7.5vw, 96px);
+  padding: 10px 20px 4px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: flex-start;
-  gap: 1px;
 }
 .hero-head h1 {
+  flex: 1;
+  display: flex;
+  align-items: center;
   margin: 0;
   font-size: clamp(24px, 3.2vw, 36px);
   font-weight: 900;
@@ -117,13 +118,6 @@ body {
   line-height: 1.05;
   color: #f7fafd;
   text-shadow: 0 2px 20px rgba(0, 0, 0, .9), 0 1px 3px rgba(0, 0, 0, .8);
-}
-.hero-head p {
-  margin: 1px 0 0;
-  font-size: 12.5px;
-  font-weight: 600;
-  color: #c4d4e6;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, .85);
 }
 .hero-kicker {
   font-size: 11px;
@@ -154,7 +148,7 @@ body {
     var(--usa-blue) 74%, var(--usa-blue) 100%);
 }
 .topbar-inner {
-  max-width: var(--maxw); margin: 0 auto; padding: 7px 20px 9px;
+  max-width: var(--maxw); margin: 0 auto; padding: 6px 20px 7px;
   display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
 }
 .nav { display: inline-flex; background: rgba(10, 22, 40, .72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 12px; padding: 4px; gap: 2px; }
@@ -585,8 +579,8 @@ html.view-bracket body {
     radial-gradient(1000px 520px at 2% -4%, rgba(61, 109, 181, .16), transparent 60%),
     linear-gradient(180deg, rgba(8,15,26,.95) 0%, rgba(8,15,26,.90) 48%, rgba(8,15,26,.97) 100%),
     url("bracket-bg.png");
-  background-position: center, center, center center, center 44%;
-  background-size: auto, auto, auto, cover;
+  background-position: center, center, center center, center top;
+  background-size: auto, auto, auto, auto 110%;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -621,10 +615,9 @@ html.view-bracket main.container {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding-top: 12px;
-  padding-bottom: 0;
+  padding: 26px 20px 0;
 }
-html.view-bracket .page-intro { margin: 0 0 6px; }
+html.view-bracket .page-intro { margin: 4px 0 22px; }
 html.view-bracket .bracket-shell {
   flex: 1 1 0;
   min-height: 0;
@@ -1479,7 +1472,7 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
     gap: 14px;
     margin-bottom: 18px;
   }
-  .hero-head { min-height: clamp(68px, 14vw, 108px); padding: 10px 16px 5px; }
+  .hero-head { min-height: clamp(54px, 11vw, 88px); padding: 8px 16px 4px; }
 }
 
 @media (max-width: 580px) {
@@ -1605,8 +1598,7 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   html.view-bracket,
   html.view-bracket body { background-attachment: scroll; }
   html.view-bracket main.container {
-    padding-top: 10px;
-    padding-bottom: 2px;
+    padding: 16px 14px 0;
   }
   html.view-bracket .bracket-scroll {
     margin: 0 -14px;
@@ -1640,17 +1632,12 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 
 @media (max-height: 720px) {
   html.view-bracket .foot { display: none; }
-  html.view-bracket main.container { padding-top: 8px; }
-  /* Spara höjd när trädet inte får scrolla: dölj underrubrik, krymp rubrik. */
-  html.view-bracket .page-intro p { display: none; }
-  html.view-bracket .page-intro h2 { font-size: 18px; margin-bottom: 2px; }
 }
 
 @media (max-width: 560px) {
-  .hero-head { min-height: 64px; }
-  .hero-bg { object-position: 72% 42%; }
+  .hero-head { min-height: 52px; }
+  .hero-bg { object-position: 72% 96%; }
   .hero-kicker { font-size: 9.5px; letter-spacing: 1px; margin-bottom: 3px; }
-  .hero-head p { font-size: 11.5px; }
   .legend { gap: 10px; }
   .lg { font-size: 12px; }
 
