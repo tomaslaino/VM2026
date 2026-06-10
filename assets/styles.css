@@ -75,7 +75,7 @@ body {
    som en vanlig navbar högst upp i fönstret. */
 .hero-header {
   position: sticky;
-  top: -240px; /* fallback – exakt värde sätts av JS */
+  top: -170px; /* fallback – exakt värde sätts av JS */
   z-index: 40;
   background: #060b14;
   box-shadow: 0 4px 24px rgba(0,0,0,.3);
@@ -86,7 +86,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 8%;
+  object-position: center 28%;
 }
 .hero-shade {
   position: absolute;
@@ -101,17 +101,17 @@ body {
   position: relative;
   max-width: var(--maxw);
   margin: 0 auto;
-  min-height: clamp(140px, 18vw, 235px);
-  padding: 26px 20px 16px;
+  min-height: clamp(72px, 9vw, 118px);
+  padding: 12px 20px 6px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  gap: 2px;
+  gap: 1px;
 }
 .hero-head h1 {
   margin: 0;
-  font-size: clamp(28px, 4vw, 44px);
+  font-size: clamp(24px, 3.2vw, 36px);
   font-weight: 900;
   letter-spacing: -.8px;
   line-height: 1.05;
@@ -119,8 +119,8 @@ body {
   text-shadow: 0 2px 20px rgba(0, 0, 0, .9), 0 1px 3px rgba(0, 0, 0, .8);
 }
 .hero-head p {
-  margin: 2px 0 0;
-  font-size: 13.5px;
+  margin: 1px 0 0;
+  font-size: 12.5px;
   font-weight: 600;
   color: #c4d4e6;
   text-shadow: 0 1px 10px rgba(0, 0, 0, .85);
@@ -136,7 +136,7 @@ body {
   background: color-mix(in srgb, var(--usa-red) 55%, rgba(10, 18, 32, .6));
   border: 1px solid color-mix(in srgb, var(--usa-red) 70%, transparent);
   box-shadow: 0 4px 14px rgba(0, 0, 0, .35);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 /* Navraden längst ned i headern – transparent, ligger direkt på bannerbilden */
@@ -154,7 +154,7 @@ body {
     var(--usa-blue) 74%, var(--usa-blue) 100%);
 }
 .topbar-inner {
-  max-width: var(--maxw); margin: 0 auto; padding: 11px 20px;
+  max-width: var(--maxw); margin: 0 auto; padding: 7px 20px 9px;
   display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
 }
 .nav { display: inline-flex; background: rgba(10, 22, 40, .72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 12px; padding: 4px; gap: 2px; }
@@ -585,7 +585,7 @@ html.view-bracket body {
     radial-gradient(1000px 520px at 2% -4%, rgba(61, 109, 181, .16), transparent 60%),
     linear-gradient(180deg, rgba(8,15,26,.95) 0%, rgba(8,15,26,.90) 48%, rgba(8,15,26,.97) 100%),
     url("bracket-bg.png");
-  background-position: center, center, center center, center 22%;
+  background-position: center, center, center center, center 44%;
   background-size: auto, auto, auto, cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -602,8 +602,18 @@ html.view-bracket body {
   max-height: 100dvh;
   overflow: hidden;
 }
-html.view-bracket .hero-header { flex: none; position: relative; top: 0 !important; }
-/* Bannern är identisk i alla vyer – även i slutspelsvyn. */
+/* Slutspel: ingen sid-scroll – bannern krymper via .hero-collapsed (JS). */
+html.view-bracket .hero-header {
+  flex: none;
+  position: relative;
+  top: 0 !important;
+  transition: box-shadow .2s;
+}
+html.view-bracket .hero-header.hero-collapsed .hero-head,
+html.view-bracket .hero-header.hero-collapsed .hero-bg,
+html.view-bracket .hero-header.hero-collapsed .hero-shade {
+  display: none;
+}
 html.view-bracket main.container {
   flex: 1 1 0;
   min-height: 0;
@@ -677,7 +687,7 @@ html.view-bracket .bracket-scroll {
   height: 0;
   width: 100%;
   overflow: auto;
-  overscroll-behavior: contain;
+  overscroll-behavior: auto;
   scrollbar-gutter: stable;
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--ink-soft) 50%, var(--line)) transparent;
@@ -1469,7 +1479,7 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
     gap: 14px;
     margin-bottom: 18px;
   }
-  .hero-head { min-height: clamp(120px, 24vw, 190px); padding: 20px 16px 12px; }
+  .hero-head { min-height: clamp(68px, 14vw, 108px); padding: 10px 16px 5px; }
 }
 
 @media (max-width: 580px) {
@@ -1637,10 +1647,10 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 }
 
 @media (max-width: 560px) {
-  .hero-head { min-height: 110px; }
-  .hero-bg { object-position: 72% 32%; }
-  .hero-kicker { font-size: 9.5px; letter-spacing: 1px; margin-bottom: 6px; }
-  .hero-head p { font-size: 12px; }
+  .hero-head { min-height: 64px; }
+  .hero-bg { object-position: 72% 42%; }
+  .hero-kicker { font-size: 9.5px; letter-spacing: 1px; margin-bottom: 3px; }
+  .hero-head p { font-size: 11.5px; }
   .legend { gap: 10px; }
   .lg { font-size: 12px; }
 

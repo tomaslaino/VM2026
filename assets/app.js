@@ -576,9 +576,34 @@
   function updateHeroSticky() {
     var header = document.querySelector(".hero-header");
     if (!header) return;
+    if (ui("view", "groups") === "bracket") {
+      header.style.top = "0";
+      return;
+    }
     var nav = header.querySelector(".topbar");
     var navH = nav ? nav.offsetHeight : 0;
     header.style.top = Math.min(0, navH - header.offsetHeight) + "px";
+  }
+
+  function setBracketHeroCollapsed(on) {
+    var header = document.querySelector(".hero-header");
+    if (!header) return;
+    var was = header.classList.contains("hero-collapsed");
+    header.classList.toggle("hero-collapsed", !!on);
+    if (was !== !!on && ui("view", "groups") === "bracket") {
+      requestAnimationFrame(drawBracketConnectors);
+    }
+  }
+
+  function setupBracketHeroCollapse() {
+    var sc = viewEl.querySelector(".bracket-scroll");
+    if (!sc || sc._heroCollapseBound) return;
+    sc._heroCollapseBound = true;
+
+    sc.addEventListener("scroll", function () {
+      if (sc.scrollTop > 6) setBracketHeroCollapsed(true);
+      else if (sc.scrollTop <= 0) setBracketHeroCollapsed(false);
+    }, { passive: true });
   }
 
   function render() {
@@ -588,12 +613,19 @@
       b.classList.toggle("active", b.getAttribute("data-nav") === view);
     });
     if (view === "groups") renderGroups();
-    else if (view === "bracket") renderBracket();
+    else if (view === "bracket") {
+      setBracketHeroCollapsed(false);
+      renderBracket();
+    }
     else renderCalendar();
     renderPageIntro(view);
 
     if (view !== "calendar") hideCalGroupPopup();
-    if (view !== "bracket") { hoverMatch = null; hideAside(); }
+    if (view !== "bracket") {
+      hoverMatch = null;
+      hideAside();
+      setBracketHeroCollapsed(false);
+    }
     renderTeamDrawer();
     updateHeroSticky();
   }
@@ -875,6 +907,7 @@
 
     if (hoverMatch && ctx.resolved[hoverMatch]) updateAside(hoverMatch, ctx);
     else hideAside();
+    setupBracketHeroCollapse();
   }
 
   function drawBracketConnectors(afterLayout) {
@@ -2154,6 +2187,13 @@
       heroStickyTimer = setTimeout(updateHeroSticky, 80);
     });
     window.addEventListener("load", updateHeroSticky);
+
+    window.addEventListener("wheel", function (e) {
+      if (ui("view", "groups") !== "bracket") return;
+      var sc = viewEl.querySelector(".bracket-scroll");
+      if (e.deltaY > 2) setBracketHeroCollapsed(true);
+      else if (e.deltaY < -2 && (!sc || sc.scrollTop <= 0)) setBracketHeroCollapsed(false);
+    }, { passive: true });
 
     if (ui("view", "groups") === "calendar") calScrollPending = true;
     render();
