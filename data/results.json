@@ -1,10 +1,10 @@
 {
   "meta": {
-    "updatedAt": "2026-06-10T11:04:48.450Z",
+    "updatedAt": "2026-06-10T17:42:57.710Z",
     "source": "football-data",
     "matchCount": 0,
     "liveCount": 0,
-    "fdCalls": 1
+    "fdCalls": 2
   },
   "results": {},
   "live": [],
@@ -1244,6 +1244,17 @@
       "homeRef": null,
       "awayRef": null
     },
+    "k:76": {
+      "date": "2026-06-29",
+      "time": "19:00",
+      "utcDate": "2026-06-29T17:00:00Z",
+      "status": "TIMED",
+      "matchday": null,
+      "home": null,
+      "away": null,
+      "homeRef": null,
+      "awayRef": null
+    },
     "k:74": {
       "date": "2026-06-29",
       "time": "22:30",
@@ -1266,10 +1277,10 @@
       "homeRef": null,
       "awayRef": null
     },
-    "k:76": {
-      "date": "2026-06-29",
+    "k:78": {
+      "date": "2026-06-30",
       "time": "19:00",
-      "utcDate": "2026-06-29T17:00:00Z",
+      "utcDate": "2026-06-30T17:00:00Z",
       "status": "TIMED",
       "matchday": null,
       "home": null,
@@ -1281,17 +1292,6 @@
       "date": "2026-06-30",
       "time": "23:00",
       "utcDate": "2026-06-30T21:00:00Z",
-      "status": "TIMED",
-      "matchday": null,
-      "home": null,
-      "away": null,
-      "homeRef": null,
-      "awayRef": null
-    },
-    "k:78": {
-      "date": "2026-06-30",
-      "time": "19:00",
-      "utcDate": "2026-06-30T17:00:00Z",
       "status": "TIMED",
       "matchday": null,
       "home": null,
@@ -1321,17 +1321,6 @@
       "homeRef": null,
       "awayRef": null
     },
-    "k:81": {
-      "date": "2026-07-02",
-      "time": "02:00",
-      "utcDate": "2026-07-02T00:00:00Z",
-      "status": "TIMED",
-      "matchday": null,
-      "home": null,
-      "away": null,
-      "homeRef": null,
-      "awayRef": null
-    },
     "k:82": {
       "date": "2026-07-01",
       "time": "22:00",
@@ -1343,10 +1332,10 @@
       "homeRef": null,
       "awayRef": null
     },
-    "k:83": {
-      "date": "2026-07-03",
-      "time": "01:00",
-      "utcDate": "2026-07-02T23:00:00Z",
+    "k:81": {
+      "date": "2026-07-02",
+      "time": "02:00",
+      "utcDate": "2026-07-02T00:00:00Z",
       "status": "TIMED",
       "matchday": null,
       "home": null,
@@ -1365,10 +1354,32 @@
       "homeRef": null,
       "awayRef": null
     },
+    "k:83": {
+      "date": "2026-07-03",
+      "time": "01:00",
+      "utcDate": "2026-07-02T23:00:00Z",
+      "status": "TIMED",
+      "matchday": null,
+      "home": null,
+      "away": null,
+      "homeRef": null,
+      "awayRef": null
+    },
     "k:85": {
       "date": "2026-07-03",
       "time": "05:00",
       "utcDate": "2026-07-03T03:00:00Z",
+      "status": "TIMED",
+      "matchday": null,
+      "home": null,
+      "away": null,
+      "homeRef": null,
+      "awayRef": null
+    },
+    "k:88": {
+      "date": "2026-07-03",
+      "time": "20:00",
+      "utcDate": "2026-07-03T18:00:00Z",
       "status": "TIMED",
       "matchday": null,
       "home": null,
@@ -1398,10 +1409,10 @@
       "homeRef": null,
       "awayRef": null
     },
-    "k:88": {
-      "date": "2026-07-03",
-      "time": "20:00",
-      "utcDate": "2026-07-03T18:00:00Z",
+    "k:90": {
+      "date": "2026-07-04",
+      "time": "19:00",
+      "utcDate": "2026-07-04T17:00:00Z",
       "status": "TIMED",
       "matchday": null,
       "home": null,
@@ -1413,17 +1424,6 @@
       "date": "2026-07-04",
       "time": "23:00",
       "utcDate": "2026-07-04T21:00:00Z",
-      "status": "TIMED",
-      "matchday": null,
-      "home": null,
-      "away": null,
-      "homeRef": null,
-      "awayRef": null
-    },
-    "k:90": {
-      "date": "2026-07-04",
-      "time": "19:00",
-      "utcDate": "2026-07-04T17:00:00Z",
       "status": "TIMED",
       "matchday": null,
       "home": null,
@@ -1585,5 +1585,6 @@
       "homeRef": null,
       "awayRef": null
     }
-  }
+  },
+  "standings": {}
 }
