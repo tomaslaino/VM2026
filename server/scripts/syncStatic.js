@@ -2,8 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { ROOT, config } from "../config.js";
-import { getMatches, getCallCount } from "../footballData.js";
-import { mapMatchesToFixtures, mapMatchesToResults } from "../mapResults.js";
+import { getMatches, getStandings, getCallCount } from "../footballData.js";
+import { mapMatchesToFixtures, mapMatchesToResults, mapStandings } from "../mapResults.js";
 import { shouldSyncNow } from "../syncSchedule.js";
 
 /*
@@ -56,6 +56,14 @@ export async function syncStatic({ log = console.log, force = false } = {}) {
   const { results, live, mapped, skipped } = mapMatchesToResults(matches);
   const fixtures = mapMatchesToFixtures(matches);
 
+  let standings = {};
+  try {
+    log("[fd] Hämtar tabeller från football-data …");
+    standings = mapStandings(await getStandings());
+  } catch (e) {
+    log(`[fd] Kunde inte hämta tabeller: ${e.message}`);
+  }
+
   const payload = {
     meta: {
       updatedAt: new Date().toISOString(),
@@ -67,6 +75,7 @@ export async function syncStatic({ log = console.log, force = false } = {}) {
     results,
     live,
     fixtures,
+    standings,
   };
 
   fs.mkdirSync(path.dirname(OUT_FILE), { recursive: true });

@@ -48,6 +48,7 @@ app.get("/api/results", (req, res) => {
     results: snap.results,
     live: snap.live,
     fixtures: snap.fixtures || {},
+    standings: snap.standings || {},
   });
 });
 
@@ -125,7 +126,13 @@ wss.on("connection", (ws) => {
   ws.send(
     JSON.stringify({
       type: "results:updated",
-      payload: { results: snap.results, live: snap.live, fixtures: snap.fixtures || {}, meta: snap.meta },
+      payload: {
+        results: snap.results,
+        live: snap.live,
+        fixtures: snap.fixtures || {},
+        standings: snap.standings || {},
+        meta: snap.meta,
+      },
       ts: Date.now(),
     })
   );

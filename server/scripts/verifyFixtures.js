@@ -3,7 +3,7 @@
  * Kör: node server/scripts/verifyFixtures.js
  */
 import { getMatches } from "../footballData.js";
-import { mapMatchesToFixtures, utcToSwedish } from "../mapResults.js";
+import { mapMatchesToFixtures, utcToSwedish, buildKoSlotMap } from "../mapResults.js";
 import { groupFixtureIndex, KNOCKOUT, canonicalTeam } from "../wcFixtures.js";
 import fs from "node:fs";
 import path from "node:path";
@@ -11,28 +11,6 @@ import { fileURLToPath } from "node:url";
 
 const __dir = path.dirname(fileURLToPath(import.meta.url));
 const DATA_JS = path.join(__dir, "../../assets/data.js");
-
-function buildKoSlotMap(fdMatches) {
-  const koFd = fdMatches.filter((m) => m.stage && m.stage !== "GROUP_STAGE");
-  const byStage = {};
-  for (const m of koFd) {
-    if (!byStage[m.stage]) byStage[m.stage] = [];
-    byStage[m.stage].push(m);
-  }
-  const slotMap = new Map();
-  for (const stage of Object.keys(byStage)) {
-    const ours = KNOCKOUT.filter((k) => k.stage === stage).sort((a, b) =>
-      a.date.localeCompare(b.date)
-    );
-    const theirs = byStage[stage].sort((a, b) =>
-      String(a.utcDate).localeCompare(String(b.utcDate))
-    );
-    for (let i = 0; i < Math.min(ours.length, theirs.length); i++) {
-      slotMap.set(theirs[i].id, { key: `k:${ours[i].m}`, m: ours[i].m, api: theirs[i] });
-    }
-  }
-  return slotMap;
-}
 
 function loadStaticKnockout() {
   const raw = fs.readFileSync(DATA_JS, "utf8");
@@ -114,28 +92,29 @@ for (const m of matches) {
       staticGrpDiff.push({ key, api: fx, static: st, home, away });
     }
   } else {
-    const slot = koMap.get(m.id);
-    if (!slot) {
+    const slotKey = koMap.get(m.id);
+    if (!slotKey) {
       unmapped.push({ id: m.id, stage: m.stage, reason: "ingen ko-slot", utc: m.utcDate });
       continue;
     }
-    const fx = fixtures[slot.key];
+    const slotM = Number(slotKey.split(":")[1]);
+    const fx = fixtures[slotKey];
     if (!fx) {
-      unmapped.push({ id: m.id, key: slot.key, reason: "saknas i fixtures" });
+      unmapped.push({ id: m.id, key: slotKey, reason: "saknas i fixtures" });
       continue;
     }
     if (fx.date !== sw.date || fx.time !== sw.time) {
-      timeMismatch.push({ key: slot.key, api: sw, mapped: fx, stage: m.stage });
+      timeMismatch.push({ key: slotKey, api: sw, mapped: fx, stage: m.stage });
     }
-    const st = staticKo[slot.m];
+    const st = staticKo[slotM];
     if (st && (st.date !== fx.date || st.edt !== fx.time)) {
-      staticKoDiff.push({ key: slot.key, m: slot.m, api: fx, static: st, stage: m.stage });
+      staticKoDiff.push({ key: slotKey, m: slotM, api: fx, static: st, stage: m.stage });
     }
     if (home && fx.home && canonicalTeam(home) !== canonicalTeam(fx.home)) {
-      teamMismatch.push({ key: slot.key, field: "home", apiTeam: home, mapped: fx.home });
+      teamMismatch.push({ key: slotKey, field: "home", apiTeam: home, mapped: fx.home });
     }
     if (away && fx.away && canonicalTeam(away) !== canonicalTeam(fx.away)) {
-      teamMismatch.push({ key: slot.key, field: "away", apiTeam: away, mapped: fx.away });
+      teamMismatch.push({ key: slotKey, field: "away", apiTeam: away, mapped: fx.away });
     }
   }
 }

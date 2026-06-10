@@ -1,15 +1,18 @@
 /*
-  VM 2026 – live-modul (frontend).
-  Pratar med din egen backend ("mellanhanden"), aldrig direkt med sport-API:t.
+  VM 2026 – spelar- & live-modul (frontend).
 
-  - Hämtar spelarlistor + statistik per lag (cachas lokalt i webbläsaren).
-  - Injicerar en spelarlista i lag-lådan (hook från app.js: window.VMLive.onTeamDrawer).
-  - Öppnar en spelarprofil när man klickar på en spelare.
-  - Lyssnar på WebSocket och visar mål-notiser + uppdaterar live-ställning i realtid.
+  Trupp/spelarprofil bygger på STATISK data via window.VMPlayers
+  (data/wc2026_players.json). Inga runtime-anrop mot Wikipedia eller någon
+  spelar-API sker här – datan uppdateras enbart av GitHub Actions.
 
-  Backend-URL:
+  - Injicerar truppen i lag-lådan (hook från app.js: window.VMLive.onTeamDrawer),
+    indelad i Målvakter / Försvarare / Mittfältare / Anfallare.
+  - Öppnar en spelarprofil (modal) vid klick på en spelare.
+  - Lyssnar på WebSocket och visar mål-notiser i realtid (live-data, separat).
+
+  Backend-URL (endast för live-notiser via WebSocket):
     Körs sidan från Node-servern → samma origin (inget att konfigurera).
-    Ligger sidan på GitHub Pages → sätt window.VM_CONFIG = { backend: "https://din-backend.exempel.com" }
+    GitHub Pages → sätt window.VM_CONFIG = { backend: "https://din-backend.exempel.com" }
     före denna fil i index.html.
 */
 (function () {
@@ -17,7 +20,6 @@
 
   var CFG = window.VM_CONFIG || {};
   var BACKEND = (CFG.backend || "").replace(/\/$/, ""); // tom = samma origin
-  var API = BACKEND || "";
 
   function wsUrl() {
     if (BACKEND) return BACKEND.replace(/^http/, "ws") + "/ws";
@@ -25,9 +27,10 @@
     return proto + "://" + location.host + "/ws";
   }
 
-  var teamCache = {};   // normaliserat lagnamn -> team-objekt med spelare
-  var available = null; // null=okänt, true/false = backend nås
   var lastTeam = null;  // senaste lag som visades i lådan (för uppdatering)
+
+  var SV_MONTHS = ["januari", "februari", "mars", "april", "maj", "juni",
+    "juli", "augusti", "september", "oktober", "november", "december"];
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
@@ -35,14 +38,20 @@
     });
   }
 
-  function api(path) {
-    return fetch(API + path, { headers: { Accept: "application/json" } }).then(function (r) {
-      if (!r.ok) throw new Error("HTTP " + r.status);
-      return r.json();
-    });
+  /** Visar "–" istället för tomt/null. */
+  function dash(v) {
+    return (v === null || v === undefined || v === "") ? "–" : esc(v);
   }
 
-  /* ---------- Spelarlista i lag-lådan ---------- */
+  /** "1992-05-13" -> "13 maj 1992" (svensk form). */
+  function fmtDate(iso) {
+    if (!iso) return null;
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+    if (!m) return iso;
+    return parseInt(m[3], 10) + " " + SV_MONTHS[parseInt(m[2], 10) - 1] + " " + m[1];
+  }
+
+  /* ---------- Trupp i lag-lådan (statisk data) ---------- */
 
   function onTeamDrawer(team, group, drawer) {
     lastTeam = { team: team, group: group, drawer: drawer };
@@ -51,70 +60,83 @@
 
     var card = document.createElement("div");
     card.className = "drawer-card players-card";
-    card.innerHTML = '<div class="dc-title">Trupp & spelarstatistik</div>' +
-      '<div class="players-status">Hämtar spelare …</div>';
+    card.innerHTML = '<div class="dc-title">Trupp</div>' +
+      '<p class="squad-source">Landslagsstatistik från Wikipedia, inhämtad före VM-slutspelet.</p>' +
+      '<div class="players-status">Laddar trupp …</div>';
     body.appendChild(card);
 
-    // team.name = engelskt namn (matchar backend). Slå upp via namn.
-    api("/api/teams/" + encodeURIComponent(team.name))
-      .then(function (data) {
-        available = true;
-        teamCache[team.name] = data;
-        renderPlayers(card, data);
-      })
+    if (!window.VMPlayers) {
+      card.querySelector(".players-status").innerHTML = errHint();
+      return;
+    }
+
+    window.VMPlayers.load()
+      .then(function () { renderSquad(card, team); })
       .catch(function () {
-        if (available === null) available = false;
-        card.querySelector(".players-status").innerHTML = backendHint();
+        var s = card.querySelector(".players-status");
+        if (s) s.innerHTML = errHint();
       });
   }
 
-  function backendHint() {
-    return '<div class="players-empty">Spelardata visas när backend-servern körs.' +
-      '<br><span class="muted">Starta servern (<code>npm start</code>) och kör trupphämtningen, ' +
-      'eller peka <code>window.VM_CONFIG.backend</code> mot din driftade server.</span></div>';
+  function errHint() {
+    return '<div class="players-empty">Kunde inte ladda truppdatan.' +
+      '<br><span class="muted">Kontrollera att <code>data/wc2026_players.json</code> finns och är giltig.</span></div>';
   }
 
-  function posLabel(p) {
-    return { Goalkeeper: "MV", Defender: "FB", Midfielder: "MF", Attacker: "FW" }[p] || (p || "");
+  /** Högerkolumn: ålder om den finns, annars klubb. */
+  function squadMeta(p) {
+    if (p.age != null) return esc(p.age) + " år";
+    if (p.club) return esc(p.club);
+    return "–";
   }
 
-  function renderPlayers(card, team) {
-    var players = (team.players || []).slice();
-    if (!players.length) {
-      card.querySelector(".players-status").innerHTML =
-        '<div class="players-empty">Trupp ännu inte hämtad för det här laget.</div>';
+  function squadRow(p) {
+    var meta = squadMeta(p);
+    var metaTitle = p.club && p.age == null ? ' title="' + esc(p.club) + '"' : "";
+    return '<button class="player-row" data-pid="' + esc(p.id) + '">' +
+      '<span class="pr-name">' + esc(p.name) +
+        (p.captain ? '<span class="pr-cap" title="Lagkapten">C</span>' : "") +
+      '</span>' +
+      '<span class="pr-meta"' + metaTitle + '>' + meta + '</span>' +
+      '</button>';
+  }
+
+  function renderSquad(card, team) {
+    var groups = window.VMPlayers.getPlayersByTeam(team.iso);
+    var status = card.querySelector(".players-status");
+    if (!groups.length) {
+      if (status) status.innerHTML =
+        '<div class="players-empty">Truppen är ännu inte tillgänglig för det här laget.</div>';
       return;
     }
-    var order = { Goalkeeper: 0, Defender: 1, Midfielder: 2, Attacker: 3 };
-    players.sort(function (a, b) {
-      var o = (order[a.position] ?? 9) - (order[b.position] ?? 9);
-      return o || ((a.number || 99) - (b.number || 99));
+
+    var html = "";
+    groups.forEach(function (g) {
+      html += '<div class="squad-group">' +
+        '<div class="squad-group-head">' + esc(g.label) +
+          '<span class="squad-count">' + g.players.length + '</span></div>' +
+        '<div class="player-list">' +
+          g.players.map(squadRow).join("") +
+        '</div></div>';
     });
 
-    var rows = players.map(function (p) {
-      var s = p.stats || {};
-      return '<button class="player-row" data-pid="' + esc(p.id) + '">' +
-        '<span class="pr-num">' + (p.number != null ? esc(p.number) : "–") + '</span>' +
-        '<span class="pr-name">' + esc(p.name) +
-          '<span class="pr-pos">' + esc(posLabel(p.position)) + '</span></span>' +
-        '<span class="pr-stat" title="Mål">⚽ ' + (s.goals || 0) + '</span>' +
-        '<span class="pr-stat" title="Assist">🅰 ' + (s.assists || 0) + '</span>' +
-        '<span class="pr-stat yc" title="Gula kort">▌ ' + (s.yellow || 0) + '</span>' +
-        '</button>';
-    }).join("");
+    var fetched = window.VMPlayers.getFetchedDate();
+    if (fetched) {
+      html += '<div class="squad-updated">Wikipedia · uppdaterad ' +
+        esc(fmtDate(fetched) || fetched) + ' · statistik före VM-slutspelet</div>';
+    }
 
-    card.querySelector(".players-status").outerHTML = '<div class="player-list">' + rows + '</div>';
+    if (status) status.outerHTML = '<div class="squad">' + html + '</div>';
 
     card.querySelectorAll(".player-row").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        var pid = btn.getAttribute("data-pid");
-        var player = (team.players || []).filter(function (x) { return String(x.id) === String(pid); })[0];
-        if (player) openPlayer(player, team);
+        var p = window.VMPlayers.getPlayerById(btn.getAttribute("data-pid"));
+        if (p) openPlayer(p, team);
       });
     });
   }
 
-  /* ---------- Spelarprofil (modal) ---------- */
+  /* ---------- Spelarprofil (modal, statiska fält) ---------- */
 
   function ensureModal() {
     var m = document.getElementById("playerModal");
@@ -130,33 +152,47 @@
   }
 
   function statCell(val, label) {
-    return '<div class="pm-stat"><span class="pm-val">' + esc(val) + '</span>' +
+    return '<div class="pm-stat"><span class="pm-val">' + dash(val) + '</span>' +
       '<span class="pm-lbl">' + esc(label) + '</span></div>';
+  }
+
+  function infoRow(label, val) {
+    return '<div class="pm-row"><span class="pm-row-lbl">' + esc(label) + '</span>' +
+      '<span class="pm-row-val">' + dash(val) + '</span></div>';
   }
 
   function openPlayer(player, team) {
     var m = ensureModal();
-    var s = player.stats || {};
-    var photo = player.photo
-      ? '<img class="pm-photo" src="' + esc(player.photo) + '" alt="" onerror="this.style.display=\'none\'">'
-      : '<div class="pm-photo placeholder">' + esc((player.name || "?").charAt(0)) + '</div>';
+    var sub = [];
+    if (player.shirt_number != null) sub.push("#" + player.shirt_number);
+    sub.push(player.position_sv || "");
+
+    var avatar = '<div class="pm-photo placeholder">' +
+      esc((player.name || "?").charAt(0)) + '</div>';
 
     m.querySelector(".pm-card").innerHTML =
       '<button class="pm-close" title="Stäng">×</button>' +
-      '<div class="pm-head">' + photo +
-        '<div class="pm-id"><h3>' + esc(player.name) + '</h3>' +
-        '<span class="pm-sub">' + esc(team.name) +
-          (player.number != null ? ' · #' + esc(player.number) : "") +
-          (player.position ? ' · ' + esc(player.position) : "") + '</span></div></div>' +
+      '<div class="pm-head">' + avatar +
+        '<div class="pm-id">' +
+          '<h3>' + esc(player.name) +
+            (player.captain ? '<span class="pm-cap" title="Lagkapten">C</span>' : "") +
+          '</h3>' +
+          '<span class="pm-sub">' + esc(team.sv || team.name) + ' · ' +
+            esc(sub.filter(Boolean).join(" · ")) + '</span>' +
+        '</div></div>' +
       '<div class="pm-stats">' +
-        statCell(s.goals || 0, "Mål") +
-        statCell(s.assists || 0, "Assist") +
-        statCell(s.yellow || 0, "Gula") +
-        statCell(s.red || 0, "Röda") +
-        statCell(s.minutes || 0, "Minuter") +
-        statCell(s.appearances || 0, "Matcher") +
+        statCell(player.age, "Ålder") +
+        statCell(player.caps, "Landskamper") +
+        statCell(player.goals, "Landslagsmål") +
       '</div>' +
-      '<div class="pm-note">Statistik uppdateras automatiskt efter varje match.</div>';
+      '<div class="pm-info">' +
+        infoRow("Tröjnummer", player.shirt_number) +
+        infoRow("Position", player.position_sv) +
+        infoRow("Födelsedatum", fmtDate(player.date_of_birth)) +
+        infoRow("Klubb", player.club) +
+        infoRow("Klubbland", player.club_country) +
+      '</div>' +
+      '<div class="pm-note">Landslagsstatistik från Wikipedia, inhämtad före VM-slutspelet. Uppdateras inte under turneringen.</div>';
 
     m.querySelector(".pm-close").addEventListener("click", closePlayer);
     m.classList.add("open");
@@ -167,7 +203,7 @@
     if (m) m.classList.remove("open");
   }
 
-  /* ---------- WebSocket: realtid ---------- */
+  /* ---------- WebSocket: realtid (live-data, separat) ---------- */
 
   var ws = null;
   var reconnectTimer = null;
@@ -179,10 +215,7 @@
       scheduleReconnect();
       return;
     }
-    ws.addEventListener("open", function () {
-      available = true;
-      setLiveStatus(true);
-    });
+    ws.addEventListener("open", function () { setLiveStatus(true); });
     ws.addEventListener("message", function (ev) {
       var msg;
       try { msg = JSON.parse(ev.data); } catch (e) { return; }
@@ -203,21 +236,7 @@
       var scorer = (p.goals && p.goals.length) ? p.goals[p.goals.length - 1].player : null;
       goalToast((p.home && p.home.name) + " " + (p.score || "") + " " + (p.away && p.away.name),
         scorer ? "Mål: " + scorer : "");
-    } else if (msg.type === "stats:updated") {
-      // Statistik har slutkontrollerats – töm cache och uppdatera öppen låda.
-      teamCache = {};
-      if (lastTeam) refreshOpenDrawer();
-    } else if (msg.type === "live:scores") {
-      // Här kan live-ställning kopplas mot app.js vid behov.
     }
-  }
-
-  function refreshOpenDrawer() {
-    var drawer = document.getElementById("teamDrawer");
-    if (!drawer || !drawer.classList.contains("open") || !lastTeam) return;
-    var existing = drawer.querySelector(".players-card");
-    if (existing) existing.remove();
-    onTeamDrawer(lastTeam.team, lastTeam.group, drawer);
   }
 
   /* ---------- Notiser & status ---------- */
@@ -247,7 +266,7 @@
 
   window.VMLive = { onTeamDrawer: onTeamDrawer };
 
-  // Anslut WebSocket när sidan laddats.
+  // Anslut WebSocket när sidan laddats (för live-notiser; misslyckas tyst utan backend).
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", connect);
   } else {

@@ -1,6 +1,6 @@
 import { pathToFileURL } from "node:url";
-import { getMatches, getCallCount } from "../footballData.js";
-import { mapMatchesToFixtures, mapMatchesToResults } from "../mapResults.js";
+import { getMatches, getStandings, getCallCount } from "../footballData.js";
+import { mapMatchesToFixtures, mapMatchesToResults, mapStandings } from "../mapResults.js";
 import * as resultsStore from "../resultsStore.js";
 import { broadcast } from "../bus.js";
 import { config } from "../config.js";
@@ -24,17 +24,28 @@ export async function syncFootballData({ log = console.log } = {}) {
   const { results, live, mapped, skipped } = mapMatchesToResults(matches);
   const fixtures = mapMatchesToFixtures(matches);
 
-  await resultsStore.save({ results, live, fixtures, mapped, fdCalls: getCallCount() });
+  let standings = {};
+  try {
+    standings = mapStandings(await getStandings());
+  } catch (e) {
+    log(`[fd] Kunde inte hämta tabeller: ${e.message}`);
+  }
+
+  await resultsStore.save({ results, live, fixtures, standings, mapped, fdCalls: getCallCount() });
 
   broadcast("results:updated", {
     results,
     live,
     fixtures,
+    standings,
     meta: resultsStore.getSnapshot().meta,
   });
 
-  log(`[fd] Klart. ${matches.length} matcher från API, ${mapped} resultat mappade, ${skipped} utan nyckel, ${live.length} live.`);
-  return { total: matches.length, mapped, live: live.length };
+  log(
+    `[fd] Klart. ${matches.length} matcher från API, ${mapped} resultat mappade, ` +
+      `${skipped} utan nyckel, ${live.length} live, ${Object.keys(standings).length} tabeller.`
+  );
+  return { total: matches.length, mapped, live: live.length, standings: Object.keys(standings).length };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

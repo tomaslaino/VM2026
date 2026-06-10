@@ -12,6 +12,7 @@
   var hoverMatch = null;        // matchnummer med öppen infopanel i slutspelet
   var autoSync = { active: false, source: null, updatedAt: null, status: "pending" };
   var apiFixtures = {}; // nyckel -> { date, time, home, away, homeRef, awayRef, status } från API
+  var apiStandings = {}; // grupp-bokstav -> [{ idx, position, pld, w, d, l, gf, ga, gd, pts }] från API
   var calScrollPending = false; // scrolla till nästa matchdag vid öppning av kalender
   var calGroupOpen = null;      // grupp-bokstav för öppen tabell-popup i kalendern
 
@@ -46,6 +47,13 @@
   function flagImg(iso) {
     return '<img class="flag" loading="lazy" src="' + flagUrl(iso) + '" alt="" ' +
            'onerror="this.style.visibility=\'hidden\'">';
+  }
+  function matchExpandBtn(matchNo, expanded) {
+    var label = expanded ? "Dölj matchinfo" : "Visa matchinfo";
+    return '<button type="button" class="match-expand' + (expanded ? " on" : "") + '" data-expand-match="' + matchNo + '" ' +
+      'title="' + label + '" aria-label="' + label + '" aria-expanded="' + (expanded ? "true" : "false") + '">' +
+      '<svg class="match-expand-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+      '<path fill="currentColor" d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></button>';
   }
   function teamSvFixture(team) {
     if (team.svShort) return team.svShort;
@@ -157,6 +165,14 @@
       }
     }
 
+    if (payload.standings) {
+      var nextSt = JSON.stringify(payload.standings);
+      if (nextSt !== JSON.stringify(apiStandings)) {
+        apiStandings = payload.standings;
+        fixturesChanged = true;
+      }
+    }
+
     if (payload.results) {
       var results = payload.results;
       for (var key in results) {
@@ -182,7 +198,7 @@
 
     if (changed || fixturesChanged) {
       if (changed) saveState();
-      refresh();
+      refresh({ full: true });
       updateSyncBadge();
     } else if (payload.meta) {
       updateSyncBadge();
@@ -278,6 +294,22 @@
   function cmpOverall(y, x) { // returnerar positivt om y ska före x
     return (y.pts - x.pts) || (y.gd - x.gd) || (y.gf - x.gf) || (y.w - x.w) || (x.idx - y.idx);
   }
+  /* Sortera tabellen enligt football-data:s officiella ordning (om den finns
+     och täcker alla lag i gruppen). Returnerar true om ordningen tillämpades. */
+  function applyApiOrder(letter, st) {
+    var rows = apiStandings[letter];
+    if (!rows || !rows.length) return false;
+    var posByIdx = {};
+    rows.forEach(function (row) { posByIdx[row.idx] = row.position; });
+    var allHave = st.every(function (s) { return posByIdx[s.idx] != null; });
+    if (!allHave) return false;
+    st.sort(function (x, y) {
+      return (posByIdx[x.idx] - posByIdx[y.idx]) || cmpOverall(y, x) || (x.idx - y.idx);
+    });
+    st.forEach(function (s, k) { s.rank = k; });
+    return true;
+  }
+
   function computeTable(letter) {
     var teams = WC.groups[letter];
     var st = teams.map(function (t, i) { return emptyStat(t, i); });
@@ -293,6 +325,12 @@
       else { H.d++; A.d++; H.pts++; A.pts++; }
     });
     st.forEach(function (s) { s.gd = s.gf - s.ga; });
+
+    // Officiell tabellordning från football-data (inkl. fair play och övriga
+    // särskiljningsregler som inte går att räkna fram lokalt). Statistiken visas
+    // från matchresultaten (uppdateras live), men placeringarna styrs av API:t.
+    if (applyApiOrder(letter, st)) return st;
+
     var allZeroPts = st.every(function (s) { return s.pts === 0; });
     if (allZeroPts) {
       st.sort(function (x, y) { return x.team.sv.localeCompare(y.team.sv, "sv"); });
@@ -337,16 +375,50 @@
   }
 
   /* ---------- Tredjeplacerade lag ---------- */
+  function fifaRankOf(team) {
+    var r = WC.fifaRank && team ? WC.fifaRank[team.iso] : null;
+    return (typeof r === "number") ? r : 999;
+  }
+  /* FIFA:s kriterier för bästa treor: poäng → målskillnad → gjorda mål →
+     fair play → FIFA-ranking. Fair play saknas i football-data, så vi går
+     direkt från gjorda mål till FIFA-rankingen (det officiella sista steget). */
+  function cmpThirdsStat(a, b) { // positivt om a ska före b
+    return (a.pts - b.pts) || (a.gd - b.gd) || (a.gf - b.gf);
+  }
   function computeThirds(tables) {
     var arr = WC.groupLetters.map(function (L) {
       var t = tables[L][2];
       return { L: L, team: t.team, s: t };
     });
-    arr.sort(function (x, y) {
-      // FIFA: poäng → målskillnad → gjorda mål → vinster → lottning (grupp-bokstav)
-      return cmpOverall(y.s, x.s) || (x.L < y.L ? -1 : 1);
-    });
-    arr.forEach(function (e, i) { e.qualified = i < 8; });
+    var allZeroPts = arr.every(function (e) { return e.s.pts === 0; });
+    if (allZeroPts) {
+      arr.sort(function (x, y) { return x.team.sv.localeCompare(y.team.sv, "sv"); });
+    } else {
+      arr.sort(function (x, y) {
+        return cmpThirdsStat(y.s, x.s) ||
+          (fifaRankOf(x.team) - fifaRankOf(y.team)) ||
+          (x.L < y.L ? -1 : 1);
+      });
+    }
+
+    // Markera lag som är lika på de kriterier vi kan räkna fram (poäng/
+    // målskillnad/gjorda mål). Där avgör egentligen fair play, som API:t
+    // inte ger oss – ordningen mellan dem bygger på FIFA-ranking och är osäker.
+    arr.forEach(function (e) { e.contested = false; });
+    var i = 0;
+    while (i < arr.length) {
+      var j = i + 1;
+      while (j < arr.length &&
+             arr[j].s.pts === arr[i].s.pts &&
+             arr[j].s.gd === arr[i].s.gd &&
+             arr[j].s.gf === arr[i].s.gf) j++;
+      if (j - i > 1 && arr[i].s.pld > 0) {
+        for (var k = i; k < j; k++) arr[k].contested = true;
+      }
+      i = j;
+    }
+
+    arr.forEach(function (e, idx) { e.qualified = idx < 8; });
     var qset = arr.filter(function (e) { return e.qualified; }).map(function (e) { return e.L; });
     qset.sort();
     return { ranking: arr, key: qset.join("") };
@@ -459,6 +531,22 @@
     });
     return Object.keys(groups).sort();
   }
+  /* Vilka treor som faktiskt hamnar i matchens trea-platser (FIFA Annex C). */
+  function assignedThirdGroups(ctx, base) {
+    var assigned = {};
+    var assign = window.ANNEX_C[ctx.thirds.key];
+    if (!assign) return assigned;
+    base.forEach(function (s) {
+      if (s.t !== "3" || !s._m) return;
+      var slotId = MATCH_TO_SLOT[s._m];
+      if (!slotId) return;
+      var pos = window.ANNEX_C_SLOTS.indexOf(slotId);
+      if (pos < 0) return;
+      var grp = assign.charAt(pos);
+      if (grp) assigned[grp] = true;
+    });
+    return assigned;
+  }
 
   /* ====================================================================
      RENDERING
@@ -482,11 +570,37 @@
   }
 
   /* Re-render utan att störa pågående inmatning (för realtid/timer). */
-  function refresh() {
+  function refresh(opts) {
+    opts = opts || {};
     var a = document.activeElement;
     if (a && a.classList && a.classList.contains("score")) return;
     if (a && a.id === "teamSearch") { render(); restoreSearchFocus(); return; }
+    if (!opts.full && ui("view", "groups") === "bracket") {
+      updateBracketTimers();
+      return;
+    }
     render();
+  }
+
+  /** Uppdatera "om X tim" / LIVE på slutspelskort utan att bygga om hela trädet. */
+  function updateBracketTimers() {
+    if (ui("view", "groups") !== "bracket") return;
+    var ctx = getCtx();
+    viewEl.querySelectorAll(".bracket .match[data-m]").forEach(function (el) {
+      var m = parseInt(el.getAttribute("data-m"), 10);
+      var res = ctx.resolved[m];
+      if (!res) return;
+      var played = res.bothTeams && isPlayed(res.result);
+      var resKey = "k:" + m;
+      var liveNow = isMatchLive(resKey);
+      var rel = liveNow ? { cls: "live", txt: "Pågår nu" } : relativeLabel(res.match, played, resKey);
+      var relEl = el.querySelector(".m-rel");
+      if (relEl) {
+        relEl.className = "m-rel " + rel.cls;
+        relEl.textContent = rel.txt;
+      }
+      el.classList.toggle("live-now", liveNow);
+    });
   }
   function restoreSearchFocus() {
     var s = document.getElementById("teamSearch");
@@ -583,13 +697,18 @@
       '<th class="c-stat">S</th><th class="c-stat">V</th><th class="c-stat">O</th><th class="c-stat">F</th>' +
       '<th class="c-goals">Mål</th><th class="c-stat">+/-</th>' +
       '<th class="c-pts">P</th><th class="c-status">Kval</th></tr></thead><tbody>';
+    var anyContested = thirds.ranking.some(function (e) { return e.contested; });
     thirds.ranking.forEach(function (e, i) {
       var cls = e.qualified ? "r-third-q" : "r-third-o";
       if (i === 7) cls += " cut-line"; // sista kvalplatsen
+      if (e.contested) cls += " r-contested";
+      var contestedMark = e.contested
+        ? ' <sup class="fp-mark" title="Lika på poäng, målskillnad och gjorda mål. FIFA avgör på fair play (saknas i API:t) → ordnas på FIFA-ranking.">FP?</sup>'
+        : "";
       h += '<tr class="' + cls + '" data-team="' + e.team.iso + '">' +
         '<td class="c-pos">' + (i + 1) + '</td><td class="c-grp">' + e.L + '</td>' +
         '<td class="c-team"><span class="team">' + flagImg(e.team.iso) +
-          '<span class="t-name">' + esc(e.team.sv) + '</span></span></td>' +
+          '<span class="t-name">' + esc(e.team.sv) + contestedMark + '</span></span></td>' +
         '<td class="c-stat">' + e.s.pld + '</td><td class="c-stat">' + e.s.w + '</td>' +
         '<td class="c-stat">' + e.s.d + '</td><td class="c-stat">' + e.s.l + '</td>' +
         '<td class="c-goals">' + e.s.gf + '–' + e.s.ga + '</td>' +
@@ -598,7 +717,12 @@
         '<td class="c-status">' + (e.qualified ? '<span class="qbadge">✓</span>' : '<span class="xbadge">✗</span>') + '</td></tr>';
     });
     h += '</tbody></table><p class="note">Endast de <strong>8 bästa treorna</strong> går vidare (de 4 sämsta treorna + alla fyror åker ut). ' +
-      'Rangordning enligt FIFA: poäng → målskillnad → gjorda mål → vinster → lottning. ' +
+      'Rangordning enligt FIFA: poäng → målskillnad → gjorda mål → fair play → FIFA-ranking. ' +
+      (anyContested
+        ? '<br><strong>FP?</strong> = lag som står lika på poäng, målskillnad och gjorda mål. ' +
+          'Där avgör egentligen <em>fair play</em>, men den datan finns inte i football-data – ' +
+          'dessa lag ordnas därför preliminärt på FIFA-ranking och kan ändras. '
+        : '') +
       'De 8 placeras automatiskt i slutspelsträdet enligt FIFA:s 495 kombinationer (Annex C).</p></section>';
     return h;
   }
@@ -628,6 +752,12 @@
     return side === "left" ? round + 1 : 9 - round;
   }
 
+  /** Höger halva av trädet → panel till vänster så matchkorten inte täcks. */
+  function bracketAsideSide(matchNo) {
+    var right = BR.rightR32.concat(BR.rightR16, BR.rightQF, BR.rightSF);
+    return right.indexOf(matchNo) >= 0 ? "left" : "right";
+  }
+
   function bracketGridRow(round, idx) {
     var span = Math.pow(2, round);
     return "grid-row:" + (2 + idx * span) + "/span " + span;
@@ -638,8 +768,21 @@
     var cls = "round-title bracket-jump";
     if (opts.final) cls += " final-label";
     if (opts.bronze) cls += " bronze-title";
-    var style = opts.bronze ? "" : ' style="grid-column:' + col + '"';
-    return '<button type="button" class="' + cls + '" data-bracket-col="' + col + '"' + style + ">" + title + "</button>";
+    var sub = opts.sub ? '<span class="round-sub">' + esc(opts.sub) + '</span>' : "";
+    var btn = '<button type="button" class="' + cls + '" data-bracket-col="' + col + '">' + title + sub + '</button>';
+    if (opts.bronze) return btn;
+    return '<div class="round-cell' + (opts.final ? " is-final" : "") + '" style="grid-column:' + col + '">' + btn + '</div>';
+  }
+
+  /* Datumintervall för en slutspelsfas, t.ex. "28 juni–3 juli". */
+  function bracketRoundDates(nums, resolved) {
+    var dates = nums.map(function (n) { return resolved[n].match.date; }).sort();
+    var a = parseDateUTC(dates[0]), b = parseDateUTC(dates[dates.length - 1]);
+    if (dates[0] === dates[dates.length - 1]) return a.getUTCDate() + " " + MONTHS[a.getUTCMonth()];
+    if (a.getUTCMonth() === b.getUTCMonth()) {
+      return a.getUTCDate() + "–" + b.getUTCDate() + " " + MONTHS[a.getUTCMonth()];
+    }
+    return a.getUTCDate() + " " + MONTHS[a.getUTCMonth()] + "–" + b.getUTCDate() + " " + MONTHS[b.getUTCMonth()];
   }
 
   function renderBracket() {
@@ -652,11 +795,13 @@
     html += '<div class="bracket two-sided">';
 
     BR_HALF.left.forEach(function (col) {
-      html += bracketRoundTitle(col.title, bracketGridCol(col.round, "left"));
+      html += bracketRoundTitle(col.title, bracketGridCol(col.round, "left"),
+        { sub: bracketRoundDates(col.nums, ctx.resolved) });
     });
-    html += bracketRoundTitle("Final", 5, { final: true });
+    html += bracketRoundTitle("Final", 5, { final: true, sub: bracketRoundDates([104], ctx.resolved) });
     BR_HALF.right.forEach(function (col) {
-      html += bracketRoundTitle(col.title, bracketGridCol(col.round, "right"));
+      html += bracketRoundTitle(col.title, bracketGridCol(col.round, "right"),
+        { sub: bracketRoundDates(col.nums, ctx.resolved) });
     });
 
     BR_HALF.left.forEach(function (col) {
@@ -689,14 +834,30 @@
 
     html += '</div></div></div></div>';
 
+    var sc = viewEl.querySelector(".bracket-scroll");
+    var preserveScroll = !!sc;
+    var prevScroll = sc ? sc.scrollLeft : 0;
+
     viewEl.innerHTML = html;
-    centerBracketScroll(drawBracketConnectors);
+
+    var newSc = viewEl.querySelector(".bracket-scroll");
+    function restoreBracketScroll() {
+      if (!newSc || !preserveScroll) return;
+      newSc.scrollLeft = Math.max(0, Math.min(prevScroll, newSc.scrollWidth - newSc.clientWidth));
+    }
+
+    if (preserveScroll) {
+      restoreBracketScroll();
+      drawBracketConnectors(restoreBracketScroll);
+    } else {
+      centerBracketScroll(drawBracketConnectors);
+    }
 
     if (hoverMatch && ctx.resolved[hoverMatch]) updateAside(hoverMatch, ctx);
     else hideAside();
   }
 
-  function drawBracketConnectors() {
+  function drawBracketConnectors(afterLayout) {
     requestAnimationFrame(function () {
       var wrap = viewEl.querySelector(".bracket-wrap");
       var br = wrap && wrap.querySelector(".bracket");
@@ -793,6 +954,7 @@
       svg.innerHTML = paths.map(function (d) {
         return '<path d="' + d + '" fill="none" stroke-linecap="square"/>';
       }).join("");
+      if (afterLayout) afterLayout();
     });
   }
 
@@ -832,16 +994,45 @@
   /** Hypotetiskt lag i slutspelsträdet – parentes tills platsen är helt avgjord. */
   function bracketTeamName(side) {
     if (!side || !side.team) return "";
-    return side.decided ? side.team.sv : "(" + side.team.sv + ")";
+    var name = teamSvFixture(side.team);
+    return side.decided ? name : "(" + name + ")";
   }
 
-  function slotSeed(slot) {
-    if (slot.t === "w") return "Etta " + slot.g;
-    if (slot.t === "r") return "Tvåa " + slot.g;
-    if (slot.t === "3") return "3:a " + slot.from.join("/");
-    if (slot.t === "wm") return "Vinnare M" + slot.m;
-    if (slot.t === "lm") return "Förlorare M" + slot.m;
+  /* Längre, mer läsbar seed-etikett för "vem möter vem"-grafiken. */
+  function slotSeedLong(slot) {
+    if (slot.t === "w") return "Etta grupp " + slot.g;
+    if (slot.t === "r") return "Tvåa grupp " + slot.g;
+    if (slot.t === "3") return "3:a grupp " + slot.from.join("/");
+    if (slot.t === "wm") return "Vinnare match " + slot.m;
+    if (slot.t === "lm") return "Förlorare match " + slot.m;
     return "?";
+  }
+
+  /* Typklass för seed-chip – färgkodar kvalvägen i linje med grupptabellerna
+     (grön = 1:a/2:a som avancerar, guld = bästa trea, neutral = match-resultat). */
+  function seedTypeClass(slot) {
+    if (!slot) return "seed-m";
+    if (slot.t === "w" || slot.t === "r") return "seed-adv";
+    if (slot.t === "3") return "seed-third";
+    return "seed-m";
+  }
+
+  /* En sida i matchup-grafiken: seed-etikett + flagga + lagnamn (eller platshållare). */
+  function asideMatchupSide(slot, side, which, isWin) {
+    var seed = slotSeedLong(slot);
+    var inner;
+    if (side.team) {
+      var prov = !side.decided;
+      inner = teamOpenBtn(side.team,
+        flagImg(side.team.iso) + '<span class="mu-name">' + esc(bracketTeamName(side)) + '</span>',
+        "mu-team" + (prov ? " prov" : ""));
+    } else {
+      inner = '<span class="mu-team tbd"><span class="mu-flag-ph"></span>' +
+        '<span class="mu-name">Ej klart</span></span>';
+    }
+    return '<div class="mu-side mu-' + which + (isWin ? " win" : "") + '">' +
+      '<span class="mu-seed seed-chip ' + seedTypeClass(slot) + '">' + esc(seed) + '</span>' +
+      inner + '</div>';
   }
 
   function matchCard(res, variant, opts) {
@@ -862,22 +1053,19 @@
     var h = '<div class="' + cls + '" data-m="' + m.m + '"' + (opts.grid ? ' style="' + opts.grid + '"' : '') + '">';
     h += '<div class="m-meta"><span class="m-no">M' + m.m + '</span>' +
          '<span class="m-rel ' + rel.cls + '">' + rel.txt + '</span></div>';
-    h += '<div class="m-seed">' + slotSeed(m.home) + ' <span>·</span> ' + slotSeed(m.away) + '</div>';
     h += sideRow(res.home, res, "h", hWin);
     h += sideRow(res.away, res, "a", aWin);
 
     var r = res.result;
     if (played && r.h === r.a && r.pw) {
       var penWinner = r.pw === "h"
-        ? (res.home.team ? res.home.team.sv : "Hemma")
-        : (res.away.team ? res.away.team.sv : "Borta");
+        ? (res.home.team ? teamSvFixture(res.home.team) : "Hemma")
+        : (res.away.team ? teamSvFixture(res.away.team) : "Borta");
       h += '<div class="pen-row"><span>Straffar: ' + esc(penWinner) + " vann</span></div>";
     }
     h += '<div class="m-footer">' +
          '<span class="m-when">' + when.dateLabel + ' · ' + when.time + '</span>' +
-         '<button type="button" class="match-expand' + (expanded ? " on" : "") + '" data-expand-match="' + m.m + '" ' +
-         'title="' + (expanded ? "Stäng" : "Utvidga") + '" aria-label="' + (expanded ? "Stäng matchinfo" : "Utvidga matchinfo") + '">' +
-         (expanded ? "‹" : "›") + '</button></div>';
+         matchExpandBtn(m.m, expanded) + '</div>';
     h += '</div>';
     return h;
   }
@@ -885,9 +1073,10 @@
   function sideRow(side, res, ha, isWin) {
     var prov = side.team && !side.decided;
     var cls = "side" + (isWin ? " win" : "") + (prov ? " prov" : "") + (side.team ? "" : " tbd");
+    var slot = ha === "h" ? res.match.home : res.match.away;
     var inner = side.team
-      ? teamOpenBtn(side.team, flagImg(side.team.iso) + '<span class="s-name">' + esc(bracketTeamName(side)) + '</span>', "side-team")
-      : '<span class="s-name placeholder">' + esc(side.label) + '</span>';
+      ? teamOpenBtn(side.team, flagImg(side.team.iso) + '<span class="s-name" title="' + esc(side.team.sv) + '">' + esc(bracketTeamName(side)) + '</span>', "side-team")
+      : '<span class="s-name placeholder seed-chip ' + seedTypeClass(slot) + '">' + esc(side.label) + '</span>';
     var r = res.result || {};
     var scoreCell = scoreDisplay(r[ha]);
     return '<div class="' + cls + '">' + inner + scoreCell + '</div>';
@@ -896,7 +1085,7 @@
   /* ---------- Sidopanel (möjliga lag + tabeller) ---------- */
   function hideAside() {
     var el = document.getElementById("bracketAside");
-    if (el) el.classList.remove("show");
+    if (el) el.classList.remove("show", "aside-left");
   }
 
   function syncExpandButtons() {
@@ -904,9 +1093,10 @@
       var no = parseInt(btn.getAttribute("data-expand-match"), 10);
       var open = hoverMatch === no;
       btn.classList.toggle("on", open);
-      btn.textContent = open ? "‹" : "›";
-      btn.title = open ? "Stäng" : "Utvidga";
-      btn.setAttribute("aria-label", open ? "Stäng matchinfo" : "Utvidga matchinfo");
+      var label = open ? "Dölj matchinfo" : "Visa matchinfo";
+      btn.title = label;
+      btn.setAttribute("aria-label", label);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
       var card = btn.closest(".match");
       if (card) card.classList.toggle("expanded", open);
     });
@@ -915,11 +1105,10 @@
   function updateAside(matchNo, ctx) {
     var el = document.getElementById("bracketAside");
     if (!el) return;
+    el.classList.toggle("aside-left", bracketAsideSide(matchNo) === "left");
     el.classList.add("show");
     var res = ctx.resolved[matchNo];
     var mt = res.match;
-    var v = WC.venues[mt.venue];
-    var when = whenLabels(mt);
 
     // grundplatser → vilka grupper + ev. trean-platser
     var base = [];
@@ -933,14 +1122,25 @@
     var directList = Object.keys(directGroups).sort();
     var thirdList = Object.keys(thirdGroups).sort();
 
+    // Panelen äger kvalvägen (seed) + tabellerna och visar tydligt vem som möter
+    // vem. Matchrutan i trädet visar bara lagen.
     var h = '<div class="aside-head">' +
-      '<span class="aside-tag">' + WC.roundNames[mt.round] + ' · M' + matchNo + '</span>' +
+      '<div class="aside-title">' +
+      '<span class="aside-round">' + WC.roundNames[mt.round] + '</span>' +
+      '<span class="aside-match-no">Match ' + matchNo + '</span>' +
+      '</div>' +
       '<button class="aside-close" id="asideClose" title="Återställ">×</button></div>';
 
-    h += '<div class="aside-seed">' + slotSeed(mt.home) + ' <span>mot</span> ' + slotSeed(mt.away) + '</div>';
-    h += '<div class="aside-now">' +
-      asideSide(res.home) + '<span class="vs">vs</span>' + asideSide(res.away) + '</div>';
-    h += '<div class="aside-meta">' + esc(v.stadium) + ' · ' + esc(v.city) + ' · ' + when.dateLabel + ' ' + when.time + '</div>';
+    // Tydlig "vem möter vem"-grafik: två lagpaneler med seed-etikett (t.ex.
+    // "Tvåa grupp A"), flagga och lagnamn, samt en VS-bricka emellan. Funkar i
+    // alla slutspelsrundor även innan lagen är avgjorda (visar då platshållare).
+    var hWin = res.winner && res.home.team && res.winner.team === res.home.team;
+    var aWin = res.winner && res.away.team && res.winner.team === res.away.team;
+    h += '<div class="aside-matchup">' +
+      asideMatchupSide(mt.home, res.home, "home", hWin) +
+      '<div class="mu-vs"><span>VS</span></div>' +
+      asideMatchupSide(mt.away, res.away, "away", aWin) +
+      '</div>';
 
     if (directList.length) {
       h += '<div class="aside-section-title">Direktplatser – grupp ' + directList.join(", ") + '</div>';
@@ -953,8 +1153,9 @@
     }
 
     if (hasThird) {
+      var assignedThirds = assignedThirdGroups(ctx, base);
       h += '<div class="aside-section-title">Trea-plats – möjliga grupper: ' + thirdList.join(", ") + '</div>';
-      h += asideThirdsTable(ctx, thirdGroups);
+      h += asideThirdsTable(ctx, thirdGroups, assignedThirds);
       // även de aktuella tabellerna för de möjliga trean-grupperna
       thirdList.forEach(function (L) {
         if (directGroups[L]) return;
@@ -968,12 +1169,14 @@
     el.innerHTML = h;
   }
 
-  function asideThirdsTable(ctx, highlightGroups) {
+  function asideThirdsTable(ctx, highlightGroups, assignedGroups) {
+    assignedGroups = assignedGroups || {};
     var h = '<div class="mini-group thirds"><div class="mini-group-head">Tabell – tredjeplacerade (8 bästa går vidare)</div>' +
       '<table class="standings mini"><tbody>';
     ctx.thirds.ranking.forEach(function (e, i) {
       var cls = e.qualified ? "r-third-q" : "r-third-o";
-      if (highlightGroups[e.L]) cls += " r-highlight";
+      if (assignedGroups[e.L]) cls += " r-highlight";
+      else if (highlightGroups[e.L]) cls += " r-highlight-grp";
       h += '<tr class="' + cls + '" data-team="' + e.team.iso + '"><td class="c-pos">' + (i + 1) + '</td>' +
         '<td class="c-grp">' + e.L + '</td>' +
         '<td class="c-team"><span class="team">' + flagImg(e.team.iso) +
@@ -989,15 +1192,6 @@
     var e = ctx.thirds.ranking.filter(function (x) { return x.L === L; })[0];
     return e && e.qualified;
   }
-  function asideSide(side) {
-    if (side.team) {
-      return teamOpenBtn(side.team,
-        flagImg(side.team.iso) + '<span>' + esc(bracketTeamName(side)) + '</span>',
-        "aside-team" + (side.decided ? "" : " prov"));
-    }
-    return '<span class="aside-team tbd"><span>' + esc(side.label) + '</span></span>';
-  }
-
   /* ---------- Kalendervy ---------- */
   function buildSchedule() {
     var items = [];
@@ -1082,7 +1276,7 @@
         var th = WC.groups[L][fx.h], ta = WC.groups[L][fx.a];
         channel = tvLookupGroup(fx, th, ta);
         label = "Grupp " + L;
-        teams = th.sv + " – " + ta.sv;
+        teams = teamSvFixture(th) + " – " + teamSvFixture(ta);
       } else {
         var res = ctx.resolved[it.m.m];
         key = "k:" + it.m.m;
@@ -1501,9 +1695,9 @@
     return '<div class="' + calRowClass(isNext, isRecent, live ? "is-live" : "") + '">' +
       '<span class="cal-time">' + (live ? liveTimeLabel(fx.key, when.time) : when.time) + '</span>' +
       '<button type="button" class="cal-badge grp cal-group-btn" data-cal-group="' + L + '">Grupp ' + L + '</button>' +
-      '<span class="cal-match">' + teamOpenBtn(th, esc(th.sv) + flagImg(th.iso), "cal-side home") +
+      '<span class="cal-match">' + teamOpenBtn(th, '<span title="' + esc(th.sv) + '">' + esc(teamSvFixture(th)) + '</span>' + flagImg(th.iso), "cal-side home") +
         score +
-        teamOpenBtn(ta, flagImg(ta.iso) + esc(ta.sv), "cal-side away") + '</span>' +
+        teamOpenBtn(ta, flagImg(ta.iso) + '<span title="' + esc(ta.sv) + '">' + esc(teamSvFixture(ta)) + '</span>', "cal-side away") + '</span>' +
       calVenueCell(tvLookupGroup(fx, th, ta), isNext) +
       '</div>';
   }
@@ -1756,25 +1950,15 @@
     var res = ctx.resolved[matchNo];
     if (!res) return;
     var m = res.match, v = WC.venues[m.venue];
-    var when = whenLabels(m);
-    var played = res.bothTeams && isPlayed(res.result);
-    var rel = relativeLabel(m, played);
 
-    var h = '<div class="tip-head"><b>' + WC.roundNames[m.round] + '</b> · Match ' + m.m +
-      '<span class="tip-rel ' + rel.cls + '">' + rel.txt + '</span></div>';
-    h += '<div class="tip-teams">' + tipSide(res.home) + '<span class="tip-vs">vs</span>' + tipSide(res.away) + '</div>';
-    if (played) h += '<div class="tip-score">Resultat: <b>' + res.result.h + '–' + res.result.a + '</b></div>';
-    h += '<div class="tip-row"><span>🗓️</span>' + when.dateLabel + ' · ' + when.time + '</div>';
+    // Hovern äger enbart "var spelas matchen" – tid och lag visas redan i rutan.
+    var h = '<div class="tip-head"><b>' + WC.roundNames[m.round] + '</b> · Match ' + m.m + '</div>';
     h += '<div class="tip-row"><span>📍</span>' + esc(v.stadium) + ', ' + esc(v.city) + ' (' + esc(v.country) + ')</div>';
     h += '<div class="tip-row tip-dim"><span>🏟️</span>' + esc(v.real) + '</div>';
 
     tipEl.innerHTML = h;
     tipEl.classList.add("show");
     positionTip(x, y);
-  }
-  function tipSide(side) {
-    if (side.team) return '<span class="tip-team' + (side.decided ? "" : " prov") + '">' + flagImg(side.team.iso) + esc(bracketTeamName(side)) + '</span>';
-    return '<span class="tip-team tbd">' + esc(side.label) + '</span>';
   }
   function positionTip(x, y) {
     var w = tipEl.offsetWidth, h = tipEl.offsetHeight;

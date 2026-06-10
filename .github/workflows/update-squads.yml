@@ -1,0 +1,91 @@
+name: Uppdatera VM-trupper
+
+# Hämtar spelardata från Wikipedia via scripts/fetch_player_details.py och
+# committar data/wc2026_players.json endast om den faktiskt ändrats.
+# Körs automatiskt 06:00 UTC dagligen (fram till 2026-07-19) samt manuellt.
+# Push av filen triggar ev. automatisk deploy (Vercel/Netlify) – inget extra deploysteg behövs.
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-squads
+  cancel-in-progress: false
+
+jobs:
+  update-squads:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checka ut repo
+        uses: actions/checkout@v4
+
+      - name: Kontrollera datumfönster (cron stoppar efter 2026-07-19)
+        id: window
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(date -u +%Y-%m-%d)" \> "2026-07-19" ]; then
+            echo "Förbi 2026-07-19 – hoppar över schemalagd körning."
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Sätt upp Python 3.11
+        if: steps.window.outputs.proceed == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Installera beroenden
+        if: steps.window.outputs.proceed == 'true'
+        run: pip install requests beautifulsoup4
+
+      - name: Hämta truppdata från Wikipedia
+        if: steps.window.outputs.proceed == 'true'
+        run: python scripts/fetch_player_details.py
+
+      - name: Validera trupper (48 lag, 23–26 spelare)
+        if: steps.window.outputs.proceed == 'true'
+        run: |
+          python - <<'PY'
+          import json, sys
+
+          with open("data/wc2026_players.json", encoding="utf-8") as f:
+              data = json.load(f)
+
+          teams = data.get("teams", [])
+          errors = []
+
+          if data.get("team_count") != 48 or len(teams) != 48:
+              errors.append(f"Antal lag: {data.get('team_count')} / {len(teams)} (förväntat 48)")
+
+          for t in teams:
+              size = t.get("squad_size", len(t.get("players", [])))
+              if size < 23 or size > 26:
+                  errors.append(f"{t.get('name')}: {size} spelare (förväntat 23–26)")
+
+          if errors:
+              print("Validering misslyckades:")
+              for e in errors:
+                  print("  -", e)
+              sys.exit(1)
+
+          print(f"OK: {len(teams)} lag, {data.get('total_players')} spelare")
+          PY
+
+      - name: Committa och pusha om filen ändrats
+        if: steps.window.outputs.proceed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- data/wc2026_players.json; then
+            echo "Inga ändringar i truppdatan – ingen commit."
+          else
+            git add data/wc2026_players.json
+            git commit -m "chore: uppdatera VM-trupper (auto)"
+            git push
+          fi

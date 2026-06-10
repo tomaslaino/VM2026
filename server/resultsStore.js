@@ -19,6 +19,7 @@ const EMPTY = () => ({
   results: {},
   live: [],
   fixtures: {},
+  standings: {},
 });
 
 let cache = EMPTY();
@@ -85,6 +86,7 @@ export async function load() {
       results,
       live: [],
       fixtures: cache.fixtures || {},
+      standings: cache.standings || {},
     };
     return cache;
   }
@@ -104,10 +106,11 @@ export function getSnapshot() {
   return cache;
 }
 
-export async function save({ results, live, fixtures, mapped, fdCalls }) {
+export async function save({ results, live, fixtures, standings, mapped, fdCalls }) {
   cache.results = results;
   cache.live = live || [];
   if (fixtures) cache.fixtures = fixtures;
+  if (standings) cache.standings = standings;
   cache.meta = {
     ...cache.meta,
     updatedAt: new Date().toISOString(),

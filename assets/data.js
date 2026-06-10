@@ -58,7 +58,7 @@ WC.groups = {
   E: [
     { name: "Germany",           sv: "Tyskland",               iso: "de" },
     { name: "Ecuador",           sv: "Ecuador",                iso: "ec" },
-    { name: "Ivory Coast",       sv: "Elfenbenskusten",        iso: "ci" },
+    { name: "Ivory Coast",       sv: "Elfenbenskusten",        svShort: "Elfenben", iso: "ci" },
     { name: "Curaçao",           sv: "Curaçao",                iso: "cw" }
   ],
   F: [
@@ -106,6 +106,27 @@ WC.groups = {
 };
 
 WC.groupLetters = ["A","B","C","D","E","F","G","H","I","J","K","L"];
+
+/* ---------- FIFA-ranking (för särskiljning av tredjeplacerade) ----------
+   FIFA rangordnar de bästa treorna på: poäng → målskillnad → gjorda mål →
+   fair play (team conduct) → FIFA-ranking. football-data tillhandahåller inte
+   fair play-poäng, så när lag är lika på poäng/målskillnad/gjorda mål används
+   FIFA-rankingen (officiella sista kriteriet) som deterministisk avgörare.
+   Värdena är ungefärliga senaste placeringar (lägre = bättre). */
+WC.fifaRank = {
+  mx: 13, kr: 23, za: 61, cz: 43,
+  ca: 28, ch: 20, qa: 52, ba: 76,
+  br: 5, ma: 12, "gb-sct": 44, ht: 84,
+  us: 15, py: 41, au: 26, tr: 27,
+  de: 9, ec: 24, ci: 42, cw: 82,
+  nl: 7, jp: 17, tn: 49, se: 39,
+  be: 8, ir: 21, eg: 32, nz: 86,
+  es: 2, uy: 16, sa: 58, cv: 70,
+  fr: 3, sn: 18, no: 33, iq: 57,
+  ar: 1, at: 22, dz: 38, jo: 62,
+  pt: 6, co: 14, uz: 60, cd: 56,
+  "gb-eng": 4, hr: 10, pa: 31, gh: 73
+};
 
 /*
   Gruppspelets omgångsfönster + exakt schema per match (TV4/SVT, svensk tid).

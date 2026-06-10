@@ -54,6 +54,9 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: var(--bg); }
+/* Reservera alltid plats för rullningslisten så att layouten inte hoppar
+   sidledes när man växlar mellan vyer (t.ex. Slutspel som saknar scroll). */
+html { scrollbar-gutter: stable; overflow-y: scroll; }
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: var(--ink); line-height: 1.45;
@@ -327,14 +330,6 @@ button.team-open:focus-visible {
   min-width: 0;
   text-align: left;
 }
-button.aside-team {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-weight: 700;
-  font-size: 14px;
-}
-button.aside-team.prov { font-style: italic; color: var(--ink-soft); font-weight: 600; }
 button.nm-spot-row {
   width: 100%;
   text-align: left;
@@ -394,9 +389,20 @@ button.nm-spot-row:hover { background: color-mix(in srgb, var(--usa-blue) 10%, t
 .r-third-q .c-pos { color: var(--third-q); font-weight: 800; }
 .r-third-o .c-pos { color: var(--third-o); }
 .r-highlight td { outline: 2px solid var(--usa-red); outline-offset: -2px; }
+.r-highlight-grp .c-grp {
+  outline: 2px solid var(--usa-red);
+  outline-offset: -2px;
+  border-radius: 3px;
+}
 .qbadge { color: var(--adv); font-weight: 800; }
 .xbadge { color: var(--third-o); font-weight: 800; }
 .thirds-table tr.cut-line td { border-bottom: 2px solid var(--usa-red); }
+.fp-mark {
+  font-size: 9px; font-weight: 800; letter-spacing: .3px;
+  color: var(--usa-red); cursor: help; vertical-align: super;
+  margin-left: 3px;
+}
+.r-contested .c-grp { position: relative; }
 
 /* ---------- Gruppmatcher / inmatning ---------- */
 .matches-toggle {
@@ -547,9 +553,14 @@ html.view-bracket .bracket .round-title.bracket-jump.bronze-title:hover {
 html.view-bracket .bracket-intro h2 {
   margin: 0;
   width: 100%;
-  font-size: 22px;
-  letter-spacing: -.4px;
+  font-size: clamp(28px, 3.1vw, 38px);
+  font-weight: 800;
+  letter-spacing: -.35px;
+  text-transform: none;
   text-align: center;
+  padding: 2px 0 10px;
+  color: #f4f7fb;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .92), 0 1px 3px rgba(0, 0, 0, .8);
 }
 
 .bracket-scroll {
@@ -596,7 +607,8 @@ html.view-bracket .bracket-scroll::-webkit-scrollbar-thumb:hover {
   color: var(--line-strong);
 }
 .bracket-lines path { stroke: currentColor; stroke-width: 1.5; opacity: .58; }
-.bracket.two-sided { position: relative; z-index: 1; }
+/* OBS: inget z-index här – fasrubrikerna (sticky) ska kunna lägga sig ovanpå linjerna. */
+.bracket.two-sided { position: relative; }
 html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
 .bracket .match {
   box-shadow: 0 4px 18px rgba(0,0,0,.45);
@@ -607,11 +619,69 @@ html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
 .bracket.two-sided {
   display: grid;
   grid-template-columns: repeat(4, 196px) 196px repeat(4, 196px);
-  grid-template-rows: auto repeat(8, minmax(74px, auto));
+  /* Första raden är fast: fasrubrikerna ligger i kolumnceller som spänner
+     hela höjden (för sticky), så raden kan inte auto-storleksättas. */
+  grid-template-rows: 58px repeat(8, minmax(74px, auto));
   gap: 10px 20px;
   align-items: center;
   min-width: max-content;
 }
+
+/* Faskolumn – subtil panel bakom varje omgång som grupperar fasen visuellt,
+   och bär den sticky fasrubriken. */
+.bracket.two-sided > .round-cell {
+  grid-row: 1 / -1;
+  align-self: stretch;
+  justify-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  margin: -6px -7px;
+  padding-top: 8px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(16, 30, 52, .55), rgba(14, 26, 44, .24) 22%, rgba(14, 26, 44, .24) 78%, rgba(16, 30, 52, .45));
+  border: 1px solid rgba(120, 152, 185, .14);
+}
+.bracket.two-sided > .round-cell.is-final {
+  background: linear-gradient(180deg, rgba(224, 178, 58, .13), rgba(224, 178, 58, .03) 26%, rgba(224, 178, 58, .03) 74%, rgba(224, 178, 58, .10));
+  border-color: rgba(224, 178, 58, .24);
+}
+
+/* Fasrubrik som pill – fastnar i överkant när man rullar i trädet. */
+.bracket.two-sided > .round-cell .round-title {
+  position: sticky;
+  top: 6px;
+  z-index: 6;
+  pointer-events: auto;
+  width: auto;
+  max-width: calc(100% - 12px);
+  padding: 6px 16px 7px;
+  border-radius: 12px;
+  line-height: 1.25;
+  /* Trädet ligger alltid på mörk fotobakgrund – pillern är därför alltid mörk
+     med ljus text, oavsett ljust/mörkt färgschema. */
+  color: #f0f4f9;
+  background: linear-gradient(180deg, rgba(20, 36, 60, .94), rgba(11, 21, 37, .9));
+  border: 1px solid rgba(120, 152, 185, .32);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.bracket.two-sided > .round-cell .round-title.final-label {
+  border-color: color-mix(in srgb, var(--gold) 48%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 22%, transparent), 0 6px 18px rgba(0, 0, 0, .4);
+}
+.round-title .round-sub {
+  display: block;
+  margin-top: 1px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  text-transform: none;
+  color: #a8bdd4;
+}
+.round-title.final-label .round-sub { color: color-mix(in srgb, var(--gold) 60%, #a8bdd4); }
 .bracket-center-stack {
   display: grid;
   grid-template-rows: repeat(8, minmax(74px, auto));
@@ -637,7 +707,7 @@ html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
   flex-direction: column;
   gap: 6px;
   align-self: start;
-  width: 92%;
+  width: 100%;
   margin: 0 auto;
   opacity: .92;
 }
@@ -670,8 +740,6 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .m-rel.soon { color: var(--ink); background: var(--bg-soft); border: 1px solid var(--line-strong); }
 .m-rel.done { color: var(--adv); }
 .m-rel.await { color: var(--third-q); }
-.m-seed { font-size: 10.5px; font-weight: 700; color: var(--ink); margin: 0 0 7px; letter-spacing: .2px; }
-.m-seed span { color: var(--ink-soft); font-weight: 600; }
 .match.live-now { border-color: var(--live); box-shadow: 0 0 0 2px color-mix(in srgb, var(--live) 35%, transparent), var(--shadow); }
 
 .side { display: flex; align-items: center; gap: 8px; padding: 5px 4px; border-radius: 7px; font-size: 13.5px; color: var(--ink); }
@@ -682,6 +750,43 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .side.prov .s-name { font-style: italic; color: var(--ink); font-weight: 500; }
 .side.tbd .s-name { font-style: italic; color: var(--ink); font-weight: 500; font-size: 13px; }
 .s-name.placeholder { font-size: 13px; color: var(--ink); font-weight: 500; }
+/* TBD-platser i trädet visas som färgkodade chips (Etta grupp E, Vinnare match …) */
+.side .s-name.placeholder.seed-chip {
+  flex: 0 1 auto;
+  margin-right: auto;
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 9px;
+  line-height: 1.3;
+}
+/* I slutspelsträdet: mjukare platshållare (Vinnare match …) – inte lika skrikiga som gruppkval-chips */
+.bracket .side .s-name.placeholder.seed-chip {
+  flex: 1;
+  min-width: 0;
+  font-size: inherit;
+  font-weight: 500;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px dashed color-mix(in srgb, var(--line-strong) 70%, transparent);
+  padding: 2px 8px;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  line-height: 1.25;
+}
+.match.bronze {
+  border-color: color-mix(in srgb, #b07a3a 45%, var(--line));
+  box-shadow: none;
+  font-size: 12.5px;
+  padding: 8px 8px;
+}
+.match.bronze .m-no,
+.match.bronze .side { font-size: 12.5px; }
+.match.bronze .k-score { width: 28px; height: 28px; flex-shrink: 0; }
 .k-score { width: 32px; height: 30px; }
 
 .pen-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--line); font-size: 11px; color: var(--ink-soft); }
@@ -697,9 +802,15 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .match-expand {
   flex: none; width: 26px; height: 26px; padding: 0;
   border: 1px solid var(--line-strong); border-radius: 8px; background: var(--bg-soft);
-  color: var(--ink-soft); font: inherit; font-size: 17px; font-weight: 700; line-height: 1;
+  color: var(--ink-soft); font: inherit; line-height: 1;
   cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+  transition: background .15s, border-color .15s, color .15s;
 }
+.match-expand-icon {
+  width: 15px; height: 15px; display: block;
+  transition: transform .2s ease;
+}
+.match-expand.on .match-expand-icon { transform: rotate(180deg); }
 .match-expand:hover { background: var(--usa-red); color: #fff; border-color: var(--usa-red); }
 .match-expand.on { background: var(--usa-red); color: #fff; border-color: var(--usa-red); }
 .match.expanded { border-color: var(--usa-red); box-shadow: 0 0 0 2px color-mix(in srgb, var(--usa-red) 30%, transparent), var(--shadow); }
@@ -707,14 +818,6 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .match.final { border-color: var(--gold); box-shadow: 0 0 0 2px color-mix(in srgb, var(--gold) 38%, transparent), var(--shadow); }
 .match.final.expanded { border-color: var(--gold); box-shadow: 0 0 0 2px color-mix(in srgb, var(--gold) 38%, transparent), var(--shadow); }
 .bronze-title { color: #d9a85c; margin-top: 0; }
-.match.bronze {
-  border-color: color-mix(in srgb, #b07a3a 45%, var(--line));
-  box-shadow: none;
-  font-size: 12.5px;
-}
-.match.bronze .m-no,
-.match.bronze .m-seed,
-.match.bronze .side { font-size: 12.5px; }
 
 .champ-slot {
   display: flex; align-items: center; gap: 10px; margin: 4px 0;
@@ -738,19 +841,166 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   opacity: 0; transform: translateX(12px); pointer-events: none; transition: opacity .15s, transform .15s;
 }
 .bracket-aside.show { opacity: 1; transform: translateX(0); pointer-events: auto; }
-.aside-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-.aside-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: #fff; background: var(--usa-red); padding: 4px 9px; border-radius: 999px; }
-.aside-close { border: 0; background: var(--bg-soft); color: var(--ink-soft); width: 26px; height: 26px; border-radius: 8px; cursor: pointer; font-size: 16px; line-height: 1; }
-.aside-seed { text-align: center; font-size: 12px; font-weight: 700; color: var(--ink-soft); margin: 4px 0; }
-.aside-seed span { color: var(--ink-soft); font-weight: 600; }
-.aside-now { display: flex; align-items: center; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 6px 0; }
+.bracket-aside.aside-left {
+  right: auto;
+  left: 16px;
+  transform: translateX(-12px);
+}
+.bracket-aside.aside-left.show { transform: translateX(0); }
+.aside-head {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 34px 12px;
+  margin: -2px 0 12px;
+  border-bottom: 1px solid var(--line);
+}
+.aside-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-align: center;
+}
+.aside-round {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .55px;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.aside-match-no {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .25px;
+  color: var(--ink-soft);
+}
+.aside-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 0;
+  background: var(--bg-soft);
+  color: var(--ink-soft);
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+}
+.aside-close:hover { color: var(--ink); background: color-mix(in srgb, var(--line) 40%, var(--bg-soft)); }
+/* Seed-chip – färgkodad etikett för kvalväg (Etta grupp E, 3:a grupp …,
+   Vinnare match …). Används i matchup-grafiken och i slutspelsträdets kort. */
+.seed-chip {
+  display: inline-block;
+  max-width: 100%;
+  font-style: normal;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line-strong);
+  color: var(--ink-soft);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.seed-chip.seed-adv {
+  color: var(--adv);
+  border-color: color-mix(in srgb, var(--adv) 42%, var(--line));
+  background: color-mix(in srgb, var(--adv) 13%, var(--bg-soft));
+}
+.seed-chip.seed-third {
+  color: var(--third-q);
+  border-color: color-mix(in srgb, var(--third-q) 45%, var(--line));
+  background: color-mix(in srgb, var(--third-q) 14%, var(--bg-soft));
+}
+
+/* "Vem möter vem"-grafik */
+.aside-matchup {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  gap: 8px;
+  margin: 6px 0 16px;
+}
+.mu-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 9px;
+  padding: 13px 8px 14px;
+  min-width: 0;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--usa-navy) 30%, var(--bg-soft)), var(--bg-soft));
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.mu-side.win {
+  border-color: color-mix(in srgb, var(--adv) 55%, var(--line));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--adv) 18%, var(--bg-soft)), var(--bg-soft));
+}
+.mu-seed {
+  font-size: 9.5px;
+  padding: 3px 9px;
+  line-height: 1.3;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+.mu-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+}
+.mu-team .flag,
+.mu-flag-ph {
+  width: 48px;
+  height: 32px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.18), 0 3px 8px rgba(0,0,0,.35);
+  flex: none;
+}
+.mu-flag-ph { background: var(--line); box-shadow: 0 0 0 1px rgba(0,0,0,.18); }
+.mu-name {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.mu-side.win .mu-name { font-weight: 800; }
+.mu-team.prov .mu-name { font-style: italic; color: var(--ink-soft); font-weight: 600; }
+.mu-team.tbd .mu-name { font-style: italic; color: var(--ink-soft); font-weight: 600; font-size: 13px; }
+.mu-vs {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mu-vs span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--usa-red);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.18);
+}
 .mini-group.thirds .mini-group-head { background: var(--third-q-bg); color: var(--third-q); }
 .mini-group.third .mini-group-head { color: var(--third-o); }
-.aside-team { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; font-size: 14px; }
-.aside-team.prov { font-style: italic; color: var(--ink-soft); font-weight: 600; }
-.aside-team.tbd { font-style: italic; color: var(--ink-soft); font-weight: 600; font-size: 12.5px; }
-.aside-now .vs { color: var(--ink-soft); font-size: 12px; }
-.aside-meta { text-align: center; font-size: 11.5px; color: var(--ink-soft); margin-bottom: 12px; }
 .aside-section-title { font-size: 12px; font-weight: 700; color: var(--ink-soft); margin: 6px 0 8px; }
 .mini-group { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 10px; }
 .mini-group-head { background: var(--bg-soft); font-weight: 700; font-size: 12px; padding: 6px 10px; }
@@ -943,15 +1193,6 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 }
 .tooltip.show { opacity: 1; transform: translateY(0); }
 .tip-head { font-size: 12.5px; margin-bottom: 7px; padding-bottom: 7px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-.tip-rel { margin-left: auto; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: var(--bg-soft); font-size: 11px; }
-.tip-rel.live { color: #fff; background: var(--live); } .tip-rel.soon { color: var(--ink); background: var(--bg-soft); } .tip-rel.done { color: var(--adv); } .tip-rel.await { color: var(--third-q); }
-.tip-teams { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; flex-wrap: wrap; }
-.tip-team { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; }
-.tip-team .flag { width: 20px; height: 14px; }
-.tip-team.prov { font-style: italic; color: var(--ink-soft); font-weight: 600; }
-.tip-team.tbd { font-style: italic; color: var(--ink-soft); font-weight: 600; font-size: 12px; }
-.tip-vs { color: var(--ink-soft); font-size: 11px; }
-.tip-score { font-size: 13px; margin-bottom: 6px; }
 .tip-row { display: flex; align-items: center; gap: 7px; margin-top: 3px; color: var(--ink); }
 .tip-row span { width: 16px; text-align: center; }
 .tip-dim { color: var(--ink-soft); }
@@ -1085,25 +1326,46 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
     min-width: 320px;
   }
 
-  /* Kalender */
+  /* Kalender – kort med kompakt rubrikrad + centrerad matchrad */
   .cal-day { grid-template-columns: 56px 1fr; gap: 10px; padding: 10px 0; }
   .cal-date { position: sticky; top: calc(118px + env(safe-area-inset-top, 0px)); align-self: start; }
   .cal-dnum { font-size: 22px; }
   .cal-row {
-    grid-template-columns: 44px 1fr;
+    grid-template-columns: auto 1fr auto;
     grid-template-areas:
-      "time match"
-      "badge venue";
-    gap: 6px 10px;
-    padding: 10px 12px;
+      "time badge venue"
+      "match match match";
+    align-items: center;
+    gap: 8px 10px;
+    padding: 11px 14px;
   }
-  .cal-time { grid-area: time; font-size: 12px; }
-  .cal-match { grid-area: match; gap: 8px; min-width: 0; }
+  .cal-time { grid-area: time; justify-self: start; font-size: 12.5px; }
   .cal-badge { grid-area: badge; justify-self: start; }
-  .cal-venue { grid-area: venue; justify-content: flex-start; width: auto; }
-  .cal-side { font-size: 13px; gap: 5px; }
-  .cal-side.home,
-  .cal-side.away { flex: 1 1 auto; min-width: 0; }
+  .cal-venue {
+    grid-area: venue;
+    justify-self: end;
+    justify-content: flex-end;
+    width: auto;
+    gap: 6px;
+  }
+  .cal-match {
+    grid-area: match;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    padding-top: 2px;
+  }
+  .cal-side { font-size: 13.5px; gap: 6px; min-width: 0; }
+  .cal-side.home { justify-content: flex-end; text-align: right; flex: 1 1 0; }
+  .cal-side.away { justify-content: flex-start; text-align: left; flex: 1 1 0; }
+  .cal-score,
+  .cal-vs { flex: none; min-width: 40px; }
+  /* Tomma platshållare (Nästa-slot / saknad TV-kanal) tar ingen plats i mobil */
+  .cal-next-slot,
+  .cal-tv-empty { display: none; }
 
   /* Slutspel */
   html.view-bracket,
@@ -1120,7 +1382,7 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   html.view-bracket .bracket-intro {
     margin: 0 0 6px;
   }
-  html.view-bracket .bracket-intro h2 { font-size: 18px; }
+  html.view-bracket .bracket-intro h2 { font-size: 26px; }
   html.view-bracket .foot {
     padding: 8px 14px calc(10px + env(safe-area-inset-bottom, 0px));
     font-size: 10px;
@@ -1147,7 +1409,7 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 }
 
 @media (max-height: 720px) {
-  html.view-bracket .bracket-intro h2 { font-size: 16px; }
+  html.view-bracket .bracket-intro h2 { font-size: 24px; }
   html.view-bracket .foot { display: none; }
   html.view-bracket main.container { padding-top: 8px; }
 }
@@ -1185,49 +1447,32 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   .match-expand {
     width: 36px;
     height: 36px;
-    font-size: 18px;
   }
+  .match-expand-icon { width: 17px; height: 17px; }
   .pen-btn { min-height: 36px; padding: 6px 10px; }
 
+  /* Kalender på telefon: datumet blir en horisontell rubrik, matchkorten
+     behåller den centrerade layouten från ≤780px (rubrikrad + matchrad). */
   .cal-day { grid-template-columns: 1fr; gap: 6px; }
   .cal-date {
     position: static;
     flex-direction: row;
     align-items: baseline;
     gap: 8px;
-    padding: 0 2px 4px;
+    padding: 0 2px 6px;
     border-bottom: 1px solid var(--line);
     margin-bottom: 2px;
   }
   .cal-dnum { font-size: 20px; }
-  .cal-row {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "time"
-      "match"
-      "badge"
-      "venue";
-    gap: 6px;
-  }
-  .cal-match {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 6px;
-    width: 100%;
-  }
-  .cal-side.home,
-  .cal-side.away {
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-  }
+  .cal-row { gap: 7px 8px; padding: 11px 13px; }
+  .cal-match { gap: 8px; }
+  .cal-side { font-size: 13px; gap: 5px; }
   .cal-score,
-  .cal-vs { min-width: unset; }
+  .cal-vs { min-width: 34px; }
 
   .stat-grid { grid-template-columns: repeat(2, 1fr); }
   .matches-toggle { min-height: 44px; padding: 12px 9px; }
-  .players-card { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .player-row { min-width: 300px; }
+  .players-card { overflow-x: hidden; }
   .pm-card {
     top: auto;
     bottom: 0;
@@ -1282,31 +1527,54 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   border-radius: 6px; padding: 1px 5px; font-size: 11.5px;
 }
 
+/* Trupp indelad per position (Målvakter / Försvarare / …) */
+.squad { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+.squad-group-head {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--ink-soft); padding: 0 2px 4px;
+  border-bottom: 1px solid var(--line); margin-bottom: 4px;
+}
+.squad-count {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px;
+  background: var(--bg-soft); border: 1px solid var(--line);
+  font-size: 11px; font-weight: 600; letter-spacing: 0;
+}
+.squad-source {
+  margin: 0 0 8px; font-size: 12px; line-height: 1.45; color: var(--ink-soft);
+}
+.squad-updated {
+  margin-top: 2px; font-size: 11.5px; color: var(--ink-soft); opacity: .85;
+  text-align: right; font-variant-numeric: tabular-nums;
+}
 .player-list { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
 .player-row {
-  display: grid; align-items: center; gap: 8px;
-  grid-template-columns: 26px 1fr auto auto auto;
+  display: grid; align-items: center; gap: 12px;
+  grid-template-columns: minmax(0, 1fr) 7.5rem;
   width: 100%; text-align: left; cursor: pointer;
   background: transparent; border: 0; border-radius: var(--radius-sm);
-  padding: 7px 8px; color: var(--ink); font: inherit;
+  padding: 8px 6px; color: var(--ink); font: inherit;
   transition: background .12s ease;
 }
 .player-row:hover { background: var(--bg-soft); }
-.pr-num {
+.pr-name {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 14px; font-weight: 500; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.pr-meta {
+  font-size: 12.5px; color: var(--ink-soft); text-align: right;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.pr-cap, .pm-cap {
   display: inline-flex; align-items: center; justify-content: center;
-  min-width: 24px; height: 22px; border-radius: 6px;
-  background: var(--bg-soft); border: 1px solid var(--line);
-  font-size: 12px; font-weight: 600; color: var(--ink-soft);
+  width: 16px; height: 16px; border-radius: 50%; flex: none;
+  background: var(--accent); color: #fff;
+  font-size: 9.5px; font-weight: 800; letter-spacing: 0; line-height: 1;
 }
-.pr-name { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; min-width: 0; }
-.pr-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.pr-pos {
-  font-size: 10.5px; font-weight: 700; letter-spacing: .03em;
-  color: var(--ink-soft); background: var(--bg-soft);
-  border-radius: 5px; padding: 1px 5px; flex: none;
-}
-.pr-stat { font-size: 12.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums; min-width: 34px; text-align: right; }
-.pr-stat.yc { color: var(--third-q); }
+.pm-cap { width: 18px; height: 18px; font-size: 10.5px; margin-left: 8px; vertical-align: middle; }
 
 /* ---------- Spelarprofil (modal) ---------- */
 .player-modal { position: fixed; inset: 0; z-index: 80; display: none; }
@@ -1340,6 +1608,14 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 }
 .pm-val { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .pm-lbl { font-size: 11px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .04em; }
+.pm-info { margin-top: 16px; display: flex; flex-direction: column; }
+.pm-row {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  padding: 9px 2px; border-top: 1px solid var(--line); font-size: 14px;
+}
+.pm-row:first-child { border-top: 0; }
+.pm-row-lbl { color: var(--ink-soft); font-size: 13px; flex: none; }
+.pm-row-val { font-weight: 500; text-align: right; min-width: 0; }
 .pm-note { margin-top: 16px; font-size: 12px; color: var(--ink-soft); text-align: center; }
 
 /* ---------- Mål-notiser (WebSocket) ---------- */
