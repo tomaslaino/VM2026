@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "node --watch server/index.js",
-    "sync": "node server/jobs/syncFootballData.js",
+    "sync": "node server/jobs/syncResults.js",
     "sync:static": "node server/scripts/syncStatic.js",
     "squads": "node server/jobs/fetchSquads.js",
     "live": "node server/jobs/livePoll.js",

@@ -151,6 +151,57 @@
 
   function getApiFixture(key) { return apiFixtures[key] || null; }
 
+  /** Matchen är klickbar (matchinfo-vy) när den pågår eller är spelad. */
+  function isMatchOpenable(key) {
+    return isMatchLive(key) || isPlayed(getRes(key));
+  }
+
+  /** Attribut + klass för klickbara matchrader. */
+  function matchOpenAttr(key, hasTeams) {
+    if (hasTeams === false || !isMatchOpenable(key)) return { attr: "", cls: "" };
+    return { attr: ' data-match-open="' + key + '" role="button" tabindex="0"', cls: " match-openable" };
+  }
+
+  /**
+   * Beskrivning av en match utifrån resultatnyckel ("g:A:0" / "k:73") –
+   * används av matchinfo-modalen (assets/matchinfo.js).
+   */
+  function describeMatch(key) {
+    var info = null;
+    var g = /^g:([A-L]):(\d+)$/.exec(key);
+    if (g) {
+      var L = g[1];
+      var fx = null;
+      groupFixtures(L).forEach(function (f) { if (f.key === key) fx = f; });
+      if (!fx) return null;
+      var th = WC.groups[L][fx.h], ta = WC.groups[L][fx.a];
+      info = {
+        key: key, label: "Grupp " + L, kind: "group",
+        home: th, away: ta, m: fx,
+        channel: tvLookupGroup(fx, th, ta), venue: null
+      };
+    } else {
+      var k = /^k:(\d+)$/.exec(key);
+      if (!k) return null;
+      var no = parseInt(k[1], 10);
+      var ctx = getCtx();
+      var res = ctx.resolved[no];
+      if (!res) return null;
+      info = {
+        key: key, label: WC.roundNames[res.match.round] + " · M" + no, kind: "ko",
+        home: res.home.team || null, away: res.away.team || null, m: res.match,
+        channel: tvLookupKo(res.match), venue: WC.venues[res.match.venue] || null,
+        homeLabel: res.home.label, awayLabel: res.away.label
+      };
+    }
+    info.r = getRes(key);
+    info.fixture = getApiFixture(key);
+    info.live = isMatchLive(key);
+    info.played = isPlayed(info.r);
+    info.when = whenLabels(info.m);
+    return info;
+  }
+
   /** Slå in resultat + schema från backend (football-data). Uppdaterar grupper/slutspel/kalender. */
   function mergeRemoteResults(payload) {
     if (!payload) return false;
@@ -192,7 +243,7 @@
     if (payload.meta) {
       autoSync.active = true;
       autoSync.status = "ok";
-      autoSync.source = payload.meta.source || "football-data";
+      autoSync.source = payload.meta.source || "espn";
       autoSync.updatedAt = payload.meta.updatedAt || null;
     }
 
@@ -202,6 +253,11 @@
       updateSyncBadge();
     } else if (payload.meta) {
       updateSyncBadge();
+    }
+    // Uppdatera ev. öppen matchinfo-modal med ny ställning/status.
+    if ((changed || fixturesChanged) && window.VMMatchInfo &&
+        typeof window.VMMatchInfo.onDataUpdated === "function") {
+      try { window.VMMatchInfo.onDataUpdated(); } catch (e) {}
     }
     return changed || fixturesChanged;
   }
@@ -219,7 +275,7 @@
     el.classList.remove("pending", "ok", "error");
     if (autoSync.status === "ok" && autoSync.updatedAt) {
       el.classList.add("ok");
-      el.textContent = "Auto · football-data";
+      el.textContent = "Auto · ESPN";
       el.title = "Senast uppdaterad: " + new Date(autoSync.updatedAt).toLocaleString("sv-SE");
     } else if (autoSync.status === "error") {
       el.classList.add("error");
@@ -228,7 +284,7 @@
     } else {
       el.classList.add("pending");
       el.textContent = "Hämtar…";
-      el.title = "Resultat hämtas automatiskt från football-data.org";
+      el.title = "Resultat hämtas automatiskt från ESPN";
     }
   }
 
@@ -746,7 +802,8 @@
         var r = getRes(fx.key) || {};
         var when = whenLabels(fx);
         var liveFx = isMatchLive(fx.key);
-        h += '<div class="fixture' + (liveFx ? " live" : "") + '">' +
+        var open = matchOpenAttr(fx.key);
+        h += '<div class="fixture' + (liveFx ? " live" : "") + open.cls + '"' + open.attr + '>' +
           '<div class="fx-date">' + (liveFx ? liveTimeLabel(fx.key, when.dateLabel + ' · ' + when.time) : when.dateLabel + ' · ' + when.time) + '</div>' +
           '<div class="fx-match">' +
           teamOpenBtn(th, fixtureTeamName(th) + flagImg(th.iso), "fx-team home") +
@@ -792,7 +849,7 @@
       'Rangordning enligt FIFA: poäng → målskillnad → gjorda mål → fair play → FIFA-ranking. ' +
       (anyContested
         ? '<br><strong>FP?</strong> = lag som står lika på poäng, målskillnad och gjorda mål. ' +
-          'Där avgör egentligen <em>fair play</em>, men den datan finns inte i football-data – ' +
+          'Där avgör egentligen <em>fair play</em>, men den datan finns inte i resultat-API:t – ' +
           'dessa lag ordnas därför preliminärt på FIFA-ranking och kan ändras. '
         : '') +
       'De 8 placeras automatiskt i slutspelsträdet enligt FIFA:s 495 kombinationer (Annex C).</p></section>';
@@ -1116,13 +1173,14 @@
     var liveNow = isMatchLive(resKey);
     var rel = liveNow ? { cls: "live", txt: "Pågår nu" } : relativeLabel(m, played, resKey);
     var expanded = hoverMatch === m.m;
-    var cls = "match" + (variant ? " " + variant : "") + (liveNow ? " live-now" : "") + (expanded ? " expanded" : "");
+    var open = matchOpenAttr(resKey, !!res.bothTeams);
+    var cls = "match" + (variant ? " " + variant : "") + (liveNow ? " live-now" : "") + (expanded ? " expanded" : "") + open.cls;
     if (opts.side) cls += " side-" + opts.side;
 
     var hWin = res.winner && res.home.team && res.winner.team === res.home.team;
     var aWin = res.winner && res.away.team && res.winner.team === res.away.team;
 
-    var h = '<div class="' + cls + '" data-m="' + m.m + '"' + (opts.grid ? ' style="' + opts.grid + '"' : '') + '">';
+    var h = '<div class="' + cls + '" data-m="' + m.m + '"' + open.attr + (opts.grid ? ' style="' + opts.grid + '"' : '') + '">';
     h += '<div class="m-meta"><span class="m-no">M' + m.m + '</span>' +
          '<span class="m-rel ' + rel.cls + '">' + rel.txt + '</span></div>';
     h += sideRow(res.home, res, "h", hWin);
@@ -1765,7 +1823,8 @@
     var live = isMatchLive(fx.key);
     var score = (played || live) ? '<span class="cal-score">' + (r.h || 0) + '–' + (r.a || 0) + '</span>'
                        : '<span class="cal-vs">–</span>';
-    return '<div class="' + calRowClass(isNext, isRecent, live ? "is-live" : "") + '">' +
+    var open = matchOpenAttr(fx.key);
+    return '<div class="' + calRowClass(isNext, isRecent, (live ? "is-live" : "") + open.cls) + '"' + open.attr + '>' +
       '<span class="cal-time">' + (live ? liveTimeLabel(fx.key, when.time) : when.time) + '</span>' +
       '<button type="button" class="cal-badge grp cal-group-btn" data-cal-group="' + L + '">Grupp ' + L + '</button>' +
       '<span class="cal-match">' + teamOpenBtn(th, '<span title="' + esc(th.sv) + '">' + esc(teamSvFixture(th)) + '</span>' + flagImg(th.iso), "cal-side home") +
@@ -1797,7 +1856,8 @@
     var hAway = res.away.team
       ? teamOpenBtn(res.away.team, aFlag + aName, "cal-side away" + (aProv ? " prov" : ""))
       : '<span class="cal-side away' + (aProv ? " prov" : "") + '">' + aFlag + aName + '</span>';
-    return '<div class="' + calRowClass(isNext, isRecent, "ko" + (live ? " is-live" : "")) + '" data-m="' + m.m + '">' +
+    var open = matchOpenAttr("k:" + m.m, !!(res.home.team && res.away.team));
+    return '<div class="' + calRowClass(isNext, isRecent, "ko" + (live ? " is-live" : "") + open.cls) + '" data-m="' + m.m + '"' + open.attr + '>' +
       '<span class="cal-time">' + (live ? liveTimeLabel("k:" + m.m, when.time) : when.time) + '</span>' +
       '<span class="cal-badge ' + m.round + '">' + (CAL_ROUND[m.round] || m.round) + ' · M' + m.m + '</span>' +
       '<span class="cal-match">' + hHome + score + hAway + '</span>' +
@@ -2105,6 +2165,15 @@
       openTeamByIso(teamEl.getAttribute("data-team-open"));
       return;
     }
+
+    // klick på matchrad (pågående/spelad) → öppna matchinfo
+    var matchEl = t.closest && t.closest("[data-match-open]");
+    if (matchEl) {
+      if (window.VMMatchInfo && typeof window.VMMatchInfo.open === "function") {
+        window.VMMatchInfo.open(matchEl.getAttribute("data-match-open"));
+      }
+      return;
+    }
     var trow = t.closest && t.closest("tr[data-team]");
     if (trow) {
       openTeamByIso(trow.getAttribute("data-team"));
@@ -2220,7 +2289,12 @@
     updateSyncBadge();
   }
 
-  window.VMApp = { mergeRemoteResults: mergeRemoteResults, setSyncStatus: setSyncStatus, autoSync: autoSync };
+  window.VMApp = {
+    mergeRemoteResults: mergeRemoteResults,
+    setSyncStatus: setSyncStatus,
+    autoSync: autoSync,
+    describeMatch: describeMatch
+  };
 
   document.addEventListener("DOMContentLoaded", init);
 })();

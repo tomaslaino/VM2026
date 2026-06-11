@@ -57,3 +57,8 @@ export function getLiveMatches() {
   // Status-filter enligt football-data v4
   return fdGet("/matches", { competitions: config.fdCompetition, status: "LIVE" });
 }
+
+/** Detaljer för en enskild match (mål, kort, byten, domare m.m.). */
+export function getMatch(id) {
+  return fdGet(`/matches/${id}`);
+}

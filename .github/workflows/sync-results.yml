@@ -1,7 +1,8 @@
 name: Synka VM-resultat
 
-# Hämtar matchresultat & schema från football-data.org och committar
-# en statisk data/results.json som sidan (GitHub Pages) läser direkt.
+# Hämtar matchresultat, schema & matchstatistik från ESPN:s öppna API
+# (ingen API-nyckel behövs) och committar statiska data/results.json +
+# data/matchdetails.json som sidan (GitHub Pages) läser direkt.
 
 on:
   schedule:
@@ -32,11 +33,8 @@ jobs:
       - name: Installera beroenden
         run: npm install --no-audit --no-fund
 
-      - name: Hämta resultat från football-data
+      - name: Hämta resultat från ESPN
         env:
-          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
-          FD_COMPETITION: WC
-          FD_SEASON: "2026"
           SYNC_FORCE: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
         run: npm run sync:static
 
@@ -44,7 +42,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/results.json
+          git add data/results.json data/matchdetails.json
           if git diff --staged --quiet; then
             echo "Inga förändringar – hoppar över commit."
           else

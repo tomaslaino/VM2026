@@ -1,5 +1,5 @@
 import { config } from "./config.js";
-import { syncFootballData } from "./jobs/syncFootballData.js";
+import { syncResults } from "./jobs/syncResults.js";
 import { fetchSquads } from "./jobs/fetchSquads.js";
 import { livePollOnce } from "./jobs/livePoll.js";
 import { finalize } from "./jobs/finalize.js";
@@ -7,7 +7,8 @@ import * as resultsStore from "./resultsStore.js";
 
 /*
   Schemaläggare:
-    Primärt: football-data-synk (resultat → grupper/slutspel uppdateras på sidan).
+    Primärt: ESPN-synk (resultat & matchdetaljer → grupper/slutspel uppdateras
+    på sidan – ingen API-nyckel behövs).
     Sekundärt: API-Football (spelarstatistik) om nyckel finns.
 */
 
@@ -35,7 +36,7 @@ function scheduleNightlySquads() {
   }, wait);
 }
 
-function nextFdDelay(snapshot) {
+function nextSyncDelay(snapshot) {
   const live = snapshot?.live?.length || 0;
   if (live > 0) return config.fdPollLiveSeconds;
 
@@ -53,16 +54,16 @@ function nextFdDelay(snapshot) {
   return config.fdPollIdleSeconds;
 }
 
-async function fdLoop() {
+async function syncLoop() {
   let delay = config.fdPollIdleSeconds;
   try {
-    await syncFootballData({ log });
-    delay = nextFdDelay(resultsStore.getSnapshot());
+    await syncResults({ log });
+    delay = nextSyncDelay(resultsStore.getSnapshot());
   } catch (e) {
-    log("[schema] football-data-synk misslyckades:", e.message);
+    log("[schema] ESPN-synk misslyckades:", e.message);
     delay = config.fdPollMatchDaySeconds;
   }
-  setTimeout(fdLoop, delay * 1000);
+  setTimeout(syncLoop, delay * 1000);
 }
 
 async function apiFootballLoop() {
@@ -79,12 +80,8 @@ async function apiFootballLoop() {
 export async function startScheduler() {
   await resultsStore.load();
 
-  if (config.fdOffline) {
-    log("[schema] FOOTBALL_DATA_TOKEN saknas – ingen automatisk resultatsynk.");
-  } else {
-    log("[schema] Startar football-data-synk (resultat & tabeller).");
-    fdLoop();
-  }
+  log("[schema] Startar ESPN-synk (resultat, tabeller & matchdetaljer).");
+  syncLoop();
 
   if (!config.apiFootballOffline) {
     log("[schema] Startar API-Football-bakgrundsjobb (spelarstatistik).");

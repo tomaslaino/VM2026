@@ -206,6 +206,25 @@ export function mapStandings(fdStandings) {
   return out;
 }
 
+/** football-data match-id → appens resultatnyckel ("g:A:0" / "k:73"). */
+export function buildKeyMap(fdMatches) {
+  const pairMap = groupPairToKey();
+  const koMap = buildKoSlotMap(fdMatches);
+  const map = new Map();
+
+  for (const m of fdMatches) {
+    let key = null;
+    if (m.stage === "GROUP_STAGE" && m.homeTeam?.name && m.awayTeam?.name) {
+      key =
+        pairMap.get(`${canonicalTeam(m.homeTeam.name)}|${canonicalTeam(m.awayTeam.name)}`) || null;
+    } else if (m.stage !== "GROUP_STAGE") {
+      key = koMap.get(m.id) || null;
+    }
+    if (key) map.set(m.id, key);
+  }
+  return map;
+}
+
 /** Alla matcher → schema (datum/tid/lag) för frontend. */
 export function mapMatchesToFixtures(fdMatches) {
   const pairMap = groupPairToKey();

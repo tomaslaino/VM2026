@@ -1,4 +1,6 @@
 import http from "node:http";
+import fs from "node:fs";
+import path from "node:path";
 import express from "express";
 import { WebSocketServer } from "ws";
 import { config, ROOT } from "./config.js";
@@ -6,7 +8,7 @@ import * as store from "./store.js";
 import * as resultsStore from "./resultsStore.js";
 import { bus } from "./bus.js";
 import { getCallCount as getApiFootballCalls } from "./apiFootball.js";
-import { getCallCount as getFdCalls } from "./footballData.js";
+import { getCallCount as getEspnCalls } from "./espn.js";
 import { startScheduler } from "./scheduler.js";
 
 store.load();
@@ -28,9 +30,9 @@ app.get("/api/health", (req, res) => {
   const snap = resultsStore.getSnapshot();
   res.json({
     ok: true,
-    footballData: !config.fdOffline,
+    source: "espn",
     apiFootball: !config.apiFootballOffline,
-    fdCalls: getFdCalls(),
+    espnCalls: getEspnCalls(),
     apiCalls: getApiFootballCalls(),
     resultsUpdatedAt: snap.meta.updatedAt,
     resultCount: Object.keys(snap.results).length,
@@ -109,6 +111,20 @@ app.get("/api/live", (req, res) => {
   res.json({ fixtures: snap.live, updatedAt: snap.meta.updatedAt });
 });
 
+/** Matchdetaljer (mål, kort, byten …) – skrivs av sync-jobbet till data/matchdetails.json. */
+app.get("/api/matchdetails", (req, res) => {
+  try {
+    const file = path.join(ROOT, "data", "matchdetails.json");
+    if (fs.existsSync(file)) {
+      res.type("application/json").send(fs.readFileSync(file, "utf8"));
+      return;
+    }
+  } catch {
+    /* fall igenom till tomt svar */
+  }
+  res.json({ meta: {}, details: {} });
+});
+
 app.use(express.static(ROOT));
 
 const server = http.createServer(app);
@@ -153,11 +169,7 @@ server.listen(config.port, async () => {
   await resultsStore.load();
   console.log(`\nVM 2026-server kör på http://localhost:${config.port}`);
   console.log(`WebSocket: ws://localhost:${config.port}/ws`);
-  if (config.fdOffline) {
-    console.log("football-data: OFFLINE (saknar FOOTBALL_DATA_TOKEN)\n");
-  } else {
-    console.log("football-data: LIVE – resultat synkas automatiskt\n");
-  }
+  console.log("Datakälla: ESPN (öppet API) – resultat synkas automatiskt\n");
   startScheduler();
 });
 

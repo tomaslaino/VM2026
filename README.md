@@ -1,6 +1,6 @@
 # VM 2026 – Grupper, slutspel & kalender
 
-Webbapp för att följa fotbolls-VM 2026 (USA, Mexiko, Kanada): grupptabeller, slutspelsträd, kalender och **automatiskt uppdaterade resultat** via [football-data.org](https://www.football-data.org/).
+Webbapp för att följa fotbolls-VM 2026 (USA, Mexiko, Kanada): grupptabeller, slutspelsträd, kalender och **automatiskt uppdaterade resultat, livehändelser & matchstatistik** via ESPN:s öppna API (ingen API-nyckel behövs).
 
 Grupptabellerna och slutspelsträdet räknas ut från matchresultat i realtid – samma logik som vid manuell inmatning, men resultaten hämtas automatiskt från API:t.
 
@@ -9,24 +9,15 @@ Grupptabellerna och slutspelsträdet räknas ut från matchresultat i realtid �
 Sidan körs på GitHub Pages och uppdateras automatiskt utan att någon server behöver vara igång:
 
 ```
-GitHub Actions (var 10:e min)  →  football-data.org  →  data/results.json (committas)
+GitHub Actions (var 3:e min)  →  ESPN (öppet API)  →  data/results.json + data/matchdetails.json
                                                                 ↓
-                              GitHub Pages serverar filen  →  app.js (tabeller, träd, kalender)
+                              GitHub Pages serverar filerna  →  app.js (tabeller, träd, kalender, matchmodal)
 ```
 
-- En schemalagd workflow (`.github/workflows/sync-results.yml`) kör `npm run sync:static`, som hämtar alla VM-matcher och skriver **`data/results.json`**.
-- Ändras något committas filen automatiskt. GitHub Pages publicerar den och sidan läser den direkt (`window.VM_CONFIG.staticResults`).
-- Tabeller räknas ut i webbläsaren från resultaten – ingen separat standings-API behövs.
-
-**Engångsuppsättning – lägg in API-token som secret:**
-
-1. Skaffa gratis token: [football-data.org/client/register](https://www.football-data.org/client/register)
-2. På GitHub: **Settings → Secrets and variables → Actions → New repository secret**
-   - Name: `FOOTBALL_DATA_TOKEN`
-   - Value: din token
-3. Kör workflowen första gången manuellt: **Actions → Synka VM-resultat → Run workflow** (sen sköts allt automatiskt).
-
-> football-data.org gratisplan är **fördröjd** (inte sekundsnabbt live). Det räcker gott för grupptabeller och slutspel.
+- En schemalagd workflow (`.github/workflows/sync-results.yml`) kör `npm run sync:static`, som hämtar alla VM-matcher och skriver **`data/results.json`** (resultat/schema/tabeller) samt **`data/matchdetails.json`** (mål, kort, byten, statistik).
+- Ändras något committas filerna automatiskt. GitHub Pages publicerar dem och sidan läser dem direkt (`window.VM_CONFIG.staticResults` / `staticDetails`).
+- Tabeller hämtas från ESPN:s officiella ställning och räknas dessutom ut i webbläsaren från resultaten.
+- **Ingen API-nyckel eller secret behövs** – ESPN:s API är öppet.
 
 **Uppdateringsfrekvens (smart):**
 
@@ -47,24 +38,14 @@ Förutsätter [Node.js](https://nodejs.org/) 18+.
 
 ```bash
 npm install
-copy .env.example .env   # PowerShell/CMD – eller cp på mac/linux
-# Fyll i FOOTBALL_DATA_TOKEN i .env
 npm start
 ```
 
-Öppna **http://localhost:3000**. Badgen **Auto** i topbaren visar att resultat synkas. Grupper, tabeller och slutspel uppdateras automatiskt.
+Öppna **http://localhost:3000**. Badgen **Auto** i topbaren visar att resultat synkas. Grupper, tabeller och slutspel uppdateras automatiskt – ingen API-nyckel behövs.
 
-### football-data.org (primär datakälla)
+### ESPN (primär datakälla)
 
-Gratis token: [football-data.org/client/register](https://www.football-data.org/client/register)
-
-```
-FOOTBALL_DATA_TOKEN=din_token
-FD_COMPETITION=WC
-FD_SEASON=2026
-```
-
-På gratisplanen är resultat **fördröjda** (inte live under match). Under VM kan du uppgradera till deras live-plan (~€12/mån) om du vill ha mål i realtid. Appen pollar ändå smart:
+Resultat, livehändelser (mål/kort/byten) och matchstatistik hämtas från ESPN:s öppna API – samma data som espn.com visar, utan nyckel och utan kvotbegränsning i praktiken. Appen pollar smart:
 
 | Läge | Intervall (standard) |
 |------|----------------------|
@@ -78,7 +59,7 @@ Manuell synk:
 
 ```bash
 npm run sync          # uppdaterar serverns datalager (server/data/results.json)
-npm run sync:static   # skriver data/results.json som GitHub Pages-sidan läser
+npm run sync:static   # skriver data/results.json + data/matchdetails.json (GitHub Pages)
 ```
 
 ### API-Football (valfritt – spelarstatistik)
@@ -96,7 +77,7 @@ npm run squads   # hämtar trupper (nattligt via schemaläggaren)
 ## Hur det fungerar
 
 ```
-football-data.org  →  sync-jobb (scheduler)  →  results store  →  /api/results + WebSocket
+ESPN (öppet API)  →  sync-jobb (scheduler)  →  results store  →  /api/results + WebSocket
                                                                         ↓
                                                               app.js (tabeller, träd, kalender)
 ```
@@ -128,9 +109,8 @@ GitHub Pages kan **inte** köra Node. Använd t.ex. [Render](https://render.com/
 1. Pusha repot till GitHub.
 2. Render → **New Web Service** → koppla repot (eller använd `render.yaml` i roten).
 3. Miljövariabler:
-   - `FOOTBALL_DATA_TOKEN` (obligatorisk)
    - `DATABASE_URL` (rekommenderad – Neon)
-   - `API_FOOTBALL_KEY` (valfritt)
+   - `API_FOOTBALL_KEY` (valfritt – spelarstatistik)
 4. Start command: `npm start`
 5. Öppna din Render-URL – sidan och API:t serveras från samma host.
 

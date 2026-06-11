@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0a1628">
   <meta name="color-scheme" content="dark">
   <link rel="preconnect" href="https://flagcdn.com">
-  <link rel="stylesheet" href="assets/styles.css?v=94">
+  <link rel="stylesheet" href="assets/styles.css?v=96">
 </head>
 <body>
   <header class="hero-header">
@@ -34,7 +34,7 @@
         </div>
 
         <div class="controls">
-          <span id="syncBadge" class="sync-badge pending" title="Resultat hämtas från football-data.org">Hämtar…</span>
+          <span id="syncBadge" class="sync-badge pending" title="Resultat hämtas automatiskt från ESPN">Hämtar…</span>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
   <main id="view" class="container"></main>
 
   <footer class="foot">
-    <p>Data: FIFA & Wikipedia · Resultat: <a href="https://www.football-data.org/">football-data.org</a> · Tider kan ändras – <a href="https://www.fifa.com/">FIFA.com</a></p>
+    <p>Data: FIFA & Wikipedia · Resultat & statistik: <a href="https://www.espn.com/soccer/">ESPN</a> · Tider kan ändras – <a href="https://www.fifa.com/">FIFA.com</a></p>
   </footer>
 
   <script>
@@ -52,14 +52,19 @@
          data/results.json som GitHub Actions uppdaterar automatiskt.
        - Vill du ha en alltid-på-server med WebSocket-realtid: sätt
          backend: "https://din-app.onrender.com" */
-    window.VM_CONFIG = { backend: "", staticResults: "data/results.json" };
+    window.VM_CONFIG = {
+      backend: "",
+      staticResults: "data/results.json",
+      staticDetails: "data/matchdetails.json"
+    };
   </script>
   <script src="assets/annexc.js"></script>
   <script src="assets/data.js"></script>
   <script src="assets/players.js?v=1"></script>
-  <script src="assets/app.js?v=59"></script>
+  <script src="assets/app.js?v=61"></script>
   <script src="assets/syncSchedule.js"></script>
   <script src="assets/sync.js?v=3"></script>
   <script src="assets/live.js?v=5"></script>
+  <script src="assets/matchinfo.js?v=2"></script>
 </body>
 </html>

@@ -11,10 +11,10 @@ const RESULTS_FILE = DATA_DIR + "/results.json";
 const EMPTY = () => ({
   meta: {
     updatedAt: null,
-    source: "football-data",
+    source: "espn",
     matchCount: 0,
     liveCount: 0,
-    fdCalls: 0,
+    apiCalls: 0,
   },
   results: {},
   live: [],
@@ -73,14 +73,14 @@ export async function load() {
       results[row.key] = { h: row.h, a: row.a, pw: row.pw || undefined, status: row.status || undefined };
     }
     const metaRows = await sql`SELECT * FROM vm_sync_meta WHERE id = 1`;
-    cache = {
+      cache = {
       meta: metaRows[0]
         ? {
             updatedAt: metaRows[0].updated_at,
-            source: "football-data",
+            source: "espn",
             matchCount: metaRows[0].match_count,
             liveCount: metaRows[0].live_count,
-            fdCalls: metaRows[0].fd_calls,
+            apiCalls: metaRows[0].fd_calls,
           }
         : EMPTY().meta,
       results,
@@ -106,7 +106,7 @@ export function getSnapshot() {
   return cache;
 }
 
-export async function save({ results, live, fixtures, standings, mapped, fdCalls }) {
+export async function save({ results, live, fixtures, standings, mapped, apiCalls }) {
   cache.results = results;
   cache.live = live || [];
   if (fixtures) cache.fixtures = fixtures;
@@ -114,10 +114,10 @@ export async function save({ results, live, fixtures, standings, mapped, fdCalls
   cache.meta = {
     ...cache.meta,
     updatedAt: new Date().toISOString(),
-    source: "football-data",
+    source: "espn",
     matchCount: mapped,
     liveCount: (live || []).length,
-    fdCalls,
+    apiCalls,
   };
 
   const sql = await getDb();
@@ -137,7 +137,7 @@ export async function save({ results, live, fixtures, standings, mapped, fdCalls
     }
     await sql`
       INSERT INTO vm_sync_meta (id, updated_at, match_count, live_count, fd_calls)
-      VALUES (1, NOW(), ${mapped}, ${(live || []).length}, ${fdCalls})
+      VALUES (1, NOW(), ${mapped}, ${(live || []).length}, ${apiCalls ?? 0})
       ON CONFLICT (id) DO UPDATE SET
         updated_at = NOW(), match_count = EXCLUDED.match_count,
         live_count = EXCLUDED.live_count, fd_calls = EXCLUDED.fd_calls

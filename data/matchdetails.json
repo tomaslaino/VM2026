@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "updatedAt": "2026-06-11T20:37:10.193Z",
+    "source": "espn"
+  },
+  "details": {
+    "g:A:2": {
+      "espnId": "760415",
+      "status": "IN_PLAY",
+      "minute": 70,
+      "utcDate": "2026-06-11T19:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 2,
+          "a": 0
+        },
+        "ht": {
+          "h": 1,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 9,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Julián Quiñones",
+          "assist": "Érik Lira",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        },
+        {
+          "minute": 67,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Raúl Jiménez",
+          "assist": "Roberto Alvarado",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 0
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 17,
+          "team": "a",
+          "player": "Teboho Mokoena",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 23,
+          "team": "h",
+          "player": "Brian Gutiérrez",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 49,
+          "team": "a",
+          "player": "Sphephelo Sithole",
+          "card": "RED"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 56,
+          "team": "a",
+          "in": "Thalente Mbatha",
+          "out": "Lyle Foster"
+        },
+        {
+          "minute": 61,
+          "team": "a",
+          "in": "Themba Zwane",
+          "out": "Jayden Adams"
+        },
+        {
+          "minute": 66,
+          "team": "h",
+          "in": "Luis Chávez",
+          "out": "Brian Gutiérrez"
+        },
+        {
+          "minute": 66,
+          "team": "h",
+          "in": "Gilberto Mora",
+          "out": "Álvaro Fidalgo"
+        }
+      ],
+      "penalties": [],
+      "referee": "Wilton Pereira Sampaio",
+      "venue": "Estadio Banorte, Mexico City",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "57%",
+          "a": "43%"
+        },
+        {
+          "key": "totalShots",
+          "h": "16",
+          "a": "3"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "4",
+          "a": "2"
+        },
+        {
+          "key": "wonCorners",
+          "h": "3",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "7",
+          "a": "8"
+        },
+        {
+          "key": "offsides",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "2",
+          "a": "2"
+        },
+        {
+          "key": "totalPasses",
+          "h": "371",
+          "a": "278"
+        },
+        {
+          "key": "passPct",
+          "h": "88%",
+          "a": "84%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "1"
+        }
+      ],
+      "updatedAt": "2026-06-11T20:37:10.193Z"
+    }
+  }
+}
