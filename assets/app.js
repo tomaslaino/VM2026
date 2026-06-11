@@ -565,11 +565,17 @@
   function renderPageIntro(view) {
     if (!viewEl) return;
     var t = HERO_TEXTS[view] || HERO_TEXTS.groups;
-    viewEl.insertAdjacentHTML("afterbegin",
-      '<div class="page-intro"><div class="page-intro-main">' +
+    var html = '<div class="page-intro"><div class="page-intro-main">' +
       "<h2>" + t.title + "</h2>" +
       (t.sub ? "<p>" + t.sub + "</p>" : "") +
-      "</div></div>");
+      "</div></div>";
+    /* Slutspel: lägg rubriken i scroll-ytan så att den följer med uppåt när
+       man scrollar i trädet (annars låser den fast och täcker tabellen). */
+    if (view === "bracket") {
+      var sc = viewEl.querySelector(".bracket-scroll");
+      if (sc) { sc.insertAdjacentHTML("afterbegin", html); return; }
+    }
+    viewEl.insertAdjacentHTML("afterbegin", html);
   }
 
   /* Sticky-offset: hela headern är sticky men med negativ top så att
@@ -594,6 +600,17 @@
     if (was !== !!on && ui("view", "groups") === "bracket") {
       requestAnimationFrame(drawBracketConnectors);
     }
+  }
+
+  /* Grupp/kalender: fäll ihop headern (dölj sök + badge) när bannern
+     scrollats förbi, så bara navraden ligger kvar högst upp. */
+  function syncHeaderCompact() {
+    if (ui("view", "groups") === "bracket") return;
+    var header = document.querySelector(".hero-header");
+    if (!header) return;
+    var topVal = parseFloat(header.style.top) || 0;
+    var threshold = Math.max(20, -topVal - 6);
+    setBracketHeroCollapsed(window.scrollY > threshold);
   }
 
   function setupBracketHeroCollapse() {
@@ -629,6 +646,7 @@
     }
     renderTeamDrawer();
     updateHeroSticky();
+    syncHeaderCompact();
   }
 
   /* Re-render utan att störa pågående inmatning (för realtid/timer). */
@@ -2188,6 +2206,7 @@
       heroStickyTimer = setTimeout(updateHeroSticky, 80);
     });
     window.addEventListener("load", updateHeroSticky);
+    window.addEventListener("scroll", syncHeaderCompact, { passive: true });
 
     window.addEventListener("wheel", function (e) {
       if (ui("view", "groups") !== "bracket") return;
