@@ -3,7 +3,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { ROOT } from "../config.js";
 import { getCallCount } from "../espn.js";
-import { fetchSnapshot, syncDetails } from "../espnSync.js";
+import { RESULTS_FILE, fetchSnapshot, syncDetails, writeResultsFile } from "../espnSync.js";
 import { shouldSyncNow } from "../syncSchedule.js";
 
 /*
@@ -19,12 +19,10 @@ import { shouldSyncNow } from "../syncSchedule.js";
   avslutade hämtas en gång och sparas permanent (historik).
 */
 
-const OUT_FILE = path.join(ROOT, "data", "results.json");
-
 function readCachedSnapshot() {
   try {
-    if (fs.existsSync(OUT_FILE)) {
-      return JSON.parse(fs.readFileSync(OUT_FILE, "utf8"));
+    if (fs.existsSync(RESULTS_FILE)) {
+      return JSON.parse(fs.readFileSync(RESULTS_FILE, "utf8"));
     }
   } catch (e) {
     /* ignorera trasig cache */
@@ -52,22 +50,7 @@ export async function syncStatic({ log = console.log, force = false } = {}) {
   const { matches, results, live, fixtures, standings, mapped, skipped } =
     await fetchSnapshot({ log });
 
-  const payload = {
-    meta: {
-      updatedAt: new Date().toISOString(),
-      source: "espn",
-      matchCount: mapped,
-      liveCount: live.length,
-      apiCalls: getCallCount(),
-    },
-    results,
-    live,
-    fixtures,
-    standings,
-  };
-
-  fs.mkdirSync(path.dirname(OUT_FILE), { recursive: true });
-  fs.writeFileSync(OUT_FILE, JSON.stringify(payload, null, 2) + "\n");
+  writeResultsFile({ results, live, fixtures, standings, mapped }, getCallCount());
 
   let detailCount = 0;
   try {
@@ -79,7 +62,7 @@ export async function syncStatic({ log = console.log, force = false } = {}) {
   log(
     `[espn] Klart. ${matches.length} matcher från API, ${mapped} resultat, ` +
       `${skipped} utan nyckel, ${live.length} live, ${detailCount} detaljer → ` +
-      `${path.relative(ROOT, OUT_FILE)}`
+      `${path.relative(ROOT, RESULTS_FILE)}`
   );
   return { total: matches.length, mapped, live: live.length, details: detailCount };
 }

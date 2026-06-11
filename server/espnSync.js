@@ -17,6 +17,7 @@ import { buildKeyMap, mapMatchesToFixtures, mapMatchesToResults } from "./mapRes
 import { pickDetailTargets } from "./matchDetails.js";
 
 export const DETAILS_FILE = path.join(ROOT, "data", "matchdetails.json");
+export const RESULTS_FILE = path.join(ROOT, "data", "results.json");
 
 /** Hämta scoreboard + tabeller och mappa till appens format. */
 export async function fetchSnapshot({ log = console.log } = {}) {
@@ -34,6 +35,29 @@ export async function fetchSnapshot({ log = console.log } = {}) {
   }
 
   return { matches, results, live, fixtures, standings, mapped, skipped };
+}
+
+/**
+ * Skriv den statiska results.json som frontend läser (både på GitHub Pages
+ * och lokalt – sidan pollar filen direkt när ingen backend är konfigurerad).
+ */
+export function writeResultsFile({ results, live, fixtures, standings, mapped }, apiCalls = 0) {
+  const payload = {
+    meta: {
+      updatedAt: new Date().toISOString(),
+      source: "espn",
+      matchCount: mapped,
+      liveCount: live.length,
+      apiCalls,
+    },
+    results,
+    live,
+    fixtures,
+    standings,
+  };
+  fs.mkdirSync(path.dirname(RESULTS_FILE), { recursive: true });
+  fs.writeFileSync(RESULTS_FILE, JSON.stringify(payload, null, 2) + "\n");
+  return payload;
 }
 
 export function readStoredDetails() {

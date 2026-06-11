@@ -1,6 +1,6 @@
 import { pathToFileURL } from "node:url";
 import { getCallCount } from "../espn.js";
-import { fetchSnapshot, syncDetails } from "../espnSync.js";
+import { fetchSnapshot, syncDetails, writeResultsFile } from "../espnSync.js";
 import * as resultsStore from "../resultsStore.js";
 import { broadcast } from "../bus.js";
 
@@ -19,6 +19,14 @@ export async function syncResults({ log = console.log } = {}) {
     await fetchSnapshot({ log });
 
   await resultsStore.save({ results, live, fixtures, standings, mapped, apiCalls: getCallCount() });
+
+  // Skriv även den statiska data/results.json som sidan läser när ingen
+  // backend är konfigurerad (frontend pollar filen direkt på localhost).
+  try {
+    writeResultsFile({ results, live, fixtures, standings, mapped }, getCallCount());
+  } catch (e) {
+    log(`[espn] Kunde inte skriva statisk results.json: ${e.message}`);
+  }
 
   let detailCount = 0;
   try {

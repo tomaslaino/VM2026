@@ -1,16 +1,16 @@
 {
   "meta": {
-    "updatedAt": "2026-06-11T20:41:51.632Z",
+    "updatedAt": "2026-06-11T21:10:07.949Z",
     "source": "espn"
   },
   "details": {
     "g:A:2": {
       "espnId": "760415",
-      "status": "IN_PLAY",
-      "minute": 75,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-11T19:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
           "h": 2,
@@ -74,6 +74,18 @@
           "team": "a",
           "player": "Nkosinathi Sibisi",
           "card": "YELLOW"
+        },
+        {
+          "minute": 84,
+          "team": "a",
+          "player": "Themba Zwane",
+          "card": "RED"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "César Montes",
+          "card": "RED"
         }
       ],
       "subs": [
@@ -100,17 +112,47 @@
           "team": "h",
           "in": "Gilberto Mora",
           "out": "Álvaro Fidalgo"
+        },
+        {
+          "minute": 76,
+          "team": "h",
+          "in": "Edson Álvarez",
+          "out": "Érik Lira"
+        },
+        {
+          "minute": 76,
+          "team": "h",
+          "in": "Armando González",
+          "out": "Raúl Jiménez"
+        },
+        {
+          "minute": 77,
+          "team": "a",
+          "in": "Evidence Makgopa",
+          "out": "Iqraam Rayners"
+        },
+        {
+          "minute": 77,
+          "team": "a",
+          "in": "Oswin Appollis",
+          "out": "Aubrey Modiba"
+        },
+        {
+          "minute": 79,
+          "team": "h",
+          "in": "Alexis Vega",
+          "out": "Julián Quiñones"
         }
       ],
       "penalties": [],
       "referee": "Wilton Pereira Sampaio",
       "venue": "Estadio Banorte, Mexico City",
-      "attendance": null,
+      "attendance": 80824,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "57%",
-          "a": "43%"
+          "h": "61%",
+          "a": "40%"
         },
         {
           "key": "totalShots",
@@ -129,8 +171,8 @@
         },
         {
           "key": "foulsCommitted",
-          "h": "7",
-          "a": "9"
+          "h": "12",
+          "a": "11"
         },
         {
           "key": "offsides",
@@ -144,13 +186,13 @@
         },
         {
           "key": "totalPasses",
-          "h": "390",
-          "a": "290"
+          "h": "520",
+          "a": "334"
         },
         {
           "key": "passPct",
-          "h": "88%",
-          "a": "83%"
+          "h": "90%",
+          "a": "81%"
         },
         {
           "key": "yellowCards",
@@ -159,11 +201,11 @@
         },
         {
           "key": "redCards",
-          "h": "0",
-          "a": "1"
+          "h": "1",
+          "a": "2"
         }
       ],
-      "updatedAt": "2026-06-11T20:41:51.632Z"
+      "updatedAt": "2026-06-11T21:10:07.949Z"
     }
   }
 }
