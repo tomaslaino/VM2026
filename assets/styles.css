@@ -2107,6 +2107,160 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   .mi-score { font-size: 28px; }
 }
 
+/* ====================================================================
+   SPELARSTATISTIK (vy "Spelare", assets/playerstats.js)
+==================================================================== */
+.ps-view { display: flex; flex-direction: column; gap: 18px; }
+
+/* Ledar-kort (skytteliga / assist / kort) */
+.ps-leaders {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+.ps-leader { position: relative; padding: 14px 16px 12px; }
+.ps-leader::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: linear-gradient(90deg, var(--usa-red), color-mix(in srgb, var(--usa-red) 30%, var(--usa-blue)) 55%, var(--usa-blue));
+  opacity: .85;
+}
+.ps-leader-title {
+  font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .6px;
+  color: var(--ink-soft); margin-bottom: 8px;
+}
+.ps-leader-row {
+  display: flex; align-items: center; gap: 9px;
+  padding: 5px 0; border-bottom: 1px solid var(--line);
+  font-size: 13.5px;
+}
+.ps-leader-row:last-child { border-bottom: 0; }
+.ps-leader-row.first { font-size: 15px; font-weight: 700; }
+.ps-leader-pos { width: 16px; color: var(--ink-soft); font-size: 12px; font-weight: 600; flex: none; }
+.ps-leader-row.first .ps-leader-pos { color: var(--gold); }
+.ps-leader-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ps-leader-val { font-weight: 800; font-variant-numeric: tabular-nums; display: inline-flex; align-items: center; gap: 6px; }
+.ps-leader-val small { font-weight: 600; color: var(--ink-soft); margin-left: 3px; }
+
+/* Verktygsrad: sök + filter */
+.ps-card { overflow: visible; }
+.ps-toolbar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid var(--line);
+}
+#psSearch {
+  flex: 1 1 220px; min-width: 170px; max-width: 320px;
+  font: inherit; font-size: 14px; padding: 8px 13px; border-radius: 10px;
+  border: 1px solid var(--line-strong); background: var(--bg-soft); color: var(--ink);
+}
+#psSearch::placeholder { color: var(--ink-soft); }
+#psSearch:focus { outline: none; border-color: var(--focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 28%, transparent); }
+.ps-toolbar select {
+  font: inherit; font-size: 13.5px; font-weight: 600;
+  padding: 8px 10px; border-radius: 10px;
+  border: 1px solid var(--line-strong); background: var(--bg-soft); color: var(--ink);
+  cursor: pointer; max-width: 200px;
+}
+.ps-toolbar select:focus { outline: none; border-color: var(--focus); }
+.ps-chip {
+  border: 1px solid var(--line-strong); background: var(--bg-soft); color: var(--ink-soft);
+  font: inherit; font-size: 13px; font-weight: 600; padding: 8px 13px; border-radius: 999px;
+  cursor: pointer; transition: .15s;
+}
+.ps-chip:hover { color: var(--ink); border-color: var(--focus); }
+.ps-chip.on {
+  color: #fff; border-color: transparent;
+  background: linear-gradient(90deg, var(--usa-red), color-mix(in srgb, var(--usa-red) 70%, var(--usa-navy)));
+  box-shadow: 0 2px 10px rgba(196, 30, 58, .3);
+}
+.ps-count { margin-left: auto; font-size: 12.5px; color: var(--ink-soft); white-space: nowrap; }
+
+/* Tabellen */
+.ps-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.ps-table { min-width: 760px; }
+.ps-table th { white-space: nowrap; }
+.ps-table .ps-c-name { text-align: left; padding-left: 12px; min-width: 180px; }
+.ps-table td.ps-c-name { padding-right: 8px; }
+.ps-table td.ps-c-name .team { display: flex; min-width: 0; }
+.ps-table td.ps-c-name .t-name { overflow: hidden; text-overflow: ellipsis; }
+.ps-table .ps-c-team { text-align: left; min-width: 90px; max-width: 130px; }
+.ps-table td.ps-c-team .t-name { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ps-table .ps-c-club { text-align: left; min-width: 120px; max-width: 180px; }
+.ps-table td.ps-c-club span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ps-table .ps-c-pos { width: 2.6rem; color: var(--ink-soft); font-size: 12px; font-weight: 600; }
+.ps-sortable { cursor: pointer; user-select: none; }
+.ps-sortable:hover { color: var(--ink); }
+.ps-sortable.sort-on { color: var(--ink); }
+.ps-arrow { font-size: 8px; margin-left: 4px; color: var(--usa-red); vertical-align: middle; }
+.ps-num { font-variant-numeric: tabular-nums; }
+.ps-num.hot { font-weight: 800; }
+.ps-pts { font-weight: 800; }
+tr.ps-has-stats td { background: color-mix(in srgb, var(--usa-blue) 7%, transparent); }
+tr.ps-openable { cursor: pointer; }
+tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, transparent); }
+.ps-zero { color: color-mix(in srgb, var(--ink-soft) 55%, transparent); font-weight: 400; }
+.ps-og { font-size: 11px; color: var(--ink-soft); cursor: help; }
+.ps-cap {
+  display: inline-block; margin-left: 6px; padding: 0 5px;
+  font-size: 10px; font-weight: 800; line-height: 1.5;
+  color: var(--gold); background: var(--third-q-bg);
+  border-radius: 5px; vertical-align: 1px;
+}
+.ps-empty { padding: 26px 16px !important; text-align: center; color: var(--ink-soft); }
+.ps-more {
+  display: block; width: 100%;
+  border: 0; border-top: 1px solid var(--line); background: transparent;
+  color: var(--ink-soft); font: inherit; font-weight: 600; font-size: 13px;
+  padding: 11px; cursor: pointer; transition: .15s;
+  box-shadow: inset 3px 0 0 transparent;
+}
+.ps-more:hover { color: var(--ink); background: var(--bg-soft); box-shadow: inset 3px 0 0 var(--usa-red); }
+.ps-note {
+  margin: 0; padding: 10px 16px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft); font-size: 12.5px; line-height: 1.45;
+}
+
+@media (max-width: 700px) {
+  .ps-count { width: 100%; margin-left: 0; }
+}
+
+/* ====================================================================
+   GRUPPKORT – kompakt tabell + klickbar rubrik (popup med detaljer)
+==================================================================== */
+.group-head-btn {
+  width: 100%;
+  border: 0; background: transparent; color: inherit; font: inherit;
+  cursor: pointer; text-align: left;
+  transition: background .15s;
+}
+.group-head-btn:hover { background: color-mix(in srgb, var(--usa-blue) 9%, transparent); }
+.group-head-btn:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--focus) 60%, transparent);
+  outline-offset: -2px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.group-more {
+  display: inline-flex; align-items: center; gap: 2px;
+  font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+  color: var(--ink-soft);
+  transition: color .15s;
+}
+.group-more svg { width: 15px; height: 15px; transition: transform .15s; }
+.group-head-btn:hover .group-more { color: var(--ink); }
+.group-head-btn:hover .group-more svg { transform: translateX(2px); }
+/* Kompakta gruppl-tabellen: lite mer luft åt lagnamnet */
+.standings-compact .c-team { padding-right: 10px !important; }
+
+/* Grupp-popupen: rubrik med gruppbokstav + förklaringsnot */
+.cal-group-head h3 { display: inline-flex; align-items: center; gap: 9px; }
+.cal-group-popup { width: min(92vw, 520px); }
+.cal-group-note {
+  margin: 10px 0 0; color: var(--ink-soft); font-size: 12px; line-height: 1.45;
+}
+
 /* ---------- Ljust läge: dämpa mörka gradienter ---------- */
 @media (prefers-color-scheme: light) {
   body {

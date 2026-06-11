@@ -318,8 +318,16 @@
     return map;
   }
 
-  /** Tar emot matchdetaljer (assets/matchinfo.js) och uppdaterar fair play. */
+  /** Tar emot matchdetaljer (assets/matchinfo.js) och uppdaterar fair play
+      samt spelarstatistiken (assets/playerstats.js). */
+  var rawDetailsJson = "";
   function setMatchDetails(details) {
+    var rawJson = JSON.stringify(details || {});
+    if (rawJson === rawDetailsJson) return;
+    rawDetailsJson = rawJson;
+    if (window.VMPlayerStats && typeof window.VMPlayerStats.setDetails === "function") {
+      try { window.VMPlayerStats.setDetails(details); } catch (e) {}
+    }
     var next = computeFairPlay(details);
     if (JSON.stringify(next) === JSON.stringify(fairPlayMap)) return;
     fairPlayMap = next;
@@ -693,7 +701,8 @@
   var HERO_TEXTS = {
     groups: { title: "Gruppspel", sub: "11 juni – 19 juli · 48 lag · 104 matcher" },
     bracket: { title: "Slutspel", sub: "" },
-    calendar: { title: "Kalender", sub: "Alla matcher · grupp- & slutspelsfas" }
+    calendar: { title: "Kalender", sub: "Alla matcher · grupp- & slutspelsfas" },
+    players: { title: "Spelarstatistik", sub: "Mål · assist · kort – samlas in automatiskt från matcherna" }
   };
 
   /* Vytitel (Gruppspel/Slutspel/Kalender) visas i innehållsytan,
@@ -771,10 +780,12 @@
       setBracketHeroCollapsed(false);
       renderBracket();
     }
+    else if (view === "players") renderPlayers();
     else renderCalendar();
     renderPageIntro(view);
 
-    if (view !== "calendar") hideCalGroupPopup();
+    /* Grupp-popupen används i både kalender- och gruppvyn. */
+    if (view !== "calendar" && view !== "groups") hideCalGroupPopup();
     if (view !== "bracket") {
       hoverMatch = null;
       hideAside();
@@ -790,6 +801,7 @@
     opts = opts || {};
     var a = document.activeElement;
     if (a && a.classList && a.classList.contains("score")) return;
+    if (a && a.id === "psSearch") return; // stör inte pågående sökning i spelarvyn
     if (a && a.id === "teamSearch") { render(); restoreSearchFocus(); return; }
     if (!opts.full && ui("view", "groups") === "bracket") {
       updateBracketTimers();
@@ -837,6 +849,16 @@
     html += '</div></div>';
     viewEl.innerHTML = html;
     updateNextCountdown();
+    if (calGroupOpen) renderCalGroupPopup(); // håll grupp-popupen aktuell
+  }
+
+  /* ---------- Spelarstatistik-vy (assets/playerstats.js) ---------- */
+  function renderPlayers() {
+    if (window.VMPlayerStats && typeof window.VMPlayerStats.mount === "function") {
+      window.VMPlayerStats.mount(viewEl);
+    } else {
+      viewEl.innerHTML = '<p class="note">Spelarstatistiken kunde inte laddas.</p>';
+    }
   }
 
   /** Kort-cell (gula/röda) med fair play-poäng i tooltip. */
@@ -852,22 +874,28 @@
 
   function standingsRows(table, opts) {
     opts = opts || {};
-    var showCards = opts.cards !== false;
+    var compact = !!opts.compact;
+    var showCards = !compact && opts.cards !== false;
+    var showFp = !!opts.fp;
     var h = "";
     table.forEach(function (s, i) {
       var rowCls = "";
       if (i < 2) rowCls = "r-adv";
       else if (i === 2) rowCls = opts.thirdQualified ? "r-third-q" : "r-third-o";
       if (opts.highlightTeam && s.team === opts.highlightTeam) rowCls += " r-highlight";
+      var fpTitle = "Fair play: " + s.fp + " poäng (" + s.fpY + " gula, " + s.fpR + " röda kort)";
       h += '<tr class="' + rowCls + '" data-team="' + s.team.iso + '">' +
         '<td class="c-pos">' + (i + 1) + '</td>' +
         '<td class="c-team"><span class="team">' +
           flagImg(s.team.iso) + '<span class="t-name">' + esc(s.team.sv) + '</span></span></td>' +
-        '<td class="c-stat">' + s.pld + '</td><td class="c-stat">' + s.w + '</td>' +
-        '<td class="c-stat">' + s.d + '</td><td class="c-stat">' + s.l + '</td>' +
+        '<td class="c-stat">' + s.pld + '</td>' +
+        (compact ? '' :
+          '<td class="c-stat">' + s.w + '</td>' +
+          '<td class="c-stat">' + s.d + '</td><td class="c-stat">' + s.l + '</td>') +
         '<td class="c-goals">' + s.gf + '–' + s.ga + '</td>' +
         '<td class="c-stat">' + (s.gd > 0 ? "+" + s.gd : s.gd) + '</td>' +
         (showCards ? '<td class="c-cards">' + cardsCellHtml(s) + '</td>' : '') +
+        (showFp ? '<td class="c-stat c-fp' + (s.fp < 0 ? " has-cards" : "") + '" title="' + fpTitle + '">' + s.fp + '</td>' : '') +
         '<td class="c-pts">' + s.pts + '</td></tr>';
     });
     return h;
@@ -877,14 +905,22 @@
     var fixtures = groupFixtures(L);
     var open = !!expandedGroups[L];
     var h = '<section class="card group-card' + (open ? " is-open" : "") + '">';
-    h += '<div class="group-head"><h3><span class="group-letter">' + L + '</span>Grupp ' + L + '</h3></div>';
-    h += '<table class="standings"><thead><tr>' +
+    h += '<button type="button" class="group-head group-head-btn" data-cal-group="' + L + '" ' +
+         'title="Visa fullständig tabell med vinster, förluster, kort och fair play">' +
+         '<h3><span class="group-letter">' + L + '</span>Grupp ' + L + '</h3>' +
+         '<span class="group-more">Detaljer' +
+         '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+         '<path fill="currentColor" d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>' +
+         '</span></button>';
+    /* Kompakt tabell – hela lagnamnet får plats. Fullständig statistik
+       (V/O/F, kort, fair play) visas i popupen via gruppkortets rubrik. */
+    h += '<table class="standings standings-compact"><thead><tr>' +
          '<th class="c-pos">#</th><th class="c-team">Lag</th>' +
-         '<th class="c-stat">S</th><th class="c-stat">V</th><th class="c-stat">O</th><th class="c-stat">F</th>' +
-         '<th class="c-goals">Mål</th><th class="c-stat">+/-</th>' +
-         '<th class="c-cards" title="Gula/röda kort – ger fair play-poäng som särskiljer lag">Kort</th>' +
-         '<th class="c-pts">P</th>' +
-         '</tr></thead><tbody>' + standingsRows(table, { thirdQualified: thirdQualified }) + '</tbody></table>';
+         '<th class="c-stat" title="Spelade matcher">S</th>' +
+         '<th class="c-goals" title="Gjorda–insläppta mål">Mål</th>' +
+         '<th class="c-stat" title="Målskillnad">+/-</th>' +
+         '<th class="c-pts" title="Poäng">P</th>' +
+         '</tr></thead><tbody>' + standingsRows(table, { thirdQualified: thirdQualified, compact: true }) + '</tbody></table>';
 
     h += '<button class="matches-toggle" data-toggle-group="' + L + '">' +
          (open ? "Dölj matcher ▲" : "Visa matcher ▼") + '</button>';
@@ -2018,17 +2054,21 @@
     var thirdQ = isThirdQ(ctx, L);
     popup.innerHTML =
       '<div class="cal-group-head">' +
-        "<h3>Grupp " + L + "</h3>" +
+        '<h3><span class="group-letter">' + L + '</span>Grupp ' + L + "</h3>" +
         '<button type="button" class="cal-group-close" id="calGroupClose" title="Stäng">×</button>' +
       "</div>" +
       '<table class="standings mini"><thead><tr>' +
         '<th class="c-pos">#</th><th class="c-team">Lag</th>' +
-        "<th>S</th><th>V</th><th>O</th><th>F</th><th>Mål</th><th>+/-</th>" +
-        '<th class="c-cards" title="Gula/röda kort (fair play)">Kort</th>' +
-        '<th class="c-pts">P</th>' +
+        '<th title="Spelade">S</th><th title="Vinster">V</th><th title="Oavgjorda">O</th><th title="Förluster">F</th>' +
+        '<th title="Gjorda–insläppta mål">Mål</th><th title="Målskillnad">+/-</th>' +
+        '<th class="c-cards" title="Gula/röda kort">Kort</th>' +
+        '<th class="c-fp" title="Fair play-poäng: −1 gult, −3 två gula, −4 direkt rött, −5 gult + direkt rött">FP</th>' +
+        '<th class="c-pts" title="Poäng">P</th>' +
       "</tr></thead><tbody>" +
-      standingsRows(ctx.tables[L], { thirdQualified: thirdQ }) +
-      "</tbody></table>";
+      standingsRows(ctx.tables[L], { thirdQualified: thirdQ, fp: true }) +
+      "</tbody></table>" +
+      '<p class="cal-group-note">Lag särskiljs i ordningen poäng → målskillnad → gjorda mål → inbördes möte → ' +
+      "fair play (FP, beräknas från korten) → FIFA-ranking. Klicka på ett lag för trupp och statistik.</p>";
     popup.classList.add("open");
     backdrop.classList.add("open");
   }

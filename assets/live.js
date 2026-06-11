@@ -264,7 +264,7 @@
 
   /* ---------- Init ---------- */
 
-  window.VMLive = { onTeamDrawer: onTeamDrawer };
+  window.VMLive = { onTeamDrawer: onTeamDrawer, openPlayer: openPlayer };
 
   // Anslut WebSocket när sidan laddats (för live-notiser; misslyckas tyst utan backend).
   if (document.readyState === "loading") {
