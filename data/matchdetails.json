@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updatedAt": "2026-06-11T20:37:10.193Z",
+    "updatedAt": "2026-06-11T20:41:51.632Z",
     "source": "espn"
   },
   "details": {
     "g:A:2": {
       "espnId": "760415",
       "status": "IN_PLAY",
-      "minute": 70,
+      "minute": 75,
       "utcDate": "2026-06-11T19:00Z",
       "duration": "REGULAR",
       "winner": null,
@@ -68,6 +68,12 @@
           "team": "a",
           "player": "Sphephelo Sithole",
           "card": "RED"
+        },
+        {
+          "minute": 74,
+          "team": "a",
+          "player": "Nkosinathi Sibisi",
+          "card": "YELLOW"
         }
       ],
       "subs": [
@@ -124,7 +130,7 @@
         {
           "key": "foulsCommitted",
           "h": "7",
-          "a": "8"
+          "a": "9"
         },
         {
           "key": "offsides",
@@ -138,18 +144,18 @@
         },
         {
           "key": "totalPasses",
-          "h": "371",
-          "a": "278"
+          "h": "390",
+          "a": "290"
         },
         {
           "key": "passPct",
           "h": "88%",
-          "a": "84%"
+          "a": "83%"
         },
         {
           "key": "yellowCards",
           "h": "1",
-          "a": "1"
+          "a": "2"
         },
         {
           "key": "redCards",
@@ -157,7 +163,7 @@
           "a": "1"
         }
       ],
-      "updatedAt": "2026-06-11T20:37:10.193Z"
+      "updatedAt": "2026-06-11T20:41:51.632Z"
     }
   }
 }
