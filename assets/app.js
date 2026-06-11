@@ -13,6 +13,8 @@
   var autoSync = { active: false, source: null, updatedAt: null, status: "pending" };
   var apiFixtures = {}; // nyckel -> { date, time, home, away, homeRef, awayRef, status } från API
   var apiStandings = {}; // grupp-bokstav -> [{ idx, position, pld, w, d, l, gf, ga, gd, pts }] från API
+  var apiLive = {};      // nyckel -> { status, minute, score } för pågående matcher från API
+  var fairPlayMap = {};  // "L:idx" -> { y, r, pts } beräknat från matchdetaljernas kort
   var calScrollPending = false; // scrolla till nästa matchdag vid öppning av kalender
   var calGroupOpen = null;      // grupp-bokstav för öppen tabell-popup i kalendern
 
@@ -224,6 +226,15 @@
       }
     }
 
+    if (payload.live !== undefined) {
+      var liveMap = {};
+      (payload.live || []).forEach(function (l) { if (l && l.key) liveMap[l.key] = l; });
+      if (JSON.stringify(liveMap) !== JSON.stringify(apiLive)) {
+        apiLive = liveMap;
+        fixturesChanged = true;
+      }
+    }
+
     if (payload.results) {
       var results = payload.results;
       for (var key in results) {
@@ -259,7 +270,64 @@
         typeof window.VMMatchInfo.onDataUpdated === "function") {
       try { window.VMMatchInfo.onDataUpdated(); } catch (e) {}
     }
+    // Nya resultat → hämta även matchdetaljer (kort/fair play till tabellerna).
+    if (changed && window.VMMatchInfo &&
+        typeof window.VMMatchInfo.refreshDetails === "function") {
+      try { window.VMMatchInfo.refreshDetails(); } catch (e) {}
+    }
     return changed || fixturesChanged;
+  }
+
+  /* ---------- Fair play (gula/röda kort från matchdetaljerna) ----------
+     FIFA:s fair play-poäng per match och spelare (hårdaste avdraget gäller):
+       gult kort −1 · andra gula (utvisning) −3 · direkt rött −4 ·
+       gult + direkt rött −5. Endast gruppspelet räknas. */
+  function computeFairPlay(details) {
+    var map = {};
+    Object.keys(details || {}).forEach(function (key) {
+      var g = /^g:([A-L]):(\d+)$/.exec(key);
+      if (!g) return;
+      var det = details[key];
+      if (!det || !det.bookings || !det.bookings.length) return;
+      var L = g[1];
+      var i = parseInt(g[2], 10);
+      var pair = RR[Math.floor(i / 2)][i % 2];
+      var teamIdx = { h: pair[0], a: pair[1] };
+      var players = {};
+      det.bookings.forEach(function (b) {
+        if (!b || (b.team !== "h" && b.team !== "a")) return;
+        var pk = b.team + "|" + (b.player || "?" + b.minute);
+        var p = players[pk] || (players[pk] = { side: b.team, y: 0, yr: 0, r: 0 });
+        if (b.card === "YELLOW") p.y++;
+        else if (b.card === "YELLOW_RED") p.yr++;
+        else if (b.card === "RED") p.r++;
+      });
+      Object.keys(players).forEach(function (pk) {
+        var p = players[pk];
+        var slotKey = L + ":" + teamIdx[p.side];
+        var slot = map[slotKey] || (map[slotKey] = { y: 0, r: 0, pts: 0 });
+        slot.y += p.y;
+        slot.r += p.yr + p.r;
+        var ded;
+        if (p.yr || (!p.r && p.y >= 2)) ded = 3;       // andra gula kortet
+        else if (p.r) ded = p.y ? 5 : 4;               // direkt rött (+ ev. gult)
+        else ded = p.y ? 1 : 0;
+        slot.pts -= ded;
+      });
+    });
+    return map;
+  }
+
+  /** Tar emot matchdetaljer (assets/matchinfo.js) och uppdaterar fair play. */
+  function setMatchDetails(details) {
+    var next = computeFairPlay(details);
+    if (JSON.stringify(next) === JSON.stringify(fairPlayMap)) return;
+    fairPlayMap = next;
+    refresh({ full: true });
+  }
+
+  function fpOf(letter, idx) {
+    return fairPlayMap[letter + ":" + idx] || { y: 0, r: 0, pts: 0 };
   }
 
   function setSyncStatus(status) {
@@ -344,11 +412,12 @@
 
   /* ---------- Tabellberäkning ---------- */
   function emptyStat(team, idx) {
-    return { team: team, idx: idx, pld:0, w:0, d:0, l:0, gf:0, ga:0, gd:0, pts:0 };
+    return { team: team, idx: idx, pld:0, w:0, d:0, l:0, gf:0, ga:0, gd:0, pts:0, fp:0, fpY:0, fpR:0 };
   }
-  /* Jämförelse av två lag enligt FIFA-ordning (utom inbördes möte): poäng → målskillnad → gjorda mål → vinster. */
+  /* Jämförelse av två lag enligt FIFA-ordning (utom inbördes möte):
+     poäng → målskillnad → gjorda mål → fair play → vinster. */
   function cmpOverall(y, x) { // returnerar positivt om y ska före x
-    return (y.pts - x.pts) || (y.gd - x.gd) || (y.gf - x.gf) || (y.w - x.w) || (x.idx - y.idx);
+    return (y.pts - x.pts) || (y.gd - x.gd) || (y.gf - x.gf) || (y.fp - x.fp) || (y.w - x.w) || (x.idx - y.idx);
   }
   /* Sortera tabellen enligt football-data:s officiella ordning (om den finns
      och täcker alla lag i gruppen). Returnerar true om ordningen tillämpades. */
@@ -380,7 +449,11 @@
       else if (r.h < r.a) { A.w++; H.l++; A.pts += 3; }
       else { H.d++; A.d++; H.pts++; A.pts++; }
     });
-    st.forEach(function (s) { s.gd = s.gf - s.ga; });
+    st.forEach(function (s) {
+      s.gd = s.gf - s.ga;
+      var f = fpOf(letter, s.idx);
+      s.fpY = f.y; s.fpR = f.r; s.fp = f.pts;
+    });
 
     // Officiell tabellordning från football-data (inkl. fair play och övriga
     // särskiljningsregler som inte går att räkna fram lokalt). Statistiken visas
@@ -423,9 +496,10 @@
     });
     group.sort(function (x, y) {
       var mx = mini[x.idx], my = mini[y.idx];
-      // inbördes: poäng → målskillnad → gjorda mål, sedan total: vinster → lottning
+      // inbördes: poäng → målskillnad → gjorda mål, sedan fair play → FIFA-ranking
       return (my.pts - mx.pts) || (my.gd - mx.gd) || (my.gf - mx.gf) ||
-             (y.w - x.w) || (x.idx - y.idx);
+             (y.fp - x.fp) ||
+             (fifaRankOf(x.team) - fifaRankOf(y.team)) || (x.idx - y.idx);
     });
     for (var k = 0; k < group.length; k++) st[from + k] = group[k];
   }
@@ -436,10 +510,9 @@
     return (typeof r === "number") ? r : 999;
   }
   /* FIFA:s kriterier för bästa treor: poäng → målskillnad → gjorda mål →
-     fair play → FIFA-ranking. Fair play saknas i football-data, så vi går
-     direkt från gjorda mål till FIFA-rankingen (det officiella sista steget). */
+     fair play (kortpoäng, beräknad från matchdetaljerna) → FIFA-ranking. */
   function cmpThirdsStat(a, b) { // positivt om a ska före b
-    return (a.pts - b.pts) || (a.gd - b.gd) || (a.gf - b.gf);
+    return (a.pts - b.pts) || (a.gd - b.gd) || (a.gf - b.gf) || (a.fp - b.fp);
   }
   function computeThirds(tables) {
     var arr = WC.groupLetters.map(function (L) {
@@ -457,10 +530,10 @@
       });
     }
 
-    // Markera lag som är lika på de kriterier vi kan räkna fram (poäng/
-    // målskillnad/gjorda mål). Där avgör egentligen fair play, som API:t
-    // inte ger oss – ordningen mellan dem bygger på FIFA-ranking och är osäker.
-    arr.forEach(function (e) { e.contested = false; });
+    // Markera lag som står lika på poäng/målskillnad/gjorda mål:
+    //  - skiljs de av fair play-poängen (korten) → "FP"-markering
+    //  - är de lika även där → FIFA-rankingen avgör → "FIFA"-markering
+    arr.forEach(function (e) { e.fpDecided = false; e.contested = false; });
     var i = 0;
     while (i < arr.length) {
       var j = i + 1;
@@ -469,7 +542,14 @@
              arr[j].s.gd === arr[i].s.gd &&
              arr[j].s.gf === arr[i].s.gf) j++;
       if (j - i > 1 && arr[i].s.pld > 0) {
-        for (var k = i; k < j; k++) arr[k].contested = true;
+        for (var k = i; k < j; k++) {
+          var fpTie = false;
+          for (var n = i; n < j; n++) {
+            if (n !== k && arr[n].s.fp === arr[k].s.fp) { fpTie = true; break; }
+          }
+          if (fpTie) arr[k].contested = true;
+          else arr[k].fpDecided = true;
+        }
       }
       i = j;
     }
@@ -759,8 +839,20 @@
     updateNextCountdown();
   }
 
+  /** Kort-cell (gula/röda) med fair play-poäng i tooltip. */
+  function cardsCellHtml(s) {
+    var title = "Fair play: " + s.fp + " poäng (" + s.fpY + " gula, " + s.fpR + " röda kort)";
+    if (!s.fpY && !s.fpR) {
+      return '<span class="cards-cell cards-none" title="' + title + '">–</span>';
+    }
+    var inner = '<span class="card-ico y" aria-hidden="true"></span>' + s.fpY;
+    if (s.fpR) inner += '<span class="card-ico r" aria-hidden="true"></span>' + s.fpR;
+    return '<span class="cards-cell" title="' + title + '">' + inner + '</span>';
+  }
+
   function standingsRows(table, opts) {
     opts = opts || {};
+    var showCards = opts.cards !== false;
     var h = "";
     table.forEach(function (s, i) {
       var rowCls = "";
@@ -775,6 +867,7 @@
         '<td class="c-stat">' + s.d + '</td><td class="c-stat">' + s.l + '</td>' +
         '<td class="c-goals">' + s.gf + '–' + s.ga + '</td>' +
         '<td class="c-stat">' + (s.gd > 0 ? "+" + s.gd : s.gd) + '</td>' +
+        (showCards ? '<td class="c-cards">' + cardsCellHtml(s) + '</td>' : '') +
         '<td class="c-pts">' + s.pts + '</td></tr>';
     });
     return h;
@@ -789,6 +882,7 @@
          '<th class="c-pos">#</th><th class="c-team">Lag</th>' +
          '<th class="c-stat">S</th><th class="c-stat">V</th><th class="c-stat">O</th><th class="c-stat">F</th>' +
          '<th class="c-goals">Mål</th><th class="c-stat">+/-</th>' +
+         '<th class="c-cards" title="Gula/röda kort – ger fair play-poäng som särskiljer lag">Kort</th>' +
          '<th class="c-pts">P</th>' +
          '</tr></thead><tbody>' + standingsRows(table, { thirdQualified: thirdQualified }) + '</tbody></table>';
 
@@ -825,32 +919,42 @@
       '<th class="c-pos">#</th><th class="c-grp">Gr</th><th class="c-team">Lag</th>' +
       '<th class="c-stat">S</th><th class="c-stat">V</th><th class="c-stat">O</th><th class="c-stat">F</th>' +
       '<th class="c-goals">Mål</th><th class="c-stat">+/-</th>' +
+      '<th class="c-stat c-fp" title="Fair play-poäng: −1 gult kort, −3 två gula, −4 direkt rött, −5 gult + direkt rött">FP</th>' +
       '<th class="c-pts">P</th><th class="c-status">Kval</th></tr></thead><tbody>';
+    var anyFpDecided = thirds.ranking.some(function (e) { return e.fpDecided; });
     var anyContested = thirds.ranking.some(function (e) { return e.contested; });
     thirds.ranking.forEach(function (e, i) {
       var cls = e.qualified ? "r-third-q" : "r-third-o";
       if (i === 7) cls += " cut-line"; // sista kvalplatsen
       if (e.contested) cls += " r-contested";
-      var contestedMark = e.contested
-        ? ' <sup class="fp-mark" title="Lika på poäng, målskillnad och gjorda mål. FIFA avgör på fair play (saknas i API:t) → ordnas på FIFA-ranking.">FP?</sup>'
-        : "";
+      var mark = "";
+      if (e.fpDecided) {
+        mark = ' <sup class="fp-mark" title="Lika på poäng, målskillnad och gjorda mål – särskiljs på fair play-poäng (kort).">FP</sup>';
+      } else if (e.contested) {
+        mark = ' <sup class="fp-mark" title="Lika på poäng, målskillnad, gjorda mål och fair play – ordnas på FIFA-ranking.">FIFA</sup>';
+      }
+      var fpTitle = e.s.fpY + " gula, " + e.s.fpR + " röda kort";
       h += '<tr class="' + cls + '" data-team="' + e.team.iso + '">' +
         '<td class="c-pos">' + (i + 1) + '</td><td class="c-grp">' + e.L + '</td>' +
         '<td class="c-team"><span class="team">' + flagImg(e.team.iso) +
-          '<span class="t-name">' + esc(e.team.sv) + contestedMark + '</span></span></td>' +
+          '<span class="t-name">' + esc(e.team.sv) + mark + '</span></span></td>' +
         '<td class="c-stat">' + e.s.pld + '</td><td class="c-stat">' + e.s.w + '</td>' +
         '<td class="c-stat">' + e.s.d + '</td><td class="c-stat">' + e.s.l + '</td>' +
         '<td class="c-goals">' + e.s.gf + '–' + e.s.ga + '</td>' +
         '<td class="c-stat">' + (e.s.gd > 0 ? "+" + e.s.gd : e.s.gd) + '</td>' +
+        '<td class="c-stat c-fp' + (e.s.fp < 0 ? " has-cards" : "") + '" title="' + fpTitle + '">' + e.s.fp + '</td>' +
         '<td class="c-pts">' + e.s.pts + '</td>' +
         '<td class="c-status">' + (e.qualified ? '<span class="qbadge">✓</span>' : '<span class="xbadge">✗</span>') + '</td></tr>';
     });
     h += '</tbody></table><p class="note">Endast de <strong>8 bästa treorna</strong> går vidare (de 4 sämsta treorna + alla fyror åker ut). ' +
       'Rangordning enligt FIFA: poäng → målskillnad → gjorda mål → fair play → FIFA-ranking. ' +
+      '<strong>FP</strong> = fair play-poäng, beräknade från korten i matcherna ' +
+      '(−1 gult kort, −3 två gula i samma match, −4 direkt rött, −5 gult + direkt rött). ' +
+      (anyFpDecided
+        ? '<br><strong>FP</strong>-markerade lag står lika på poäng, målskillnad och gjorda mål och särskiljs just nu av fair play-poängen. '
+        : '') +
       (anyContested
-        ? '<br><strong>FP?</strong> = lag som står lika på poäng, målskillnad och gjorda mål. ' +
-          'Där avgör egentligen <em>fair play</em>, men den datan finns inte i resultat-API:t – ' +
-          'dessa lag ordnas därför preliminärt på FIFA-ranking och kan ändras. '
+        ? '<br><strong>FIFA</strong>-markerade lag är lika även på fair play och ordnas på FIFA-ranking. '
         : '') +
       'De 8 placeras automatiskt i slutspelsträdet enligt FIFA:s 495 kombinationer (Annex C).</p></section>';
     return h;
@@ -1277,7 +1381,7 @@
       directList.forEach(function (L) {
         h += '<div class="mini-group"><div class="mini-group-head">Grupp ' + L + '</div>' +
           '<table class="standings mini"><tbody>' +
-          standingsRows(ctx.tables[L], { thirdQualified: isThirdQ(ctx, L) }) +
+          standingsRows(ctx.tables[L], { thirdQualified: isThirdQ(ctx, L), cards: false }) +
           '</tbody></table></div>';
       });
     }
@@ -1291,7 +1395,7 @@
         if (directGroups[L]) return;
         h += '<div class="mini-group third"><div class="mini-group-head">Grupp ' + L + '</div>' +
           '<table class="standings mini"><tbody>' +
-          standingsRows(ctx.tables[L], { thirdQualified: isThirdQ(ctx, L) }) +
+          standingsRows(ctx.tables[L], { thirdQualified: isThirdQ(ctx, L), cards: false }) +
           '</tbody></table></div>';
       });
     }
@@ -1388,8 +1492,11 @@
     return d.getUTCDate() + " " + MONTHS[d.getUTCMonth()] + " · " + (m.edt || "TBC");
   }
 
-  /** Nästa (eller pågående) match(er) – alla med samma avspark räknas som samtidiga. */
-  function findNextMatches(ctx) {
+  /** Nästa (eller pågående) match(er) – alla med samma avspark räknas som samtidiga.
+      Med opts.excludeLive hoppas pågående/strax startande matcher över
+      (de visas i "Pågår nu"-panelen i stället). */
+  function findNextMatches(ctx, opts) {
+    opts = opts || {};
     var items = buildSchedule();
     var now = Date.now();
     var twoH = 2 * 3600 * 1000;
@@ -1423,6 +1530,7 @@
       var inPlay = rs && (rs.status === "IN_PLAY" || rs.status === "PAUSED" || rs.status === "LIVE");
       live = inPlay || isMatchLive(key) || (ko <= now && ko > now - twoH);
       if (!live && ko < now - twoH) return;
+      if (opts.excludeLive && (live || ko - now <= LIVE_SOON_MS)) return;
       candidates.push({
         ko: ko, live: live, label: label, teams: teams, channel: channel,
         time: when.time, whenText: panelWhenCompact(m, live)
@@ -1571,15 +1679,141 @@
     return h;
   }
 
+  /* ---------- "Pågår nu"-panel ---------- */
+  var LIVE_SOON_MS = 5 * 60 * 1000;        // visa matchen 5 min före avspark
+  var LIVE_MATCH_MS = 2 * 3600 * 1000;     // antagen speltid när status saknas
+  var LIVE_GRACE_MS = 45 * 60 * 1000;      // visa kvar resultatet efter slutsignal
+
+  function matchIsPaused(key) {
+    var fx = getApiFixture(key);
+    if (fx && fx.status === "PAUSED") return true;
+    var rs = getRes(key);
+    return !!(rs && rs.status === "PAUSED");
+  }
+
+  /** Pågående, strax startande och nyss avslutade matcher.
+      Nya avsparkar ersätter äldre avslutade matcher i listan. */
+  function findLiveNow(ctx) {
+    var items = buildSchedule();
+    var now = Date.now();
+    var live = [], finished = [];
+
+    items.forEach(function (it) {
+      var key, label, home, away, m;
+      if (it.kind === "group") {
+        var fx = it.fx;
+        key = fx.key; m = fx;
+        home = WC.groups[it.letter][fx.h];
+        away = WC.groups[it.letter][fx.a];
+        label = "Grupp " + it.letter;
+      } else {
+        var res = ctx.resolved[it.m.m];
+        key = "k:" + it.m.m;
+        m = res.match;
+        home = res.home.team;
+        away = res.away.team;
+        label = (ROUND_SHORT[m.round] || m.round) + " · M" + it.m.m;
+      }
+      if (!home || !away) return;
+
+      var r = getRes(key);
+      var ko = kickoffUTC(m).getTime();
+      var liveNow = isMatchLive(key);
+      var played = !liveNow && isPlayed(r) && !isLiveStatus(r && r.status);
+      var lv = apiLive[key];
+      var entry = {
+        key: key, ko: ko, label: label, home: home, away: away,
+        r: r || {}, time: m.edt || "",
+        minute: lv && lv.minute != null ? lv.minute : null
+      };
+
+      if (liveNow || (!played && now >= ko && now < ko + LIVE_MATCH_MS)) {
+        entry.state = "live";
+        entry.paused = matchIsPaused(key);
+        live.push(entry);
+      } else if (!played && now >= ko - LIVE_SOON_MS && now < ko) {
+        entry.state = "soon";
+        live.push(entry);
+      } else if (played && now < ko + LIVE_MATCH_MS + LIVE_GRACE_MS) {
+        entry.state = "ft";
+        finished.push(entry);
+      }
+    });
+
+    function byKickoff(a, b) { return (a.ko - b.ko) || (a.key < b.key ? -1 : 1); }
+
+    if (live.length) {
+      // Nyss avslutade matcher ur samma avsparksblock får stå kvar bredvid de
+      // pågående – äldre block byts ut.
+      var liveKos = {};
+      live.forEach(function (e) { liveKos[e.ko] = true; });
+      var keep = finished.filter(function (e) { return liveKos[e.ko]; });
+      return { show: true, anyLive: true, matches: live.concat(keep).sort(byKickoff) };
+    }
+    if (finished.length) {
+      var maxKo = Math.max.apply(null, finished.map(function (e) { return e.ko; }));
+      return {
+        show: true, anyLive: false,
+        matches: finished.filter(function (e) { return e.ko === maxKo; }).sort(byKickoff)
+      };
+    }
+    return { show: false, anyLive: false, matches: [] };
+  }
+
+  function liveNowStatusHtml(e) {
+    if (e.state === "soon") {
+      return '<span class="nm-live-status soon">Snart' + (e.time ? " · " + esc(e.time) : "") + '</span>';
+    }
+    if (e.state === "ft") return '<span class="nm-live-status done">Slut</span>';
+    if (e.paused) {
+      return '<span class="nm-live-status live"><span class="live-dot"></span>Halvtid</span>';
+    }
+    return '<span class="nm-live-status live"><span class="live-dot"></span>LIVE' +
+      (e.minute != null ? ' · ' + esc(e.minute) + "'" : "") + '</span>';
+  }
+
+  function liveNowItemHtml(e) {
+    var open = matchOpenAttr(e.key);
+    var score = e.state === "soon"
+      ? '<span class="nm-live-score dim">–</span>'
+      : '<span class="nm-live-score">' + (e.r.h != null ? e.r.h : 0) + '–' + (e.r.a != null ? e.r.a : 0) + '</span>';
+    return '<div class="nm-live-item ' + e.state + open.cls + '"' + open.attr + '>' +
+      '<span class="nm-live-meta"><span class="nm-meta">' + esc(e.label) + '</span>' +
+        liveNowStatusHtml(e) + '</span>' +
+      '<span class="nm-live-line">' +
+        '<span class="nm-live-team home">' + fixtureTeamName(e.home) + flagImg(e.home.iso) + '</span>' +
+        score +
+        '<span class="nm-live-team away">' + flagImg(e.away.iso) + fixtureTeamName(e.away) + '</span>' +
+      '</span></div>';
+  }
+
+  function liveNowPanel(liveInfo) {
+    if (!liveInfo.show) return "";
+    var anyPlaying = liveInfo.matches.some(function (e) { return e.state === "live"; });
+    var title = anyPlaying ? "Pågår nu"
+      : (liveInfo.anyLive ? "Strax avspark"
+        : (liveInfo.matches.length > 1 ? "Nyss spelade" : "Nyss spelad"));
+    var h = '<div class="next-matches live-now' + (liveInfo.anyLive ? " is-live" : "") + '" id="liveNow">';
+    h += '<div class="nm-head"><span class="nm-title">' + title + '</span>' +
+      (anyPlaying ? '<span class="nm-live"><span class="live-dot"></span>LIVE</span>' : '') +
+      '</div>';
+    h += '<div class="nm-live-list">';
+    liveInfo.matches.forEach(function (e) { h += liveNowItemHtml(e); });
+    h += "</div></div>";
+    return h;
+  }
+
   function nextMatchesRow(ctx) {
-    return '<div class="next-matches-row">' +
-      nextMatchesPanel(ctx) +
+    var liveInfo = findLiveNow(ctx);
+    return '<div class="next-matches-row' + (liveInfo.show ? " has-live" : "") + '">' +
+      liveNowPanel(liveInfo) +
+      nextMatchesPanel(ctx, liveInfo.show) +
       teamsSpotlightPanel(ctx) +
       "</div>";
   }
 
-  function nextMatchesPanel(ctx) {
-    var next = findNextMatches(ctx);
+  function nextMatchesPanel(ctx, excludeLive) {
+    var next = findNextMatches(ctx, { excludeLive: !!excludeLive });
     if (!next.matches.length) {
       return '<div class="next-matches empty" id="nextMatches">' +
         '<span class="nm-title">Nästa match</span>' +
@@ -1790,6 +2024,7 @@
       '<table class="standings mini"><thead><tr>' +
         '<th class="c-pos">#</th><th class="c-team">Lag</th>' +
         "<th>S</th><th>V</th><th>O</th><th>F</th><th>Mål</th><th>+/-</th>" +
+        '<th class="c-cards" title="Gula/röda kort (fair play)">Kort</th>' +
         '<th class="c-pts">P</th>' +
       "</tr></thead><tbody>" +
       standingsRows(ctx.tables[L], { thirdQualified: thirdQ }) +
@@ -2005,6 +2240,8 @@
         statBox("Plac.", pos + " / 4") + statBox("Poäng", st.pts) + statBox("Spelade", st.pld) +
         statBox("V-O-F", st.w + "-" + st.d + "-" + st.l) + statBox("Mål", st.gf + "–" + st.ga) +
         statBox("Diff", (st.gd > 0 ? "+" : "") + st.gd) +
+        statBox("Gula kort", st.fpY) + statBox("Röda kort", st.fpR) +
+        statBox("Fair play", st.fp) +
       '</div></div>';
 
     // Tabell
@@ -2293,7 +2530,8 @@
     mergeRemoteResults: mergeRemoteResults,
     setSyncStatus: setSyncStatus,
     autoSync: autoSync,
-    describeMatch: describeMatch
+    describeMatch: describeMatch,
+    setMatchDetails: setMatchDetails
   };
 
   document.addEventListener("DOMContentLoaded", init);

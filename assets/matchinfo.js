@@ -41,6 +41,13 @@
     return STATIC_URL + (STATIC_URL.indexOf("?") === -1 ? "?" : "&") + "t=" + Date.now();
   }
 
+  function notifyApp() {
+    // Ge app.js detaljerna så att fair play (kort) kan räknas in i tabellerna.
+    if (window.VMApp && typeof window.VMApp.setMatchDetails === "function") {
+      try { window.VMApp.setMatchDetails(details); } catch (e) {}
+    }
+  }
+
   function fetchDetails() {
     return fetch(detailsUrl(), { headers: { Accept: "application/json" }, cache: "no-store" })
       .then(function (r) { return r && r.ok ? r.json() : null; })
@@ -48,10 +55,21 @@
         if (data && data.details) {
           details = data.details;
           detailsLoaded = true;
+          notifyApp();
         }
         return details;
       })
       .catch(function () { return details; });
+  }
+
+  /* Hämta om detaljerna (anropas av app.js när nya resultat kommit in).
+     Lätt strypt så att täta resultatuppdateringar inte spammar nätverket. */
+  var lastRefresh = 0;
+  function refreshDetails() {
+    var now = Date.now();
+    if (now - lastRefresh < 20000) return;
+    lastRefresh = now;
+    fetchDetails();
   }
 
   /* ---------- Poll medan modalen är öppen ---------- */
@@ -346,5 +364,8 @@
     start();
   }
 
-  window.VMMatchInfo = { open: open, close: close, onDataUpdated: onDataUpdated };
+  window.VMMatchInfo = {
+    open: open, close: close, onDataUpdated: onDataUpdated,
+    refreshDetails: refreshDetails
+  };
 })();

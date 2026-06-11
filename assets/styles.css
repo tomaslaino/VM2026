@@ -237,6 +237,12 @@ body {
   align-items: stretch;
   width: 100%;
 }
+/* Tre paneler när "Pågår nu" är synlig (livepanelen först i raden). */
+.next-matches-row.has-live { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1100px) {
+  .next-matches-row.has-live { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .next-matches-row.has-live .live-now { grid-column: 1 / -1; }
+}
 .next-matches-row .next-matches {
   width: 100%;
   min-width: 0;
@@ -264,6 +270,73 @@ body {
 .next-matches-row .nm-val { font-size: 15px; }
 .next-matches-row .nm-unit { min-width: 22px; }
 .next-matches-row .nm-timer { gap: 3px; }
+/* ---------- "Pågår nu"-panelen ---------- */
+.next-matches.live-now { border-top-color: var(--live); }
+.next-matches.live-now.is-live {
+  border-color: color-mix(in srgb, var(--live) 45%, var(--line));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--live) 14%, var(--card)), var(--card) 84px);
+}
+.nm-live-list { display: flex; flex-direction: column; gap: 6px; }
+.nm-live-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+.nm-live-item.live { background: color-mix(in srgb, var(--live) 8%, transparent); }
+.nm-live-item.ft { border-color: var(--line); }
+.nm-live-item.match-openable:hover {
+  background: color-mix(in srgb, var(--card) 70%, var(--bg-soft));
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.nm-live-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.nm-live-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 800;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.nm-live-status.live { color: var(--live); }
+.nm-live-status.done { color: var(--ink-soft); text-transform: uppercase; letter-spacing: .4px; }
+.nm-live-status.soon { color: var(--third-q); }
+.nm-live-line {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+.nm-live-team {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+.nm-live-team .t-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nm-live-team.home { justify-content: flex-end; text-align: right; }
+.nm-live-team .flag { flex: none; }
+.nm-live-score {
+  font-size: 15px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  min-width: 2.2em;
+  text-align: center;
+}
+.nm-live-score.dim { color: var(--ink-soft); font-weight: 600; }
+
 .next-matches.teams-spotlight { border-top-color: #006aa7; }
 .next-matches.teams-spotlight .nm-title .flag + .flag { margin-left: 2px; }
 .next-matches.teams-spotlight .nm-head { margin-bottom: 6px; }
@@ -460,6 +533,31 @@ button.nm-spot-row:hover { background: color-mix(in srgb, var(--usa-blue) 10%, t
 .c-grp { font-weight: 700; color: var(--ink-soft); width: 1.85rem; }
 .c-stat { width: 1.85rem; }
 .c-status { width: 1.85rem; }
+
+/* Kort (gula/röda) + fair play i tabellerna */
+.c-cards { width: 2.9rem; cursor: help; }
+.cards-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.cards-cell.cards-none { color: var(--ink-soft); font-weight: 400; }
+.card-ico {
+  display: inline-block;
+  width: 7px;
+  height: 10px;
+  border-radius: 1.5px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .28);
+  flex: none;
+}
+.card-ico.y { background: #f2c029; }
+.card-ico.r { background: var(--live); margin-left: 4px; }
+.c-fp { width: 1.85rem; cursor: help; }
+td.c-fp.has-cards { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 
 /* Enhetlig tabell – grupper och tredjeplats-ranking */
 .group-card .standings,

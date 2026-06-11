@@ -109,10 +109,10 @@ WC.groupLetters = ["A","B","C","D","E","F","G","H","I","J","K","L"];
 
 /* ---------- FIFA-ranking (för särskiljning av tredjeplacerade) ----------
    FIFA rangordnar de bästa treorna på: poäng → målskillnad → gjorda mål →
-   fair play (team conduct) → FIFA-ranking. football-data tillhandahåller inte
-   fair play-poäng, så när lag är lika på poäng/målskillnad/gjorda mål används
-   FIFA-rankingen (officiella sista kriteriet) som deterministisk avgörare.
-   Värdena är ungefärliga senaste placeringar (lägre = bättre). */
+   fair play (kortpoäng) → FIFA-ranking. Fair play-poängen beräknas i app.js
+   från korten i matchdetaljerna; FIFA-rankingen nedan används som sista
+   deterministiska avgörare. Värdena är ungefärliga senaste placeringar
+   (lägre = bättre). */
 WC.fifaRank = {
   mx: 13, kr: 23, za: 61, cz: 43,
   ca: 28, ch: 20, qa: 52, ba: 76,
