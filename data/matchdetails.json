@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-12T17:54:05.047Z",
+    "updatedAt": "2026-06-12T19:51:50.006Z",
     "source": "espn"
   },
   "details": {
@@ -892,6 +892,364 @@
         }
       ],
       "updatedAt": "2026-06-12T16:58:42.177Z"
+    },
+    "g:B:4": {
+      "espnId": "760416",
+      "status": "IN_PLAY",
+      "minute": 45,
+      "utcDate": "2026-06-12T19:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 21,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Jovo Lukic",
+          "assist": "Sead Kolasinac",
+          "type": "REGULAR",
+          "score": null
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 11,
+          "team": "a",
+          "player": "Alistair Johnston",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "player": "Ermedin Demirovic",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "player": "Jovo Lukic",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Nikola Vasilj",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Amar Dedic",
+              "jersey": "7",
+              "pos": "RB"
+            },
+            {
+              "name": "Sead Kolasinac",
+              "jersey": "5",
+              "pos": "LB"
+            },
+            {
+              "name": "Benjamin Tahirovic",
+              "jersey": "6",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Nikola Katic",
+              "jersey": "18",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Tarik Muharemovic",
+              "jersey": "4",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Esmir Bajraktarevic",
+              "jersey": "20",
+              "pos": "RM"
+            },
+            {
+              "name": "Ivan Basic",
+              "jersey": "13",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Jovo Lukic",
+              "jersey": "25",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Ermedin Demirovic",
+              "jersey": "10",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Amar Memic",
+              "jersey": "15",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Edin Dzeko",
+              "jersey": "11"
+            },
+            {
+              "name": "Martin Zlomislic",
+              "jersey": "22"
+            },
+            {
+              "name": "Mladen Jurkas",
+              "jersey": "12"
+            },
+            {
+              "name": "Samed Bazdar",
+              "jersey": "9"
+            },
+            {
+              "name": "Amir Hadziahmetovic",
+              "jersey": "16"
+            },
+            {
+              "name": "Ermin Mahmic",
+              "jersey": "26"
+            },
+            {
+              "name": "Armin Gigovic",
+              "jersey": "8"
+            },
+            {
+              "name": "Stjepan Radeljic",
+              "jersey": "21"
+            },
+            {
+              "name": "Dzenis Burnic",
+              "jersey": "17"
+            },
+            {
+              "name": "Kerim Alajbegovic",
+              "jersey": "19"
+            },
+            {
+              "name": "Arjan Malic",
+              "jersey": "24"
+            },
+            {
+              "name": "Dennis Hadzikadunic",
+              "jersey": "3"
+            },
+            {
+              "name": "Haris Tabakovic",
+              "jersey": "23"
+            },
+            {
+              "name": "Ivan Sunjic",
+              "jersey": "14"
+            },
+            {
+              "name": "Nihad Mujakic",
+              "jersey": "2"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Maxime Crépeau",
+              "jersey": "16",
+              "pos": "G"
+            },
+            {
+              "name": "Alistair Johnston",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Richie Laryea",
+              "jersey": "22",
+              "pos": "LB"
+            },
+            {
+              "name": "Ismaël Koné",
+              "jersey": "8",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Luc de Fougerolles",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Derek Cornelius",
+              "jersey": "13",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Tajon Buchanan",
+              "jersey": "17",
+              "pos": "RM"
+            },
+            {
+              "name": "Stephen Eustáquio",
+              "jersey": "7",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Tani Oluwaseyi",
+              "jersey": "12",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Jonathan David",
+              "jersey": "10",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Liam Millar",
+              "jersey": "11",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Alfie Jones",
+              "jersey": "3"
+            },
+            {
+              "name": "Niko Sigur",
+              "jersey": "23"
+            },
+            {
+              "name": "Jacob Shaffelburg",
+              "jersey": "14"
+            },
+            {
+              "name": "Joel Waterman",
+              "jersey": "5"
+            },
+            {
+              "name": "Jonathan Osorio",
+              "jersey": "21"
+            },
+            {
+              "name": "Jayden Nelson",
+              "jersey": "26"
+            },
+            {
+              "name": "Cyle Larin",
+              "jersey": "9"
+            },
+            {
+              "name": "Ali Ahmed",
+              "jersey": "20"
+            },
+            {
+              "name": "Promise David",
+              "jersey": "24"
+            },
+            {
+              "name": "Owen Goodman",
+              "jersey": "18"
+            },
+            {
+              "name": "Alphonso Davies",
+              "jersey": "19"
+            },
+            {
+              "name": "Dayne St. Clair",
+              "jersey": "1"
+            },
+            {
+              "name": "Moïse Bombito",
+              "jersey": "15"
+            },
+            {
+              "name": "Nathan Saliba",
+              "jersey": "25"
+            },
+            {
+              "name": "Mathieu Choinière",
+              "jersey": "6"
+            }
+          ]
+        }
+      },
+      "referee": "Facundo Tello",
+      "venue": "BMO Field, Toronto",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "33%",
+          "a": "67%"
+        },
+        {
+          "key": "totalShots",
+          "h": "5",
+          "a": "8"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "1",
+          "a": "9"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "8",
+          "a": "4"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "112",
+          "a": "218"
+        },
+        {
+          "key": "passPct",
+          "h": "66%",
+          "a": "75%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-12T19:51:50.006Z"
     }
   }
 }
