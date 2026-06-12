@@ -14,7 +14,7 @@ import { ROOT } from "./config.js";
 import { getScoreboard, getStandings, getSummary } from "./espn.js";
 import { adaptEvent, mapEspnDetail, mapEspnStandings } from "./mapEspn.js";
 import { buildKeyMap, mapMatchesToFixtures, mapMatchesToResults } from "./mapResults.js";
-import { pickDetailTargets } from "./matchDetails.js";
+import { flipDetail, pickDetailTargets } from "./matchDetails.js";
 
 export const DETAILS_FILE = path.join(ROOT, "data", "matchdetails.json");
 export const RESULTS_FILE = path.join(ROOT, "data", "results.json");
@@ -89,7 +89,10 @@ export async function syncDetails(matches, { log = console.log } = {}) {
   for (const t of targets) {
     try {
       const summary = await getSummary(t.id);
-      details[t.key] = mapEspnDetail(summary);
+      const det = mapEspnDetail(summary);
+      // Spegla h/a om API:ets hemma/borta är omvänd mot appens ordning,
+      // så att händelser och statistik hamnar på rätt lag.
+      details[t.key] = t.reversed ? flipDetail(det) : det;
       fetched++;
       log(`[espn] Detaljer hämtade för ${t.key} (event ${t.id}, ${details[t.key].status}).`);
     } catch (e) {

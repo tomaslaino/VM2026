@@ -108,18 +108,32 @@ export function groupFixtureIndex() {
   return index;
 }
 
-/** Bygg lookup: "homeCanon|awayCanon" -> resultKey för gruppmatcher. */
-export function groupPairToKey() {
+/*
+  Bygg lookup: "homeCanon|awayCanon" -> { key, reversed } för gruppmatcher.
+
+  Appens nycklar (g:A:0 …) har en FAST hemma/borta-ordning (round-robin i
+  data.js). API:ets verkliga spelordning kan vara den omvända – då måste
+  resultat, händelser och statistik speglas innan de sparas på nyckeln.
+  `reversed: true` betyder att API:ets hemmalag är appens bortalag.
+*/
+export function groupPairLookup() {
   const map = new Map();
   const index = groupFixtureIndex();
-  for (const [letter, fixtures] of Object.entries(index)) {
+  for (const fixtures of Object.values(index)) {
     for (const fx of fixtures) {
       const h = canonicalTeam(fx.homeName);
       const a = canonicalTeam(fx.awayName);
-      map.set(`${h}|${a}`, fx.key);
-      map.set(`${a}|${h}`, fx.key);
+      map.set(`${h}|${a}`, { key: fx.key, reversed: false });
+      map.set(`${a}|${h}`, { key: fx.key, reversed: true });
     }
   }
+  return map;
+}
+
+/** Bygg lookup: "homeCanon|awayCanon" -> resultKey för gruppmatcher. */
+export function groupPairToKey() {
+  const map = new Map();
+  for (const [pair, hit] of groupPairLookup()) map.set(pair, hit.key);
   return map;
 }
 

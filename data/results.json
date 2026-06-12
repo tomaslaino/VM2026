@@ -13,8 +13,8 @@
       "status": "FINISHED"
     },
     "g:A:3": {
-      "h": 2,
-      "a": 1,
+      "h": 1,
+      "a": 2,
       "status": "FINISHED"
     }
   },
@@ -43,15 +43,15 @@
       "utcDate": "2026-06-12T02:00Z",
       "status": "FINISHED",
       "matchday": null,
-      "home": "South Korea",
-      "away": "Czechia",
+      "home": "Czechia",
+      "away": "South Korea",
       "homeRef": {
         "group": "A",
-        "idx": 1
+        "idx": 3
       },
       "awayRef": {
         "group": "A",
-        "idx": 3
+        "idx": 1
       }
     },
     "g:B:4": {

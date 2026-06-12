@@ -213,11 +213,11 @@
       "minute": null,
       "utcDate": "2026-06-12T02:00Z",
       "duration": "REGULAR",
-      "winner": "HOME_TEAM",
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
-          "h": 2,
-          "a": 1
+          "h": 1,
+          "a": 2
         },
         "ht": {
           "h": 0,
@@ -231,7 +231,7 @@
         {
           "minute": 59,
           "injuryTime": null,
-          "team": "a",
+          "team": "h",
           "scorer": "Ladislav Krejcí",
           "assist": "Vladimír Coufal",
           "type": "REGULAR",
@@ -240,7 +240,7 @@
         {
           "minute": 67,
           "injuryTime": null,
-          "team": "h",
+          "team": "a",
           "scorer": "Hwang In-Beom",
           "assist": "Lee Kang-In",
           "type": "REGULAR",
@@ -249,7 +249,7 @@
         {
           "minute": 80,
           "injuryTime": null,
-          "team": "h",
+          "team": "a",
           "scorer": "Oh Hyeon-Gyu",
           "assist": "Hwang In-Beom",
           "type": "REGULAR",
@@ -259,7 +259,7 @@
       "bookings": [
         {
           "minute": 90,
-          "team": "h",
+          "team": "a",
           "player": "Lee Gi-Hyuk",
           "card": "YELLOW"
         }
@@ -267,55 +267,55 @@
       "subs": [
         {
           "minute": 62,
-          "team": "h",
+          "team": "a",
           "in": "Hwang Hee-Chan",
           "out": "Lee Jae-Sung"
         },
         {
           "minute": 64,
-          "team": "a",
+          "team": "h",
           "in": "Adam Hlozek",
           "out": "Pavel Sulc"
         },
         {
           "minute": 64,
-          "team": "a",
+          "team": "h",
           "in": "Tomás Chorý",
           "out": "Patrik Schick"
         },
         {
           "minute": 64,
-          "team": "a",
+          "team": "h",
           "in": "Michal Sadílek",
           "out": "Lukás Provod"
         },
         {
           "minute": 69,
-          "team": "h",
+          "team": "a",
           "in": "Eom Ji-Sung",
           "out": "Lee Tae-Seok"
         },
         {
           "minute": 69,
-          "team": "h",
+          "team": "a",
           "in": "Oh Hyeon-Gyu",
           "out": "Son Heung-Min"
         },
         {
           "minute": 84,
-          "team": "h",
+          "team": "a",
           "in": "Kim Jin-Gyu",
           "out": "Hwang In-Beom"
         },
         {
           "minute": 84,
-          "team": "h",
+          "team": "a",
           "in": "Park Jin-Seop",
           "out": "Paik Seung-Ho"
         },
         {
           "minute": 84,
-          "team": "a",
+          "team": "h",
           "in": "Mojmír Chytil",
           "out": "Alexandr Sojka"
         }
@@ -327,28 +327,28 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "62%",
-          "a": "38%"
+          "h": "38%",
+          "a": "62%"
         },
         {
           "key": "totalShots",
-          "h": "15",
-          "a": "7"
+          "h": "7",
+          "a": "15"
         },
         {
           "key": "shotsOnTarget",
-          "h": "6",
-          "a": "4"
+          "h": "4",
+          "a": "6"
         },
         {
           "key": "wonCorners",
-          "h": "4",
-          "a": "5"
+          "h": "5",
+          "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "9",
-          "a": "16"
+          "h": "16",
+          "a": "9"
         },
         {
           "key": "offsides",
@@ -357,23 +357,23 @@
         },
         {
           "key": "saves",
-          "h": "3",
-          "a": "4"
+          "h": "4",
+          "a": "3"
         },
         {
           "key": "totalPasses",
-          "h": "541",
-          "a": "324"
+          "h": "324",
+          "a": "541"
         },
         {
           "key": "passPct",
-          "h": "87%",
-          "a": "71%"
+          "h": "71%",
+          "a": "87%"
         },
         {
           "key": "yellowCards",
-          "h": "1",
-          "a": "0"
+          "h": "0",
+          "a": "1"
         },
         {
           "key": "redCards",

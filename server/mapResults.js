@@ -3,11 +3,25 @@ import {
   WC_GROUPS,
   canonicalTeam,
   extractResult,
-  groupPairToKey,
+  groupPairLookup,
   isLiveStatus,
   normName,
   parseGroupLetter,
 } from "./wcFixtures.js";
+
+/*
+  Appens gruppnycklar (g:A:0 …) har en fast hemma/borta-ordning som inte
+  alltid stämmer med API:ets verkliga spelordning. När ordningen är omvänd
+  (reversed) speglas h/a här, så att ALLT som sparas på en gruppnyckel är i
+  appens ordning – annars hamnar resultat och händelser på fel lag.
+*/
+function flipResult(r) {
+  if (!r) return r;
+  const out = { ...r, h: r.a, a: r.h };
+  if (r.pw === "h") out.pw = "a";
+  else if (r.pw === "a") out.pw = "h";
+  return out;
+}
 
 function pad(n) {
   return String(n).padStart(2, "0");
@@ -102,7 +116,7 @@ export function buildKoSlotMap(fdMatches) {
 }
 
 export function mapMatchesToResults(fdMatches) {
-  const pairMap = groupPairToKey();
+  const pairMap = groupPairLookup();
   const koMap = buildKoSlotMap(fdMatches);
 
   const results = {};
@@ -111,17 +125,17 @@ export function mapMatchesToResults(fdMatches) {
   let skipped = 0;
 
   for (const m of fdMatches) {
-    const r = extractResult(m);
-    const homeName = m.homeTeam?.name;
-    const awayName = m.awayTeam?.name;
+    let r = extractResult(m);
+    let homeName = m.homeTeam?.name;
+    let awayName = m.awayTeam?.name;
 
     let key = null;
+    let reversed = false;
 
     if (m.stage === "GROUP_STAGE" && homeName && awayName) {
-      key =
-        pairMap.get(`${canonicalTeam(homeName)}|${canonicalTeam(awayName)}`) ||
-        pairMap.get(`${canonicalTeam(awayName)}|${canonicalTeam(homeName)}`) ||
-        null;
+      const hit = pairMap.get(`${canonicalTeam(homeName)}|${canonicalTeam(awayName)}`) || null;
+      key = hit ? hit.key : null;
+      reversed = hit ? hit.reversed : false;
       if (!key) {
         const g = parseGroupLetter(m.group);
         if (g) {
@@ -136,6 +150,11 @@ export function mapMatchesToResults(fdMatches) {
     if (!key) {
       if (r) skipped++;
       continue;
+    }
+
+    if (reversed) {
+      r = flipResult(r);
+      [homeName, awayName] = [awayName, homeName];
     }
 
     if (r) {
@@ -206,41 +225,45 @@ export function mapStandings(fdStandings) {
   return out;
 }
 
-/** football-data match-id → appens resultatnyckel ("g:A:0" / "k:73"). */
+/**
+ * football-data match-id → { key, reversed } där key är appens resultat-
+ * nyckel ("g:A:0" / "k:73") och reversed anger om API:ets hemma/borta-ordning
+ * är omvänd mot appens (endast relevant för gruppmatcher).
+ */
 export function buildKeyMap(fdMatches) {
-  const pairMap = groupPairToKey();
+  const pairMap = groupPairLookup();
   const koMap = buildKoSlotMap(fdMatches);
   const map = new Map();
 
   for (const m of fdMatches) {
-    let key = null;
     if (m.stage === "GROUP_STAGE" && m.homeTeam?.name && m.awayTeam?.name) {
-      key =
+      const hit =
         pairMap.get(`${canonicalTeam(m.homeTeam.name)}|${canonicalTeam(m.awayTeam.name)}`) || null;
+      if (hit) map.set(m.id, { key: hit.key, reversed: hit.reversed });
     } else if (m.stage !== "GROUP_STAGE") {
-      key = koMap.get(m.id) || null;
+      const key = koMap.get(m.id) || null;
+      if (key) map.set(m.id, { key, reversed: false });
     }
-    if (key) map.set(m.id, key);
   }
   return map;
 }
 
 /** Alla matcher → schema (datum/tid/lag) för frontend. */
 export function mapMatchesToFixtures(fdMatches) {
-  const pairMap = groupPairToKey();
+  const pairMap = groupPairLookup();
   const koMap = buildKoSlotMap(fdMatches);
   const fixtures = {};
 
   for (const m of fdMatches) {
-    const homeName = m.homeTeam?.name || null;
-    const awayName = m.awayTeam?.name || null;
+    let homeName = m.homeTeam?.name || null;
+    let awayName = m.awayTeam?.name || null;
     let key = null;
 
     if (m.stage === "GROUP_STAGE" && homeName && awayName) {
-      key =
-        pairMap.get(`${canonicalTeam(homeName)}|${canonicalTeam(awayName)}`) ||
-        pairMap.get(`${canonicalTeam(awayName)}|${canonicalTeam(homeName)}`) ||
-        null;
+      const hit = pairMap.get(`${canonicalTeam(homeName)}|${canonicalTeam(awayName)}`) || null;
+      key = hit ? hit.key : null;
+      // Spegla till appens fasta hemma/borta-ordning (se groupPairLookup).
+      if (hit && hit.reversed) [homeName, awayName] = [awayName, homeName];
     } else if (m.stage !== "GROUP_STAGE") {
       key = koMap.get(m.id) || null;
     }
