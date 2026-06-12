@@ -1,9 +1,9 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
-  "fetched": "2026-06-11",
+  "fetched": "2026-06-12",
   "team_count": 48,
-  "total_players": 1247,
+  "total_players": 1248,
   "teams": [
     {
       "name": "Czech Republic",
@@ -573,7 +573,7 @@
           "age": 25,
           "caps": 47,
           "goals": 6,
-          "club": "Milan",
+          "club": "AC Milan",
           "club_country": "Italian Football Federation"
         },
         {
@@ -1954,19 +1954,19 @@
           "club_country": "German Football Association"
         },
         {
-          "id": "bih-nidal-celik",
-          "name": "Nidal Čelik",
+          "id": "bih-arjan-malic",
+          "name": "Arjan Malić",
           "shirt_number": 24,
           "position": "defender",
           "position_sv": "Försvarare",
           "pos_code": "DF",
           "captain": false,
-          "date_of_birth": "2006-07-17",
-          "age": 19,
-          "caps": 2,
+          "date_of_birth": "2005-08-28",
+          "age": 20,
+          "caps": 8,
           "goals": 0,
-          "club": "Lens",
-          "club_country": "French Football Federation"
+          "club": "Sturm Graz",
+          "club_country": "Austrian Football Association"
         },
         {
           "id": "bih-jovo-lukic",
@@ -2386,12 +2386,12 @@
           "id": "can-jayden-nelson",
           "name": "Jayden Nelson",
           "shirt_number": 26,
-          "position": "midfielder",
-          "position_sv": "Mittfältare",
-          "pos_code": "MF",
+          "position": "forward",
+          "position_sv": "Anfallare",
+          "pos_code": "FW",
           "captain": false,
-          "date_of_birth": "2002-02-07",
-          "age": 24,
+          "date_of_birth": "2002-09-26",
+          "age": 23,
           "caps": 14,
           "goals": 3,
           "club": "Austin FC",
@@ -3613,7 +3613,7 @@
           "captain": true,
           "date_of_birth": "1988-01-29",
           "age": 38,
-          "caps": 81,
+          "caps": 82,
           "goals": 0,
           "club": "Bastia",
           "club_country": "French Football Federation"
@@ -3628,7 +3628,7 @@
           "captain": false,
           "date_of_birth": "1996-06-28",
           "age": 29,
-          "caps": 53,
+          "caps": 56,
           "goals": 1,
           "club": "Angers",
           "club_country": "French Football Federation"
@@ -3703,7 +3703,7 @@
           "captain": false,
           "date_of_birth": "1996-11-25",
           "age": 29,
-          "caps": 48,
+          "caps": 51,
           "goals": 8,
           "club": "Toronto FC",
           "club_country": "Canadian Soccer Association"
@@ -3733,7 +3733,7 @@
           "captain": false,
           "date_of_birth": "1994-04-07",
           "age": 32,
-          "caps": 78,
+          "caps": 82,
           "goals": 44,
           "club": "Esteghlal",
           "club_country": "Football Federation Islamic Republic of Iran"
@@ -3778,7 +3778,7 @@
           "captain": false,
           "date_of_birth": "2001-02-25",
           "age": 25,
-          "caps": 15,
+          "caps": 16,
           "goals": 0,
           "club": "Sochaux",
           "club_country": "French Football Federation"
@@ -3799,19 +3799,19 @@
           "club_country": "United States Soccer Federation"
         },
         {
-          "id": "hai-leverton-pierre",
-          "name": "Leverton Pierre",
+          "id": "hai-garven-metusala",
+          "name": "Garven Metusala",
           "shirt_number": 14,
-          "position": "midfielder",
-          "position_sv": "Mittfältare",
-          "pos_code": "MF",
+          "position": "defender",
+          "position_sv": "Försvarare",
+          "pos_code": "DF",
           "captain": false,
-          "date_of_birth": "1998-03-09",
-          "age": 28,
-          "caps": 33,
+          "date_of_birth": "1999-12-31",
+          "age": 26,
+          "caps": 16,
           "goals": 0,
-          "club": "Vizela",
-          "club_country": "Portuguese Football Federation"
+          "club": "Colorado Springs Switchbacks FC",
+          "club_country": "United States Soccer Federation"
         },
         {
           "id": "hai-ruben-providence",
@@ -3853,7 +3853,7 @@
           "captain": false,
           "date_of_birth": "2000-05-20",
           "age": 26,
-          "caps": 30,
+          "caps": 31,
           "goals": 6,
           "club": "Philadelphia Union",
           "club_country": "United States Soccer Federation"
@@ -3943,7 +3943,7 @@
           "captain": false,
           "date_of_birth": "2000-04-27",
           "age": 26,
-          "caps": 6,
+          "caps": 7,
           "goals": 0,
           "club": "Cosmos Koblenz",
           "club_country": "German Football Association"
@@ -5507,8 +5507,8 @@
           "position_sv": "Anfallare",
           "pos_code": "FW",
           "captain": false,
-          "date_of_birth": "1990-10-12",
-          "age": 35,
+          "date_of_birth": "1991-07-09",
+          "age": 34,
           "caps": 23,
           "goals": 2,
           "club": "Independiente",
@@ -8044,7 +8044,7 @@
           "position": "defender",
           "position_sv": "Försvarare",
           "pos_code": "DF",
-          "captain": false,
+          "captain": true,
           "date_of_birth": "1997-01-27",
           "age": 29,
           "caps": 40,
@@ -8068,19 +8068,19 @@
           "club_country": "Japan Football Association"
         },
         {
-          "id": "jpn-wataru-endo",
-          "name": "Wataru Endo",
+          "id": "jpn-shuto-machino",
+          "name": "Shuto Machino",
           "shirt_number": 6,
-          "position": "midfielder",
-          "position_sv": "Mittfältare",
-          "pos_code": "MF",
-          "captain": true,
-          "date_of_birth": "1993-02-09",
-          "age": 33,
-          "caps": 73,
-          "goals": 4,
-          "club": "Liverpool",
-          "club_country": "The Football Association"
+          "position": "forward",
+          "position_sv": "Anfallare",
+          "pos_code": "FW",
+          "captain": false,
+          "date_of_birth": "1999-09-30",
+          "age": 26,
+          "caps": 14,
+          "goals": 5,
+          "club": "Borussia Mönchengladbach",
+          "club_country": "German Football Association"
         },
         {
           "id": "jpn-ao-tanaka",
@@ -9199,7 +9199,7 @@
           "captain": false,
           "date_of_birth": "2001-08-25",
           "age": 24,
-          "caps": 2,
+          "caps": 3,
           "goals": 0,
           "club": "Club Africain",
           "club_country": "Tunisian Football Federation"
@@ -10312,7 +10312,7 @@
           "captain": false,
           "date_of_birth": "1999-02-07",
           "age": 27,
-          "caps": 49,
+          "caps": 50,
           "goals": 11,
           "club": "Manchester City",
           "club_country": "The Football Association"
@@ -11194,7 +11194,7 @@
           "captain": false,
           "date_of_birth": "1986-06-03",
           "age": 40,
-          "caps": 86,
+          "caps": 90,
           "goals": 0,
           "club": "Chaves",
           "club_country": "Portuguese Football Federation"
@@ -11209,7 +11209,7 @@
           "captain": false,
           "date_of_birth": "1988-05-20",
           "age": 38,
-          "caps": 62,
+          "caps": 61,
           "goals": 4,
           "club": "Torreense",
           "club_country": "Portuguese Football Federation"
@@ -11224,7 +11224,7 @@
           "captain": false,
           "date_of_birth": "1995-01-17",
           "age": 31,
-          "caps": 30,
+          "caps": 32,
           "goals": 2,
           "club": "Al Bataeh",
           "club_country": "United Arab Emirates Football Association"
@@ -11284,8 +11284,8 @@
           "captain": false,
           "date_of_birth": "1998-06-14",
           "age": 27,
-          "caps": 27,
-          "goals": 2,
+          "caps": 29,
+          "goals": 3,
           "club": "Estrela Amadora",
           "club_country": "Portuguese Football Federation"
         },
@@ -11299,7 +11299,7 @@
           "captain": false,
           "date_of_birth": "1998-05-26",
           "age": 28,
-          "caps": 42,
+          "caps": 41,
           "goals": 1,
           "club": "FCSB",
           "club_country": "Romanian Football Federation"
@@ -11314,7 +11314,7 @@
           "captain": false,
           "date_of_birth": "2001-12-29",
           "age": 24,
-          "caps": 22,
+          "caps": 21,
           "goals": 6,
           "club": "Akron Tolyatti",
           "club_country": "Russian Football Union"
@@ -11344,7 +11344,7 @@
           "captain": false,
           "date_of_birth": "1990-11-27",
           "age": 35,
-          "caps": 60,
+          "caps": 61,
           "goals": 10,
           "club": "Apollon Limassol",
           "club_country": "Cyprus Football Association"
@@ -11374,7 +11374,7 @@
           "captain": false,
           "date_of_birth": "2002-09-18",
           "age": 23,
-          "caps": 9,
+          "caps": 11,
           "goals": 3,
           "club": "Benfica",
           "club_country": "Portuguese Football Federation"
@@ -11389,7 +11389,7 @@
           "captain": false,
           "date_of_birth": "1999-07-04",
           "age": 26,
-          "caps": 30,
+          "caps": 33,
           "goals": 0,
           "club": "Ludogorets Razgrad",
           "club_country": "Bulgarian Football Union"
@@ -11404,7 +11404,7 @@
           "captain": false,
           "date_of_birth": "1997-02-28",
           "age": 29,
-          "caps": 13,
+          "caps": 20,
           "goals": 1,
           "club": "Puskás Akadémia",
           "club_country": "Hungarian Football Federation"
@@ -11419,7 +11419,7 @@
           "captain": false,
           "date_of_birth": "1995-12-29",
           "age": 30,
-          "caps": 10,
+          "caps": 11,
           "goals": 1,
           "club": "Farense",
           "club_country": "Portuguese Football Federation"
@@ -11539,7 +11539,7 @@
           "captain": false,
           "date_of_birth": "2002-11-03",
           "age": 23,
-          "caps": 13,
+          "caps": 14,
           "goals": 0,
           "club": "Trabzonspor",
           "club_country": "Turkish Football Federation"
@@ -11554,7 +11554,7 @@
           "captain": false,
           "date_of_birth": "2000-06-05",
           "age": 26,
-          "caps": 5,
+          "caps": 6,
           "goals": 1,
           "club": "SJK",
           "club_country": "Football Association of Finland"
@@ -11569,7 +11569,7 @@
           "captain": false,
           "date_of_birth": "2002-05-03",
           "age": 24,
-          "caps": 20,
+          "caps": 21,
           "goals": 0,
           "club": "Maccabi Tel Aviv",
           "club_country": "Israel Football Association"
@@ -11593,7 +11593,7 @@
           "captain": false,
           "date_of_birth": "2000-05-10",
           "age": 26,
-          "caps": 22,
+          "caps": 24,
           "goals": 0,
           "club": "Al-Nassr",
           "club_country": "Saudi Arabian Football Federation"
@@ -11623,7 +11623,7 @@
           "captain": false,
           "date_of_birth": "1996-04-24",
           "age": 30,
-          "caps": 22,
+          "caps": 24,
           "goals": 1,
           "club": "Al-Hilal",
           "club_country": "Saudi Arabian Football Federation"
@@ -11638,7 +11638,7 @@
           "captain": false,
           "date_of_birth": "1997-01-15",
           "age": 29,
-          "caps": 43,
+          "caps": 44,
           "goals": 1,
           "club": "Al-Nassr",
           "club_country": "Saudi Arabian Football Federation"
@@ -11653,7 +11653,7 @@
           "captain": false,
           "date_of_birth": "1999-02-09",
           "age": 27,
-          "caps": 52,
+          "caps": 54,
           "goals": 1,
           "club": "Al-Hilal",
           "club_country": "Saudi Arabian Football Federation"
@@ -11668,8 +11668,8 @@
           "captain": false,
           "date_of_birth": "1998-12-19",
           "age": 27,
-          "caps": 44,
-          "goals": 0,
+          "caps": 47,
+          "goals": 1,
           "club": "Al-Hilal",
           "club_country": "Saudi Arabian Football Federation"
         },
@@ -11683,7 +11683,7 @@
           "captain": false,
           "date_of_birth": "2003-06-20",
           "age": 22,
-          "caps": 35,
+          "caps": 37,
           "goals": 6,
           "club": "Al-Qadsiah",
           "club_country": "Saudi Arabian Football Federation"
@@ -11698,7 +11698,7 @@
           "captain": false,
           "date_of_birth": "2001-05-14",
           "age": 25,
-          "caps": 27,
+          "caps": 26,
           "goals": 0,
           "club": "Al-Nassr",
           "club_country": "Saudi Arabian Football Federation"
@@ -11713,8 +11713,8 @@
           "captain": false,
           "date_of_birth": "2000-05-14",
           "age": 26,
-          "caps": 70,
-          "goals": 15,
+          "caps": 72,
+          "goals": 16,
           "club": "Al-Ahli",
           "club_country": "Saudi Arabian Football Federation"
         },
@@ -11728,7 +11728,7 @@
           "captain": true,
           "date_of_birth": "1991-08-19",
           "age": 34,
-          "caps": 110,
+          "caps": 111,
           "goals": 27,
           "club": "Al-Hilal",
           "club_country": "Saudi Arabian Football Federation"
@@ -11743,8 +11743,8 @@
           "captain": false,
           "date_of_birth": "1993-11-01",
           "age": 32,
-          "caps": 55,
-          "goals": 18,
+          "caps": 59,
+          "goals": 17,
           "club": "Al-Ittihad",
           "club_country": "Saudi Arabian Football Federation"
         },
@@ -11773,7 +11773,7 @@
           "captain": false,
           "date_of_birth": "1999-09-16",
           "age": 26,
-          "caps": 25,
+          "caps": 27,
           "goals": 0,
           "club": "Al-Nassr",
           "club_country": "Saudi Arabian Football Federation"
@@ -11803,7 +11803,7 @@
           "captain": false,
           "date_of_birth": "1996-08-16",
           "age": 29,
-          "caps": 40,
+          "caps": 42,
           "goals": 0,
           "club": "Al-Nassr",
           "club_country": "Saudi Arabian Football Federation"
@@ -11863,8 +11863,8 @@
           "captain": false,
           "date_of_birth": "1999-09-13",
           "age": 26,
-          "caps": 50,
-          "goals": 12,
+          "caps": 52,
+          "goals": 13,
           "club": "Al-Nassr",
           "club_country": "Saudi Arabian Football Federation"
         },
@@ -11893,7 +11893,7 @@
           "captain": false,
           "date_of_birth": "1991-10-10",
           "age": 34,
-          "caps": 64,
+          "caps": 65,
           "goals": 0,
           "club": "Al-Ula",
           "club_country": "Saudi Arabian Football Federation"
@@ -11923,7 +11923,7 @@
           "captain": false,
           "date_of_birth": "1994-09-22",
           "age": 31,
-          "caps": 77,
+          "caps": 79,
           "goals": 8,
           "club": "Al-Hilal",
           "club_country": "Saudi Arabian Football Federation"
@@ -11968,7 +11968,7 @@
           "captain": false,
           "date_of_birth": "2002-08-11",
           "age": 23,
-          "caps": 7,
+          "caps": 8,
           "goals": 0,
           "club": "Al-Qadsiah",
           "club_country": "Saudi Arabian Football Federation"
@@ -12397,8 +12397,8 @@
           "club_country": "Brazilian Football Confederation"
         },
         {
-          "id": "uru-jose-gimenez",
-          "name": "José Giménez",
+          "id": "uru-jose-maria-gimenez",
+          "name": "José María Giménez",
           "shirt_number": 2,
           "position": "defender",
           "position_sv": "Försvarare",
@@ -14729,7 +14729,7 @@
           "position_sv": "Mittfältare",
           "pos_code": "MF",
           "captain": false,
-          "date_of_birth": "2003-08-26",
+          "date_of_birth": "2003-07-26",
           "age": 22,
           "caps": 5,
           "goals": 0,
@@ -14773,7 +14773,7 @@
       "name_sv": "Argentina",
       "fifa_code": "ARG",
       "group": "J",
-      "squad_size": 25,
+      "squad_size": 26,
       "players": [
         {
           "id": "arg-juan-musso",
@@ -14789,6 +14789,21 @@
           "goals": 0,
           "club": "Atlético Madrid",
           "club_country": "Royal Spanish Football Federation"
+        },
+        {
+          "id": "arg-marcos-senesi",
+          "name": "Marcos Senesi",
+          "shirt_number": 2,
+          "position": "defender",
+          "position_sv": "Försvarare",
+          "pos_code": "DF",
+          "captain": false,
+          "date_of_birth": "1997-05-10",
+          "age": 29,
+          "caps": 3,
+          "goals": 0,
+          "club": "Bournemouth",
+          "club_country": "The Football Association"
         },
         {
           "id": "arg-nicolas-tagliafico",
@@ -15817,9 +15832,9 @@
           "id": "jor-mohammad-taha",
           "name": "Mohammad Taha",
           "shirt_number": 18,
-          "position": "defender",
-          "position_sv": "Försvarare",
-          "pos_code": "DF",
+          "position": "midfielder",
+          "position_sv": "Mittfältare",
+          "pos_code": "MF",
           "captain": false,
           "date_of_birth": "2005-07-13",
           "age": 20,
