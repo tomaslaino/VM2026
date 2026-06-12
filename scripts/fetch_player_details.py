@@ -103,9 +103,11 @@ def main():
 
     teams, problems = [], []
     current_group = None
+    current_coach = None
 
-    # Gå igenom dokumentet i ordning: h2 = grupp, h3 = lag, tabell = trupp
-    for el in soup.select("h2, h3, table.sortable, table.wikitable"):
+    # Gå igenom dokumentet i ordning: h2 = grupp, h3 = lag,
+    # p "Coach: …" = förbundskapten, tabell = trupp
+    for el in soup.select("h2, h3, p, table.sortable, table.wikitable"):
         if el.name == "h2":
             t = clean(el.get_text())
             m = re.match(r"Group ([A-L])", t)
@@ -113,6 +115,21 @@ def main():
             continue
         if el.name == "h3":
             current_team = clean(el.get_text())
+            current_coach = None
+            continue
+        if el.name == "p":
+            t = clean(el.get_text())
+            if re.match(r"(Head coach|Coach):", t):
+                # Namnet är sista länken i stycket (ev. flagglänk kommer före,
+                # fotnoter '#…' filtreras bort).
+                links = [a for a in el.find_all("a")
+                         if clean(a.get_text())
+                         and not (a.get("href") or "").startswith("#")]
+                if links:
+                    current_coach = clean(links[-1].get_text())
+                else:
+                    current_coach = clean(
+                        re.sub(r"^(Head coach|Coach):\s*", "", t))
             continue
         # Tabell — hör den till ett känt lag?
         if current_team not in TEAM_META:
@@ -169,11 +186,14 @@ def main():
 
         if len(players) < 23 or len(players) > 26:
             problems.append(f"{current_team}: {len(players)} spelare")
+        if not current_coach:
+            problems.append(f"{current_team}: coach saknas")
         teams.append({
             "name": current_team,
             "name_sv": name_sv,
             "fifa_code": code,
             "group": current_group,
+            "coach": current_coach,
             "squad_size": len(players),
             "players": players,
         })

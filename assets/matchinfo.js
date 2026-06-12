@@ -134,7 +134,7 @@
 
   /* ---------- Rendering ---------- */
 
-  var CARD_ICON = { YELLOW: "🟨", RED: "🟥", YELLOW_RED: "🟨🟥" };
+  var CARD_CLS = { YELLOW: "yellow", RED: "red", YELLOW_RED: "yellow-red" };
   var CARD_TXT = { YELLOW: "Gult kort", RED: "Rött kort", YELLOW_RED: "Andra gula → rött" };
 
   function minuteLabel(minute, injuryTime) {
@@ -180,25 +180,32 @@
   function buildTimeline(det) {
     var ev = [];
     (det.goals || []).forEach(function (g) {
-      var what = g.type === "OWN" ? "Självmål" : (g.type === "PENALTY" ? "Mål (straff)" : "Mål");
-      var txt = "<b>" + esc(g.scorer || "Okänd målskytt") + "</b>";
-      if (g.assist) txt += ' <span class="mi-ev-sub">(assist: ' + esc(g.assist) + ")</span>";
-      if (g.score) txt += ' <span class="mi-ev-score">' + g.score.h + "–" + g.score.a + "</span>";
-      ev.push({ minute: g.minute, injuryTime: g.injuryTime, team: g.team, icon: "⚽", what: what, txt: txt });
+      var sub = [];
+      if (g.type === "OWN") sub.push("Självmål");
+      if (g.type === "PENALTY") sub.push("Straffmål");
+      if (g.assist) sub.push("Assist: " + g.assist);
+      ev.push({
+        minute: g.minute, injuryTime: g.injuryTime, team: g.team, goal: true,
+        icon: '<span class="mi-ic-goal' + (g.type === "OWN" ? " own" : "") + '">⚽</span>',
+        main: esc(g.scorer || "Okänd målskytt"),
+        detail: esc(sub.join(" · ")),
+        score: g.score ? g.score.h + "–" + g.score.a : null
+      });
     });
     (det.bookings || []).forEach(function (b) {
       ev.push({
         minute: b.minute, injuryTime: null, team: b.team,
-        icon: CARD_ICON[b.card] || "🟨",
-        what: CARD_TXT[b.card] || "Kort",
-        txt: "<b>" + esc(b.player || "Okänd spelare") + "</b>"
+        icon: '<span class="mi-ic-card ' + (CARD_CLS[b.card] || "yellow") + '"></span>',
+        main: esc(b.player || "Okänd spelare"),
+        detail: esc(CARD_TXT[b.card] || "Kort")
       });
     });
     (det.subs || []).forEach(function (s) {
       ev.push({
-        minute: s.minute, injuryTime: null, team: s.team, icon: "🔄", what: "Byte",
-        txt: '<span class="mi-ev-sub">In:</span> <b>' + esc(s.in || "?") + '</b> ' +
-          '<span class="mi-ev-sub">· Ut: ' + esc(s.out || "?") + "</span>"
+        minute: s.minute, injuryTime: null, team: s.team,
+        icon: '<span class="mi-ic-sub"><span class="in">▲</span><span class="out">▼</span></span>',
+        main: esc(s.in || "?"),
+        detail: "Ut: " + esc(s.out || "?")
       });
     });
     ev.sort(function (a, b) {
@@ -213,17 +220,85 @@
     var ev = buildTimeline(det);
     if (!ev.length) return "";
     var h = '<div class="mi-section-title">Matchhändelser</div><div class="mi-timeline">';
-    ev.forEach(function (e) {
+    var divs = [{ min: 45, label: "Halvtid" }, { min: 90, label: "Full tid" }];
+    ev.forEach(function (e, i) {
+      while (divs.length && e.minute != null && e.minute > divs[0].min) {
+        var d = divs.shift();
+        if (i > 0) {
+          var ds = d.min === 45 && det.score && det.score.ht ?
+            " " + det.score.ht.h + "–" + det.score.ht.a : "";
+          h += '<div class="mi-ev-divider"><span>' + esc(d.label + ds) + '</span></div>';
+        }
+      }
       var iso = e.team === "h" ? (info.home && info.home.iso) : e.team === "a" ? (info.away && info.away.iso) : null;
-      h += '<div class="mi-ev' + (e.team === "a" ? " away" : "") + '">' +
+      h += '<div class="mi-ev' + (e.goal ? " goal" : "") + '">' +
         '<span class="mi-ev-min">' + esc(minuteLabel(e.minute, e.injuryTime)) + '</span>' +
         '<span class="mi-ev-ic">' + e.icon + '</span>' +
-        '<span class="mi-ev-body"><span class="mi-ev-what">' + esc(e.what) + (iso ? " · " : "") +
-          (iso ? flagImg(iso) : "") + '</span> ' + e.txt + '</span>' +
+        (iso ? flagImg(iso) : '<span class="mi-ev-flag-ph"></span>') +
+        '<span class="mi-ev-body"><span class="mi-ev-main">' + e.main + '</span>' +
+        (e.detail ? '<span class="mi-ev-detail">' + e.detail + '</span>' : '') +
+        '</span>' +
+        (e.score ? '<span class="mi-ev-score">' + esc(e.score) + '</span>' : '') +
         '</div>';
     });
     h += "</div>";
     return h;
+  }
+
+  /* ---------- Startelvor ---------- */
+
+  function coachOf(teamObj) {
+    if (!teamObj || !teamObj.iso || !window.VMPlayers) return null;
+    if (!window.VMPlayers.isLoaded()) {
+      // Truppdatan förladdas normalt – men säkra omrendering om den dröjer.
+      window.VMPlayers.load().then(function () {
+        if (openKey) renderModal();
+      }).catch(function () {});
+      return null;
+    }
+    var t = window.VMPlayers.getTeamByIso(teamObj.iso);
+    return t && t.coach ? t.coach : null;
+  }
+
+  function lineupSideHtml(side, teamObj, fallbackName, cls) {
+    var h = '<div class="mi-lineup ' + cls + '">';
+    h += '<div class="mi-lu-head">' + flagImg(teamObj && teamObj.iso) +
+      '<span class="mi-lu-team">' + esc(teamName(teamObj, fallbackName)) + '</span>' +
+      (side.formation ? '<span class="mi-lu-form">' + esc(side.formation) + '</span>' : '') +
+      '</div>';
+    var coach = coachOf(teamObj);
+    if (coach) {
+      h += '<div class="mi-lu-coach">Förbundskapten: <b>' + esc(coach) + '</b></div>';
+    }
+    h += '<ul class="mi-lu-list">';
+    (side.starters || []).forEach(function (p) {
+      h += '<li><span class="mi-lu-nr">' + esc(p.jersey || "") + '</span>' +
+        '<span class="mi-lu-name">' + esc(p.name) + '</span>' +
+        (p.pos ? '<span class="mi-lu-pos">' + esc(p.pos) + '</span>' : '') +
+        '</li>';
+    });
+    h += '</ul>';
+    var bench = side.bench || [];
+    if (bench.length) {
+      var parts = bench.map(function (p) {
+        var label = esc(p.name) + (p.jersey ? " (" + esc(p.jersey) + ")" : "");
+        return p.in ? '<b title="Inbytt">' + label + '</b>' : label;
+      });
+      h += '<div class="mi-lu-bench"><span class="mi-lu-bench-lbl">Avbytare:</span> ' +
+        parts.join(", ") + '</div>';
+    }
+    h += '</div>';
+    return h;
+  }
+
+  function lineupsHtml(info, det) {
+    var lu = det && det.lineups;
+    if (!lu || !lu.h || !lu.a) return "";
+    return '<div class="mi-section-title">Startelvor</div>' +
+      '<div class="mi-lineups">' +
+      lineupSideHtml(lu.h, info.home, info.homeLabel, "home") +
+      lineupSideHtml(lu.a, info.away, info.awayLabel, "away") +
+      '</div>';
   }
 
   /* ---------- Matchstatistik ---------- */
@@ -333,6 +408,7 @@
     if (hasEvents) h += timelineHtml(info, det);
     else if (detailsLoaded || !det) h += emptyHint(info);
 
+    h += lineupsHtml(info, det);
     h += statsHtml(det);
     h += factsHtml(info, det);
 

@@ -29,6 +29,7 @@
   @property {string}    name_sv
   @property {string}    fifa_code   t.ex. "SWE"
   @property {string}    group       gruppbokstav A–L
+  @property {string|null} coach     förbundskapten
   @property {number}    squad_size
   @property {Player[]}  players
 

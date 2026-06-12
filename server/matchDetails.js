@@ -151,6 +151,9 @@ export function flipDetail(det) {
   if (Array.isArray(det.stats)) {
     out.stats = det.stats.map((s) => ({ ...s, h: s.a, a: s.h }));
   }
+  if (det.lineups) {
+    out.lineups = { h: det.lineups.a, a: det.lineups.h };
+  }
 
   return out;
 }
@@ -179,8 +182,9 @@ export function pickDetailTargets(fdMatches, keyMap, stored, max = MAX_DETAIL_CA
 
     if (isFinal(m.status)) {
       const have = stored[key];
-      // Hämta om vi saknar detaljer, eller om det vi har inte är slutgiltigt.
-      if (!have || !isFinal(have.status)) {
+      // Hämta om vi saknar detaljer, om det vi har inte är slutgiltigt,
+      // eller om laguppställningar saknas (äldre format / sen publicering).
+      if (!have || !isFinal(have.status) || have.lineups == null) {
         finishedTargets.push({ id: m.id, key, reversed, utcDate: m.utcDate || "" });
       }
     }

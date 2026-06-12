@@ -159,6 +159,48 @@ function extractStats(boxscore) {
   return stats;
 }
 
+/* ---------- Laguppställningar ---------- */
+
+function mapRosterSide(r) {
+  const starters = [];
+  const bench = [];
+  for (const p of r.roster || []) {
+    const name = p.athlete?.displayName || null;
+    if (!name) continue;
+    if (p.starter) {
+      starters.push({
+        name,
+        jersey: p.jersey || null,
+        pos: p.position?.abbreviation || null,
+        place: intOrNull(p.formationPlace),
+      });
+    } else {
+      const sub = { name, jersey: p.jersey || null };
+      if (p.subbedIn) sub.in = true;
+      bench.push(sub);
+    }
+  }
+  // formationPlace 1 = målvakt, sedan position för position bakifrån.
+  starters.sort((x, y) => (x.place ?? 99) - (y.place ?? 99));
+  for (const s of starters) delete s.place;
+  return { formation: r.formation || null, starters, bench };
+}
+
+/**
+ * ESPN-summary → startelvor + avbytare per lag, eller null om ESPN inte
+ * publicerat laguppställningarna ännu (de dyker upp strax före avspark).
+ */
+export function extractLineups(summary) {
+  const rosters = summary?.rosters || [];
+  const h = rosters.find((r) => r.homeAway === "home");
+  const a = rosters.find((r) => r.homeAway === "away");
+  if (!h?.roster?.length || !a?.roster?.length) return null;
+  const lh = mapRosterSide(h);
+  const la = mapRosterSide(a);
+  if (!lh.starters.length || !la.starters.length) return null;
+  return { h: lh, a: la };
+}
+
 /**
  * ESPN-summary → kompakt detaljobjekt i samma form som tidigare
  * (mapMatchDetail) plus `stats` med matchstatistik.
@@ -286,6 +328,7 @@ export function mapEspnDetail(summary) {
     bookings,
     subs,
     penalties,
+    lineups: extractLineups(summary),
     referee,
     venue: venueName ? (venueCity ? `${venueName}, ${venueCity}` : venueName) : null,
     attendance: gi.attendance ?? null,
