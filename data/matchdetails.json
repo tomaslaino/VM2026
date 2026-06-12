@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-12T00:02:56.711Z",
+    "updatedAt": "2026-06-12T04:57:20.513Z",
     "source": "espn"
   },
   "details": {
@@ -206,6 +206,182 @@
         }
       ],
       "updatedAt": "2026-06-11T21:10:07.949Z"
+    },
+    "g:A:3": {
+      "espnId": "760414",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-12T02:00Z",
+      "duration": "REGULAR",
+      "winner": "HOME_TEAM",
+      "score": {
+        "ft": {
+          "h": 2,
+          "a": 1
+        },
+        "ht": {
+          "h": 0,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 59,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Ladislav Krejcí",
+          "assist": "Vladimír Coufal",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 67,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Hwang In-Beom",
+          "assist": "Lee Kang-In",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 80,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Oh Hyeon-Gyu",
+          "assist": "Hwang In-Beom",
+          "type": "REGULAR",
+          "score": null
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Lee Gi-Hyuk",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 62,
+          "team": "h",
+          "in": "Hwang Hee-Chan",
+          "out": "Lee Jae-Sung"
+        },
+        {
+          "minute": 64,
+          "team": "a",
+          "in": "Adam Hlozek",
+          "out": "Pavel Sulc"
+        },
+        {
+          "minute": 64,
+          "team": "a",
+          "in": "Tomás Chorý",
+          "out": "Patrik Schick"
+        },
+        {
+          "minute": 64,
+          "team": "a",
+          "in": "Michal Sadílek",
+          "out": "Lukás Provod"
+        },
+        {
+          "minute": 69,
+          "team": "h",
+          "in": "Eom Ji-Sung",
+          "out": "Lee Tae-Seok"
+        },
+        {
+          "minute": 69,
+          "team": "h",
+          "in": "Oh Hyeon-Gyu",
+          "out": "Son Heung-Min"
+        },
+        {
+          "minute": 84,
+          "team": "h",
+          "in": "Kim Jin-Gyu",
+          "out": "Hwang In-Beom"
+        },
+        {
+          "minute": 84,
+          "team": "h",
+          "in": "Park Jin-Seop",
+          "out": "Paik Seung-Ho"
+        },
+        {
+          "minute": 84,
+          "team": "a",
+          "in": "Mojmír Chytil",
+          "out": "Alexandr Sojka"
+        }
+      ],
+      "penalties": [],
+      "referee": "Amin Omar",
+      "venue": "Estadio Akron, Guadalajara",
+      "attendance": 44985,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "62%",
+          "a": "38%"
+        },
+        {
+          "key": "totalShots",
+          "h": "15",
+          "a": "7"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "6",
+          "a": "4"
+        },
+        {
+          "key": "wonCorners",
+          "h": "4",
+          "a": "5"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "9",
+          "a": "16"
+        },
+        {
+          "key": "offsides",
+          "h": "2",
+          "a": "2"
+        },
+        {
+          "key": "saves",
+          "h": "3",
+          "a": "4"
+        },
+        {
+          "key": "totalPasses",
+          "h": "541",
+          "a": "324"
+        },
+        {
+          "key": "passPct",
+          "h": "87%",
+          "a": "71%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-12T04:57:20.513Z"
     }
   }
 }

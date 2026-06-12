@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-12T00:02:56.709Z",
+    "updatedAt": "2026-06-12T04:57:20.494Z",
     "source": "espn",
-    "matchCount": 1,
+    "matchCount": 2,
     "liveCount": 0,
     "apiCalls": 2
   },
@@ -10,6 +10,11 @@
     "g:A:2": {
       "h": 2,
       "a": 0,
+      "status": "FINISHED"
+    },
+    "g:A:3": {
+      "h": 2,
+      "a": 1,
       "status": "FINISHED"
     }
   },
@@ -36,7 +41,7 @@
       "date": "2026-06-12",
       "time": "04:00",
       "utcDate": "2026-06-12T02:00Z",
-      "status": "TIMED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "South Korea",
       "away": "Czechia",
@@ -1609,25 +1614,25 @@
       {
         "idx": 1,
         "position": 2,
-        "pld": 0,
-        "w": 0,
+        "pld": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "pts": 0
+        "gf": 2,
+        "ga": 1,
+        "gd": 1,
+        "pts": 3
       },
       {
         "idx": 3,
         "position": 3,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
         "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 2,
+        "gd": -1,
         "pts": 0
       },
       {
