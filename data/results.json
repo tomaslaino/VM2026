@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-12T19:51:49.980Z",
+    "updatedAt": "2026-06-12T21:21:45.928Z",
     "source": "espn",
     "matchCount": 3,
     "liveCount": 1,
@@ -19,7 +19,7 @@
     },
     "g:B:4": {
       "h": 1,
-      "a": 0,
+      "a": 1,
       "status": "IN_PLAY"
     }
   },
@@ -27,10 +27,10 @@
     {
       "key": "g:B:4",
       "status": "IN_PLAY",
-      "minute": 45,
+      "minute": 90,
       "home": "Bosnia-Herzegovina",
       "away": "Canada",
-      "score": "1-0"
+      "score": "1-1"
     }
   ],
   "fixtures": {
@@ -1666,26 +1666,26 @@
       {
         "idx": 0,
         "position": 1,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "gf": 1,
+        "ga": 1,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       },
       {
         "idx": 3,
         "position": 2,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "gf": 1,
+        "ga": 1,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       },
       {
         "idx": 2,

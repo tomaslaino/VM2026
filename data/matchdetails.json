@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-12T19:51:50.006Z",
+    "updatedAt": "2026-06-12T21:21:46.080Z",
     "source": "espn"
   },
   "details": {
@@ -895,17 +895,20 @@
     },
     "g:B:4": {
       "espnId": "760416",
-      "status": "IN_PLAY",
-      "minute": 45,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-12T19:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "DRAW",
       "score": {
         "ft": {
           "h": 1,
+          "a": 1
+        },
+        "ht": {
+          "h": 1,
           "a": 0
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
@@ -917,6 +920,15 @@
           "team": "h",
           "scorer": "Jovo Lukic",
           "assist": "Sead Kolasinac",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 78,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Cyle Larin",
+          "assist": "Promise David",
           "type": "REGULAR",
           "score": null
         }
@@ -939,9 +951,82 @@
           "team": "h",
           "player": "Jovo Lukic",
           "card": "YELLOW"
+        },
+        {
+          "minute": 53,
+          "team": "a",
+          "player": "Luc de Fougerolles",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Nikola Katic",
+          "card": "YELLOW"
         }
       ],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 61,
+          "team": "a",
+          "in": "Jacob Shaffelburg",
+          "out": "Liam Millar"
+        },
+        {
+          "minute": 61,
+          "team": "a",
+          "in": "Promise David",
+          "out": "Jonathan David"
+        },
+        {
+          "minute": 61,
+          "team": "a",
+          "in": "Ali Ahmed",
+          "out": "Tajon Buchanan"
+        },
+        {
+          "minute": 62,
+          "team": "h",
+          "in": "Samed Bazdar",
+          "out": "Jovo Lukic"
+        },
+        {
+          "minute": 62,
+          "team": "h",
+          "in": "Armin Gigovic",
+          "out": "Ivan Basic"
+        },
+        {
+          "minute": 74,
+          "team": "h",
+          "in": "Ivan Sunjic",
+          "out": "Esmir Bajraktarevic"
+        },
+        {
+          "minute": 74,
+          "team": "h",
+          "in": "Kerim Alajbegovic",
+          "out": "Amar Memic"
+        },
+        {
+          "minute": 76,
+          "team": "a",
+          "in": "Cyle Larin",
+          "out": "Tani Oluwaseyi"
+        },
+        {
+          "minute": 84,
+          "team": "h",
+          "in": "Dzenis Burnic",
+          "out": "Sead Kolasinac"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Jonathan Osorio",
+          "out": "Stephen Eustáquio"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -1018,7 +1103,8 @@
             },
             {
               "name": "Samed Bazdar",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Amir Hadziahmetovic",
@@ -1030,7 +1116,8 @@
             },
             {
               "name": "Armin Gigovic",
-              "jersey": "8"
+              "jersey": "8",
+              "in": true
             },
             {
               "name": "Stjepan Radeljic",
@@ -1038,11 +1125,13 @@
             },
             {
               "name": "Dzenis Burnic",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Kerim Alajbegovic",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Arjan Malic",
@@ -1058,7 +1147,8 @@
             },
             {
               "name": "Ivan Sunjic",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Nihad Mujakic",
@@ -1136,7 +1226,8 @@
             },
             {
               "name": "Jacob Shaffelburg",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Joel Waterman",
@@ -1144,7 +1235,8 @@
             },
             {
               "name": "Jonathan Osorio",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Jayden Nelson",
@@ -1152,15 +1244,18 @@
             },
             {
               "name": "Cyle Larin",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Ali Ahmed",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Promise David",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Owen Goodman",
@@ -1191,57 +1286,57 @@
       },
       "referee": "Facundo Tello",
       "venue": "BMO Field, Toronto",
-      "attendance": null,
+      "attendance": 43002,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "33%",
-          "a": "67%"
+          "h": "39%",
+          "a": "61%"
         },
         {
           "key": "totalShots",
-          "h": "5",
-          "a": "8"
+          "h": "8",
+          "a": "13"
         },
         {
           "key": "shotsOnTarget",
-          "h": "2",
-          "a": "1"
+          "h": "3",
+          "a": "4"
         },
         {
           "key": "wonCorners",
-          "h": "1",
+          "h": "4",
           "a": "9"
         },
         {
           "key": "foulsCommitted",
-          "h": "8",
-          "a": "4"
+          "h": "20",
+          "a": "10"
         },
         {
           "key": "offsides",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "saves",
           "h": "1",
-          "a": "1"
+          "a": "2"
         },
         {
           "key": "totalPasses",
-          "h": "112",
-          "a": "218"
+          "h": "268",
+          "a": "417"
         },
         {
           "key": "passPct",
-          "h": "66%",
-          "a": "75%"
+          "h": "63%",
+          "a": "74%"
         },
         {
           "key": "yellowCards",
-          "h": "2",
-          "a": "1"
+          "h": "3",
+          "a": "2"
         },
         {
           "key": "redCards",
@@ -1249,7 +1344,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-12T19:51:50.006Z"
+      "updatedAt": "2026-06-12T21:21:46.080Z"
     }
   }
 }
