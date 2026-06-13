@@ -648,8 +648,6 @@
       '<td class="ps-c-pos" title="' + esc(posTitle) + '">' + (r.pos ? esc(r.pos) : "–") + "</td>" +
       '<td class="c-stat">' + (r.age != null ? r.age : "–") + "</td>" +
       '<td class="ps-c-club"><span title="' + esc(r.club || "") + '">' + (r.club ? esc(r.club) : "–") + "</span></td>" +
-      '<td class="c-stat">' + num(r.apps) + "</td>" +
-      '<td class="c-stat">' + (r.min ? '<span class="ps-num">' + r.min + "'</span>" : '<span class="ps-zero">–</span>') + "</td>" +
       '<td class="c-stat ps-num' + (r.goals ? " hot" : "") + '"' +
         (goalsTitle.length ? ' title="' + esc(goalsTitle.join(" · ")) + '"' : "") + ">" +
         (r.goals || (r.og ? '<span class="ps-og" title="' + r.og + ' självmål">sj</span>' : '<span class="ps-zero">–</span>')) + "</td>" +
@@ -659,6 +657,8 @@
       '<td class="c-stat ps-rate">' + a90 + "</td>" +
       '<td class="c-stat">' + cardsCell(r.y, "y") + "</td>" +
       '<td class="c-stat">' + cardsCell(r.r, "r") + "</td>" +
+      '<td class="c-stat">' + num(r.apps) + "</td>" +
+      '<td class="c-stat">' + (r.min ? '<span class="ps-num">' + r.min + "'</span>" : '<span class="ps-zero">–</span>') + "</td>" +
       "</tr>";
   }
 
@@ -672,8 +672,6 @@
       thSort("pos", "Pos", "ps-c-pos", "Position: GK målvakt · DF försvarare · MF mittfältare · FW anfallare") +
       thSort("age", "Ålder", "") +
       thSort("club", "Klubb", "ps-c-club") +
-      thSort("apps", "M", "", "Spelade matcher i VM 2026") +
-      thSort("min", "Min", "", "Spelade minuter i VM 2026") +
       thSort("goals", "Mål", "", "Mål i VM 2026") +
       thSort("assists", "Ass", "", "Assist i VM 2026") +
       thSort("points", "P", "", "Poäng = mål + assist") +
@@ -681,6 +679,8 @@
       thSort("a90", "Ass/90", "", "Assist per 90 spelade minuter (kräver minst 90 min)") +
       thSort("y", "Gul", "", "Gula kort") +
       thSort("r", "Röd", "", "Röda kort (inkl. två gula)") +
+      thSort("apps", "M", "", "Spelade matcher i VM 2026") +
+      thSort("min", "Min", "", "Spelade minuter i VM 2026") +
       "</tr></thead><tbody>";
     if (!shown.length) {
       h += '<tr><td class="ps-empty" colspan="15">Inga spelare matchar filtren.</td></tr>';
