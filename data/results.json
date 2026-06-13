@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-13T18:49:26.757Z",
+    "updatedAt": "2026-06-13T20:08:58.251Z",
     "source": "espn",
-    "matchCount": 4,
-    "liveCount": 0,
+    "matchCount": 5,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -26,9 +26,23 @@
       "h": 4,
       "a": 1,
       "status": "FINISHED"
+    },
+    "g:B:5": {
+      "h": 1,
+      "a": 0,
+      "status": "PAUSED"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:B:5",
+      "status": "PAUSED",
+      "minute": 45,
+      "home": "Switzerland",
+      "away": "Qatar",
+      "score": "1-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -102,7 +116,7 @@
       "date": "2026-06-13",
       "time": "21:00",
       "utcDate": "2026-06-13T19:00Z",
-      "status": "TIMED",
+      "status": "PAUSED",
       "matchday": null,
       "home": "Switzerland",
       "away": "Qatar",
