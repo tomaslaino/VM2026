@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-13T20:08:58.251Z",
+    "updatedAt": "2026-06-13T21:36:17.770Z",
     "source": "espn",
     "matchCount": 5,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -29,20 +29,11 @@
     },
     "g:B:5": {
       "h": 1,
-      "a": 0,
-      "status": "PAUSED"
+      "a": 1,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:B:5",
-      "status": "PAUSED",
-      "minute": 45,
-      "home": "Switzerland",
-      "away": "Qatar",
-      "score": "1-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -116,7 +107,7 @@
       "date": "2026-06-13",
       "time": "21:00",
       "utcDate": "2026-06-13T19:00Z",
-      "status": "PAUSED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Switzerland",
       "away": "Qatar",
@@ -1674,7 +1665,7 @@
     ],
     "B": [
       {
-        "idx": 0,
+        "idx": 1,
         "position": 1,
         "pld": 1,
         "w": 0,
@@ -1686,7 +1677,7 @@
         "pts": 1
       },
       {
-        "idx": 3,
+        "idx": 0,
         "position": 2,
         "pld": 1,
         "w": 0,
@@ -1700,26 +1691,26 @@
       {
         "idx": 2,
         "position": 3,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "gf": 1,
+        "ga": 1,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       },
       {
-        "idx": 1,
+        "idx": 3,
         "position": 4,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "gf": 1,
+        "ga": 1,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       }
     ],
     "C": [
