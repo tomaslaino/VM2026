@@ -13,6 +13,10 @@ desktop.ini
 node_modules/
 npm-debug.log*
 
+# Python (sannolikhetsmotorn i scripts/prob)
+__pycache__/
+*.pyc
+
 # Hemligheter – committas aldrig
 .env
 

@@ -1,0 +1,433 @@
+{
+  "_source": "Genererad av scripts/prob/gen_bracket_map.mjs ur assets/data.js",
+  "teams": [
+    {
+      "name": "Mexico",
+      "sv": "Mexiko",
+      "iso": "mx",
+      "group": "A",
+      "idx": 0
+    },
+    {
+      "name": "South Korea",
+      "sv": "Sydkorea",
+      "iso": "kr",
+      "group": "A",
+      "idx": 1
+    },
+    {
+      "name": "South Africa",
+      "sv": "Sydafrika",
+      "iso": "za",
+      "group": "A",
+      "idx": 2
+    },
+    {
+      "name": "Czechia",
+      "sv": "Tjeckien",
+      "iso": "cz",
+      "group": "A",
+      "idx": 3
+    },
+    {
+      "name": "Canada",
+      "sv": "Kanada",
+      "iso": "ca",
+      "group": "B",
+      "idx": 0
+    },
+    {
+      "name": "Switzerland",
+      "sv": "Schweiz",
+      "iso": "ch",
+      "group": "B",
+      "idx": 1
+    },
+    {
+      "name": "Qatar",
+      "sv": "Qatar",
+      "iso": "qa",
+      "group": "B",
+      "idx": 2
+    },
+    {
+      "name": "Bosnia-Herzegovina",
+      "sv": "Bosnien och Hercegovina",
+      "iso": "ba",
+      "group": "B",
+      "idx": 3
+    },
+    {
+      "name": "Brazil",
+      "sv": "Brasilien",
+      "iso": "br",
+      "group": "C",
+      "idx": 0
+    },
+    {
+      "name": "Morocco",
+      "sv": "Marocko",
+      "iso": "ma",
+      "group": "C",
+      "idx": 1
+    },
+    {
+      "name": "Scotland",
+      "sv": "Skottland",
+      "iso": "gb-sct",
+      "group": "C",
+      "idx": 2
+    },
+    {
+      "name": "Haiti",
+      "sv": "Haiti",
+      "iso": "ht",
+      "group": "C",
+      "idx": 3
+    },
+    {
+      "name": "USA",
+      "sv": "USA",
+      "iso": "us",
+      "group": "D",
+      "idx": 0
+    },
+    {
+      "name": "Paraguay",
+      "sv": "Paraguay",
+      "iso": "py",
+      "group": "D",
+      "idx": 1
+    },
+    {
+      "name": "Australia",
+      "sv": "Australien",
+      "iso": "au",
+      "group": "D",
+      "idx": 2
+    },
+    {
+      "name": "Türkiye",
+      "sv": "Turkiet",
+      "iso": "tr",
+      "group": "D",
+      "idx": 3
+    },
+    {
+      "name": "Germany",
+      "sv": "Tyskland",
+      "iso": "de",
+      "group": "E",
+      "idx": 0
+    },
+    {
+      "name": "Ecuador",
+      "sv": "Ecuador",
+      "iso": "ec",
+      "group": "E",
+      "idx": 1
+    },
+    {
+      "name": "Ivory Coast",
+      "sv": "Elfenbenskusten",
+      "iso": "ci",
+      "group": "E",
+      "idx": 2
+    },
+    {
+      "name": "Curaçao",
+      "sv": "Curaçao",
+      "iso": "cw",
+      "group": "E",
+      "idx": 3
+    },
+    {
+      "name": "Netherlands",
+      "sv": "Nederländerna",
+      "iso": "nl",
+      "group": "F",
+      "idx": 0
+    },
+    {
+      "name": "Japan",
+      "sv": "Japan",
+      "iso": "jp",
+      "group": "F",
+      "idx": 1
+    },
+    {
+      "name": "Tunisia",
+      "sv": "Tunisien",
+      "iso": "tn",
+      "group": "F",
+      "idx": 2
+    },
+    {
+      "name": "Sweden",
+      "sv": "Sverige",
+      "iso": "se",
+      "group": "F",
+      "idx": 3
+    },
+    {
+      "name": "Belgium",
+      "sv": "Belgien",
+      "iso": "be",
+      "group": "G",
+      "idx": 0
+    },
+    {
+      "name": "Iran",
+      "sv": "Iran",
+      "iso": "ir",
+      "group": "G",
+      "idx": 1
+    },
+    {
+      "name": "Egypt",
+      "sv": "Egypten",
+      "iso": "eg",
+      "group": "G",
+      "idx": 2
+    },
+    {
+      "name": "New Zealand",
+      "sv": "Nya Zeeland",
+      "iso": "nz",
+      "group": "G",
+      "idx": 3
+    },
+    {
+      "name": "Spain",
+      "sv": "Spanien",
+      "iso": "es",
+      "group": "H",
+      "idx": 0
+    },
+    {
+      "name": "Uruguay",
+      "sv": "Uruguay",
+      "iso": "uy",
+      "group": "H",
+      "idx": 1
+    },
+    {
+      "name": "Saudi Arabia",
+      "sv": "Saudiarabien",
+      "iso": "sa",
+      "group": "H",
+      "idx": 2
+    },
+    {
+      "name": "Cape Verde",
+      "sv": "Kap Verde",
+      "iso": "cv",
+      "group": "H",
+      "idx": 3
+    },
+    {
+      "name": "France",
+      "sv": "Frankrike",
+      "iso": "fr",
+      "group": "I",
+      "idx": 0
+    },
+    {
+      "name": "Senegal",
+      "sv": "Senegal",
+      "iso": "sn",
+      "group": "I",
+      "idx": 1
+    },
+    {
+      "name": "Norway",
+      "sv": "Norge",
+      "iso": "no",
+      "group": "I",
+      "idx": 2
+    },
+    {
+      "name": "Iraq",
+      "sv": "Irak",
+      "iso": "iq",
+      "group": "I",
+      "idx": 3
+    },
+    {
+      "name": "Argentina",
+      "sv": "Argentina",
+      "iso": "ar",
+      "group": "J",
+      "idx": 0
+    },
+    {
+      "name": "Austria",
+      "sv": "Österrike",
+      "iso": "at",
+      "group": "J",
+      "idx": 1
+    },
+    {
+      "name": "Algeria",
+      "sv": "Algeriet",
+      "iso": "dz",
+      "group": "J",
+      "idx": 2
+    },
+    {
+      "name": "Jordan",
+      "sv": "Jordanien",
+      "iso": "jo",
+      "group": "J",
+      "idx": 3
+    },
+    {
+      "name": "Portugal",
+      "sv": "Portugal",
+      "iso": "pt",
+      "group": "K",
+      "idx": 0
+    },
+    {
+      "name": "Colombia",
+      "sv": "Colombia",
+      "iso": "co",
+      "group": "K",
+      "idx": 1
+    },
+    {
+      "name": "Uzbekistan",
+      "sv": "Uzbekistan",
+      "iso": "uz",
+      "group": "K",
+      "idx": 2
+    },
+    {
+      "name": "DR Congo",
+      "sv": "DR Kongo",
+      "iso": "cd",
+      "group": "K",
+      "idx": 3
+    },
+    {
+      "name": "England",
+      "sv": "England",
+      "iso": "gb-eng",
+      "group": "L",
+      "idx": 0
+    },
+    {
+      "name": "Croatia",
+      "sv": "Kroatien",
+      "iso": "hr",
+      "group": "L",
+      "idx": 1
+    },
+    {
+      "name": "Panama",
+      "sv": "Panama",
+      "iso": "pa",
+      "group": "L",
+      "idx": 2
+    },
+    {
+      "name": "Ghana",
+      "sv": "Ghana",
+      "iso": "gh",
+      "group": "L",
+      "idx": 3
+    }
+  ],
+  "aliases": {
+    "mexico": "Mexico",
+    "mexiko": "Mexico",
+    "southkorea": "South Korea",
+    "sydkorea": "South Korea",
+    "southafrica": "South Africa",
+    "sydafrika": "South Africa",
+    "czechia": "Czechia",
+    "tjeckien": "Czechia",
+    "canada": "Canada",
+    "kanada": "Canada",
+    "switzerland": "Switzerland",
+    "schweiz": "Switzerland",
+    "qatar": "Qatar",
+    "bosniaherzegovina": "Bosnia-Herzegovina",
+    "bosnienochhercegovina": "Bosnia-Herzegovina",
+    "brazil": "Brazil",
+    "brasilien": "Brazil",
+    "morocco": "Morocco",
+    "marocko": "Morocco",
+    "scotland": "Scotland",
+    "skottland": "Scotland",
+    "haiti": "Haiti",
+    "usa": "USA",
+    "paraguay": "Paraguay",
+    "australia": "Australia",
+    "australien": "Australia",
+    "turkiye": "Türkiye",
+    "turkiet": "Türkiye",
+    "germany": "Germany",
+    "tyskland": "Germany",
+    "ecuador": "Ecuador",
+    "ivorycoast": "Ivory Coast",
+    "elfenbenskusten": "Ivory Coast",
+    "curacao": "Curaçao",
+    "netherlands": "Netherlands",
+    "nederlanderna": "Netherlands",
+    "japan": "Japan",
+    "tunisia": "Tunisia",
+    "tunisien": "Tunisia",
+    "sweden": "Sweden",
+    "sverige": "Sweden",
+    "belgium": "Belgium",
+    "belgien": "Belgium",
+    "iran": "Iran",
+    "egypt": "Egypt",
+    "egypten": "Egypt",
+    "newzealand": "New Zealand",
+    "nyazeeland": "New Zealand",
+    "spain": "Spain",
+    "spanien": "Spain",
+    "uruguay": "Uruguay",
+    "saudiarabia": "Saudi Arabia",
+    "saudiarabien": "Saudi Arabia",
+    "capeverde": "Cape Verde",
+    "kapverde": "Cape Verde",
+    "france": "France",
+    "frankrike": "France",
+    "senegal": "Senegal",
+    "norway": "Norway",
+    "norge": "Norway",
+    "iraq": "Iraq",
+    "irak": "Iraq",
+    "argentina": "Argentina",
+    "austria": "Austria",
+    "osterrike": "Austria",
+    "algeria": "Algeria",
+    "algeriet": "Algeria",
+    "jordan": "Jordan",
+    "jordanien": "Jordan",
+    "portugal": "Portugal",
+    "colombia": "Colombia",
+    "uzbekistan": "Uzbekistan",
+    "drcongo": "DR Congo",
+    "drkongo": "DR Congo",
+    "england": "England",
+    "croatia": "Croatia",
+    "kroatien": "Croatia",
+    "panama": "Panama",
+    "ghana": "Ghana",
+    "unitedstates": "USA",
+    "unitedstatesofamerica": "USA",
+    "congodr": "DR Congo",
+    "korearepublic": "South Korea",
+    "republicofkorea": "South Korea",
+    "cotedivoire": "Ivory Coast",
+    "turkey": "Türkiye",
+    "czechrepublic": "Czechia",
+    "bosniaandherzegovina": "Bosnia-Herzegovina",
+    "caboverde": "Cape Verde",
+    "capoverde": "Cape Verde"
+  }
+}

@@ -1227,6 +1227,24 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .standings.mini { font-size: 12.5px; }
 .standings.mini td { padding: 5px 4px; }
 
+/* Slutspelssannolikheter i sidopanelen */
+.prob-stamp { font-weight: 600; color: var(--ink-soft); opacity: .8; }
+.prob-sides { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.prob-col { border: 1px solid var(--line); border-radius: 10px; padding: 8px; min-width: 0; }
+.prob-slot {
+  font-size: 11px; font-weight: 700; color: var(--ink-soft);
+  margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid var(--line);
+}
+.prob-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 6px; padding: 3px 0; }
+.prob-row .team { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.prob-row .t-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12.5px; }
+.prob-row .flag { width: 18px; height: 13px; flex: 0 0 auto; }
+.prob-pct { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 12.5px; }
+.prob-bar { grid-column: 1 / -1; height: 3px; border-radius: 2px; background: var(--line); overflow: hidden; }
+.prob-bar > span { display: block; height: 100%; background: var(--accent, #5aa9e6); }
+.prob-empty { color: var(--ink-soft); font-size: 12.5px; padding: 4px 0; }
+@media (max-width: 420px) { .prob-sides { grid-template-columns: 1fr; } }
+
 /* ====================================================================
    KALENDER
 ==================================================================== */
@@ -2373,17 +2391,6 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   cursor: pointer; max-width: 200px;
 }
 .ps-toolbar select:focus { outline: none; border-color: var(--focus); }
-.ps-chip {
-  border: 1px solid var(--line-strong); background: var(--bg-soft); color: var(--ink-soft);
-  font: inherit; font-size: 13px; font-weight: 600; padding: 8px 13px; border-radius: 999px;
-  cursor: pointer; transition: .15s;
-}
-.ps-chip:hover { color: var(--ink); border-color: var(--focus); }
-.ps-chip.on {
-  color: #fff; border-color: transparent;
-  background: linear-gradient(90deg, var(--usa-red), color-mix(in srgb, var(--usa-red) 70%, var(--usa-navy)));
-  box-shadow: 0 2px 10px rgba(196, 30, 58, .3);
-}
 .ps-count { margin-left: auto; font-size: 12.5px; color: var(--ink-soft); white-space: nowrap; }
 
 /* Tabellen */

@@ -1,0 +1,101 @@
+name: Synka slutspelssannolikheter
+
+# Bygger data/bracket_probs.json: hämtar odds (The Odds API), kör Monte Carlo-
+# motorn (scripts/prob/) mot FIFA:s slutspelsträd + Annex C och committar
+# resultatet som GitHub Pages serverar.
+#
+# Två lägen styrs av schemat (sparar månadskvoten på odds-API:t):
+#   * "0 */6 * * *"   -> hämtar FÄRSKA odds (outright + 1X2), var 6:e timme.
+#   * "*/30 * * * *"  -> räknar bara OM simuleringen på senaste resultaten
+#                        (ingen odds-API – betingar på nyspelade matcher gratis).
+# Manuell körning (workflow_dispatch) hämtar alltid färska odds.
+#
+# Kräver repo-secret ODDS_API_KEY för marknadsodds. Saknas den faller pipan
+# tillbaka på FIFA-rankingen (scripts/prob/gen_fallback_outrights.mjs) – sidan
+# fungerar ändå, men med modellerade i stället för marknadens odds.
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"     # färska odds var 6:e timme
+    - cron: "*/30 * * * *"    # omräkning på nya resultat (ingen API-kostnad)
+  workflow_dispatch: {}
+
+concurrency:
+  group: sync-bracket-probs
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  VM_WINNER_ODDS: scripts/prob/vinnarodds.json
+  VM_GROUP_FIXTURES: scripts/prob/group_fixtures.json
+  VM_ODDS_CACHE: scripts/prob/odds_cache.json
+  VM_BRACKET_OUTPUT: data/bracket_probs.json
+  VM_N_SIMS: "40000"
+
+jobs:
+  probs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checka ut repo
+        uses: actions/checkout@v4
+
+      - name: Sätt upp Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Sätt upp Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installera Python-beroenden
+        run: pip install requests
+
+      - name: Avgör om färska odds ska hämtas
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "${{ github.event.schedule }}" = "0 */6 * * *" ]; then
+            echo "fetch=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "fetch=0" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Generera FIFA-karta + lagtabell (ur data.js/annexc.js)
+        run: node scripts/prob/gen_bracket_map.mjs
+
+      - name: Bootstrap-vinnarodds (fallback om marknad saknas)
+        run: node scripts/prob/gen_fallback_outrights.mjs
+
+      - name: Hämta vinnarodds (outright) – endast vid odds-hämtning
+        if: steps.gate.outputs.fetch == '1'
+        continue-on-error: true
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python scripts/prob/vm_vinnarodds.py
+
+      - name: Bygg group_fixtures (1X2 + resultat)
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          FETCH_MARKET_ODDS: ${{ steps.gate.outputs.fetch }}
+        run: python scripts/prob/vm_odds.py
+
+      - name: Kör sannolikhetsmotorn
+        run: python scripts/prob/vm_sannolikheter.py
+
+      - name: Committa om något ändrats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/bracket_probs.json \
+                  scripts/prob/vinnarodds.json scripts/prob/group_fixtures.json \
+                  scripts/prob/odds_cache.json scripts/prob/bracket_map.json \
+                  scripts/prob/teams.json
+          if git diff --staged --quiet; then
+            echo "Inga förändringar – hoppar över commit."
+          else
+            git commit -m "Auto-synk slutspelssannolikheter $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi

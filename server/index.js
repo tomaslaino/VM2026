@@ -125,6 +125,20 @@ app.get("/api/matchdetails", (req, res) => {
   res.json({ meta: {}, details: {} });
 });
 
+/** Slutspelssannolikheter (bracket_probs.json) – skrivs av prob-jobbet (scripts/prob/). */
+app.get("/api/bracketprobs", (req, res) => {
+  try {
+    const file = path.join(ROOT, "data", "bracket_probs.json");
+    if (fs.existsSync(file)) {
+      res.type("application/json").send(fs.readFileSync(file, "utf8"));
+      return;
+    }
+  } catch {
+    /* fall igenom till tomt svar */
+  }
+  res.json({ nodes: {}, rounds: {}, slotLabels: {}, groupPositions: {} });
+});
+
 app.use(express.static(ROOT));
 
 const server = http.createServer(app);

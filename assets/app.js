@@ -427,15 +427,27 @@
   function cmpOverall(y, x) { // returnerar positivt om y ska före x
     return (y.pts - x.pts) || (y.gd - x.gd) || (y.gf - x.gf) || (y.fp - x.fp) || (y.w - x.w) || (x.idx - y.idx);
   }
-  /* Sortera tabellen enligt football-data:s officiella ordning (om den finns
-     och täcker alla lag i gruppen). Returnerar true om ordningen tillämpades. */
+  /* Sortera tabellen enligt API:ets officiella ordning (om den finns, täcker
+     alla lag och stämmer med lokalt beräknad statistik). Returnerar true om
+     ordningen tillämpades. API-tabeller kan släpa efter nya resultat – då
+     faller vi tillbaka på lokal FIFA-sortering så placering och siffror hänger
+     ihop. */
   function applyApiOrder(letter, st) {
     var rows = apiStandings[letter];
     if (!rows || !rows.length) return false;
     var posByIdx = {};
-    rows.forEach(function (row) { posByIdx[row.idx] = row.position; });
+    var apiByIdx = {};
+    rows.forEach(function (row) {
+      posByIdx[row.idx] = row.position;
+      apiByIdx[row.idx] = row;
+    });
     var allHave = st.every(function (s) { return posByIdx[s.idx] != null; });
     if (!allHave) return false;
+    var statsMatch = st.every(function (s) {
+      var api = apiByIdx[s.idx];
+      return s.pld === api.pld && s.pts === api.pts && s.gf === api.gf && s.ga === api.ga;
+    });
+    if (!statsMatch) return false;
     st.sort(function (x, y) {
       return (posByIdx[x.idx] - posByIdx[y.idx]) || cmpOverall(y, x) || (x.idx - y.idx);
     });
@@ -463,9 +475,8 @@
       s.fpY = f.y; s.fpR = f.r; s.fp = f.pts;
     });
 
-    // Officiell tabellordning från football-data (inkl. fair play och övriga
-    // särskiljningsregler som inte går att räkna fram lokalt). Statistiken visas
-    // från matchresultaten (uppdateras live), men placeringarna styrs av API:t.
+    // Officiell tabellordning från API (inkl. fair play m.m.) när den är i fas
+    // med matchresultaten. Annars FIFA-sortering på lokalt beräknad statistik.
     if (applyApiOrder(letter, st)) return st;
 
     var allZeroPts = st.every(function (s) { return s.pts === 0; });
@@ -1412,6 +1423,8 @@
       asideMatchupSide(mt.away, res.away, "away", aWin) +
       '</div>';
 
+    h += asideProbBlock(matchNo);
+
     if (directList.length) {
       h += '<div class="aside-section-title">Direktplatser – grupp ' + directList.join(", ") + '</div>';
       directList.forEach(function (L) {
@@ -1462,6 +1475,118 @@
     var e = ctx.thirds.ranking.filter(function (x) { return x.L === L; })[0];
     return e && e.qualified;
   }
+
+  /* ---------- Slutspelssannolikheter (data/bracket_probs.json) ---------- */
+  // Filen byggs av ett backend-jobb (scripts/prob/) ur odds + FIFA:s slutspelsträd.
+  // Frontend gör bara uppslag: per nod -> { lag: sannolikhet }.
+  var bracketProbs = null;          // hela bracket_probs.json
+  var bracketPosByMatch = null;     // matchnr -> { round, home, away } (nodpositioner)
+  var teamByNameMap = null;
+
+  function teamByName(name) {
+    if (!teamByNameMap) {
+      teamByNameMap = {};
+      (WC.groupLetters || []).forEach(function (L) {
+        (WC.groups[L] || []).forEach(function (t) { teamByNameMap[t.name] = t; });
+      });
+    }
+    return teamByNameMap[name];
+  }
+
+  // Härled matchnr -> nodposition med SAMMA linjärisering som
+  // scripts/prob/gen_bracket_map.mjs (in-order-traversal av trädet från finalen).
+  // En vinnare på position p i en runda kommer från position (2p, 2p+1) i föregående.
+  function buildBracketPosMap() {
+    var byNo = {};
+    WC.knockout.forEach(function (m) { byNo[m.m] = m; });
+    var rk = { R32: "r32", R16: "r16", QF: "qf", SF: "sf", FINAL: "final" };
+    var map = {};
+    function assign(no, homePos, awayPos) {
+      var m = byNo[no];
+      if (!m || !rk[m.round]) return;                 // hoppar 3RD (bronsmatch)
+      map[no] = { round: rk[m.round], home: homePos, away: awayPos };
+      if (m.home && m.home.t === "wm") assign(m.home.m, homePos * 2, homePos * 2 + 1);
+      if (m.away && m.away.t === "wm") assign(m.away.m, awayPos * 2, awayPos * 2 + 1);
+    }
+    var fin = WC.knockout.filter(function (m) { return m.round === "FINAL"; })[0];
+    if (fin) assign(fin.m, 0, 1);
+    return map;
+  }
+
+  function slotLabelText(code) {
+    if (!code) return "";
+    if (code.charAt(0) === "1") return "Etta grupp " + code.slice(1);
+    if (code.charAt(0) === "2") return "Tvåa grupp " + code.slice(1);
+    if (code.indexOf("3/") === 0) return "Bästa trea (" + code.slice(2).split("").join("/") + ")";
+    return code;
+  }
+
+  function fmtPct(p) {
+    var v = p * 100;
+    if (v >= 99.95) return "100";
+    if (v >= 9.95) return String(Math.round(v));
+    return (Math.round(v * 10) / 10).toString();
+  }
+
+  // En sida av en match: lag -> sannolikhet, fallande, döljer < 0.1 %.
+  function asideProbSide(dist, slotLabel) {
+    var entries = Object.keys(dist || {})
+      .map(function (n) { return [n, dist[n]]; })
+      .filter(function (e) { return e[1] >= 0.001; })
+      .sort(function (a, b) { return b[1] - a[1]; });
+    var top = entries.length ? entries[0][1] : 1;
+    var rows = entries.map(function (e) {
+      var t = teamByName(e[0]);
+      var iso = t ? t.iso : "";
+      var nm = t ? (t.svShort || t.sv) : e[0];
+      var w = top > 0 ? Math.round((e[1] / top) * 100) : 0;
+      return '<div class="prob-row">' +
+        '<span class="team">' + flagImg(iso) + '<span class="t-name">' + esc(nm) + '</span></span>' +
+        '<span class="prob-bar"><span style="width:' + w + '%"></span></span>' +
+        '<span class="prob-pct">' + fmtPct(e[1]) + ' %</span></div>';
+    }).join("");
+    var lab = slotLabel ? '<div class="prob-slot">' + esc(slotLabelText(slotLabel)) + '</div>' : '';
+    return '<div class="prob-col">' + lab + (rows || '<div class="prob-empty">–</div>') + '</div>';
+  }
+
+  // Bygger sannolikhetsblocket för en match (båda sidor) om data finns.
+  function asideProbBlock(matchNo) {
+    if (!bracketProbs || !bracketProbs.nodes) return "";
+    if (!bracketPosByMatch) bracketPosByMatch = buildBracketPosMap();
+    var pos = bracketPosByMatch[matchNo];
+    if (!pos) return "";
+    var nodes = bracketProbs.nodes[pos.round];
+    if (!nodes || !nodes[pos.home] || !nodes[pos.away]) return "";
+    var labels = (pos.round === "r32" && bracketProbs.slotLabels) ? bracketProbs.slotLabels.r32 : null;
+    var updated = bracketProbs.updated ? new Date(bracketProbs.updated) : null;
+    var stamp = updated && !isNaN(updated) ?
+      ' <span class="prob-stamp">· odds ' + updated.toLocaleDateString("sv-SE") + '</span>' : '';
+    return '<div class="aside-section-title">Sannolikhet att nå hit' + stamp + '</div>' +
+      '<div class="prob-sides">' +
+      asideProbSide(nodes[pos.home], labels ? labels[pos.home] : null) +
+      asideProbSide(nodes[pos.away], labels ? labels[pos.away] : null) +
+      '</div>';
+  }
+
+  function bracketProbsUrl() {
+    var CFG = window.VM_CONFIG || {};
+    if (CFG.backend) return CFG.backend.replace(/\/$/, "") + "/api/bracketprobs";
+    var u = CFG.staticBracket || "data/bracket_probs.json";
+    return u + (u.indexOf("?") === -1 ? "?" : "&") + "t=" + Date.now();
+  }
+
+  function loadBracketProbs() {
+    return fetch(bracketProbsUrl(), { headers: { Accept: "application/json" }, cache: "no-store" })
+      .then(function (r) { return r && r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (d && d.nodes) {
+          bracketProbs = d;
+          if (hoverMatch && ui("view", "groups") === "bracket") updateAside(hoverMatch, getCtx());
+        }
+      })
+      .catch(function () { /* tyst – panelen funkar utan */ });
+  }
+
   /* ---------- Kalendervy ---------- */
   function buildSchedule() {
     var items = [];
@@ -2578,6 +2703,10 @@
     if (ui("view", "groups") === "calendar") calScrollPending = true;
     render();
     updateSyncBadge();
+
+    bracketPosByMatch = buildBracketPosMap();
+    loadBracketProbs();
+    setInterval(loadBracketProbs, 300000);   // uppdateras under turneringen
   }
 
   window.VMApp = {
