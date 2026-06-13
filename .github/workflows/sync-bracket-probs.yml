@@ -89,13 +89,21 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/bracket_probs.json \
-                  scripts/prob/vinnarodds.json scripts/prob/group_fixtures.json \
-                  scripts/prob/odds_cache.json scripts/prob/bracket_map.json \
-                  scripts/prob/teams.json
+          # Add på katalog (inte enskilda filer) – tål att t.ex. odds_cache.json saknas.
+          git add data/bracket_probs.json scripts/prob
           if git diff --staged --quiet; then
             echo "Inga förändringar – hoppar över commit."
-          else
-            git commit -m "Auto-synk slutspelssannolikheter $(date -u +'%Y-%m-%d %H:%M UTC')"
-            git push
+            exit 0
           fi
+          git commit -m "Auto-synk slutspelssannolikheter $(date -u +'%Y-%m-%d %H:%M UTC')"
+          # Resultat-synken pushar ofta till main – rebasa och försök igen vid kapplöpning.
+          for i in 1 2 3 4 5; do
+            if git pull --rebase --autostash origin main && git push; then
+              echo "Push OK (försök $i)."
+              exit 0
+            fi
+            echo "Push misslyckades (kapplöpning?) – försök $i, väntar 5 s…"
+            sleep 5
+          done
+          echo "Kunde inte pusha efter 5 försök."
+          exit 1
