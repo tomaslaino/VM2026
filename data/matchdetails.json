@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-13T00:08:51.486Z",
+    "updatedAt": "2026-06-13T04:47:27.910Z",
     "source": "espn"
   },
   "details": {
@@ -1345,6 +1345,491 @@
         }
       ],
       "updatedAt": "2026-06-12T21:21:46.080Z"
+    },
+    "g:D:0": {
+      "espnId": "760417",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-13T01:00Z",
+      "duration": "REGULAR",
+      "winner": "HOME_TEAM",
+      "score": {
+        "ft": {
+          "h": 4,
+          "a": 1
+        },
+        "ht": {
+          "h": 3,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 7,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Damián Bobadilla",
+          "assist": null,
+          "type": "OWN",
+          "score": null
+        },
+        {
+          "minute": 31,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Folarin Balogun",
+          "assist": "Christian Pulisic",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 45,
+          "injuryTime": 5,
+          "team": "h",
+          "scorer": "Folarin Balogun",
+          "assist": "Malik Tillman",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 73,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Maurício",
+          "assist": "Julio Enciso",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 90,
+          "injuryTime": 8,
+          "team": "h",
+          "scorer": "Giovanni Reyna",
+          "assist": "Alex Freeman",
+          "type": "REGULAR",
+          "score": null
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 10,
+          "team": "a",
+          "player": "Juan Jose Cáceres",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 52,
+          "team": "h",
+          "player": "Tim Ream",
+          "card": "RED"
+        },
+        {
+          "minute": 53,
+          "team": "a",
+          "player": "Miguel Almirón",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 59,
+          "team": "h",
+          "player": "Tyler Adams",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 79,
+          "team": "a",
+          "player": "Diego Gómez",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 88,
+          "team": "a",
+          "player": "Alex Arce",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Júnior Alonso",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Maurício",
+          "out": "Damián Bobadilla"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Sebastian Berhalter",
+          "out": "Christian Pulisic"
+        },
+        {
+          "minute": 62,
+          "team": "a",
+          "in": "Alex Arce",
+          "out": "Antonio Sanabria"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Timothy Weah",
+          "out": "Sergiño Dest"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Ricardo Pepi",
+          "out": "Folarin Balogun"
+        },
+        {
+          "minute": 79,
+          "team": "a",
+          "in": "Ramón Sosa",
+          "out": "Miguel Almirón"
+        },
+        {
+          "minute": 79,
+          "team": "a",
+          "in": "Gustavo Velázquez",
+          "out": "Juan Jose Cáceres"
+        },
+        {
+          "minute": 80,
+          "team": "a",
+          "in": "Alejandro Romero Gamarra",
+          "out": "Diego Gómez"
+        },
+        {
+          "minute": 82,
+          "team": "h",
+          "in": "Giovanni Reyna",
+          "out": "Malik Tillman"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Matt Freese",
+              "jersey": "24",
+              "pos": "G"
+            },
+            {
+              "name": "Alex Freeman",
+              "jersey": "16",
+              "pos": "RB"
+            },
+            {
+              "name": "Antonee Robinson",
+              "jersey": "5",
+              "pos": "LB"
+            },
+            {
+              "name": "Malik Tillman",
+              "jersey": "17",
+              "pos": "LM"
+            },
+            {
+              "name": "Chris Richards",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Tim Ream",
+              "jersey": "13",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Sergiño Dest",
+              "jersey": "2",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Tyler Adams",
+              "jersey": "4",
+              "pos": "RM"
+            },
+            {
+              "name": "Folarin Balogun",
+              "jersey": "20",
+              "pos": "F"
+            },
+            {
+              "name": "Weston McKennie",
+              "jersey": "8",
+              "pos": "AM"
+            },
+            {
+              "name": "Christian Pulisic",
+              "jersey": "10",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Alejandro Zendejas",
+              "jersey": "26"
+            },
+            {
+              "name": "Sebastian Berhalter",
+              "jersey": "14",
+              "in": true
+            },
+            {
+              "name": "Ricardo Pepi",
+              "jersey": "9",
+              "in": true
+            },
+            {
+              "name": "Cristian Roldan",
+              "jersey": "15"
+            },
+            {
+              "name": "Mark McKenzie",
+              "jersey": "22"
+            },
+            {
+              "name": "Joe Scally",
+              "jersey": "23"
+            },
+            {
+              "name": "Max Arfsten",
+              "jersey": "18"
+            },
+            {
+              "name": "Matt Turner",
+              "jersey": "1"
+            },
+            {
+              "name": "Haji Wright",
+              "jersey": "19"
+            },
+            {
+              "name": "Chris Brady",
+              "jersey": "25"
+            },
+            {
+              "name": "Brenden Aaronson",
+              "jersey": "11"
+            },
+            {
+              "name": "Giovanni Reyna",
+              "jersey": "7",
+              "in": true
+            },
+            {
+              "name": "Timothy Weah",
+              "jersey": "21",
+              "in": true
+            },
+            {
+              "name": "Miles Robinson",
+              "jersey": "12"
+            },
+            {
+              "name": "Auston Trusty",
+              "jersey": "6"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Orlando Gil",
+              "jersey": "12",
+              "pos": "G"
+            },
+            {
+              "name": "Juan Jose Cáceres",
+              "jersey": "4",
+              "pos": "RB"
+            },
+            {
+              "name": "Júnior Alonso",
+              "jersey": "6",
+              "pos": "LB"
+            },
+            {
+              "name": "Andrés Cubas",
+              "jersey": "14",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Gustavo Gómez",
+              "jersey": "15",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Omar Alderete",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Diego Gómez",
+              "jersey": "8",
+              "pos": "RM"
+            },
+            {
+              "name": "Damián Bobadilla",
+              "jersey": "16",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Julio Enciso",
+              "jersey": "19",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Antonio Sanabria",
+              "jersey": "9",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Miguel Almirón",
+              "jersey": "10",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Alex Arce",
+              "jersey": "18",
+              "in": true
+            },
+            {
+              "name": "José Canale",
+              "jersey": "13"
+            },
+            {
+              "name": "Gabriel Ávalos",
+              "jersey": "21"
+            },
+            {
+              "name": "Alexandro Maidana",
+              "jersey": "26"
+            },
+            {
+              "name": "Gustavo Caballero",
+              "jersey": "24"
+            },
+            {
+              "name": "Alejandro Romero Gamarra",
+              "jersey": "17",
+              "in": true
+            },
+            {
+              "name": "Braian Ojeda",
+              "jersey": "20"
+            },
+            {
+              "name": "Gastón Olveira",
+              "jersey": "22"
+            },
+            {
+              "name": "Gatito Fernández",
+              "jersey": "1"
+            },
+            {
+              "name": "Isidro Pitta",
+              "jersey": "25"
+            },
+            {
+              "name": "Fabián Balbuena",
+              "jersey": "5"
+            },
+            {
+              "name": "Matías Galarza",
+              "jersey": "23"
+            },
+            {
+              "name": "Ramón Sosa",
+              "jersey": "7",
+              "in": true
+            },
+            {
+              "name": "Maurício",
+              "jersey": "11",
+              "in": true
+            },
+            {
+              "name": "Gustavo Velázquez",
+              "jersey": "2",
+              "in": true
+            }
+          ]
+        }
+      },
+      "referee": "Danny Makkelie",
+      "venue": "SoFi Stadium, Inglewood, California",
+      "attendance": 70492,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "65%",
+          "a": "35%"
+        },
+        {
+          "key": "totalShots",
+          "h": "16",
+          "a": "9"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "6",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "3",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "13",
+          "a": "17"
+        },
+        {
+          "key": "offsides",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "3"
+        },
+        {
+          "key": "totalPasses",
+          "h": "598",
+          "a": "320"
+        },
+        {
+          "key": "passPct",
+          "h": "85%",
+          "a": "72%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "5"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-13T04:47:27.910Z"
     }
   }
 }
