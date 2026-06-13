@@ -21,6 +21,13 @@
   var detailsLoaded = false;
   var openKey = null;      // öppen match (resultatnyckel) eller null
   var pollTimer = null;
+  var activeTab = "events";
+
+  var TABS = [
+    { id: "events", label: "Händelser" },
+    { id: "lineups", label: "Laguppställning" },
+    { id: "stats", label: "Statistik" }
+  ];
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
@@ -112,6 +119,7 @@
   function open(key) {
     if (!window.VMApp || typeof window.VMApp.describeMatch !== "function") return;
     openKey = key;
+    activeTab = "events";
     var m = ensureModal();
     m.classList.add("open");
     renderModal();
@@ -216,10 +224,11 @@
     return ev;
   }
 
-  function timelineHtml(info, det) {
+  function timelineHtml(info, det, noTitle) {
     var ev = buildTimeline(det);
     if (!ev.length) return "";
-    var h = '<div class="mi-section-title">Matchhändelser</div><div class="mi-timeline">';
+    var h = noTitle ? '<div class="mi-timeline">' :
+      '<div class="mi-section-title">Matchhändelser</div><div class="mi-timeline">';
     var divs = [{ min: 45, label: "Halvtid" }, { min: 90, label: "Full tid" }];
     ev.forEach(function (e, i) {
       while (divs.length && e.minute != null && e.minute > divs[0].min) {
@@ -245,7 +254,83 @@
     return h;
   }
 
-  /* ---------- Startelvor ---------- */
+  /* ---------- Laguppställning (översiktsvy) ---------- */
+
+  function normName(s) {
+    if (!s) return "";
+    return String(s).toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]/g, "");
+  }
+
+  function buildPlayerEvents(det) {
+    var map = {};
+    function ensure(name) {
+      var k = normName(name);
+      if (!map[k]) map[k] = { goals: 0, cards: [], subOut: false, subIn: false };
+      return map[k];
+    }
+    (det.goals || []).forEach(function (g) {
+      if (g.scorer) ensure(g.scorer).goals++;
+    });
+    (det.bookings || []).forEach(function (b) {
+      if (b.player) ensure(b.player).cards.push(b.card);
+    });
+    (det.subs || []).forEach(function (s) {
+      if (s.out) ensure(s.out).subOut = true;
+      if (s.in) ensure(s.in).subIn = true;
+    });
+    return map;
+  }
+
+  function playerBadgesHtml(events) {
+    if (!events) return "";
+    var parts = [];
+    var g;
+    for (g = 0; g < events.goals; g++) {
+      parts.push('<span class="mi-pl-ic goal" title="Mål">⚽</span>');
+    }
+    events.cards.forEach(function (c) {
+      var cls = CARD_CLS[c] || "yellow";
+      parts.push('<span class="mi-pl-ic card ' + cls + '" title="' + esc(CARD_TXT[c] || "Kort") + '"></span>');
+    });
+    if (events.subOut) parts.push('<span class="mi-pl-ic sub out" title="Utbytt">▼</span>');
+    if (events.subIn) parts.push('<span class="mi-pl-ic sub in" title="Inbytt">▲</span>');
+    if (!parts.length) return "";
+    return '<span class="mi-pl-badges">' + parts.join("") + "</span>";
+  }
+
+  function lineupPlayerRow(p, side, evMap) {
+    var ev = evMap[normName(p.name)];
+    var badges = playerBadgesHtml(ev);
+    if (side === "home") {
+      return '<div class="mi-pl-row home">' +
+        '<span class="mi-pl-nr">' + esc(p.jersey || "") + "</span>" +
+        '<span class="mi-pl-name">' + esc(p.name) + "</span>" +
+        badges +
+        "</div>";
+    }
+    return '<div class="mi-pl-row away">' +
+      badges +
+      '<span class="mi-pl-name">' + esc(p.name) + "</span>" +
+      '<span class="mi-pl-nr">' + esc(p.jersey || "") + "</span>" +
+      "</div>";
+  }
+
+  function lineupPairRows(hPlayers, aPlayers, evMap) {
+    var max = Math.max(hPlayers.length, aPlayers.length);
+    var h = "";
+    var i;
+    for (i = 0; i < max; i++) {
+      h += '<div class="mi-pl-pair">';
+      if (i < hPlayers.length) h += lineupPlayerRow(hPlayers[i], "home", evMap);
+      else h += '<div class="mi-pl-row home empty"></div>';
+      if (i < aPlayers.length) h += lineupPlayerRow(aPlayers[i], "away", evMap);
+      else h += '<div class="mi-pl-row away empty"></div>';
+      h += "</div>";
+    }
+    return h;
+  }
 
   function coachOf(teamObj) {
     if (!teamObj || !teamObj.iso || !window.VMPlayers) return null;
@@ -260,45 +345,42 @@
     return t && t.coach ? t.coach : null;
   }
 
-  function lineupSideHtml(side, teamObj, fallbackName, cls) {
-    var h = '<div class="mi-lineup ' + cls + '">';
-    h += '<div class="mi-lu-head">' + flagImg(teamObj && teamObj.iso) +
-      '<span class="mi-lu-team">' + esc(teamName(teamObj, fallbackName)) + '</span>' +
-      (side.formation ? '<span class="mi-lu-form">' + esc(side.formation) + '</span>' : '') +
-      '</div>';
-    var coach = coachOf(teamObj);
-    if (coach) {
-      h += '<div class="mi-lu-coach">Förbundskapten: <b>' + esc(coach) + '</b></div>';
-    }
-    h += '<ul class="mi-lu-list">';
-    (side.starters || []).forEach(function (p) {
-      h += '<li><span class="mi-lu-nr">' + esc(p.jersey || "") + '</span>' +
-        '<span class="mi-lu-name">' + esc(p.name) + '</span>' +
-        (p.pos ? '<span class="mi-lu-pos">' + esc(p.pos) + '</span>' : '') +
-        '</li>';
-    });
-    h += '</ul>';
-    var bench = side.bench || [];
-    if (bench.length) {
-      var parts = bench.map(function (p) {
-        var label = esc(p.name) + (p.jersey ? " (" + esc(p.jersey) + ")" : "");
-        return p.in ? '<b title="Inbytt">' + label + '</b>' : label;
-      });
-      h += '<div class="mi-lu-bench"><span class="mi-lu-bench-lbl">Avbytare:</span> ' +
-        parts.join(", ") + '</div>';
-    }
-    h += '</div>';
-    return h;
-  }
-
-  function lineupsHtml(info, det) {
+  function lineupsOverviewHtml(info, det) {
     var lu = det && det.lineups;
     if (!lu || !lu.h || !lu.a) return "";
-    return '<div class="mi-section-title">Startelvor</div>' +
-      '<div class="mi-lineups">' +
-      lineupSideHtml(lu.h, info.home, info.homeLabel, "home") +
-      lineupSideHtml(lu.a, info.away, info.awayLabel, "away") +
-      '</div>';
+    var evMap = buildPlayerEvents(det);
+    var hCoach = coachOf(info.home);
+    var aCoach = coachOf(info.away);
+    var h = '<div class="mi-lineups-overview">';
+    h += '<div class="mi-pl-form-row">' +
+      '<span class="mi-pl-col-head home">' + flagImg(info.home && info.home.iso) +
+        '<span>' + esc(teamName(info.home, info.homeLabel)) + "</span>" +
+        (lu.h.formation ? '<span class="mi-pl-form">' + esc(lu.h.formation) + "</span>" : "") +
+      "</span>" +
+      '<span class="mi-pl-col-head away">' +
+        (lu.a.formation ? '<span class="mi-pl-form">' + esc(lu.a.formation) + "</span>" : "") +
+        "<span>" + esc(teamName(info.away, info.awayLabel)) + "</span>" +
+        flagImg(info.away && info.away.iso) +
+      "</span></div>";
+    h += '<div class="mi-pl-section-label">Startelva</div>';
+    h += lineupPairRows(lu.h.starters || [], lu.a.starters || [], evMap);
+    h += '<div class="mi-pl-pair coaches">' +
+      '<div class="mi-pl-coach home">' +
+        '<span class="mi-pl-coach-tag">FK</span>' +
+        '<span class="mi-pl-coach-name">' + esc(hCoach || "–") + "</span>" +
+      "</div>" +
+      '<div class="mi-pl-coach away">' +
+        '<span class="mi-pl-coach-name">' + esc(aCoach || "–") + "</span>" +
+        '<span class="mi-pl-coach-tag">FK</span>' +
+      "</div></div>";
+    var benchH = lu.h.bench || [];
+    var benchA = lu.a.bench || [];
+    if (benchH.length || benchA.length) {
+      h += '<div class="mi-pl-section-label">Avbytare</div>';
+      h += lineupPairRows(benchH, benchA, evMap);
+    }
+    h += "</div>";
+    return h;
   }
 
   /* ---------- Matchstatistik ---------- */
@@ -317,10 +399,11 @@
     redCards: "Röda kort"
   };
 
-  function statsHtml(det) {
+  function statsHtml(det, noTitle) {
     var stats = (det && det.stats) || [];
     if (!stats.length) return "";
-    var h = '<div class="mi-section-title">Statistik</div><div class="mi-stats">';
+    var h = noTitle ? '<div class="mi-stats">' :
+      '<div class="mi-section-title">Statistik</div><div class="mi-stats">';
     stats.forEach(function (s) {
       var label = STAT_LABELS[s.key];
       if (!label) return;
@@ -362,14 +445,55 @@
     return '<div class="mi-section-title">Om matchen</div><div class="mi-facts">' + rows + "</div>";
   }
 
-  function emptyHint(info) {
-    if (info.live) {
-      return '<div class="mi-empty">Mål, kort och byten hämtas automatiskt och dyker upp här inom ett par minuter.</div>';
+  function emptyHintForTab(tab, info) {
+    if (tab === "events") {
+      if (info.live) {
+        return '<div class="mi-empty">Mål, kort och byten hämtas automatiskt och dyker upp här inom ett par minuter.</div>';
+      }
+      if (info.played) {
+        return '<div class="mi-empty">Matchhändelser för den här matchen är inte tillgängliga ännu.</div>';
+      }
+      return '<div class="mi-empty">Matchen har inte startat ännu.</div>';
     }
-    if (info.played) {
-      return '<div class="mi-empty">Detaljerad statistik för den här matchen är inte tillgänglig ännu.</div>';
+    if (tab === "lineups") {
+      if (info.live || info.played) {
+        return '<div class="mi-empty">Laguppställningen för den här matchen är inte tillgänglig ännu.</div>';
+      }
+      return '<div class="mi-empty">Startelvor publiceras närmare avspark.</div>';
     }
-    return '<div class="mi-empty">Matchen har inte startat ännu.</div>';
+    if (info.live || info.played) {
+      return '<div class="mi-empty">Statistik för den här matchen är inte tillgänglig ännu.</div>';
+    }
+    return '<div class="mi-empty">Statistik visas när matchen har startat.</div>';
+  }
+
+  function tabsHtml(info, det) {
+    var h = '<div class="mi-tabs" role="tablist">';
+    TABS.forEach(function (t) {
+      h += '<button type="button" class="mi-tab' + (activeTab === t.id ? " active" : "") +
+        '" role="tab" aria-selected="' + (activeTab === t.id) + '" data-mi-tab="' + t.id + '">' +
+        esc(t.label) + "</button>";
+    });
+    h += '</div><div class="mi-tab-panels">';
+
+    h += '<div class="mi-tab-panel' + (activeTab === "events" ? " active" : "") + '" data-mi-panel="events">';
+    var hasEvents = det && ((det.goals || []).length || (det.bookings || []).length || (det.subs || []).length);
+    if (hasEvents) h += timelineHtml(info, det, true);
+    else h += emptyHintForTab("events", info);
+    h += "</div>";
+
+    h += '<div class="mi-tab-panel' + (activeTab === "lineups" ? " active" : "") + '" data-mi-panel="lineups">';
+    if (det && det.lineups && det.lineups.h && det.lineups.a) h += lineupsOverviewHtml(info, det);
+    else h += emptyHintForTab("lineups", info);
+    h += "</div>";
+
+    h += '<div class="mi-tab-panel' + (activeTab === "stats" ? " active" : "") + '" data-mi-panel="stats">';
+    if (det && det.stats && det.stats.length) h += statsHtml(det, true);
+    else h += emptyHintForTab("stats", info);
+    h += "</div>";
+
+    h += "</div>";
+    return h;
   }
 
   function renderModal() {
@@ -404,12 +528,7 @@
     if (det && det.score && det.score.pen) subScore.push("Straffar " + det.score.pen.h + "–" + det.score.pen.a);
     if (subScore.length) h += '<div class="mi-subscore">' + esc(subScore.join(" · ")) + '</div>';
 
-    var hasEvents = det && ((det.goals || []).length || (det.bookings || []).length || (det.subs || []).length);
-    if (hasEvents) h += timelineHtml(info, det);
-    else if (detailsLoaded || !det) h += emptyHint(info);
-
-    h += lineupsHtml(info, det);
-    h += statsHtml(det);
+    h += tabsHtml(info, det);
     h += factsHtml(info, det);
 
     h += '<div class="mi-note">Matchdata: ESPN' +
@@ -419,6 +538,12 @@
 
     card.innerHTML = h;
     card.querySelector(".mi-close").addEventListener("click", close);
+    card.querySelectorAll("[data-mi-tab]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        activeTab = btn.getAttribute("data-mi-tab");
+        renderModal();
+      });
+    });
   }
 
   /* ---------- Init ---------- */

@@ -702,7 +702,7 @@
     groups: { title: "Gruppspel", sub: "11 juni – 19 juli · 48 lag · 104 matcher" },
     bracket: { title: "Slutspel", sub: "" },
     calendar: { title: "Kalender", sub: "Alla matcher · grupp- & slutspelsfas" },
-    players: { title: "Spelarstatistik", sub: "Mål · assist · kort – samlas in automatiskt från matcherna" }
+    players: { title: "Statistik", sub: "Spelare & lag · samlas in automatiskt från matcherna" }
   };
 
   /* Vytitel (Gruppspel/Slutspel/Kalender) visas i innehållsytan,
@@ -857,7 +857,7 @@
     if (window.VMPlayerStats && typeof window.VMPlayerStats.mount === "function") {
       window.VMPlayerStats.mount(viewEl);
     } else {
-      viewEl.innerHTML = '<p class="note">Spelarstatistiken kunde inte laddas.</p>';
+      viewEl.innerHTML = '<p class="note">Statistiken kunde inte laddas.</p>';
     }
   }
 
@@ -1574,14 +1574,14 @@
     });
 
     var liveOnes = candidates.filter(function (c) { return c.live; });
-    if (liveOnes.length) return { live: true, kickoff: liveOnes[0].ko, matches: liveOnes };
+    if (liveOnes.length) return { live: true, kickoff: liveOnes[0].ko, matches: liveOnes.slice(0, 2) };
 
     var future = candidates.filter(function (c) { return c.ko >= now - twoH; });
     if (!future.length) return { live: false, kickoff: null, matches: [] };
 
     future.sort(function (a, b) { return a.ko - b.ko; });
     var best = future[0].ko;
-    return { live: false, kickoff: best, matches: future.filter(function (c) { return c.ko === best; }) };
+    return { live: false, kickoff: best, matches: future.slice(0, 2) };
   }
 
   function nextMatchTimerUnit(id, val, lbl) {
@@ -1589,9 +1589,12 @@
   }
 
   function nextMatchItemHtml(m) {
-    return '<div class="nm-item"><span class="nm-meta">' + esc(m.label) + " · " + esc(m.whenText) + "</span>" +
-      '<span class="nm-teams">' + esc(m.teams) + "</span>" +
-      (m.channel ? tvChHtml(m.channel) : "") + "</div>";
+    var whenLine = m.label ? esc(m.label) + " · " + esc(m.whenText) : esc(m.whenText);
+    return '<div class="nm-spot-row' + (m.live ? " is-live" : "") + '">' +
+      '<span class="nm-spot-when">' + whenLine + "</span>" +
+      '<span class="nm-spot-teams">' + esc(m.teams) + "</span>" +
+      spotlightTvHtml(m.channel) +
+      "</div>";
   }
 
   var TEAM_SPOTLIGHT = [
@@ -1689,8 +1692,9 @@
         '<span class="nm-spot-when nm-muted">–</span>' +
         '<span class="nm-spot-teams nm-muted">Ingen match</span></button>';
     }
+    var whenLine = m.label ? esc(m.label) + " · " + esc(m.whenText) : esc(m.whenText);
     return '<button type="button" class="nm-spot-row team-open' + (m.live ? " is-live" : "") + '" data-team-open="' + tp.iso + '">' +
-      '<span class="nm-spot-when">' + esc(m.whenText) + "</span>" +
+      '<span class="nm-spot-when">' + whenLine + "</span>" +
       '<span class="nm-spot-teams"' + (m.teamsFull && m.teamsFull !== m.teams ? ' title="' + esc(m.teamsFull) + '"' : "") + ">" + esc(m.teams) + "</span>" +
       spotlightTvHtml(m.channel) +
       "</button>";
@@ -1706,9 +1710,15 @@
       return a.match.kickoff - b.match.kickoff;
     });
     var anyLive = teams.some(function (t) { return t.match && t.match.live; });
-    var h = '<div class="next-matches teams-spotlight' + (anyLive ? " is-live" : "") + '">';
+    var h = '<div class="next-matches teams-spotlight' + (anyLive ? " is-live" : "") + '" id="teamsSpotlight">';
     h += '<div class="nm-head"><span class="nm-title">' +
-      flagImg("se") + flagImg("uy") + "Sverige & Uruguay</span></div>";
+      flagImg("se") + flagImg("uy") + "Sverige & Uruguay</span>";
+    if (anyLive) {
+      h += '<span class="nm-live"><span class="live-dot"></span>Pågår nu</span>';
+    } else {
+      h += '<span class="nm-head-spacer" aria-hidden="true"></span>';
+    }
+    h += "</div>";
     h += '<div class="nm-spot-list">';
     teams.forEach(function (tp) { h += teamSpotlightItemHtml(tp); });
     h += "</div></div>";
@@ -1852,10 +1862,10 @@
     var next = findNextMatches(ctx, { excludeLive: !!excludeLive });
     if (!next.matches.length) {
       return '<div class="next-matches empty" id="nextMatches">' +
-        '<span class="nm-title">Nästa match</span>' +
+        '<span class="nm-title">Nästa matcher</span>' +
         '<p class="nm-empty">Inga kvarvarande matcher</p></div>';
     }
-    var title = next.matches.length > 1 ? "Nästa matcher" : "Nästa match";
+    var title = "Nästa matcher";
     var h = '<div class="next-matches' + (next.live ? " is-live" : "") + '" id="nextMatches" ' +
       'data-kickoff="' + (next.kickoff || "") + '" data-live="' + (next.live ? "1" : "0") + '">';
     h += '<div class="nm-head"><span class="nm-title">' + title + '</span>';
@@ -1870,7 +1880,7 @@
         nextMatchTimerUnit("nm-s", pad(p.s), "s") +
         "</div>";
     }
-    h += '</div><div class="nm-list">';
+    h += '</div><div class="nm-spot-list">';
     next.matches.forEach(function (m) {
       h += nextMatchItemHtml(m);
     });
@@ -1878,20 +1888,24 @@
     return h;
   }
 
-  function updateNextCountdown() {
-    var el = document.getElementById("nextMatches");
+  function updatePanelCountdown(panelId, prefix) {
+    var el = document.getElementById(panelId);
     if (!el || el.getAttribute("data-live") === "1") return;
     var ko = parseInt(el.getAttribute("data-kickoff"), 10);
     if (!ko) return;
     var p = countdownParts(ko);
-    var d = document.getElementById("nm-d");
-    var hrs = document.getElementById("nm-h");
-    var mins = document.getElementById("nm-m");
-    var secs = document.getElementById("nm-s");
+    var d = document.getElementById(prefix + "-d");
+    var hrs = document.getElementById(prefix + "-h");
+    var mins = document.getElementById(prefix + "-m");
+    var secs = document.getElementById(prefix + "-s");
     if (d) d.textContent = p.d;
     if (hrs) hrs.textContent = pad(p.h);
     if (mins) mins.textContent = pad(p.m);
     if (secs) secs.textContent = pad(p.s);
+  }
+
+  function updateNextCountdown() {
+    updatePanelCountdown("nextMatches", "nm");
   }
 
   /** Nyckel, matchobjekt och spelad-status för kalenderpost. */
