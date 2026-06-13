@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-13T22:42:32.579Z",
+    "updatedAt": "2026-06-13T23:47:00.443Z",
     "source": "espn"
   },
   "details": {
@@ -2281,7 +2281,7 @@
     "g:C:0": {
       "espnId": "760419",
       "status": "IN_PLAY",
-      "minute": 38,
+      "minute": 82,
       "utcDate": "2026-06-13T22:00Z",
       "duration": "REGULAR",
       "winner": null,
@@ -2290,7 +2290,10 @@
           "h": 1,
           "a": 1
         },
-        "ht": null,
+        "ht": {
+          "h": 1,
+          "a": 1
+        },
         "rt": null,
         "et": null,
         "pen": null
@@ -2327,9 +2330,70 @@
           "team": "h",
           "player": "Casemiro",
           "card": "YELLOW"
+        },
+        {
+          "minute": 43,
+          "team": "h",
+          "player": "Roger Ibañez",
+          "card": "YELLOW"
         }
       ],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Danilo",
+          "out": "Roger Ibañez"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Fabinho",
+          "out": "Casemiro"
+        },
+        {
+          "minute": 61,
+          "team": "h",
+          "in": "Matheus Cunha",
+          "out": "Lucas Paquetá"
+        },
+        {
+          "minute": 62,
+          "team": "h",
+          "in": "Luiz Henrique",
+          "out": "Igor Thiago"
+        },
+        {
+          "minute": 65,
+          "team": "a",
+          "in": "Samir El Mourabet",
+          "out": "Azzedine Ounahi"
+        },
+        {
+          "minute": 65,
+          "team": "a",
+          "in": "Chemsdine Talbi",
+          "out": "Brahim Díaz"
+        },
+        {
+          "minute": 80,
+          "team": "a",
+          "in": "Anass Salah-Eddine",
+          "out": "Noussair Mazraoui"
+        },
+        {
+          "minute": 80,
+          "team": "a",
+          "in": "Ayoube Amaimouni",
+          "out": "Bilal El Khannouss"
+        },
+        {
+          "minute": 80,
+          "team": "h",
+          "in": "Danilo Santos",
+          "out": "Bruno Guimarães"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -2394,7 +2458,8 @@
           "bench": [
             {
               "name": "Matheus Cunha",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Ederson",
@@ -2410,7 +2475,8 @@
             },
             {
               "name": "Fabinho",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Éderson",
@@ -2418,7 +2484,8 @@
             },
             {
               "name": "Luiz Henrique",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Gabriel Martinelli",
@@ -2426,7 +2493,8 @@
             },
             {
               "name": "Danilo",
-              "jersey": "13"
+              "jersey": "13",
+              "in": true
             },
             {
               "name": "Alex Sandro",
@@ -2438,7 +2506,8 @@
             },
             {
               "name": "Danilo Santos",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true
             },
             {
               "name": "Bremer",
@@ -2469,8 +2538,8 @@
               "pos": "LB"
             },
             {
-              "name": "Neil El Aynaoui",
-              "jersey": "24",
+              "name": "Ayyoub Bouaddi",
+              "jersey": "6",
               "pos": "LM"
             },
             {
@@ -2489,8 +2558,8 @@
               "pos": "AM-R"
             },
             {
-              "name": "Ayyoub Bouaddi",
-              "jersey": "6",
+              "name": "Neil El Aynaoui",
+              "jersey": "24",
               "pos": "RM"
             },
             {
@@ -2520,7 +2589,8 @@
             },
             {
               "name": "Chemsdine Talbi",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Soufiane Rahimi",
@@ -2528,7 +2598,8 @@
             },
             {
               "name": "Ayoube Amaimouni",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Gessime Yassine",
@@ -2536,11 +2607,13 @@
             },
             {
               "name": "Samir El Mourabet",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Anass Salah-Eddine",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Ayoub El Kaabi",
@@ -2579,52 +2652,52 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "52%",
-          "a": "48%"
+          "h": "55%",
+          "a": "45%"
         },
         {
           "key": "totalShots",
-          "h": "4",
+          "h": "10",
           "a": "12"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
+          "h": "4",
           "a": "2"
         },
         {
           "key": "wonCorners",
-          "h": "1",
+          "h": "4",
           "a": "0"
         },
         {
           "key": "foulsCommitted",
-          "h": "5",
-          "a": "5"
+          "h": "14",
+          "a": "12"
         },
         {
           "key": "offsides",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "saves",
           "h": "1",
-          "a": "0"
+          "a": "3"
         },
         {
           "key": "totalPasses",
-          "h": "189",
-          "a": "170"
+          "h": "452",
+          "a": "373"
         },
         {
           "key": "passPct",
-          "h": "86%",
-          "a": "88%"
+          "h": "88%",
+          "a": "86%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
+          "h": "2",
           "a": "0"
         },
         {
@@ -2633,7 +2706,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-13T22:42:32.579Z"
+      "updatedAt": "2026-06-13T23:47:00.443Z"
     }
   }
 }
