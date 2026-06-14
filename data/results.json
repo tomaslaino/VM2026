@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-14T02:03:39.475Z",
+    "updatedAt": "2026-06-14T06:53:20.674Z",
     "source": "espn",
-    "matchCount": 7,
-    "liveCount": 1,
+    "matchCount": 8,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -40,19 +40,15 @@
     "g:C:1": {
       "h": 1,
       "a": 0,
-      "status": "PAUSED"
+      "status": "FINISHED"
+    },
+    "g:D:1": {
+      "h": 2,
+      "a": 0,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:C:1",
-      "status": "PAUSED",
-      "minute": 45,
-      "home": "Scotland",
-      "away": "Haiti",
-      "score": "1-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -160,7 +156,7 @@
       "date": "2026-06-14",
       "time": "03:00",
       "utcDate": "2026-06-14T01:00Z",
-      "status": "PAUSED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Scotland",
       "away": "Haiti",
@@ -177,7 +173,7 @@
       "date": "2026-06-14",
       "time": "06:00",
       "utcDate": "2026-06-14T04:00Z",
-      "status": "TIMED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Australia",
       "away": "Türkiye",
@@ -1734,19 +1730,19 @@
     ],
     "C": [
       {
-        "idx": 1,
+        "idx": 2,
         "position": 1,
         "pld": 1,
-        "w": 0,
-        "d": 1,
+        "w": 1,
+        "d": 0,
         "l": 0,
         "gf": 1,
-        "ga": 1,
-        "gd": 0,
-        "pts": 1
+        "ga": 0,
+        "gd": 1,
+        "pts": 3
       },
       {
-        "idx": 0,
+        "idx": 1,
         "position": 2,
         "pld": 1,
         "w": 0,
@@ -1758,27 +1754,27 @@
         "pts": 1
       },
       {
-        "idx": 3,
+        "idx": 0,
         "position": 3,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "gf": 1,
+        "ga": 1,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       },
       {
-        "idx": 2,
+        "idx": 3,
         "position": 4,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
         "d": 0,
-        "l": 0,
+        "l": 1,
         "gf": 0,
-        "ga": 0,
-        "gd": 0,
+        "ga": 1,
+        "gd": -1,
         "pts": 0
       }
     ],
@@ -1796,27 +1792,27 @@
         "pts": 3
       },
       {
-        "idx": 3,
+        "idx": 2,
         "position": 2,
-        "pld": 0,
-        "w": 0,
+        "pld": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
+        "gf": 2,
         "ga": 0,
-        "gd": 0,
-        "pts": 0
+        "gd": 2,
+        "pts": 3
       },
       {
-        "idx": 2,
+        "idx": 3,
         "position": 3,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
         "d": 0,
-        "l": 0,
+        "l": 1,
         "gf": 0,
-        "ga": 0,
-        "gd": 0,
+        "ga": 2,
+        "gd": -2,
         "pts": 0
       },
       {

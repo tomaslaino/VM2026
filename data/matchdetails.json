@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-14T02:03:39.520Z",
+    "updatedAt": "2026-06-14T06:53:20.864Z",
     "source": "espn"
   },
   "details": {
@@ -2717,17 +2717,20 @@
     },
     "g:C:1": {
       "espnId": "760418",
-      "status": "PAUSED",
-      "minute": 45,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-14T01:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
           "h": 1,
           "a": 0
         },
-        "ht": null,
+        "ht": {
+          "h": 1,
+          "a": 0
+        },
         "rt": null,
         "et": null,
         "pen": null
@@ -2752,9 +2755,76 @@
           "team": "a",
           "player": "Jean-Ricner Bellegarde",
           "card": "YELLOW"
+        },
+        {
+          "minute": 46,
+          "team": "h",
+          "player": "Aaron Hickey",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Findlay Curtis",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Kenny McLean",
+          "card": "YELLOW"
         }
       ],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 61,
+          "team": "a",
+          "in": "Josué Casimir",
+          "out": "Louicius Deedson"
+        },
+        {
+          "minute": 75,
+          "team": "h",
+          "in": "Ryan Christie",
+          "out": "Ben Gannon-Doak"
+        },
+        {
+          "minute": 75,
+          "team": "h",
+          "in": "Lyndon Dykes",
+          "out": "Ché Adams"
+        },
+        {
+          "minute": 75,
+          "team": "h",
+          "in": "Nathan Patterson",
+          "out": "Aaron Hickey"
+        },
+        {
+          "minute": 76,
+          "team": "a",
+          "in": "Lenny Joseph",
+          "out": "Wilson Isidor"
+        },
+        {
+          "minute": 83,
+          "team": "h",
+          "in": "Findlay Curtis",
+          "out": "John McGinn"
+        },
+        {
+          "minute": 83,
+          "team": "h",
+          "in": "Kenny McLean",
+          "out": "Lawrence Shankland"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Yassin Fortuné",
+          "out": "Ruben Providence"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -2823,7 +2893,8 @@
             },
             {
               "name": "Nathan Patterson",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "John Souttar",
@@ -2831,7 +2902,8 @@
             },
             {
               "name": "Ryan Christie",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Tyler Fletcher",
@@ -2851,15 +2923,18 @@
             },
             {
               "name": "Lyndon Dykes",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Kenny McLean",
-              "jersey": "23"
+              "jersey": "23",
+              "in": true
             },
             {
               "name": "Findlay Curtis",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "George Hirst",
@@ -2957,11 +3032,13 @@
             },
             {
               "name": "Josué Casimir",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Lenny Joseph",
-              "jersey": "16"
+              "jersey": "16",
+              "in": true
             },
             {
               "name": "Garven Metusala",
@@ -2997,59 +3074,495 @@
             },
             {
               "name": "Yassin Fortuné",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             }
           ]
         }
       },
       "referee": "Mustapha Ghorbal",
       "venue": "Gillette Stadium, Foxborough, Massachusetts",
-      "attendance": null,
+      "attendance": 64146,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "55%",
-          "a": "45%"
+          "h": "46%",
+          "a": "54%"
         },
         {
           "key": "totalShots",
-          "h": "7",
-          "a": "8"
+          "h": "9",
+          "a": "15"
         },
         {
           "key": "shotsOnTarget",
           "h": "2",
-          "a": "1"
+          "a": "2"
         },
         {
           "key": "wonCorners",
-          "h": "0",
-          "a": "0"
+          "h": "3",
+          "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "9",
-          "a": "13"
+          "h": "21",
+          "a": "23"
         },
         {
           "key": "offsides",
-          "h": "0",
+          "h": "1",
           "a": "3"
         },
         {
           "key": "saves",
-          "h": "1",
+          "h": "2",
           "a": "1"
         },
         {
           "key": "totalPasses",
-          "h": "239",
-          "a": "190"
+          "h": "374",
+          "a": "431"
         },
         {
           "key": "passPct",
-          "h": "85%",
-          "a": "86%"
+          "h": "82%",
+          "a": "85%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "3",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-14T06:53:20.863Z"
+    },
+    "g:D:1": {
+      "espnId": "760421",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-14T04:00Z",
+      "duration": "REGULAR",
+      "winner": "HOME_TEAM",
+      "score": {
+        "ft": {
+          "h": 2,
+          "a": 0
+        },
+        "ht": {
+          "h": 1,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 27,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Nestory Irankunda",
+          "assist": "Paul Okon-Engstler",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        },
+        {
+          "minute": 75,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Connor Metcalfe",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 0
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 86,
+          "team": "a",
+          "player": "Yunus Akgün",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Kenan Yildiz",
+          "out": "Baris Alper Yilmaz"
+        },
+        {
+          "minute": 61,
+          "team": "h",
+          "in": "Nishan Velupillay",
+          "out": "Nestory Irankunda"
+        },
+        {
+          "minute": 62,
+          "team": "a",
+          "in": "Yunus Akgün",
+          "out": "Orkun Kökçü"
+        },
+        {
+          "minute": 74,
+          "team": "h",
+          "in": "Tete Yengi",
+          "out": "Mohamed Toure"
+        },
+        {
+          "minute": 74,
+          "team": "h",
+          "in": "Jason Geria",
+          "out": "Jacob Italiano"
+        },
+        {
+          "minute": 81,
+          "team": "a",
+          "in": "Salih Özcan",
+          "out": "Ismail Yüksek"
+        },
+        {
+          "minute": 81,
+          "team": "a",
+          "in": "Mert Müldür",
+          "out": "Zeki Çelik"
+        },
+        {
+          "minute": 84,
+          "team": "h",
+          "in": "Aziz Behich",
+          "out": "Jordan Bos"
+        },
+        {
+          "minute": 84,
+          "team": "h",
+          "in": "Jackson Irvine",
+          "out": "Paul Okon-Engstler"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Deniz Gül",
+          "out": "Kerem Aktürkoglu"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "5-4-1",
+          "starters": [
+            {
+              "name": "Patrick Beach",
+              "jersey": "18",
+              "pos": "G"
+            },
+            {
+              "name": "Jacob Italiano",
+              "jersey": "4",
+              "pos": "RB"
+            },
+            {
+              "name": "Jordan Bos",
+              "jersey": "5",
+              "pos": "LB"
+            },
+            {
+              "name": "Cameron Burgess",
+              "jersey": "21",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Harry Souttar",
+              "jersey": "19",
+              "pos": "CD"
+            },
+            {
+              "name": "Alessandro Circati",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Connor Metcalfe",
+              "jersey": "8",
+              "pos": "RM"
+            },
+            {
+              "name": "Aiden O'Neill",
+              "jersey": "13",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Mohamed Toure",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Paul Okon-Engstler",
+              "jersey": "24",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Nestory Irankunda",
+              "jersey": "17",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Mathew Ryan",
+              "jersey": "1"
+            },
+            {
+              "name": "Kai Trewin",
+              "jersey": "15"
+            },
+            {
+              "name": "Cameron Devlin",
+              "jersey": "14"
+            },
+            {
+              "name": "Paul Izzo",
+              "jersey": "12"
+            },
+            {
+              "name": "Cristian Volpato",
+              "jersey": "20"
+            },
+            {
+              "name": "Jason Geria",
+              "jersey": "6",
+              "in": true
+            },
+            {
+              "name": "Awer Mabil",
+              "jersey": "11"
+            },
+            {
+              "name": "Aziz Behich",
+              "jersey": "16",
+              "in": true
+            },
+            {
+              "name": "Mathew Leckie",
+              "jersey": "7"
+            },
+            {
+              "name": "Ajdin Hrustic",
+              "jersey": "10"
+            },
+            {
+              "name": "Tete Yengi",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Lucas Herrington",
+              "jersey": "25"
+            },
+            {
+              "name": "Milos Degenek",
+              "jersey": "2"
+            },
+            {
+              "name": "Jackson Irvine",
+              "jersey": "22",
+              "in": true
+            },
+            {
+              "name": "Nishan Velupillay",
+              "jersey": "23",
+              "in": true
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Ugurcan Çakir",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Zeki Çelik",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Ferdi Kadioglu",
+              "jersey": "20",
+              "pos": "LB"
+            },
+            {
+              "name": "Hakan Çalhanoglu",
+              "jersey": "10",
+              "pos": "LM"
+            },
+            {
+              "name": "Merih Demiral",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Abdülkerim Bardakçi",
+              "jersey": "14",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Arda Güler",
+              "jersey": "8",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Ismail Yüksek",
+              "jersey": "16",
+              "pos": "RM"
+            },
+            {
+              "name": "Kerem Aktürkoglu",
+              "jersey": "7",
+              "pos": "F"
+            },
+            {
+              "name": "Orkun Kökçü",
+              "jersey": "6",
+              "pos": "AM"
+            },
+            {
+              "name": "Baris Alper Yilmaz",
+              "jersey": "21",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Yunus Akgün",
+              "jersey": "19",
+              "in": true
+            },
+            {
+              "name": "Deniz Gül",
+              "jersey": "9",
+              "in": true
+            },
+            {
+              "name": "Kaan Ayhan",
+              "jersey": "22"
+            },
+            {
+              "name": "Kenan Yildiz",
+              "jersey": "11",
+              "in": true
+            },
+            {
+              "name": "Oguz Aydin",
+              "jersey": "24"
+            },
+            {
+              "name": "Altay Bayindir",
+              "jersey": "12"
+            },
+            {
+              "name": "Salih Özcan",
+              "jersey": "5",
+              "in": true
+            },
+            {
+              "name": "Can Uzun",
+              "jersey": "26"
+            },
+            {
+              "name": "Ozan Kabak",
+              "jersey": "15"
+            },
+            {
+              "name": "Samet Akaydin",
+              "jersey": "25"
+            },
+            {
+              "name": "Irfan Can Kahveci",
+              "jersey": "17"
+            },
+            {
+              "name": "Çaglar Söyüncü",
+              "jersey": "4"
+            },
+            {
+              "name": "Eren Elmali",
+              "jersey": "13"
+            },
+            {
+              "name": "Mert Müldür",
+              "jersey": "18",
+              "in": true
+            },
+            {
+              "name": "Mert Günok",
+              "jersey": "1"
+            }
+          ]
+        }
+      },
+      "referee": "Jesús Valenzuela",
+      "venue": "BC Place, Vancouver",
+      "attendance": 52497,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "28%",
+          "a": "72%"
+        },
+        {
+          "key": "totalShots",
+          "h": "9",
+          "a": "30"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "4",
+          "a": "8"
+        },
+        {
+          "key": "wonCorners",
+          "h": "5",
+          "a": "8"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "12",
+          "a": "4"
+        },
+        {
+          "key": "offsides",
+          "h": "1",
+          "a": "3"
+        },
+        {
+          "key": "saves",
+          "h": "8",
+          "a": "2"
+        },
+        {
+          "key": "totalPasses",
+          "h": "270",
+          "a": "704"
+        },
+        {
+          "key": "passPct",
+          "h": "75%",
+          "a": "90%"
         },
         {
           "key": "yellowCards",
@@ -3062,7 +3575,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-14T02:03:39.496Z"
+      "updatedAt": "2026-06-14T06:53:20.776Z"
     }
   }
 }
