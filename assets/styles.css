@@ -2181,6 +2181,16 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   margin: 18px 0 8px; font-size: 11.5px; font-weight: 800;
   letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft);
 }
+
+/* Grupptabell i matchmodalen – speglar grupp-kortets lag-kolumn. */
+.mi-standings-wrap { overflow-x: auto; }
+.mi-standings { table-layout: fixed; width: 100%; }
+.mi-standings .c-team { overflow: hidden; padding-right: 8px !important; text-align: left; }
+.mi-standings .team { display: flex; align-items: center; gap: 8px; min-width: 0; max-width: 100%; }
+.mi-standings .t-name {
+  flex: 1 1 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
 .mi-timeline { display: flex; flex-direction: column; }
 .mi-ev {
   display: flex; align-items: center; gap: 10px;

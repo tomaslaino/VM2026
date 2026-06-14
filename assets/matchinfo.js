@@ -468,8 +468,16 @@
   }
 
   function tabsHtml(info, det) {
+    var gm = /^g:([A-L]):/.exec(info.key || "");
+    var groupLetter = gm ? gm[1] : null;
+
+    var tabs = TABS.slice();
+    if (groupLetter) tabs.push({ id: "table", label: "Tabell" });
+    // Säkerhetsnät: faller tillbaka till Händelser om aktiv flik saknas här.
+    if (!tabs.some(function (t) { return t.id === activeTab; })) activeTab = "events";
+
     var h = '<div class="mi-tabs" role="tablist">';
-    TABS.forEach(function (t) {
+    tabs.forEach(function (t) {
       h += '<button type="button" class="mi-tab' + (activeTab === t.id ? " active" : "") +
         '" role="tab" aria-selected="' + (activeTab === t.id) + '" data-mi-tab="' + t.id + '">' +
         esc(t.label) + "</button>";
@@ -491,6 +499,20 @@
     if (det && det.stats && det.stats.length) h += statsHtml(det, true);
     else h += emptyHintForTab("stats", info);
     h += "</div>";
+
+    if (groupLetter) {
+      h += '<div class="mi-tab-panel' + (activeTab === "table" ? " active" : "") + '" data-mi-panel="table">';
+      var isos = [info.home && info.home.iso, info.away && info.away.iso].filter(Boolean);
+      var tbl = (window.VMApp && typeof window.VMApp.groupTableHtml === "function")
+        ? window.VMApp.groupTableHtml(groupLetter, isos) : "";
+      if (tbl) {
+        h += '<div class="mi-section-title">Tabell · Grupp ' + esc(groupLetter) + '</div>' +
+          '<div class="mi-standings-wrap">' + tbl + '</div>';
+      } else {
+        h += '<div class="mi-empty">Tabellen är inte tillgänglig ännu.</div>';
+      }
+      h += "</div>";
+    }
 
     h += "</div>";
     return h;

@@ -894,8 +894,9 @@
       if (i < 2) rowCls = "r-adv";
       else if (i === 2) rowCls = opts.thirdQualified ? "r-third-q" : "r-third-o";
       if (opts.highlightTeam && s.team && s.team.iso === opts.highlightTeam.iso) rowCls += " r-highlight";
+      if (opts.highlightIsos && s.team && opts.highlightIsos.indexOf(s.team.iso) !== -1) rowCls += " r-highlight";
       var fpTitle = "Fair play: " + s.fp + " poäng (" + s.fpY + " gula, " + s.fpR + " röda kort)";
-      h += '<tr class="' + rowCls + '" data-team="' + s.team.iso + '">' +
+      h += '<tr class="' + rowCls + '"' + (opts.noLink ? '' : ' data-team="' + s.team.iso + '"') + '>' +
         '<td class="c-pos">' + (i + 1) + '</td>' +
         '<td class="c-team"><span class="team">' +
           flagImg(s.team.iso) + '<span class="t-name">' + esc(s.team.sv) + '</span></span></td>' +
@@ -910,6 +911,24 @@
         '<td class="c-pts">' + s.pts + '</td></tr>';
     });
     return h;
+  }
+
+  /** Kompakt grupptabell (HTML) för matchmodalen. highlightIsos markerar
+      lagen i den öppnade matchen. Raderna är icke-klickbara i modalen. */
+  function groupTableHtml(letter, highlightIsos) {
+    var ctx = getCtx();
+    var table = ctx.tables[letter];
+    if (!table) return "";
+    var thirdQualified = ctx.thirds.ranking.some(function (e) { return e.L === letter && e.qualified; });
+    return '<table class="standings standings-compact mi-standings"><thead><tr>' +
+      '<th class="c-pos">#</th><th class="c-team">Lag</th>' +
+      '<th class="c-stat" title="Spelade matcher">S</th>' +
+      '<th class="c-goals" title="Gjorda–insläppta mål">Mål</th>' +
+      '<th class="c-stat" title="Målskillnad">+/-</th>' +
+      '<th class="c-pts" title="Poäng">P</th>' +
+      '</tr></thead><tbody>' +
+      standingsRows(table, { thirdQualified: thirdQualified, compact: true, noLink: true, highlightIsos: highlightIsos || [] }) +
+      '</tbody></table>';
   }
 
   function groupCard(L, table, thirdQualified) {
@@ -2993,7 +3012,8 @@
     setSyncStatus: setSyncStatus,
     autoSync: autoSync,
     describeMatch: describeMatch,
-    setMatchDetails: setMatchDetails
+    setMatchDetails: setMatchDetails,
+    groupTableHtml: groupTableHtml
   };
 
   document.addEventListener("DOMContentLoaded", init);
