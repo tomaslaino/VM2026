@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-13T23:47:00.443Z",
+    "updatedAt": "2026-06-14T02:03:39.520Z",
     "source": "espn"
   },
   "details": {
@@ -2280,11 +2280,11 @@
     },
     "g:C:0": {
       "espnId": "760419",
-      "status": "IN_PLAY",
-      "minute": 82,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-13T22:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "DRAW",
       "score": {
         "ft": {
           "h": 1,
@@ -2392,6 +2392,12 @@
           "team": "h",
           "in": "Danilo Santos",
           "out": "Bruno Guimarães"
+        },
+        {
+          "minute": 89,
+          "team": "a",
+          "in": "Soufiane Rahimi",
+          "out": "Ismael Saibari"
         }
       ],
       "penalties": [],
@@ -2594,7 +2600,8 @@
             },
             {
               "name": "Soufiane Rahimi",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Ayoube Amaimouni",
@@ -2648,32 +2655,32 @@
       },
       "referee": "Slavko Vincici",
       "venue": "MetLife Stadium, East Rutherford, New Jersey",
-      "attendance": null,
+      "attendance": 80663,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "55%",
-          "a": "45%"
+          "h": "51%",
+          "a": "49%"
         },
         {
           "key": "totalShots",
-          "h": "10",
-          "a": "12"
+          "h": "12",
+          "a": "14"
         },
         {
           "key": "shotsOnTarget",
-          "h": "4",
-          "a": "2"
+          "h": "5",
+          "a": "3"
         },
         {
           "key": "wonCorners",
-          "h": "4",
-          "a": "0"
+          "h": "6",
+          "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "14",
-          "a": "12"
+          "h": "16",
+          "a": "14"
         },
         {
           "key": "offsides",
@@ -2682,17 +2689,17 @@
         },
         {
           "key": "saves",
-          "h": "1",
-          "a": "3"
+          "h": "2",
+          "a": "4"
         },
         {
           "key": "totalPasses",
-          "h": "452",
-          "a": "373"
+          "h": "513",
+          "a": "487"
         },
         {
           "key": "passPct",
-          "h": "88%",
+          "h": "87%",
           "a": "86%"
         },
         {
@@ -2706,7 +2713,356 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-13T23:47:00.443Z"
+      "updatedAt": "2026-06-14T02:03:39.520Z"
+    },
+    "g:C:1": {
+      "espnId": "760418",
+      "status": "PAUSED",
+      "minute": 45,
+      "utcDate": "2026-06-14T01:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 28,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "John McGinn",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 39,
+          "team": "a",
+          "player": "Jean-Ricner Bellegarde",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Angus Gunn",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Aaron Hickey",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Andy Robertson",
+              "jersey": "3",
+              "pos": "LB"
+            },
+            {
+              "name": "Scott McTominay",
+              "jersey": "4",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Grant Hanley",
+              "jersey": "5",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Jack Hendry",
+              "jersey": "13",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Ben Gannon-Doak",
+              "jersey": "17",
+              "pos": "RM"
+            },
+            {
+              "name": "Lewis Ferguson",
+              "jersey": "19",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Ché Adams",
+              "jersey": "10",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Lawrence Shankland",
+              "jersey": "20",
+              "pos": "CF-R"
+            },
+            {
+              "name": "John McGinn",
+              "jersey": "7",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Craig Gordon",
+              "jersey": "21"
+            },
+            {
+              "name": "Nathan Patterson",
+              "jersey": "22"
+            },
+            {
+              "name": "John Souttar",
+              "jersey": "15"
+            },
+            {
+              "name": "Ryan Christie",
+              "jersey": "11"
+            },
+            {
+              "name": "Tyler Fletcher",
+              "jersey": "8"
+            },
+            {
+              "name": "Anthony Ralston",
+              "jersey": "24"
+            },
+            {
+              "name": "Kieran Tierney",
+              "jersey": "6"
+            },
+            {
+              "name": "Ross Stewart",
+              "jersey": "14"
+            },
+            {
+              "name": "Lyndon Dykes",
+              "jersey": "9"
+            },
+            {
+              "name": "Kenny McLean",
+              "jersey": "23"
+            },
+            {
+              "name": "Findlay Curtis",
+              "jersey": "25"
+            },
+            {
+              "name": "George Hirst",
+              "jersey": "18"
+            },
+            {
+              "name": "Dominic Hyam",
+              "jersey": "16"
+            },
+            {
+              "name": "Scott McKenna",
+              "jersey": "26"
+            },
+            {
+              "name": "Liam Kelly",
+              "jersey": "12"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Johny Placide",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Carlens Arcus",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Martin Expérience",
+              "jersey": "8",
+              "pos": "LB"
+            },
+            {
+              "name": "Danley Jean Jacques",
+              "jersey": "17",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Ricardo Adé",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Hannes Delcroix",
+              "jersey": "5",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Louicius Deedson",
+              "jersey": "11",
+              "pos": "RM"
+            },
+            {
+              "name": "Jean-Ricner Bellegarde",
+              "jersey": "10",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Wilson Isidor",
+              "jersey": "18",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Frantzdy Pierrot",
+              "jersey": "20",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Ruben Providence",
+              "jersey": "15",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Josué Duverger",
+              "jersey": "23"
+            },
+            {
+              "name": "Carl Sainté",
+              "jersey": "6"
+            },
+            {
+              "name": "Duckens Nazon",
+              "jersey": "9"
+            },
+            {
+              "name": "Wilguens Paugain",
+              "jersey": "24"
+            },
+            {
+              "name": "Josué Casimir",
+              "jersey": "21"
+            },
+            {
+              "name": "Lenny Joseph",
+              "jersey": "16"
+            },
+            {
+              "name": "Garven Metusala",
+              "jersey": "14"
+            },
+            {
+              "name": "Jean-Kévin Duverne",
+              "jersey": "22"
+            },
+            {
+              "name": "Woodensky Pierre",
+              "jersey": "26"
+            },
+            {
+              "name": "Dominique Simon",
+              "jersey": "25"
+            },
+            {
+              "name": "Keeto Thermoncy",
+              "jersey": "3"
+            },
+            {
+              "name": "Alexandre Pierre",
+              "jersey": "12"
+            },
+            {
+              "name": "Markhus Lacroix",
+              "jersey": "13"
+            },
+            {
+              "name": "Derrick Etienne Jr.",
+              "jersey": "7"
+            },
+            {
+              "name": "Yassin Fortuné",
+              "jersey": "19"
+            }
+          ]
+        }
+      },
+      "referee": "Mustapha Ghorbal",
+      "venue": "Gillette Stadium, Foxborough, Massachusetts",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "55%",
+          "a": "45%"
+        },
+        {
+          "key": "totalShots",
+          "h": "7",
+          "a": "8"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "9",
+          "a": "13"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "3"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "239",
+          "a": "190"
+        },
+        {
+          "key": "passPct",
+          "h": "85%",
+          "a": "86%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-14T02:03:39.496Z"
     }
   }
 }

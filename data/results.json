@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-13T23:47:00.421Z",
+    "updatedAt": "2026-06-14T02:03:39.475Z",
     "source": "espn",
-    "matchCount": 6,
+    "matchCount": 7,
     "liveCount": 1,
     "apiCalls": 2
   },
@@ -35,17 +35,22 @@
     "g:C:0": {
       "h": 1,
       "a": 1,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
+    },
+    "g:C:1": {
+      "h": 1,
+      "a": 0,
+      "status": "PAUSED"
     }
   },
   "live": [
     {
-      "key": "g:C:0",
-      "status": "IN_PLAY",
-      "minute": 81,
-      "home": "Brazil",
-      "away": "Morocco",
-      "score": "1-1"
+      "key": "g:C:1",
+      "status": "PAUSED",
+      "minute": 45,
+      "home": "Scotland",
+      "away": "Haiti",
+      "score": "1-0"
     }
   ],
   "fixtures": {
@@ -138,7 +143,7 @@
       "date": "2026-06-14",
       "time": "00:00",
       "utcDate": "2026-06-13T22:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Brazil",
       "away": "Morocco",
@@ -155,7 +160,7 @@
       "date": "2026-06-14",
       "time": "03:00",
       "utcDate": "2026-06-14T01:00Z",
-      "status": "TIMED",
+      "status": "PAUSED",
       "matchday": null,
       "home": "Scotland",
       "away": "Haiti",
@@ -1729,31 +1734,31 @@
     ],
     "C": [
       {
-        "idx": 0,
+        "idx": 1,
         "position": 1,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "gf": 1,
+        "ga": 1,
         "gd": 0,
-        "pts": 0
+        "pts": 1
+      },
+      {
+        "idx": 0,
+        "position": 2,
+        "pld": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "gd": 0,
+        "pts": 1
       },
       {
         "idx": 3,
-        "position": 2,
-        "pld": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "pts": 0
-      },
-      {
-        "idx": 1,
         "position": 3,
         "pld": 0,
         "w": 0,
