@@ -43,7 +43,6 @@
     team: "",            // iso eller "" = alla
     group: "",           // A–L eller "" = alla
     pos: "",             // GK/DF/MF/FW eller "" = alla
-    onlyPlayed: false,
     limit: 50,
     sort: {
       players: { key: "points", dir: -1 },
@@ -431,7 +430,6 @@
   function filteredPlayerRows() {
     var q = norm(stateUi.q);
     return buildPlayerRows().filter(function (r) {
-      if (stateUi.onlyPlayed && !r.played) return false;
       if (stateUi.team && r.teamIso !== stateUi.team) return false;
       if (stateUi.group && r.letter !== stateUi.group) return false;
       if (stateUi.pos && r.pos !== stateUi.pos) return false;
@@ -444,7 +442,6 @@
   function filteredTeamRows() {
     var q = norm(stateUi.q);
     return buildTeamRows().filter(function (r) {
-      if (stateUi.onlyPlayed && r.played === 0) return false;
       if (stateUi.group && r.letter !== stateUi.group) return false;
       if (q && r.teamN.indexOf(q) === -1) return false;
       return true;
@@ -779,8 +776,6 @@
         '<input id="psSearch" type="search" autocomplete="off" placeholder="Sök lag…" ' +
           'aria-label="Sök lag" value="' + esc(stateUi.q) + '">' +
         '<select id="psGroup" aria-label="Filtrera på grupp">' + groupOpts() + "</select>" +
-        '<button type="button" class="ps-chip' + (stateUi.onlyPlayed ? " on" : "") + '" data-ps-played ' +
-          'title="Visa endast lag som spelat minst en match">Endast spelat</button>' +
         '<span class="ps-count" id="psCount"></span>' +
         "</div>";
     }
@@ -799,8 +794,6 @@
       '<select id="psTeam" aria-label="Filtrera på lag">' + teamOpts + "</select>" +
       '<select id="psGroup" aria-label="Filtrera på grupp">' + groupOpts() + "</select>" +
       '<select id="psPos" aria-label="Filtrera på position">' + posOpts + "</select>" +
-      '<button type="button" class="ps-chip' + (stateUi.onlyPlayed ? " on" : "") + '" data-ps-played ' +
-        'title="Visa endast spelare som spelat minst en minut i VM 2026">Endast spelat</button>' +
       '<span class="ps-count" id="psCount"></span>' +
       "</div>";
   }
@@ -876,12 +869,6 @@
         st.dir = (defs[key] && defs[key].type === "str") ? 1 : -1;
       }
       renderTable();
-      return;
-    }
-    if (e.target.closest && e.target.closest("[data-ps-played]")) {
-      stateUi.onlyPlayed = !stateUi.onlyPlayed;
-      stateUi.limit = 50;
-      render();
       return;
     }
     if (e.target.closest && e.target.closest("[data-ps-more]")) {

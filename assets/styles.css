@@ -968,6 +968,9 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .side.win { background: var(--adv-bg); font-weight: 800; }
 .side.win .s-name { font-weight: 800; }
 .side.prov .s-name { font-style: italic; color: var(--ink); font-weight: 500; }
+/* Oddsfavorit i "nästa match"-rundan – samma stil men något nedtonad. */
+.side.predicted .s-name { color: var(--ink-soft); }
+.prob-row { cursor: help; }
 .side.tbd .s-name { font-style: italic; color: var(--ink); font-weight: 500; font-size: 13px; }
 .s-name.placeholder { font-size: 13px; color: var(--ink); font-weight: 500; }
 /* TBD-platser i trädet visas som färgkodade chips (Etta grupp E, Vinnare match …) */
