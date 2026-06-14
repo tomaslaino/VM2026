@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-14T21:59:06.227Z",
+    "updatedAt": "2026-06-14T23:21:34.254Z",
     "source": "espn"
   },
   "details": {
@@ -4533,6 +4533,335 @@
         }
       ],
       "updatedAt": "2026-06-14T21:59:06.227Z"
+    },
+    "g:E:5": {
+      "espnId": "760423",
+      "status": "IN_PLAY",
+      "minute": 18,
+      "utcDate": "2026-06-14T23:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "3-4-3",
+          "starters": [
+            {
+              "name": "Hernán Galíndez",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Gonzalo Plata",
+              "jersey": "19",
+              "pos": "RM"
+            },
+            {
+              "name": "Piero Hincapié",
+              "jersey": "3",
+              "pos": "LM"
+            },
+            {
+              "name": "Willian Pacho",
+              "jersey": "6",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Joel Ordóñez",
+              "jersey": "4",
+              "pos": "CD"
+            },
+            {
+              "name": "Alan Franco",
+              "jersey": "21",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Moisés Caicedo",
+              "jersey": "23",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Pedro Vite",
+              "jersey": "15",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Enner Valencia",
+              "jersey": "13",
+              "pos": "F"
+            },
+            {
+              "name": "John Yeboah",
+              "jersey": "9",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Alan Minda",
+              "jersey": "14",
+              "pos": "CF-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Kevin Rodríguez",
+              "jersey": "11"
+            },
+            {
+              "name": "Gonzalo Valle",
+              "jersey": "22"
+            },
+            {
+              "name": "Pervis Estupiñán",
+              "jersey": "7"
+            },
+            {
+              "name": "Denil Castillo",
+              "jersey": "18"
+            },
+            {
+              "name": "Jordy Caicedo",
+              "jersey": "16"
+            },
+            {
+              "name": "Nilson Angulo",
+              "jersey": "20"
+            },
+            {
+              "name": "Anthony Valencia",
+              "jersey": "8"
+            },
+            {
+              "name": "Ángelo Preciado",
+              "jersey": "17"
+            },
+            {
+              "name": "Kendry Páez",
+              "jersey": "10"
+            },
+            {
+              "name": "Yaimar Medina",
+              "jersey": "26"
+            },
+            {
+              "name": "Jackson Porozo",
+              "jersey": "25"
+            },
+            {
+              "name": "Félix Torres",
+              "jersey": "2"
+            },
+            {
+              "name": "Jeremy Arévalo",
+              "jersey": "24"
+            },
+            {
+              "name": "Jordy Alcívar",
+              "jersey": "5"
+            },
+            {
+              "name": "Moisés Ramírez",
+              "jersey": "12"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Yahia Fofana",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Guela Doué",
+              "jersey": "17",
+              "pos": "RB"
+            },
+            {
+              "name": "Ghislain Konan",
+              "jersey": "3",
+              "pos": "LB"
+            },
+            {
+              "name": "Seko Fofana",
+              "jersey": "6",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Wilfried Singo",
+              "jersey": "5",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Emmanuel Agbadou",
+              "jersey": "20",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Yan Diomande",
+              "jersey": "11",
+              "pos": "RM"
+            },
+            {
+              "name": "Franck Kessié",
+              "jersey": "8",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Elye Wahi",
+              "jersey": "12",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Nicolas Pépé",
+              "jersey": "19",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Bazoumana Touré",
+              "jersey": "24",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Parfait Guiagon",
+              "jersey": "25"
+            },
+            {
+              "name": "Christ Inao Oulaï",
+              "jersey": "26"
+            },
+            {
+              "name": "Christopher Operi",
+              "jersey": "13"
+            },
+            {
+              "name": "Simon Adingra",
+              "jersey": "10"
+            },
+            {
+              "name": "Ange-Yoan Bonny",
+              "jersey": "9"
+            },
+            {
+              "name": "Oumar Diakité",
+              "jersey": "14"
+            },
+            {
+              "name": "Mohamed Koné",
+              "jersey": "16"
+            },
+            {
+              "name": "Ibrahim Sangaré",
+              "jersey": "18"
+            },
+            {
+              "name": "Ousmane Diomande",
+              "jersey": "2"
+            },
+            {
+              "name": "Evan Ndicka",
+              "jersey": "21"
+            },
+            {
+              "name": "Alban Lafont",
+              "jersey": "23"
+            },
+            {
+              "name": "Evann Guessand",
+              "jersey": "22"
+            },
+            {
+              "name": "Jean Michaël Seri",
+              "jersey": "4"
+            },
+            {
+              "name": "Amad Diallo",
+              "jersey": "15"
+            },
+            {
+              "name": "Odilon Kossounou",
+              "jersey": "7"
+            }
+          ]
+        }
+      },
+      "referee": "Francois Letexier",
+      "venue": "Lincoln Financial Field, Philadelphia, Pennsylvania",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "44%",
+          "a": "57%"
+        },
+        {
+          "key": "totalShots",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "1",
+          "a": "2"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "100",
+          "a": "130"
+        },
+        {
+          "key": "passPct",
+          "h": "83%",
+          "a": "83%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-14T23:21:34.254Z"
     }
   }
 }

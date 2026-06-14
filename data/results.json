@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-14T21:59:06.186Z",
+    "updatedAt": "2026-06-14T23:21:34.148Z",
     "source": "espn",
-    "matchCount": 10,
-    "liveCount": 0,
+    "matchCount": 11,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -56,9 +56,23 @@
       "h": 2,
       "a": 2,
       "status": "FINISHED"
+    },
+    "g:E:5": {
+      "h": 0,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:E:5",
+      "status": "IN_PLAY",
+      "minute": 4,
+      "home": "Ecuador",
+      "away": "Ivory Coast",
+      "score": "0-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -234,7 +248,7 @@
       "date": "2026-06-15",
       "time": "01:00",
       "utcDate": "2026-06-14T23:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Ecuador",
       "away": "Ivory Coast",
@@ -1852,7 +1866,7 @@
         "pts": 3
       },
       {
-        "idx": 1,
+        "idx": 2,
         "position": 2,
         "pld": 0,
         "w": 0,
@@ -1864,7 +1878,7 @@
         "pts": 0
       },
       {
-        "idx": 2,
+        "idx": 1,
         "position": 3,
         "pld": 0,
         "w": 0,
@@ -1892,26 +1906,26 @@
       {
         "idx": 1,
         "position": 1,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "gf": 2,
+        "ga": 2,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       },
       {
         "idx": 0,
         "position": 2,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "gf": 2,
+        "ga": 2,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       },
       {
         "idx": 3,
