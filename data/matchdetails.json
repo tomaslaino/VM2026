@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-14T18:58:58.496Z",
+    "updatedAt": "2026-06-14T20:42:18.368Z",
     "source": "espn"
   },
   "details": {
@@ -3579,11 +3579,11 @@
     },
     "g:E:4": {
       "espnId": "760422",
-      "status": "IN_PLAY",
-      "minute": 90,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-14T17:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 1,
@@ -4003,7 +4003,7 @@
       },
       "referee": "Jalal Jayed",
       "venue": "NRG Stadium, Houston, Texas",
-      "attendance": null,
+      "attendance": 68021,
       "stats": [
         {
           "key": "possessionPct",
@@ -4042,8 +4042,8 @@
         },
         {
           "key": "totalPasses",
-          "h": "336",
-          "a": "630"
+          "h": "341",
+          "a": "635"
         },
         {
           "key": "passPct",
@@ -4061,7 +4061,336 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-14T18:58:58.496Z"
+      "updatedAt": "2026-06-14T20:42:18.368Z"
+    },
+    "g:F:0": {
+      "espnId": "760425",
+      "status": "IN_PLAY",
+      "minute": 41,
+      "utcDate": "2026-06-14T20:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Bart Verbruggen",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Denzel Dumfries",
+              "jersey": "22",
+              "pos": "RB"
+            },
+            {
+              "name": "Micky van de Ven",
+              "jersey": "15",
+              "pos": "LB"
+            },
+            {
+              "name": "Frenkie de Jong",
+              "jersey": "21",
+              "pos": "CM"
+            },
+            {
+              "name": "Jan Paul van Hecke",
+              "jersey": "6",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Virgil van Dijk",
+              "jersey": "4",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Ryan Gravenberch",
+              "jersey": "8",
+              "pos": "RM"
+            },
+            {
+              "name": "Tijjani Reijnders",
+              "jersey": "14",
+              "pos": "LM"
+            },
+            {
+              "name": "Donyell Malen",
+              "jersey": "18",
+              "pos": "F"
+            },
+            {
+              "name": "Crysencio Summerville",
+              "jersey": "24",
+              "pos": "RF"
+            },
+            {
+              "name": "Cody Gakpo",
+              "jersey": "11",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Mats Wieffer",
+              "jersey": "12"
+            },
+            {
+              "name": "Lutsharel Geertruida",
+              "jersey": "2"
+            },
+            {
+              "name": "Justin Kluivert",
+              "jersey": "7"
+            },
+            {
+              "name": "Teun Koopmeiners",
+              "jersey": "20"
+            },
+            {
+              "name": "Guus Til",
+              "jersey": "16"
+            },
+            {
+              "name": "Robin Roefs",
+              "jersey": "13"
+            },
+            {
+              "name": "Quinten Timber",
+              "jersey": "26"
+            },
+            {
+              "name": "Nathan Aké",
+              "jersey": "5"
+            },
+            {
+              "name": "Wout Weghorst",
+              "jersey": "9"
+            },
+            {
+              "name": "Mark Flekken",
+              "jersey": "23"
+            },
+            {
+              "name": "Memphis Depay",
+              "jersey": "10"
+            },
+            {
+              "name": "Noa Lang",
+              "jersey": "17"
+            },
+            {
+              "name": "Marten de Roon",
+              "jersey": "3"
+            },
+            {
+              "name": "Jorrel Hato",
+              "jersey": "25"
+            },
+            {
+              "name": "Brian Brobbey",
+              "jersey": "19"
+            }
+          ]
+        },
+        "a": {
+          "formation": "3-4-2-1",
+          "starters": [
+            {
+              "name": "Zion Suzuki",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Ritsu Doan",
+              "jersey": "10",
+              "pos": "RM"
+            },
+            {
+              "name": "Keito Nakamura",
+              "jersey": "13",
+              "pos": "LM"
+            },
+            {
+              "name": "Hiroki Ito",
+              "jersey": "21",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Shogo Taniguchi",
+              "jersey": "3",
+              "pos": "CD"
+            },
+            {
+              "name": "Tsuyoshi Watanabe",
+              "jersey": "16",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Kaishu Sano",
+              "jersey": "24",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Daichi Kamada",
+              "jersey": "15",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Ayase Ueda",
+              "jersey": "18",
+              "pos": "F"
+            },
+            {
+              "name": "Takefusa Kubo",
+              "jersey": "8",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Daizen Maeda",
+              "jersey": "11",
+              "pos": "CF-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Junya Ito",
+              "jersey": "14"
+            },
+            {
+              "name": "Koki Ogawa",
+              "jersey": "19"
+            },
+            {
+              "name": "Yuto Nagatomo",
+              "jersey": "5"
+            },
+            {
+              "name": "Kento Shiogai",
+              "jersey": "26"
+            },
+            {
+              "name": "Keisuke Goto",
+              "jersey": "9"
+            },
+            {
+              "name": "Yuito Suzuki",
+              "jersey": "17"
+            },
+            {
+              "name": "Ayumu Seko",
+              "jersey": "20"
+            },
+            {
+              "name": "Tomoki Hayakawa",
+              "jersey": "23"
+            },
+            {
+              "name": "Shuto Machino",
+              "jersey": "6"
+            },
+            {
+              "name": "Kou Itakura",
+              "jersey": "4"
+            },
+            {
+              "name": "Junnosuke Suzuki",
+              "jersey": "25"
+            },
+            {
+              "name": "Keisuke Osako",
+              "jersey": "12"
+            },
+            {
+              "name": "Ao Tanaka",
+              "jersey": "7"
+            },
+            {
+              "name": "Yukinari Sugawara",
+              "jersey": "2"
+            },
+            {
+              "name": "Takehiro Tomiyasu",
+              "jersey": "22"
+            }
+          ]
+        }
+      },
+      "referee": "Ismail Elfath",
+      "venue": "AT&T Stadium, Arlington, Texas",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "70%",
+          "a": "30%"
+        },
+        {
+          "key": "totalShots",
+          "h": "4",
+          "a": "1"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "2",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "2",
+          "a": "2"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "2"
+        },
+        {
+          "key": "totalPasses",
+          "h": "273",
+          "a": "117"
+        },
+        {
+          "key": "passPct",
+          "h": "90%",
+          "a": "85%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-14T20:42:18.218Z"
     }
   }
 }

@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-14T18:58:58.468Z",
+    "updatedAt": "2026-06-14T20:42:18.146Z",
     "source": "espn",
-    "matchCount": 9,
+    "matchCount": 10,
     "liveCount": 1,
     "apiCalls": 2
   },
@@ -50,17 +50,22 @@
     "g:E:4": {
       "h": 1,
       "a": 7,
+      "status": "FINISHED"
+    },
+    "g:F:0": {
+      "h": 0,
+      "a": 0,
       "status": "IN_PLAY"
     }
   },
   "live": [
     {
-      "key": "g:E:4",
+      "key": "g:F:0",
       "status": "IN_PLAY",
-      "minute": 90,
-      "home": "Curaçao",
-      "away": "Germany",
-      "score": "1-7"
+      "minute": 21,
+      "home": "Netherlands",
+      "away": "Japan",
+      "score": "0-0"
     }
   ],
   "fixtures": {
@@ -204,7 +209,7 @@
       "date": "2026-06-14",
       "time": "19:00",
       "utcDate": "2026-06-14T17:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Curaçao",
       "away": "Germany",
@@ -221,7 +226,7 @@
       "date": "2026-06-14",
       "time": "22:00",
       "utcDate": "2026-06-14T20:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Netherlands",
       "away": "Japan",
@@ -1846,17 +1851,17 @@
       {
         "idx": 0,
         "position": 1,
-        "pld": 0,
-        "w": 0,
+        "pld": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "pts": 0
+        "gf": 7,
+        "ga": 1,
+        "gd": 6,
+        "pts": 3
       },
       {
-        "idx": 3,
+        "idx": 1,
         "position": 2,
         "pld": 0,
         "w": 0,
@@ -1880,21 +1885,21 @@
         "pts": 0
       },
       {
-        "idx": 1,
+        "idx": 3,
         "position": 4,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
         "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 7,
+        "gd": -6,
         "pts": 0
       }
     ],
     "F": [
       {
-        "idx": 0,
+        "idx": 1,
         "position": 1,
         "pld": 0,
         "w": 0,
@@ -1906,7 +1911,7 @@
         "pts": 0
       },
       {
-        "idx": 1,
+        "idx": 0,
         "position": 2,
         "pld": 0,
         "w": 0,
