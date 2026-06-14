@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-14T20:42:18.368Z",
+    "updatedAt": "2026-06-14T21:59:06.227Z",
     "source": "espn"
   },
   "details": {
@@ -4065,24 +4065,156 @@
     },
     "g:F:0": {
       "espnId": "760425",
-      "status": "IN_PLAY",
-      "minute": 41,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-14T20:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "DRAW",
       "score": {
         "ft": {
+          "h": 2,
+          "a": 2
+        },
+        "ht": {
           "h": 0,
           "a": 0
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
-      "bookings": [],
-      "subs": [],
+      "goals": [
+        {
+          "minute": 51,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Virgil van Dijk",
+          "assist": "Ryan Gravenberch",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        },
+        {
+          "minute": 57,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Keito Nakamura",
+          "assist": "Takefusa Kubo",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        },
+        {
+          "minute": 64,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Crysencio Summerville",
+          "assist": "Ryan Gravenberch",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 1
+          }
+        },
+        {
+          "minute": 88,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Daichi Kamada",
+          "assist": "Koki Ogawa",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 2
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 61,
+          "team": "h",
+          "player": "Crysencio Summerville",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 83,
+          "team": "h",
+          "player": "Memphis Depay",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Micky van de Ven",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 66,
+          "team": "a",
+          "in": "Junya Ito",
+          "out": "Daizen Maeda"
+        },
+        {
+          "minute": 70,
+          "team": "h",
+          "in": "Memphis Depay",
+          "out": "Donyell Malen"
+        },
+        {
+          "minute": 70,
+          "team": "h",
+          "in": "Teun Koopmeiners",
+          "out": "Crysencio Summerville"
+        },
+        {
+          "minute": 70,
+          "team": "h",
+          "in": "Quinten Timber",
+          "out": "Tijjani Reijnders"
+        },
+        {
+          "minute": 75,
+          "team": "a",
+          "in": "Yukinari Sugawara",
+          "out": "Ritsu Doan"
+        },
+        {
+          "minute": 75,
+          "team": "a",
+          "in": "Takehiro Tomiyasu",
+          "out": "Tsuyoshi Watanabe"
+        },
+        {
+          "minute": 75,
+          "team": "a",
+          "in": "Koki Ogawa",
+          "out": "Takefusa Kubo"
+        },
+        {
+          "minute": 81,
+          "team": "h",
+          "in": "Nathan Aké",
+          "out": "Ryan Gravenberch"
+        },
+        {
+          "minute": 84,
+          "team": "a",
+          "in": "Kento Shiogai",
+          "out": "Ayase Ueda"
+        },
+        {
+          "minute": 85,
+          "team": "h",
+          "in": "Brian Brobbey",
+          "out": "Cody Gakpo"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -4159,7 +4291,8 @@
             },
             {
               "name": "Teun Koopmeiners",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Guus Til",
@@ -4171,11 +4304,13 @@
             },
             {
               "name": "Quinten Timber",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Nathan Aké",
-              "jersey": "5"
+              "jersey": "5",
+              "in": true
             },
             {
               "name": "Wout Weghorst",
@@ -4187,7 +4322,8 @@
             },
             {
               "name": "Memphis Depay",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true
             },
             {
               "name": "Noa Lang",
@@ -4203,7 +4339,8 @@
             },
             {
               "name": "Brian Brobbey",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             }
           ]
         },
@@ -4269,11 +4406,13 @@
           "bench": [
             {
               "name": "Junya Ito",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Koki Ogawa",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Yuto Nagatomo",
@@ -4281,7 +4420,8 @@
             },
             {
               "name": "Kento Shiogai",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Keisuke Goto",
@@ -4321,67 +4461,69 @@
             },
             {
               "name": "Yukinari Sugawara",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Takehiro Tomiyasu",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             }
           ]
         }
       },
       "referee": "Ismail Elfath",
       "venue": "AT&T Stadium, Arlington, Texas",
-      "attendance": null,
+      "attendance": 69285,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "70%",
-          "a": "30%"
+          "h": "60%",
+          "a": "40%"
         },
         {
           "key": "totalShots",
-          "h": "4",
-          "a": "1"
+          "h": "10",
+          "a": "10"
         },
         {
           "key": "shotsOnTarget",
-          "h": "2",
-          "a": "0"
+          "h": "6",
+          "a": "3"
         },
         {
           "key": "wonCorners",
-          "h": "2",
-          "a": "1"
+          "h": "5",
+          "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "2",
-          "a": "2"
+          "h": "7",
+          "a": "7"
         },
         {
           "key": "offsides",
-          "h": "0",
+          "h": "1",
           "a": "0"
         },
         {
           "key": "saves",
-          "h": "0",
-          "a": "2"
+          "h": "1",
+          "a": "4"
         },
         {
           "key": "totalPasses",
-          "h": "273",
-          "a": "117"
+          "h": "525",
+          "a": "342"
         },
         {
           "key": "passPct",
-          "h": "90%",
-          "a": "85%"
+          "h": "88%",
+          "a": "84%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
+          "h": "3",
           "a": "0"
         },
         {
@@ -4390,7 +4532,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-14T20:42:18.218Z"
+      "updatedAt": "2026-06-14T21:59:06.227Z"
     }
   }
 }

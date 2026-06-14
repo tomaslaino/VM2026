@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-14T20:42:18.146Z",
+    "updatedAt": "2026-06-14T21:59:06.186Z",
     "source": "espn",
     "matchCount": 10,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -53,21 +53,12 @@
       "status": "FINISHED"
     },
     "g:F:0": {
-      "h": 0,
-      "a": 0,
-      "status": "IN_PLAY"
+      "h": 2,
+      "a": 2,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:F:0",
-      "status": "IN_PLAY",
-      "minute": 21,
-      "home": "Netherlands",
-      "away": "Japan",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -226,7 +217,7 @@
       "date": "2026-06-14",
       "time": "22:00",
       "utcDate": "2026-06-14T20:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Netherlands",
       "away": "Japan",
