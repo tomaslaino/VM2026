@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-14T17:43:54.343Z",
+    "updatedAt": "2026-06-14T18:58:58.496Z",
     "source": "espn"
   },
   "details": {
@@ -3580,16 +3580,19 @@
     "g:E:4": {
       "espnId": "760422",
       "status": "IN_PLAY",
-      "minute": 42,
+      "minute": 90,
       "utcDate": "2026-06-14T17:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
           "h": 1,
-          "a": 2
+          "a": 7
         },
-        "ht": null,
+        "ht": {
+          "h": 1,
+          "a": 3
+        },
         "rt": null,
         "et": null,
         "pen": null
@@ -3630,10 +3633,119 @@
             "h": 1,
             "a": 2
           }
+        },
+        {
+          "minute": 45,
+          "injuryTime": 5,
+          "team": "a",
+          "scorer": "Kai Havertz",
+          "assist": null,
+          "type": "PENALTY",
+          "score": {
+            "h": 1,
+            "a": 3
+          }
+        },
+        {
+          "minute": 47,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Jamal Musiala",
+          "assist": "Joshua Kimmich",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 4
+          }
+        },
+        {
+          "minute": 68,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Nathaniel Brown",
+          "assist": "Deniz Undav",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 5
+          }
+        },
+        {
+          "minute": 78,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Deniz Undav",
+          "assist": "Joshua Kimmich",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 6
+          }
+        },
+        {
+          "minute": 88,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Kai Havertz",
+          "assist": "Deniz Undav",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 7
+          }
         }
       ],
       "bookings": [],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Jeremy Antonisse",
+          "out": "Sontje Hansen"
+        },
+        {
+          "minute": 64,
+          "team": "a",
+          "in": "Deniz Undav",
+          "out": "Jamal Musiala"
+        },
+        {
+          "minute": 65,
+          "team": "h",
+          "in": "Jearl Margaritha",
+          "out": "Jürgen Locadia"
+        },
+        {
+          "minute": 73,
+          "team": "a",
+          "in": "Antonio Rüdiger",
+          "out": "Jonathan Tah"
+        },
+        {
+          "minute": 73,
+          "team": "a",
+          "in": "Leon Goretzka",
+          "out": "Felix Nmecha"
+        },
+        {
+          "minute": 73,
+          "team": "a",
+          "in": "David Raum",
+          "out": "Nathaniel Brown"
+        },
+        {
+          "minute": 83,
+          "team": "h",
+          "in": "Gervane Kastaneer",
+          "out": "Tahith Chong"
+        },
+        {
+          "minute": 83,
+          "team": "a",
+          "in": "Waldemar Anton",
+          "out": "Joshua Kimmich"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -3718,7 +3830,8 @@
             },
             {
               "name": "Gervane Kastaneer",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Brandley Kuwas",
@@ -3730,11 +3843,13 @@
             },
             {
               "name": "Jearl Margaritha",
-              "jersey": "16"
+              "jersey": "16",
+              "in": true
             },
             {
               "name": "Jeremy Antonisse",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Shurandy Sambo",
@@ -3820,7 +3935,8 @@
           "bench": [
             {
               "name": "David Raum",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "Nick Woltemade",
@@ -3832,11 +3948,13 @@
             },
             {
               "name": "Deniz Undav",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Waldemar Anton",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true
             },
             {
               "name": "Jamie Leweling",
@@ -3848,11 +3966,13 @@
             },
             {
               "name": "Leon Goretzka",
-              "jersey": "8"
+              "jersey": "8",
+              "in": true
             },
             {
               "name": "Antonio Rüdiger",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Malick Thiaw",
@@ -3887,48 +4007,48 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "30%",
-          "a": "70%"
+          "h": "35%",
+          "a": "65%"
         },
         {
           "key": "totalShots",
-          "h": "3",
-          "a": "12"
+          "h": "8",
+          "a": "26"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
-          "a": "4"
+          "h": "2",
+          "a": "12"
         },
         {
           "key": "wonCorners",
-          "h": "0",
-          "a": "4"
+          "h": "1",
+          "a": "8"
         },
         {
           "key": "foulsCommitted",
-          "h": "4",
-          "a": "7"
+          "h": "11",
+          "a": "18"
         },
         {
           "key": "offsides",
-          "h": "0",
+          "h": "1",
           "a": "0"
         },
         {
           "key": "saves",
-          "h": "2",
-          "a": "0"
+          "h": "4",
+          "a": "1"
         },
         {
           "key": "totalPasses",
-          "h": "118",
-          "a": "273"
+          "h": "336",
+          "a": "630"
         },
         {
           "key": "passPct",
-          "h": "81%",
-          "a": "89%"
+          "h": "82%",
+          "a": "87%"
         },
         {
           "key": "yellowCards",
@@ -3941,7 +4061,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-14T17:43:54.343Z"
+      "updatedAt": "2026-06-14T18:58:58.496Z"
     }
   }
 }
