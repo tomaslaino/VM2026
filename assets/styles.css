@@ -184,6 +184,7 @@ body {
 .sr-item:hover { background: var(--bg-soft); }
 .sr-name { flex: 1; font-weight: 600; }
 .sr-grp { font-size: 12px; color: var(--ink-soft); }
+.sr-flag-blank { width: 22px; height: 15px; flex: none; }
 .sr-empty { padding: 12px; color: var(--ink-soft); font-size: 13px; }
 
 .controls { display: flex; align-items: center; gap: 10px; margin-left: auto; }
@@ -1328,6 +1329,34 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   opacity: .85;
   pointer-events: none;
 }
+
+.cal-jump {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0 2px;
+  padding: 8px 15px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--usa-blue) 20%, var(--card));
+  border: 1px solid color-mix(in srgb, var(--usa-blue) 45%, var(--line));
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .1s ease;
+}
+.cal-jump:hover {
+  background: color-mix(in srgb, var(--usa-blue) 32%, var(--card));
+  border-color: var(--usa-blue);
+}
+.cal-jump:active { transform: translateY(1px); }
+.cal-jump.is-live {
+  background: color-mix(in srgb, var(--usa-red) 20%, var(--card));
+  border-color: color-mix(in srgb, var(--usa-red) 60%, var(--line));
+}
+.cal-jump-ico { font-size: 14px; line-height: 1; opacity: .85; }
 
 .cal { display: flex; flex-direction: column; gap: 2px; }
 .cal-day {

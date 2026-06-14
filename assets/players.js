@@ -159,6 +159,43 @@
     return data ? (data.fetched || null) : null;
   }
 
+  /**
+   * Fritextsök bland spelare och förbundskaptener.
+   * @returns {{players: {player: Player, team: Team}[], coaches: {name: string, team: Team}[]}}
+   */
+  function search(query, limit) {
+    var empty = { players: [], coaches: [] };
+    if (!data) return empty;
+    var q = String(query || "").trim().toLowerCase();
+    if (!q) return empty;
+
+    var players = [];
+    var coaches = [];
+    (data.teams || []).forEach(function (team) {
+      if (team.coach && team.coach.toLowerCase().indexOf(q) !== -1) {
+        coaches.push({ name: team.coach, team: team });
+      }
+      (team.players || []).forEach(function (p) {
+        if (p.name && p.name.toLowerCase().indexOf(q) !== -1) {
+          players.push({ player: p, team: team });
+        }
+      });
+    });
+
+    // Träffar som börjar på söksträngen rankas före träffar mitt i namnet.
+    function rank(name) { return name.toLowerCase().indexOf(q) === 0 ? 0 : 1; }
+    players.sort(function (a, b) {
+      return rank(a.player.name) - rank(b.player.name) ||
+        a.player.name.localeCompare(b.player.name, "sv");
+    });
+    coaches.sort(function (a, b) {
+      return rank(a.name) - rank(b.name) || a.name.localeCompare(b.name, "sv");
+    });
+
+    if (limit) players = players.slice(0, limit);
+    return { players: players, coaches: coaches };
+  }
+
   window.VMPlayers = {
     load: load,
     isLoaded: isLoaded,
@@ -168,6 +205,7 @@
     getTeamOfPlayer: getTeamOfPlayer,
     getPlayersByTeam: getPlayersByTeam,
     getFetchedDate: getFetchedDate,
+    search: search,
     isoToCode: function (iso) { return ISO_TO_CODE[String(iso || "").toLowerCase()] || null; },
   };
 

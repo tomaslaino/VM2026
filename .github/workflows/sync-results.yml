@@ -6,8 +6,11 @@ name: Synka VM-resultat
 
 on:
   schedule:
-    # Var 3:e minut – skriptet hoppar över API-anrop i lugna perioder.
-    - cron: "*/3 * * * *"
+    # Varje minut – skriptet self-throttlar (shouldSyncNow): hämtar ESPN varje
+    # körning när en match är live/snart/nyligen, men hoppar över API-anropet i
+    # lugna perioder (matchdag max var 5:e min, idle var 30:e). Resultatet:
+    # tätare uppdateringar under matcher utan onödiga anrop däremellan.
+    - cron: "* * * * *"
   workflow_dispatch: {} # Tillåt manuell körning från Actions-fliken.
 
 # Undvik överlappande körningar.
@@ -29,9 +32,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
 
       - name: Installera beroenden
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Hämta resultat från ESPN
         env:

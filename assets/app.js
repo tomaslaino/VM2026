@@ -2270,7 +2270,32 @@
       }
     }
 
-    return { nextKeys: nextKeys, recentKeys: recentKeys, scrollDate: scrollDate, scrollTop: scrollTop };
+    // Mål för "Hoppa till …"-knappen: idag om det spelas matcher idag,
+    // annars nästa matchdag, annars sista matchdagen.
+    var todayStr = new Intl.DateTimeFormat("sv-SE", {
+      timeZone: "Europe/Stockholm", year: "numeric", month: "2-digit", day: "2-digit",
+    }).format(new Date());
+    var hasToday = items.some(function (it) { return it.date === todayStr; });
+    var jumpLive = bestKo !== Infinity && bestKo <= now;
+    var jumpDate, jumpLabel;
+    if (hasToday) {
+      jumpDate = todayStr;
+      jumpLabel = jumpLive ? "Till matchen som pågår" : "Hoppa till idag";
+    } else if (nextDate) {
+      jumpDate = nextDate;
+      jumpLabel = "Hoppa till nästa match";
+    } else if (items.length) {
+      jumpDate = items[items.length - 1].date;
+      jumpLabel = "Hoppa till sista matchen";
+    } else {
+      jumpDate = null;
+      jumpLabel = "";
+    }
+
+    return {
+      nextKeys: nextKeys, recentKeys: recentKeys, scrollDate: scrollDate, scrollTop: scrollTop,
+      jumpDate: jumpDate, jumpLabel: jumpLabel, jumpLive: jumpLive,
+    };
   }
 
   function scrollCalendarTop() {
@@ -2279,7 +2304,7 @@
     });
   }
 
-  function scrollCalendarToDate(dateStr) {
+  function scrollCalendarToDate(dateStr, smooth) {
     if (!dateStr || !viewEl) return;
     requestAnimationFrame(function () {
       var el = viewEl.querySelector('.cal-day[data-date="' + dateStr + '"]');
@@ -2287,7 +2312,7 @@
       var topbar = document.querySelector(".topbar");
       var offset = (topbar ? topbar.offsetHeight : 72) + 8;
       var top = el.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top: Math.max(0, top), left: 0, behavior: "instant" });
+      window.scrollTo({ top: Math.max(0, top), left: 0, behavior: smooth ? "smooth" : "instant" });
     });
   }
 
@@ -2296,9 +2321,15 @@
     var items = buildSchedule();
     var calView = calendarViewState(items, ctx);
 
+    var jumpBtn = calView.jumpDate
+      ? '<button type="button" class="cal-jump' + (calView.jumpLive ? " is-live" : "") +
+        '" data-cal-jump="' + calView.jumpDate + '">' +
+        '<span class="cal-jump-txt">' + calView.jumpLabel + "</span>" +
+        '<span class="cal-jump-ico" aria-hidden="true">↓</span></button>'
+      : "";
     var html = '<div class="calendar-layout">' +
       nextMatchesRow(ctx) +
-      '<div class="cal-shell"><div class="cal">';
+      '<div class="cal-shell">' + jumpBtn + '<div class="cal">';
     var lastDate = null;
     items.forEach(function (it) {
       if (it.date !== lastDate) {
@@ -2324,8 +2355,7 @@
 
     if (calScrollPending) {
       calScrollPending = false;
-      if (calView.scrollTop) scrollCalendarTop();
-      else scrollCalendarToDate(calView.scrollDate);
+      scrollCalendarTop(); // börja alltid högst upp – knappen tar dig till idag/nästa match
     }
     if (calGroupOpen) renderCalGroupPopup();
   }
@@ -2452,23 +2482,80 @@
     return arr;
   }
 
+  /** FIFA-kod → WC-lag ({team, group, idx}) så person-träffar får flagga/grupp. */
+  function wcTeamByCode() {
+    var map = {};
+    if (!window.VMPlayers || typeof VMPlayers.isoToCode !== "function") return map;
+    allTeams().forEach(function (e) {
+      var code = VMPlayers.isoToCode(e.team.iso);
+      if (code) map[code] = e;
+    });
+    return map;
+  }
+
+  function srPersonRow(attrs, iso, name, sub) {
+    return '<button class="sr-item"' + attrs + '>' +
+      (iso ? flagImg(iso) : '<span class="sr-flag-blank"></span>') +
+      '<span class="sr-name">' + esc(name) + '</span>' +
+      '<span class="sr-grp">' + esc(sub) + '</span></button>';
+  }
+
   function renderSearchResults(query) {
     var box = document.getElementById("searchResults");
+    if (!box) return;
     var q = (query || "").trim().toLowerCase();
     if (!q) { box.hidden = true; box.innerHTML = ""; return; }
-    var matches = allTeams().filter(function (e) {
-      return e.team.sv.toLowerCase().indexOf(q) !== -1 || e.team.name.toLowerCase().indexOf(q) !== -1;
-    }).slice(0, 8);
-    if (!matches.length) {
-      box.innerHTML = '<div class="sr-empty">Inget lag hittades</div>';
-    } else {
-      box.innerHTML = matches.map(function (e) {
-        return '<button class="sr-item" data-team-group="' + e.group + '" data-team-idx="' + e.idx + '">' +
-          flagImg(e.team.iso) + '<span class="sr-name">' + esc(e.team.sv) + '</span>' +
-          '<span class="sr-grp">Grupp ' + e.group + '</span></button>';
-      }).join("");
+
+    // Truppdatan laddas asynkront – sök om när den är klar så spelare/tränare syns.
+    if (window.VMPlayers && !VMPlayers.isLoaded()) {
+      VMPlayers.load().then(function () {
+        var el = document.getElementById("teamSearch");
+        if (el && el.value.trim().toLowerCase() === q) renderSearchResults(el.value);
+      }).catch(function () {});
     }
+
+    var html = "";
+
+    allTeams().filter(function (e) {
+      return e.team.sv.toLowerCase().indexOf(q) !== -1 || e.team.name.toLowerCase().indexOf(q) !== -1;
+    }).slice(0, 5).forEach(function (e) {
+      html += '<button class="sr-item" data-team-group="' + e.group + '" data-team-idx="' + e.idx + '">' +
+        flagImg(e.team.iso) + '<span class="sr-name">' + esc(e.team.sv) + '</span>' +
+        '<span class="sr-grp">Grupp ' + e.group + '</span></button>';
+    });
+
+    var people = (window.VMPlayers && typeof VMPlayers.search === "function")
+      ? VMPlayers.search(q, 6) : { players: [], coaches: [] };
+    var codeMap = (people.players.length || people.coaches.length) ? wcTeamByCode() : {};
+
+    people.players.forEach(function (hit) {
+      var wc = codeMap[hit.team.fifa_code];
+      var iso = wc ? wc.team.iso : null;
+      html += srPersonRow(' data-player-id="' + esc(hit.player.id) + '"', iso, hit.player.name,
+        "Spelare · " + (hit.team.name_sv || hit.team.name));
+    });
+
+    people.coaches.slice(0, 3).forEach(function (hit) {
+      var wc = codeMap[hit.team.fifa_code];
+      var iso = wc ? wc.team.iso : null;
+      html += srPersonRow(iso ? ' data-team-open="' + iso + '"' : "", iso, hit.name,
+        "Förbundskapten · " + (hit.team.name_sv || hit.team.name));
+    });
+
+    box.innerHTML = html || '<div class="sr-empty">Inget hittades</div>';
     box.hidden = false;
+  }
+
+  function openSearchPlayer(id) {
+    if (!window.VMPlayers || !window.VMLive || typeof VMLive.openPlayer !== "function") return;
+    var p = VMPlayers.getPlayerById(id);
+    var team = VMPlayers.getTeamOfPlayer(id);
+    if (!p || !team) return;
+    var s = document.getElementById("teamSearch");
+    if (s) s.value = "";
+    var box = document.getElementById("searchResults");
+    if (box) { box.hidden = true; box.innerHTML = ""; }
+    VMLive.openPlayer(p, { sv: team.name_sv, name: team.name });
   }
 
   function openTeam(group, idx) {
@@ -2704,7 +2791,12 @@
       return;
     }
     var sr = t.closest && t.closest(".sr-item");
-    if (sr) { openTeam(sr.getAttribute("data-team-group"), parseInt(sr.getAttribute("data-team-idx"), 10)); return; }
+    if (sr) {
+      if (sr.hasAttribute("data-player-id")) openSearchPlayer(sr.getAttribute("data-player-id"));
+      else if (sr.hasAttribute("data-team-open")) openTeamByIso(sr.getAttribute("data-team-open"));
+      else openTeam(sr.getAttribute("data-team-group"), parseInt(sr.getAttribute("data-team-idx"), 10));
+      return;
+    }
 
     var brCol = t.closest && t.closest("[data-bracket-col]");
     if (brCol) {
@@ -2715,6 +2807,12 @@
     if (t.id === "drawerClose" || t.id === "drawerBackdrop") { closeTeam(); return; }
     if (t.id === "calGroupClose" || t.id === "calGroupBackdrop") { hideCalGroupPopup(); return; }
     if (t.id === "asideClose") { hoverMatch = null; hideAside(); syncExpandButtons(); return; }
+
+    var calJump = t.closest && t.closest("[data-cal-jump]");
+    if (calJump) {
+      scrollCalendarToDate(calJump.getAttribute("data-cal-jump"), true);
+      return;
+    }
 
     var calGrp = t.closest && t.closest("[data-cal-group]");
     if (calGrp) {
