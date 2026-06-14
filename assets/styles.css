@@ -970,7 +970,9 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .side.prov .s-name { font-style: italic; color: var(--ink); font-weight: 500; }
 /* Oddsfavorit i "nästa match"-rundan – samma stil men något nedtonad. */
 .side.predicted .s-name { color: var(--ink-soft); }
-.prob-row { cursor: help; }
+.prob-row { cursor: default; border-radius: 6px; transition: background .12s ease; }
+.prob-row[data-detail]:hover, .prob-row.active { background: var(--bg-soft); }
+.prob-row.active { box-shadow: inset 2px 0 0 var(--accent, #5aa9e6); }
 .side.tbd .s-name { font-style: italic; color: var(--ink); font-weight: 500; font-size: 13px; }
 .s-name.placeholder { font-size: 13px; color: var(--ink); font-weight: 500; }
 /* TBD-platser i trädet visas som färgkodade chips (Etta grupp E, Vinnare match …) */
@@ -1247,6 +1249,49 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .prob-bar > span { display: block; height: 100%; background: var(--accent, #5aa9e6); }
 .prob-empty { color: var(--ink-soft); font-size: 12.5px; padding: 4px 0; }
 @media (max-width: 420px) { .prob-sides { grid-template-columns: 1fr; } }
+
+/* Detaljpanel – uppdateras direkt vid hovring i sannolikhetslistan. */
+.prob-detail {
+  border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+  background: var(--bg-soft);
+}
+.pd-hint {
+  font-size: 11px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase;
+  color: var(--ink-soft); padding: 7px 12px; border-bottom: 1px solid var(--line);
+}
+.pd-body { padding: 12px; }
+.pd-card { display: flex; flex-direction: column; gap: 10px; }
+.pd-head { display: flex; align-items: center; gap: 8px; }
+.pd-head .flag { width: 26px; height: 18px; border-radius: 3px; flex: 0 0 auto; }
+.pd-name { font-weight: 800; font-size: 15px; flex: 1 1 auto; min-width: 0; }
+.pd-prob {
+  font-variant-numeric: tabular-nums; font-weight: 800; font-size: 15px;
+  color: var(--accent, #5aa9e6); flex: 0 0 auto;
+}
+.pd-slot {
+  font-size: 12px; font-weight: 600; color: var(--ink-soft);
+  margin-top: -4px;
+}
+.pd-text { font-size: 12.5px; line-height: 1.5; color: var(--ink); margin: 0; }
+
+.pd-odds { display: flex; flex-direction: column; gap: 5px; }
+.pd-odds-title { font-size: 11px; font-weight: 700; color: var(--ink-soft); }
+.pd-bar-row {
+  display: grid; grid-template-columns: 84px 1fr 40px; align-items: center; gap: 8px;
+  font-size: 11.5px;
+}
+.pd-bar-lbl { color: var(--ink-soft); white-space: nowrap; }
+.pd-bar { height: 7px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.pd-bar > span { display: block; height: 100%; border-radius: 4px; }
+.pd-bar.pd-pos-1 > span { background: var(--adv, #2fa36b); }
+.pd-bar.pd-pos-2 > span { background: var(--adv, #2fa36b); opacity: .7; }
+.pd-bar.pd-pos-3 > span { background: var(--third-q, #d2a23a); }
+.pd-bar.pd-pos-4 > span { background: var(--ink-soft); opacity: .5; }
+.pd-bar-pct { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+
+.pd-table { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--bg); }
+.pd-table-head { background: var(--bg-soft); font-weight: 700; font-size: 11.5px; padding: 6px 10px; }
+.pd-table table { width: 100%; }
 
 /* ====================================================================
    KALENDER

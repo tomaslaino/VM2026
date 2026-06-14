@@ -893,7 +893,7 @@
       var rowCls = "";
       if (i < 2) rowCls = "r-adv";
       else if (i === 2) rowCls = opts.thirdQualified ? "r-third-q" : "r-third-o";
-      if (opts.highlightTeam && s.team === opts.highlightTeam) rowCls += " r-highlight";
+      if (opts.highlightTeam && s.team && s.team.iso === opts.highlightTeam.iso) rowCls += " r-highlight";
       var fpTitle = "Fair play: " + s.fp + " poäng (" + s.fpY + " gula, " + s.fpR + " röda kort)";
       h += '<tr class="' + rowCls + '" data-team="' + s.team.iso + '">' +
         '<td class="c-pos">' + (i + 1) + '</td>' +
@@ -1399,20 +1399,8 @@
     var res = ctx.resolved[matchNo];
     var mt = res.match;
 
-    // grundplatser → vilka grupper + ev. trean-platser
-    var base = [];
-    collectBaseSlots(mt.home, base);
-    collectBaseSlots(mt.away, base);
-    var directGroups = {}, thirdGroups = {}, hasThird = false;
-    base.forEach(function (s) {
-      if (s.t === "w" || s.t === "r") directGroups[s.g] = true;
-      else if (s.t === "3") { hasThird = true; s.from.forEach(function (g) { thirdGroups[g] = true; }); }
-    });
-    var directList = Object.keys(directGroups).sort();
-    var thirdList = Object.keys(thirdGroups).sort();
-
-    // Panelen äger kvalvägen (seed) + tabellerna och visar tydligt vem som möter
-    // vem. Matchrutan i trädet visar bara lagen.
+    // Panelen äger kvalvägen (seed) och visar tydligt vem som möter vem samt
+    // sannolikheterna. Matchrutan i trädet visar bara lagen.
     var h = '<div class="aside-head">' +
       '<div class="aside-title">' +
       '<span class="aside-round">' + WC.roundNames[mt.round] + '</span>' +
@@ -1432,31 +1420,7 @@
       asideMatchupSide(mt.away, effectiveSide(res, "away", true), "away", aWin) +
       '</div>';
 
-    h += asideProbBlock(matchNo);
-
-    if (directList.length) {
-      h += '<div class="aside-section-title">Direktplatser – grupp ' + directList.join(", ") + '</div>';
-      directList.forEach(function (L) {
-        h += '<div class="mini-group"><div class="mini-group-head">Grupp ' + L + '</div>' +
-          '<table class="standings mini"><tbody>' +
-          standingsRows(ctx.tables[L], { thirdQualified: isThirdQ(ctx, L), cards: false }) +
-          '</tbody></table></div>';
-      });
-    }
-
-    if (hasThird) {
-      var assignedThirds = assignedThirdGroups(ctx, base);
-      h += '<div class="aside-section-title">Trea-plats – möjliga grupper: ' + thirdList.join(", ") + '</div>';
-      h += asideThirdsTable(ctx, thirdGroups, assignedThirds);
-      // även de aktuella tabellerna för de möjliga trean-grupperna
-      thirdList.forEach(function (L) {
-        if (directGroups[L]) return;
-        h += '<div class="mini-group third"><div class="mini-group-head">Grupp ' + L + '</div>' +
-          '<table class="standings mini"><tbody>' +
-          standingsRows(ctx.tables[L], { thirdQualified: isThirdQ(ctx, L), cards: false }) +
-          '</tbody></table></div>';
-      });
-    }
+    h += asideProbBlock(matchNo, ctx);
 
     el.innerHTML = h;
   }
@@ -1588,8 +1552,133 @@
     return (Math.round(v * 10) / 10).toString();
   }
 
+  // Detaljpanelen som visas/uppdateras direkt vid hovring – innehåll per lag
+  // förberäknas i updateAside så att det dyker upp utan fördröjning.
+  var asideDetails = {};        // detaljnyckel -> färdig HTML
+  var asideDefaultKey = null;   // laget som visas innan man hovrar (mest sannolika)
+
+  // Vilken grupp ett lag tillhör (via iso, oberoende av objektsreferens).
+  function groupLetterOf(team) {
+    if (!team) return null;
+    var letters = WC.groupLetters || [];
+    for (var i = 0; i < letters.length; i++) {
+      var arr = WC.groups[letters[i]] || [];
+      for (var j = 0; j < arr.length; j++) if (arr[j].iso === team.iso) return letters[i];
+    }
+    return null;
+  }
+
+  // Kort beskrivning av vilken plats i trädet laget skulle ta.
+  function slotPhrase(round, slotLabel) {
+    if (round === "r32" && slotLabel) {
+      var c0 = slotLabel.charAt(0);
+      if (c0 === "1") return "som etta i grupp " + slotLabel.slice(1);
+      if (c0 === "2") return "som tvåa i grupp " + slotLabel.slice(1);
+      if (slotLabel.indexOf("3/") === 0) return "som en av de bästa grupptreorna";
+    }
+    return "till " + ({ r16: "åttondelsfinal", qf: "kvartsfinal", sf: "semifinal", final: "final" }[round] ||
+      "den här matchen");
+  }
+
+  // Liten stapelgrafik: hur laget troligen slutar i sin grupp (1:a–4:a).
+  function groupOddsBars(gp) {
+    if (!gp) return "";
+    var rows = [["1", "Vinner gruppen", "pd-pos-1"], ["2", "Tvåa", "pd-pos-2"],
+      ["3", "Trea", "pd-pos-3"], ["4", "Fyra (ut)", "pd-pos-4"]];
+    var h = '<div class="pd-odds"><div class="pd-odds-title">Så troligt slutar laget i gruppen</div>';
+    rows.forEach(function (r) {
+      var p = gp[r[0]] || 0;
+      h += '<div class="pd-bar-row"><span class="pd-bar-lbl">' + r[1] + '</span>' +
+        '<span class="pd-bar ' + r[2] + '"><span style="width:' + Math.round(p * 100) + '%"></span></span>' +
+        '<span class="pd-bar-pct">' + fmtPct(p) + ' %</span></div>';
+    });
+    return h + '</div>';
+  }
+
+  // Pedagogisk, lite fylligare förklaring till sannolikheten för ett lag.
+  function probDetailText(engName, prob, round, slotLabel, ctx, L) {
+    var t = teamByName(engName);
+    var nm = t ? t.sv : engName;
+    var pct = fmtPct(prob) + " %";
+    var gp = bracketProbs.groupPositions && bracketProbs.groupPositions[engName];
+    var rds = bracketProbs.rounds && bracketProbs.rounds[engName];
+    var parts = [];
+    var c0 = slotLabel ? slotLabel.charAt(0) : "";
+
+    if (round === "r32" && c0 === "1") {
+      parts.push("Den här platsen tillhör vinnaren av grupp " + slotLabel.slice(1) + ". " +
+        nm + " vinner gruppen i " + pct + " av oddssimuleringarna.");
+    } else if (round === "r32" && c0 === "2") {
+      parts.push("Hit går tvåan i grupp " + slotLabel.slice(1) + ". " +
+        nm + " slutar tvåa i " + pct + " av simuleringarna.");
+    } else if (round === "r32" && slotLabel && slotLabel.indexOf("3/") === 0) {
+      var p3 = gp ? Math.round((gp["3"] || 0) * 100) : null;
+      parts.push("Platsen går till en av de fyra bästa grupptreorna. " + nm + " blir trea i sin grupp" +
+        (p3 != null ? " i ungefär " + p3 + " % av fallen" : "") +
+        " och rankas tillräckligt högt för just den här platsen i " + pct + " av simuleringarna.");
+    } else {
+      var rn = { r16: "åttondelsfinal", qf: "kvartsfinal", sf: "semifinal", final: "final" }[round] || "den här matchen";
+      parts.push(nm + " tar sig hit (" + rn + ") i " + pct +
+        " av oddssimuleringarna – det kräver segrar i alla tidigare ronder.");
+    }
+
+    if (L && ctx.tables[L]) {
+      var idx = -1, s = null;
+      ctx.tables[L].forEach(function (e, i) { if (t && e.team.iso === t.iso) { idx = i; s = e; } });
+      if (s) {
+        parts.push("Just nu ligger laget " + (idx + 1) + ":a i grupp " + L + " med " + s.pts +
+          " poäng efter " + s.pld + " spelade matcher.");
+      }
+    }
+
+    if (gp) {
+      var adv = (gp["1"] || 0) + (gp["2"] || 0);
+      parts.push(adv >= 0.7 ? "Laget är en tydlig favorit i sin grupp."
+        : adv >= 0.45 ? "Laget väntas oftast ta sig vidare från gruppspelet."
+        : "Laget är en utmanare som behöver överraska för att gå vidare.");
+    }
+
+    if (rds) {
+      var bits = [];
+      if (rds.qf != null) bits.push("kvartsfinal i " + fmtPct(rds.qf) + " %");
+      if (rds.sf != null) bits.push("semifinal i " + fmtPct(rds.sf) + " %");
+      if (rds.win != null) bits.push("vinner hela VM i " + fmtPct(rds.win) + " %");
+      if (bits.length) parts.push("Längre fram når laget enligt oddsen " + bits.join(", ") + ".");
+    }
+
+    return parts.join(" ");
+  }
+
+  // Full HTML för detaljpanelen för ETT lag: rubrik, förklaring, grupp-odds
+  // och lagets aktuella grupptabell (laget markerat).
+  function probDetailHtml(engName, prob, round, slotLabel, ctx) {
+    var t = teamByName(engName);
+    if (!t) return "";
+    var L = groupLetterOf(t);
+    var gp = bracketProbs.groupPositions && bracketProbs.groupPositions[engName];
+    var h = '<div class="pd-card">';
+    h += '<div class="pd-head">' + flagImg(t.iso) +
+      '<span class="pd-name">' + esc(t.sv) + '</span>' +
+      '<span class="pd-prob">' + fmtPct(prob) + ' %</span></div>';
+    h += '<div class="pd-slot">' + esc(t.svShort || t.sv) + ' ' + esc(slotPhrase(round, slotLabel)) + '</div>';
+    h += '<p class="pd-text">' + esc(probDetailText(engName, prob, round, slotLabel, ctx, L)) + '</p>';
+    h += groupOddsBars(gp);
+    if (L && ctx.tables[L]) {
+      h += '<div class="pd-table"><div class="pd-table-head">Grupp ' + L + ' – läget just nu</div>' +
+        '<table class="standings mini standings-compact"><thead><tr>' +
+        '<th class="c-pos">#</th><th class="c-team">Lag</th>' +
+        '<th class="c-stat" title="Spelade">S</th><th class="c-goals" title="Mål">Mål</th>' +
+        '<th class="c-stat" title="Målskillnad">+/-</th><th class="c-pts" title="Poäng">P</th>' +
+        '</tr></thead><tbody>' +
+        standingsRows(ctx.tables[L], { compact: true, thirdQualified: isThirdQ(ctx, L), highlightTeam: t }) +
+        '</tbody></table></div>';
+    }
+    return h + '</div>';
+  }
+
   // En sida av en match: lag -> sannolikhet, fallande, döljer < 0.1 %.
-  function asideProbSide(dist, slotLabel, round) {
+  // Varje rad får en detaljnyckel; detaljerna förberäknas i asideDetails.
+  function asideProbSide(dist, slotLabel, round, sideKey, ctx) {
     var entries = Object.keys(dist || {})
       .map(function (n) { return [n, dist[n]]; })
       .filter(function (e) { return e[1] >= 0.001; })
@@ -1600,8 +1689,10 @@
       var iso = t ? t.iso : "";
       var nm = t ? (t.svShort || t.sv) : e[0];
       var w = top > 0 ? Math.round((e[1] / top) * 100) : 0;
-      var tip = probExplain(e[0], e[1], round, slotLabel);
-      return '<div class="prob-row" title="' + esc(tip) + '">' +
+      var key = sideKey + "|" + e[0];
+      asideDetails[key] = probDetailHtml(e[0], e[1], round, slotLabel, ctx);
+      if (!asideDefaultKey) asideDefaultKey = key;
+      return '<div class="prob-row" data-detail="' + esc(key) + '">' +
         '<span class="team">' + flagImg(iso) + '<span class="t-name">' + esc(nm) + '</span></span>' +
         '<span class="prob-bar"><span style="width:' + w + '%"></span></span>' +
         '<span class="prob-pct">' + fmtPct(e[1]) + ' %</span></div>';
@@ -1610,42 +1701,8 @@
     return '<div class="prob-col">' + lab + (rows || '<div class="prob-empty">–</div>') + '</div>';
   }
 
-  // Kort, pedagogisk förklaring till varför sannolikheten ser ut som den gör.
-  // Bygger på lagets gruppplacerings-odds och vilken plats noden representerar.
-  function probExplain(engName, prob, round, slotLabel) {
-    var t = teamByName(engName);
-    var nm = t ? t.sv : engName;
-    var pct = fmtPct(prob) + " %";
-    var gp = bracketProbs && bracketProbs.groupPositions && bracketProbs.groupPositions[engName];
-    var parts = [];
-    var c0 = slotLabel ? slotLabel.charAt(0) : "";
-    if (round === "r32" && c0 === "1") {
-      parts.push(nm + " vinner grupp " + slotLabel.slice(1) + " i " + pct +
-        " av oddssimuleringarna och tar då den här platsen.");
-    } else if (round === "r32" && c0 === "2") {
-      parts.push(nm + " slutar tvåa i grupp " + slotLabel.slice(1) + " i " + pct +
-        " av oddssimuleringarna och hamnar här.");
-    } else if (round === "r32" && slotLabel && slotLabel.indexOf("3/") === 0) {
-      var p3 = gp ? Math.round((gp["3"] || 0) * 100) : null;
-      parts.push(nm + " blir trea i sin grupp" + (p3 != null ? " i ungefär " + p3 + " % av fallen" : "") +
-        " och rankas då tillräckligt högt för en bästa-trea-plats här i " + pct + " av simuleringarna.");
-    } else {
-      var rn = { r16: "åttondelsfinalen", qf: "kvartsfinalen", sf: "semifinalen", final: "finalen" }[round] ||
-        "den här matchen";
-      parts.push(nm + " tar sig till " + rn + " på den här platsen i " + pct +
-        " av oddssimuleringarna – det kräver att laget vinner sina tidigare matcher.");
-    }
-    if (gp) {
-      var adv = (gp["1"] || 0) + (gp["2"] || 0);
-      parts.push(adv >= 0.7 ? "Laget är en av favoriterna i sin grupp."
-        : adv >= 0.45 ? "Laget väntas oftast ta sig vidare från gruppspelet."
-        : "Laget är en utmanare som behöver överraska för att gå långt.");
-    }
-    return parts.join(" ");
-  }
-
-  // Bygger sannolikhetsblocket för en match (båda sidor) om data finns.
-  function asideProbBlock(matchNo) {
+  // Bygger sannolikhetsblocket för en match (båda sidor) + detaljpanelen.
+  function asideProbBlock(matchNo, ctx) {
     if (!bracketProbs || !bracketProbs.nodes) return "";
     if (!bracketPosByMatch) bracketPosByMatch = buildBracketPosMap();
     var pos = bracketPosByMatch[matchNo];
@@ -1656,11 +1713,19 @@
     var updated = bracketProbs.updated ? new Date(bracketProbs.updated) : null;
     var stamp = updated && !isNaN(updated) ?
       ' <span class="prob-stamp">· odds ' + updated.toLocaleDateString("sv-SE") + '</span>' : '';
-    return '<div class="aside-section-title">Sannolikhet att nå hit' + stamp + '</div>' +
-      '<div class="prob-sides">' +
-      asideProbSide(nodes[pos.home], labels ? labels[pos.home] : null, pos.round) +
-      asideProbSide(nodes[pos.away], labels ? labels[pos.away] : null, pos.round) +
+
+    asideDetails = {};
+    asideDefaultKey = null;
+    var sides = '<div class="prob-sides">' +
+      asideProbSide(nodes[pos.home], labels ? labels[pos.home] : null, pos.round, "h", ctx) +
+      asideProbSide(nodes[pos.away], labels ? labels[pos.away] : null, pos.round, "a", ctx) +
       '</div>';
+    var def = asideDefaultKey ? asideDetails[asideDefaultKey] : "";
+    return '<div class="aside-section-title">Sannolikhet att nå hit' + stamp + '</div>' +
+      sides +
+      '<div class="prob-detail" id="probDetail">' +
+      '<div class="pd-hint">Håll muspekaren över ett lag ovan för dess läge och chanser</div>' +
+      '<div class="pd-body" id="probDetailBody">' + def + '</div></div>';
   }
 
   function bracketProbsUrl() {
@@ -2694,6 +2759,23 @@
     }
   }
 
+  // Hovring i sannolikhetslistan → byt detaljpanelens innehåll direkt.
+  function onProbHover(e) {
+    var row = e.target.closest && e.target.closest(".prob-row[data-detail]");
+    if (!row) return;
+    var body = document.getElementById("probDetailBody");
+    if (!body) return;
+    var html = asideDetails[row.getAttribute("data-detail")];
+    if (html == null) return;
+    if (body.getAttribute("data-key") === row.getAttribute("data-detail")) return;
+    body.innerHTML = html;
+    body.setAttribute("data-key", row.getAttribute("data-detail"));
+    document.querySelectorAll("#bracketAside .prob-row.active").forEach(function (r) {
+      r.classList.remove("active");
+    });
+    row.classList.add("active");
+  }
+
   function onOver(e) {
     var mc = e.target.closest && e.target.closest("[data-m]");
     if (mc) {
@@ -2750,6 +2832,8 @@
 
     var aside = document.createElement("aside"); aside.id = "bracketAside"; aside.className = "bracket-aside";
     document.body.appendChild(aside);
+    // Direkt (utan webbläsarens title-fördröjning) uppdatera detaljpanelen vid hovring.
+    aside.addEventListener("mouseover", onProbHover);
     document.body.addEventListener("input", onInput);
     document.body.addEventListener("click", onClick);
     document.addEventListener("click", onDocClick);
