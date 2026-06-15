@@ -4,11 +4,16 @@ name: Synka slutspelssannolikheter
 # motorn (scripts/prob/) mot FIFA:s slutspelsträd + Annex C och committar
 # resultatet som GitHub Pages serverar.
 #
-# Två lägen styrs av schemat (sparar månadskvoten på odds-API:t):
-#   * "0 */6 * * *"   -> hämtar FÄRSKA odds (outright + 1X2), var 6:e timme.
-#   * "*/30 * * * *"  -> räknar bara OM simuleringen på senaste resultaten
-#                        (ingen odds-API – betingar på nyspelade matcher gratis).
-# Manuell körning (workflow_dispatch) hämtar alltid färska odds.
+# Tre triggers, två lägen (sparar månadskvoten på odds-API:t):
+#   * schedule "0 */6 * * *"        -> FÄRSKA odds (outright + 1X2), var 6:e timme.
+#   * repository_dispatch            -> resultat-synken (sync-results.yml) skickar
+#     (results-updated)                "results-updated" direkt när nya resultat
+#                                      committats. Räknar bara OM simuleringen på
+#                                      de nya resultaten – ingen odds-API, gratis.
+#                                      Ersätter den gamla "*/30"-cronen, som
+#                                      GitHub ofta hoppade över så att probs kunde
+#                                      släpa flera timmar efter ett resultat.
+#   * workflow_dispatch              -> manuell körning, hämtar alltid färska odds.
 #
 # Kräver repo-secret ODDS_API_KEY för marknadsodds. Saknas den faller pipan
 # tillbaka på FIFA-rankingen (scripts/prob/gen_fallback_outrights.mjs) – sidan
@@ -17,7 +22,8 @@ name: Synka slutspelssannolikheter
 on:
   schedule:
     - cron: "0 */6 * * *"     # färska odds var 6:e timme
-    - cron: "*/30 * * * *"    # omräkning på nya resultat (ingen API-kostnad)
+  repository_dispatch:
+    types: [results-updated]  # omräkning direkt vid nya resultat (ingen API-kostnad)
   workflow_dispatch: {}
 
 concurrency:

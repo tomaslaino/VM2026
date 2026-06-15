@@ -71,26 +71,64 @@ def winprob(a, b, strength):
 
 
 # ========== Simulering av en hel turnering ==========
+def _poisson(rng, lam):
+    """Knuths algoritm: ett Poisson(lam)-sampel med given RNG."""
+    L = math.exp(-lam)
+    k, p = 0, 1.0
+    while True:
+        k += 1
+        p *= rng.random()
+        if p <= L:
+            return k - 1
+
+
+def sample_goals(outcome, rng):
+    """Trolig malsiffra (hemma, borta) som matchar utfallet 1/X/2.
+    Anvands bara for OSPELADE matcher sa att malskillnad/gjorda mal far ett
+    rimligt varde i gruppens tiebreak. Vinnaren tar minst ett mals marginal."""
+    if outcome == "X":
+        g = _poisson(rng, 1.1)
+        return g, g
+    margin = 1 + _poisson(rng, 0.7)
+    loser = _poisson(rng, 0.8)
+    winner = loser + margin
+    return (winner, loser) if outcome == "1" else (loser, winner)
+
+
 def sim_group(teams, fixtures, rng):
-    """Spelar en grupp. Returnerar (rankad lista 1->4, poangdict)."""
+    """Spelar en grupp. Returnerar (rankad lista 1->4, poang, malskillnad, gjorda mal).
+    Spelade matcher anvander sin VERKLIGA malsiffra (fx['score']) - en stor seger
+    (t.ex. 5-1) ger darmed battre malskillnad an en knapp (1-0), precis som i FIFA:s
+    gruppranking (poang -> malskillnad -> gjorda mal)."""
     pts = dict.fromkeys(teams, 0)
+    gf = dict.fromkeys(teams, 0)   # gjorda mal
+    ga = dict.fromkeys(teams, 0)   # inslappta mal
     for fx in fixtures:
         res = fx.get("result")
+        score = fx.get("score")
         if res is None:                                   # ej spelad -> simulera
             p = devig([fx["odds"]["1"], fx["odds"]["X"], fx["odds"]["2"]])
             r = rng.random()
             res = "1" if r < p[0] else ("X" if r < p[0] + p[1] else "2")
+            hg, ag = sample_goals(res, rng)
+        elif score and score[0] is not None and score[1] is not None:
+            hg, ag = score[0], score[1]                   # verkligt resultat
+        else:                                             # spelad utan malsiffra (gammal data)
+            hg, ag = (1, 0) if res == "1" else ((0, 1) if res == "2" else (0, 0))
+        h, a = fx["home"], fx["away"]
+        gf[h] += hg; ga[h] += ag
+        gf[a] += ag; ga[a] += hg
         if res == "1":
-            pts[fx["home"]] += 3
+            pts[h] += 3
         elif res == "2":
-            pts[fx["away"]] += 3
+            pts[a] += 3
         else:
-            pts[fx["home"]] += 1
-            pts[fx["away"]] += 1
-    # FORENKLING: ranka pa poang + liten slump som tiebreak. En riktig modell
-    # simulerar malskillnad/inbordes mote - byt ut harifran om du vill ha det.
-    ranked = sorted(teams, key=lambda t: (pts[t], rng.random()), reverse=True)
-    return ranked, pts
+            pts[h] += 1
+            pts[a] += 1
+    gd = {t: gf[t] - ga[t] for t in teams}
+    # FIFA-ordning (forenklad): poang -> malskillnad -> gjorda mal -> slump.
+    ranked = sorted(teams, key=lambda t: (pts[t], gd[t], gf[t], rng.random()), reverse=True)
+    return ranked, pts, gd, gf
 
 
 def resolve_slot(spec, standings, slot_to_third_group):
@@ -110,18 +148,18 @@ def run_once(groups, fixtures_by_group, strength, bracket, rng):
     """En komplett simulerad turnering."""
     standings = {}
     gpos = {}                       # lag -> grupplacering 1..4
-    thirds = []                     # (grupp, lag, poang) for alla treor
+    thirds = []                     # (grupp, lag, poang, malskillnad, gjorda mal)
     for grp, teams in groups.items():
-        ranked, pts = sim_group(teams, fixtures_by_group[grp], rng)
+        ranked, pts, gd, gf = sim_group(teams, fixtures_by_group[grp], rng)
         standings[grp] = ranked
         for i, t in enumerate(ranked):
             gpos[t] = i + 1
-        thirds.append((grp, ranked[2], pts[ranked[2]]))
+        third = ranked[2]
+        thirds.append((grp, third, pts[third], gd[third], gf[third]))
 
-    # Basta 8 treorna gar vidare (FIFA: poang, malskillnad ...; har poang +
-    # slump-tiebreak i linje med sim_group:s forenkling).
-    thirds.sort(key=lambda x: (x[2], rng.random()), reverse=True)
-    qualifying_groups = sorted(g for g, _, _ in thirds[:8])
+    # Basta 8 treorna gar vidare (FIFA: poang -> malskillnad -> gjorda mal -> slump).
+    thirds.sort(key=lambda x: (x[2], x[3], x[4], rng.random()), reverse=True)
+    qualifying_groups = sorted(g for g, *_ in thirds[:8])
 
     # FIFA Annex C (annexc.js, 495 rader): vilken trea (fran vilken grupp) som
     # hamnar i vilken winner-slot avgors av VILKA 8 grupper som levererar en trea.

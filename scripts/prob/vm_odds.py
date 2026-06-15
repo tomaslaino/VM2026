@@ -81,14 +81,16 @@ def load_fixtures():
         if canonical(fx.get("away")) is None:
             unknown.add(fx.get("away"))
         result = None
+        score = None
         res = results.get(key)
         status = (res or {}).get("status") or fx.get("status")
         if res and res.get("h") is not None and res.get("a") is not None \
                 and str(status).upper() in ("FINISHED", "FULL_TIME", "FT"):
             h, a = res["h"], res["a"]
             result = "1" if h > a else ("2" if a > h else "X")
+            score = [h, a]   # behall malsiffran sa motorn kan vikta malskillnad
         out.append({"group": group, "home": home, "away": away, "result": result,
-                    "idx": int(key.split(":")[2])})
+                    "score": score, "idx": int(key.split(":")[2])})
     if unknown:
         print(f"VARNING: okanda lagnamn (ingen kanonisering): {sorted(unknown)}")
     out.sort(key=lambda m: (m["group"], m["idx"]))
@@ -225,7 +227,7 @@ def main():
         else:
             stats[source] += 1
         out.append({"group": m["group"], "home": m["home"], "away": m["away"],
-                    "result": m["result"], "odds": odds})
+                    "result": m["result"], "score": m.get("score"), "odds": odds})
 
     OUTPUT.write_text(json.dumps(out, ensure_ascii=False, indent=2))
     print(f"Klart -> {OUTPUT}  ({len(out)} matcher)")

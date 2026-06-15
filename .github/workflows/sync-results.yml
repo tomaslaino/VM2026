@@ -20,6 +20,7 @@ concurrency:
 
 permissions:
   contents: write
+  actions: write   # tillåter att starta sannolikhets-workflowen vid nya resultat
 
 jobs:
   sync:
@@ -43,13 +44,26 @@ jobs:
         run: npm run sync:static
 
       - name: Committa om något ändrats
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/results.json data/matchdetails.json
           if git diff --staged --quiet; then
             echo "Inga förändringar – hoppar över commit."
+            echo "changed=0" >> "$GITHUB_OUTPUT"
           else
             git commit -m "Auto-synk VM-resultat $(date -u +'%Y-%m-%d %H:%M UTC')"
             git push
+            echo "changed=1" >> "$GITHUB_OUTPUT"
           fi
+
+      # Räkna om slutspelssannolikheterna DIREKT när nya resultat kom in.
+      # GitHubs schemalagda "*/30"-cron hoppas ofta över under hög last, så
+      # probs kunde släpa flera timmar efter ett resultat. Vi triggar i stället
+      # sannolikhets-workflowen så fort (och bara när) resultaten faktiskt ändrats.
+      - name: Trigga omräkning av sannolikheter
+        if: steps.commit.outputs.changed == '1'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api --method POST "repos/${{ github.repository }}/dispatches" -f event_type=results-updated
