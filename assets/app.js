@@ -130,6 +130,10 @@
   }
 
   function isMatchLive(key) {
+    // Backendens live-lista är den färskaste signalen – ta den först så att en
+    // match räknas som pågående även i glappet innan status/resultat hunnit
+    // skrivas in i results/fixtures.
+    if (apiLive[key]) return true;
     var fx = getApiFixture(key);
     if (fx && isLiveStatus(fx.status)) return true;
     var rs = getRes(key);
@@ -2142,6 +2146,13 @@
 
   function liveNowItemHtml(e) {
     var open = matchOpenAttr(e.key);
+    // En match som panelen visar som pågående eller nyss spelad ska alltid gå
+    // att öppna – även i den korta luckan vid avspark då API:t ännu inte hunnit
+    // rapportera status/resultat (då vore isMatchOpenable false och klicket
+    // dött). Modalen visar tomma flikar som fylls på automatiskt via pollningen.
+    if (!open.attr && (e.state === "live" || e.state === "ft")) {
+      open = { attr: ' data-match-open="' + e.key + '" role="button" tabindex="0"', cls: " match-openable" };
+    }
     var score = e.state === "soon"
       ? '<span class="nm-live-score dim">–</span>'
       : '<span class="nm-live-score">' + (e.r.h != null ? e.r.h : 0) + '–' + (e.r.a != null ? e.r.a : 0) + '</span>';
