@@ -849,13 +849,6 @@
   }
 
   /* ---------- Startsida (Hem) ---------- */
-  function homeLink(nav, title, sub) {
-    return '<button type="button" class="home-link" data-nav="' + nav + '">' +
-      '<span class="hl-text"><span class="hl-title">' + title + '</span>' +
-      '<span class="hl-sub">' + sub + '</span></span>' +
-      '<span class="hl-arrow" aria-hidden="true">→</span></button>';
-  }
-
   function renderHome() {
     var ctx = getCtx();
     var html = '<div class="home-layout">' +
@@ -866,11 +859,6 @@
         '<p>Pågående matcher, nästa avspark och de svenska ödesmatcherna — allt på ett ställe, medan Sverige och Uruguay sänks i mullen.</p>' +
       '</div>' +
       nextMatchesRow(ctx) +
-      '<div class="home-links">' +
-        homeLink("bracket", "Slutspelsträd", "Följ vägen till finalen") +
-        homeLink("calendar", "Kalender", "Alla 104 matcher dag för dag") +
-        homeLink("players", "Statistik", "Skyttar, kort &amp; lag") +
-      '</div>' +
       '</div>';
     viewEl.innerHTML = html;
     updateNextCountdown();
@@ -2199,22 +2187,23 @@
         '<span class="nm-title">Nästa matcher</span>' +
         '<p class="nm-empty">Inga kvarvarande matcher</p></div>';
     }
-    var title = "Nästa matcher";
-    var h = '<div class="next-matches' + (next.live ? " is-live" : "") + '" id="nextMatches" ' +
+    var h = '<div class="next-matches next-up' + (next.live ? " is-live" : "") + '" id="nextMatches" ' +
       'data-kickoff="' + (next.kickoff || "") + '" data-live="' + (next.live ? "1" : "0") + '">';
-    h += '<div class="nm-head"><span class="nm-title">' + title + '</span>';
+    h += '<div class="nm-head"><span class="nm-title">Nästa avspark</span>';
     if (next.live) {
       h += '<span class="nm-live"><span class="live-dot"></span>Pågår nu</span>';
-    } else {
+    }
+    h += '</div>';
+    if (!next.live) {
       var p = countdownParts(next.kickoff);
-      h += '<div class="nm-timer" aria-live="polite">' +
-        nextMatchTimerUnit("nm-d", p.d, "d") +
-        nextMatchTimerUnit("nm-h", pad(p.h), "h") +
-        nextMatchTimerUnit("nm-m", pad(p.m), "m") +
-        nextMatchTimerUnit("nm-s", pad(p.s), "s") +
+      h += '<div class="nm-bigtimer" aria-live="polite">' +
+        nextMatchTimerUnit("nm-d", p.d, "dygn") +
+        nextMatchTimerUnit("nm-h", pad(p.h), "tim") +
+        nextMatchTimerUnit("nm-m", pad(p.m), "min") +
+        nextMatchTimerUnit("nm-s", pad(p.s), "sek") +
         "</div>";
     }
-    h += '</div><div class="nm-spot-list">';
+    h += '<div class="nm-spot-list">';
     next.matches.forEach(function (m) {
       h += nextMatchItemHtml(m);
     });
