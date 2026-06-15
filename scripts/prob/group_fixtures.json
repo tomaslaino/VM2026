@@ -495,8 +495,11 @@
     "group": "G",
     "home": "Belgium",
     "away": "Egypt",
-    "result": null,
-    "score": null,
+    "result": "X",
+    "score": [
+      1,
+      1
+    ],
     "odds": {
       "1": 2.824,
       "X": 1.715,
