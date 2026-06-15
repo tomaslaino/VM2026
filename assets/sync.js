@@ -49,9 +49,13 @@
     return 180000;
   }
 
+  function staticUrl() {
+    return STATIC_URL + (STATIC_URL.indexOf("?") === -1 ? "?" : "&") + "t=" + Date.now();
+  }
+
   function resultsUrl() {
     if (USE_BACKEND) return API + "/api/results";
-    return STATIC_URL + (STATIC_URL.indexOf("?") === -1 ? "?" : "&") + "t=" + Date.now();
+    return staticUrl();
   }
 
   function schedulePoll() {
@@ -61,23 +65,35 @@
     }, pollIntervalMs());
   }
 
+  function fetchJson(url) {
+    return fetch(url, { headers: { Accept: "application/json" }, cache: "no-store" })
+      .then(function (r) { return (r && r.ok) ? r.json() : null; });
+  }
+
+  // Backend nere/i viloläge → läs den statiska filen så sidan aldrig blir tom.
+  function fallbackStatic() {
+    return fetchJson(staticUrl())
+      .then(function (data) {
+        if (data) { apply(data); setStatus("ok"); }
+        else setStatus("error");
+      })
+      .catch(function () { setStatus("error"); });
+  }
+
   function pull() {
     setStatus("pending");
-    return fetch(resultsUrl(), { headers: { Accept: "application/json" }, cache: "no-store" })
-      .then(function (r) {
-        if (!r || !r.ok) {
-          setStatus("error");
-          return null;
-        }
-        return r.json();
-      })
+    return fetchJson(resultsUrl())
       .then(function (data) {
         if (data) {
           apply(data);
           setStatus("ok");
+          return;
         }
+        if (USE_BACKEND) return fallbackStatic();
+        setStatus("error");
       })
       .catch(function () {
+        if (USE_BACKEND) return fallbackStatic();
         setStatus("error");
       });
   }

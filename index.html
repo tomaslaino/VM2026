@@ -49,12 +49,17 @@
 
   <script>
     /* Datakälla för resultat/tabeller.
-       - Standard (GitHub Pages): lämna backend tom. Sidan läser den statiska
-         data/results.json som GitHub Actions uppdaterar automatiskt.
-       - Vill du ha en alltid-på-server med WebSocket-realtid: sätt
-         backend: "https://din-app.onrender.com" */
+       - backend satt: alltid-på-server med WebSocket-realtid (mål syns inom
+         sekunder). Faller automatiskt tillbaka på den statiska filen nedan om
+         servern är nere eller vaknar ur viloläge.
+       - backend tom: rent statiskt läge (GitHub Pages), läser data/results.json
+         som GitHub Actions uppdaterar.
+
+       OBS: byt ut URL:en nedan mot den faktiska adressen Render visar efter
+       deployen (Dashboard → tjänsten vm2026 → längst upp). Den är oftast
+       https://vm2026.onrender.com men kan få ett suffix om namnet var upptaget. */
     window.VM_CONFIG = {
-      backend: "",
+      backend: "https://vm2026.onrender.com",
       staticResults: "data/results.json",
       staticDetails: "data/matchdetails.json",
       staticBracket: "data/bracket_probs.json"

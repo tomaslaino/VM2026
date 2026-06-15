@@ -13,6 +13,10 @@ services:
         value: WC
       - key: FD_SEASON
         value: "2026"
+      # Hur ofta servern hämtar ESPN medan en match är live (sekunder).
+      # Lägre = snabbare ställning på sidan. ESPN:s öppna API klarar 30s väl.
+      - key: FD_POLL_LIVE_SECONDS
+        value: "30"
       - key: DATABASE_URL
         sync: false
       - key: API_FOOTBALL_KEY
