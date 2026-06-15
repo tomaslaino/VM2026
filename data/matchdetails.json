@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-14T23:21:34.254Z",
+    "updatedAt": "2026-06-15T01:45:00.545Z",
     "source": "espn"
   },
   "details": {
@@ -4536,28 +4536,121 @@
     },
     "g:E:5": {
       "espnId": "760423",
-      "status": "IN_PLAY",
-      "minute": 18,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-14T23:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 0,
+          "a": 1
+        },
+        "ht": {
+          "h": 0,
           "a": 0
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
-      "bookings": [],
-      "subs": [],
+      "goals": [
+        {
+          "minute": 90,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Amad Diallo",
+          "assist": "Wilfried Singo",
+          "type": "REGULAR",
+          "score": null
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 28,
+          "team": "a",
+          "player": "Seko Fofana",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 38,
+          "team": "a",
+          "player": "Franck Kessié",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 40,
+          "team": "a",
+          "player": "Guela Doué",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 73,
+          "team": "h",
+          "player": "Jackson Porozo",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 56,
+          "team": "h",
+          "in": "Nilson Angulo",
+          "out": "Alan Minda"
+        },
+        {
+          "minute": 56,
+          "team": "a",
+          "in": "Ange-Yoan Bonny",
+          "out": "Elye Wahi"
+        },
+        {
+          "minute": 56,
+          "team": "a",
+          "in": "Amad Diallo",
+          "out": "Bazoumana Touré"
+        },
+        {
+          "minute": 62,
+          "team": "h",
+          "in": "Jackson Porozo",
+          "out": "Alan Franco"
+        },
+        {
+          "minute": 62,
+          "team": "h",
+          "in": "Ángelo Preciado",
+          "out": "John Yeboah"
+        },
+        {
+          "minute": 77,
+          "team": "a",
+          "in": "Ibrahim Sangaré",
+          "out": "Seko Fofana"
+        },
+        {
+          "minute": 77,
+          "team": "a",
+          "in": "Christ Inao Oulaï",
+          "out": "Nicolas Pépé"
+        },
+        {
+          "minute": 77,
+          "team": "h",
+          "in": "Kevin Rodríguez",
+          "out": "Enner Valencia"
+        },
+        {
+          "minute": 89,
+          "team": "a",
+          "in": "Odilon Kossounou",
+          "out": "Guela Doué"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
-          "formation": "3-4-3",
+          "formation": "4-4-2",
           "starters": [
             {
               "name": "Hernán Galíndez",
@@ -4565,14 +4658,24 @@
               "pos": "G"
             },
             {
-              "name": "Gonzalo Plata",
-              "jersey": "19",
-              "pos": "RM"
+              "name": "Alan Franco",
+              "jersey": "21",
+              "pos": "RB"
             },
             {
               "name": "Piero Hincapié",
               "jersey": "3",
-              "pos": "LM"
+              "pos": "LB"
+            },
+            {
+              "name": "Moisés Caicedo",
+              "jersey": "23",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Joel Ordóñez",
+              "jersey": "4",
+              "pos": "CD-R"
             },
             {
               "name": "Willian Pacho",
@@ -4580,19 +4683,9 @@
               "pos": "CD-L"
             },
             {
-              "name": "Joel Ordóñez",
-              "jersey": "4",
-              "pos": "CD"
-            },
-            {
-              "name": "Alan Franco",
-              "jersey": "21",
-              "pos": "CD-R"
-            },
-            {
-              "name": "Moisés Caicedo",
-              "jersey": "23",
-              "pos": "CM-R"
+              "name": "John Yeboah",
+              "jersey": "9",
+              "pos": "RM"
             },
             {
               "name": "Pedro Vite",
@@ -4602,23 +4695,24 @@
             {
               "name": "Enner Valencia",
               "jersey": "13",
-              "pos": "F"
+              "pos": "CF-L"
             },
             {
-              "name": "John Yeboah",
-              "jersey": "9",
+              "name": "Gonzalo Plata",
+              "jersey": "19",
               "pos": "CF-R"
             },
             {
               "name": "Alan Minda",
               "jersey": "14",
-              "pos": "CF-L"
+              "pos": "LM"
             }
           ],
           "bench": [
             {
               "name": "Kevin Rodríguez",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Gonzalo Valle",
@@ -4638,7 +4732,8 @@
             },
             {
               "name": "Nilson Angulo",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Anthony Valencia",
@@ -4646,7 +4741,8 @@
             },
             {
               "name": "Ángelo Preciado",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Kendry Páez",
@@ -4658,7 +4754,8 @@
             },
             {
               "name": "Jackson Porozo",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Félix Torres",
@@ -4697,8 +4794,8 @@
               "pos": "LB"
             },
             {
-              "name": "Seko Fofana",
-              "jersey": "6",
+              "name": "Franck Kessié",
+              "jersey": "8",
               "pos": "CM-R"
             },
             {
@@ -4717,8 +4814,8 @@
               "pos": "RM"
             },
             {
-              "name": "Franck Kessié",
-              "jersey": "8",
+              "name": "Seko Fofana",
+              "jersey": "6",
               "pos": "CM-L"
             },
             {
@@ -4744,7 +4841,8 @@
             },
             {
               "name": "Christ Inao Oulaï",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Christopher Operi",
@@ -4756,7 +4854,8 @@
             },
             {
               "name": "Ange-Yoan Bonny",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Oumar Diakité",
@@ -4768,7 +4867,8 @@
             },
             {
               "name": "Ibrahim Sangaré",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true
             },
             {
               "name": "Ousmane Diomande",
@@ -4792,43 +4892,45 @@
             },
             {
               "name": "Amad Diallo",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Odilon Kossounou",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             }
           ]
         }
       },
       "referee": "Francois Letexier",
       "venue": "Lincoln Financial Field, Philadelphia, Pennsylvania",
-      "attendance": null,
+      "attendance": 68274,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "44%",
-          "a": "57%"
+          "h": "52%",
+          "a": "48%"
         },
         {
           "key": "totalShots",
-          "h": "2",
-          "a": "1"
+          "h": "12",
+          "a": "15"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "4"
         },
         {
           "key": "wonCorners",
-          "h": "0",
-          "a": "0"
+          "h": "6",
+          "a": "3"
         },
         {
           "key": "foulsCommitted",
-          "h": "1",
-          "a": "2"
+          "h": "13",
+          "a": "10"
         },
         {
           "key": "offsides",
@@ -4837,23 +4939,23 @@
         },
         {
           "key": "saves",
-          "h": "1",
-          "a": "0"
+          "h": "3",
+          "a": "1"
         },
         {
           "key": "totalPasses",
-          "h": "100",
-          "a": "130"
+          "h": "494",
+          "a": "470"
         },
         {
           "key": "passPct",
-          "h": "83%",
-          "a": "83%"
+          "h": "85%",
+          "a": "84%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "3"
         },
         {
           "key": "redCards",
@@ -4861,7 +4963,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-14T23:21:34.254Z"
+      "updatedAt": "2026-06-15T01:45:00.544Z"
     }
   }
 }
