@@ -781,19 +781,21 @@
   }
 
   function render() {
-    var view = ui("view", "groups");
+    var view = ui("view", "home");
     document.documentElement.classList.toggle("view-bracket", view === "bracket");
+    document.documentElement.classList.toggle("view-home", view === "home");
     document.querySelectorAll("[data-nav]").forEach(function (b) {
       b.classList.toggle("active", b.getAttribute("data-nav") === view);
     });
-    if (view === "groups") renderGroups();
+    if (view === "home") renderHome();
+    else if (view === "groups") renderGroups();
     else if (view === "bracket") {
       setBracketHeroCollapsed(false);
       renderBracket();
     }
     else if (view === "players") renderPlayers();
     else renderCalendar();
-    renderPageIntro(view);
+    if (view !== "home") renderPageIntro(view);
 
     /* Grupp-popupen används i både kalender- och gruppvyn. */
     if (view !== "calendar" && view !== "groups") hideCalGroupPopup();
@@ -846,6 +848,22 @@
     if (s) { s.focus(); }
   }
 
+  /* ---------- Startsida (Hem) ---------- */
+  function renderHome() {
+    var ctx = getCtx();
+    var html = '<div class="home-layout">' +
+      '<div class="home-hero-bg" aria-hidden="true"></div>' +
+      '<div class="home-intro">' +
+        '<span class="home-kicker">Fotbolls-VM 2026 · USA · Mexiko · Kanada</span>' +
+        '<h2>Gräver grav</h2>' +
+        '<p>Pågående matcher, nästa avspark och svenska intressen — allt på ett ställe medan Sverige och Uruguay sänks i mullen.</p>' +
+      '</div>' +
+      nextMatchesRow(ctx) +
+      '</div>';
+    viewEl.innerHTML = html;
+    updateNextCountdown();
+  }
+
   /* ---------- Gruppvy ---------- */
   function renderGroups() {
     var ctx = getCtx();
@@ -853,13 +871,11 @@
     ctx.thirds.ranking.forEach(function (e) { if (e.qualified) qualifiedLetters[e.L] = true; });
 
     var html = '<div class="groups-layout">' +
-      nextMatchesRow(ctx) +
       '<div class="groups-grid">';
     WC.groupLetters.forEach(function (L) { html += groupCard(L, ctx.tables[L], qualifiedLetters[L]); });
     html += thirdsPanel(ctx.thirds);
     html += '</div></div>';
     viewEl.innerHTML = html;
-    updateNextCountdown();
     if (calGroupOpen) renderCalGroupPopup(); // håll grupp-popupen aktuell
   }
 
@@ -2347,7 +2363,6 @@
         '<span class="cal-jump-ico" aria-hidden="true">↓</span></button>'
       : "";
     var html = '<div class="calendar-layout">' +
-      nextMatchesRow(ctx) +
       '<div class="cal-shell">' + jumpBtn + '<div class="cal">';
     var lastDate = null;
     items.forEach(function (it) {
@@ -2964,6 +2979,16 @@
         hideCalGroupPopup();
         if (hoverMatch) { hoverMatch = null; hideAside(); syncExpandButtons(); }
       }
+      // Aktivera klickbar titel (role=link) med Enter/Space.
+      if ((e.key === "Enter" || e.key === " ") && document.activeElement) {
+        var nav = document.activeElement.closest && document.activeElement.closest("h1[data-nav]");
+        if (nav) {
+          e.preventDefault();
+          setUi("view", nav.getAttribute("data-nav"));
+          hoverMatch = null;
+          render();
+        }
+      }
     });
 
     // Realtid: synk mellan flikar + nedräkningar
@@ -2972,8 +2997,8 @@
     });
     setInterval(refresh, 30000); // uppdatera "om X / Pågår" m.m.
     countdownTimer = setInterval(function () {
-      var view = ui("view", "groups");
-      if (view === "groups" || view === "calendar") updateNextCountdown();
+      var view = ui("view", "home");
+      if (view === "home") updateNextCountdown();
     }, 1000);
 
     var bracketLineTimer;

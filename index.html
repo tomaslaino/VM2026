@@ -7,8 +7,11 @@
   <meta name="description" content="Följ fotbolls-VM 2026 (USA, Mexiko, Kanada). Grupptabeller, slutspelsträd och kalender som uppdateras automatiskt och i realtid.">
   <meta name="theme-color" content="#0a1628">
   <meta name="color-scheme" content="dark">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://flagcdn.com">
-  <link rel="stylesheet" href="assets/styles.css?v=105">
+  <link rel="stylesheet" href="assets/styles.css?v=107">
 </head>
 <body>
   <header class="hero-header">
@@ -17,12 +20,13 @@
 
     <div class="hero-head">
       <span class="hero-kicker">Fotbolls-VM 2026 · USA · Mexiko · Kanada</span>
-      <h1>Gräver grav</h1>
+      <h1 data-nav="home" role="link" tabindex="0" title="Till startsidan">Gräver grav</h1>
     </div>
 
     <div class="topbar">
       <div class="topbar-inner">
         <nav class="nav" aria-label="Vyer">
+          <button class="seg" data-nav="home">Hem</button>
           <button class="seg" data-nav="groups">Gruppspel</button>
           <button class="seg" data-nav="bracket">Slutspel</button>
           <button class="seg" data-nav="calendar">Kalender</button>
@@ -69,7 +73,7 @@
   <script src="assets/data.js"></script>
   <script src="assets/players.js?v=1"></script>
   <script src="assets/playerstats.js?v=2"></script>
-  <script src="assets/app.js?v=68"></script>
+  <script src="assets/app.js?v=69"></script>
   <script src="assets/syncSchedule.js"></script>
   <script src="assets/sync.js?v=3"></script>
   <script src="assets/live.js?v=6"></script>
