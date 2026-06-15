@@ -2944,6 +2944,10 @@
   function init() {
     viewEl = document.getElementById("view");
 
+    /* Startsida: öppna alltid på Hem vid sidladdning. Vyn minns inte mellan
+       omladdningar – flikklick navigerar bara under det pågående besöket. */
+    state.ui.view = "home";
+
     // dynamiska element
     tipEl = document.createElement("div"); tipEl.id = "tooltip"; tipEl.className = "tooltip";
     document.body.appendChild(tipEl);
