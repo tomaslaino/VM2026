@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-15T10:42:45.891126+00:00",
+  "updated": "2026-06-15T11:42:25.657140+00:00",
   "source": "the-odds-api.com",
   "market": "VM-vinnare (outright)",
   "teams": [
@@ -140,6 +140,14 @@
       "impliedPct": 1.0
     },
     {
+      "team": "Sweden",
+      "bestOdds": 120.0,
+      "bestBook": "Betfair",
+      "avgOdds": 107.0,
+      "books": 3,
+      "impliedPct": 0.9
+    },
+    {
       "team": "Croatia",
       "bestOdds": 140.0,
       "bestBook": "Betfair",
@@ -156,20 +164,20 @@
       "impliedPct": 0.8
     },
     {
-      "team": "Sweden",
-      "bestOdds": 160.0,
-      "bestBook": "Betfair",
-      "avgOdds": 133.67,
-      "books": 3,
-      "impliedPct": 0.7
-    },
-    {
       "team": "Australia",
       "bestOdds": 170.0,
       "bestBook": "Betfair",
       "avgOdds": 147.0,
       "books": 3,
       "impliedPct": 0.7
+    },
+    {
+      "team": "Ivory Coast",
+      "bestOdds": 180.0,
+      "bestBook": "Betfair",
+      "avgOdds": 170.33,
+      "books": 3,
+      "impliedPct": 0.6
     },
     {
       "team": "Ecuador",
@@ -188,14 +196,6 @@
       "impliedPct": 0.6
     },
     {
-      "team": "Ivory Coast",
-      "bestOdds": 190.0,
-      "bestBook": "Betfair",
-      "avgOdds": 177.0,
-      "books": 3,
-      "impliedPct": 0.6
-    },
-    {
       "team": "Austria",
       "bestOdds": 250.0,
       "bestBook": "Betfair",
@@ -205,9 +205,9 @@
     },
     {
       "team": "South Korea",
-      "bestOdds": 280.0,
+      "bestOdds": 290.0,
       "bestBook": "Betfair",
-      "avgOdds": 270.33,
+      "avgOdds": 277.0,
       "books": 3,
       "impliedPct": 0.4
     },
@@ -244,20 +244,20 @@
       "impliedPct": 0.2
     },
     {
-      "team": "Ghana",
-      "bestOdds": 830.0,
+      "team": "Czechia",
+      "bestOdds": 850.0,
       "bestBook": "Betfair",
-      "avgOdds": 670.33,
+      "avgOdds": 623.67,
       "books": 3,
-      "impliedPct": 0.1
+      "impliedPct": 0.2
     },
     {
-      "team": "Czechia",
-      "bestOdds": 910.0,
+      "team": "Ghana",
+      "bestOdds": 820.0,
       "bestBook": "Betfair",
-      "avgOdds": 707.0,
+      "avgOdds": 663.67,
       "books": 3,
-      "impliedPct": 0.1
+      "impliedPct": 0.2
     },
     {
       "team": "Bosnia-Herzegovina",
