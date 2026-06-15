@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-15T13:25:47.568Z",
+    "updatedAt": "2026-06-15T18:09:54.975Z",
     "source": "espn"
   },
   "details": {
@@ -5447,6 +5447,415 @@
         }
       ],
       "updatedAt": "2026-06-15T07:03:37.547Z"
+    },
+    "g:H:4": {
+      "espnId": "760428",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-15T16:00Z",
+      "duration": "REGULAR",
+      "winner": "DRAW",
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": {
+          "h": 0,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [
+        {
+          "minute": 16,
+          "team": "h",
+          "player": "Sidny Lopes Cabral",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Pedri",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 61,
+          "team": "h",
+          "in": "Willy Semedo",
+          "out": "Jovane Cabral"
+        },
+        {
+          "minute": 61,
+          "team": "h",
+          "in": "Deroy Duarte",
+          "out": "Laros Duarte"
+        },
+        {
+          "minute": 61,
+          "team": "h",
+          "in": "Nuno da Costa",
+          "out": "Dailon Livramento"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Mikel Merino",
+          "out": "Fabián Ruiz"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Lamine Yamal",
+          "out": "Gavi"
+        },
+        {
+          "minute": 76,
+          "team": "h",
+          "in": "João Paulo",
+          "out": "Sidny Lopes Cabral"
+        },
+        {
+          "minute": 79,
+          "team": "h",
+          "in": "Telmo Arcanjo",
+          "out": "Jamiro Monteiro"
+        },
+        {
+          "minute": 81,
+          "team": "a",
+          "in": "Dani Olmo",
+          "out": "Ferran Torres"
+        },
+        {
+          "minute": 87,
+          "team": "a",
+          "in": "Nico Williams",
+          "out": "Rodri"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-1-4-1",
+          "starters": [
+            {
+              "name": "Vozinha",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Steven Moreira",
+              "jersey": "22",
+              "pos": "RB"
+            },
+            {
+              "name": "Sidny Lopes Cabral",
+              "jersey": "13",
+              "pos": "LB"
+            },
+            {
+              "name": "Kevin Pina",
+              "jersey": "6",
+              "pos": "DM"
+            },
+            {
+              "name": "Pico Lopes",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Diney Borges",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Ryan Mendes",
+              "jersey": "20",
+              "pos": "RM"
+            },
+            {
+              "name": "Laros Duarte",
+              "jersey": "15",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Dailon Livramento",
+              "jersey": "19",
+              "pos": "F"
+            },
+            {
+              "name": "Jamiro Monteiro",
+              "jersey": "10",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Jovane Cabral",
+              "jersey": "7",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Stopira",
+              "jersey": "2"
+            },
+            {
+              "name": "Márcio Rosa",
+              "jersey": "12"
+            },
+            {
+              "name": "Hélio Varela",
+              "jersey": "26"
+            },
+            {
+              "name": "Wagner Pina",
+              "jersey": "24"
+            },
+            {
+              "name": "Gilson Benchimol",
+              "jersey": "9"
+            },
+            {
+              "name": "Garry Rodrigues",
+              "jersey": "11"
+            },
+            {
+              "name": "Telmo Arcanjo",
+              "jersey": "18",
+              "in": true
+            },
+            {
+              "name": "Willy Semedo",
+              "jersey": "17",
+              "in": true
+            },
+            {
+              "name": "Logan Costa",
+              "jersey": "5"
+            },
+            {
+              "name": "Yannick Semedo",
+              "jersey": "16"
+            },
+            {
+              "name": "Nuno da Costa",
+              "jersey": "21",
+              "in": true
+            },
+            {
+              "name": "João Paulo",
+              "jersey": "8",
+              "in": true
+            },
+            {
+              "name": "CJ dos Santos",
+              "jersey": "23"
+            },
+            {
+              "name": "Kelvin Pires",
+              "jersey": "25"
+            },
+            {
+              "name": "Deroy Duarte",
+              "jersey": "14",
+              "in": true
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Unai Simón",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Marcos Llorente",
+              "jersey": "5",
+              "pos": "RB"
+            },
+            {
+              "name": "Marc Cucurella",
+              "jersey": "24",
+              "pos": "LB"
+            },
+            {
+              "name": "Rodri",
+              "jersey": "16",
+              "pos": "CM"
+            },
+            {
+              "name": "Pau Cubarsí",
+              "jersey": "22",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Aymeric Laporte",
+              "jersey": "14",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Fabián Ruiz",
+              "jersey": "8",
+              "pos": "RM"
+            },
+            {
+              "name": "Pedri",
+              "jersey": "20",
+              "pos": "LM"
+            },
+            {
+              "name": "Mikel Oyarzabal",
+              "jersey": "21",
+              "pos": "F"
+            },
+            {
+              "name": "Ferran Torres",
+              "jersey": "7",
+              "pos": "RF"
+            },
+            {
+              "name": "Gavi",
+              "jersey": "9",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "David Raya",
+              "jersey": "1"
+            },
+            {
+              "name": "Víctor Muñoz",
+              "jersey": "25"
+            },
+            {
+              "name": "Lamine Yamal",
+              "jersey": "19",
+              "in": true
+            },
+            {
+              "name": "Yéremy Pino",
+              "jersey": "11"
+            },
+            {
+              "name": "Martín Zubimendi",
+              "jersey": "18"
+            },
+            {
+              "name": "Dani Olmo",
+              "jersey": "10",
+              "in": true
+            },
+            {
+              "name": "Nico Williams",
+              "jersey": "17",
+              "in": true
+            },
+            {
+              "name": "Mikel Merino",
+              "jersey": "6",
+              "in": true
+            },
+            {
+              "name": "Pedro Porro",
+              "jersey": "12"
+            },
+            {
+              "name": "Borja Iglesias",
+              "jersey": "26"
+            },
+            {
+              "name": "Joan García",
+              "jersey": "13"
+            },
+            {
+              "name": "Álex Baena",
+              "jersey": "15"
+            },
+            {
+              "name": "Alejandro Grimaldo",
+              "jersey": "3"
+            },
+            {
+              "name": "Marc Pubill",
+              "jersey": "2"
+            },
+            {
+              "name": "Eric García",
+              "jersey": "4"
+            }
+          ]
+        }
+      },
+      "referee": "Adham Mohammad",
+      "venue": "Mercedes-Benz Stadium, Atlanta, Georgia",
+      "attendance": 67640,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "26%",
+          "a": "74%"
+        },
+        {
+          "key": "totalShots",
+          "h": "6",
+          "a": "27"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "1",
+          "a": "7"
+        },
+        {
+          "key": "wonCorners",
+          "h": "1",
+          "a": "11"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "1",
+          "a": "10"
+        },
+        {
+          "key": "offsides",
+          "h": "3",
+          "a": "2"
+        },
+        {
+          "key": "saves",
+          "h": "7",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "279",
+          "a": "801"
+        },
+        {
+          "key": "passPct",
+          "h": "73%",
+          "a": "92%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-15T18:09:54.974Z"
     }
   }
 }

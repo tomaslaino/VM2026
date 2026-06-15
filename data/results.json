@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-15T13:25:47.565Z",
+    "updatedAt": "2026-06-15T18:09:54.893Z",
     "source": "espn",
-    "matchCount": 12,
+    "matchCount": 13,
     "liveCount": 0,
     "apiCalls": 2
   },
@@ -65,6 +65,11 @@
     "g:F:1": {
       "h": 1,
       "a": 5,
+      "status": "FINISHED"
+    },
+    "g:H:4": {
+      "h": 0,
+      "a": 0,
       "status": "FINISHED"
     }
   },
@@ -278,7 +283,7 @@
       "date": "2026-06-15",
       "time": "18:00",
       "utcDate": "2026-06-15T16:00Z",
-      "status": "TIMED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Cape Verde",
       "away": "Spain",
@@ -2002,29 +2007,29 @@
       {
         "idx": 0,
         "position": 1,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
         "gf": 0,
         "ga": 0,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       },
       {
         "idx": 3,
         "position": 2,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
         "gf": 0,
         "ga": 0,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       },
       {
-        "idx": 2,
+        "idx": 1,
         "position": 3,
         "pld": 0,
         "w": 0,
@@ -2036,7 +2041,7 @@
         "pts": 0
       },
       {
-        "idx": 1,
+        "idx": 2,
         "position": 4,
         "pld": 0,
         "w": 0,
