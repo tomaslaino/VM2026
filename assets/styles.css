@@ -236,68 +236,124 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 22px;
-  min-height: clamp(560px, 82vh, 940px);
-  margin: 4px 0 26px;
+  gap: 24px;
+  min-height: clamp(600px, 86vh, 1000px);
+  margin: 6px 0 30px;
   z-index: 0;
 }
-/* Filmisk bild fäst som mörklagd bakgrund bakom hela startsidan.
-   Bryter ut till hela fönstrets bredd för full-bleed-känsla. */
+/* Filmisk bild som mörklagd, fast bakgrund bakom hela startsidan. Vänster-scrim
+   ger textläsbarhet, vinjett ger djup – bilden får synas vivid mot höger. */
 .home-hero-bg {
   position: fixed;
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(120% 90% at 78% 70%, transparent 0%, rgba(4, 8, 16, .35) 55%, rgba(4, 8, 16, .8) 100%),
-    linear-gradient(180deg, rgba(4, 8, 16, .82) 0%, rgba(4, 8, 16, .5) 30%, rgba(4, 8, 16, .55) 64%, rgba(4, 8, 16, .92) 100%),
-    url("home-hero.png?v=1") center 38% / cover no-repeat #04060c;
+    linear-gradient(96deg, rgba(3,7,14,.93) 0%, rgba(3,7,14,.62) 26%, rgba(3,7,14,.12) 52%, transparent 72%),
+    linear-gradient(180deg, rgba(3,7,14,.72) 0%, transparent 24%, transparent 58%, rgba(3,7,14,.9) 100%),
+    radial-gradient(125% 105% at 66% 42%, transparent 36%, rgba(2,4,10,.66) 100%),
+    url("home-hero.png?v=1") center 42% / cover no-repeat #04060c;
   pointer-events: none;
-  animation: homeBgIn .9s ease both;
+  animation: homeBgIn 1.1s ease both;
 }
-@keyframes homeBgIn { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: scale(1); } }
+@keyframes homeBgIn { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
 
 .home-intro {
   position: relative;
-  padding: 18px 4px 4px;
-  max-width: 64ch;
-  text-shadow: 0 2px 22px rgba(0, 0, 0, .9), 0 1px 4px rgba(0, 0, 0, .85);
+  padding: 30px 4px 6px;
+  max-width: 60ch;
 }
 .home-kicker {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1.6px;
-  color: #ffd9df;
-  padding: 4px 11px;
+  color: #ffe0e4;
+  padding: 5px 13px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--usa-red) 55%, rgba(10, 18, 32, .6));
-  border: 1px solid color-mix(in srgb, var(--usa-red) 70%, transparent);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, .35);
-  text-shadow: none;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--usa-red) 60%, rgba(10,18,32,.5)), color-mix(in srgb, var(--usa-red) 42%, rgba(10,18,32,.7)));
+  border: 1px solid color-mix(in srgb, var(--usa-red) 72%, transparent);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .4);
+}
+.hk-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #ff5b6e; box-shadow: 0 0 0 0 rgba(255,91,110,.6);
+  animation: pulse 2s infinite;
 }
 .home-intro h2 {
-  margin: 12px 0 8px;
-  font-size: clamp(30px, 5vw, 52px);
+  margin: 16px 0 12px;
+  font-size: clamp(38px, 6.5vw, 68px);
   font-weight: 900;
-  letter-spacing: -1px;
-  line-height: 1.02;
-  color: #f7fafd;
+  letter-spacing: -1.8px;
+  line-height: .96;
+  color: #f2f7fc;
+  background: linear-gradient(176deg, #ffffff 0%, #cdddf0 60%, #a3bad6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 6px 28px rgba(0, 0, 0, .85));
 }
 .home-intro p {
   margin: 0;
-  font-size: clamp(15px, 1.6vw, 18px);
-  line-height: 1.5;
-  color: #e7eef7;
+  max-width: 50ch;
+  font-size: clamp(15px, 1.7vw, 19px);
+  line-height: 1.55;
+  color: #e3edf8;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .9);
 }
 
-/* Glas-look på rutorna mot bilden */
+/* Premium-glas på rutorna mot bilden */
 .home-layout .next-matches {
-  background: color-mix(in srgb, var(--card) 78%, transparent);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border-color: color-mix(in srgb, var(--line) 80%, #fff 5%);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, .45);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card) 84%, transparent), color-mix(in srgb, var(--card) 70%, transparent));
+  -webkit-backdrop-filter: blur(16px) saturate(1.15);
+  backdrop-filter: blur(16px) saturate(1.15);
+  border-color: color-mix(in srgb, #fff 14%, var(--line));
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .07);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.home-layout .next-matches:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 28px 62px rgba(0, 0, 0, .6), inset 0 1px 0 rgba(255, 255, 255, .09);
+}
+
+/* Snabblänkar till övriga vyer */
+.home-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.home-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: var(--ink);
+  padding: 16px 18px;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card) 82%, transparent), color-mix(in srgb, var(--card) 68%, transparent));
+  border: 1px solid color-mix(in srgb, #fff 10%, var(--line));
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, .42);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s;
+}
+.home-link:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--usa-blue) 55%, var(--line));
+  box-shadow: 0 24px 56px rgba(0, 0, 0, .55);
+}
+.hl-title { display: block; font-weight: 800; font-size: 16px; letter-spacing: -.2px; }
+.hl-sub { display: block; font-size: 12.5px; color: var(--ink-soft); margin-top: 3px; }
+.hl-arrow { font-size: 22px; line-height: 1; color: var(--usa-blue); flex: none; transition: transform .18s ease; }
+.home-link:hover .hl-arrow { transform: translateX(5px); }
+@media (max-width: 640px) {
+  .home-links { grid-template-columns: 1fr; }
+  .home-intro { padding-top: 18px; }
 }
 
 .next-matches-row {
@@ -2684,6 +2740,45 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 .cal-group-popup { width: min(92vw, 520px); }
 .cal-group-note {
   margin: 10px 0 0; color: var(--ink-soft); font-size: 12px; line-height: 1.45;
+}
+
+/* ---------- Trolig sluttabell (oddssannolikheter) i grupp-popupen ---------- */
+.grp-probs { margin-top: 14px; overflow-x: auto; }
+.grp-probs-title {
+  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px;
+  color: var(--ink-soft); margin-bottom: 7px;
+}
+.grp-probs-title span { font-weight: 600; text-transform: none; letter-spacing: 0; opacity: .8; }
+.grp-prob-table { width: 100%; border-collapse: separate; border-spacing: 3px; font-size: 13px; }
+.grp-prob-table thead th {
+  font-size: 11px; font-weight: 700; color: var(--ink-soft); padding: 0 4px 5px;
+  text-align: center;
+}
+.grp-prob-table thead th.gp-team { text-align: left; }
+.grp-prob-table th.gp-team {
+  font-weight: 600; color: var(--ink); white-space: nowrap; text-align: left; padding-right: 8px;
+}
+.grp-prob-table tbody th.gp-team { display: flex; align-items: center; gap: 7px; }
+.grp-prob-table tbody th.gp-team .flag { flex: none; }
+.gp-cell {
+  position: relative; text-align: center; font-variant-numeric: tabular-nums;
+  font-weight: 700; min-width: 42px; padding: 7px 4px; border-radius: 7px; isolation: isolate;
+}
+.gp-cell span { position: relative; z-index: 1; }
+.gp-cell::before {
+  content: ""; position: absolute; inset: 0; border-radius: 7px; z-index: 0;
+  background: var(--c, var(--line));
+  opacity: calc(.10 + min(var(--p, 0), 1) * .62);
+}
+.gp-pos-1 { --c: var(--adv); }
+.gp-pos-2 { --c: var(--usa-blue); }
+.gp-pos-3 { --c: var(--third-q); }
+.gp-pos-4 { --c: var(--live); }
+.gp-cell.gp-adv { --c: var(--adv); font-weight: 800; }
+.grp-prob-table .gp-adv { border-left: 2px solid var(--line); }
+@media (prefers-color-scheme: light) {
+  .gp-cell { color: #16202c; }
+  .gp-cell::before { opacity: calc(.08 + min(var(--p, 0), 1) * .5); }
 }
 
 /* ---------- Ljust läge: dämpa mörka gradienter ---------- */

@@ -849,16 +849,28 @@
   }
 
   /* ---------- Startsida (Hem) ---------- */
+  function homeLink(nav, title, sub) {
+    return '<button type="button" class="home-link" data-nav="' + nav + '">' +
+      '<span class="hl-text"><span class="hl-title">' + title + '</span>' +
+      '<span class="hl-sub">' + sub + '</span></span>' +
+      '<span class="hl-arrow" aria-hidden="true">→</span></button>';
+  }
+
   function renderHome() {
     var ctx = getCtx();
     var html = '<div class="home-layout">' +
       '<div class="home-hero-bg" aria-hidden="true"></div>' +
       '<div class="home-intro">' +
-        '<span class="home-kicker">Fotbolls-VM 2026 · USA · Mexiko · Kanada</span>' +
+        '<span class="home-kicker"><span class="hk-dot" aria-hidden="true"></span>Fotbolls-VM 2026 · USA · Mexiko · Kanada</span>' +
         '<h2>Gräver grav</h2>' +
-        '<p>Pågående matcher, nästa avspark och svenska intressen — allt på ett ställe medan Sverige och Uruguay sänks i mullen.</p>' +
+        '<p>Pågående matcher, nästa avspark och de svenska ödesmatcherna — allt på ett ställe, medan Sverige och Uruguay sänks i mullen.</p>' +
       '</div>' +
       nextMatchesRow(ctx) +
+      '<div class="home-links">' +
+        homeLink("bracket", "Slutspelsträd", "Följ vägen till finalen") +
+        homeLink("calendar", "Kalender", "Alla 104 matcher dag för dag") +
+        homeLink("players", "Statistik", "Skyttar, kort &amp; lag") +
+      '</div>' +
       '</div>';
     viewEl.innerHTML = html;
     updateNextCountdown();
@@ -2399,6 +2411,38 @@
     renderCalGroupPopup();
   }
 
+  /* Sannolik sluttabell: per lag P(1:a/2:a/3:a/4:a) + P(vidare) ur oddsmotorn,
+     som en liten "heatmap" under grupptabellen. Tom sträng tills probs laddats. */
+  function groupFinishProbsHtml(table) {
+    if (!bracketProbs || !bracketProbs.groupPositions || !table) return "";
+    var posMeta = [["1", "gp-pos-1"], ["2", "gp-pos-2"], ["3", "gp-pos-3"], ["4", "gp-pos-4"]];
+    var rows = "", any = false;
+    table.forEach(function (e) {
+      var t = e.team;
+      var gp = bracketProbs.groupPositions[t.name];
+      if (!gp) return;
+      any = true;
+      var rds = bracketProbs.rounds && bracketProbs.rounds[t.name];
+      var cells = posMeta.map(function (m) {
+        var p = gp[m[0]] || 0;
+        return '<td class="gp-cell ' + m[1] + '" style="--p:' + p.toFixed(3) + '">' +
+          '<span>' + fmtPct(p) + '%</span></td>';
+      }).join("");
+      var adv = rds && rds.r32 != null ? rds.r32 : ((gp["1"] || 0) + (gp["2"] || 0));
+      cells += '<td class="gp-cell gp-adv" style="--p:' + adv.toFixed(3) + '">' +
+        '<span>' + fmtPct(adv) + '%</span></td>';
+      rows += '<tr><th scope="row" class="gp-team">' + flagImg(t.iso) +
+        '<span>' + esc(t.svShort || t.sv) + '</span></th>' + cells + '</tr>';
+    });
+    if (!any) return "";
+    return '<div class="grp-probs">' +
+      '<div class="grp-probs-title">Trolig sluttabell<span> · enligt aktuella odds</span></div>' +
+      '<table class="grp-prob-table"><thead><tr>' +
+        '<th class="gp-team">Lag</th><th>1:a</th><th>2:a</th><th>3:a</th><th>4:a</th>' +
+        '<th class="gp-adv" title="Sannolikhet att gå vidare till slutspel – som topp 2 eller en av de åtta bästa treorna">Vidare</th>' +
+      '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
+
   function openCalGroupPopup(L) {
     calGroupOpen = L;
     renderCalGroupPopup();
@@ -2432,6 +2476,7 @@
       "</tr></thead><tbody>" +
       standingsRows(ctx.tables[L], { thirdQualified: thirdQ, fp: true }) +
       "</tbody></table>" +
+      groupFinishProbsHtml(ctx.tables[L]) +
       '<p class="cal-group-note">Lag särskiljs i ordningen poäng → målskillnad → gjorda mål → inbördes möte → ' +
       "fair play (FP, beräknas från korten) → FIFA-ranking. Klicka på ett lag för trupp och statistik.</p>";
     popup.classList.add("open");
