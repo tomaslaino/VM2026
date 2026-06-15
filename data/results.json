@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-15T18:09:54.893Z",
+    "updatedAt": "2026-06-15T21:22:40.508Z",
     "source": "espn",
-    "matchCount": 13,
+    "matchCount": 14,
     "liveCount": 0,
     "apiCalls": 2
   },
@@ -70,6 +70,11 @@
     "g:H:4": {
       "h": 0,
       "a": 0,
+      "status": "FINISHED"
+    },
+    "g:G:2": {
+      "h": 1,
+      "a": 1,
       "status": "FINISHED"
     }
   },
@@ -300,7 +305,7 @@
       "date": "2026-06-15",
       "time": "21:00",
       "utcDate": "2026-06-15T19:00Z",
-      "status": "TIMED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Belgium",
       "away": "Egypt",
@@ -1957,26 +1962,26 @@
       {
         "idx": 0,
         "position": 1,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "gf": 1,
+        "ga": 1,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       },
       {
         "idx": 2,
         "position": 2,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "gf": 1,
+        "ga": 1,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       },
       {
         "idx": 1,

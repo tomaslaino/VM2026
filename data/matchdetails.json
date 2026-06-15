@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-15T18:09:54.975Z",
+    "updatedAt": "2026-06-15T21:22:40.544Z",
     "source": "espn"
   },
   "details": {
@@ -5856,6 +5856,455 @@
         }
       ],
       "updatedAt": "2026-06-15T18:09:54.974Z"
+    },
+    "g:G:2": {
+      "espnId": "760426",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-15T19:00Z",
+      "duration": "REGULAR",
+      "winner": "DRAW",
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 1
+        },
+        "ht": {
+          "h": 0,
+          "a": 1
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 19,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Emam Ashour",
+          "assist": "Mohamed Salah",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        },
+        {
+          "minute": 66,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Mohamed Hany",
+          "assist": null,
+          "type": "OWN",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 13,
+          "team": "a",
+          "player": "Marawan Attia",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 14,
+          "team": "h",
+          "player": "Timothy Castagne",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 34,
+          "team": "a",
+          "player": "Ahmed Fatouh",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 75,
+          "team": "h",
+          "player": "Maxim De Cuyper",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 56,
+          "team": "h",
+          "in": "Nicolas Raskin",
+          "out": "Timothy Castagne"
+        },
+        {
+          "minute": 56,
+          "team": "h",
+          "in": "Maxim De Cuyper",
+          "out": "Amadou Onana"
+        },
+        {
+          "minute": 66,
+          "team": "h",
+          "in": "Romelu Lukaku",
+          "out": "Charles De Ketelaere"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Ramy Rabia",
+          "out": "Emam Ashour"
+        },
+        {
+          "minute": 76,
+          "team": "a",
+          "in": "Zizo",
+          "out": "Mostafa Zico"
+        },
+        {
+          "minute": 76,
+          "team": "a",
+          "in": "Hamza Abdelkarim",
+          "out": "Mohamed Salah"
+        },
+        {
+          "minute": 86,
+          "team": "h",
+          "in": "Matias Fernandez-Pardo",
+          "out": "Jérémy Doku"
+        },
+        {
+          "minute": 86,
+          "team": "h",
+          "in": "Hans Vanaken",
+          "out": "Kevin De Bruyne"
+        },
+        {
+          "minute": 88,
+          "team": "a",
+          "in": "Karim Hafez",
+          "out": "Ahmed Fatouh"
+        },
+        {
+          "minute": 88,
+          "team": "a",
+          "in": "Ibrahim Adel",
+          "out": "Hamdy Fathy"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Thibaut Courtois",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Thomas Meunier",
+              "jersey": "15",
+              "pos": "RB"
+            },
+            {
+              "name": "Timothy Castagne",
+              "jersey": "21",
+              "pos": "LB"
+            },
+            {
+              "name": "Youri Tielemans",
+              "jersey": "8",
+              "pos": "LM"
+            },
+            {
+              "name": "Nathan Ngoy",
+              "jersey": "25",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Brandon Mechele",
+              "jersey": "4",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Leandro Trossard",
+              "jersey": "10",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Amadou Onana",
+              "jersey": "24",
+              "pos": "RM"
+            },
+            {
+              "name": "Charles De Ketelaere",
+              "jersey": "17",
+              "pos": "F"
+            },
+            {
+              "name": "Kevin De Bruyne",
+              "jersey": "7",
+              "pos": "AM"
+            },
+            {
+              "name": "Jérémy Doku",
+              "jersey": "11",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Mike Penders",
+              "jersey": "13"
+            },
+            {
+              "name": "Nicolas Raskin",
+              "jersey": "23",
+              "in": true
+            },
+            {
+              "name": "Senne Lammens",
+              "jersey": "12"
+            },
+            {
+              "name": "Romelu Lukaku",
+              "jersey": "9",
+              "in": true
+            },
+            {
+              "name": "Joaquin Seys",
+              "jersey": "18"
+            },
+            {
+              "name": "Diego Moreira",
+              "jersey": "19"
+            },
+            {
+              "name": "Arthur Theate",
+              "jersey": "3"
+            },
+            {
+              "name": "Matias Fernandez-Pardo",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Alexis Saelemaekers",
+              "jersey": "22"
+            },
+            {
+              "name": "Dodi Lukébakio",
+              "jersey": "14"
+            },
+            {
+              "name": "Hans Vanaken",
+              "jersey": "20",
+              "in": true
+            },
+            {
+              "name": "Axel Witsel",
+              "jersey": "6"
+            },
+            {
+              "name": "Maxim De Cuyper",
+              "jersey": "5",
+              "in": true
+            },
+            {
+              "name": "Koni De Winter",
+              "jersey": "16"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Mostafa Shoubir",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Mohamed Hany",
+              "jersey": "3",
+              "pos": "RB"
+            },
+            {
+              "name": "Ahmed Fatouh",
+              "jersey": "13",
+              "pos": "LB"
+            },
+            {
+              "name": "Mohanad Lashin",
+              "jersey": "17",
+              "pos": "LM"
+            },
+            {
+              "name": "Yasser Ibrahim",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Hamdy Fathy",
+              "jersey": "14",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Mostafa Zico",
+              "jersey": "11",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Marawan Attia",
+              "jersey": "19",
+              "pos": "RM"
+            },
+            {
+              "name": "Omar Marmoush",
+              "jersey": "22",
+              "pos": "F"
+            },
+            {
+              "name": "Mohamed Salah",
+              "jersey": "10",
+              "pos": "AM"
+            },
+            {
+              "name": "Emam Ashour",
+              "jersey": "8",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Ramy Rabia",
+              "jersey": "5",
+              "in": true
+            },
+            {
+              "name": "Hamza Abdelkarim",
+              "jersey": "9",
+              "in": true
+            },
+            {
+              "name": "Mohamed Abdelmoneim",
+              "jersey": "6"
+            },
+            {
+              "name": "Zizo",
+              "jersey": "25",
+              "in": true
+            },
+            {
+              "name": "Tarek Alaa",
+              "jersey": "24"
+            },
+            {
+              "name": "Hossam Abdelmaguid",
+              "jersey": "4"
+            },
+            {
+              "name": "Ibrahim Adel",
+              "jersey": "20",
+              "in": true
+            },
+            {
+              "name": "Haissem Hassan",
+              "jersey": "12"
+            },
+            {
+              "name": "Nabil Donga",
+              "jersey": "18"
+            },
+            {
+              "name": "Mahdy Soliman",
+              "jersey": "16"
+            },
+            {
+              "name": "Karim Hafez",
+              "jersey": "15",
+              "in": true
+            },
+            {
+              "name": "Mohamed El Shenawy",
+              "jersey": "1"
+            },
+            {
+              "name": "Mohamed Alaa",
+              "jersey": "26"
+            },
+            {
+              "name": "Trézéguet",
+              "jersey": "7"
+            },
+            {
+              "name": "Mahmoud Saber",
+              "jersey": "21"
+            }
+          ]
+        }
+      },
+      "referee": "Ramon Abatti Abel",
+      "venue": "Lumen Field, Seattle, Washington",
+      "attendance": 66775,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "54%",
+          "a": "46%"
+        },
+        {
+          "key": "totalShots",
+          "h": "15",
+          "a": "14"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "3",
+          "a": "3"
+        },
+        {
+          "key": "wonCorners",
+          "h": "2",
+          "a": "7"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "15",
+          "a": "15"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "2",
+          "a": "3"
+        },
+        {
+          "key": "totalPasses",
+          "h": "453",
+          "a": "397"
+        },
+        {
+          "key": "passPct",
+          "h": "86%",
+          "a": "81%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "2",
+          "a": "2"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-15T21:22:40.544Z"
     }
   }
 }
