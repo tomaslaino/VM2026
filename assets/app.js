@@ -856,7 +856,6 @@
   function renderHome() {
     var ctx = getCtx();
     var html = '<div class="home-layout">' +
-      '<div class="home-hero-bg" aria-hidden="true"></div>' +
       '<div class="home-intro">' +
         '<span class="home-kicker"><span class="hk-dot" aria-hidden="true"></span>Fotbolls-VM 2026 · USA · Mexiko · Kanada</span>' +
         '<h2>Gräver grav</h2>' +
