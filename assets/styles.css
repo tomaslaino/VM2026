@@ -228,14 +228,14 @@ body {
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(100deg, rgba(4,9,18,.97) 0%, rgba(5,11,22,.92) 32%, rgba(6,13,26,.78) 60%, rgba(7,15,30,.66) 100%),
-    linear-gradient(180deg, rgba(5,10,20,.74) 0%, transparent 28%, transparent 46%, rgba(4,8,16,.96) 100%),
-    radial-gradient(125% 112% at 70% 34%, transparent 22%, rgba(2,5,12,.86) 100%),
-    radial-gradient(1000px 620px at 86% -2%, rgba(196,30,58,.12), transparent 60%),
-    radial-gradient(900px 600px at 4% 2%, rgba(61,109,181,.13), transparent 60%),
-    url("home-hero.png?v=1") center 40% / cover no-repeat #04060c;
+    linear-gradient(100deg, rgba(4,9,18,.95) 0%, rgba(5,11,22,.8) 30%, rgba(6,13,26,.5) 56%, rgba(7,15,30,.34) 100%),
+    linear-gradient(180deg, rgba(5,10,20,.6) 0%, transparent 26%, transparent 52%, rgba(4,8,16,.9) 100%),
+    radial-gradient(125% 112% at 70% 32%, transparent 30%, rgba(2,5,12,.6) 100%),
+    radial-gradient(1000px 620px at 86% -2%, rgba(196,30,58,.14), transparent 60%),
+    radial-gradient(900px 600px at 4% 2%, rgba(61,109,181,.14), transparent 60%),
+    url("home-hero.png?v=1") center 38% / cover no-repeat #05070d;
   pointer-events: none;
-  filter: saturate(.8) brightness(.7);
+  filter: saturate(.9) brightness(.86);
   animation: homeBgIn 1.1s ease both;
 }
 /* Slutspelet har egen, lika mörk pokalbakgrund – dölj den globala bilden där. */
@@ -636,11 +636,15 @@ html.view-bracket .site-bg { display: none; }
 .dot.adv { background: var(--adv); }
 .dot.third-q { background: var(--third-q); }
 .dot.third-o { background: var(--third-o); }
+/* Samma genomskinliga glasstil som startsidans kort – släpper igenom den mörka
+   bakgrundsbilden och ger sajten ett enhetligt utseende. */
 .card {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--usa-navy-mid) 55%, var(--card)), var(--card) 92px);
-  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(20, 36, 60, .82), rgba(11, 21, 38, .85));
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  backdrop-filter: blur(14px) saturate(1.15);
+  border: 1px solid rgba(255, 255, 255, .085);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: 0 22px 50px -28px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 255, 255, .05);
   overflow: hidden;
 }
 
@@ -668,7 +672,7 @@ html.view-bracket .site-bg { display: none; }
 }
 .group-card:hover {
   transform: translateY(-2px);
-  border-color: var(--line-strong);
+  border-color: rgba(255, 255, 255, .16);
   box-shadow: 0 6px 16px rgba(0,0,0,.4), 0 14px 38px rgba(0,0,0,.45);
 }
 /* Röd→blå accentlinje i kortets överkant */
@@ -1600,9 +1604,11 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   align-items: flex-start;
   padding: 10px 12px 9px;
   border-radius: 12px;
-  border: 1px solid var(--line);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--usa-navy-mid) 50%, var(--card)), var(--card) 64px);
-  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, .085);
+  background: linear-gradient(180deg, rgba(20, 36, 60, .86), rgba(11, 21, 38, .88));
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  backdrop-filter: blur(12px) saturate(1.1);
+  box-shadow: 0 14px 34px -22px rgba(0, 0, 0, .8);
   min-width: 86px;
   overflow: hidden;
 }
@@ -1637,10 +1643,12 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   grid-template-columns: 56px 118px 1fr 104px;
   align-items: center;
   gap: 12px;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--usa-navy-mid) 40%, var(--card)), var(--card) 56px);
-  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(20, 36, 60, .82), rgba(11, 21, 38, .85));
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  backdrop-filter: blur(12px) saturate(1.1);
+  border: 1px solid rgba(255, 255, 255, .08);
   border-radius: 12px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 16px 38px -26px rgba(0, 0, 0, .78);
   padding: 11px 14px;
   position: relative;
   overflow: hidden;
@@ -1657,7 +1665,7 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 }
 .cal-row:hover {
   transform: translateY(-1px);
-  border-color: var(--line-strong);
+  border-color: rgba(255, 255, 255, .16);
   box-shadow: 0 4px 14px rgba(0,0,0,.35);
 }
 .cal-row.ko { cursor: default; }
