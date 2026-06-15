@@ -26,6 +26,9 @@
   --radius: 16px;
   --radius-sm: 10px;
   --maxw: 1320px;
+  /* Display-font för "Gräver grav" (rubrik + varumärke) – tung kondenserad grotesk */
+  --display: "Big Shoulders Display", "Archivo", system-ui, sans-serif;
+  --bone: #efe7d9; /* varm benvit – rubriktext mot mörk navy */
   color-scheme: dark;
 }
 
@@ -69,96 +72,63 @@ body {
   background-attachment: fixed;
 }
 
-/* ---------- Hero-header (banner + navbar i ett) ----------
-   Hela headern är sticky med negativ top-offset (sätts av JS):
-   bilden/rubriken scrollar undan, navraden längst ned fastnar
-   som en vanlig navbar högst upp i fönstret. */
+/* ---------- Slim topbar (varumärke + nav + sök) ----------
+   Smal, alltid synlig sticky-rad högst upp – ren och symmetrisk likt
+   referensdesignen. Den stora "Gräver grav"-rubriken bor numera i startsidans
+   hjältesektion (.home-intro), inte i headern. */
 .hero-header {
   position: sticky;
-  top: -170px; /* fallback – exakt värde sätts av JS */
+  top: 0;
   z-index: 40;
-  background: #060b14;
-  box-shadow: 0 4px 24px rgba(0,0,0,.3);
+  background: linear-gradient(180deg, rgba(8, 15, 26, .97), rgba(8, 15, 26, .88));
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  backdrop-filter: blur(12px) saturate(1.1);
+  box-shadow: 0 6px 26px rgba(0, 0, 0, .42);
 }
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 88%;
-}
-.hero-shade {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(6, 11, 20, .5) 0%, transparent 46%),
-    linear-gradient(180deg, rgba(6, 11, 20, .3) 0%, transparent 35%, rgba(6, 11, 20, .55) 100%);
-}
-
-/* Bannerdelen: kicker + sajtnamn */
-.hero-head {
-  position: relative;
-  max-width: var(--maxw);
-  margin: 0 auto;
-  min-height: clamp(58px, 7.5vw, 96px);
-  padding: 10px 20px 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.hero-head h1 {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding-bottom: .08em; /* plats för g-svansen när texten är clip:ad */
-  font-size: clamp(26px, 3.4vw, 40px);
-  font-weight: 900;
-  letter-spacing: -1px;
-  line-height: 1.12;
-  color: #f7fafd;
-  cursor: pointer;
-  /* Samma glansiga gradient-text som startsidans rubrik */
-  background: linear-gradient(176deg, #ffffff 0%, #cdddf0 60%, #a3bad6 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 16px rgba(0, 0, 0, .9)) drop-shadow(0 1px 2px rgba(0, 0, 0, .7));
-}
-.hero-head h1:hover { filter: drop-shadow(0 2px 18px rgba(0, 0, 0, .95)) drop-shadow(0 0 1px rgba(255, 255, 255, .4)); }
-.hero-kicker {
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1.6px;
-  color: #ffd9df;
-  padding: 4px 11px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--usa-red) 55%, rgba(10, 18, 32, .6));
-  border: 1px solid color-mix(in srgb, var(--usa-red) 70%, transparent);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, .35);
-  margin-bottom: 4px;
-}
-
-/* Navraden längst ned i headern – transparent, ligger direkt på bannerbilden */
-.topbar {
-  position: relative;
-}
+.topbar { position: relative; }
 /* Stars & stripes-accent under navraden */
 .topbar::after {
   content: "";
   display: block;
-  height: 3px;
+  height: 2px;
   background: linear-gradient(90deg,
     var(--usa-red) 0%, var(--usa-red) 26%,
     #e8edf5 42%, #e8edf5 58%,
     var(--usa-blue) 74%, var(--usa-blue) 100%);
+  opacity: .9;
 }
 .topbar-inner {
-  max-width: var(--maxw); margin: 0 auto; padding: 6px 20px 7px;
-  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  max-width: var(--maxw); margin: 0 auto; padding: 10px 20px;
+  display: flex; align-items: center; gap: 16px;
 }
+
+/* Varumärke – "Gräver grav" i display-fonten (mindre version av hjälterubriken) */
+.brand { display: flex; align-items: center; gap: 11px; flex-shrink: 0; cursor: pointer; }
+.brand-mark {
+  width: 38px; height: 38px; flex-shrink: 0;
+  display: grid; place-items: center; border-radius: 11px;
+  background: radial-gradient(120% 120% at 30% 22%, #d8344f, #9a1a2e 72%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2), 0 5px 14px rgba(196, 30, 58, .4);
+}
+.brand-mark svg { width: 20px; height: 20px; }
+.brand-txt b {
+  display: block;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(20px, 2.6vw, 26px);
+  line-height: .86;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: var(--bone);
+  transition: color .18s;
+}
+.brand-txt small {
+  display: block;
+  font-size: 9px; font-weight: 800; letter-spacing: .24em;
+  text-transform: uppercase; color: var(--ink-soft); margin-top: 4px;
+}
+.brand:hover .brand-txt b { color: #fff8ec; }
+.brand:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 8px; }
 .nav { display: inline-flex; background: rgba(10, 22, 40, .72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 12px; padding: 4px; gap: 2px; }
 .seg {
   border: 0; background: transparent; color: #b9c9dd; font: inherit; font-weight: 600; font-size: 14px;
@@ -169,8 +139,8 @@ body {
   background: linear-gradient(180deg, color-mix(in srgb, #122238 90%, var(--usa-red) 10%), #122238);
   color: #f0f4f9; box-shadow: var(--shadow), inset 0 -2px 0 var(--usa-red);
 }
-/* sök */
-.search { position: relative; flex: 1 1 200px; max-width: 280px; min-width: 150px; }
+/* sök – skjuts åt höger så varumärke + nav ligger till vänster, sök + status till höger */
+.search { position: relative; flex: 0 1 280px; min-width: 150px; margin-left: auto; }
 #teamSearch {
   width: 100%; font: inherit; font-size: 14px; padding: 9px 14px; border-radius: 11px;
   border: 1px solid #325578; background: rgba(10, 22, 40, .72); color: #f0f4f9;
@@ -195,7 +165,7 @@ body {
 .sr-flag-blank { width: 22px; height: 15px; flex: none; }
 .sr-empty { padding: 12px; color: var(--ink-soft); font-size: 13px; }
 
-.controls { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+.controls { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 0 rgba(226,59,59,.5); animation: pulse 2s infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(226,59,59,.5);} 70% { box-shadow: 0 0 0 6px rgba(226,59,59,0);} 100% { box-shadow: 0 0 0 0 rgba(226,59,59,0);} }
 .reset {
@@ -204,9 +174,8 @@ body {
 }
 .reset:hover { color: #c0392b; border-color: #e3a79f; }
 
-/* Kompakt header vid scroll: dölj sökfält + auto-badge, behåll bara navraden. */
-.hero-header.hero-collapsed .search,
-.hero-header.hero-collapsed .controls { display: none; }
+/* Kompakt header vid scroll hanteras i mobil-mediafrågan nedan – på desktop
+   är den smala raden alltid fullt synlig (sök + status stannar kvar). */
 
 /* ---------- Layout ---------- */
 .container { max-width: var(--maxw); margin: 0 auto; padding: 26px 20px 10px; background: transparent; }
@@ -249,26 +218,30 @@ body {
   margin: 6px 0 30px;
   z-index: 0;
 }
-/* Filmisk bild som mörklagd, fast bakgrund bakom hela startsidan. Vänster-scrim
-   ger textläsbarhet, vinjett ger djup – bilden får synas vivid mot höger. */
+/* Filmisk bild som djupt nedmörkad, fast bakgrund bakom hela startsidan.
+   Kraftiga navy-scrimmar + en aning röd/blå rampljus gör att Trump-bilden bara
+   anas som textur – ett mörkt tema som matchar resten av sajten. */
 .home-hero-bg {
   position: fixed;
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(96deg, rgba(3,7,14,.93) 0%, rgba(3,7,14,.62) 26%, rgba(3,7,14,.12) 52%, transparent 72%),
-    linear-gradient(180deg, rgba(3,7,14,.72) 0%, transparent 24%, transparent 58%, rgba(3,7,14,.9) 100%),
-    radial-gradient(125% 105% at 66% 42%, transparent 36%, rgba(2,4,10,.66) 100%),
-    url("home-hero.png?v=1") center 42% / cover no-repeat #04060c;
+    linear-gradient(100deg, rgba(4,9,18,.97) 0%, rgba(5,11,22,.92) 32%, rgba(6,13,26,.78) 60%, rgba(7,15,30,.66) 100%),
+    linear-gradient(180deg, rgba(5,10,20,.74) 0%, transparent 28%, transparent 46%, rgba(4,8,16,.96) 100%),
+    radial-gradient(125% 112% at 70% 34%, transparent 22%, rgba(2,5,12,.86) 100%),
+    radial-gradient(1000px 620px at 86% -2%, rgba(196,30,58,.12), transparent 60%),
+    radial-gradient(900px 600px at 4% 2%, rgba(61,109,181,.13), transparent 60%),
+    url("home-hero.png?v=1") center 40% / cover no-repeat #04060c;
   pointer-events: none;
+  filter: saturate(.8) brightness(.7);
   animation: homeBgIn 1.1s ease both;
 }
 @keyframes homeBgIn { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
 
 .home-intro {
   position: relative;
-  padding: 30px 4px 6px;
-  max-width: 60ch;
+  padding: 34px 4px 10px;
+  max-width: 900px;
 }
 .home-kicker {
   display: inline-flex;
@@ -291,72 +264,137 @@ body {
   animation: pulse 2s infinite;
 }
 .home-intro h2 {
-  margin: 14px 0 14px;
-  padding-bottom: .12em; /* annars klipps g-svansen av filter + tight radhöjd */
-  font-size: clamp(40px, 6.8vw, 72px);
-  font-weight: 900;
-  letter-spacing: -1.8px;
-  line-height: 1.08;
-  color: #f2f7fc;
-  background: linear-gradient(176deg, #ffffff 0%, #cdddf0 60%, #a3bad6 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 6px 28px rgba(0, 0, 0, .85));
+  margin: 14px 0 18px;
+  padding-bottom: .04em;
+  font-family: var(--display);
+  font-size: clamp(56px, 12.5vw, 150px);
+  font-weight: 800;
+  letter-spacing: .004em;
+  line-height: .86; /* rymmer Ä-prickarna; tightare klipper diakriterna */
+  text-transform: uppercase;
+  /* Flat benvit (som referensbilden) – solid färg så Ä-prickarna alltid syns. */
+  color: var(--bone);
+  text-shadow: 0 6px 30px rgba(0, 0, 0, .55), 0 1px 2px rgba(0, 0, 0, .55);
 }
 .home-intro p {
   margin: 0;
-  max-width: 50ch;
+  max-width: 52ch;
   font-size: clamp(15px, 1.7vw, 19px);
   line-height: 1.55;
-  color: #e3edf8;
+  color: #d4e2f1;
   text-shadow: 0 2px 18px rgba(0, 0, 0, .9);
 }
+.home-intro p em { color: #fff; font-style: normal; font-weight: 700; }
 
-/* Premium-glas på rutorna mot bilden */
-.home-layout .next-matches {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--card) 84%, transparent), color-mix(in srgb, var(--card) 70%, transparent));
-  -webkit-backdrop-filter: blur(16px) saturate(1.15);
-  backdrop-filter: blur(16px) saturate(1.15);
-  border-color: color-mix(in srgb, #fff 14%, var(--line));
-  box-shadow: 0 20px 50px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .07);
-  transition: transform .2s ease, box-shadow .2s ease;
+/* ── Premium-kort på startsidan: enhetliga, symmetriska glasrutor ──
+   Alla tre rutorna delar exakt samma yttre stil (ingen färgad topplist, ingen
+   live-tonad bakgrund) så raden blir symmetrisk likt referensdesignen. */
+.home-layout .next-matches,
+.home-layout .next-matches.live-now,
+.home-layout .next-matches.next-up,
+.home-layout .next-matches.teams-spotlight,
+.home-layout .next-matches.live-now.is-live,
+.home-layout .next-matches.is-live {
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, .085);
+  border-top: 1px solid rgba(255, 255, 255, .085);
+  background: linear-gradient(180deg, rgba(20, 36, 60, .8), rgba(11, 21, 38, .82));
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow: 0 26px 60px -26px rgba(0, 0, 0, .85), inset 0 1px 0 rgba(255, 255, 255, .06);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 .home-layout .next-matches:hover {
   transform: translateY(-3px);
-  box-shadow: 0 28px 62px rgba(0, 0, 0, .6), inset 0 1px 0 rgba(255, 255, 255, .09);
+  border-color: rgba(255, 255, 255, .14);
+  box-shadow: 0 34px 70px -28px rgba(0, 0, 0, .9), inset 0 1px 0 rgba(255, 255, 255, .09);
 }
 
-/* "Nästa avspark"-panelen lyfts fram som startsidans blickfång */
-.home-layout .next-up {
-  padding: 16px 18px 14px;
-  border-top-width: 3px;
+/* Kort-rubrik: etikett till vänster, status/flaggor till höger, med avdelare.
+   .next-matches i selektorn höjer specificiteten över .next-matches-row .nm-head. */
+.home-layout .next-matches .nm-head {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, .09);
 }
-.home-layout .next-up .nm-head { margin-bottom: 10px; }
-.home-layout .next-up .nm-title { font-size: 12px; letter-spacing: .8px; }
+.home-layout .next-matches .nm-title {
+  flex: 0 1 auto;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #bccadb;
+}
+.home-layout .next-matches .nm-title .flag { width: 18px; height: 12px; margin-right: 4px; }
+.home-layout .next-matches .nm-live { font-size: 12px; letter-spacing: 1px; }
 
-/* Stor, modern nedräkning till nästa avspark. .home-layout-prefixet håller
-   specificiteten över .next-matches-row .nm-val/.nm-unit nedan. */
+/* "Pågår nu" – luftiga matchrader med stora namn och display-resultat. */
+.home-layout .next-matches.live-now .nm-live-list { gap: 0; }
+.home-layout .nm-live-item {
+  padding: 12px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+  border-radius: 0;
+  background: none;
+}
+.home-layout .nm-live-item:first-child { padding-top: 2px; }
+.home-layout .nm-live-item:last-child { border-bottom: 0; padding-bottom: 2px; }
+.home-layout .nm-live-item.live { background: none; }
+.home-layout .nm-live-item.match-openable:hover {
+  background: rgba(255, 255, 255, .04);
+  box-shadow: none;
+  border-radius: 8px;
+}
+.home-layout .nm-live-meta { margin-bottom: 9px; }
+.home-layout .nm-meta {
+  font-size: 11px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.home-layout .nm-live-status { font-size: 11px; }
+.home-layout .nm-live-status.live { font-weight: 800; }
+.home-layout .nm-live-team { font-size: 15px; font-weight: 700; gap: 9px; }
+.home-layout .nm-live-team .flag { width: 26px; height: 18px; }
+.home-layout .nm-live-score {
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  color: var(--bone);
+  min-width: 2.4em;
+}
+.home-layout .nm-live-score.dim { color: var(--ink-soft); }
+
+/* "Nästa avspark" – rubrik och avdelare som de andra korten. */
+.home-layout .next-up .nm-head { margin-bottom: 16px; }
+
+/* Stor, modern nedräkning till nästa avspark (display-font, sista rutan röd). */
 .home-layout .nm-bigtimer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
-  margin: 0 0 14px;
+  margin: 0 0 16px;
 }
 .home-layout .nm-bigtimer .nm-unit {
   min-width: 0;
   gap: 5px;
-  padding: 12px 4px 9px;
+  padding: 14px 4px 10px;
   border-radius: 14px;
   background: linear-gradient(180deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .015));
   border: 1px solid color-mix(in srgb, #fff 10%, var(--line));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06);
 }
 .home-layout .nm-bigtimer .nm-val {
-  font-size: clamp(30px, 5.4vw, 48px);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -1.5px;
+  font-family: var(--display);
+  font-size: clamp(34px, 5.6vw, 50px);
+  font-weight: 800;
+  line-height: .9;
+  letter-spacing: .01em;
   font-variant-numeric: tabular-nums;
   color: #f4f8fd;
   background: linear-gradient(180deg, #ffffff 0%, #bccfe6 100%);
@@ -379,6 +417,23 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* Fixtur-rader (Nästa avspark + Sverige & Uruguay): tid · lag + TV-bricka. */
+.home-layout .nm-spot-row { padding: 11px 0; border-bottom-color: rgba(255, 255, 255, .08); }
+.home-layout .nm-spot-row:first-child { padding-top: 2px; }
+.home-layout .nm-spot-when { font-size: 11px; font-weight: 700; letter-spacing: .4px; }
+.home-layout .nm-spot-teams { font-size: 15px; font-weight: 700; }
+
+/* TV-bricka som tunn konturpill – SVT grön, TV4 röd – likt referensen. */
+.home-layout .cal-tv {
+  background: transparent;
+  border: 1px solid;
+  height: 22px;
+  border-radius: 7px;
+  font-weight: 800;
+}
+.home-layout .cal-tv.svt { color: #8fd6a6; border-color: rgba(143, 214, 166, .42); background: rgba(143, 214, 166, .09); }
+.home-layout .cal-tv.tv4 { color: #f0a8b0; border-color: rgba(240, 168, 176, .42); background: rgba(240, 168, 176, .09); }
+
 @media (max-width: 640px) {
   .home-intro { padding-top: 18px; }
   .home-layout .nm-bigtimer { gap: 6px; }
@@ -388,7 +443,7 @@ body {
 .next-matches-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: 18px;
   align-items: stretch;
   width: 100%;
 }
@@ -1849,25 +1904,35 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   .container { padding: 16px 14px 8px; }
   .foot { padding: 18px 14px calc(28px + env(safe-area-inset-bottom, 0px)); font-size: 11px; }
 
-  /* Topbar – tydlig radordning */
+  /* Topbar – tydlig radordning: varumärke + status, sedan nav, sedan sök. */
   .hero-header { padding-top: env(safe-area-inset-top, 0px); }
   .topbar-inner {
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-areas:
+      "brand controls"
       "nav nav"
-      "search controls";
+      "search search";
     gap: 10px;
     padding: 10px 14px 12px;
+    align-items: center;
   }
-  .controls { grid-area: controls; margin-left: 0; align-self: center; }
-  /* Kompakt header: bara navraden kvar, inget glapp efter den dolda sökraden. */
+  /* Låt varumärket krympa/elida om utrymmet tryter (smal skärm / innan
+     display-fonten hunnit ladda) så statusbrickan aldrig trängs ut. */
+  .brand { grid-area: brand; min-width: 0; }
+  .brand-txt { min-width: 0; }
+  .brand-txt b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .controls { grid-area: controls; margin-left: 0; align-self: center; justify-self: end; }
+  /* Kompakt header vid scroll: dölj sök, behåll varumärke + status + nav. */
   .hero-header.hero-collapsed .topbar-inner {
-    grid-template-areas: "nav nav";
-    gap: 0;
+    grid-template-areas:
+      "brand controls"
+      "nav nav";
+    gap: 8px;
     padding-top: 8px;
     padding-bottom: 8px;
   }
+  .hero-header.hero-collapsed .search { display: none; }
   .nav {
     grid-area: nav;
     order: unset;
@@ -1897,6 +1962,7 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
     flex-basis: auto;
     min-width: 0;
     width: 100%;
+    margin-left: 0;
   }
   #teamSearch {
     font-size: 16px;

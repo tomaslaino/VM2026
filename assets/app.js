@@ -860,7 +860,7 @@
       '<div class="home-intro">' +
         '<span class="home-kicker"><span class="hk-dot" aria-hidden="true"></span>Fotbolls-VM 2026 · USA · Mexiko · Kanada</span>' +
         '<h2>Gräver grav</h2>' +
-        '<p>Pågående matcher, nästa avspark och de svenska ödesmatcherna — allt på ett ställe, medan Sverige och Uruguay sänks i mullen.</p>' +
+        '<p>Pågående matcher, nästa avspark och de svenska ödesmatcherna — allt på ett ställe, medan <em>Sverige</em> och <em>Uruguay</em> sänks i mullen.</p>' +
       '</div>' +
       nextMatchesRow(ctx) +
       '</div>';
@@ -3028,9 +3028,9 @@
         hideCalGroupPopup();
         if (hoverMatch) { hoverMatch = null; hideAside(); syncExpandButtons(); }
       }
-      // Aktivera klickbar titel (role=link) med Enter/Space.
+      // Aktivera klickbar länk (role=link, t.ex. varumärket) med Enter/Space.
       if ((e.key === "Enter" || e.key === " ") && document.activeElement) {
-        var nav = document.activeElement.closest && document.activeElement.closest("h1[data-nav]");
+        var nav = document.activeElement.closest && document.activeElement.closest('[data-nav][role="link"]');
         if (nav) {
           e.preventDefault();
           setUi("view", nav.getAttribute("data-nav"));
