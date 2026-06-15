@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-15T21:22:40.508Z",
+    "updatedAt": "2026-06-15T23:16:45.481Z",
     "source": "espn",
-    "matchCount": 14,
-    "liveCount": 0,
+    "matchCount": 15,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -76,9 +76,23 @@
       "h": 1,
       "a": 1,
       "status": "FINISHED"
+    },
+    "g:H:5": {
+      "h": 0,
+      "a": 1,
+      "status": "PAUSED"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:H:5",
+      "status": "PAUSED",
+      "minute": 45,
+      "home": "Uruguay",
+      "away": "Saudi Arabia",
+      "score": "0-1"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -322,7 +336,7 @@
       "date": "2026-06-16",
       "time": "00:00",
       "utcDate": "2026-06-15T22:00Z",
-      "status": "TIMED",
+      "status": "PAUSED",
       "matchday": null,
       "home": "Uruguay",
       "away": "Saudi Arabia",
@@ -2010,7 +2024,7 @@
     ],
     "H": [
       {
-        "idx": 0,
+        "idx": 3,
         "position": 1,
         "pld": 1,
         "w": 0,
@@ -2022,7 +2036,7 @@
         "pts": 1
       },
       {
-        "idx": 3,
+        "idx": 0,
         "position": 2,
         "pld": 1,
         "w": 0,
@@ -2034,7 +2048,7 @@
         "pts": 1
       },
       {
-        "idx": 1,
+        "idx": 2,
         "position": 3,
         "pld": 0,
         "w": 0,
@@ -2046,7 +2060,7 @@
         "pts": 0
       },
       {
-        "idx": 2,
+        "idx": 1,
         "position": 4,
         "pld": 0,
         "w": 0,
