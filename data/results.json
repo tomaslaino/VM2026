@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-15T01:45:00.458Z",
+    "updatedAt": "2026-06-15T07:03:37.521Z",
     "source": "espn",
-    "matchCount": 11,
-    "liveCount": 1,
+    "matchCount": 12,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -59,20 +59,16 @@
     },
     "g:E:5": {
       "h": 0,
-      "a": 0,
-      "status": "IN_PLAY"
+      "a": 1,
+      "status": "FINISHED"
+    },
+    "g:F:1": {
+      "h": 1,
+      "a": 5,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:E:5",
-      "status": "IN_PLAY",
-      "minute": 61,
-      "home": "Ecuador",
-      "away": "Ivory Coast",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -248,7 +244,7 @@
       "date": "2026-06-15",
       "time": "01:00",
       "utcDate": "2026-06-14T23:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Ecuador",
       "away": "Ivory Coast",
@@ -265,7 +261,7 @@
       "date": "2026-06-15",
       "time": "04:00",
       "utcDate": "2026-06-15T02:00Z",
-      "status": "TIMED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Tunisia",
       "away": "Sweden",
@@ -1904,19 +1900,19 @@
     ],
     "F": [
       {
-        "idx": 1,
+        "idx": 3,
         "position": 1,
         "pld": 1,
-        "w": 0,
-        "d": 1,
+        "w": 1,
+        "d": 0,
         "l": 0,
-        "gf": 2,
-        "ga": 2,
-        "gd": 0,
-        "pts": 1
+        "gf": 5,
+        "ga": 1,
+        "gd": 4,
+        "pts": 3
       },
       {
-        "idx": 0,
+        "idx": 1,
         "position": 2,
         "pld": 1,
         "w": 0,
@@ -1928,27 +1924,27 @@
         "pts": 1
       },
       {
-        "idx": 3,
+        "idx": 0,
         "position": 3,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "gf": 2,
+        "ga": 2,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       },
       {
         "idx": 2,
         "position": 4,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
         "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 5,
+        "gd": -4,
         "pts": 0
       }
     ],

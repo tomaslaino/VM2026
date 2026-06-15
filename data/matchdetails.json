@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-15T01:45:00.545Z",
+    "updatedAt": "2026-06-15T07:03:37.547Z",
     "source": "espn"
   },
   "details": {
@@ -4964,6 +4964,489 @@
         }
       ],
       "updatedAt": "2026-06-15T01:45:00.544Z"
+    },
+    "g:F:1": {
+      "espnId": "760424",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-15T02:00Z",
+      "duration": "REGULAR",
+      "winner": "AWAY_TEAM",
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 5
+        },
+        "ht": {
+          "h": 1,
+          "a": 2
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 7,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Yasin Ayari",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        },
+        {
+          "minute": 30,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Alexander Isak",
+          "assist": "Viktor Gyökeres",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 2
+          }
+        },
+        {
+          "minute": 43,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Omar Rekik",
+          "assist": "Hannibal Mejbri",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 2
+          }
+        },
+        {
+          "minute": 59,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Viktor Gyökeres",
+          "assist": "Alexander Isak",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 3
+          }
+        },
+        {
+          "minute": 84,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Mattias Svanberg",
+          "assist": "Alexander Isak",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 4
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 6,
+          "team": "a",
+          "scorer": "Yasin Ayari",
+          "assist": "Lucas Bergvall",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 5
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 54,
+          "team": "h",
+          "player": "Rani Khedira",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 65,
+          "team": "a",
+          "in": "Elliot Stroud",
+          "out": "Gabriel Gudmundsson"
+        },
+        {
+          "minute": 65,
+          "team": "a",
+          "in": "Lucas Bergvall",
+          "out": "Benjamin Nygren"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Elias Achouri",
+          "out": "Ellyes Skhiri"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Sebastian Tounekti",
+          "out": "Elias Saad"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Mohamed Hadj Mahmoud",
+          "out": "Yan Valery"
+        },
+        {
+          "minute": 83,
+          "team": "h",
+          "in": "Ismaël Gharbi",
+          "out": "Rani Khedira"
+        },
+        {
+          "minute": 84,
+          "team": "h",
+          "in": "Firas Chaouat",
+          "out": "Anis Slimane"
+        },
+        {
+          "minute": 84,
+          "team": "a",
+          "in": "Mattias Svanberg",
+          "out": "Jesper Karlström"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Anthony Elanga",
+          "out": "Alexander Isak"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Daniel Svensson",
+          "out": "Alexander Bernhardsson"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "5-3-2",
+          "starters": [
+            {
+              "name": "Mouhib Chamakh",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Yan Valery",
+              "jersey": "20",
+              "pos": "RB"
+            },
+            {
+              "name": "Ali Abdi",
+              "jersey": "2",
+              "pos": "LB"
+            },
+            {
+              "name": "Mohamed Amine Ben Hamida",
+              "jersey": "21",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Montassar Talbi",
+              "jersey": "3",
+              "pos": "CD"
+            },
+            {
+              "name": "Omar Rekik",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Rani Khedira",
+              "jersey": "13",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Ellyes Skhiri",
+              "jersey": "17",
+              "pos": "CM"
+            },
+            {
+              "name": "Anis Slimane",
+              "jersey": "25",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Elias Saad",
+              "jersey": "8",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Hannibal Mejbri",
+              "jersey": "10",
+              "pos": "CM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Adem Arous",
+              "jersey": "5"
+            },
+            {
+              "name": "Khalil Ayari",
+              "jersey": "14"
+            },
+            {
+              "name": "Sebastian Tounekti",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Dylan Bronn",
+              "jersey": "6"
+            },
+            {
+              "name": "Ismaël Gharbi",
+              "jersey": "11",
+              "in": true
+            },
+            {
+              "name": "Hazem Mastouri",
+              "jersey": "9"
+            },
+            {
+              "name": "Moutaz Neffati",
+              "jersey": "23"
+            },
+            {
+              "name": "Elias Achouri",
+              "jersey": "7",
+              "in": true
+            },
+            {
+              "name": "Raed Chikhaoui",
+              "jersey": "24"
+            },
+            {
+              "name": "Mohamed Hadj Mahmoud",
+              "jersey": "15",
+              "in": true
+            },
+            {
+              "name": "Aymen Dahmen",
+              "jersey": "16"
+            },
+            {
+              "name": "Firas Chaouat",
+              "jersey": "19",
+              "in": true
+            },
+            {
+              "name": "Rayan Elloumi",
+              "jersey": "18"
+            },
+            {
+              "name": "Mortadha Ben Ouanes",
+              "jersey": "12"
+            },
+            {
+              "name": "Sabri Ben Hessen",
+              "jersey": "22"
+            }
+          ]
+        },
+        "a": {
+          "formation": "3-1-4-2",
+          "starters": [
+            {
+              "name": "Kristoffer Nordfeldt",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Alexander Bernhardsson",
+              "jersey": "21",
+              "pos": "RM"
+            },
+            {
+              "name": "Gabriel Gudmundsson",
+              "jersey": "5",
+              "pos": "LM"
+            },
+            {
+              "name": "Isak Hien",
+              "jersey": "4",
+              "pos": "CD"
+            },
+            {
+              "name": "Gustaf Lagerbielke",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Victor Lindelöf",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Benjamin Nygren",
+              "jersey": "10",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Jesper Karlström",
+              "jersey": "16",
+              "pos": "SW"
+            },
+            {
+              "name": "Viktor Gyökeres",
+              "jersey": "17",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Alexander Isak",
+              "jersey": "9",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Yasin Ayari",
+              "jersey": "18",
+              "pos": "CM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Mattias Svanberg",
+              "jersey": "19",
+              "in": true
+            },
+            {
+              "name": "Daniel Svensson",
+              "jersey": "8",
+              "in": true
+            },
+            {
+              "name": "Gustaf Nilsson",
+              "jersey": "25"
+            },
+            {
+              "name": "Elliot Stroud",
+              "jersey": "24",
+              "in": true
+            },
+            {
+              "name": "Viktor Johansson",
+              "jersey": "12"
+            },
+            {
+              "name": "Besfort Zeneli",
+              "jersey": "22"
+            },
+            {
+              "name": "Hjalmar Ekdal",
+              "jersey": "14"
+            },
+            {
+              "name": "Eric Smith",
+              "jersey": "20"
+            },
+            {
+              "name": "Anthony Elanga",
+              "jersey": "11",
+              "in": true
+            },
+            {
+              "name": "Lucas Bergvall",
+              "jersey": "7",
+              "in": true
+            },
+            {
+              "name": "Herman Johansson",
+              "jersey": "6"
+            },
+            {
+              "name": "Jacob Widell Zetterström",
+              "jersey": "1"
+            },
+            {
+              "name": "Taha Ali",
+              "jersey": "26"
+            },
+            {
+              "name": "Ken Sema",
+              "jersey": "13"
+            },
+            {
+              "name": "Carl Starfelt",
+              "jersey": "15"
+            }
+          ]
+        }
+      },
+      "referee": "Yael Falcón Pérez",
+      "venue": "Estadio BBVA, Guadalupe",
+      "attendance": 50987,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "51%",
+          "a": "49%"
+        },
+        {
+          "key": "totalShots",
+          "h": "6",
+          "a": "13"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "2",
+          "a": "7"
+        },
+        {
+          "key": "wonCorners",
+          "h": "2",
+          "a": "4"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "8",
+          "a": "10"
+        },
+        {
+          "key": "offsides",
+          "h": "6",
+          "a": "3"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "371",
+          "a": "356"
+        },
+        {
+          "key": "passPct",
+          "h": "79%",
+          "a": "78%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-15T07:03:37.547Z"
     }
   }
 }
