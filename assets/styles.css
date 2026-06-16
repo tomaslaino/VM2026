@@ -2690,6 +2690,7 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .ps-table .ps-c-club { text-align: left; min-width: 120px; max-width: 180px; }
 .ps-table td.ps-c-club span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ps-table .ps-c-pos { width: 2.6rem; color: var(--ink-soft); font-size: 12px; font-weight: 600; }
+.ps-table .ps-c-conf { text-align: left; min-width: 86px; color: var(--ink-soft); font-size: 11.5px; font-weight: 700; letter-spacing: .2px; white-space: nowrap; }
 .ps-sortable { cursor: pointer; user-select: none; }
 .ps-sortable:hover { color: var(--ink); }
 .ps-sortable.sort-on { color: var(--ink); }

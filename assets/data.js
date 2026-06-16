@@ -128,6 +128,33 @@ WC.fifaRank = {
   "gb-eng": 4, hr: 10, pa: 31, gh: 73
 };
 
+/* ---------- Konfederation per lag (ISO -> förbundskod) ----------
+   Används för att filtrera/sortera statistiken per världsdel/förbund. */
+WC.confed = {
+  mx: "CONCACAF", kr: "AFC",      za: "CAF",      cz: "UEFA",
+  ca: "CONCACAF", ch: "UEFA",     qa: "AFC",      ba: "UEFA",
+  br: "CONMEBOL", ma: "CAF",      "gb-sct": "UEFA", ht: "CONCACAF",
+  us: "CONCACAF", py: "CONMEBOL", au: "AFC",      tr: "UEFA",
+  de: "UEFA",     ec: "CONMEBOL", ci: "CAF",      cw: "CONCACAF",
+  nl: "UEFA",     jp: "AFC",      tn: "CAF",      se: "UEFA",
+  be: "UEFA",     ir: "AFC",      eg: "CAF",      nz: "OFC",
+  es: "UEFA",     uy: "CONMEBOL", sa: "AFC",      cv: "CAF",
+  fr: "UEFA",     sn: "CAF",      no: "UEFA",     iq: "AFC",
+  ar: "CONMEBOL", at: "UEFA",     dz: "CAF",      jo: "AFC",
+  pt: "UEFA",     co: "CONMEBOL", uz: "AFC",      cd: "CAF",
+  "gb-eng": "UEFA", hr: "UEFA",   pa: "CONCACAF", gh: "CAF"
+};
+
+/* Förbund/världsdelar i visningsordning: kod -> svensk regionetikett. */
+WC.confeds = [
+  { code: "UEFA",     region: "Europa" },
+  { code: "CONMEBOL", region: "Sydamerika" },
+  { code: "CONCACAF", region: "Nord- & Centralamerika" },
+  { code: "CAF",      region: "Afrika" },
+  { code: "AFC",      region: "Asien" },
+  { code: "OFC",      region: "Oceanien" }
+];
+
 /*
   Gruppspelets omgångsfönster + exakt schema per match (TV4/SVT, svensk tid).
   Nycklar: g:{grupp}:{idx} – samma ordning som round-robin i app.js.
