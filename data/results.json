@@ -1,10 +1,10 @@
 {
   "meta": {
-    "updatedAt": "2026-06-16T17:36:58.124Z",
+    "updatedAt": "2026-06-16T19:05:16.294Z",
     "source": "espn",
-    "matchCount": 16,
-    "liveCount": 0,
-    "apiCalls": 2
+    "matchCount": 17,
+    "liveCount": 1,
+    "apiCalls": 106
   },
   "results": {
     "g:A:2": {
@@ -86,9 +86,23 @@
       "h": 2,
       "a": 2,
       "status": "FINISHED"
+    },
+    "g:I:0": {
+      "h": 0,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:I:0",
+      "status": "IN_PLAY",
+      "minute": 2,
+      "home": "France",
+      "away": "Senegal",
+      "score": "0-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -366,7 +380,7 @@
       "date": "2026-06-16",
       "time": "21:00",
       "utcDate": "2026-06-16T19:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "France",
       "away": "Senegal",

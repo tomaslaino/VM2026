@@ -45,6 +45,11 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
     });
   }
+  /** CSS-klass för grupppill (A–L får varsin färg via .grp-X i styles.css). */
+  function groupPillClass(letter, extra) {
+    var L = String(letter || "").toUpperCase();
+    return "group-pill grp-" + L + (extra ? " " + extra : "");
+  }
   function flagUrl(iso) { return "https://flagcdn.com/" + iso + ".svg"; }
   function flagImg(iso) {
     return '<img class="flag" loading="lazy" src="' + flagUrl(iso) + '" alt="" ' +
@@ -958,7 +963,7 @@
     var h = '<section class="card group-card' + (open ? " is-open" : "") + '">';
     h += '<button type="button" class="group-head group-head-btn" data-cal-group="' + L + '" ' +
          'title="Visa fullständig tabell med vinster, förluster, kort och fair play">' +
-         '<h3><span class="group-pill is-lg">Grupp ' + L + '</span></h3>' +
+         '<h3><span class="' + groupPillClass(L, "is-lg") + '">Grupp ' + L + '</span></h3>' +
          '<span class="group-more">Detaljer' +
          '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
          '<path fill="currentColor" d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>' +
@@ -2482,7 +2487,7 @@
     var thirdQ = isThirdQ(ctx, L);
     popup.innerHTML =
       '<div class="cal-group-head">' +
-        '<h3><span class="group-pill is-lg">Grupp ' + L + "</span></h3>" +
+        '<h3><span class="' + groupPillClass(L, "is-lg") + '">Grupp ' + L + "</span></h3>" +
         '<button type="button" class="cal-group-close" id="calGroupClose" title="Stäng">×</button>' +
       "</div>" +
       '<table class="standings mini"><thead><tr>' +
@@ -2530,7 +2535,7 @@
     var open = matchOpenAttr(fx.key);
     return '<div class="' + calRowClass(isNext, isRecent, (live ? "is-live" : "") + open.cls) + '"' + open.attr + '>' +
       '<span class="cal-time">' + (live ? liveTimeLabel(fx.key, when.time) : when.time) + '</span>' +
-      '<button type="button" class="cal-badge grp cal-group-btn" data-cal-group="' + L + '">Grupp ' + L + '</button>' +
+      '<button type="button" class="cal-badge grp grp-' + L + ' cal-group-btn" data-cal-group="' + L + '">Grupp ' + L + '</button>' +
       '<span class="cal-match">' + teamOpenBtn(th, '<span title="' + esc(th.sv) + '">' + esc(teamSvFixture(th)) + '</span>' + flagImg(th.iso), "cal-side home") +
         score +
         teamOpenBtn(ta, flagImg(ta.iso) + '<span title="' + esc(ta.sv) + '">' + esc(teamSvFixture(ta)) + '</span>', "cal-side away") + '</span>' +
@@ -2619,7 +2624,7 @@
     }).slice(0, 5).forEach(function (e) {
       html += '<button class="sr-item" data-team-group="' + e.group + '" data-team-idx="' + e.idx + '">' +
         flagImg(e.team.iso) + '<span class="sr-name">' + esc(e.team.sv) + '</span>' +
-        '<span class="group-pill">Grupp ' + e.group + '</span></button>';
+        '<span class="' + groupPillClass(e.group) + '">Grupp ' + e.group + '</span></button>';
     });
 
     var people = (window.VMPlayers && typeof VMPlayers.search === "function")
@@ -2745,7 +2750,7 @@
     var h = '<div class="drawer-head">' +
       '<span class="dh-flag">' + flagImg(team.iso) + '</span>' +
       '<div class="dh-title"><h3>' + esc(team.sv) + '</h3>' +
-        '<span class="dh-sub">' + esc(team.name) + ' · <span class="group-pill">Grupp ' + L + '</span></span></div>' +
+        '<span class="dh-sub">' + esc(team.name) + ' · <span class="' + groupPillClass(L) + '">Grupp ' + L + '</span></span></div>' +
       '<button class="drawer-close" id="drawerClose" title="Stäng">×</button></div>';
 
     h += '<div class="drawer-body">';

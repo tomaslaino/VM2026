@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-16T17:36:58.127Z",
+    "updatedAt": "2026-06-16T19:05:16.330Z",
     "source": "espn"
   },
   "details": {
@@ -7180,6 +7180,335 @@
         }
       ],
       "updatedAt": "2026-06-16T07:39:08.745Z"
+    },
+    "g:I:0": {
+      "espnId": "760432",
+      "status": "IN_PLAY",
+      "minute": 2,
+      "utcDate": "2026-06-16T19:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Mike Maignan",
+              "jersey": "16",
+              "pos": "G"
+            },
+            {
+              "name": "Jules Koundé",
+              "jersey": "5",
+              "pos": "RB"
+            },
+            {
+              "name": "Theo Hernández",
+              "jersey": "19",
+              "pos": "LB"
+            },
+            {
+              "name": "Adrien Rabiot",
+              "jersey": "14",
+              "pos": "LM"
+            },
+            {
+              "name": "William Saliba",
+              "jersey": "17",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Dayot Upamecano",
+              "jersey": "4",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Michael Olise",
+              "jersey": "11",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Aurélien Tchouaméni",
+              "jersey": "8",
+              "pos": "RM"
+            },
+            {
+              "name": "Kylian Mbappé",
+              "jersey": "10",
+              "pos": "F"
+            },
+            {
+              "name": "Ousmane Dembélé",
+              "jersey": "7",
+              "pos": "AM"
+            },
+            {
+              "name": "Désiré Doué",
+              "jersey": "20",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "N'Golo Kanté",
+              "jersey": "13"
+            },
+            {
+              "name": "Brice Samba",
+              "jersey": "1"
+            },
+            {
+              "name": "Lucas Digne",
+              "jersey": "3"
+            },
+            {
+              "name": "Warren Zaïre-Emery",
+              "jersey": "18"
+            },
+            {
+              "name": "Jean-Philippe Mateta",
+              "jersey": "22"
+            },
+            {
+              "name": "Robin Risser",
+              "jersey": "23"
+            },
+            {
+              "name": "Manu Koné",
+              "jersey": "6"
+            },
+            {
+              "name": "Lucas Hernández",
+              "jersey": "21"
+            },
+            {
+              "name": "Maghnes Akliouche",
+              "jersey": "25"
+            },
+            {
+              "name": "Rayan Cherki",
+              "jersey": "24"
+            },
+            {
+              "name": "Maxence Lacroix",
+              "jersey": "26"
+            },
+            {
+              "name": "Bradley Barcola",
+              "jersey": "12"
+            },
+            {
+              "name": "Ibrahima Konaté",
+              "jersey": "15"
+            },
+            {
+              "name": "Marcus Thuram",
+              "jersey": "9"
+            },
+            {
+              "name": "Malo Gusto",
+              "jersey": "2"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Édouard Mendy",
+              "jersey": "16",
+              "pos": "G"
+            },
+            {
+              "name": "Krépin Diatta",
+              "jersey": "15",
+              "pos": "RB"
+            },
+            {
+              "name": "El Hadji Malick Diouf",
+              "jersey": "25",
+              "pos": "LB"
+            },
+            {
+              "name": "Idrissa Gueye",
+              "jersey": "5",
+              "pos": "CM"
+            },
+            {
+              "name": "Kalidou Koulibaly",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Moussa Niakhaté",
+              "jersey": "19",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Lamine Camara",
+              "jersey": "8",
+              "pos": "RM"
+            },
+            {
+              "name": "Pape Gueye",
+              "jersey": "26",
+              "pos": "LM"
+            },
+            {
+              "name": "Nicolas Jackson",
+              "jersey": "11",
+              "pos": "F"
+            },
+            {
+              "name": "Ismaïla Sarr",
+              "jersey": "18",
+              "pos": "RF"
+            },
+            {
+              "name": "Sadio Mané",
+              "jersey": "10",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Cherif Ndiaye",
+              "jersey": "12"
+            },
+            {
+              "name": "Mamadou Sarr",
+              "jersey": "2"
+            },
+            {
+              "name": "Habib Diarra",
+              "jersey": "21"
+            },
+            {
+              "name": "Ismail Jakobs",
+              "jersey": "14"
+            },
+            {
+              "name": "Pathé Ciss",
+              "jersey": "6"
+            },
+            {
+              "name": "Antoine Mendy",
+              "jersey": "24"
+            },
+            {
+              "name": "Yehvann Diouf",
+              "jersey": "1"
+            },
+            {
+              "name": "Bara Sapoko Ndiaye",
+              "jersey": "22"
+            },
+            {
+              "name": "Bamba Dieng",
+              "jersey": "9"
+            },
+            {
+              "name": "Abdoulaye Seck",
+              "jersey": "4"
+            },
+            {
+              "name": "Ibrahim Mbaye",
+              "jersey": "20"
+            },
+            {
+              "name": "Pape Matar Sarr",
+              "jersey": "17"
+            },
+            {
+              "name": "Mory Diaw",
+              "jersey": "23"
+            },
+            {
+              "name": "Assane Diao",
+              "jersey": "7"
+            },
+            {
+              "name": "Iliman Ndiaye",
+              "jersey": "13"
+            }
+          ]
+        }
+      },
+      "referee": "Alireza Faghani",
+      "venue": "MetLife Stadium, East Rutherford, New Jersey",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "16%",
+          "a": "84%"
+        },
+        {
+          "key": "totalShots",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "3",
+          "a": "15"
+        },
+        {
+          "key": "passPct",
+          "h": "0%",
+          "a": "87%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-16T19:05:16.329Z"
     }
   }
 }
