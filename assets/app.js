@@ -908,7 +908,9 @@
         '<p>VM 2026 i realtid — gruppspel, slutspel och en värdig begravning för svenska och uruguayanska drömmar.</p>' +
       '</div>' +
       focusHero(ctx) +
+      tournamentPulse(ctx) +
       teamsSpotlightStrip(ctx) +
+      homeExplore() +
       '</div>';
     viewEl.innerHTML = html;
     updateNextCountdown();
@@ -1320,7 +1322,7 @@
       svg.innerHTML = paths.map(function (d) {
         return '<path d="' + d + '" fill="none" stroke-linecap="square"/>';
       }).join("");
-      if (afterLayout) afterLayout();
+      if (typeof afterLayout === "function") afterLayout();
     });
   }
 
@@ -2040,6 +2042,113 @@
     h += '<div class="ts-items">';
     teams.forEach(function (tp) { h += teamStripItem(tp); });
     h += '</div></section>';
+    return h;
+  }
+
+  /* ====================================================================
+     Startsida – "Turneringen i siffror" + utforska-kort
+     Sekundära block under hjälten som ger startsidan substans och gör
+     den till en navigeringshub i stället för en nästan tom yta.
+  ==================================================================== */
+
+  var ICON_BALL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.4l3.4 2.5-1.3 4h-4.2l-1.3-4z"/></svg>';
+  var ICON_NET = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 6.5h18v9H3z"/><path d="M3 9.5h18M3 12.5h18M7 6.5v9M11 6.5v9M15 6.5v9M19 6.5v9" opacity=".55"/></svg>';
+  var ICON_FLAG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4"/><path d="M6 5h11l-2.3 3.3L17 11.5H6z" fill="currentColor" stroke="none"/></svg>';
+  var ICON_TROPHY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v4.5a5 5 0 0 1-10 0z"/><path d="M7 6.2H4.2V7a3 3 0 0 0 2.8 3M17 6.2h2.8V7a3 3 0 0 1-2.8 3"/><path d="M12 13.5v2.7M9.2 20h5.6M10.1 20l.5-3.8M13.9 20l-.5-3.8"/></svg>';
+
+  var ICON_GRID = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7.4" height="7.4" rx="1.6"/><rect x="13.6" y="3" width="7.4" height="7.4" rx="1.6"/><rect x="3" y="13.6" width="7.4" height="7.4" rx="1.6"/><rect x="13.6" y="13.6" width="7.4" height="7.4" rx="1.6"/></svg>';
+  var ICON_BRACKET = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5h4.5v4H3M3 14.5h4.5v4H3M7.5 7.5H12v9h4.5M16.5 12H21"/></svg>';
+  var ICON_CAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.2"/><path d="M3 9.5h18M8 3v4M16 3v4"/></svg>';
+  var ICON_CHART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 21V10.5M12 21V4M19 21v-7.5"/></svg>';
+  var ICON_ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
+
+  /** Aggregerad turneringsstatus: spelade matcher, mål och aktuell fas. */
+  function homeTournamentStats(ctx) {
+    var items = buildSchedule();
+    var played = 0, goals = 0, nextRound = null, allPlayed = true, anyLive = false;
+    items.forEach(function (it) {
+      var key = it.kind === "group" ? it.fx.key : "k:" + it.m.m;
+      if (isMatchLive(key)) anyLive = true;
+      var r = getRes(key);
+      if (isPlayed(r)) {
+        played++;
+        goals += (r.h || 0) + (r.a || 0);
+      } else {
+        allPlayed = false;
+        if (nextRound === null) nextRound = it.kind === "group" ? "GROUP" : ctx.resolved[it.m.m].match.round;
+      }
+    });
+    return { total: items.length, played: played, goals: goals, allPlayed: allPlayed, nextRound: nextRound, anyLive: anyLive };
+  }
+
+  function homePhaseLabel(stats) {
+    if (stats.allPlayed) return "Avslutat";
+    if (stats.nextRound === "GROUP" || stats.nextRound === null) return "Gruppspel";
+    return WC.roundNames[stats.nextRound] || "Slutspel";
+  }
+
+  /** Avspark för finalen – för "dagar kvar"-rutan. */
+  function homeFinalKickoff() {
+    var fm = null;
+    WC.knockout.forEach(function (m) { if (m.round === "FINAL") fm = m; });
+    return fm ? kickoffUTC(koMatchDisplay(fm)).getTime() : null;
+  }
+
+  function pulseTile(icon, value, label, sub, cls) {
+    return '<div class="pulse-tile' + (cls ? " " + cls : "") + '">' +
+      '<span class="pt-ic" aria-hidden="true">' + icon + '</span>' +
+      '<span class="pt-val">' + value + '</span>' +
+      '<span class="pt-lbl">' + esc(label) + '</span>' +
+      (sub ? '<span class="pt-sub">' + esc(sub) + '</span>' : '<span class="pt-sub">&nbsp;</span>') +
+      '</div>';
+  }
+
+  /** "Turneringen i siffror" – fyra kompakta rutor under hjälten. */
+  function tournamentPulse(ctx) {
+    var s = homeTournamentStats(ctx);
+    var avg = s.played ? (s.goals / s.played) : 0;
+    var avgTxt = avg.toFixed(1).replace(".", ",");
+    var pct = s.total ? Math.round(s.played / s.total * 100) : 0;
+
+    var finalKo = homeFinalKickoff();
+    var finalVal, finalSub;
+    if (s.allPlayed || !finalKo) {
+      finalVal = "Final"; finalSub = "spelad";
+    } else {
+      var days = Math.max(0, Math.ceil((finalKo - Date.now()) / 86400000));
+      finalVal = days; finalSub = days === 1 ? "dag kvar" : "dagar kvar";
+    }
+
+    var h = '<section class="home-pulse" aria-label="Turneringen i siffror">';
+    h += pulseTile(ICON_BALL, s.played + '<span class="pt-of">/' + s.total + '</span>', "Spelade matcher", pct + "% klart");
+    h += pulseTile(ICON_NET, s.goals, "Mål totalt", s.played ? avgTxt + " per match" : "väntar på avspark");
+    h += pulseTile(ICON_FLAG, homePhaseLabel(s), "Aktuell fas", s.anyLive ? "matcher pågår nu" : "", "is-text" + (s.anyLive ? " is-live" : ""));
+    h += pulseTile(ICON_TROPHY, finalVal, "Till finalen", finalSub);
+    h += '</section>';
+    return h;
+  }
+
+  var EXPLORE_CARDS = [
+    { nav: "groups", title: "Gruppspel", desc: "12 grupper · tabeller live", icon: ICON_GRID },
+    { nav: "bracket", title: "Slutspel", desc: "Vägen till finalen", icon: ICON_BRACKET },
+    { nav: "calendar", title: "Kalender", desc: "Alla 104 matcher", icon: ICON_CAL },
+    { nav: "players", title: "Statistik", desc: "Skyttekungar & lag", icon: ICON_CHART }
+  ];
+
+  /** Utforska-kort: visuella ingångar till sajtens övriga vyer. */
+  function homeExplore() {
+    var h = '<section class="home-explore" aria-label="Utforska">';
+    EXPLORE_CARDS.forEach(function (c) {
+      h += '<button type="button" class="explore-card" data-nav="' + c.nav + '" data-section="' + c.nav + '">' +
+        '<span class="ex-ic" aria-hidden="true">' + c.icon + '</span>' +
+        '<span class="ex-body">' +
+          '<span class="ex-title">' + esc(c.title) + '</span>' +
+          '<span class="ex-desc">' + esc(c.desc) + '</span>' +
+        '</span>' +
+        '<span class="ex-arrow" aria-hidden="true">' + ICON_ARROW + '</span>' +
+        '</button>';
+    });
+    h += '</section>';
     return h;
   }
 
