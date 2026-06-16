@@ -431,16 +431,8 @@ html.view-bracket .site-bg { display: none; }
 .home-layout .nm-spot-when { font-size: 11.5px; font-weight: 700; letter-spacing: .4px; margin-bottom: 2px; }
 .home-layout .nm-spot-teams { font-size: 16.5px; font-weight: 700; }
 
-/* TV-bricka som tunn konturpill – SVT grön, TV4 röd – likt referensen. */
-.home-layout .cal-tv {
-  background: transparent;
-  border: 1px solid;
-  height: 22px;
-  border-radius: 7px;
-  font-weight: 800;
-}
-.home-layout .cal-tv.svt { color: #8fd6a6; border-color: rgba(143, 214, 166, .42); background: rgba(143, 214, 166, .09); }
-.home-layout .cal-tv.tv4 { color: #f0a8b0; border-color: rgba(240, 168, 176, .42); background: rgba(240, 168, 176, .09); }
+/* TV-brickorna ärver den gemensamma konturpiller-stilen (.cal-tv) – ingen
+   startside-specifik override behövs längre. */
 
 @media (max-width: 640px) {
   .home-intro { padding-top: 18px; }
@@ -662,22 +654,9 @@ html.view-bracket .site-bg { display: none; }
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
 .group-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, .16);
-  box-shadow: 0 6px 16px rgba(0,0,0,.4), 0 14px 38px rgba(0,0,0,.45);
-}
-/* Röd→blå accentlinje i kortets överkant */
-.group-card::before,
-.thirds-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  border-radius: var(--radius) var(--radius) 0 0;
-  background: linear-gradient(90deg, var(--usa-red), color-mix(in srgb, var(--usa-red) 30%, var(--usa-blue)) 55%, var(--usa-blue));
-  opacity: .85;
-  pointer-events: none;
-  z-index: 1;
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, .14);
+  box-shadow: 0 34px 70px -28px rgba(0, 0, 0, .9), inset 0 1px 0 rgba(255, 255, 255, .09);
 }
 .thirds-card { position: relative; }
 .group-card .standings { flex: 1 1 auto; }
@@ -1538,16 +1517,6 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   padding: 6px 20px 18px;
   overflow: hidden;
 }
-.cal-shell::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  border-radius: var(--radius) var(--radius) 0 0;
-  background: linear-gradient(90deg, var(--usa-red), color-mix(in srgb, var(--usa-red) 30%, var(--usa-blue)) 55%, var(--usa-blue));
-  opacity: .85;
-  pointer-events: none;
-}
 
 .cal-jump {
   display: inline-flex;
@@ -1603,19 +1572,11 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   min-width: 86px;
   overflow: hidden;
 }
-.cal-date::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--usa-red);
-  opacity: .9;
-}
 .cal-dow {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: .55px;
-  color: color-mix(in srgb, var(--usa-red) 50%, var(--ink-soft));
+  color: var(--ink-soft);
   font-weight: 800;
 }
 .cal-dnum {
@@ -1645,19 +1606,10 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   overflow: hidden;
   transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
-.cal-row::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--usa-red), color-mix(in srgb, var(--usa-red) 35%, var(--usa-blue)) 60%, var(--usa-blue));
-  opacity: .7;
-  pointer-events: none;
-}
 .cal-row:hover {
-  transform: translateY(-1px);
-  border-color: rgba(255, 255, 255, .16);
-  box-shadow: 0 4px 14px rgba(0,0,0,.35);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, .14);
+  box-shadow: 0 22px 50px -26px rgba(0, 0, 0, .85), inset 0 1px 0 rgba(255, 255, 255, .07);
 }
 .cal-row.ko { cursor: default; }
 .cal-row.is-next {
@@ -1789,22 +1741,24 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   visibility: hidden;
   pointer-events: none;
 }
+/* TV-brickor som tunna konturpiller – exakt samma stil överallt (startsida,
+   kalender, nästa-avspark): SVT grön, TV4 röd. */
 .cal-tv {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 36px;
-  height: 20px;
-  padding: 0 6px;
-  border-radius: 5px;
+  min-width: 38px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 7px;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: .2px;
-  color: #fff;
+  border: 1px solid transparent;
   box-sizing: border-box;
 }
-.cal-tv.svt { background: #1a6b3c; }
-.cal-tv.tv4 { background: var(--usa-red); }
+.cal-tv.svt { color: #8fd6a6; border-color: rgba(143, 214, 166, .42); background: rgba(143, 214, 166, .09); }
+.cal-tv.tv4 { color: #f0a8b0; border-color: rgba(240, 168, 176, .42); background: rgba(240, 168, 176, .09); }
 .cal-tv-empty { visibility: hidden; }
 
 /* ====================================================================
