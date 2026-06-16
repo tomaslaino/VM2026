@@ -1992,6 +1992,7 @@
         awayName: teamSvSpotlightBase(mm.away),
         homeIso: mm.home.iso,
         awayIso: mm.away.iso,
+        groupLetter: mm.kind === "group" ? info.group : null,
         channel: channel,
         team: info.team,
         key: key
@@ -2005,10 +2006,21 @@
     return tvChHtml(ch);
   }
 
-  /** Ett lagnamn i matchraden – fokuslaget (Sverige/Uruguay) lyfts fram. */
-  function tsTeamName(name, iso, focusIso) {
+  /** Ett lag i matchraden – flagga + namn, fokuslaget (Sverige/Uruguay) lyfts fram. */
+  function tsTeamName(name, iso, focusIso, live) {
     var focus = iso && iso === focusIso;
-    return '<span class="ts-team' + (focus ? " is-focus" : "") + '">' + esc(name) + '</span>';
+    var dot = (focus && live) ? '<span class="ts-livedot"><span class="live-dot"></span></span>' : "";
+    return '<span class="ts-team' + (focus ? " is-focus" : "") + '">' +
+      '<span class="ts-tflag">' + flagImg(iso) + dot + '</span>' +
+      '<span class="ts-tname">' + esc(name) + '</span></span>';
+  }
+
+  /** Grupp-/rondetikett – grupper återanvänder den färgade group-pill:en. */
+  function tsGroupChip(m) {
+    if (m.groupLetter) {
+      return '<span class="' + groupPillClass(m.groupLetter, "ts-grp") + '">' + esc(m.label) + '</span>';
+    }
+    return '<span class="ts-grp ts-grp-round">' + esc(m.label) + '</span>';
   }
 
   /** En lag-cell i den smala Sverige/Uruguay-remsan (sekundär under hjälten). */
@@ -2017,21 +2029,16 @@
     var m = tp.match;
     if (!m) {
       return '<button type="button" class="ts-item is-empty team-open" data-team-open="' + tp.iso + '"' + accent + '>' +
-        '<span class="ts-flag">' + flagImg(tp.iso) + '</span>' +
         '<span class="ts-body"><span class="ts-when nm-muted">Ingen kommande match</span>' +
-        '<span class="ts-teams nm-muted">' + esc(tp.title) + '</span></span></button>';
+        '<span class="ts-teams">' + tsTeamName(tp.title, tp.iso, tp.iso, false) + '</span></span></button>';
     }
-    var whenLine = m.label
-      ? '<span class="ts-grp">' + esc(m.label) + '</span><span class="ts-when-time">' + esc(m.whenText) + '</span>'
-      : '<span class="ts-when-time">' + esc(m.whenText) + '</span>';
+    var whenLine = tsGroupChip(m) + '<span class="ts-when-time">' + esc(m.whenText) + '</span>';
     var teamsTitle = (m.teamsFull && m.teamsFull !== m.teams) ? ' title="' + esc(m.teamsFull) + '"' : "";
-    // Bygg matchningen med fokuslaget framhävt; fall tillbaka på platt text.
+    // Båda lagen med flagga; fokuslaget framhävt. Fall tillbaka på platt text.
     var teamsInner = m.homeName
-      ? tsTeamName(m.homeName, m.homeIso, tp.iso) + '<span class="ts-sep">–</span>' + tsTeamName(m.awayName, m.awayIso, tp.iso)
+      ? tsTeamName(m.homeName, m.homeIso, tp.iso, m.live) + '<span class="ts-sep">–</span>' + tsTeamName(m.awayName, m.awayIso, tp.iso, m.live)
       : esc(m.teams);
     var inner =
-      '<span class="ts-flag">' + flagImg(tp.iso) +
-        (m.live ? '<span class="ts-livedot"><span class="live-dot"></span></span>' : "") + '</span>' +
       '<span class="ts-body">' +
         '<span class="ts-when' + (m.live ? " is-live" : "") + '">' + whenLine + '</span>' +
         '<span class="ts-teams"' + teamsTitle + '>' + teamsInner + '</span>' +
@@ -2076,13 +2083,6 @@
   /* Avslutad match ligger kvar i hjälten ~2h efter slutsignal, sen faller ytan
      tillbaka till nästa avspark. */
   var FOCUS_FT_GRACE_MS = 2 * 3600 * 1000;
-
-  /** Senaste mål i en match (för live-hjältens händelserad). */
-  function latestGoal(key) {
-    var det = focusDetails[key];
-    if (!det || !det.goals || !det.goals.length) return null;
-    return det.goals[det.goals.length - 1];
-  }
 
   /** Vilken match hjälten ("Match i fokus") ska visa och i vilket läge.
       Prioritet: pågående > nyss avslutad (~2h) > nästa avspark.
@@ -2179,19 +2179,44 @@
     return '<div class="fh-team fh-' + side + '">' + (side === "home" ? name + flag : flag + name) + '</div>';
   }
 
-  /** Senaste viktiga händelse (mål) i en pågående match. */
-  function focusEventLine(e) {
-    var g = latestGoal(e.key);
-    if (!g) return "";
-    var team = g.team === "a" ? e.away : e.home;
-    var min = g.minute != null ? (g.minute + (g.injuryTime ? "+" + g.injuryTime : "") + "'") : "";
-    var sc = g.score ? g.score.h + "–" + g.score.a : "";
-    return '<div class="fh-event">' +
-      '<span class="fh-ev-ic" aria-hidden="true">⚽</span>' +
-      '<span class="fh-ev-flag">' + flagImg(team.iso) + '</span>' +
-      '<span class="fh-ev-txt"><b>' + esc(g.scorer || "Mål") + '</b>' +
-        (min ? '<span class="fh-ev-min">' + esc(min) + '</span>' : "") + '</span>' +
-      (sc ? '<span class="fh-ev-score">' + esc(sc) + '</span>' : "") +
+  /** Minutmärkning för ett mål, t.ex. "45+2'" med markör för straff/självmål. */
+  function goalMinuteToken(g) {
+    var min = (g.minute != null ? g.minute : "") + (g.injuryTime ? "+" + g.injuryTime : "");
+    var tok = min !== "" ? min + "'" : "";
+    if (g.type === "PENALTY") tok += " (str)";
+    else if (g.type === "OWN") tok += " (självmål)";
+    return tok;
+  }
+
+  /** Alla målskyttar i hjälten – grupperade per lag, en rad per skytt med
+      hopslagna minuter (t.ex. "Mbappé 12', 45'"). */
+  function focusScorers(e) {
+    var det = focusDetails[e.key];
+    if (!det || !det.goals || !det.goals.length) return "";
+    var sides = { h: [], a: [] };
+    var idx = { h: {}, a: {} };
+    det.goals.forEach(function (g) {
+      var side = g.team === "a" ? "a" : "h";
+      var name = g.scorer || "Mål";
+      if (idx[side][name] == null) {
+        idx[side][name] = sides[side].length;
+        sides[side].push({ name: name, tokens: [] });
+      }
+      sides[side][idx[side][name]].tokens.push(goalMinuteToken(g));
+    });
+    function render(side) {
+      return sides[side].map(function (s) {
+        return '<span class="fh-sc-line">' +
+          '<span class="fh-sc-name">' + esc(s.name) + '</span>' +
+          '<span class="fh-sc-min">' + esc(s.tokens.filter(Boolean).join(", ")) + '</span>' +
+          '</span>';
+      }).join("");
+    }
+    if (!sides.h.length && !sides.a.length) return "";
+    return '<div class="fh-scorers" aria-label="Målskyttar">' +
+      '<div class="fh-sc-side fh-sc-home">' + render("h") + '</div>' +
+      '<span class="fh-sc-ball" aria-hidden="true">⚽</span>' +
+      '<div class="fh-sc-side fh-sc-away">' + render("a") + '</div>' +
       '</div>';
   }
 
@@ -2239,7 +2264,7 @@
     h += '<div class="fh-main">' +
       focusTeamSide(e.home, "home") + center + focusTeamSide(e.away, "away") +
       '</div>';
-    if (state === "live") h += focusEventLine(e);
+    if (state === "live" || state === "ft") h += focusScorers(e);
     h += '<div class="fh-meta">' +
       '<span class="fh-when">' + esc(when.dateLabel + " · " + when.time) + '</span>' +
       spotlightTvHtml(e.channel) +

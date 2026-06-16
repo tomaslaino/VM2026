@@ -404,24 +404,31 @@ html.view-bracket .site-bg { display: none; }
   color: var(--ink-soft); opacity: .6;
 }
 
-/* Senaste viktiga händelse (mål) i live-läget. */
-.fh-event {
-  display: flex; align-items: center; gap: 10px;
-  margin: clamp(14px, 2.2vw, 22px) 0 0;
-  padding: 11px 14px;
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--live) 12%, rgba(255, 255, 255, .02));
-  border: 1px solid color-mix(in srgb, var(--live) 26%, transparent);
+/* Målskyttar – grupperade per lag kring en mittställd boll, hemmalaget vänster
+   (högerställt mot mitten) och bortalaget höger (vänsterställt). */
+.fh-scorers {
+  display: flex; align-items: flex-start; justify-content: center;
+  gap: clamp(12px, 3vw, 30px);
+  margin-top: clamp(14px, 2.2vw, 22px);
+  padding-top: clamp(13px, 2vw, 18px);
+  border-top: 1px solid rgba(255, 255, 255, .09);
 }
-.fh-ev-ic { font-size: 16px; }
-.fh-ev-flag { line-height: 0; flex: none; }
-.fh-ev-flag .flag { width: 24px; height: 16px; border-radius: 3px; }
-.fh-ev-txt { display: inline-flex; align-items: baseline; gap: 8px; min-width: 0; }
-.fh-ev-txt b { font-weight: 800; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.fh-ev-min { font-size: 12px; font-weight: 700; color: var(--live); font-variant-numeric: tabular-nums; }
-.fh-ev-score {
-  margin-left: auto; font-family: var(--display); font-weight: 800;
-  font-size: 20px; color: var(--bone); font-variant-numeric: tabular-nums;
+.fh-sc-side { display: flex; flex-direction: column; gap: 6px; flex: 1 1 0; min-width: 0; }
+.fh-sc-home { align-items: flex-end; text-align: right; }
+.fh-sc-away { align-items: flex-start; text-align: left; }
+.fh-sc-ball { flex: none; font-size: 15px; opacity: .55; margin-top: 1px; }
+.fh-sc-line { display: inline-flex; align-items: baseline; gap: 8px; max-width: 100%; }
+.fh-sc-away .fh-sc-line { flex-direction: row-reverse; }   /* boll-sidan: minut närmast mitten */
+.fh-sc-name {
+  font-weight: 700; color: var(--ink); font-size: clamp(12.5px, 1.4vw, 15px);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0;
+}
+.fh-sc-min { flex: none; font-size: 12.5px; font-weight: 700; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.focus-card.fc-live .fh-sc-min { color: var(--live); }
+@media (max-width: 560px) {
+  .fh-scorers { gap: 10px; }
+  .fh-sc-name { font-size: 12px; }
+  .fh-sc-min { font-size: 11.5px; }
 }
 
 /* Grupp · datum/tid · TV. */
@@ -549,35 +556,38 @@ html.view-bracket .site-bg { display: none; }
   background: rgba(var(--ts-accent), .9);
   opacity: .6; transition: opacity .15s ease, top .15s ease, bottom .15s ease;
 }
+/* Dämpad hover i samma stil som hjältekortet – ingen glöd, bara en aning ljus. */
 .ts-item:hover {
-  border-color: rgba(var(--ts-accent), .38);
+  border-color: rgba(255, 255, 255, .14);
   background:
-    linear-gradient(180deg, rgba(var(--ts-accent), .14), rgba(var(--ts-accent), .04)),
+    linear-gradient(180deg, rgba(var(--ts-accent), .11), rgba(var(--ts-accent), .03)),
     rgba(255, 255, 255, .05);
-  box-shadow: 0 12px 28px -18px rgba(var(--ts-accent), .85);
 }
-.ts-item:hover::before { opacity: 1; top: 6px; bottom: 6px; }
+.ts-item:hover::before { opacity: .9; }
 .ts-item.match-openable:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .ts-item.is-live { border-color: color-mix(in srgb, var(--live) 40%, transparent); background: color-mix(in srgb, var(--live) 10%, rgba(255, 255, 255, .03)); }
 .ts-item.is-live::before { background: var(--live); opacity: 1; }
 .ts-item.is-empty { opacity: .82; }
-.ts-flag { position: relative; line-height: 0; flex: none; }
-.ts-flag .flag { width: 34px; height: 23px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, .4); }
-.ts-livedot { position: absolute; top: -3px; right: -3px; }
-.ts-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.ts-body { display: flex; flex: 1 1 auto; flex-direction: column; gap: 5px; min-width: 0; }
 .ts-when { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: .3px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
-.ts-grp {
-  flex: none; padding: 1px 7px; border-radius: 999px;
-  font-size: 10px; font-weight: 800; letter-spacing: .4px; text-transform: uppercase;
-  color: rgb(var(--ts-accent));
-  background: rgba(var(--ts-accent), .15);
-  border: 1px solid rgba(var(--ts-accent), .24);
+/* Grupp-pill: kompakt variant av sidans gemensamma group-pill (egen gruppfärg). */
+.group-pill.ts-grp { font-size: 10px; padding: 2px 8px; letter-spacing: .3px; }
+.ts-grp-round {
+  display: inline-flex; align-items: center; flex: none;
+  padding: 2px 8px; border-radius: 999px;
+  font-size: 10px; font-weight: 800; letter-spacing: .3px; color: var(--ink-soft);
+  background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12);
 }
 .ts-when-time { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ts-when.is-live { color: var(--live); }
-.ts-teams { display: flex; align-items: baseline; gap: 6px; min-width: 0; font-size: 14.5px; }
-.ts-team { font-weight: 600; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-.ts-team.is-focus { flex: none; color: #fff; font-weight: 800; }
+.ts-teams { display: flex; align-items: center; gap: 7px; min-width: 0; font-size: 14px; }
+.ts-team { display: inline-flex; align-items: center; gap: 7px; min-width: 0; font-weight: 600; color: var(--ink-soft); }
+.ts-team.is-focus { flex: none; color: #fff; font-weight: 800; }   /* fokuslaget krymps aldrig */
+.ts-team:not(.is-focus) { flex: 0 1 auto; }                         /* motståndaren krymper först */
+.ts-tflag { position: relative; line-height: 0; flex: none; }
+.ts-tflag .flag { width: 22px; height: 15px; border-radius: 3px; box-shadow: 0 2px 6px rgba(0, 0, 0, .4); }
+.ts-tname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.ts-livedot { position: absolute; top: -4px; right: -4px; }
 .ts-sep { flex: none; color: rgba(255, 255, 255, .3); font-weight: 600; }
 .ts-item .cal-tv { margin-left: auto; flex: none; align-self: center; }
 
@@ -656,23 +666,21 @@ html.view-bracket .site-bg { display: none; }
   box-shadow: 0 6px 20px rgba(0, 0, 0, .55);
 }
 .fm-flag .flag,
-.ts-flag .flag { outline: 1px solid rgba(255, 255, 255, .14); outline-offset: -1px; }
+.ts-tflag .flag { outline: 1px solid rgba(255, 255, 255, .14); outline-offset: -1px; }
 
 /* Hela fokuskortet svarar mjukt på hover. */
 .focus-card.match-openable { transition: background .2s ease; }
 .focus-card.match-openable:hover { background: rgba(255, 255, 255, .045); }
 .focus-card.match-openable:hover .fh-flag .flag { box-shadow: 0 9px 26px rgba(0, 0, 0, .6); }
 
-/* Sverige/Uruguay-remsan: lyft korten en aning vid hover. */
-.ts-item { transition: background .15s ease, border-color .15s ease, box-shadow .15s ease, transform .15s ease; }
-.ts-item:hover { transform: translateY(-1px); }
+/* Sverige/Uruguay-remsan: lugn hover som hjältekortet (ingen lyftning/glöd). */
+.ts-item { transition: background .2s ease, border-color .2s ease; }
 
 @media (prefers-reduced-motion: reduce) {
   .site-bg,
   .home-intro > *,
   .home-layout > .focus-hero,
   .home-layout > .teams-strip { animation: none; }
-  .ts-item:hover { transform: none; }
 }
 
 .next-matches-row {
