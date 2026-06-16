@@ -2093,13 +2093,14 @@
     var live = [], finished = [], upcoming = [];
 
     items.forEach(function (it) {
-      var key, label, home, away, m, channel;
+      var key, label, home, away, m, channel, groupLetter = null;
       if (it.kind === "group") {
         var fx = it.fx;
         key = fx.key; m = fx;
         home = WC.groups[it.letter][fx.h];
         away = WC.groups[it.letter][fx.a];
         label = "Grupp " + it.letter;
+        groupLetter = it.letter;
         channel = tvLookupGroup(fx, home, away);
       } else {
         var res = ctx.resolved[it.m.m];
@@ -2118,7 +2119,8 @@
       var played = !liveNow && isPlayed(r) && !isLiveStatus(r && r.status);
       var lv = apiLive[key];
       var entry = {
-        key: key, ko: ko, label: label, home: home, away: away, m: m,
+        key: key, ko: ko, label: label, groupLetter: groupLetter,
+        home: home, away: away, m: m,
         r: r || {}, time: m.edt || "", channel: channel,
         minute: lv && lv.minute != null ? lv.minute : null
       };
@@ -2230,6 +2232,14 @@
       "</div>";
   }
 
+  /** Grupp-/rondetikett i hjälten – grupper får sin riktiga färg (group-pill). */
+  function focusGroupChip(e, cls) {
+    if (e.groupLetter) {
+      return '<span class="' + groupPillClass(e.groupLetter, cls) + '">' + esc(e.label) + '</span>';
+    }
+    return '<span class="' + cls + '">' + esc(e.label) + '</span>';
+  }
+
   /** Säkerställ att live/avslutade matcher alltid är klickbara (modalen fyller
       på tomma flikar via pollningen även i glappet vid avspark). */
   function focusOpenAttr(e) {
@@ -2259,7 +2269,7 @@
     var h = '<article class="focus-card fc-' + state + open.cls + '"' + open.attr + '>';
     h += '<div class="fh-top">' +
       '<span class="fh-eyebrow">' + esc(FOCUS_HEADINGS[state].one) + '</span>' +
-      '<span class="fh-top-right"><span class="fh-group">' + esc(e.label) + '</span>' + status + '</span>' +
+      '<span class="fh-top-right">' + focusGroupChip(e, "fh-group") + status + '</span>' +
       '</div>';
     h += '<div class="fh-main">' +
       focusTeamSide(e.home, "home") + center + focusTeamSide(e.away, "away") +
@@ -2289,7 +2299,7 @@
     var hs = state === "next" ? "" : (e.r.h != null ? e.r.h : 0);
     var as = state === "next" ? "" : (e.r.a != null ? e.r.a : 0);
     var h = '<article class="focus-mini fm-' + state + open.cls + '"' + open.attr + '>';
-    h += '<div class="fm-top"><span class="fm-group">' + esc(e.label) + '</span>' + status + '</div>';
+    h += '<div class="fm-top">' + focusGroupChip(e, "fm-group") + status + '</div>';
     h += sideRow(e.home, hs) + sideRow(e.away, as);
     h += '<div class="fm-foot">' + spotlightTvHtml(e.channel) + '</div>';
     h += '</article>';
