@@ -433,12 +433,29 @@
       '<span class="mi-row-val">' + val + '</span></div>';
   }
 
+  function pendingVal(text) {
+    return '<span class="mi-row-pending">' + esc(text) + "</span>";
+  }
+
   function factsHtml(info, det) {
+    var notStarted = !info.live && !info.played;
     var rows = "";
     var venue = (det && det.venue) || (info.venue ? info.venue.stadium + ", " + info.venue.city : null);
-    rows += infoRow("Arena", venue ? esc(venue) : null);
-    rows += infoRow("Domare", det && det.referee ? esc(det.referee) : null);
-    rows += infoRow("Publik", det && det.attendance ? esc(Number(det.attendance).toLocaleString("sv-SE")) : null);
+    var referee = det && det.referee ? esc(det.referee) : null;
+    var attendance = det && det.attendance ? esc(Number(det.attendance).toLocaleString("sv-SE")) : null;
+
+    if (notStarted) {
+      // Visa samma rader som för spelade matcher, men förklara kort vad som
+      // ännu inte är känt så det inte ser tomt ut före avspark.
+      rows += infoRow("Avspark", esc(info.when.dateLabel + " · " + info.when.time));
+      rows += infoRow("Arena", venue ? esc(venue) : pendingVal("Meddelas närmare avspark"));
+      rows += infoRow("Domare", referee || pendingVal("Tillsätts inför avspark"));
+      rows += infoRow("Publik", attendance || pendingVal("Klar efter avspark"));
+    } else {
+      rows += infoRow("Arena", venue ? esc(venue) : null);
+      rows += infoRow("Domare", referee);
+      rows += infoRow("Publik", attendance);
+    }
     if (info.channel) {
       rows += infoRow("TV", '<span class="cal-tv ' + (info.channel === "SVT" ? "svt" : "tv4") + '">' +
         esc(info.channel) + "</span>");

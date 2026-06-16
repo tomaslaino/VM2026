@@ -958,7 +958,7 @@
     var h = '<section class="card group-card' + (open ? " is-open" : "") + '">';
     h += '<button type="button" class="group-head group-head-btn" data-cal-group="' + L + '" ' +
          'title="Visa fullständig tabell med vinster, förluster, kort och fair play">' +
-         '<h3><span class="group-letter">' + L + '</span>Grupp ' + L + '</h3>' +
+         '<h3><span class="group-pill is-lg">Grupp ' + L + '</span></h3>' +
          '<span class="group-more">Detaljer' +
          '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
          '<path fill="currentColor" d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>' +
@@ -2475,7 +2475,7 @@
     var thirdQ = isThirdQ(ctx, L);
     popup.innerHTML =
       '<div class="cal-group-head">' +
-        '<h3><span class="group-letter">' + L + '</span>Grupp ' + L + "</h3>" +
+        '<h3><span class="group-pill is-lg">Grupp ' + L + "</span></h3>" +
         '<button type="button" class="cal-group-close" id="calGroupClose" title="Stäng">×</button>' +
       "</div>" +
       '<table class="standings mini"><thead><tr>' +
@@ -2612,7 +2612,7 @@
     }).slice(0, 5).forEach(function (e) {
       html += '<button class="sr-item" data-team-group="' + e.group + '" data-team-idx="' + e.idx + '">' +
         flagImg(e.team.iso) + '<span class="sr-name">' + esc(e.team.sv) + '</span>' +
-        '<span class="sr-grp">Grupp ' + e.group + '</span></button>';
+        '<span class="group-pill">Grupp ' + e.group + '</span></button>';
     });
 
     var people = (window.VMPlayers && typeof VMPlayers.search === "function")
@@ -2738,7 +2738,7 @@
     var h = '<div class="drawer-head">' +
       '<span class="dh-flag">' + flagImg(team.iso) + '</span>' +
       '<div class="dh-title"><h3>' + esc(team.sv) + '</h3>' +
-        '<span class="dh-sub">' + esc(team.name) + ' · Grupp ' + L + '</span></div>' +
+        '<span class="dh-sub">' + esc(team.name) + ' · <span class="group-pill">Grupp ' + L + '</span></span></div>' +
       '<button class="drawer-close" id="drawerClose" title="Stäng">×</button></div>';
 
     h += '<div class="drawer-body">';
