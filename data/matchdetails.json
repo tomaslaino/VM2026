@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-16T19:31:08.141Z",
+    "updatedAt": "2026-06-16T20:31:47.305Z",
     "source": "espn"
   },
   "details": {
@@ -7184,21 +7184,37 @@
     "g:I:0": {
       "espnId": "760432",
       "status": "IN_PLAY",
-      "minute": 27,
+      "minute": 67,
       "utcDate": "2026-06-16T19:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
+          "h": 1,
+          "a": 0
+        },
+        "ht": {
           "h": 0,
           "a": 0
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
+      "goals": [
+        {
+          "minute": 66,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Kylian Mbappé",
+          "assist": "Michael Olise",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        }
+      ],
       "bookings": [],
       "subs": [],
       "penalties": [],
@@ -7454,47 +7470,47 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "61%",
-          "a": "39%"
+          "h": "56%",
+          "a": "45%"
         },
         {
           "key": "totalShots",
-          "h": "1",
-          "a": "2"
+          "h": "6",
+          "a": "5"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "0"
+          "h": "3",
+          "a": "1"
         },
         {
           "key": "wonCorners",
-          "h": "2",
+          "h": "5",
           "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "2",
-          "a": "2"
+          "h": "3",
+          "a": "6"
         },
         {
           "key": "offsides",
-          "h": "0",
+          "h": "1",
           "a": "1"
         },
         {
           "key": "saves",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "2"
         },
         {
           "key": "totalPasses",
-          "h": "201",
-          "a": "127"
+          "h": "433",
+          "a": "352"
         },
         {
           "key": "passPct",
-          "h": "91%",
+          "h": "88%",
           "a": "85%"
         },
         {
@@ -7508,7 +7524,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-16T19:31:08.141Z"
+      "updatedAt": "2026-06-16T20:31:47.305Z"
     }
   }
 }
