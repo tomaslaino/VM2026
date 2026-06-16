@@ -583,7 +583,9 @@ html.view-bracket .site-bg { display: none; }
    besökare som föredrar mindre rörelse. */
 @keyframes homeRise {
   from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
+  /* Sluta med transform:none (inte translateY(0)) så elementet inte lämnas kvar
+     i ett eget GPU-lager – annars kan texten se en aning suddig ut på 1x-skärmar. */
+  to   { opacity: 1; transform: none; }
 }
 .home-intro > *,
 .home-layout > .focus-hero,
@@ -595,13 +597,6 @@ html.view-bracket .site-bg { display: none; }
 .home-intro p               { animation-delay: .20s; }
 .home-layout > .focus-hero  { animation-delay: .30s; }
 .home-layout > .teams-strip { animation-delay: .42s; }
-
-/* Hjälterubriken: en aning varmare djup, men solid benvit så Ä-prickarna
-   alltid syns (samma princip som tidigare, bara mer rymd runt bokstäverna). */
-.home-intro h2 {
-  text-shadow: 0 6px 30px rgba(0, 0, 0, .55), 0 1px 2px rgba(0, 0, 0, .55),
-    0 0 70px rgba(196, 30, 58, .13);
-}
 
 /* Mjukt rampljus uppifrån bakom matchställningen ger fokuskortet mer liv och
    knyter färgen till sidans läge (blå = kommande, röd = live, grön = avslutad). */
@@ -621,13 +616,10 @@ html.view-bracket .site-bg { display: none; }
     linear-gradient(180deg, rgba(18, 34, 54, .82), rgba(11, 21, 38, .86));
 }
 
-/* Ställningen är sidans tyngdpunkt – ge siffrorna en mjuk glöd. */
-.fh-score {
-  text-shadow: 0 2px 24px rgba(255, 255, 255, .14), 0 0 52px rgba(140, 180, 230, .16);
-}
-.focus-hero.state-live .fh-score {
-  text-shadow: 0 2px 22px rgba(255, 120, 140, .25), 0 0 54px rgba(232, 38, 74, .30);
-}
+/* Ställningen är sidans tyngdpunkt – en stram, låg glöd för djup utan att göra
+   siffrorna disiga (vid live växlar glöden mot rött). */
+.fh-score { text-shadow: 0 0 20px rgba(150, 185, 235, .14); }
+.focus-hero.state-live .fh-score { text-shadow: 0 0 22px rgba(232, 38, 74, .22); }
 
 /* Flaggor: stadig ljus innerram + djupare skugga = mer premiumkänsla. */
 .fh-flag .flag {
