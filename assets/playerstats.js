@@ -41,9 +41,7 @@
     mode: "players",     // "players" | "teams"
     q: "",
     team: "",            // iso eller "" = alla
-    group: "",           // A–L eller "" = alla
     pos: "",             // GK/DF/MF/FW eller "" = alla
-    confed: "",          // UEFA/CONMEBOL/… eller "" = alla
     limit: 50,
     sort: {
       players: { key: "points", dir: -1 },
@@ -482,8 +480,6 @@
     var q = norm(stateUi.q);
     return buildPlayerRows().filter(function (r) {
       if (stateUi.team && r.teamIso !== stateUi.team) return false;
-      if (stateUi.group && r.letter !== stateUi.group) return false;
-      if (stateUi.confed && confOf(r.teamIso) !== stateUi.confed) return false;
       if (stateUi.pos && r.pos !== stateUi.pos) return false;
       if (q && r.nameN.indexOf(q) === -1 && r.teamN.indexOf(q) === -1 &&
           r.clubN.indexOf(q) === -1) return false;
@@ -494,8 +490,6 @@
   function filteredTeamRows() {
     var q = norm(stateUi.q);
     return buildTeamRows().filter(function (r) {
-      if (stateUi.group && r.letter !== stateUi.group) return false;
-      if (stateUi.confed && r.conf !== stateUi.confed) return false;
       if (q && r.teamN.indexOf(q) === -1) return false;
       return true;
     }).sort(cmpTeams);
@@ -822,30 +816,11 @@
       seg("players", "Spelare") + seg("teams", "Lag") + "</div>";
   }
 
-  function groupOpts() {
-    var opts = '<option value="">Alla grupper</option>';
-    WC.groupLetters.forEach(function (L) {
-      opts += '<option value="' + L + '"' + (stateUi.group === L ? " selected" : "") + ">Grupp " + L + "</option>";
-    });
-    return opts;
-  }
-
-  function confOpts() {
-    var opts = '<option value="">Alla förbund</option>';
-    ((window.WC && WC.confeds) || []).forEach(function (c) {
-      opts += '<option value="' + c.code + '"' + (stateUi.confed === c.code ? " selected" : "") +
-        ">" + esc(c.region) + " (" + c.code + ")</option>";
-    });
-    return opts;
-  }
-
   function toolbarHtml() {
     if (stateUi.mode === "teams") {
       return '<div class="ps-toolbar">' +
         '<input id="psSearch" type="search" autocomplete="off" placeholder="Sök lag…" ' +
           'aria-label="Sök lag" value="' + esc(stateUi.q) + '">' +
-        '<select id="psGroup" aria-label="Filtrera på grupp">' + groupOpts() + "</select>" +
-        '<select id="psConfed" aria-label="Filtrera på förbund/världsdel">' + confOpts() + "</select>" +
         '<span class="ps-count" id="psCount"></span>' +
         "</div>";
     }
@@ -862,8 +837,6 @@
       '<input id="psSearch" type="search" autocomplete="off" placeholder="Sök spelare, lag eller klubb…" ' +
         'aria-label="Sök spelare" value="' + esc(stateUi.q) + '">' +
       '<select id="psTeam" aria-label="Filtrera på lag">' + teamOpts + "</select>" +
-      '<select id="psGroup" aria-label="Filtrera på grupp">' + groupOpts() + "</select>" +
-      '<select id="psConfed" aria-label="Filtrera på förbund/världsdel">' + confOpts() + "</select>" +
       '<select id="psPos" aria-label="Filtrera på position">' + posOpts + "</select>" +
       '<span class="ps-count" id="psCount"></span>' +
       "</div>";
@@ -962,8 +935,6 @@
   function onChange(e) {
     if (!e.target) return;
     if (e.target.id === "psTeam") { stateUi.team = e.target.value; stateUi.limit = 50; renderTable(); }
-    else if (e.target.id === "psGroup") { stateUi.group = e.target.value; stateUi.limit = 50; renderTable(); }
-    else if (e.target.id === "psConfed") { stateUi.confed = e.target.value; stateUi.limit = 50; renderTable(); }
     else if (e.target.id === "psPos") { stateUi.pos = e.target.value; stateUi.limit = 50; renderTable(); }
   }
 

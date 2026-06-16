@@ -745,39 +745,78 @@
     viewEl.insertAdjacentHTML("afterbegin", html);
   }
 
-  /* Sticky-offset: hela headern är sticky men med negativ top så att
-     bara navraden blir kvar synlig högst upp när man scrollar. */
+  var headerCollapseAt = 80;
+  var headerExpandAt = 6;
+  var headerShrinkDelta = 64;
+  var headerScrollLock = false;
+
+  function measureHeaderCollapseThreshold() {
+    var header = document.querySelector(".hero-header");
+    if (!header || window.innerWidth > 780) {
+      headerCollapseAt = 80;
+      headerExpandAt = 6;
+      return;
+    }
+    if (header.classList.contains("hero-collapsed")) return;
+    var inner = header.querySelector(".topbar-inner");
+    var nav = header.querySelector(".nav");
+    if (!inner || !nav) return;
+    /* Höjd som försvinner vid ihopfällning (nav + 6+6px padding i .hero-collapsed). */
+    headerShrinkDelta = inner.offsetHeight - nav.offsetHeight - 12;
+    if (headerShrinkDelta < 0) headerShrinkDelta = 0;
+    /* Kräv scroll förbi hela shrink + expand-hysteres – annars flimrar headern. */
+    headerCollapseAt = Math.max(56, headerShrinkDelta + headerExpandAt + 8);
+    headerExpandAt = 6;
+  }
+
+  /* Sticky-header: top hålls på 0 – ihopfällning sker via CSS (.hero-collapsed). */
   function updateHeroSticky() {
     var header = document.querySelector(".hero-header");
     if (!header) return;
-    if (ui("view", "groups") === "bracket") {
-      header.style.top = "0";
-      return;
-    }
-    var nav = header.querySelector(".topbar");
-    var navH = nav ? nav.offsetHeight : 0;
-    header.style.top = Math.min(0, navH - header.offsetHeight) + "px";
+    header.style.top = "0";
+    measureHeaderCollapseThreshold();
   }
 
   function setBracketHeroCollapsed(on) {
     var header = document.querySelector(".hero-header");
     if (!header) return;
     var was = header.classList.contains("hero-collapsed");
+    if (was === !!on) return;
+
+    var mobileCompact = window.innerWidth <= 780 && ui("view", "groups") !== "bracket";
+    var beforeH = mobileCompact ? header.offsetHeight : 0;
+
     header.classList.toggle("hero-collapsed", !!on);
+
+    /* Vid ihopfällning krymper dokumentet – kompensera scrollY så vi inte
+       hamnar under expand-tröskeln och triggar expand/collapse i loop. */
+    if (mobileCompact && on) {
+      var delta = beforeH - header.offsetHeight;
+      if (delta > 0) {
+        headerScrollLock = true;
+        window.scrollTo(0, Math.max(0, window.scrollY - delta));
+        requestAnimationFrame(function () { headerScrollLock = false; });
+      }
+    }
+
     if (was !== !!on && ui("view", "groups") === "bracket") {
       requestAnimationFrame(drawBracketConnectors);
     }
   }
 
-  /* Grupp/kalender: fäll ihop headern (dölj sök + badge) när bannern
-     scrollats förbi, så bara navraden ligger kvar högst upp. */
+  /* Grupp/kalender: fäll ihop headern (dölj varumärke + sök + badge) när man
+     scrollat ner, så bara nav-flikarna ligger kvar högst upp. */
   function syncHeaderCompact() {
+    if (headerScrollLock) return;
     if (ui("view", "groups") === "bracket") return;
     var header = document.querySelector(".hero-header");
     if (!header) return;
-    var topVal = parseFloat(header.style.top) || 0;
-    var threshold = Math.max(20, -topVal - 6);
-    setBracketHeroCollapsed(window.scrollY > threshold);
+    var y = window.scrollY;
+    if (header.classList.contains("hero-collapsed")) {
+      if (y <= headerExpandAt) setBracketHeroCollapsed(false);
+    } else if (y > headerCollapseAt) {
+      setBracketHeroCollapsed(true);
+    }
   }
 
   function setupBracketHeroCollapse() {

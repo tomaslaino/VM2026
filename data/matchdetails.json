@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-16T19:05:16.330Z",
+    "updatedAt": "2026-06-16T19:31:08.141Z",
     "source": "espn"
   },
   "details": {
@@ -7184,7 +7184,7 @@
     "g:I:0": {
       "espnId": "760432",
       "status": "IN_PLAY",
-      "minute": 2,
+      "minute": 27,
       "utcDate": "2026-06-16T19:00Z",
       "duration": "REGULAR",
       "winner": null,
@@ -7227,13 +7227,13 @@
               "pos": "LM"
             },
             {
-              "name": "William Saliba",
-              "jersey": "17",
+              "name": "Dayot Upamecano",
+              "jersey": "4",
               "pos": "CD-R"
             },
             {
-              "name": "Dayot Upamecano",
-              "jersey": "4",
+              "name": "William Saliba",
+              "jersey": "17",
               "pos": "CD-L"
             },
             {
@@ -7326,7 +7326,7 @@
           ]
         },
         "a": {
-          "formation": "4-3-3",
+          "formation": "4-2-3-1",
           "starters": [
             {
               "name": "Édouard Mendy",
@@ -7344,9 +7344,9 @@
               "pos": "LB"
             },
             {
-              "name": "Idrissa Gueye",
-              "jersey": "5",
-              "pos": "CM"
+              "name": "Pape Gueye",
+              "jersey": "26",
+              "pos": "LM"
             },
             {
               "name": "Kalidou Koulibaly",
@@ -7359,14 +7359,14 @@
               "pos": "CD-L"
             },
             {
-              "name": "Lamine Camara",
-              "jersey": "8",
-              "pos": "RM"
+              "name": "Ismaïla Sarr",
+              "jersey": "18",
+              "pos": "AM-R"
             },
             {
-              "name": "Pape Gueye",
-              "jersey": "26",
-              "pos": "LM"
+              "name": "Idrissa Gueye",
+              "jersey": "5",
+              "pos": "RM"
             },
             {
               "name": "Nicolas Jackson",
@@ -7374,14 +7374,14 @@
               "pos": "F"
             },
             {
-              "name": "Ismaïla Sarr",
-              "jersey": "18",
-              "pos": "RF"
+              "name": "Lamine Camara",
+              "jersey": "8",
+              "pos": "AM"
             },
             {
               "name": "Sadio Mané",
               "jersey": "10",
-              "pos": "LF"
+              "pos": "AM-L"
             }
           ],
           "bench": [
@@ -7454,13 +7454,13 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "16%",
-          "a": "84%"
+          "h": "61%",
+          "a": "39%"
         },
         {
           "key": "totalShots",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "2"
         },
         {
           "key": "shotsOnTarget",
@@ -7469,18 +7469,18 @@
         },
         {
           "key": "wonCorners",
-          "h": "0",
-          "a": "1"
+          "h": "2",
+          "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "2"
         },
         {
           "key": "offsides",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "saves",
@@ -7489,13 +7489,13 @@
         },
         {
           "key": "totalPasses",
-          "h": "3",
-          "a": "15"
+          "h": "201",
+          "a": "127"
         },
         {
           "key": "passPct",
-          "h": "0%",
-          "a": "87%"
+          "h": "91%",
+          "a": "85%"
         },
         {
           "key": "yellowCards",
@@ -7508,7 +7508,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-16T19:05:16.329Z"
+      "updatedAt": "2026-06-16T19:31:08.141Z"
     }
   }
 }

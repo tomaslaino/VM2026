@@ -65,6 +65,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 40;
+  overflow-anchor: none;
   background: linear-gradient(180deg, rgba(8, 15, 26, .97), rgba(8, 15, 26, .88));
   -webkit-backdrop-filter: blur(12px) saturate(1.1);
   backdrop-filter: blur(12px) saturate(1.1);
@@ -1953,15 +1954,16 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   .brand-txt { min-width: 0; }
   .brand-txt b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .controls { grid-area: controls; margin-left: 0; align-self: center; justify-self: end; }
-  /* Kompakt header vid scroll: dölj sök, behåll varumärke + status + nav. */
+  /* Kompakt header vid scroll: bara nav-flikarna kvar (dölj varumärke, sök, status). */
   .hero-header.hero-collapsed .topbar-inner {
-    grid-template-areas:
-      "brand controls"
-      "nav nav";
-    gap: 8px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    grid-template-areas: "nav";
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-top: 6px;
+    padding-bottom: 6px;
   }
+  .hero-header.hero-collapsed .brand,
+  .hero-header.hero-collapsed .controls,
   .hero-header.hero-collapsed .search { display: none; }
   .nav {
     grid-area: nav;
