@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-16T02:02:35.772Z",
+    "updatedAt": "2026-06-16T07:39:08.746Z",
     "source": "espn"
   },
   "details": {
@@ -6735,17 +6735,20 @@
     },
     "g:G:3": {
       "espnId": "760427",
-      "status": "PAUSED",
-      "minute": 45,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-16T01:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "DRAW",
       "score": {
         "ft": {
+          "h": 2,
+          "a": 2
+        },
+        "ht": {
           "h": 1,
           "a": 1
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
@@ -6774,10 +6777,96 @@
             "h": 1,
             "a": 1
           }
+        },
+        {
+          "minute": 54,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Elijah Just",
+          "assist": "Chris Wood",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 1
+          }
+        },
+        {
+          "minute": 64,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Mohammad Mohebbi",
+          "assist": "Ramin Rezaeian",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 2
+          }
         }
       ],
-      "bookings": [],
-      "subs": [],
+      "bookings": [
+        {
+          "minute": 89,
+          "team": "a",
+          "player": "Ehsan Hajsafi",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Mehdi Ghayedi",
+          "out": "Arya Yousefi"
+        },
+        {
+          "minute": 53,
+          "team": "a",
+          "in": "Ali Alipour",
+          "out": "Shahriyar Moghanloo"
+        },
+        {
+          "minute": 65,
+          "team": "a",
+          "in": "Ehsan Hajsafi",
+          "out": "Saman Ghoddos"
+        },
+        {
+          "minute": 68,
+          "team": "h",
+          "in": "Ryan Thomas",
+          "out": "Callum McCowatt"
+        },
+        {
+          "minute": 68,
+          "team": "h",
+          "in": "Ben Old",
+          "out": "Liberato Cacace"
+        },
+        {
+          "minute": 78,
+          "team": "h",
+          "in": "Callan Elliot",
+          "out": "Tim Payne"
+        },
+        {
+          "minute": 80,
+          "team": "a",
+          "in": "Amirhossein Hosseinzadeh",
+          "out": "Mehdi Taremi"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Jesse Randall",
+          "out": "Sarpreet Singh"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Tyler Bindon",
+          "out": "Marko Stamenic"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -6846,15 +6935,18 @@
             },
             {
               "name": "Ben Old",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Jesse Randall",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Callan Elliot",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Francis de Vries",
@@ -6870,7 +6962,8 @@
             },
             {
               "name": "Tyler Bindon",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true
             },
             {
               "name": "Kosta Barbarouses",
@@ -6890,7 +6983,8 @@
             },
             {
               "name": "Ryan Thomas",
-              "jersey": "23"
+              "jersey": "23",
+              "in": true
             },
             {
               "name": "Alex Rufer",
@@ -6960,11 +7054,13 @@
           "bench": [
             {
               "name": "Mehdi Ghayedi",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true
             },
             {
               "name": "Ali Alipour",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Hossein Hosseini",
@@ -6988,7 +7084,8 @@
             },
             {
               "name": "Ehsan Hajsafi",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true
             },
             {
               "name": "Payam Niazmand",
@@ -7000,7 +7097,8 @@
             },
             {
               "name": "Amirhossein Hosseinzadeh",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true
             },
             {
               "name": "Mehdi Torabi",
@@ -7023,57 +7121,57 @@
       },
       "referee": "César Arturo Ramos Palazuelos",
       "venue": "SoFi Stadium, Inglewood, California",
-      "attendance": null,
+      "attendance": 70108,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "51%",
+          "h": "52%",
           "a": "49%"
         },
         {
           "key": "totalShots",
-          "h": "9",
-          "a": "7"
+          "h": "14",
+          "a": "17"
         },
         {
           "key": "shotsOnTarget",
-          "h": "5",
-          "a": "2"
+          "h": "8",
+          "a": "4"
         },
         {
           "key": "wonCorners",
           "h": "1",
-          "a": "0"
+          "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "4",
-          "a": "2"
+          "h": "8",
+          "a": "10"
         },
         {
           "key": "offsides",
           "h": "0",
-          "a": "1"
+          "a": "2"
         },
         {
           "key": "saves",
-          "h": "1",
-          "a": "4"
+          "h": "2",
+          "a": "6"
         },
         {
           "key": "totalPasses",
-          "h": "250",
-          "a": "238"
+          "h": "446",
+          "a": "409"
         },
         {
           "key": "passPct",
-          "h": "87%",
-          "a": "80%"
+          "h": "84%",
+          "a": "77%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -7081,7 +7179,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-16T02:02:35.717Z"
+      "updatedAt": "2026-06-16T07:39:08.745Z"
     }
   }
 }
