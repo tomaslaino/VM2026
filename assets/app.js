@@ -14,6 +14,7 @@
   var apiFixtures = {}; // nyckel -> { date, time, home, away, homeRef, awayRef, status } från API
   var apiStandings = {}; // grupp-bokstav -> [{ idx, position, pld, w, d, l, gf, ga, gd, pts }] från API
   var apiLive = {};      // nyckel -> { status, minute, score } för pågående matcher från API
+  var focusDetails = {}; // nyckel -> matchdetaljer (mål m.m.) för startsidans hjälte
   var fairPlayMap = {};  // "L:idx" -> { y, r, pts } beräknat från matchdetaljernas kort
   var calScrollPending = false; // scrolla till nästa matchdag vid öppning av kalender
   var calGroupOpen = null;      // grupp-bokstav för öppen tabell-popup i kalendern
@@ -336,6 +337,7 @@
     var rawJson = JSON.stringify(details || {});
     if (rawJson === rawDetailsJson) return;
     rawDetailsJson = rawJson;
+    focusDetails = details || {};
     if (window.VMPlayerStats && typeof window.VMPlayerStats.setDetails === "function") {
       try { window.VMPlayerStats.setDetails(details); } catch (e) {}
     }
@@ -905,7 +907,8 @@
         '<h2>Gräver grav</h2>' +
         '<p>VM 2026 i realtid — gruppspel, slutspel och en värdig begravning för svenska och uruguayanska drömmar.</p>' +
       '</div>' +
-      nextMatchesRow(ctx) +
+      focusHero(ctx) +
+      teamsSpotlightStrip(ctx) +
       '</div>';
     viewEl.innerHTML = html;
     updateNextCountdown();
@@ -1904,74 +1907,8 @@
     return d.getUTCDate() + " " + MONTHS[d.getUTCMonth()] + " · " + (m.edt || "TBC");
   }
 
-  /** Nästa (eller pågående) match(er) – alla med samma avspark räknas som samtidiga.
-      Med opts.excludeLive hoppas pågående/strax startande matcher över
-      (de visas i "Pågår nu"-panelen i stället). */
-  function findNextMatches(ctx, opts) {
-    opts = opts || {};
-    var items = buildSchedule();
-    var now = Date.now();
-    var twoH = 2 * 3600 * 1000;
-    var candidates = [];
-
-    items.forEach(function (it) {
-      var m, key, label, teams, channel, played, live;
-      if (it.kind === "group") {
-        var fx = it.fx, L = it.letter;
-        key = fx.key;
-        played = isPlayed(getRes(key));
-        if (played) return;
-        m = fx;
-        var th = WC.groups[L][fx.h], ta = WC.groups[L][fx.a];
-        channel = tvLookupGroup(fx, th, ta);
-        label = "Grupp " + L;
-        teams = teamSvFixture(th) + " – " + teamSvFixture(ta);
-      } else {
-        var res = ctx.resolved[it.m.m];
-        key = "k:" + it.m.m;
-        played = res.bothTeams && isPlayed(getRes(key));
-        if (played) return;
-        m = koMatchDisplay(it.m);
-        channel = tvLookupKo(m);
-        label = (ROUND_SHORT[m.round] || m.round) + " · M" + m.m;
-        teams = koTeamsLabel(res);
-      }
-      var when = whenLabels(m);
-      var ko = kickoffUTC(m).getTime();
-      var rs = getRes(key);
-      var inPlay = rs && (rs.status === "IN_PLAY" || rs.status === "PAUSED" || rs.status === "LIVE");
-      live = inPlay || isMatchLive(key) || (ko <= now && ko > now - twoH);
-      if (!live && ko < now - twoH) return;
-      if (opts.excludeLive && (live || ko - now <= LIVE_SOON_MS)) return;
-      candidates.push({
-        ko: ko, live: live, label: label, teams: teams, channel: channel,
-        time: when.time, whenText: panelWhenCompact(m, live), key: key
-      });
-    });
-
-    var liveOnes = candidates.filter(function (c) { return c.live; });
-    if (liveOnes.length) return { live: true, kickoff: liveOnes[0].ko, matches: liveOnes.slice(0, 2) };
-
-    var future = candidates.filter(function (c) { return c.ko >= now - twoH; });
-    if (!future.length) return { live: false, kickoff: null, matches: [] };
-
-    future.sort(function (a, b) { return a.ko - b.ko; });
-    var best = future[0].ko;
-    return { live: false, kickoff: best, matches: future.slice(0, 2) };
-  }
-
   function nextMatchTimerUnit(id, val, lbl) {
     return '<span class="nm-unit"><span class="nm-val" id="' + id + '">' + val + '</span><span class="nm-lbl">' + lbl + '</span></span>';
-  }
-
-  function nextMatchItemHtml(m) {
-    var whenLine = m.label ? esc(m.label) + " · " + esc(m.whenText) : esc(m.whenText);
-    var open = m.key ? matchOpenAttr(m.key) : { attr: "", cls: "" };
-    return '<div class="nm-spot-row' + (m.live ? " is-live" : "") + open.cls + '"' + open.attr + '>' +
-      '<span class="nm-spot-when">' + whenLine + "</span>" +
-      '<span class="nm-spot-teams">' + esc(m.teams) + "</span>" +
-      spotlightTvHtml(m.channel) +
-      "</div>";
   }
 
   var TEAM_SPOTLIGHT = [
@@ -2063,52 +2000,46 @@
     return tvChHtml(ch);
   }
 
-  function teamSpotlightItemHtml(tp) {
+  /** En lag-cell i den smala Sverige/Uruguay-remsan (sekundär under hjälten). */
+  function teamStripItem(tp) {
     var m = tp.match;
     if (!m) {
-      return '<button type="button" class="nm-spot-row is-empty team-open" data-team-open="' + tp.iso + '">' +
-        '<span class="nm-spot-when nm-muted">–</span>' +
-        '<span class="nm-spot-teams nm-muted">Ingen match</span></button>';
+      return '<button type="button" class="ts-item is-empty team-open" data-team-open="' + tp.iso + '">' +
+        '<span class="ts-flag">' + flagImg(tp.iso) + '</span>' +
+        '<span class="ts-body"><span class="ts-when nm-muted">Ingen kommande match</span>' +
+        '<span class="ts-teams nm-muted">' + esc(tp.title) + '</span></span></button>';
     }
     var whenLine = m.label ? esc(m.label) + " · " + esc(m.whenText) : esc(m.whenText);
+    var teamsTitle = (m.teamsFull && m.teamsFull !== m.teams) ? ' title="' + esc(m.teamsFull) + '"' : "";
+    var inner =
+      '<span class="ts-flag">' + flagImg(tp.iso) +
+        (m.live ? '<span class="ts-livedot"><span class="live-dot"></span></span>' : "") + '</span>' +
+      '<span class="ts-body">' +
+        '<span class="ts-when' + (m.live ? " is-live" : "") + '">' + whenLine + '</span>' +
+        '<span class="ts-teams"' + teamsTitle + '>' + esc(m.teams) + '</span>' +
+      '</span>' +
+      spotlightTvHtml(m.channel);
+    // Med matchnyckel öppnar cellen matchinfo-modalen; annars laget (fallback).
     var open = m.key ? matchOpenAttr(m.key) : { attr: "", cls: "" };
-    // Med matchnyckel öppnar raden matchinfo-modalen; annars laget (fallback).
     if (open.attr) {
-      return '<div class="nm-spot-row' + (m.live ? " is-live" : "") + open.cls + '"' + open.attr + '>' +
-        '<span class="nm-spot-when">' + whenLine + "</span>" +
-        '<span class="nm-spot-teams"' + (m.teamsFull && m.teamsFull !== m.teams ? ' title="' + esc(m.teamsFull) + '"' : "") + ">" + esc(m.teams) + "</span>" +
-        spotlightTvHtml(m.channel) +
-        "</div>";
+      return '<div class="ts-item' + (m.live ? " is-live" : "") + open.cls + '"' + open.attr + '>' + inner + '</div>';
     }
-    return '<button type="button" class="nm-spot-row team-open' + (m.live ? " is-live" : "") + '" data-team-open="' + tp.iso + '">' +
-      '<span class="nm-spot-when">' + whenLine + "</span>" +
-      '<span class="nm-spot-teams"' + (m.teamsFull && m.teamsFull !== m.teams ? ' title="' + esc(m.teamsFull) + '"' : "") + ">" + esc(m.teams) + "</span>" +
-      spotlightTvHtml(m.channel) +
-      "</button>";
+    return '<button type="button" class="ts-item team-open' + (m.live ? " is-live" : "") + '" data-team-open="' + tp.iso + '">' +
+      inner + '</button>';
   }
 
-  function teamsSpotlightPanel(ctx) {
+  /** Smal spotlight-remsa: nästa relevanta match för Sverige och Uruguay.
+      Sekundär – ligger under hjälten och konkurrerar inte med "Match i fokus". */
+  function teamsSpotlightStrip(ctx) {
     var teams = TEAM_SPOTLIGHT.map(function (t) {
       return { title: t.title, iso: t.iso, match: findTeamNextMatch(ctx, t.iso) };
-    }).sort(function (a, b) {
-      if (!a.match && !b.match) return 0;
-      if (!a.match) return 1;
-      if (!b.match) return -1;
-      return a.match.kickoff - b.match.kickoff;
     });
     var anyLive = teams.some(function (t) { return t.match && t.match.live; });
-    var h = '<div class="next-matches teams-spotlight' + (anyLive ? " is-live" : "") + '" id="teamsSpotlight">';
-    h += '<div class="nm-head"><span class="nm-title">' +
-      flagImg("se") + flagImg("uy") + "Sverige & Uruguay</span>";
-    if (anyLive) {
-      h += '<span class="nm-live"><span class="live-dot"></span>Pågår nu</span>';
-    } else {
-      h += '<span class="nm-head-spacer" aria-hidden="true"></span>';
-    }
-    h += "</div>";
-    h += '<div class="nm-spot-list">';
-    teams.forEach(function (tp) { h += teamSpotlightItemHtml(tp); });
-    h += "</div></div>";
+    var h = '<section class="teams-strip' + (anyLive ? " is-live" : "") + '" id="teamsSpotlight" aria-label="Sverige och Uruguay">';
+    h += '<span class="ts-label">' + flagImg("se") + flagImg("uy") + 'Sverige &amp; Uruguay</span>';
+    h += '<div class="ts-items">';
+    teams.forEach(function (tp) { h += teamStripItem(tp); });
+    h += '</div></section>';
     return h;
   }
 
@@ -2124,21 +2055,34 @@
     return !!(rs && rs.status === "PAUSED");
   }
 
-  /** Pågående, strax startande och nyss avslutade matcher.
-      Nya avsparkar ersätter äldre avslutade matcher i listan. */
-  function findLiveNow(ctx) {
+  /* Avslutad match ligger kvar i hjälten ~2h efter slutsignal, sen faller ytan
+     tillbaka till nästa avspark. */
+  var FOCUS_FT_GRACE_MS = 2 * 3600 * 1000;
+
+  /** Senaste mål i en match (för live-hjältens händelserad). */
+  function latestGoal(key) {
+    var det = focusDetails[key];
+    if (!det || !det.goals || !det.goals.length) return null;
+    return det.goals[det.goals.length - 1];
+  }
+
+  /** Vilken match hjälten ("Match i fokus") ska visa och i vilket läge.
+      Prioritet: pågående > nyss avslutad (~2h) > nästa avspark.
+      Två samtidiga matcher (t.ex. sista gruppomgången) returneras båda. */
+  function findFocusMatch(ctx) {
     var items = buildSchedule();
     var now = Date.now();
-    var live = [], finished = [];
+    var live = [], finished = [], upcoming = [];
 
     items.forEach(function (it) {
-      var key, label, home, away, m;
+      var key, label, home, away, m, channel;
       if (it.kind === "group") {
         var fx = it.fx;
         key = fx.key; m = fx;
         home = WC.groups[it.letter][fx.h];
         away = WC.groups[it.letter][fx.a];
         label = "Grupp " + it.letter;
+        channel = tvLookupGroup(fx, home, away);
       } else {
         var res = ctx.resolved[it.m.m];
         key = "k:" + it.m.m;
@@ -2146,6 +2090,7 @@
         home = res.home.team;
         away = res.away.team;
         label = (ROUND_SHORT[m.round] || m.round) + " · M" + it.m.m;
+        channel = tvLookupKo(m);
       }
       if (!home || !away) return;
 
@@ -2155,8 +2100,8 @@
       var played = !liveNow && isPlayed(r) && !isLiveStatus(r && r.status);
       var lv = apiLive[key];
       var entry = {
-        key: key, ko: ko, label: label, home: home, away: away,
-        r: r || {}, time: m.edt || "",
+        key: key, ko: ko, label: label, home: home, away: away, m: m,
+        r: r || {}, time: m.edt || "", channel: channel,
         minute: lv && lv.minute != null ? lv.minute : null
       };
 
@@ -2164,122 +2109,175 @@
         entry.state = "live";
         entry.paused = matchIsPaused(key);
         live.push(entry);
-      } else if (!played && now >= ko - LIVE_SOON_MS && now < ko) {
-        entry.state = "soon";
-        live.push(entry);
-      } else if (played && now < ko + LIVE_MATCH_MS + LIVE_GRACE_MS) {
+      } else if (played && now < ko + LIVE_MATCH_MS + FOCUS_FT_GRACE_MS) {
         entry.state = "ft";
         finished.push(entry);
+      } else if (!played && ko >= now) {
+        entry.state = "next";
+        upcoming.push(entry);
       }
     });
 
-    function byKickoff(a, b) { return (a.ko - b.ko) || (a.key < b.key ? -1 : 1); }
+    function byKey(a, b) { return (a.ko - b.ko) || (a.key < b.key ? -1 : 1); }
 
     if (live.length) {
-      // Nyss avslutade matcher ur samma avsparksblock får stå kvar bredvid de
-      // pågående – äldre block byts ut.
-      var liveKos = {};
-      live.forEach(function (e) { liveKos[e.ko] = true; });
-      var keep = finished.filter(function (e) { return liveKos[e.ko]; });
-      return { show: true, anyLive: true, matches: live.concat(keep).sort(byKickoff) };
+      live.sort(byKey);
+      return { state: "live", kickoff: live[0].ko, matches: live.slice(0, 2) };
     }
     if (finished.length) {
       var maxKo = Math.max.apply(null, finished.map(function (e) { return e.ko; }));
       return {
-        show: true, anyLive: false,
-        matches: finished.filter(function (e) { return e.ko === maxKo; }).sort(byKickoff)
+        state: "ft", kickoff: maxKo,
+        matches: finished.filter(function (e) { return e.ko === maxKo; }).sort(byKey).slice(0, 2)
       };
     }
-    return { show: false, anyLive: false, matches: [] };
+    if (upcoming.length) {
+      upcoming.sort(byKey);
+      var best = upcoming[0].ko;
+      return {
+        state: "next", kickoff: best,
+        matches: upcoming.filter(function (e) { return e.ko === best; }).slice(0, 2)
+      };
+    }
+    return { state: "none", kickoff: null, matches: [] };
   }
 
-  function liveNowStatusHtml(e) {
-    if (e.state === "soon") {
-      return '<span class="nm-live-status soon">Snart' + (e.time ? " · " + esc(e.time) : "") + '</span>';
-    }
-    if (e.state === "ft") return '<span class="nm-live-status done">Slut</span>';
-    if (e.paused) {
-      return '<span class="nm-live-status live"><span class="live-dot"></span>Halvtid</span>';
-    }
-    return '<span class="nm-live-status live"><span class="live-dot"></span>LIVE' +
-      (e.minute != null ? ' · ' + esc(e.minute) + "'" : "") + '</span>';
+  var FOCUS_HEADINGS = {
+    live: { one: "Pågående match", many: "Pågående matcher" },
+    ft: { one: "Avslutad match", many: "Avslutade matcher" },
+    next: { one: "Nästa match", many: "Nästa matcher" }
+  };
+
+  /** Live-status: pulserande prick + spelminut (eller Halvtid/LIVE). */
+  function focusLiveBadge(e) {
+    var txt = e.paused ? "Halvtid" : (e.minute != null ? esc(e.minute) + "'" : "LIVE");
+    return '<span class="fh-live"><span class="live-dot"></span>' + txt + '</span>';
   }
 
-  function liveNowItemHtml(e) {
-    var open = matchOpenAttr(e.key);
-    // En match som panelen visar som pågående eller nyss spelad ska alltid gå
-    // att öppna – även i den korta luckan vid avspark då API:t ännu inte hunnit
-    // rapportera status/resultat (då vore isMatchOpenable false och klicket
-    // dött). Modalen visar tomma flikar som fylls på automatiskt via pollningen.
-    if (!open.attr && (e.state === "live" || e.state === "ft")) {
-      open = { attr: ' data-match-open="' + e.key + '" role="button" tabindex="0"', cls: " match-openable" };
-    }
-    var score = e.state === "soon"
-      ? '<span class="nm-live-score dim">–</span>'
-      : '<span class="nm-live-score">' + (e.r.h != null ? e.r.h : 0) + '–' + (e.r.a != null ? e.r.a : 0) + '</span>';
-    return '<div class="nm-live-item ' + e.state + open.cls + '"' + open.attr + '>' +
-      '<span class="nm-live-meta"><span class="nm-meta">' + esc(e.label) + '</span>' +
-        liveNowStatusHtml(e) + '</span>' +
-      '<span class="nm-live-line">' +
-        '<span class="nm-live-team home">' + fixtureTeamName(e.home) + flagImg(e.home.iso) + '</span>' +
-        score +
-        '<span class="nm-live-team away">' + flagImg(e.away.iso) + fixtureTeamName(e.away) + '</span>' +
-      '</span></div>';
+  /** En lagsida i hjälten – flaggan vänd inåt mot ställningen. */
+  function focusTeamSide(team, side) {
+    var flag = '<span class="fh-flag">' + flagImg(team.iso) + '</span>';
+    var name = '<span class="fh-name" title="' + esc(team.sv) + '">' + esc(teamSvFixture(team)) + '</span>';
+    return '<div class="fh-team fh-' + side + '">' + (side === "home" ? name + flag : flag + name) + '</div>';
   }
 
-  function liveNowPanel(liveInfo) {
-    if (!liveInfo.show) return "";
-    var anyPlaying = liveInfo.matches.some(function (e) { return e.state === "live"; });
-    var title = anyPlaying ? "Pågår nu"
-      : (liveInfo.anyLive ? "Strax avspark"
-        : (liveInfo.matches.length > 1 ? "Nyss spelade" : "Nyss spelad"));
-    var h = '<div class="next-matches live-now' + (liveInfo.anyLive ? " is-live" : "") + '" id="liveNow">';
-    h += '<div class="nm-head"><span class="nm-title">' + title + '</span>' +
-      (anyPlaying ? '<span class="nm-live"><span class="live-dot"></span>LIVE</span>' : '') +
+  /** Senaste viktiga händelse (mål) i en pågående match. */
+  function focusEventLine(e) {
+    var g = latestGoal(e.key);
+    if (!g) return "";
+    var team = g.team === "a" ? e.away : e.home;
+    var min = g.minute != null ? (g.minute + (g.injuryTime ? "+" + g.injuryTime : "") + "'") : "";
+    var sc = g.score ? g.score.h + "–" + g.score.a : "";
+    return '<div class="fh-event">' +
+      '<span class="fh-ev-ic" aria-hidden="true">⚽</span>' +
+      '<span class="fh-ev-flag">' + flagImg(team.iso) + '</span>' +
+      '<span class="fh-ev-txt"><b>' + esc(g.scorer || "Mål") + '</b>' +
+        (min ? '<span class="fh-ev-min">' + esc(min) + '</span>' : "") + '</span>' +
+      (sc ? '<span class="fh-ev-score">' + esc(sc) + '</span>' : "") +
       '</div>';
-    h += '<div class="nm-live-list">';
-    liveInfo.matches.forEach(function (e) { h += liveNowItemHtml(e); });
-    h += "</div></div>";
-    return h;
   }
 
-  function nextMatchesRow(ctx) {
-    var liveInfo = findLiveNow(ctx);
-    return '<div class="next-matches-row' + (liveInfo.show ? " has-live" : "") + '">' +
-      liveNowPanel(liveInfo) +
-      nextMatchesPanel(ctx, liveInfo.show) +
-      teamsSpotlightPanel(ctx) +
+  function focusCountdown(kickoff) {
+    var p = countdownParts(kickoff);
+    return '<div class="fh-countdown" id="focusTimer" data-kickoff="' + (kickoff || "") + '" aria-live="polite">' +
+      nextMatchTimerUnit("fh-d", p.d, "dygn") +
+      nextMatchTimerUnit("fh-h", pad(p.h), "tim") +
+      nextMatchTimerUnit("fh-m", pad(p.m), "min") +
+      nextMatchTimerUnit("fh-s", pad(p.s), "sek") +
       "</div>";
   }
 
-  function nextMatchesPanel(ctx, excludeLive) {
-    var next = findNextMatches(ctx, { excludeLive: !!excludeLive });
-    if (!next.matches.length) {
-      return '<div class="next-matches empty" id="nextMatches">' +
-        '<span class="nm-title">Nästa matcher</span>' +
-        '<p class="nm-empty">Inga kvarvarande matcher</p></div>';
+  /** Säkerställ att live/avslutade matcher alltid är klickbara (modalen fyller
+      på tomma flikar via pollningen även i glappet vid avspark). */
+  function focusOpenAttr(e) {
+    var open = matchOpenAttr(e.key);
+    if (!open.attr && (e.state === "live" || e.state === "ft")) {
+      open = { attr: ' data-match-open="' + e.key + '" role="button" tabindex="0"', cls: " match-openable" };
     }
-    var h = '<div class="next-matches next-up' + (next.live ? " is-live" : "") + '" id="nextMatches" ' +
-      'data-kickoff="' + (next.kickoff || "") + '" data-live="' + (next.live ? "1" : "0") + '">';
-    h += '<div class="nm-head"><span class="nm-title">Nästa avspark</span>';
-    if (next.live) {
-      h += '<span class="nm-live"><span class="live-dot"></span>Pågår nu</span>';
+    return open;
+  }
+
+  /** Stort hjältekort – ett huvudnummer per läge (nästa/pågående/avslutad). */
+  function focusBigCard(e, state, kickoff) {
+    var open = focusOpenAttr(e);
+    var when = whenLabels(e.m);
+    var center, status = "";
+    if (state === "next") {
+      center = '<span class="fh-vs" aria-hidden="true">vs</span>';
+    } else {
+      center = '<span class="fh-score">' +
+        '<span class="fh-sc">' + (e.r.h != null ? e.r.h : 0) + '</span>' +
+        '<span class="fh-dash" aria-hidden="true">–</span>' +
+        '<span class="fh-sc">' + (e.r.a != null ? e.r.a : 0) + '</span></span>';
     }
-    h += '</div>';
-    if (!next.live) {
-      var p = countdownParts(next.kickoff);
-      h += '<div class="nm-bigtimer" aria-live="polite">' +
-        nextMatchTimerUnit("nm-d", p.d, "dygn") +
-        nextMatchTimerUnit("nm-h", pad(p.h), "tim") +
-        nextMatchTimerUnit("nm-m", pad(p.m), "min") +
-        nextMatchTimerUnit("nm-s", pad(p.s), "sek") +
-        "</div>";
+    if (state === "live") status = focusLiveBadge(e);
+    else if (state === "ft") status = '<span class="fh-ftbadge">Slutresultat</span>';
+
+    var h = '<article class="focus-card fc-' + state + open.cls + '"' + open.attr + '>';
+    h += '<div class="fh-top">' +
+      '<span class="fh-eyebrow">' + esc(FOCUS_HEADINGS[state].one) + '</span>' +
+      '<span class="fh-top-right"><span class="fh-group">' + esc(e.label) + '</span>' + status + '</span>' +
+      '</div>';
+    h += '<div class="fh-main">' +
+      focusTeamSide(e.home, "home") + center + focusTeamSide(e.away, "away") +
+      '</div>';
+    if (state === "live") h += focusEventLine(e);
+    h += '<div class="fh-meta">' +
+      '<span class="fh-when">' + esc(when.dateLabel + " · " + when.time) + '</span>' +
+      spotlightTvHtml(e.channel) +
+      '</div>';
+    if (state === "next") h += focusCountdown(kickoff != null ? kickoff : e.ko);
+    h += '</article>';
+    return h;
+  }
+
+  /** Kompakt hjältekort när två matcher delar fokus (samtidiga avsparkar). */
+  function focusMiniCard(e, state) {
+    var open = focusOpenAttr(e);
+    var status = state === "live" ? focusLiveBadge(e)
+      : state === "ft" ? '<span class="fm-ft">Slut</span>'
+        : '<span class="fm-time">' + esc(e.time || whenLabels(e.m).time) + '</span>';
+    function sideRow(team, sc) {
+      return '<div class="fm-side">' +
+        '<span class="fm-flag">' + flagImg(team.iso) + '</span>' +
+        '<span class="fm-name" title="' + esc(team.sv) + '">' + esc(teamSvFixture(team)) + '</span>' +
+        '<span class="fm-sc">' + sc + '</span></div>';
     }
-    h += '<div class="nm-spot-list">';
-    next.matches.forEach(function (m) {
-      h += nextMatchItemHtml(m);
-    });
-    h += "</div></div>";
+    var hs = state === "next" ? "" : (e.r.h != null ? e.r.h : 0);
+    var as = state === "next" ? "" : (e.r.a != null ? e.r.a : 0);
+    var h = '<article class="focus-mini fm-' + state + open.cls + '"' + open.attr + '>';
+    h += '<div class="fm-top"><span class="fm-group">' + esc(e.label) + '</span>' + status + '</div>';
+    h += sideRow(e.home, hs) + sideRow(e.away, as);
+    h += '<div class="fm-foot">' + spotlightTvHtml(e.channel) + '</div>';
+    h += '</article>';
+    return h;
+  }
+
+  /** Sidans huvudnummer: en bred hjälteyta som alltid visar den mest
+      relevanta matchen just nu. */
+  function focusHero(ctx) {
+    var f = findFocusMatch(ctx);
+    if (f.state === "none" || !f.matches.length) {
+      return '<section class="focus-hero is-empty" aria-label="Match i fokus">' +
+        '<span class="fh-eyebrow">Match i fokus</span>' +
+        '<p class="fh-empty">Inga kvarvarande matcher</p></section>';
+    }
+    var multi = f.matches.length > 1;
+    var h = '<section class="focus-hero state-' + f.state + (multi ? " is-multi" : " is-single") +
+      '" aria-label="Match i fokus">';
+    if (!multi) {
+      h += focusBigCard(f.matches[0], f.state, f.kickoff);
+    } else {
+      h += '<div class="fh-multi-head">' +
+        '<span class="fh-eyebrow">' + esc(FOCUS_HEADINGS[f.state].many) + '</span>' +
+        (f.state === "live" ? '<span class="fh-live"><span class="live-dot"></span>LIVE</span>' : "") +
+        '</div>';
+      h += '<div class="focus-mini-grid">';
+      f.matches.forEach(function (e) { h += focusMiniCard(e, f.state); });
+      h += '</div>';
+      if (f.state === "next") h += focusCountdown(f.kickoff);
+    }
+    h += '</section>';
     return h;
   }
 
@@ -2300,7 +2298,7 @@
   }
 
   function updateNextCountdown() {
-    updatePanelCountdown("nextMatches", "nm");
+    updatePanelCountdown("focusTimer", "fh");
   }
 
   /** Nyckel, matchobjekt och spelad-status för kalenderpost. */
