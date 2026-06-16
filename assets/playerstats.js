@@ -393,6 +393,45 @@
     pts:     { type: "num", get: function (r) { return r.pts; } }
   };
 
+  /* Per-90 som skiljedomare: vid lika rubriksiffra (t.ex. lika många mål)
+     rankas den med högre mål/90 högre upp – dvs den som gjort det på färre
+     minuter. Men bara för spelare med tillräckligt underlag (>=90 min);
+     annars skulle korta inhopp (1 mål på 6 min ≈ 15 mål/90) blåsa upp värdet
+     och felaktigt toppa listan. Okvalificerade rankas efter kvalificerade och
+     sinsemellan på flest spelade minuter. Returnerar positivt om b före a. */
+  function per90Tie(a, b, kind) {
+    if (a.qualified && b.qualified) {
+      var av = kind === "a" ? a.a90 : kind === "gi" ? a.gi90 : a.g90;
+      var bv = kind === "a" ? b.a90 : kind === "gi" ? b.gi90 : b.g90;
+      return bv - av;
+    }
+    if (a.qualified !== b.qualified) return a.qualified ? -1 : 1;
+    return b.min - a.min;
+  }
+
+  /* Sekundärordning. När den valda kolumnen är lika väger effektivitet
+     (per 90 spelade minuter) in före total speltid, enligt önskemålet att
+     lika många mål/assist på färre minuter ska hamna högre. */
+  function playerTiebreak(a, b, key) {
+    if (key === "goals") {
+      return (b.goals - a.goals) || per90Tie(a, b, "g") ||
+        (b.assists - a.assists) || (b.points - a.points) ||
+        a.name.localeCompare(b.name, "sv");
+    }
+    if (key === "assists") {
+      return (b.assists - a.assists) || per90Tie(a, b, "a") ||
+        (b.goals - a.goals) || (b.points - a.points) ||
+        a.name.localeCompare(b.name, "sv");
+    }
+    if (key === "points") {
+      return (b.points - a.points) || per90Tie(a, b, "gi") ||
+        (b.goals - a.goals) || (b.assists - a.assists) ||
+        a.name.localeCompare(b.name, "sv");
+    }
+    return (b.points - a.points) || (b.goals - a.goals) || (b.assists - a.assists) ||
+      per90Tie(a, b, "gi") || (b.min - a.min) || a.name.localeCompare(b.name, "sv");
+  }
+
   function cmpPlayers(a, b) {
     var st = stateUi.sort.players;
     var s = PLAYER_SORTS[st.key] || PLAYER_SORTS.points;
@@ -410,8 +449,7 @@
     }
     d *= st.dir;
     if (d) return d;
-    return (b.points - a.points) || (b.goals - a.goals) || (b.assists - a.assists) ||
-      (b.min - a.min) || a.name.localeCompare(b.name, "sv");
+    return playerTiebreak(a, b, st.key);
   }
 
   function cmpTeams(a, b) {
@@ -485,12 +523,14 @@
       {
         id: "goals", kind: "players", title: "Skytteliga", icon: "⚽", rows: prows,
         valFn: function (r) { return r.goals; },
+        tieKind: "g",
         mainFn: function (r) { return String(r.goals); },
         rateFn: function (r) { return fmt2(r.g90) + " mål/90 min"; }
       },
       {
         id: "assists", kind: "players", title: "Flest assist", icon: "🎯", rows: prows,
         valFn: function (r) { return r.assists; },
+        tieKind: "a",
         mainFn: function (r) { return String(r.assists); },
         rateFn: function (r) { return fmt2(r.a90) + " ass/90 min"; }
       },
@@ -514,8 +554,10 @@
     var rank = cfg.rankFn || cfg.valFn;
     return cfg.rows.filter(function (r) { return cfg.valFn(r) > 0; })
       .sort(function (a, b) {
-        return rank(b) - rank(a) ||
-          (cfg.kind === "teams" ? (b.pts - a.pts) : (b.points - a.points));
+        return (rank(b) - rank(a)) ||
+          (cfg.tieKind ? per90Tie(a, b, cfg.tieKind) : 0) ||
+          (cfg.kind === "teams" ? (b.pts - a.pts) : (b.points - a.points)) ||
+          (cfg.kind === "teams" ? 0 : (b.min - a.min));
       })
       .slice(0, n);
   }
