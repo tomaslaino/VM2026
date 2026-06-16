@@ -1954,16 +1954,8 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   .brand-txt { min-width: 0; }
   .brand-txt b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .controls { grid-area: controls; margin-left: 0; align-self: center; justify-self: end; }
-  /* Kompakt header vid scroll: bara nav-flikarna kvar (dölj varumärke, sök, status). */
-  .hero-header.hero-collapsed .topbar-inner {
-    grid-template-areas: "nav";
-    grid-template-columns: 1fr;
-    gap: 0;
-    padding-top: 6px;
-    padding-bottom: 6px;
-  }
-  .hero-header.hero-collapsed .brand,
-  .hero-header.hero-collapsed .controls,
+  /* Kompakt header vid scroll: dölj bara sök – varumärke, status och nav behåller
+     samma grid, padding och flikstorlek (ingen layoutomräkning). */
   .hero-header.hero-collapsed .search { display: none; }
   .nav {
     grid-area: nav;
@@ -1972,6 +1964,8 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
     min-width: 0;
     display: flex;
     padding: 3px;
+    min-height: 50px;
+    box-sizing: border-box;
   }
   .nav .seg {
     flex: 1 1 0;

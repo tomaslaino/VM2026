@@ -758,11 +758,10 @@
       return;
     }
     if (header.classList.contains("hero-collapsed")) return;
-    var inner = header.querySelector(".topbar-inner");
-    var nav = header.querySelector(".nav");
-    if (!inner || !nav) return;
-    /* Höjd som försvinner vid ihopfällning (nav + 6+6px padding i .hero-collapsed). */
-    headerShrinkDelta = inner.offsetHeight - nav.offsetHeight - 12;
+    var search = header.querySelector(".search");
+    if (!search) return;
+    /* Höjd som försvinner vid ihopfällning: sökraden + gap i mobil-gridet. */
+    headerShrinkDelta = search.offsetHeight + 10;
     if (headerShrinkDelta < 0) headerShrinkDelta = 0;
     /* Kräv scroll förbi hela shrink + expand-hysteres – annars flimrar headern. */
     headerCollapseAt = Math.max(56, headerShrinkDelta + headerExpandAt + 8);
@@ -804,8 +803,7 @@
     }
   }
 
-  /* Grupp/kalender: fäll ihop headern (dölj varumärke + sök + badge) när man
-     scrollat ner, så bara nav-flikarna ligger kvar högst upp. */
+  /* Grupp/kalender: dölj sökfältet vid scroll – varumärke och nav behåller storlek. */
   function syncHeaderCompact() {
     if (headerScrollLock) return;
     if (ui("view", "groups") === "bracket") return;
