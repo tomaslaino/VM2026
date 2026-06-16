@@ -157,9 +157,11 @@
 
   function getApiFixture(key) { return apiFixtures[key] || null; }
 
-  /** Matchen är klickbar (matchinfo-vy) när den pågår eller är spelad. */
-  function isMatchOpenable(key) {
-    return isMatchLive(key) || isPlayed(getRes(key));
+  /** Matchen är klickbar (matchinfo-vy). Pågående/spelade matcher visar
+      händelser, ställning och statistik; kommande matcher visar preliminär
+      laguppställning och tabell. Alltid öppningsbar så länge lagen är kända. */
+  function isMatchOpenable() {
+    return true;
   }
 
   /** Attribut + klass för klickbara matchrader. */
@@ -1894,7 +1896,7 @@
       if (opts.excludeLive && (live || ko - now <= LIVE_SOON_MS)) return;
       candidates.push({
         ko: ko, live: live, label: label, teams: teams, channel: channel,
-        time: when.time, whenText: panelWhenCompact(m, live)
+        time: when.time, whenText: panelWhenCompact(m, live), key: key
       });
     });
 
@@ -1915,7 +1917,8 @@
 
   function nextMatchItemHtml(m) {
     var whenLine = m.label ? esc(m.label) + " · " + esc(m.whenText) : esc(m.whenText);
-    return '<div class="nm-spot-row' + (m.live ? " is-live" : "") + '">' +
+    var open = m.key ? matchOpenAttr(m.key) : { attr: "", cls: "" };
+    return '<div class="nm-spot-row' + (m.live ? " is-live" : "") + open.cls + '"' + open.attr + '>' +
       '<span class="nm-spot-when">' + whenLine + "</span>" +
       '<span class="nm-spot-teams">' + esc(m.teams) + "</span>" +
       spotlightTvHtml(m.channel) +
@@ -1999,7 +2002,8 @@
         teams: matchTeamsLabelCompact(mm.home, mm.away),
         teamsFull: matchTeamsLabel(mm.home, mm.away),
         channel: channel,
-        team: info.team
+        team: info.team,
+        key: key
       };
     }
     return null;
@@ -2018,6 +2022,15 @@
         '<span class="nm-spot-teams nm-muted">Ingen match</span></button>';
     }
     var whenLine = m.label ? esc(m.label) + " · " + esc(m.whenText) : esc(m.whenText);
+    var open = m.key ? matchOpenAttr(m.key) : { attr: "", cls: "" };
+    // Med matchnyckel öppnar raden matchinfo-modalen; annars laget (fallback).
+    if (open.attr) {
+      return '<div class="nm-spot-row' + (m.live ? " is-live" : "") + open.cls + '"' + open.attr + '>' +
+        '<span class="nm-spot-when">' + whenLine + "</span>" +
+        '<span class="nm-spot-teams"' + (m.teamsFull && m.teamsFull !== m.teams ? ' title="' + esc(m.teamsFull) + '"' : "") + ">" + esc(m.teams) + "</span>" +
+        spotlightTvHtml(m.channel) +
+        "</div>";
+    }
     return '<button type="button" class="nm-spot-row team-open' + (m.live ? " is-live" : "") + '" data-team-open="' + tp.iso + '">' +
       '<span class="nm-spot-when">' + whenLine + "</span>" +
       '<span class="nm-spot-teams"' + (m.teamsFull && m.teamsFull !== m.teams ? ' title="' + esc(m.teamsFull) + '"' : "") + ">" + esc(m.teams) + "</span>" +

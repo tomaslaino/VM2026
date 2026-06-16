@@ -733,6 +733,8 @@ button.nm-spot-row {
 button.nm-spot-row:last-child { border-bottom: 0; padding-bottom: 0; }
 button.nm-spot-row:first-child { padding-top: 4px; }
 button.nm-spot-row:hover { background: color-mix(in srgb, var(--usa-blue) 10%, transparent); }
+.nm-spot-row.match-openable { border-radius: 8px; }
+.nm-spot-row.match-openable:hover { background: color-mix(in srgb, var(--usa-blue) 10%, transparent); }
 .champ-slot .champ-open {
   display: flex;
   align-items: center;

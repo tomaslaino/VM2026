@@ -119,7 +119,9 @@
   function open(key) {
     if (!window.VMApp || typeof window.VMApp.describeMatch !== "function") return;
     openKey = key;
-    activeTab = "events";
+    // Ej påbörjade matcher saknar händelser – landa på laguppställningen.
+    var info = window.VMApp.describeMatch(key);
+    activeTab = (info && !info.live && !info.played) ? "lineups" : "events";
     var m = ensureModal();
     m.classList.add("open");
     renderModal();
@@ -470,8 +472,11 @@
   function tabsHtml(info, det) {
     var gm = /^g:([A-L]):/.exec(info.key || "");
     var groupLetter = gm ? gm[1] : null;
+    var notStarted = !info.live && !info.played;
 
     var tabs = TABS.slice();
+    // Statistik finns först när matchen startat – dölj den för kommande matcher.
+    if (notStarted) tabs = tabs.filter(function (t) { return t.id !== "stats"; });
     if (groupLetter) tabs.push({ id: "table", label: "Tabell" });
     // Säkerhetsnät: faller tillbaka till Händelser om aktiv flik saknas här.
     if (!tabs.some(function (t) { return t.id === activeTab; })) activeTab = "events";
@@ -495,10 +500,12 @@
     else h += emptyHintForTab("lineups", info);
     h += "</div>";
 
-    h += '<div class="mi-tab-panel' + (activeTab === "stats" ? " active" : "") + '" data-mi-panel="stats">';
-    if (det && det.stats && det.stats.length) h += statsHtml(det, true);
-    else h += emptyHintForTab("stats", info);
-    h += "</div>";
+    if (!notStarted) {
+      h += '<div class="mi-tab-panel' + (activeTab === "stats" ? " active" : "") + '" data-mi-panel="stats">';
+      if (det && det.stats && det.stats.length) h += statsHtml(det, true);
+      else h += emptyHintForTab("stats", info);
+      h += "</div>";
+    }
 
     if (groupLetter) {
       h += '<div class="mi-tab-panel' + (activeTab === "table" ? " active" : "") + '" data-mi-panel="table">';
