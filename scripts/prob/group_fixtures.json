@@ -510,8 +510,11 @@
     "group": "G",
     "home": "New Zealand",
     "away": "Iran",
-    "result": null,
-    "score": null,
+    "result": "X",
+    "score": [
+      2,
+      2
+    ],
     "odds": {
       "1": 5.646,
       "X": 1.859,
