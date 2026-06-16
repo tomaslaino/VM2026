@@ -1525,13 +1525,17 @@
     var map = {};
     function assign(no, homePos, awayPos) {
       var m = byNo[no];
-      if (!m || !rk[m.round]) return;                 // hoppar 3RD (bronsmatch)
+      if (!m || !rk[m.round]) return;                 // 3RD hanteras separat nedan
       map[no] = { round: rk[m.round], home: homePos, away: awayPos };
       if (m.home && m.home.t === "wm") assign(m.home.m, homePos * 2, homePos * 2 + 1);
       if (m.away && m.away.t === "wm") assign(m.away.m, awayPos * 2, awayPos * 2 + 1);
     }
     var fin = WC.knockout.filter(function (m) { return m.round === "FINAL"; })[0];
     if (fin) assign(fin.m, 0, 1);
+    // Bronsmatchen ligger utanför vinnar-trädet: sidorna är FÖRLORARNA i de två
+    // semifinalerna, samma ordning (SF1, SF2) som prob-noden "bronze".
+    var brz = WC.knockout.filter(function (m) { return m.round === "3RD"; })[0];
+    if (brz) map[brz.m] = { round: "bronze", home: 0, away: 1 };
     return map;
   }
 
@@ -1625,8 +1629,8 @@
       if (c0 === "2") return "som tvåa i grupp " + slotLabel.slice(1);
       if (slotLabel.indexOf("3/") === 0) return "som en av de bästa grupptreorna";
     }
-    return "till " + ({ r16: "åttondelsfinal", qf: "kvartsfinal", sf: "semifinal", final: "final" }[round] ||
-      "den här matchen");
+    return "till " + ({ r16: "åttondelsfinal", qf: "kvartsfinal", sf: "semifinal",
+      final: "final", bronze: "bronsmatchen" }[round] || "den här matchen");
   }
 
   // Liten stapelgrafik: hur laget troligen slutar i sin grupp (1:a–4:a).
@@ -1665,6 +1669,9 @@
       parts.push("Platsen går till en av de fyra bästa grupptreorna. " + nm + " blir trea i sin grupp" +
         (p3 != null ? " i ungefär " + p3 + " % av fallen" : "") +
         " och rankas tillräckligt högt för just den här platsen i " + pct + " av simuleringarna.");
+    } else if (round === "bronze") {
+      parts.push(nm + " spelar bronsmatchen i " + pct +
+        " av oddssimuleringarna – laget når då semifinalen men förlorar den.");
     } else {
       var rn = { r16: "åttondelsfinal", qf: "kvartsfinal", sf: "semifinal", final: "final" }[round] || "den här matchen";
       parts.push(nm + " tar sig hit (" + rn + ") i " + pct +

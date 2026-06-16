@@ -173,18 +173,24 @@ def run_once(groups, fixtures_by_group, strength, bracket, rng):
 
     # Spela av slutspelet. positions[rnd] = lista med deltagare i den rundan.
     positions = {"r32": r32}
+    bronze = None                   # de tva semifinalforlorarna -> bronsmatch (m103)
     cur = r32
     for rnd in ROUND_ORDER[1:]:
-        nxt = []
+        nxt, losers = [], []
         for m in range(0, len(cur), 2):
             a, b = cur[m], cur[m + 1]
-            nxt.append(a if rng.random() < winprob(a, b, strength) else b)
+            if rng.random() < winprob(a, b, strength):
+                nxt.append(a); losers.append(b)
+            else:
+                nxt.append(b); losers.append(a)
         positions[rnd] = nxt
+        if rnd == "final":          # forlorarna i semifinalerna gor upp om brons
+            bronze = losers         # [forl. SF1, forl. SF2] = home/away i m103
         cur = nxt
     champion = positions["final"][0] if rng.random() < winprob(
         positions["final"][0], positions["final"][1], strength) else positions["final"][1]
 
-    return positions, gpos, champion
+    return positions, gpos, champion, bronze
 
 
 # ========== Aggregering over manga simuleringar ==========
@@ -200,12 +206,13 @@ def simulate(n_sims):
     # Raknare
     pos_count = {rnd: [defaultdict(int) for _ in range(ROUND_TEAMS[rnd])]
                  for rnd in ROUND_ORDER}
+    bronze_count = [defaultdict(int) for _ in range(2)]  # m103: forl. SF1, forl. SF2
     reached = {t: defaultdict(int) for t in strength}
     group_pos = {t: defaultdict(int) for t in strength}
     champ = defaultdict(int)
 
     for _ in range(n_sims):
-        positions, gpos, champion = run_once(
+        positions, gpos, champion, bronze = run_once(
             groups, fixtures_by_group, strength, bracket, rng)
         for t, pos in gpos.items():
             group_pos[t][pos] += 1
@@ -213,12 +220,16 @@ def simulate(n_sims):
             for i, team in enumerate(positions[rnd]):
                 pos_count[rnd][i][team] += 1
                 reached[team][rnd] += 1
+        for i, team in enumerate(bronze):
+            bronze_count[i][team] += 1
         champ[champion] += 1
 
-    return build_output(n_sims, strength, pos_count, reached, group_pos, champ, bracket)
+    return build_output(n_sims, strength, pos_count, reached, group_pos, champ,
+                        bracket, bronze_count)
 
 
-def build_output(n, strength, pos_count, reached, group_pos, champ, bracket):
+def build_output(n, strength, pos_count, reached, group_pos, champ, bracket,
+                 bronze_count):
     def dist(counter):
         return {t: round(c / n, 4) for t, c in
                 sorted(counter.items(), key=lambda kv: kv[1], reverse=True)
@@ -226,6 +237,8 @@ def build_output(n, strength, pos_count, reached, group_pos, champ, bracket):
 
     nodes = {rnd: [dist(pos_count[rnd][i]) for i in range(ROUND_TEAMS[rnd])]
              for rnd in ROUND_ORDER}
+    # Bronsmatchen (m103): nod med tva sidor = forlorarna i de tva semifinalerna.
+    nodes["bronze"] = [dist(bronze_count[i]) for i in range(2)]
     rounds = {t: {**{rnd: round(reached[t][rnd] / n, 4) for rnd in ROUND_ORDER},
                   "win": round(champ[t] / n, 4)} for t in strength}
     group_positions = {t: {str(k): round(v / n, 4) for k, v in gp.items()}
