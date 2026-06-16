@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-15T23:16:45.481Z",
+    "updatedAt": "2026-06-16T02:02:35.640Z",
     "source": "espn",
-    "matchCount": 15,
+    "matchCount": 16,
     "liveCount": 1,
     "apiCalls": 2
   },
@@ -78,19 +78,24 @@
       "status": "FINISHED"
     },
     "g:H:5": {
-      "h": 0,
+      "h": 1,
+      "a": 1,
+      "status": "FINISHED"
+    },
+    "g:G:3": {
+      "h": 1,
       "a": 1,
       "status": "PAUSED"
     }
   },
   "live": [
     {
-      "key": "g:H:5",
+      "key": "g:G:3",
       "status": "PAUSED",
       "minute": 45,
-      "home": "Uruguay",
-      "away": "Saudi Arabia",
-      "score": "0-1"
+      "home": "New Zealand",
+      "away": "Iran",
+      "score": "1-1"
     }
   ],
   "fixtures": {
@@ -336,7 +341,7 @@
       "date": "2026-06-16",
       "time": "00:00",
       "utcDate": "2026-06-15T22:00Z",
-      "status": "PAUSED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Uruguay",
       "away": "Saudi Arabia",
@@ -353,7 +358,7 @@
       "date": "2026-06-16",
       "time": "03:00",
       "utcDate": "2026-06-16T01:00Z",
-      "status": "TIMED",
+      "status": "PAUSED",
       "matchday": null,
       "home": "New Zealand",
       "away": "Iran",
@@ -2024,20 +2029,32 @@
     ],
     "H": [
       {
-        "idx": 3,
+        "idx": 1,
         "position": 1,
         "pld": 1,
         "w": 0,
         "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "gf": 1,
+        "ga": 1,
+        "gd": 0,
+        "pts": 1
+      },
+      {
+        "idx": 2,
+        "position": 2,
+        "pld": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
         "gd": 0,
         "pts": 1
       },
       {
         "idx": 0,
-        "position": 2,
+        "position": 3,
         "pld": 1,
         "w": 0,
         "d": 1,
@@ -2048,28 +2065,16 @@
         "pts": 1
       },
       {
-        "idx": 2,
-        "position": 3,
-        "pld": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "pts": 0
-      },
-      {
-        "idx": 1,
+        "idx": 3,
         "position": 4,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
         "gf": 0,
         "ga": 0,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       }
     ],
     "I": [
