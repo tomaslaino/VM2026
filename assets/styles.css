@@ -241,29 +241,6 @@ html.view-bracket .site-bg { display: none; }
   padding: 34px 4px 10px;
   max-width: 900px;
 }
-/* Hjältelogga på startsidan – samma röda badge som i headern/favicon, men i
-   stort format så den uppladdade loggan får en framträdande plats ovanför
-   "Gräver grav"-wordmarken. Gradient + radie identiska med .brand-mark/favicon
-   så varumärket känns konsekvent över hela sidan. */
-.home-logo {
-  display: inline-grid;
-  place-items: center;
-  width: clamp(68px, 9vw, 104px);
-  height: clamp(68px, 9vw, 104px);
-  margin-bottom: 20px;
-  border-radius: 24%;
-  background: radial-gradient(120% 120% at 30% 22%, #d8344f, #9a1a2e 72%);
-  box-shadow:
-    inset 0 0 0 1.5px rgba(255, 255, 255, .22),
-    0 12px 32px rgba(196, 30, 58, .42),
-    0 4px 14px rgba(0, 0, 0, .45);
-  animation: homeBgIn 1.1s ease both;
-}
-.home-logo svg {
-  width: 66%; height: 66%;
-  filter: drop-shadow(0 1.5px 2px rgba(0, 0, 0, .3));
-}
-
 .home-kicker {
   display: inline-flex;
   align-items: center;
@@ -462,7 +439,6 @@ html.view-bracket .site-bg { display: none; }
 
 @media (max-width: 640px) {
   .home-intro { padding-top: 18px; }
-  .home-logo { margin-bottom: 14px; }
   .home-layout .nm-bigtimer { gap: 6px; }
   .home-layout .nm-bigtimer .nm-unit { padding: 10px 2px 7px; border-radius: 11px; }
 }
