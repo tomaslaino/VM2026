@@ -1519,13 +1519,11 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .calendar-layout > .cal-shell { grid-area: cal; }
 
 .cal-shell {
+  /* Ingen egen panel: kalendern ska kännas som gruppsidan – fristående,
+     lätt genomskinliga glaskort som flyter på sidbakgrunden (hjältebild +
+     glöd syns igenom) i stället för att ligga inne i en solid ruta. */
   position: relative;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--usa-navy-mid) 55%, var(--card)), var(--card) 120px);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 6px 20px 18px;
-  overflow: hidden;
+  padding: 2px 0 8px;
 }
 
 .cal-jump {
@@ -1561,10 +1559,11 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   display: grid;
   grid-template-columns: 96px 1fr;
   gap: 16px;
-  padding: 16px 0;
-  border-top: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
+  /* Dagar skiljs av luft (≈18px likt grupp-gridens gap), inte av en linje –
+     korten ska läsa som fristående rutor. */
+  padding: 9px 0;
 }
-.cal-day:first-child { border-top: 0; padding-top: 10px; }
+.cal-day:first-child { padding-top: 2px; }
 .cal-date {
   position: sticky;
   top: calc(88px + env(safe-area-inset-top, 0px));
@@ -1575,9 +1574,9 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   padding: 10px 13px 9px 15px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, .085);
-  background: linear-gradient(180deg, rgba(20, 36, 60, .86), rgba(11, 21, 38, .88));
-  -webkit-backdrop-filter: blur(12px) saturate(1.1);
-  backdrop-filter: blur(12px) saturate(1.1);
+  background: linear-gradient(180deg, rgba(20, 36, 60, .82), rgba(11, 21, 38, .85));
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  backdrop-filter: blur(14px) saturate(1.15);
   box-shadow: 0 14px 34px -22px rgba(0, 0, 0, .8);
   min-width: 86px;
   overflow: hidden;
@@ -1981,8 +1980,8 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   }
 
   /* Kalender – kort med kompakt rubrikrad + centrerad matchrad */
-  .cal-shell { padding: 4px 12px 14px; }
-  .cal-day { grid-template-columns: 56px 1fr; gap: 10px; padding: 12px 0; }
+  .cal-shell { padding: 2px 0 10px; }
+  .cal-day { grid-template-columns: 56px 1fr; gap: 10px; padding: 7px 0; }
   .cal-date {
     position: sticky;
     top: calc(118px + env(safe-area-inset-top, 0px));
