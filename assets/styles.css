@@ -573,6 +573,87 @@ html.view-bracket .site-bg { display: none; }
   .fh-vs { font-size: 20px; }
 }
 
+/* ====================================================================
+   STARTSIDA – finputs: djup, ljussättning, rytm & mjuk entré
+   Endast visuell polering – inget nytt innehåll, inga nya länkar.
+==================================================================== */
+
+/* Mjuk, förskjuten entré när hemvyn målas. Innehållet finns ändå direkt i
+   DOM:en (animationen rör bara opacitet/position) och stängs av helt för
+   besökare som föredrar mindre rörelse. */
+@keyframes homeRise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.home-intro > *,
+.home-layout > .focus-hero,
+.home-layout > .teams-strip {
+  animation: homeRise .72s cubic-bezier(.22, .61, .36, 1) both;
+}
+.home-kicker                { animation-delay: .04s; }
+.home-intro h2              { animation-delay: .12s; }
+.home-intro p               { animation-delay: .20s; }
+.home-layout > .focus-hero  { animation-delay: .30s; }
+.home-layout > .teams-strip { animation-delay: .42s; }
+
+/* Hjälterubriken: en aning varmare djup, men solid benvit så Ä-prickarna
+   alltid syns (samma princip som tidigare, bara mer rymd runt bokstäverna). */
+.home-intro h2 {
+  text-shadow: 0 6px 30px rgba(0, 0, 0, .55), 0 1px 2px rgba(0, 0, 0, .55),
+    0 0 70px rgba(196, 30, 58, .13);
+}
+
+/* Mjukt rampljus uppifrån bakom matchställningen ger fokuskortet mer liv och
+   knyter färgen till sidans läge (blå = kommande, röd = live, grön = avslutad). */
+.focus-hero {
+  background:
+    radial-gradient(135% 115% at 50% -8%, rgba(61, 109, 181, .20), transparent 56%),
+    linear-gradient(180deg, rgba(20, 36, 60, .82), rgba(11, 21, 38, .86));
+}
+.focus-hero.state-live {
+  background:
+    radial-gradient(135% 115% at 50% -8%, rgba(232, 38, 74, .22), transparent 56%),
+    linear-gradient(180deg, rgba(28, 24, 42, .82), rgba(14, 18, 34, .88));
+}
+.focus-hero.state-ft {
+  background:
+    radial-gradient(135% 115% at 50% -8%, rgba(45, 184, 122, .16), transparent 56%),
+    linear-gradient(180deg, rgba(18, 34, 54, .82), rgba(11, 21, 38, .86));
+}
+
+/* Ställningen är sidans tyngdpunkt – ge siffrorna en mjuk glöd. */
+.fh-score {
+  text-shadow: 0 2px 24px rgba(255, 255, 255, .14), 0 0 52px rgba(140, 180, 230, .16);
+}
+.focus-hero.state-live .fh-score {
+  text-shadow: 0 2px 22px rgba(255, 120, 140, .25), 0 0 54px rgba(232, 38, 74, .30);
+}
+
+/* Flaggor: stadig ljus innerram + djupare skugga = mer premiumkänsla. */
+.fh-flag .flag {
+  outline: 1px solid rgba(255, 255, 255, .16); outline-offset: -1px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .55);
+}
+.fm-flag .flag,
+.ts-flag .flag { outline: 1px solid rgba(255, 255, 255, .14); outline-offset: -1px; }
+
+/* Hela fokuskortet svarar mjukt på hover. */
+.focus-card.match-openable { transition: background .2s ease; }
+.focus-card.match-openable:hover { background: rgba(255, 255, 255, .045); }
+.focus-card.match-openable:hover .fh-flag .flag { box-shadow: 0 9px 26px rgba(0, 0, 0, .6); }
+
+/* Sverige/Uruguay-remsan: lyft korten en aning vid hover. */
+.ts-item { transition: background .15s ease, border-color .15s ease, transform .15s ease; }
+.ts-item:hover { transform: translateY(-1px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .site-bg,
+  .home-intro > *,
+  .home-layout > .focus-hero,
+  .home-layout > .teams-strip { animation: none; }
+  .ts-item:hover { transform: none; }
+}
+
 .next-matches-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
