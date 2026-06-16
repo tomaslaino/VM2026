@@ -529,27 +529,56 @@ html.view-bracket .site-bg { display: none; }
   border-right: 1px solid rgba(255, 255, 255, .1);
 }
 .ts-label .flag { width: 18px; height: 12px; border-radius: 2px; }
-.ts-items { display: flex; flex: 1 1 auto; gap: 10px; min-width: 0; flex-wrap: wrap; }
+.ts-items { display: flex; flex: 1 1 auto; gap: 12px; min-width: 0; flex-wrap: wrap; }
 .ts-item {
-  display: flex; align-items: center; gap: 11px;
+  --ts-accent: 130, 170, 220;          /* fallback om laget saknar identitetsfärg */
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; gap: 12px;
   flex: 1 1 240px; min-width: 0;
-  padding: 8px 12px; border-radius: 12px;
-  border: 1px solid transparent;
-  background: rgba(255, 255, 255, .03);
+  padding: 9px 13px 9px 15px; border-radius: 13px;
+  border: 1px solid rgba(255, 255, 255, .06);
+  background:
+    linear-gradient(180deg, rgba(var(--ts-accent), .08), rgba(var(--ts-accent), .02)),
+    rgba(255, 255, 255, .025);
   text-align: left; cursor: pointer;
-  transition: background .15s ease, border-color .15s ease;
 }
-.ts-item:hover { background: rgba(255, 255, 255, .07); border-color: rgba(255, 255, 255, .14); }
+/* Smal accentstapel i lagets färg – ger varje kort en egen identitet. */
+.ts-item::before {
+  content: ""; position: absolute; left: 0; top: 8px; bottom: 8px; width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: rgba(var(--ts-accent), .9);
+  opacity: .6; transition: opacity .15s ease, top .15s ease, bottom .15s ease;
+}
+.ts-item:hover {
+  border-color: rgba(var(--ts-accent), .38);
+  background:
+    linear-gradient(180deg, rgba(var(--ts-accent), .14), rgba(var(--ts-accent), .04)),
+    rgba(255, 255, 255, .05);
+  box-shadow: 0 12px 28px -18px rgba(var(--ts-accent), .85);
+}
+.ts-item:hover::before { opacity: 1; top: 6px; bottom: 6px; }
 .ts-item.match-openable:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-.ts-item.is-live { border-color: color-mix(in srgb, var(--live) 40%, transparent); background: color-mix(in srgb, var(--live) 9%, rgba(255, 255, 255, .03)); }
+.ts-item.is-live { border-color: color-mix(in srgb, var(--live) 40%, transparent); background: color-mix(in srgb, var(--live) 10%, rgba(255, 255, 255, .03)); }
+.ts-item.is-live::before { background: var(--live); opacity: 1; }
 .ts-item.is-empty { opacity: .82; }
 .ts-flag { position: relative; line-height: 0; flex: none; }
 .ts-flag .flag { width: 34px; height: 23px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, .4); }
 .ts-livedot { position: absolute; top: -3px; right: -3px; }
-.ts-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.ts-when { font-size: 11px; font-weight: 700; letter-spacing: .3px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.ts-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.ts-when { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: .3px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.ts-grp {
+  flex: none; padding: 1px 7px; border-radius: 999px;
+  font-size: 10px; font-weight: 800; letter-spacing: .4px; text-transform: uppercase;
+  color: rgb(var(--ts-accent));
+  background: rgba(var(--ts-accent), .15);
+  border: 1px solid rgba(var(--ts-accent), .24);
+}
+.ts-when-time { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ts-when.is-live { color: var(--live); }
-.ts-teams { font-size: 14.5px; font-weight: 700; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ts-teams { display: flex; align-items: baseline; gap: 6px; min-width: 0; font-size: 14.5px; }
+.ts-team { font-weight: 600; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.ts-team.is-focus { flex: none; color: #fff; font-weight: 800; }
+.ts-sep { flex: none; color: rgba(255, 255, 255, .3); font-weight: 600; }
 .ts-item .cal-tv { margin-left: auto; flex: none; align-self: center; }
 
 @media (max-width: 760px) {
@@ -635,7 +664,7 @@ html.view-bracket .site-bg { display: none; }
 .focus-card.match-openable:hover .fh-flag .flag { box-shadow: 0 9px 26px rgba(0, 0, 0, .6); }
 
 /* Sverige/Uruguay-remsan: lyft korten en aning vid hover. */
-.ts-item { transition: background .15s ease, border-color .15s ease, transform .15s ease; }
+.ts-item { transition: background .15s ease, border-color .15s ease, box-shadow .15s ease, transform .15s ease; }
 .ts-item:hover { transform: translateY(-1px); }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1912,8 +1912,9 @@
   }
 
   var TEAM_SPOTLIGHT = [
-    { iso: "se", title: "Sverige" },
-    { iso: "uy", title: "Uruguay" }
+    // accent = RGB-triplett för lagets identitetsfärg (blå resp. celeste).
+    { iso: "se", title: "Sverige", accent: "74, 138, 222" },
+    { iso: "uy", title: "Uruguay", accent: "76, 188, 232" }
   ];
 
   function findTeamByIso(iso) {
@@ -1987,6 +1988,10 @@
         whenText: panelWhenCompact(m, live),
         teams: matchTeamsLabelCompact(mm.home, mm.away),
         teamsFull: matchTeamsLabel(mm.home, mm.away),
+        homeName: teamSvSpotlightBase(mm.home),
+        awayName: teamSvSpotlightBase(mm.away),
+        homeIso: mm.home.iso,
+        awayIso: mm.away.iso,
         channel: channel,
         team: info.team,
         key: key
@@ -2000,31 +2005,44 @@
     return tvChHtml(ch);
   }
 
+  /** Ett lagnamn i matchraden – fokuslaget (Sverige/Uruguay) lyfts fram. */
+  function tsTeamName(name, iso, focusIso) {
+    var focus = iso && iso === focusIso;
+    return '<span class="ts-team' + (focus ? " is-focus" : "") + '">' + esc(name) + '</span>';
+  }
+
   /** En lag-cell i den smala Sverige/Uruguay-remsan (sekundär under hjälten). */
   function teamStripItem(tp) {
+    var accent = tp.accent ? ' style="--ts-accent: ' + tp.accent + '"' : "";
     var m = tp.match;
     if (!m) {
-      return '<button type="button" class="ts-item is-empty team-open" data-team-open="' + tp.iso + '">' +
+      return '<button type="button" class="ts-item is-empty team-open" data-team-open="' + tp.iso + '"' + accent + '>' +
         '<span class="ts-flag">' + flagImg(tp.iso) + '</span>' +
         '<span class="ts-body"><span class="ts-when nm-muted">Ingen kommande match</span>' +
         '<span class="ts-teams nm-muted">' + esc(tp.title) + '</span></span></button>';
     }
-    var whenLine = m.label ? esc(m.label) + " · " + esc(m.whenText) : esc(m.whenText);
+    var whenLine = m.label
+      ? '<span class="ts-grp">' + esc(m.label) + '</span><span class="ts-when-time">' + esc(m.whenText) + '</span>'
+      : '<span class="ts-when-time">' + esc(m.whenText) + '</span>';
     var teamsTitle = (m.teamsFull && m.teamsFull !== m.teams) ? ' title="' + esc(m.teamsFull) + '"' : "";
+    // Bygg matchningen med fokuslaget framhävt; fall tillbaka på platt text.
+    var teamsInner = m.homeName
+      ? tsTeamName(m.homeName, m.homeIso, tp.iso) + '<span class="ts-sep">–</span>' + tsTeamName(m.awayName, m.awayIso, tp.iso)
+      : esc(m.teams);
     var inner =
       '<span class="ts-flag">' + flagImg(tp.iso) +
         (m.live ? '<span class="ts-livedot"><span class="live-dot"></span></span>' : "") + '</span>' +
       '<span class="ts-body">' +
         '<span class="ts-when' + (m.live ? " is-live" : "") + '">' + whenLine + '</span>' +
-        '<span class="ts-teams"' + teamsTitle + '>' + esc(m.teams) + '</span>' +
+        '<span class="ts-teams"' + teamsTitle + '>' + teamsInner + '</span>' +
       '</span>' +
       spotlightTvHtml(m.channel);
     // Med matchnyckel öppnar cellen matchinfo-modalen; annars laget (fallback).
     var open = m.key ? matchOpenAttr(m.key) : { attr: "", cls: "" };
     if (open.attr) {
-      return '<div class="ts-item' + (m.live ? " is-live" : "") + open.cls + '"' + open.attr + '>' + inner + '</div>';
+      return '<div class="ts-item' + (m.live ? " is-live" : "") + open.cls + '"' + accent + open.attr + '>' + inner + '</div>';
     }
-    return '<button type="button" class="ts-item team-open' + (m.live ? " is-live" : "") + '" data-team-open="' + tp.iso + '">' +
+    return '<button type="button" class="ts-item team-open' + (m.live ? " is-live" : "") + '" data-team-open="' + tp.iso + '"' + accent + '>' +
       inner + '</button>';
   }
 
@@ -2032,7 +2050,7 @@
       Sekundär – ligger under hjälten och konkurrerar inte med "Match i fokus". */
   function teamsSpotlightStrip(ctx) {
     var teams = TEAM_SPOTLIGHT.map(function (t) {
-      return { title: t.title, iso: t.iso, match: findTeamNextMatch(ctx, t.iso) };
+      return { title: t.title, iso: t.iso, accent: t.accent, match: findTeamNextMatch(ctx, t.iso) };
     });
     var anyLive = teams.some(function (t) { return t.match && t.match.live; });
     var h = '<section class="teams-strip' + (anyLive ? " is-live" : "") + '" id="teamsSpotlight" aria-label="Sverige och Uruguay">';
