@@ -1,10 +1,10 @@
 {
   "meta": {
-    "updatedAt": "2026-06-17T05:09:28.809Z",
+    "updatedAt": "2026-06-17T08:05:20.219Z",
     "source": "espn",
     "matchCount": 20,
-    "liveCount": 1,
-    "apiCalls": 2
+    "liveCount": 0,
+    "apiCalls": 22
   },
   "results": {
     "g:A:2": {
@@ -103,21 +103,12 @@
       "status": "FINISHED"
     },
     "g:J:3": {
-      "h": 0,
-      "a": 1,
-      "status": "PAUSED"
+      "h": 1,
+      "a": 3,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:J:3",
-      "status": "PAUSED",
-      "minute": 45,
-      "home": "Jordan",
-      "away": "Austria",
-      "score": "0-1"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -446,7 +437,7 @@
       "date": "2026-06-17",
       "time": "06:00",
       "utcDate": "2026-06-17T04:00Z",
-      "status": "PAUSED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Jordan",
       "away": "Austria",
@@ -2163,25 +2154,25 @@
       {
         "idx": 1,
         "position": 2,
-        "pld": 0,
-        "w": 0,
+        "pld": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "pts": 0
+        "gf": 3,
+        "ga": 1,
+        "gd": 2,
+        "pts": 3
       },
       {
         "idx": 3,
         "position": 3,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
         "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 3,
+        "gd": -2,
         "pts": 0
       },
       {

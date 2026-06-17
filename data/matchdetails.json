@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-17T05:09:28.898Z",
+    "updatedAt": "2026-06-17T08:05:20.223Z",
     "source": "espn"
   },
   "details": {
@@ -8085,24 +8085,27 @@
     },
     "g:J:3": {
       "espnId": "760431",
-      "status": "PAUSED",
-      "minute": 45,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-17T04:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
+          "h": 1,
+          "a": 3
+        },
+        "ht": {
           "h": 0,
           "a": 1
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
       },
       "goals": [
         {
-          "minute": 20,
+          "minute": 21,
           "injuryTime": null,
           "team": "a",
           "scorer": "Romano Schmid",
@@ -8112,10 +8115,114 @@
             "h": 0,
             "a": 1
           }
+        },
+        {
+          "minute": 50,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Ali Olwan",
+          "assist": "Noor Al-Rawabdeh",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        },
+        {
+          "minute": 76,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Yazan Al-Arab",
+          "assist": null,
+          "type": "OWN",
+          "score": {
+            "h": 1,
+            "a": 2
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 12,
+          "team": "a",
+          "scorer": "Marko Arnautovic",
+          "assist": null,
+          "type": "PENALTY",
+          "score": {
+            "h": 1,
+            "a": 3
+          }
         }
       ],
-      "bookings": [],
-      "subs": [],
+      "bookings": [
+        {
+          "minute": 77,
+          "team": "a",
+          "player": "Marcel Sabitzer",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Marko Arnautovic",
+          "out": "Sasa Kalajdzic"
+        },
+        {
+          "minute": 59,
+          "team": "a",
+          "in": "Paul Wanner",
+          "out": "Phillipp Mwene"
+        },
+        {
+          "minute": 59,
+          "team": "a",
+          "in": "Carney Chukwuemeka",
+          "out": "Xaver Schlager"
+        },
+        {
+          "minute": 59,
+          "team": "a",
+          "in": "Kevin Danso",
+          "out": "David Alaba"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Saleem Obaid",
+          "out": "Mohammad Abualnadi"
+        },
+        {
+          "minute": 81,
+          "team": "h",
+          "in": "Saed Al-Rosan",
+          "out": "Abdallah Nasib"
+        },
+        {
+          "minute": 81,
+          "team": "h",
+          "in": "Mahmoud Al-Mardi",
+          "out": "Ehsan Haddad"
+        },
+        {
+          "minute": 83,
+          "team": "a",
+          "in": "Patrick Wimmer",
+          "out": "Romano Schmid"
+        },
+        {
+          "minute": 88,
+          "team": "h",
+          "in": "Mohammad Al-Daoud",
+          "out": "Mousa Al-Tamari"
+        },
+        {
+          "minute": 89,
+          "team": "h",
+          "in": "Ali Azaizeh",
+          "out": "Odeh Fakhoury"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -8154,12 +8261,12 @@
             {
               "name": "Nizar Al-Rashdan",
               "jersey": "21",
-              "pos": "CM-L"
+              "pos": "CM-R"
             },
             {
               "name": "Noor Al-Rawabdeh",
               "jersey": "8",
-              "pos": "CF-R"
+              "pos": "CM-L"
             },
             {
               "name": "Mousa Al-Tamari",
@@ -8169,7 +8276,7 @@
             {
               "name": "Odeh Fakhoury",
               "jersey": "11",
-              "pos": "CM-R"
+              "pos": "CF-R"
             },
             {
               "name": "Ali Olwan",
@@ -8180,11 +8287,13 @@
           "bench": [
             {
               "name": "Saleem Obaid",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Mahmoud Al-Mardi",
-              "jersey": "13"
+              "jersey": "13",
+              "in": true
             },
             {
               "name": "Abdallah Al-Fakhouri",
@@ -8204,7 +8313,8 @@
             },
             {
               "name": "Saed Al-Rosan",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Amer Jamous",
@@ -8216,7 +8326,8 @@
             },
             {
               "name": "Mohammad Al-Daoud",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Husam Abu Dahab",
@@ -8236,7 +8347,8 @@
             },
             {
               "name": "Ali Azaizeh",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             }
           ]
         },
@@ -8314,11 +8426,13 @@
             },
             {
               "name": "Carney Chukwuemeka",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Paul Wanner",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Dejan Ljubicic",
@@ -8338,7 +8452,8 @@
             },
             {
               "name": "Marko Arnautovic",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Michael Svoboda",
@@ -8354,68 +8469,70 @@
             },
             {
               "name": "Patrick Wimmer",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Kevin Danso",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true
             }
           ]
         }
       },
       "referee": "Beida Damane",
       "venue": "Levi's Stadium, Santa Clara, California",
-      "attendance": null,
+      "attendance": 68527,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "36%",
-          "a": "64%"
+          "h": "37%",
+          "a": "63%"
         },
         {
           "key": "totalShots",
-          "h": "8",
-          "a": "6"
+          "h": "11",
+          "a": "11"
         },
         {
           "key": "shotsOnTarget",
-          "h": "3",
-          "a": "1"
+          "h": "4",
+          "a": "4"
         },
         {
           "key": "wonCorners",
           "h": "3",
-          "a": "1"
+          "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "3",
-          "a": "7"
+          "h": "7",
+          "a": "12"
         },
         {
           "key": "offsides",
-          "h": "0",
-          "a": "2"
+          "h": "1",
+          "a": "3"
         },
         {
           "key": "saves",
-          "h": "0",
+          "h": "1",
           "a": "3"
         },
         {
           "key": "totalPasses",
-          "h": "161",
-          "a": "295"
+          "h": "331",
+          "a": "580"
         },
         {
           "key": "passPct",
-          "h": "76%",
-          "a": "87%"
+          "h": "73%",
+          "a": "84%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -8423,7 +8540,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-17T05:09:28.852Z"
+      "updatedAt": "2026-06-17T07:35:16.216Z"
     },
     "g:J:2": {
       "espnId": "760433",
