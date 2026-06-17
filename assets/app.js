@@ -761,11 +761,14 @@
       return;
     }
     if (header.classList.contains("hero-collapsed")) return;
-    var search = header.querySelector(".search");
-    if (!search) return;
-    /* Höjd som försvinner vid ihopfällning: sökraden + gap i mobil-gridet. */
-    headerShrinkDelta = search.offsetHeight + 10;
-    if (headerShrinkDelta < 0) headerShrinkDelta = 0;
+    /* Mät den faktiska höjdskillnaden mot ihopfällt läge (varumärkesrad + sök
+       försvinner). Klassen togglas synkront utan mellanliggande paint, så vi får
+       exakt delta utan flimmer – oavsett vad CSS:en döljer. */
+    var fullH = header.offsetHeight;
+    header.classList.add("hero-collapsed");
+    var collapsedH = header.offsetHeight;
+    header.classList.remove("hero-collapsed");
+    headerShrinkDelta = Math.max(0, fullH - collapsedH);
     /* Kräv scroll förbi hela shrink + expand-hysteres – annars flimrar headern. */
     headerCollapseAt = Math.max(56, headerShrinkDelta + headerExpandAt + 8);
     headerExpandAt = 6;

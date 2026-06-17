@@ -554,9 +554,16 @@
     var hName = teamName(info.home, info.homeLabel);
     var aName = teamName(info.away, info.awayLabel);
 
+    // Gruppmatcher: visa den färgade grupp-pillen (samma "grupplogga" som i
+    // grupp-/kalendervyn) i stället för en grå textetikett. KO-matcher behåller
+    // textetiketten ("Åttondelsfinal · M50" osv).
+    var gmHead = /^g:([A-L]):/.exec(info.key || "");
+    var labelHtml = gmHead
+      ? '<span class="group-pill grp-' + gmHead[1] + ' is-lg">' + esc(info.label) + '</span>'
+      : '<span class="mi-label">' + esc(info.label) + '</span>';
+
     var h = '<button class="mi-close" title="Stäng">×</button>';
-    h += '<div class="mi-head"><span class="mi-label">' + esc(info.label) + '</span>' +
-      statusChip(info, det) + '</div>';
+    h += '<div class="mi-head">' + labelHtml + statusChip(info, det) + '</div>';
 
     h += '<div class="mi-score-row">' +
       '<span class="mi-team home">' + flagImg(info.home && info.home.iso) +

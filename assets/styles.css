@@ -2186,8 +2186,18 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   .brand-txt { min-width: 0; }
   .brand-txt b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .controls { grid-area: controls; margin-left: 0; align-self: center; justify-self: end; }
-  /* Kompakt header vid scroll: dölj bara sök – varumärke, status och nav behåller
-     samma grid, padding och flikstorlek (ingen layoutomräkning). */
+  /* Kompakt header vid scroll: visa bara navflikarna. Varumärkesraden ("Gräver
+     grav"), status och sök döljs, och gridet krymper till en enda flikrad så att
+     det inte blir något tomrum kvar under flikarna. */
+  .hero-header.hero-collapsed .topbar-inner {
+    grid-template-columns: 1fr;
+    grid-template-areas: "nav";
+    gap: 0;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .hero-header.hero-collapsed .brand,
+  .hero-header.hero-collapsed .controls,
   .hero-header.hero-collapsed .search { display: none; }
   .nav {
     grid-area: nav;
