@@ -1216,11 +1216,29 @@
     return a.getUTCDate() + " " + MONTHS[a.getUTCMonth()] + "–" + b.getUTCDate() + " " + MONTHS[b.getUTCMonth()];
   }
 
+  /* Knapprad överst i slutspelsvyn: växla hela trädet mellan platsetiketter
+     ("Etta grupp E") och oddsfavoriter (det mest sannolika laget). */
+  function bracketModeBar() {
+    var mode = bracketMode();
+    function seg(m, label, sub) {
+      var on = mode === m;
+      return '<button type="button" class="bmode-btn' + (on ? " on" : "") +
+        '" data-bracket-mode="' + m + '" aria-pressed="' + (on ? "true" : "false") + '">' +
+        '<span class="bmode-lbl">' + label + '</span>' +
+        '<span class="bmode-sub">' + sub + '</span></button>';
+    }
+    return '<div class="bracket-modebar"><div class="bmode-seg" role="group" ' +
+      'aria-label="Visningsläge för slutspelsträdet">' +
+      seg("seed", "Platser", "Grupplaceringar") +
+      seg("odds", "Oddsfavoriter", "Troligaste lagen") +
+      '</div></div>';
+  }
+
   function renderBracket() {
     var ctx = getCtx();
-    bracketFrontier = frontierRoundKey(ctx);
 
     var html = '<div class="bracket-shell">' +
+      bracketModeBar() +
       '<div class="bracket-scroll"><div class="bracket-wrap">';
     html += '<svg class="bracket-lines" aria-hidden="true"></svg>';
     html += '<div class="bracket two-sided">';
@@ -1442,6 +1460,25 @@
     return "?";
   }
 
+  /* Gruppbokstav i gruppens egen färg (samma palett som grupptabellerna). */
+  function grpLetter(L) {
+    var u = String(L || "").toUpperCase();
+    return '<span class="grp-letter grp-' + u + '">' + esc(u) + '</span>';
+  }
+
+  /* Seed-etikett som HTML där gruppbokstäverna är färgkodade, t.ex.
+     "Etta grupp E" eller "3:a grupp A/B/C/D/F". Match-platshållare
+     ("Vinnare sextondelsfinal 3") saknar grupp och visas som ren text. */
+  function slotSeedHtml(slot) {
+    if (!slot) return "";
+    if (slot.t === "w") return "Etta grupp " + grpLetter(slot.g);
+    if (slot.t === "r") return "Tvåa grupp " + grpLetter(slot.g);
+    if (slot.t === "3") return "3:a grupp " + slot.from.map(grpLetter).join("/");
+    if (slot.t === "wm") return "Vinnare " + esc(koRefLabel(slot.m));
+    if (slot.t === "lm") return "Förlorare " + esc(koRefLabel(slot.m));
+    return "?";
+  }
+
   /* Typklass för seed-chip – färgkodar kvalvägen i linje med grupptabellerna
      (grön = 1:a/2:a som avancerar, guld = bästa trea, neutral = match-resultat). */
   function seedTypeClass(slot) {
@@ -1453,7 +1490,6 @@
 
   /* En sida i matchup-grafiken: seed-etikett + flagga + lagnamn (eller platshållare). */
   function asideMatchupSide(slot, side, which, isWin) {
-    var seed = slotSeedLong(slot);
     var inner;
     if (side.team) {
       var prov = !side.decided;
@@ -1465,7 +1501,8 @@
         '<span class="mu-name">Ej klart</span></span>';
     }
     return '<div class="mu-side mu-' + which + (isWin ? " win" : "") + '">' +
-      '<span class="mu-seed seed-chip ' + seedTypeClass(slot) + '">' + esc(seed) + '</span>' +
+      '<span class="mu-seed seed-chip ' + seedTypeClass(slot) + '" title="' + esc(slotSeedLong(slot)) +
+      '">' + slotSeedHtml(slot) + '</span>' +
       inner + '</div>';
   }
 
@@ -1485,11 +1522,11 @@
     var hWin = res.winner && res.home.team && res.winner.team === res.home.team;
     var aWin = res.winner && res.away.team && res.winner.team === res.away.team;
 
-    // I "nästa match"-rundan visas oddsfavoriten i stället för platshållaren.
-    var predHere = !variant && bracketFrontier &&
-      KO_ROUND_KEY[m.round] === bracketFrontier && !played;
-    var homeSide = effectiveSide(res, "home", predHere);
-    var awaySide = effectiveSide(res, "away", predHere);
+    // Visningsläge: "seed" visar platsetiketter (Etta grupp E …) för oavgjorda
+    // platser; "odds" ersätter dem i hela trädet med det mest sannolika laget.
+    var oddsMode = bracketMode() === "odds";
+    var homeSide = displaySide(res, "home", oddsMode);
+    var awaySide = displaySide(res, "away", oddsMode);
 
     var h = '<div class="' + cls + '" data-m="' + m.m + '"' + open.attr + (opts.grid ? ' style="' + opts.grid + '"' : '') + '">';
     // Final/Brons har redan tydliga egna rubriker – upprepa inte rundnamnet i rutan.
@@ -1527,7 +1564,7 @@
     var slot = ha === "h" ? res.match.home : res.match.away;
     var inner = side.team
       ? teamOpenBtn(side.team, flagImg(side.team.iso) + '<span class="s-name" title="' + esc(side.team.sv) + '">' + esc(bracketTeamName(side)) + '</span>', "side-team")
-      : '<span class="s-name placeholder seed-chip ' + seedTypeClass(slot) + '">' + esc(side.label) + '</span>';
+      : '<span class="s-name placeholder seed-chip ' + seedTypeClass(slot) + '" title="' + esc(slotSeedLong(slot)) + '">' + slotSeedHtml(slot) + '</span>';
     var r = res.result || {};
     var scoreCell = scoreDisplay(r[ha]);
     return '<div class="' + cls + '">' + inner + scoreCell + '</div>';
@@ -1656,29 +1693,9 @@
   }
 
   /* ---------- Oddsfavorit i trädet (mest sannolika laget) ---------- */
-  // Rundnyckel (samma som prob-datan) per matchrunda, och rundordning.
-  var KO_ROUND_KEY = { R32: "r32", R16: "r16", QF: "qf", SF: "sf", FINAL: "final" };
-  var KO_ROUND_ORDER = ["r32", "r16", "qf", "sf", "final"];
-  var bracketFrontier = null;       // rundnyckel för "nästa match" (sätts i renderBracket)
-
-  // Tidigaste slutspelsrunda som inte är helt färdigspelad ("nästa match").
-  // Bara i denna runda ersätter vi platshållarna med oddsfavoriten i trädet.
-  function frontierRoundKey(ctx) {
-    var byRound = {};
-    WC.knockout.forEach(function (m) {
-      var rk = KO_ROUND_KEY[m.round];
-      if (rk) (byRound[rk] = byRound[rk] || []).push(m.m);
-    });
-    for (var i = 0; i < KO_ROUND_ORDER.length; i++) {
-      var ms = byRound[KO_ROUND_ORDER[i]] || [];
-      var allDone = ms.every(function (no) {
-        var r = ctx.resolved[no];
-        return r && r.winner;
-      });
-      if (!allDone) return KO_ROUND_ORDER[i];
-    }
-    return null;
-  }
+  // Visningsläge för slutspelsträdet: "seed" (platsetiketter) eller "odds"
+  // (oddsfavoriten i hela trädet). Växlas via knappraden överst i slutspelsvyn.
+  function bracketMode() { return ui("bracketMode", "seed") === "odds" ? "odds" : "seed"; }
 
   // Mest sannolika laget för en matchsida enligt prob-noderna (eller null).
   function nodeTopSide(matchNo, which) {
@@ -1704,6 +1721,20 @@
     if (side.team && side.decided) return side;
     if (!usePrediction) return side;
     return nodeTopSide(res.match.m, which) || side;
+  }
+
+  // Lagsida som ska visas i trädets matchruta enligt visningsläget. Avgjorda
+  // platser visar alltid laget. I oddsläget ersätts oavgjorda platser av
+  // oddsfavoriten; i seed-läget faller de tillbaka till platsetiketten
+  // (eventuellt provisoriskt ledarlag visas alltså inte i seed-läget).
+  function displaySide(res, which, usePrediction) {
+    var side = which === "home" ? res.home : res.away;
+    if (side.team && side.decided) return side;
+    if (usePrediction) {
+      var pred = nodeTopSide(res.match.m, which);
+      if (pred) return pred;
+    }
+    return { team: null, decided: false, label: side.label };
   }
 
   function slotLabelText(code) {
@@ -3043,6 +3074,13 @@
       if (sr.hasAttribute("data-player-id")) openSearchPlayer(sr.getAttribute("data-player-id"));
       else if (sr.hasAttribute("data-team-open")) openTeamByIso(sr.getAttribute("data-team-open"));
       else openTeam(sr.getAttribute("data-team-group"), parseInt(sr.getAttribute("data-team-idx"), 10));
+      return;
+    }
+
+    var bMode = t.closest && t.closest("[data-bracket-mode]");
+    if (bMode) {
+      var nm = bMode.getAttribute("data-bracket-mode");
+      if (nm !== bracketMode()) { setUi("bracketMode", nm); render(); }
       return;
     }
 
