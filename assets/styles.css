@@ -3008,6 +3008,9 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   border-color: color-mix(in srgb, var(--usa-red) 45%, var(--line-strong));
   box-shadow: 0 8px 22px rgba(8, 14, 22, .28);
 }
+/* Regionkort visar alla rader och är inte klickbart – ingen hover-/pekar-effekt. */
+.ps-leader.ps-static { cursor: default; }
+.ps-leader.ps-static:hover { border-color: var(--line); box-shadow: none; }
 .ps-leader:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--focus) 60%, transparent);
   outline-offset: 2px;

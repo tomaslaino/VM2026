@@ -623,7 +623,7 @@
           rateFn: function (r) { return r.gf + " mål totalt"; }
         },
         {
-          id: "rgapm", kind: "regions", title: "Tightast försvar", icon: "🛡️", rows: rrows,
+          id: "rgapm", kind: "regions", title: "Minst insläppta mål/match", icon: "🛡️", rows: rrows,
           valFn: function (r) { return r.played; },
           rankFn: function (r) { return -r.gapm; },
           mainFn: function (r) { return fmt2(r.gapm); },
@@ -706,27 +706,30 @@
   }
   function leaderTitle(cfg, r) {
     if (cfg.kind === "teams") return r.sv;
-    if (cfg.kind === "regions") return r.code + " – " + r.region;
+    if (cfg.kind === "regions") return r.region;
     return r.name + " · " + r.teamSv;
   }
 
   function leaderCard(cfg) {
-    var top = leaderRanked(cfg, 5);
-    if (!top.length) return "";
-    var h = '<button type="button" class="ps-leader card" data-ps-top="' + cfg.id + '">' +
-      '<div class="ps-leader-title">' + cfg.icon + " " + esc(cfg.title) + "</div>";
     var isRegion = cfg.kind === "regions";
+    /* Regioner är få (en handfull världsdelar) – visa alla i kortet utan
+       topp-20-modal. Övriga lägen: topp 5 + klickbart kort som öppnar modal. */
+    var top = leaderRanked(cfg, isRegion ? cfg.rows.length : 5);
+    if (!top.length) return "";
+    var tag = isRegion ? "div" : "button";
+    var open = isRegion ? "" : ' type="button" data-ps-top="' + cfg.id + '"';
+    var h = "<" + tag + ' class="ps-leader card' + (isRegion ? " ps-static" : "") + '"' + open + ">" +
+      '<div class="ps-leader-title">' + cfg.icon + " " + esc(cfg.title) + "</div>";
     top.forEach(function (r, i) {
       h += '<div class="ps-leader-row' + (i === 0 ? " first" : "") + (isRegion ? " is-region" : "") + '">' +
         '<span class="ps-leader-pos">' + (i + 1) + "</span>" +
         (isRegion ? "" : leaderFlag(cfg, r)) +
         '<span class="ps-leader-name" title="' + esc(leaderTitle(cfg, r)) + '">' + esc(leaderName(cfg, r)) + "</span>" +
-        (isRegion ? leaderFlag(cfg, r) : "") +
         '<span class="ps-leader-val">' + cfg.mainFn(r) + "</span>" +
         "</div>";
     });
-    h += '<span class="ps-leader-more">Visa topp 20 →</span>';
-    return h + "</button>";
+    if (!isRegion) h += '<span class="ps-leader-more">Visa topp 20 →</span>';
+    return h + "</" + tag + ">";
   }
 
   function leadersHtml() {
@@ -946,8 +949,8 @@
     var dash = '<span class="ps-zero">–</span>';
     return '<tr>' +
       '<td class="c-pos">' + (i + 1) + "</td>" +
-      '<td class="ps-c-name"><span class="team">' + confBadge(r.code) +
-        '<span class="t-name" title="' + esc(r.code + " – " + r.region) + '">' + esc(r.region) + "</span></span></td>" +
+      '<td class="ps-c-name"><span class="team">' +
+        '<span class="t-name" title="' + esc(r.region) + '">' + esc(r.region) + "</span></span></td>" +
       '<td class="c-stat">' + r.teams + "</td>" +
       '<td class="c-stat">' + (p0 ? dash : r.played) + "</td>" +
       '<td class="c-stat">' + num(r.w) + "</td>" +
