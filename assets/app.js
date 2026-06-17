@@ -193,7 +193,8 @@
       info = {
         key: key, label: "Grupp " + L, kind: "group",
         home: th, away: ta, m: fx,
-        channel: tvLookupGroup(fx, th, ta), venue: null
+        channel: tvLookupGroup(fx, th, ta),
+        venue: (fx.venue && WC.venues[fx.venue]) || null
       };
     } else {
       var k = /^k:(\d+)$/.exec(key);
@@ -410,12 +411,15 @@
       for (var j = 0; j < RR[md].length; j++) {
         var key = "g:" + letter + ":" + idx;
         var api = getApiFixture(key);
-        var sched = api || (WC.groupSchedule && WC.groupSchedule[key]);
+        var staticSched = WC.groupSchedule && WC.groupSchedule[key];
+        var sched = api || staticSched;
         out.push({
           key: key, md: md + 1,
           h: RR[md][j][0], a: RR[md][j][1],
           date: sched ? sched.date : WC.groupDates[letter][md],
           edt: sched ? (sched.time || sched.edt) : null,
+          // Arenan ligger i det statiska schemat (API-fixturer saknar den).
+          venue: staticSched ? staticSched.venue : null,
           letter: letter
         });
         idx++;
