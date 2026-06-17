@@ -1212,8 +1212,9 @@ html.view-bracket main.container {
   flex-direction: column;
   padding: 8px 20px 0;
 }
-/* Rubriken ligger inuti .bracket-scroll och scrollar iväg med trädet. */
-html.view-bracket .page-intro { margin: 2px 0 18px; }
+/* Slutspelets toppra (rubrik + lägesväxlare) ligger överst i .bracket-shell,
+   ovanför den scrollbara trädytan – kompakt och alltid synlig. */
+html.view-bracket .page-intro { margin: 2px 0 12px; }
 html.view-bracket .bracket-shell {
   flex: 1 1 0;
   min-height: 0;
@@ -1262,12 +1263,17 @@ html.view-bracket .bracket .round-title.bracket-jump.bronze-title:hover {
   color: color-mix(in srgb, var(--gold) 75%, #fff);
 }
 
-/* Knapprad: växla trädet mellan platsetiketter och oddsfavoriter. */
+/* Knapprad: växla trädet mellan platsetiketter och oddsfavoriter. Ligger på
+   samma rad som slutspelsrubriken (page-intro), längst till höger. */
 .bracket-modebar {
   flex: none;
   display: flex;
-  justify-content: center;
-  padding: 4px 12px 10px;
+  justify-content: flex-end;
+}
+/* Rubrikrad i slutspelet: titel till vänster, lägesväxlare till höger. */
+.page-intro.bracket-intro { flex: none; align-items: center; }
+@media (max-width: 560px) {
+  .page-intro.bracket-intro .bracket-modebar { width: 100%; justify-content: flex-start; }
 }
 .bmode-seg {
   display: inline-flex;
@@ -1278,21 +1284,20 @@ html.view-bracket .bracket .round-title.bracket-jump.bronze-title:hover {
   border: 1px solid var(--line);
 }
 .bmode-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1px;
   border: none;
   background: transparent;
   color: var(--ink-soft);
-  font-family: inherit;
+  font: inherit;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .2px;
+  line-height: 1.2;
   cursor: pointer;
-  padding: 6px 18px;
+  padding: 8px 20px;
   border-radius: 999px;
+  white-space: nowrap;
   transition: background .15s, color .15s, box-shadow .15s;
 }
-.bmode-btn .bmode-lbl { font-weight: 800; font-size: 13px; letter-spacing: .2px; }
-.bmode-btn .bmode-sub { font-size: 10px; opacity: .82; }
 .bmode-btn:hover { color: var(--ink); }
 .bmode-btn.on {
   background: color-mix(in srgb, var(--usa-blue) 32%, var(--bg-soft));
@@ -1300,8 +1305,7 @@ html.view-bracket .bracket .round-title.bracket-jump.bronze-title:hover {
   box-shadow: 0 1px 7px rgba(0,0,0,.28);
 }
 @media (max-width: 560px) {
-  .bmode-btn { padding: 6px 13px; }
-  .bmode-btn .bmode-sub { display: none; }
+  .bmode-btn { padding: 8px 14px; font-size: 12.5px; }
 }
 
 
@@ -1514,7 +1518,7 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .bracket .side .s-name.placeholder.seed-chip {
   flex: 1;
   min-width: 0;
-  font-size: inherit;
+  font-size: 11.5px;
   font-weight: 500;
   font-style: italic;
   text-transform: none;
@@ -1523,11 +1527,21 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   background: transparent;
   border: 1px dashed color-mix(in srgb, var(--line-strong) 70%, transparent);
   padding: 2px 8px;
+  /* Upp till två rader (längre etiketter som "Vinnare sextondelsfinal 3" får
+     plats utan att kapas). Höjden reserveras för två rader i .side nedan så att
+     rutorna behåller exakt samma storlek när man växlar mellan Platser och
+     Oddsfavoriter – annars hoppar hela trädet. */
   white-space: normal;
-  overflow: visible;
-  text-overflow: unset;
-  line-height: 1.25;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.2;
 }
+/* Enhetlig radhöjd i trädets rutor (reserverad för två raders platsetikett) så
+   att visningsläget aldrig ändrar rutstorleken – lagnamn/resultat centreras. */
+.bracket .side { min-height: 44px; }
+.bracket .match.bronze .side { min-height: 40px; }
 .match.bronze {
   border-color: color-mix(in srgb, #b07a3a 45%, var(--line));
   box-shadow: none;
@@ -3086,6 +3100,10 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   color: var(--ink-soft); background: var(--bg-soft);
   border: 1px solid var(--line-strong); border-radius: 5px; white-space: nowrap;
 }
+/* Regionläge: regionnamn först, sedan förbundsmärke med fast bredd så
+   märkena bildar en prydlig kolumn intill värdet (symmetri). */
+.ps-leader-row.is-region .ps-conf-badge,
+.ps-top-row.is-region .ps-conf-badge { width: 76px; }
 .ps-toolbar-hint { font-size: 12.5px; color: var(--ink-soft); line-height: 1.4; }
 .ps-sortable { cursor: pointer; user-select: none; }
 .ps-sortable:hover { color: var(--ink); }

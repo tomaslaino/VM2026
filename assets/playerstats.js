@@ -715,11 +715,13 @@
     if (!top.length) return "";
     var h = '<button type="button" class="ps-leader card" data-ps-top="' + cfg.id + '">' +
       '<div class="ps-leader-title">' + cfg.icon + " " + esc(cfg.title) + "</div>";
+    var isRegion = cfg.kind === "regions";
     top.forEach(function (r, i) {
-      h += '<div class="ps-leader-row' + (i === 0 ? " first" : "") + '">' +
+      h += '<div class="ps-leader-row' + (i === 0 ? " first" : "") + (isRegion ? " is-region" : "") + '">' +
         '<span class="ps-leader-pos">' + (i + 1) + "</span>" +
-        leaderFlag(cfg, r) +
+        (isRegion ? "" : leaderFlag(cfg, r)) +
         '<span class="ps-leader-name" title="' + esc(leaderTitle(cfg, r)) + '">' + esc(leaderName(cfg, r)) + "</span>" +
+        (isRegion ? leaderFlag(cfg, r) : "") +
         '<span class="ps-leader-val">' + cfg.mainFn(r) + "</span>" +
         "</div>";
     });
@@ -760,15 +762,17 @@
     if (!cfg) return;
     var top = leaderRanked(cfg, 20);
     var isPlayers = cfg.kind === "players";
-    var kindLabel = cfg.kind === "teams" ? "lag" : cfg.kind === "regions" ? "förbund" : "spelare";
+    var kindLabel = cfg.kind === "teams" ? "lag" : cfg.kind === "regions" ? "regioner" : "spelare";
+    var isRegions = cfg.kind === "regions";
     var rows = top.map(function (r, i) {
       var clickable = isPlayers && r.pid;
-      return '<div class="ps-top-row' + (i === 0 ? " first" : "") + '"' +
+      return '<div class="ps-top-row' + (i === 0 ? " first" : "") + (isRegions ? " is-region" : "") + '"' +
         (clickable ? ' data-ps-player="' + esc(r.pid) + '" role="button" tabindex="0"' : "") + ">" +
         '<span class="ps-top-pos">' + (i + 1) + "</span>" +
-        leaderFlag(cfg, r) +
+        (isRegions ? "" : leaderFlag(cfg, r)) +
         '<span class="ps-top-name">' + esc(leaderName(cfg, r)) +
           (isPlayers ? '<span class="ps-top-team">' + esc(r.teamShort) + "</span>" : "") + "</span>" +
+        (isRegions ? leaderFlag(cfg, r) : "") +
         '<span class="ps-top-rate">' + esc(cfg.rateFn(r)) + "</span>" +
         '<span class="ps-top-val">' + cfg.mainFn(r) + "</span>" +
         "</div>";
@@ -966,7 +970,7 @@
     var rows = filteredRegionRows();
     var h = '<div class="ps-table-wrap"><table class="standings ps-table"><thead><tr>' +
       '<th class="c-pos">#</th>' +
-      thSort("region", "Förbund", "ps-c-name") +
+      thSort("region", "Region", "ps-c-name") +
       thSort("teams", "Lag", "", "Antal lag i turneringen") +
       thSort("played", "M", "", "Spelade lagmatcher (en match räknas per deltagande lag)") +
       thSort("w", "V", "", "Vinster") +
@@ -984,7 +988,7 @@
       thSort("pts", "P", "", "Poäng totalt") +
       "</tr></thead><tbody>";
     if (!rows.length) {
-      h += '<tr><td class="ps-empty" colspan="17">Ingen förbundsstatistik ännu.</td></tr>';
+      h += '<tr><td class="ps-empty" colspan="17">Ingen regionstatistik ännu.</td></tr>';
     } else {
       rows.forEach(function (r, i) { h += regionRowHtml(r, i); });
     }
@@ -1005,13 +1009,13 @@
         '" data-ps-mode="' + mode + '">' + label + "</button>";
     }
     return '<div class="ps-modes" role="tablist" aria-label="Statistiktyp">' +
-      seg("players", "Spelare") + seg("teams", "Lag") + seg("regions", "Förbund") + "</div>";
+      seg("players", "Spelare") + seg("teams", "Lag") + seg("regions", "Region") + "</div>";
   }
 
   function toolbarHtml() {
     if (stateUi.mode === "regions") {
       return '<div class="ps-toolbar ps-toolbar-region">' +
-        '<span class="ps-toolbar-hint">Sammanställning per förbund (världsdel) – klicka på en kolumn för att sortera.</span>' +
+        '<span class="ps-toolbar-hint">Sammanställning per region (världsdel) – klicka på en kolumn för att sortera.</span>' +
         '<span class="ps-count" id="psCount"></span>' +
         "</div>";
     }
@@ -1048,7 +1052,7 @@
 
   function noteHtml() {
     if (stateUi.mode === "regions") {
-      return '<p class="note ps-note">Förbundsstatistiken summerar lagstatistiken per konfederation (världsdel). ' +
+      return '<p class="note ps-note">Regionstatistiken summerar lagstatistiken per konfederation (världsdel). ' +
         "En match räknas en gång per deltagande lag, så interna matcher (t.ex. UEFA–UEFA) ingår och poängen delas inom förbundet – " +
         "totalsiffrorna gynnar därför förbund med många lag. Per-match-värdena (P/M, Mål/M, IM/M) är snitt över förbundets samtliga lagmatcher " +
         "och är mest jämförbara mellan förbund av olika storlek.</p>";
@@ -1087,7 +1091,7 @@
     if (!el) return;
     if (stateUi.mode === "regions") {
       var rn = filteredRegionRows().length;
-      el.textContent = rn + (rn === 1 ? " förbund" : " förbund");
+      el.textContent = rn + (rn === 1 ? " region" : " regioner");
       return;
     }
     if (stateUi.mode === "teams") {
