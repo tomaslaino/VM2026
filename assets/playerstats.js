@@ -29,7 +29,7 @@
   var RR = [ [[0,1],[2,3]], [[0,2],[3,1]], [[3,0],[1,2]] ];
 
   /* Minuter en spelare måste ha spelat för att kvalificera till per-90-toppar. */
-  var QUAL_MIN = 90;
+  var QUAL_MIN = 45;
 
   var details = {};        // resultatnyckel -> matchdetaljer
   var playerRowsCache = null;
@@ -406,7 +406,7 @@
 
   /* Per-90 som skiljedomare: vid lika rubriksiffra (t.ex. lika många mål)
      rankas den med högre mål/90 högre upp – dvs den som gjort det på färre
-     minuter. Men bara för spelare med tillräckligt underlag (>=90 min);
+     minuter. Men bara för spelare med tillräckligt underlag (>=45 min);
      annars skulle korta inhopp (1 mål på 6 min ≈ 15 mål/90) blåsa upp värdet
      och felaktigt toppa listan. Okvalificerade rankas efter kvalificerade och
      sinsemellan på flest spelade minuter. Returnerar positivt om b före a. */
@@ -718,8 +718,8 @@
       thSort("goals", "Mål", "", "Mål i VM 2026") +
       thSort("assists", "Ass", "", "Assist i VM 2026") +
       thSort("points", "P", "", "Poäng = mål + assist") +
-      thSort("g90", "Mål/90", "", "Mål per 90 spelade minuter (kräver minst 90 min)") +
-      thSort("a90", "Ass/90", "", "Assist per 90 spelade minuter (kräver minst 90 min)") +
+      thSort("g90", "Mål/90", "", "Mål per 90 spelade minuter (kräver minst 45 min)") +
+      thSort("a90", "Ass/90", "", "Assist per 90 spelade minuter (kräver minst 45 min)") +
       thSort("y", "Gul", "", "Gula kort") +
       thSort("r", "Röd", "", "Röda kort (inkl. två gula)") +
       thSort("apps", "M", "", "Spelade matcher i VM 2026") +
@@ -843,7 +843,7 @@
         "matcher, vinster/oavgjort/förlust, mål, målskillnad, kort och hållna nollor.</p>";
     }
     return '<p class="note ps-note">Statistik (matcher, minuter, mål, assist, kort) samlas in automatiskt från ' +
-      "matchrapporterna (ESPN) under VM 2026. Mål/90 och assist/90 visas för spelare med minst 90 spelade minuter. " +
+      "matchrapporterna (ESPN) under VM 2026. Mål/90 och assist/90 visas för spelare med minst 45 spelade minuter. " +
       "Truppdata – position, ålder, klubb – kommer från Wikipedia. Klicka på en spelare för full profil.</p>";
   }
 
