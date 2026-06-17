@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-17T19:33:07.791Z",
+    "updatedAt": "2026-06-17T21:32:25.467Z",
     "source": "espn"
   },
   "details": {
@@ -9427,6 +9427,417 @@
         }
       ],
       "updatedAt": "2026-06-17T19:33:07.791Z"
+    },
+    "g:L:0": {
+      "espnId": "760437",
+      "status": "IN_PLAY",
+      "minute": 68,
+      "utcDate": "2026-06-17T20:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 3,
+          "a": 2
+        },
+        "ht": {
+          "h": 2,
+          "a": 2
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 12,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Harry Kane",
+          "assist": null,
+          "type": "PENALTY",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        },
+        {
+          "minute": 36,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Martin Baturina",
+          "assist": "Petar Sucic",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        },
+        {
+          "minute": 42,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Harry Kane",
+          "assist": "Declan Rice",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 1
+          }
+        },
+        {
+          "minute": 45,
+          "injuryTime": 5,
+          "team": "a",
+          "scorer": "Petar Musa",
+          "assist": "Ivan Perisic",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 2
+          }
+        },
+        {
+          "minute": 47,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Jude Bellingham",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 3,
+            "a": 2
+          }
+        }
+      ],
+      "bookings": [],
+      "subs": [
+        {
+          "minute": 58,
+          "team": "a",
+          "in": "Mateo Kovacic",
+          "out": "Luka Modric"
+        },
+        {
+          "minute": 66,
+          "team": "a",
+          "in": "Igor Matanovic",
+          "out": "Petar Musa"
+        },
+        {
+          "minute": 66,
+          "team": "a",
+          "in": "Marco Pasalic",
+          "out": "Luka Vuskovic"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Jordan Pickford",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Reece James",
+              "jersey": "24",
+              "pos": "RB"
+            },
+            {
+              "name": "Nico O'Reilly",
+              "jersey": "3",
+              "pos": "LB"
+            },
+            {
+              "name": "Declan Rice",
+              "jersey": "4",
+              "pos": "LM"
+            },
+            {
+              "name": "Ezri Konsa",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "John Stones",
+              "jersey": "5",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Noni Madueke",
+              "jersey": "20",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Elliot Anderson",
+              "jersey": "8",
+              "pos": "RM"
+            },
+            {
+              "name": "Harry Kane",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Jude Bellingham",
+              "jersey": "10",
+              "pos": "AM"
+            },
+            {
+              "name": "Anthony Gordon",
+              "jersey": "18",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Morgan Rogers",
+              "jersey": "17"
+            },
+            {
+              "name": "Jordan Henderson",
+              "jersey": "14"
+            },
+            {
+              "name": "Eberechi Eze",
+              "jersey": "21"
+            },
+            {
+              "name": "Ivan Toney",
+              "jersey": "22"
+            },
+            {
+              "name": "Ollie Watkins",
+              "jersey": "19"
+            },
+            {
+              "name": "Kobbie Mainoo",
+              "jersey": "16"
+            },
+            {
+              "name": "Jarell Quansah",
+              "jersey": "26"
+            },
+            {
+              "name": "Djed Spence",
+              "jersey": "25"
+            },
+            {
+              "name": "Dan Burn",
+              "jersey": "15"
+            },
+            {
+              "name": "James Trafford",
+              "jersey": "23"
+            },
+            {
+              "name": "Marc Guéhi",
+              "jersey": "6"
+            },
+            {
+              "name": "Dean Henderson",
+              "jersey": "13"
+            },
+            {
+              "name": "Marcus Rashford",
+              "jersey": "11"
+            },
+            {
+              "name": "Bukayo Saka",
+              "jersey": "7"
+            }
+          ]
+        },
+        "a": {
+          "formation": "3-4-2-1",
+          "starters": [
+            {
+              "name": "Dominik Livakovic",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Josip Stanisic",
+              "jersey": "2",
+              "pos": "RM"
+            },
+            {
+              "name": "Ivan Perisic",
+              "jersey": "14",
+              "pos": "LM"
+            },
+            {
+              "name": "Josko Gvardiol",
+              "jersey": "4",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Luka Vuskovic",
+              "jersey": "22",
+              "pos": "CD"
+            },
+            {
+              "name": "Josip Sutalo",
+              "jersey": "6",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Luka Modric",
+              "jersey": "10",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Mario Pasalic",
+              "jersey": "15",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Petar Musa",
+              "jersey": "26",
+              "pos": "F"
+            },
+            {
+              "name": "Petar Sucic",
+              "jersey": "17",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Martin Baturina",
+              "jersey": "16",
+              "pos": "CF-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Nikola Vlasic",
+              "jersey": "13"
+            },
+            {
+              "name": "Duje Caleta-Car",
+              "jersey": "5"
+            },
+            {
+              "name": "Luka Sucic",
+              "jersey": "21"
+            },
+            {
+              "name": "Ante Budimir",
+              "jersey": "11"
+            },
+            {
+              "name": "Mateo Kovacic",
+              "jersey": "8",
+              "in": true
+            },
+            {
+              "name": "Toni Fruk",
+              "jersey": "19"
+            },
+            {
+              "name": "Igor Matanovic",
+              "jersey": "20",
+              "in": true
+            },
+            {
+              "name": "Andrej Kramaric",
+              "jersey": "9"
+            },
+            {
+              "name": "Dominik Kotarski",
+              "jersey": "23"
+            },
+            {
+              "name": "Nikola Moro",
+              "jersey": "7"
+            },
+            {
+              "name": "Martin Erlic",
+              "jersey": "25"
+            },
+            {
+              "name": "Marin Pongracic",
+              "jersey": "3"
+            },
+            {
+              "name": "Kristijan Jakic",
+              "jersey": "18"
+            },
+            {
+              "name": "Marco Pasalic",
+              "jersey": "24",
+              "in": true
+            },
+            {
+              "name": "Ivor Pandur",
+              "jersey": "12"
+            }
+          ]
+        }
+      },
+      "referee": "Clément Turpin",
+      "venue": "AT&T Stadium, Arlington, Texas",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "55%",
+          "a": "45%"
+        },
+        {
+          "key": "totalShots",
+          "h": "18",
+          "a": "4"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "10",
+          "a": "2"
+        },
+        {
+          "key": "wonCorners",
+          "h": "8",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "8",
+          "a": "8"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "7"
+        },
+        {
+          "key": "totalPasses",
+          "h": "349",
+          "a": "295"
+        },
+        {
+          "key": "passPct",
+          "h": "85%",
+          "a": "84%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-17T21:32:25.467Z"
     }
   }
 }

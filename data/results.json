@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-17T19:33:07.478Z",
+    "updatedAt": "2026-06-17T21:32:25.433Z",
     "source": "espn",
-    "matchCount": 21,
-    "liveCount": 0,
+    "matchCount": 22,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -111,9 +111,23 @@
       "h": 1,
       "a": 1,
       "status": "FINISHED"
+    },
+    "g:L:0": {
+      "h": 3,
+      "a": 2,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:L:0",
+      "status": "IN_PLAY",
+      "minute": 53,
+      "home": "England",
+      "away": "Croatia",
+      "score": "3-2"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -476,7 +490,7 @@
       "date": "2026-06-17",
       "time": "22:00",
       "utcDate": "2026-06-17T20:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "England",
       "away": "Croatia",
