@@ -2600,6 +2600,12 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 }
 .pm-val { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .pm-lbl { font-size: 11px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .04em; }
+/* Uppdelning under totalen: bastal (före VM) + grönt VM-tillägg */
+.pm-split {
+  margin-top: 4px; font-size: 11.5px; font-weight: 600; line-height: 1;
+  color: var(--ink-soft); font-variant-numeric: tabular-nums;
+}
+.pm-split-plus { color: var(--adv); font-weight: 800; }
 .pm-info { margin-top: 16px; display: flex; flex-direction: column; }
 .pm-row {
   display: flex; align-items: baseline; justify-content: space-between; gap: 12px;

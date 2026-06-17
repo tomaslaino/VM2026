@@ -158,17 +158,25 @@
   }
 
   /** Statruta där Wikipedia-bastalet (base) summeras med det spelaren samlat
-      på sig i VM 2026 (add). Tillskottet visas som en grön "+N"-bricka så att
-      det tydligt syns vad som tillkommit under turneringen. */
+      på sig i VM 2026 (add). Det stora talet är totalen (base + add); en liten
+      rad under etiketten visar uppdelningen "<före> + <VM>" så att totalen inte
+      kan förväxlas med en summa som ännu inte är gjord (t.ex. "31 +1" = totalt
+      31, inte 32). */
   function statCellPlus(base, add, label) {
     add = add || 0;
     var total = base == null ? (add > 0 ? add : null) : base + add;
-    var plus = add > 0
-      ? '<span class="pm-plus" title="' + add + ' nytt i VM 2026">+' + add + '</span>'
-      : "";
+    var split = "";
+    if (add > 0 && base != null) {
+      split = '<span class="pm-split" title="' + base + ' före VM-slutspelet + ' +
+        add + ' i VM 2026 = ' + total + ' totalt">' + esc(base) +
+        ' <span class="pm-split-plus">+' + add + '</span></span>';
+    } else if (add > 0) {
+      split = '<span class="pm-split"><span class="pm-split-plus">+' + add +
+        '</span> i VM 2026</span>';
+    }
     return '<div class="pm-stat"><span class="pm-val">' +
-      (total == null ? "–" : esc(total)) + plus + '</span>' +
-      '<span class="pm-lbl">' + esc(label) + '</span></div>';
+      (total == null ? "–" : esc(total)) + '</span>' +
+      '<span class="pm-lbl">' + esc(label) + '</span>' + split + '</div>';
   }
 
   function infoRow(label, val) {
@@ -197,8 +205,9 @@
         infoRow("Klubb", player.club) +
         infoRow("Klubbland", player.club_country) +
       '</div>' +
-      '<div class="pm-note">Bastal från Wikipedia (före VM-slutspelet). ' +
-        'Gröna <span class="pm-plus pm-plus-inline">+N</span> är tillagt från VM 2026.</div>';
+      '<div class="pm-note">Stora talet är totalen. Raden under visar antalet ' +
+        'före VM-slutspelet (från Wikipedia) + grönt tillägg ' +
+        '<span class="pm-plus pm-plus-inline">+N</span> under VM 2026.</div>';
   }
 
   /** VM 2026-fliken: enbart det spelaren gjort under detta VM. */
