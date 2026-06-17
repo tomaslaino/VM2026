@@ -1168,11 +1168,13 @@ html.view-bracket body {
   background-color: #04060c;
   /* Matchar den globala .site-bg-tonen (nästan svart navy) så slutspelet ligger
      i samma mörka färgsignatur som övriga sidor. Samma röd/blå rampljus och en
-     pokalbild som mörkas ner kraftigt så den bara anas längst ned. */
+     pokalbild. Tonöverlägget är lite lättare än förr så att pokalbilden hamnar
+     på ungefär samma ljusstyrka som startsidans hjältebild – fas-kolumnernas
+     halvgenomskinliga panel dämpar den ändå så att den inte sticker ut. */
   background-image:
     radial-gradient(1000px 620px at 86% -2%, rgba(196, 30, 58, .12), transparent 60%),
     radial-gradient(900px 600px at 4% 2%, rgba(61, 109, 181, .13), transparent 60%),
-    linear-gradient(180deg, rgba(4,8,16,.965) 0%, rgba(5,10,20,.93) 48%, rgba(3,6,12,.985) 100%),
+    linear-gradient(180deg, rgba(4,8,16,.90) 0%, rgba(5,10,20,.84) 48%, rgba(3,6,12,.92) 100%),
     url("bracket-bg.png");
   background-position: center, center, center center, center top;
   background-size: auto, auto, auto, auto 110%;

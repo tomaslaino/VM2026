@@ -1472,6 +1472,11 @@
     return '<span class="grp-letter grp-' + u + '">' + esc(u) + '</span>';
   }
 
+  /* Binder slutspelsnumret till sitt rundord med hårt mellanslag så att de smala
+     trädrutorna bryter platshållaren som "Vinnare" / "åttondelsfinal 2" i stället
+     för att lämna en ensam siffra på egen rad (ser kapad/ofärdig ut). */
+  function bindKoNum(s) { return s.replace(/ (\d+)$/, "\u00A0$1"); }
+
   /* Seed-etikett som HTML där gruppbokstäverna är färgkodade, t.ex.
      "Etta grupp E" eller "3:a grupp A/B/C/D/F". Match-platshållare
      ("Vinnare sextondelsfinal 3") saknar grupp och visas som ren text. */
@@ -1480,8 +1485,8 @@
     if (slot.t === "w") return "Etta grupp " + grpLetter(slot.g);
     if (slot.t === "r") return "Tvåa grupp " + grpLetter(slot.g);
     if (slot.t === "3") return "3:a grupp " + slot.from.map(grpLetter).join("/");
-    if (slot.t === "wm") return "Vinnare " + esc(koRefLabel(slot.m));
-    if (slot.t === "lm") return "Förlorare " + esc(koRefLabel(slot.m));
+    if (slot.t === "wm") return "Vinnare " + bindKoNum(esc(koRefLabel(slot.m)));
+    if (slot.t === "lm") return "Förlorare " + bindKoNum(esc(koRefLabel(slot.m)));
     return "?";
   }
 
