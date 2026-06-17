@@ -926,18 +926,20 @@ html.view-bracket .site-bg { display: none; }
 }
 .group-pill.is-lg { font-size: 13px; padding: 5px 13px; letter-spacing: .2px; }
 /* Gruppfärger – dämpade accenter i samma stil som kalenderbadges (R32/QF …) */
-.group-pill.grp-A, .cal-badge.grp.grp-A { --grp-accent: #c41e3a; --grp-fg: #e8aab2; }
-.group-pill.grp-B, .cal-badge.grp.grp-B { --grp-accent: #3d6db5; --grp-fg: #9eb8e8; }
-.group-pill.grp-C, .cal-badge.grp.grp-C { --grp-accent: #2a8a82; --grp-fg: #8ec9c4; }
-.group-pill.grp-D, .cal-badge.grp.grp-D { --grp-accent: #b86a28; --grp-fg: #e0b888; }
-.group-pill.grp-E, .cal-badge.grp.grp-E { --grp-accent: #6b52a8; --grp-fg: #b8a8dc; }
-.group-pill.grp-F, .cal-badge.grp.grp-F { --grp-accent: #2a8a55; --grp-fg: #8ccaa8; }
-.group-pill.grp-G, .cal-badge.grp.grp-G { --grp-accent: #9a8230; --grp-fg: #d4c088; }
-.group-pill.grp-H, .cal-badge.grp.grp-H { --grp-accent: #a84878; --grp-fg: #d8a0bc; }
-.group-pill.grp-I, .cal-badge.grp.grp-I { --grp-accent: #a83848; --grp-fg: #d89098; }
-.group-pill.grp-J, .cal-badge.grp.grp-J { --grp-accent: #3888a8; --grp-fg: #98c8dc; }
-.group-pill.grp-K, .cal-badge.grp.grp-K { --grp-accent: #5a8848; --grp-fg: #a8c898; }
-.group-pill.grp-L, .cal-badge.grp.grp-L { --grp-accent: #5868a8; --grp-fg: #a8b0d8; }
+.group-pill.grp-A, .cal-badge.grp.grp-A, .grp-letter.grp-A { --grp-accent: #c41e3a; --grp-fg: #e8aab2; }
+.group-pill.grp-B, .cal-badge.grp.grp-B, .grp-letter.grp-B { --grp-accent: #3d6db5; --grp-fg: #9eb8e8; }
+.group-pill.grp-C, .cal-badge.grp.grp-C, .grp-letter.grp-C { --grp-accent: #2a8a82; --grp-fg: #8ec9c4; }
+.group-pill.grp-D, .cal-badge.grp.grp-D, .grp-letter.grp-D { --grp-accent: #b86a28; --grp-fg: #e0b888; }
+.group-pill.grp-E, .cal-badge.grp.grp-E, .grp-letter.grp-E { --grp-accent: #6b52a8; --grp-fg: #b8a8dc; }
+.group-pill.grp-F, .cal-badge.grp.grp-F, .grp-letter.grp-F { --grp-accent: #2a8a55; --grp-fg: #8ccaa8; }
+.group-pill.grp-G, .cal-badge.grp.grp-G, .grp-letter.grp-G { --grp-accent: #9a8230; --grp-fg: #d4c088; }
+.group-pill.grp-H, .cal-badge.grp.grp-H, .grp-letter.grp-H { --grp-accent: #a84878; --grp-fg: #d8a0bc; }
+.group-pill.grp-I, .cal-badge.grp.grp-I, .grp-letter.grp-I { --grp-accent: #a83848; --grp-fg: #d89098; }
+.group-pill.grp-J, .cal-badge.grp.grp-J, .grp-letter.grp-J { --grp-accent: #3888a8; --grp-fg: #98c8dc; }
+.group-pill.grp-K, .cal-badge.grp.grp-K, .grp-letter.grp-K { --grp-accent: #5a8848; --grp-fg: #a8c898; }
+.group-pill.grp-L, .cal-badge.grp.grp-L, .grp-letter.grp-L { --grp-accent: #5868a8; --grp-fg: #a8b0d8; }
+/* Färgad gruppbokstav i seed-etiketter (Etta grupp E, 3:a grupp A/B/C …). */
+.grp-letter { font-weight: 900; font-style: normal; color: var(--grp-fg, currentColor); }
 .group-pill[class*="grp-"],
 .cal-badge.grp[class*="grp-"] {
   color: var(--grp-fg);
@@ -1258,6 +1260,48 @@ html.view-bracket .bracket .round-title.bracket-jump:hover { color: color-mix(in
 html.view-bracket .bracket .round-title.bracket-jump.final-label:hover { color: color-mix(in srgb, var(--gold) 75%, #fff); }
 html.view-bracket .bracket .round-title.bracket-jump.bronze-title:hover {
   color: color-mix(in srgb, var(--gold) 75%, #fff);
+}
+
+/* Knapprad: växla trädet mellan platsetiketter och oddsfavoriter. */
+.bracket-modebar {
+  flex: none;
+  display: flex;
+  justify-content: center;
+  padding: 4px 12px 10px;
+}
+.bmode-seg {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+}
+.bmode-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: inherit;
+  cursor: pointer;
+  padding: 6px 18px;
+  border-radius: 999px;
+  transition: background .15s, color .15s, box-shadow .15s;
+}
+.bmode-btn .bmode-lbl { font-weight: 800; font-size: 13px; letter-spacing: .2px; }
+.bmode-btn .bmode-sub { font-size: 10px; opacity: .82; }
+.bmode-btn:hover { color: var(--ink); }
+.bmode-btn.on {
+  background: color-mix(in srgb, var(--usa-blue) 32%, var(--bg-soft));
+  color: var(--ink);
+  box-shadow: 0 1px 7px rgba(0,0,0,.28);
+}
+@media (max-width: 560px) {
+  .bmode-btn { padding: 6px 13px; }
+  .bmode-btn .bmode-sub { display: none; }
 }
 
 
@@ -3033,6 +3077,16 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .ps-table td.ps-c-club span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ps-table .ps-c-pos { width: 2.6rem; color: var(--ink-soft); font-size: 12px; font-weight: 600; }
 .ps-table .ps-c-conf { text-align: left; min-width: 86px; color: var(--ink-soft); font-size: 11.5px; font-weight: 700; letter-spacing: .2px; white-space: nowrap; }
+/* Litet förbundsmärke (UEFA m.fl.) – ersätter flaggan i förbundsläget.
+   Mellanrum till namnet kommer från förälderns flex-gap (.team/.ps-*-row). */
+.ps-conf-badge {
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  padding: 1px 6px; min-width: 22px; height: 16px;
+  font-size: 10px; font-weight: 800; letter-spacing: .3px;
+  color: var(--ink-soft); background: var(--bg-soft);
+  border: 1px solid var(--line-strong); border-radius: 5px; white-space: nowrap;
+}
+.ps-toolbar-hint { font-size: 12.5px; color: var(--ink-soft); line-height: 1.4; }
 .ps-sortable { cursor: pointer; user-select: none; }
 .ps-sortable:hover { color: var(--ink); }
 .ps-sortable.sort-on { color: var(--ink); }

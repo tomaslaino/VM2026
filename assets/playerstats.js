@@ -34,12 +34,13 @@
   var details = {};        // resultatnyckel -> matchdetaljer
   var playerRowsCache = null;
   var teamRowsCache = null;
+  var regionRowsCache = null;
   var pidIndex = null;     // pid -> spelarrad (för uppslag utifrån, t.ex. spelarmodalen)
   var rootEl = null;       // monteringspunkt (sätts av mount)
 
   /* UI-läge (ej persistent) */
   var stateUi = {
-    mode: "players",     // "players" | "teams"
+    mode: "players",     // "players" | "teams" | "regions"
     q: "",
     team: "",            // iso eller "" = alla
     pos: "",             // GK/DF/MF/FW eller "" = alla
@@ -47,7 +48,8 @@
     limit: 50,
     sort: {
       players: { key: "points", dir: -1 },
-      teams:   { key: "points", dir: -1 }
+      teams:   { key: "points", dir: -1 },
+      regions: { key: "ppm",    dir: -1 }
     }
   };
 
@@ -370,6 +372,49 @@
     return rows;
   }
 
+  /* ---------- Bygg förbundsrader (aggregerat per konfederation) ----------
+
+     Summerar lagraderna per förbund. En match räknas en gång per deltagande
+     lag, så en intern match (t.ex. UEFA–UEFA) bidrar med två lagmatcher till
+     förbundet och poängen/målen delas inom samma förbund. Per-match-värdena
+     är därför snitt över förbundets samtliga lagmatcher – se noteHtml(). */
+
+  function buildRegionRows() {
+    if (regionRowsCache) return regionRowsCache;
+    var byConf = {};
+    ((window.WC && WC.confeds) || []).forEach(function (c) {
+      byConf[c.code] = {
+        conf: c.code, code: c.code, region: c.region,
+        teams: 0, played: 0, w: 0, d: 0, l: 0, pts: 0,
+        gf: 0, ga: 0, gd: 0, y: 0, r: 0, cs: 0
+      };
+    });
+
+    buildTeamRows().forEach(function (t) {
+      var r = byConf[t.conf];
+      if (!r) return;
+      r.teams++;
+      r.played += t.played;
+      r.w += t.w; r.d += t.d; r.l += t.l;
+      r.pts += t.pts;
+      r.gf += t.gf; r.ga += t.ga;
+      r.y += t.y; r.r += t.r; r.cs += t.cs;
+    });
+
+    var rows = Object.keys(byConf).map(function (code) {
+      var r = byConf[code];
+      r.gd = r.gf - r.ga;
+      r.ppm = r.played > 0 ? r.pts / r.played : 0;   // poäng per match
+      r.gpm = r.played > 0 ? r.gf / r.played : 0;    // gjorda mål per match
+      r.gapm = r.played > 0 ? r.ga / r.played : 0;   // insläppta mål per match
+      r.played0 = r.played === 0;
+      return r;
+    }).filter(function (r) { return r.teams > 0; });
+
+    regionRowsCache = rows;
+    return rows;
+  }
+
   /* ---------- Sorteringsdefinitioner ---------- */
 
   var PLAYER_SORTS = {
@@ -406,6 +451,32 @@
     cs:      { type: "num", get: function (r) { return r.cs; } },
     pts:     { type: "num", get: function (r) { return r.pts; } }
   };
+
+  var REGION_SORTS = {
+    region:  { type: "str", get: function (r) { return r.region; } },
+    teams:   { type: "num", get: function (r) { return r.teams; } },
+    played:  { type: "num", get: function (r) { return r.played; } },
+    w:       { type: "num", get: function (r) { return r.w; } },
+    d:       { type: "num", get: function (r) { return r.d; } },
+    l:       { type: "num", get: function (r) { return r.l; } },
+    gf:      { type: "num", get: function (r) { return r.gf; } },
+    ga:      { type: "num", get: function (r) { return r.ga; } },
+    gd:      { type: "num", get: function (r) { return r.gd; } },
+    ppm:     { type: "num", get: function (r) { return r.ppm; } },
+    gpm:     { type: "num", get: function (r) { return r.gpm; } },
+    gapm:    { type: "num", get: function (r) { return r.gapm; } },
+    cs:      { type: "num", get: function (r) { return r.cs; } },
+    y:       { type: "num", get: function (r) { return r.y; } },
+    r:       { type: "num", get: function (r) { return r.r; } },
+    pts:     { type: "num", get: function (r) { return r.pts; } }
+  };
+
+  /* Aktuell sorteringsuppsättning för rådande läge. */
+  function sortDefs() {
+    return stateUi.mode === "teams" ? TEAM_SORTS
+      : stateUi.mode === "regions" ? REGION_SORTS
+      : PLAYER_SORTS;
+  }
 
   /* Per-90 som skiljedomare: vid lika rubriksiffra (t.ex. lika många mål)
      rankas den med högre mål/90 högre upp – dvs den som gjort det på färre
@@ -472,6 +543,17 @@
     return (b.pts - a.pts) || (b.gd - a.gd) || (b.gf - a.gf) || a.sv.localeCompare(b.sv, "sv");
   }
 
+  function cmpRegions(a, b) {
+    var st = stateUi.sort.regions;
+    var s = REGION_SORTS[st.key] || REGION_SORTS.ppm;
+    var av = s.get(a), bv = s.get(b), d = 0;
+    if (s.type === "num") d = (av == null ? -Infinity : av) - (bv == null ? -Infinity : bv);
+    else d = String(av).localeCompare(String(bv), "sv");
+    d *= st.dir;
+    if (d) return d;
+    return (b.ppm - a.ppm) || (b.gd - a.gd) || (b.gf - a.gf) || a.region.localeCompare(b.region, "sv");
+  }
+
   /* ---------- Filtrering ---------- */
 
   function filteredPlayerRows() {
@@ -494,6 +576,10 @@
     }).sort(cmpTeams);
   }
 
+  function filteredRegionRows() {
+    return buildRegionRows().slice().sort(cmpRegions);
+  }
+
   /* Förbund som faktiskt har lag i turneringen, i WC.confeds visningsordning. */
   function teamConfeds() {
     var present = {};
@@ -507,8 +593,44 @@
     return '<span class="cards-cell"><span class="card-ico ' + kind + '" aria-hidden="true"></span>' + n + "</span>";
   }
 
+  /* Litet förbundsmärke (UEFA m.fl.) – ersätter flaggan i förbundsläget. */
+  function confBadge(code) {
+    return '<span class="ps-conf-badge">' + esc(code) + "</span>";
+  }
+  /* Ledarkortets vänsterikon: flagga för spelare/lag, förbundsmärke för förbund. */
+  function leaderFlag(cfg, r) {
+    if (cfg.kind === "regions") return confBadge(r.code);
+    return flagImg(r.iso || r.teamIso);
+  }
+
   /* Returnerar konfig för de tre topplistorna i aktuellt läge. */
   function leaderConfigs() {
+    if (stateUi.mode === "regions") {
+      var rrows = buildRegionRows();
+      return [
+        {
+          id: "ppm", kind: "regions", title: "Bäst poäng/match", icon: "🏆", rows: rrows,
+          valFn: function (r) { return r.played; },
+          rankFn: function (r) { return r.ppm; },
+          mainFn: function (r) { return fmt2(r.ppm); },
+          rateFn: function (r) { return r.pts + " p · " + r.played + " matcher"; }
+        },
+        {
+          id: "rgpm", kind: "regions", title: "Flest mål/match", icon: "⚽", rows: rrows,
+          valFn: function (r) { return r.played; },
+          rankFn: function (r) { return r.gpm; },
+          mainFn: function (r) { return fmt2(r.gpm); },
+          rateFn: function (r) { return r.gf + " mål totalt"; }
+        },
+        {
+          id: "rgapm", kind: "regions", title: "Tightast försvar", icon: "🛡️", rows: rrows,
+          valFn: function (r) { return r.played; },
+          rankFn: function (r) { return -r.gapm; },
+          mainFn: function (r) { return fmt2(r.gapm); },
+          rateFn: function (r) { return r.ga + " insläppta totalt"; }
+        }
+      ];
+    }
     if (stateUi.mode === "teams") {
       var trows = buildTeamRows();
       return [
@@ -570,18 +692,22 @@
     return cfg.rows.filter(function (r) { return cfg.valFn(r) > 0; })
       .sort(function (a, b) {
         return (rank(b) - rank(a)) ||
-          (cfg.kind === "teams" ? (b.pts - a.pts) : (b.points - a.points)) ||
+          (cfg.kind === "players" ? (b.points - a.points) : (b.pts - a.pts)) ||
           (cfg.tieKind ? per90Tie(a, b, cfg.tieKind) : 0) ||
-          (cfg.kind === "teams" ? 0 : (b.min - a.min));
+          (cfg.kind === "players" ? (b.min - a.min) : 0);
       })
       .slice(0, n);
   }
 
   function leaderName(cfg, r) {
-    return cfg.kind === "teams" ? r.sv : r.name;
+    if (cfg.kind === "teams") return r.sv;
+    if (cfg.kind === "regions") return r.region;
+    return r.name;
   }
   function leaderTitle(cfg, r) {
-    return cfg.kind === "teams" ? r.sv : (r.name + " · " + r.teamSv);
+    if (cfg.kind === "teams") return r.sv;
+    if (cfg.kind === "regions") return r.code + " – " + r.region;
+    return r.name + " · " + r.teamSv;
   }
 
   function leaderCard(cfg) {
@@ -592,7 +718,7 @@
     top.forEach(function (r, i) {
       h += '<div class="ps-leader-row' + (i === 0 ? " first" : "") + '">' +
         '<span class="ps-leader-pos">' + (i + 1) + "</span>" +
-        flagImg(r.iso || r.teamIso) +
+        leaderFlag(cfg, r) +
         '<span class="ps-leader-name" title="' + esc(leaderTitle(cfg, r)) + '">' + esc(leaderName(cfg, r)) + "</span>" +
         '<span class="ps-leader-val">' + cfg.mainFn(r) + "</span>" +
         "</div>";
@@ -633,31 +759,33 @@
     var cfg = leaderConfigs().filter(function (c) { return c.id === id; })[0];
     if (!cfg) return;
     var top = leaderRanked(cfg, 20);
-    var isTeam = cfg.kind === "teams";
+    var isPlayers = cfg.kind === "players";
+    var kindLabel = cfg.kind === "teams" ? "lag" : cfg.kind === "regions" ? "förbund" : "spelare";
     var rows = top.map(function (r, i) {
-      var clickable = !isTeam && r.pid;
+      var clickable = isPlayers && r.pid;
       return '<div class="ps-top-row' + (i === 0 ? " first" : "") + '"' +
         (clickable ? ' data-ps-player="' + esc(r.pid) + '" role="button" tabindex="0"' : "") + ">" +
         '<span class="ps-top-pos">' + (i + 1) + "</span>" +
-        flagImg(r.iso || r.teamIso) +
+        leaderFlag(cfg, r) +
         '<span class="ps-top-name">' + esc(leaderName(cfg, r)) +
-          (isTeam ? "" : '<span class="ps-top-team">' + esc(r.teamShort) + "</span>") + "</span>" +
+          (isPlayers ? '<span class="ps-top-team">' + esc(r.teamShort) + "</span>" : "") + "</span>" +
         '<span class="ps-top-rate">' + esc(cfg.rateFn(r)) + "</span>" +
         '<span class="ps-top-val">' + cfg.mainFn(r) + "</span>" +
         "</div>";
     }).join("");
+
+    var note = cfg.kind === "teams" ? "Värdena bredvid visar lagets snitt per match."
+      : cfg.kind === "regions" ? "Värdena bredvid visar förbundets totaler. Per-match-värdet räknas över förbundets samtliga lagmatcher."
+      : "Värdet till höger visar antalet per 90 spelade minuter (för mål/assist) respektive antal matcher. Klicka på en spelare för full profil.";
 
     var m = ensureModal();
     m.querySelector(".ps-modal-card").innerHTML =
       '<button class="ps-modal-close" title="Stäng">×</button>' +
       '<div class="ps-modal-head"><span class="ps-modal-icon">' + cfg.icon + "</span>" +
         "<h3>" + esc(cfg.title) + "</h3>" +
-        '<span class="ps-modal-sub">Topp ' + top.length + " · " + (isTeam ? "lag" : "spelare") + "</span></div>" +
+        '<span class="ps-modal-sub">Topp ' + top.length + " · " + kindLabel + "</span></div>" +
       '<div class="ps-top-list">' + (rows || '<div class="ps-empty">Ingen statistik ännu.</div>') + "</div>" +
-      '<div class="ps-modal-note">' + (isTeam
-        ? "Värdena bredvid visar lagets snitt per match."
-        : "Värdet till höger visar antalet per 90 spelade minuter (för mål/assist) respektive antal matcher.") +
-        (isTeam ? "" : " Klicka på en spelare för full profil.") + "</div>";
+      '<div class="ps-modal-note">' + note + "</div>";
     m.classList.add("open");
   }
 
@@ -668,7 +796,6 @@
   /* ---------- Tabell: gemensam sorteringsrubrik ---------- */
 
   function thSort(key, label, cls, title) {
-    var defs = stateUi.mode === "teams" ? TEAM_SORTS : PLAYER_SORTS;
     var st = stateUi.sort[stateUi.mode];
     var on = st.key === key;
     return '<th class="ps-sortable ' + (cls || "") + (on ? " sort-on" : "") + '" data-ps-sort="' + key + '"' +
@@ -808,8 +935,67 @@
     return h;
   }
 
+  /* ---------- Förbundstabell ---------- */
+
+  function regionRowHtml(r, i) {
+    var p0 = r.played0;
+    var dash = '<span class="ps-zero">–</span>';
+    return '<tr>' +
+      '<td class="c-pos">' + (i + 1) + "</td>" +
+      '<td class="ps-c-name"><span class="team">' + confBadge(r.code) +
+        '<span class="t-name" title="' + esc(r.code + " – " + r.region) + '">' + esc(r.region) + "</span></span></td>" +
+      '<td class="c-stat">' + r.teams + "</td>" +
+      '<td class="c-stat">' + (p0 ? dash : r.played) + "</td>" +
+      '<td class="c-stat">' + num(r.w) + "</td>" +
+      '<td class="c-stat">' + num(r.d) + "</td>" +
+      '<td class="c-stat">' + num(r.l) + "</td>" +
+      '<td class="c-stat ps-num' + (r.gf ? " hot" : "") + '">' + (r.gf || dash) + "</td>" +
+      '<td class="c-stat">' + (p0 ? dash : r.ga) + "</td>" +
+      '<td class="c-stat ps-num">' + (p0 ? dash : (r.gd > 0 ? "+" + r.gd : r.gd)) + "</td>" +
+      '<td class="c-stat ps-num ps-pts">' + (p0 ? dash : fmt2(r.ppm)) + "</td>" +
+      '<td class="c-stat ps-rate">' + (p0 ? dash : fmt2(r.gpm)) + "</td>" +
+      '<td class="c-stat ps-rate">' + (p0 ? dash : fmt2(r.gapm)) + "</td>" +
+      '<td class="c-stat">' + num(r.cs) + "</td>" +
+      '<td class="c-stat">' + cardsCell(r.y, "y") + "</td>" +
+      '<td class="c-stat">' + cardsCell(r.r, "r") + "</td>" +
+      '<td class="c-stat ps-num ps-pts">' + (p0 ? dash : r.pts) + "</td>" +
+      "</tr>";
+  }
+
+  function regionTableHtml() {
+    var rows = filteredRegionRows();
+    var h = '<div class="ps-table-wrap"><table class="standings ps-table"><thead><tr>' +
+      '<th class="c-pos">#</th>' +
+      thSort("region", "Förbund", "ps-c-name") +
+      thSort("teams", "Lag", "", "Antal lag i turneringen") +
+      thSort("played", "M", "", "Spelade lagmatcher (en match räknas per deltagande lag)") +
+      thSort("w", "V", "", "Vinster") +
+      thSort("d", "O", "", "Oavgjorda") +
+      thSort("l", "F", "", "Förluster") +
+      thSort("gf", "GM", "", "Gjorda mål") +
+      thSort("ga", "IM", "", "Insläppta mål") +
+      thSort("gd", "MS", "", "Målskillnad") +
+      thSort("ppm", "P/M", "", "Poäng per match") +
+      thSort("gpm", "Mål/M", "", "Gjorda mål per match") +
+      thSort("gapm", "IM/M", "", "Insläppta mål per match") +
+      thSort("cs", "Nollor", "", "Matcher utan insläppt mål") +
+      thSort("y", "Gul", "", "Gula kort") +
+      thSort("r", "Röd", "", "Röda kort") +
+      thSort("pts", "P", "", "Poäng totalt") +
+      "</tr></thead><tbody>";
+    if (!rows.length) {
+      h += '<tr><td class="ps-empty" colspan="17">Ingen förbundsstatistik ännu.</td></tr>';
+    } else {
+      rows.forEach(function (r, i) { h += regionRowHtml(r, i); });
+    }
+    h += "</tbody></table></div>";
+    return h;
+  }
+
   function tableHtml() {
-    return stateUi.mode === "teams" ? teamTableHtml() : playerTableHtml();
+    if (stateUi.mode === "teams") return teamTableHtml();
+    if (stateUi.mode === "regions") return regionTableHtml();
+    return playerTableHtml();
   }
   /* ---------- Lägesväljare + verktygsrad ---------- */
 
@@ -819,10 +1005,16 @@
         '" data-ps-mode="' + mode + '">' + label + "</button>";
     }
     return '<div class="ps-modes" role="tablist" aria-label="Statistiktyp">' +
-      seg("players", "Spelare") + seg("teams", "Lag") + "</div>";
+      seg("players", "Spelare") + seg("teams", "Lag") + seg("regions", "Förbund") + "</div>";
   }
 
   function toolbarHtml() {
+    if (stateUi.mode === "regions") {
+      return '<div class="ps-toolbar ps-toolbar-region">' +
+        '<span class="ps-toolbar-hint">Sammanställning per förbund (världsdel) – klicka på en kolumn för att sortera.</span>' +
+        '<span class="ps-count" id="psCount"></span>' +
+        "</div>";
+    }
     if (stateUi.mode === "teams") {
       var confList = teamConfeds();
       var confOpts = '<option value="">Alla förbund</option>' + confList.map(function (c) {
@@ -855,6 +1047,12 @@
   }
 
   function noteHtml() {
+    if (stateUi.mode === "regions") {
+      return '<p class="note ps-note">Förbundsstatistiken summerar lagstatistiken per konfederation (världsdel). ' +
+        "En match räknas en gång per deltagande lag, så interna matcher (t.ex. UEFA–UEFA) ingår och poängen delas inom förbundet – " +
+        "totalsiffrorna gynnar därför förbund med många lag. Per-match-värdena (P/M, Mål/M, IM/M) är snitt över förbundets samtliga lagmatcher " +
+        "och är mest jämförbara mellan förbund av olika storlek.</p>";
+    }
     if (stateUi.mode === "teams") {
       return '<p class="note ps-note">Lagstatistiken räknas fram automatiskt ur matchresultaten (ESPN) under VM 2026: ' +
         "matcher, vinster/oavgjort/förlust, mål, målskillnad, kort och hållna nollor.</p>";
@@ -887,6 +1085,11 @@
   function updateCount() {
     var el = document.getElementById("psCount");
     if (!el) return;
+    if (stateUi.mode === "regions") {
+      var rn = filteredRegionRows().length;
+      el.textContent = rn + (rn === 1 ? " förbund" : " förbund");
+      return;
+    }
     if (stateUi.mode === "teams") {
       var tn = filteredTeamRows().length;
       el.textContent = tn + (tn === 1 ? " lag" : " lag");
@@ -917,7 +1120,7 @@
     var th = e.target.closest && e.target.closest("[data-ps-sort]");
     if (th) {
       var key = th.getAttribute("data-ps-sort");
-      var defs = stateUi.mode === "teams" ? TEAM_SORTS : PLAYER_SORTS;
+      var defs = sortDefs();
       var st = stateUi.sort[stateUi.mode];
       if (st.key === key) st.dir = -st.dir;
       else {
@@ -1008,6 +1211,7 @@
     details = next || {};
     playerRowsCache = null;
     teamRowsCache = null;
+    regionRowsCache = null;
     if (rootEl && document.body.contains(rootEl)) render();
   }
 
