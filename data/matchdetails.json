@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-17T17:15:24.760Z",
+    "updatedAt": "2026-06-17T19:33:07.791Z",
     "source": "espn"
   },
   "details": {
@@ -8981,6 +8981,452 @@
         }
       ],
       "updatedAt": "2026-06-17T05:09:28.898Z"
+    },
+    "g:K:4": {
+      "espnId": "760435",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-17T17:00Z",
+      "duration": "REGULAR",
+      "winner": "DRAW",
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 1
+        },
+        "ht": {
+          "h": 1,
+          "a": 1
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 6,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "João Neves",
+          "assist": "Pedro Neto",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        },
+        {
+          "minute": 45,
+          "injuryTime": 5,
+          "team": "h",
+          "scorer": "Yoane Wissa",
+          "assist": "Arthur Masuaku",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 13,
+          "team": "a",
+          "player": "Bernardo Silva",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 32,
+          "team": "h",
+          "player": "Chancel Mbemba",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 88,
+          "team": "a",
+          "player": "Nélson Semedo",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Tomás Araújo",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Francisco Conceição",
+          "out": "Bernardo Silva"
+        },
+        {
+          "minute": 57,
+          "team": "h",
+          "in": "Noah Sadiki",
+          "out": "Ngal'ayel Mukau"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Rafael Leão",
+          "out": "Pedro Neto"
+        },
+        {
+          "minute": 72,
+          "team": "a",
+          "in": "Nélson Semedo",
+          "out": "Nuno Mendes"
+        },
+        {
+          "minute": 74,
+          "team": "h",
+          "in": "Charles Pickel",
+          "out": "Edo Kayembe"
+        },
+        {
+          "minute": 74,
+          "team": "h",
+          "in": "Joris Kayembe",
+          "out": "Arthur Masuaku"
+        },
+        {
+          "minute": 83,
+          "team": "a",
+          "in": "Gonçalo Ramos",
+          "out": "Vitinha "
+        },
+        {
+          "minute": 85,
+          "team": "h",
+          "in": "Gédéon Kalulu",
+          "out": "Aaron Wan-Bissaka"
+        },
+        {
+          "minute": 85,
+          "team": "h",
+          "in": "Simon Banza",
+          "out": "Cédric Bakambu"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "5-3-2",
+          "starters": [
+            {
+              "name": "Lionel Mpasi",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Aaron Wan-Bissaka",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Arthur Masuaku",
+              "jersey": "26",
+              "pos": "LB"
+            },
+            {
+              "name": "Steve Kapuadi",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Axel Tuanzebe",
+              "jersey": "4",
+              "pos": "CD"
+            },
+            {
+              "name": "Chancel Mbemba",
+              "jersey": "22",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Ngal'ayel Mukau",
+              "jersey": "6",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Samuel Moutoussamy",
+              "jersey": "8",
+              "pos": "CM"
+            },
+            {
+              "name": "Cédric Bakambu",
+              "jersey": "17",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Yoane Wissa",
+              "jersey": "20",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Edo Kayembe",
+              "jersey": "25",
+              "pos": "CM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Joris Kayembe",
+              "jersey": "12",
+              "in": true
+            },
+            {
+              "name": "Théo Bongonda",
+              "jersey": "10"
+            },
+            {
+              "name": "Brian Cipenga",
+              "jersey": "9"
+            },
+            {
+              "name": "Gédéon Kalulu",
+              "jersey": "24",
+              "in": true
+            },
+            {
+              "name": "Timothy Fayulu",
+              "jersey": "16"
+            },
+            {
+              "name": "Simon Banza",
+              "jersey": "23",
+              "in": true
+            },
+            {
+              "name": "Noah Sadiki",
+              "jersey": "14",
+              "in": true
+            },
+            {
+              "name": "Matthieu Epolo",
+              "jersey": "21"
+            },
+            {
+              "name": "Aaron Tshibola",
+              "jersey": "15"
+            },
+            {
+              "name": "Nathanaël Mbuku",
+              "jersey": "7"
+            },
+            {
+              "name": "Dylan Batubinsika",
+              "jersey": "5"
+            },
+            {
+              "name": "Fiston Mayele",
+              "jersey": "19"
+            },
+            {
+              "name": "Gaël Kakuta",
+              "jersey": "11"
+            },
+            {
+              "name": "Charles Pickel",
+              "jersey": "18",
+              "in": true
+            },
+            {
+              "name": "Meschack Elia",
+              "jersey": "13"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Diogo Costa",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "João Cancelo",
+              "jersey": "20",
+              "pos": "RB"
+            },
+            {
+              "name": "Nuno Mendes",
+              "jersey": "25",
+              "pos": "LB"
+            },
+            {
+              "name": "Vitinha ",
+              "jersey": "23",
+              "pos": "LM"
+            },
+            {
+              "name": "Tomás Araújo",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Renato Veiga",
+              "jersey": "13",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Bernardo Silva",
+              "jersey": "10",
+              "pos": "AM-R"
+            },
+            {
+              "name": "João Neves",
+              "jersey": "15",
+              "pos": "RM"
+            },
+            {
+              "name": "Cristiano Ronaldo",
+              "jersey": "7",
+              "pos": "F"
+            },
+            {
+              "name": "Bruno Fernandes",
+              "jersey": "8",
+              "pos": "AM"
+            },
+            {
+              "name": "Pedro Neto",
+              "jersey": "18",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Gonçalo Inácio",
+              "jersey": "14"
+            },
+            {
+              "name": "Samú Costa",
+              "jersey": "24"
+            },
+            {
+              "name": "Rúben Dias",
+              "jersey": "3"
+            },
+            {
+              "name": "João Félix",
+              "jersey": "11"
+            },
+            {
+              "name": "José Sá",
+              "jersey": "12"
+            },
+            {
+              "name": "Matheus Nunes",
+              "jersey": "6"
+            },
+            {
+              "name": "Francisco Trincão",
+              "jersey": "16"
+            },
+            {
+              "name": "Rúben Neves",
+              "jersey": "21"
+            },
+            {
+              "name": "Francisco Conceição",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Nélson Semedo",
+              "jersey": "2",
+              "in": true
+            },
+            {
+              "name": "Gonçalo Ramos",
+              "jersey": "9",
+              "in": true
+            },
+            {
+              "name": "Rui Silva",
+              "jersey": "22"
+            },
+            {
+              "name": "Rafael Leão",
+              "jersey": "17",
+              "in": true
+            },
+            {
+              "name": "Diogo Dalot",
+              "jersey": "5"
+            },
+            {
+              "name": "Gonçalo Guedes",
+              "jersey": "19"
+            }
+          ]
+        }
+      },
+      "referee": "Abdulrahman Al-Jassim",
+      "venue": "NRG Stadium, Houston, Texas",
+      "attendance": 68777,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "25%",
+          "a": "75%"
+        },
+        {
+          "key": "totalShots",
+          "h": "8",
+          "a": "7"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "4",
+          "a": "5"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "10",
+          "a": "9"
+        },
+        {
+          "key": "offsides",
+          "h": "2",
+          "a": "3"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "251",
+          "a": "783"
+        },
+        {
+          "key": "passPct",
+          "h": "78%",
+          "a": "92%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "3"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-17T19:33:07.791Z"
     }
   }
 }
