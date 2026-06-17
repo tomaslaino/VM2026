@@ -113,7 +113,27 @@
       '<div class="mi-card" role="dialog" aria-modal="true" aria-label="Matchinformation"></div>';
     document.body.appendChild(m);
     m.querySelector(".mi-backdrop").addEventListener("click", close);
+    // Delegerat på kortet (som lever mellan omrenderingar) – öppnar spelarprofil
+    // när en klickbar uppställningsrad väljs.
+    m.querySelector(".mi-card").addEventListener("click", onCardClick);
     return m;
+  }
+
+  function onCardClick(e) {
+    var row = e.target.closest && e.target.closest("[data-mi-player]");
+    if (row) openLineupPlayer(row.getAttribute("data-mi-player"), row.getAttribute("data-mi-side"));
+  }
+
+  /* Öppnar samma spelarmodal som statistiksidan (assets/live.js) för en spelare
+     i uppställningen. sideCode ("h"/"a") avgör vilket lag spelaren tillhör. */
+  function openLineupPlayer(pid, sideCode) {
+    if (!openKey || !window.VMPlayers || !window.VMLive || typeof window.VMLive.openPlayer !== "function") return;
+    var p = window.VMPlayers.getPlayerById(pid);
+    if (!p) return;
+    var info = window.VMApp.describeMatch(openKey);
+    if (!info) return;
+    var teamObj = sideCode === "h" ? info.home : info.away;
+    window.VMLive.openPlayer(p, teamObj || {});
   }
 
   function open(key) {
@@ -265,6 +285,100 @@
       .replace(/[^a-z0-9]/g, "");
   }
 
+  /* Namn -> ord (beh\u00e5ller mellanslag) f\u00f6r efternamnsmatchning mot truppen. */
+  function normWords(s) {
+    return String(s || "").toLowerCase().normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9 ]+/g, " ")
+      .replace(/\s+/g, " ").trim();
+  }
+
+  /* ---------- Lagf\u00e4rger till nummerbrickorna ---------- */
+
+  var DEFAULT_TEAM_COLOR = ["#c41e3a", "#3d6db5"];
+  var COLOR_MIN_DIST = 96;                              // min RGB-avst\u00e5nd mellan lagens f\u00e4rger
+  var COLOR_FALLBACKS = ["#3f8edb", "#e8b400", "#9fb2c4"];
+
+  function teamColors(iso) {
+    var m = window.WC && WC.teamColors;
+    return (m && iso && m[iso]) || DEFAULT_TEAM_COLOR;
+  }
+  function hexRgb(hex) {
+    var h = String(hex || "").replace("#", "");
+    if (h.length === 3) h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+    var n = parseInt(h, 16) || 0;
+    return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+  }
+  function colorDist(a, b) {
+    var x = hexRgb(a), y = hexRgb(b);
+    var dr = x.r - y.r, dg = x.g - y.g, db = x.b - y.b;
+    return Math.sqrt(dr * dr + dg * dg + db * db);
+  }
+  /* Vit eller m\u00f6rk text beroende p\u00e5 brickans ljushet (YIQ-upplevd ljusstyrka).
+     Tr\u00f6skeln 150 ger m\u00f6rk text p\u00e5 ljusa flaggf\u00e4rger (guld, ljusgr\u00e5tt, sand) och
+     vit text p\u00e5 de m\u00f6rkare/m\u00e4ttade. */
+  function textOn(hex) {
+    var c = hexRgb(hex);
+    var brightness = (c.r * 299 + c.g * 587 + c.b * 114) / 1000;
+    return brightness >= 150 ? "#0a1628" : "#fff";
+  }
+  function farthest(from, cands) {
+    var best = cands[0], bestD = -1;
+    cands.forEach(function (c) {
+      var d = colorDist(from, c);
+      if (d > bestD) { bestD = d; best = c; }
+    });
+    return { color: best, dist: bestD };
+  }
+  /* Hemma f\u00e5r sin prim\u00e4rf\u00e4rg; borta sin prim\u00e4r om den \u00e4r tydligt skild, annars
+     sitt alternativ (eller en garanterat avvikande reservf\u00e4rg) s\u00e5 lagen syns is\u00e4r. */
+  function matchColors(hIso, aIso) {
+    var hc = teamColors(hIso)[0];
+    var aPair = teamColors(aIso);
+    var pick = farthest(hc, [aPair[0], aPair[1]]);
+    if (pick.dist < COLOR_MIN_DIST) {
+      var fb = farthest(hc, COLOR_FALLBACKS);
+      if (fb.dist > pick.dist) pick = fb;
+    }
+    return { home: hc, away: pick.color };
+  }
+
+  /* ---------- Koppla uppst\u00e4llningens spelare till truppen (klickbar profil) ----------
+     Uppst\u00e4llningsraderna har bara namn + tr\u00f6jnummer. F\u00f6r att kunna \u00f6ppna samma
+     spelarprofil som p\u00e5 statistiksidan matchas de mot truppen (window.VMPlayers)
+     p\u00e5 normaliserat namn, sedan efternamn och till sist tr\u00f6jnummer. */
+
+  function squadIndexFor(iso) {
+    var idx = { byJersey: {}, byFull: {}, byLast: {} };
+    var vp = window.VMPlayers;
+    var team = vp && vp.isLoaded() ? vp.getTeamByIso(iso) : null;
+    if (!team) return idx;
+    (team.players || []).forEach(function (p) {
+      if (p.shirt_number != null) idx.byJersey[String(p.shirt_number)] = p;
+      var n = normWords(p.name);
+      idx.byFull[n] = p;
+      var parts = n.split(" ");
+      var last = parts[parts.length - 1];
+      (idx.byLast[last] = idx.byLast[last] || []).push(p);
+    });
+    return idx;
+  }
+
+  function resolveSquadPlayer(idx, name, jersey) {
+    var n = normWords(name);
+    if (idx.byFull[n]) return idx.byFull[n];
+    var parts = n.split(" ");
+    var last = parts[parts.length - 1];
+    var cands = idx.byLast[last] || [];
+    if (cands.length === 1) return cands[0];
+    if (cands.length > 1 && parts.length > 1) {
+      var ini = parts[0].charAt(0);
+      var hit = cands.filter(function (p) { return normWords(p.name).charAt(0) === ini; });
+      if (hit.length === 1) return hit[0];
+    }
+    if (jersey != null && jersey !== "" && idx.byJersey[String(jersey)]) return idx.byJersey[String(jersey)];
+    return null;
+  }
+
   function buildPlayerEvents(det) {
     var map = {};
     function ensure(name) {
@@ -302,32 +416,29 @@
     return '<span class="mi-pl-badges">' + parts.join("") + "</span>";
   }
 
-  function lineupPlayerRow(p, side, evMap) {
+  function lineupPlayerRow(p, home, evMap, ctx) {
     var ev = evMap[normName(p.name)];
     var badges = playerBadgesHtml(ev);
-    if (side === "home") {
-      return '<div class="mi-pl-row home">' +
-        '<span class="mi-pl-nr">' + esc(p.jersey || "") + "</span>" +
-        '<span class="mi-pl-name">' + esc(p.name) + "</span>" +
-        badges +
-        "</div>";
-    }
-    return '<div class="mi-pl-row away">' +
-      badges +
-      '<span class="mi-pl-name">' + esc(p.name) + "</span>" +
-      '<span class="mi-pl-nr">' + esc(p.jersey || "") + "</span>" +
-      "</div>";
+    var sp = resolveSquadPlayer(ctx.idx, p.name, p.jersey);
+    var openAttr = sp ? ' data-mi-player="' + esc(sp.id) + '" data-mi-side="' + ctx.sideCode +
+      '" role="button" tabindex="0" title="Visa spelarprofil"' : "";
+    var cls = "mi-pl-row " + (home ? "home" : "away") + (sp ? " mi-pl-openable" : "");
+    var nr = '<span class="mi-pl-nr" style="background:' + ctx.color + ";color:" + textOn(ctx.color) + '">' +
+      esc(p.jersey || "") + "</span>";
+    var name = '<span class="mi-pl-name">' + esc(p.name) + "</span>";
+    var body = home ? (nr + name + badges) : (badges + name + nr);
+    return '<div class="' + cls + '"' + openAttr + ">" + body + "</div>";
   }
 
-  function lineupPairRows(hPlayers, aPlayers, evMap) {
+  function lineupPairRows(hPlayers, aPlayers, evMap, hCtx, aCtx) {
     var max = Math.max(hPlayers.length, aPlayers.length);
     var h = "";
     var i;
     for (i = 0; i < max; i++) {
       h += '<div class="mi-pl-pair">';
-      if (i < hPlayers.length) h += lineupPlayerRow(hPlayers[i], "home", evMap);
+      if (i < hPlayers.length) h += lineupPlayerRow(hPlayers[i], true, evMap, hCtx);
       else h += '<div class="mi-pl-row home empty"></div>';
-      if (i < aPlayers.length) h += lineupPlayerRow(aPlayers[i], "away", evMap);
+      if (i < aPlayers.length) h += lineupPlayerRow(aPlayers[i], false, evMap, aCtx);
       else h += '<div class="mi-pl-row away empty"></div>';
       h += "</div>";
     }
@@ -351,6 +462,11 @@
     var lu = det && det.lineups;
     if (!lu || !lu.h || !lu.a) return "";
     var evMap = buildPlayerEvents(det);
+    var hIso = info.home && info.home.iso;
+    var aIso = info.away && info.away.iso;
+    var cols = matchColors(hIso, aIso);
+    var hCtx = { color: cols.home, sideCode: "h", idx: squadIndexFor(hIso) };
+    var aCtx = { color: cols.away, sideCode: "a", idx: squadIndexFor(aIso) };
     var hCoach = coachOf(info.home);
     var aCoach = coachOf(info.away);
     var h = '<div class="mi-lineups-overview">';
@@ -365,7 +481,7 @@
         flagImg(info.away && info.away.iso) +
       "</span></div>";
     h += '<div class="mi-pl-section-label">Startelva</div>';
-    h += lineupPairRows(lu.h.starters || [], lu.a.starters || [], evMap);
+    h += lineupPairRows(lu.h.starters || [], lu.a.starters || [], evMap, hCtx, aCtx);
     h += '<div class="mi-pl-pair coaches">' +
       '<div class="mi-pl-coach home">' +
         '<span class="mi-pl-coach-tag">FK</span>' +
@@ -379,7 +495,7 @@
     var benchA = lu.a.bench || [];
     if (benchH.length || benchA.length) {
       h += '<div class="mi-pl-section-label">Avbytare</div>';
-      h += lineupPairRows(benchH, benchA, evMap);
+      h += lineupPairRows(benchH, benchA, evMap, hCtx, aCtx);
     }
     h += "</div>";
     return h;
@@ -602,11 +718,23 @@
   /* ---------- Init ---------- */
 
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && openKey) { close(); return; }
-    if ((e.key === "Enter" || e.key === " ") && e.target && e.target.getAttribute &&
-        e.target.getAttribute("data-match-open")) {
-      e.preventDefault();
-      open(e.target.getAttribute("data-match-open"));
+    if (e.key === "Escape" && openKey) {
+      // Ligger spelarmodalen ovanpå? Låt den (assets/live.js) stänga först.
+      var pm = document.getElementById("playerModal");
+      if (pm && pm.classList.contains("open")) return;
+      close();
+      return;
+    }
+    if ((e.key === "Enter" || e.key === " ") && e.target && e.target.getAttribute) {
+      if (e.target.getAttribute("data-mi-player")) {
+        e.preventDefault();
+        openLineupPlayer(e.target.getAttribute("data-mi-player"), e.target.getAttribute("data-mi-side"));
+        return;
+      }
+      if (e.target.getAttribute("data-match-open")) {
+        e.preventDefault();
+        open(e.target.getAttribute("data-match-open"));
+      }
     }
   });
 

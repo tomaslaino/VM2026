@@ -44,7 +44,7 @@
     q: "",
     team: "",            // iso eller "" = alla
     pos: "",             // GK/DF/MF/FW eller "" = alla
-    conf: "",            // förbundskod (UEFA m.fl.) eller "" = alla (lag-läget)
+    conf: "",            // regionnamn (Europa m.fl.) eller "" = alla (lag-läget)
     limit: 50,
     sort: {
       players: { key: "points", dir: -1 },
@@ -570,7 +570,7 @@
   function filteredTeamRows() {
     var q = norm(stateUi.q);
     return buildTeamRows().filter(function (r) {
-      if (stateUi.conf && r.conf !== stateUi.conf) return false;
+      if (stateUi.conf && r.region !== stateUi.conf) return false;
       if (q && r.teamN.indexOf(q) === -1) return false;
       return true;
     }).sort(cmpTeams);
@@ -580,8 +580,8 @@
     return buildRegionRows().slice().sort(cmpRegions);
   }
 
-  /* Förbund som faktiskt har lag i turneringen, i WC.confeds visningsordning. */
-  function teamConfeds() {
+  /* Regioner som faktiskt har lag i turneringen, i WC.confeds visningsordning. */
+  function teamRegions() {
     var present = {};
     buildTeamRows().forEach(function (r) { if (r.conf) present[r.conf] = true; });
     return ((window.WC && WC.confeds) || []).filter(function (c) { return present[c.code]; });
@@ -891,8 +891,8 @@
       '<td class="ps-c-name"><span class="team">' + flagImg(r.iso) +
         '<span class="t-name" title="' + esc(r.sv) + '">' + esc(r.sv) + "</span></span></td>" +
       '<td class="ps-c-pos">' + esc(r.letter) + "</td>" +
-      '<td class="ps-c-conf"' + (r.region ? ' title="' + esc(r.region) + '"' : "") + ">" +
-        (r.conf ? esc(r.conf) : "–") + "</td>" +
+      '<td class="ps-c-conf">' +
+        (r.region ? esc(r.region) : "–") + "</td>" +
       '<td class="c-stat">' + (r.played || '<span class="ps-zero">–</span>') + "</td>" +
       '<td class="c-stat">' + num(r.w) + "</td>" +
       '<td class="c-stat">' + num(r.d) + "</td>" +
@@ -915,7 +915,7 @@
       '<th class="c-pos">#</th>' +
       thSort("team", "Lag", "ps-c-name") +
       thSort("group", "Grp", "ps-c-pos", "Grupp") +
-      thSort("region", "Förb", "ps-c-conf", "Förbund / världsdel") +
+      thSort("region", "Region", "ps-c-conf", "Världsdel") +
       thSort("played", "M", "", "Spelade matcher") +
       thSort("w", "V", "", "Vinster") +
       thSort("d", "O", "", "Oavgjorda") +
@@ -1023,15 +1023,15 @@
         "</div>";
     }
     if (stateUi.mode === "teams") {
-      var confList = teamConfeds();
-      var confOpts = '<option value="">Alla förbund</option>' + confList.map(function (c) {
-        return '<option value="' + esc(c.code) + '"' + (stateUi.conf === c.code ? " selected" : "") + ">" +
-          esc(c.code) + " – " + esc(c.region) + "</option>";
+      var regionList = teamRegions();
+      var regionOpts = '<option value="">Alla regioner</option>' + regionList.map(function (c) {
+        return '<option value="' + esc(c.region) + '"' + (stateUi.conf === c.region ? " selected" : "") + ">" +
+          esc(c.region) + "</option>";
       }).join("");
       return '<div class="ps-toolbar">' +
         '<input id="psSearch" type="search" autocomplete="off" placeholder="Sök lag…" ' +
           'aria-label="Sök lag" value="' + esc(stateUi.q) + '">' +
-        '<select id="psConf" aria-label="Filtrera på förbund">' + confOpts + "</select>" +
+        '<select id="psConf" aria-label="Filtrera på region">' + regionOpts + "</select>" +
         '<span class="ps-count" id="psCount"></span>' +
         "</div>";
     }

@@ -2570,7 +2570,9 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .pm-cap { width: 18px; height: 18px; font-size: 10.5px; margin-left: 8px; vertical-align: middle; }
 
 /* ---------- Spelarprofil (modal) ---------- */
-.player-modal { position: fixed; inset: 0; z-index: 80; display: none; }
+/* z-index över matchmodalen (82) så spelarprofilen kan öppnas ovanpå en
+   öppen laguppställning. */
+.player-modal { position: fixed; inset: 0; z-index: 95; display: none; }
 .player-modal.open { display: block; }
 .pm-backdrop { position: absolute; inset: 0; background: rgba(8,14,22,.55); backdrop-filter: blur(2px); }
 .pm-card {
@@ -2890,6 +2892,12 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .mi-pl-row.empty { visibility: hidden; pointer-events: none; }
 .mi-pl-row.home { flex-direction: row; }
 .mi-pl-row.away { flex-direction: row; justify-content: flex-end; }
+.mi-pl-row.mi-pl-openable { cursor: pointer; transition: background .12s, box-shadow .12s; }
+.mi-pl-row.mi-pl-openable:hover {
+  background: color-mix(in srgb, var(--bg-soft) 64%, var(--line));
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+.mi-pl-row.mi-pl-openable:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
 .mi-pl-nr {
   flex: none; width: 22px; height: 22px; border-radius: 50%;
   display: inline-flex; align-items: center; justify-content: center;

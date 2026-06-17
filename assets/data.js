@@ -155,6 +155,28 @@ WC.confeds = [
   { code: "OFC",      region: "Oceanien" }
 ];
 
+/* ---------- Lagfärger (ISO -> [primär, alternativ]) ----------
+   Varje lag har en igenkännbar flaggfärg som primärfärg och en tydligt
+   avvikande flaggfärg som alternativ. Alternativet används av frontenden
+   (t.ex. laguppställningens nummerbrickor) när två lag i samma match annars
+   skulle få för lika färger – så att lagen alltid går att skilja åt. Färgerna
+   är valda för att synas mot den mörka navy-bakgrunden; ljusa färger får mörk
+   text automatiskt (se assets/matchinfo.js). */
+WC.teamColors = {
+  mx: ["#0a7d40", "#d4192f"], kr: ["#0b4ea2", "#cd2e3a"], za: ["#007a4d", "#e8b800"], cz: ["#12508f", "#d7141a"],
+  ca: ["#d52b1e", "#9fb2c4"], ch: ["#d52b1e", "#aab7c4"], qa: ["#7a1530", "#caa15a"], ba: ["#0a3aa0", "#f0c419"],
+  br: ["#0a9c52", "#f5d20c"], ma: ["#b81f28", "#0a6b3b"], "gb-sct": ["#1f5fc0", "#9fb2c4"], ht: ["#11267a", "#d21034"],
+  us: ["#2a3470", "#b22234"], py: ["#1f4fb0", "#d52b1e"], au: ["#0a7d40", "#e8b800"], tr: ["#e0212e", "#e8edf3"],
+  de: ["#e8b400", "#cf2027"], ec: ["#f4c40d", "#1f4fb0"], ci: ["#f2820a", "#0a8a52"], cw: ["#11337f", "#f0c419"],
+  nl: ["#f0641e", "#1f4fb0"], jp: ["#bc1f3d", "#1a2a4a"], tn: ["#d4202e", "#e8edf3"], se: ["#0a6aa7", "#f4c40d"],
+  be: ["#e8b400", "#cf2027"], ir: ["#1f9e4a", "#da0000"], eg: ["#c81228", "#c9a227"], nz: ["#13296b", "#9fb2c4"],
+  es: ["#c60b1e", "#f4c40d"], uy: ["#1f4fb0", "#e8b400"], sa: ["#0a7d40", "#9fb2c4"], cv: ["#11337f", "#cf2027"],
+  fr: ["#1f4fb0", "#ef4135"], sn: ["#0a8a52", "#f4c40d"], no: ["#ba0c2f", "#13296b"], iq: ["#c81228", "#0a8a52"],
+  ar: ["#4a93d4", "#1f3a93"], at: ["#e0212e", "#e8edf3"], dz: ["#0a7d40", "#d21034"], jo: ["#0a8a52", "#d4202e"],
+  pt: ["#0a7d3a", "#da291c"], co: ["#f4c40d", "#1f4fb0"], uz: ["#0aa3c2", "#1f9e4a"], cd: ["#3fa0ef", "#f5d20c"],
+  "gb-eng": ["#cf142b", "#15326b"], hr: ["#d10c24", "#1f3a93"], pa: ["#0a5aa0", "#d21034"], gh: ["#e8b400", "#0a6b3b"]
+};
+
 /*
   Gruppspelets omgångsfönster + exakt schema per match (TV4/SVT, svensk tid).
   Nycklar: g:{grupp}:{idx} – samma ordning som round-robin i app.js.
