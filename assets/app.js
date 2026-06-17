@@ -830,6 +830,20 @@
     }, { passive: true });
   }
 
+  /* Skriv bara om #view när innehållet faktiskt ändrats. En oförändrad
+     omritning river annars hela DOM:en (inkl. flaggbilder) och ger ett
+     synligt flimmer – t.ex. vid 30-sekunderstimern som mest uppdaterar
+     "om X / Pågår" utan att något egentligen förändrats. Returnerar true
+     när #view byggdes om (så att om-introt kan läggas tillbaka). Vyer som
+     äger #view själva (slutspel/statistik) nollställer cachen. */
+  var lastViewHtml = null;
+  function setViewHtml(html) {
+    if (html === lastViewHtml) return false;
+    lastViewHtml = html;
+    viewEl.innerHTML = html;
+    return true;
+  }
+
   function render() {
     var view = ui("view", "home");
     document.documentElement.classList.toggle("view-bracket", view === "bracket");
@@ -837,15 +851,16 @@
     document.querySelectorAll("[data-nav]").forEach(function (b) {
       b.classList.toggle("active", b.getAttribute("data-nav") === view);
     });
-    if (view === "home") renderHome();
-    else if (view === "groups") renderGroups();
+    var rebuilt;
+    if (view === "home") rebuilt = renderHome();
+    else if (view === "groups") rebuilt = renderGroups();
     else if (view === "bracket") {
       setBracketHeroCollapsed(false);
-      renderBracket();
+      rebuilt = renderBracket();
     }
-    else if (view === "players") renderPlayers();
-    else renderCalendar();
-    if (view !== "home") renderPageIntro(view);
+    else if (view === "players") rebuilt = renderPlayers();
+    else rebuilt = renderCalendar();
+    if (view !== "home" && rebuilt) renderPageIntro(view);
 
     /* Grupp-popupen används i både kalender- och gruppvyn. */
     if (view !== "calendar" && view !== "groups") hideCalGroupPopup();
@@ -910,8 +925,9 @@
       focusHero(ctx) +
       teamsSpotlightStrip(ctx) +
       '</div>';
-    viewEl.innerHTML = html;
-    updateNextCountdown();
+    var wrote = setViewHtml(html);
+    if (wrote) updateNextCountdown();
+    return wrote;
   }
 
   /* ---------- Gruppvy ---------- */
@@ -925,17 +941,20 @@
     WC.groupLetters.forEach(function (L) { html += groupCard(L, ctx.tables[L], qualifiedLetters[L]); });
     html += thirdsPanel(ctx.thirds);
     html += '</div></div>';
-    viewEl.innerHTML = html;
-    if (calGroupOpen) renderCalGroupPopup(); // håll grupp-popupen aktuell
+    var wrote = setViewHtml(html);
+    if (wrote && calGroupOpen) renderCalGroupPopup(); // håll grupp-popupen aktuell
+    return wrote;
   }
 
   /* ---------- Spelarstatistik-vy (assets/playerstats.js) ---------- */
   function renderPlayers() {
+    lastViewHtml = null; // statistikvyn äger #view själv – ogiltigförklara cachen
     if (window.VMPlayerStats && typeof window.VMPlayerStats.mount === "function") {
       window.VMPlayerStats.mount(viewEl);
     } else {
       viewEl.innerHTML = '<p class="note">Statistiken kunde inte laddas.</p>';
     }
+    return true;
   }
 
   /** Kort-cell (gula/röda) med fair play-poäng i tooltip. */
@@ -1203,6 +1222,7 @@
     var preserveScroll = !!sc;
     var prevScroll = sc ? sc.scrollLeft : 0;
 
+    lastViewHtml = null; // slutspelsvyn äger #view själv (scroll/anslutningslinjer)
     viewEl.innerHTML = html;
 
     var newSc = viewEl.querySelector(".bracket-scroll");
@@ -1221,6 +1241,7 @@
     if (hoverMatch && ctx.resolved[hoverMatch]) updateAside(hoverMatch, ctx);
     else hideAside();
     setupBracketHeroCollapse();
+    return true;
   }
 
   function drawBracketConnectors(afterLayout) {
@@ -2508,14 +2529,15 @@
     });
     if (lastDate !== null) html += '</div></div>';
     html += '</div></div></div>';
-    viewEl.innerHTML = html;
-    updateNextCountdown();
+    var wrote = setViewHtml(html);
+    if (wrote) updateNextCountdown();
 
     if (calScrollPending) {
       calScrollPending = false;
       scrollCalendarTop(); // börja alltid högst upp – knappen tar dig till idag/nästa match
     }
-    if (calGroupOpen) renderCalGroupPopup();
+    if (wrote && calGroupOpen) renderCalGroupPopup();
+    return wrote;
   }
 
   function hideCalGroupPopup() {
