@@ -837,10 +837,18 @@
      "om X / Pågår" utan att något egentligen förändrats. Returnerar true
      när #view byggdes om (så att om-introt kan läggas tillbaka). Vyer som
      äger #view själva (slutspel/statistik) nollställer cachen. */
-  var lastViewHtml = null;
+  /* Nedräkningssiffrorna (dygn/tim/min/sek) bakas in i hjälte-HTML:en men
+     uppdateras separat varje sekund av updateNextCountdown(). Maska bort dem
+     ur jämförelsen – annars ser 30-sekunderstimern en "ändring" varje gång
+     sekunden tickat och river hela #view (flaggbilderna laddas om = flimmer). */
+  function viewSignature(html) {
+    return html.replace(/(<span class="nm-val"[^>]*>)[^<]*(<\/span>)/g, "$1$2");
+  }
+  var lastViewSig = null;
   function setViewHtml(html) {
-    if (html === lastViewHtml) return false;
-    lastViewHtml = html;
+    var sig = viewSignature(html);
+    if (sig === lastViewSig) return false;
+    lastViewSig = sig;
     viewEl.innerHTML = html;
     return true;
   }
@@ -949,7 +957,7 @@
 
   /* ---------- Spelarstatistik-vy (assets/playerstats.js) ---------- */
   function renderPlayers() {
-    lastViewHtml = null; // statistikvyn äger #view själv – ogiltigförklara cachen
+    lastViewSig = null; // statistikvyn äger #view själv – ogiltigförklara cachen
     if (window.VMPlayerStats && typeof window.VMPlayerStats.mount === "function") {
       window.VMPlayerStats.mount(viewEl);
     } else {
@@ -1258,7 +1266,7 @@
     var preserveScroll = !!sc;
     var prevScroll = sc ? sc.scrollLeft : 0;
 
-    lastViewHtml = null; // slutspelsvyn äger #view själv (scroll/anslutningslinjer)
+    lastViewSig = null; // slutspelsvyn äger #view själv (scroll/anslutningslinjer)
     viewEl.innerHTML = html;
 
     var newSc = viewEl.querySelector(".bracket-scroll");
