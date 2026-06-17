@@ -43,6 +43,7 @@
     q: "",
     team: "",            // iso eller "" = alla
     pos: "",             // GK/DF/MF/FW eller "" = alla
+    conf: "",            // förbundskod (UEFA m.fl.) eller "" = alla (lag-läget)
     limit: 50,
     sort: {
       players: { key: "points", dir: -1 },
@@ -487,9 +488,17 @@
   function filteredTeamRows() {
     var q = norm(stateUi.q);
     return buildTeamRows().filter(function (r) {
+      if (stateUi.conf && r.conf !== stateUi.conf) return false;
       if (q && r.teamN.indexOf(q) === -1) return false;
       return true;
     }).sort(cmpTeams);
+  }
+
+  /* Förbund som faktiskt har lag i turneringen, i WC.confeds visningsordning. */
+  function teamConfeds() {
+    var present = {};
+    buildTeamRows().forEach(function (r) { if (r.conf) present[r.conf] = true; });
+    return ((window.WC && WC.confeds) || []).filter(function (c) { return present[c.code]; });
   }
   /* ---------- Topplistor (leader-kort + topp-20-modal) ---------- */
 
@@ -815,9 +824,15 @@
 
   function toolbarHtml() {
     if (stateUi.mode === "teams") {
+      var confList = teamConfeds();
+      var confOpts = '<option value="">Alla förbund</option>' + confList.map(function (c) {
+        return '<option value="' + esc(c.code) + '"' + (stateUi.conf === c.code ? " selected" : "") + ">" +
+          esc(c.code) + " – " + esc(c.region) + "</option>";
+      }).join("");
       return '<div class="ps-toolbar">' +
         '<input id="psSearch" type="search" autocomplete="off" placeholder="Sök lag…" ' +
           'aria-label="Sök lag" value="' + esc(stateUi.q) + '">' +
+        '<select id="psConf" aria-label="Filtrera på förbund">' + confOpts + "</select>" +
         '<span class="ps-count" id="psCount"></span>' +
         "</div>";
     }
@@ -933,6 +948,7 @@
     if (!e.target) return;
     if (e.target.id === "psTeam") { stateUi.team = e.target.value; stateUi.limit = 50; renderTable(); }
     else if (e.target.id === "psPos") { stateUi.pos = e.target.value; stateUi.limit = 50; renderTable(); }
+    else if (e.target.id === "psConf") { stateUi.conf = e.target.value; stateUi.limit = 50; renderTable(); }
   }
 
   function onKeydown(e) {
