@@ -932,7 +932,7 @@
       '<div class="home-intro">' +
         '<span class="home-kicker"><span class="hk-dot" aria-hidden="true"></span>Fotbolls-VM 2026 · USA · Mexiko · Kanada</span>' +
         '<h2>Gräver grav</h2>' +
-        '<p>VM 2026 i realtid — gruppspel, slutspel och en värdig begravning för de svenska och uruguayanska VM-drömmarna.</p>' +
+        '<p>VM 2026 i realtid och en värdig begravning för de svenska och uruguayanska VM-drömmarna.</p>' +
       '</div>' +
       focusHero(ctx) +
       teamsSpotlightStrip(ctx) +
