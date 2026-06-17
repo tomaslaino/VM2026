@@ -57,9 +57,10 @@
            'onerror="this.style.visibility=\'hidden\'">';
   }
   function matchExpandBtn(matchNo, expanded) {
-    var label = expanded ? "Dölj matchinfo" : "Visa matchinfo";
+    var label = expanded ? "Dölj odds & väg hit" : "Visa odds & väg hit";
     return '<button type="button" class="match-expand' + (expanded ? " on" : "") + '" data-expand-match="' + matchNo + '" ' +
       'title="' + label + '" aria-label="' + label + '" aria-expanded="' + (expanded ? "true" : "false") + '">' +
+      '<span class="match-expand-txt">Odds</span>' +
       '<svg class="match-expand-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
       '<path fill="currentColor" d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></button>';
   }
@@ -636,9 +637,9 @@
     if (slot.t === "wm" || slot.t === "lm") {
       var src = ctx.resolved[slot.m];
       var want = slot.t === "wm" ? "winner" : "loser";
-      var pre = slot.t === "wm" ? "Vinnare match " : "Förlorare match ";
-      if (src && src[want]) return { team: src[want].team, decided: src[want].decided, label: pre + slot.m };
-      return { team: null, decided: false, label: pre + slot.m };
+      var pre = (slot.t === "wm" ? "Vinnare " : "Förlorare ") + koRefLabel(slot.m);
+      if (src && src[want]) return { team: src[want].team, decided: src[want].decided, label: pre };
+      return { team: null, decided: false, label: pre };
     }
     return { team: null, decided: false, label: "?" };
   }
@@ -724,7 +725,7 @@
 
   var HERO_TEXTS = {
     groups: { title: "Gruppspel", sub: "11 juni – 19 juli · 48 lag · 104 matcher" },
-    bracket: { title: "Slutspel", sub: "" },
+    bracket: { title: "Slutspel", sub: "28 juni – 19 juli · 32 lag · sextondelsfinal till final" },
     calendar: { title: "Kalender", sub: "Alla matcher · grupp- & slutspelsfas" },
     players: { title: "Statistik", sub: "Spelare & lag · samlas in automatiskt från matcherna" }
   };
@@ -1132,6 +1133,41 @@
     ]
   };
 
+  /* Kronologisk etikett per match, t.ex. "Sextondelsfinal 3" – matcherna i en
+     runda numreras 1..N i spelordning (datum + avsparkstid), inte efter det
+     kryptiska matchnumret. Final/Brons är enskilda matcher och får ingen siffra. */
+  var KO_CHRONO = null;
+  function koChronoIndex() {
+    if (KO_CHRONO) return KO_CHRONO;
+    KO_CHRONO = {};
+    var byRound = {};
+    WC.knockout.forEach(function (mt) {
+      (byRound[mt.round] = byRound[mt.round] || []).push(mt);
+    });
+    Object.keys(byRound).forEach(function (rk) {
+      byRound[rk].slice().sort(function (a, b) {
+        if (a.date !== b.date) return a.date < b.date ? -1 : 1;
+        var ax = a.edt || "99:99", bx = b.edt || "99:99";
+        return ax < bx ? -1 : ax > bx ? 1 : 0;
+      }).forEach(function (mt, i) { KO_CHRONO[mt.m] = i + 1; });
+    });
+    return KO_CHRONO;
+  }
+  function koRoundLabel(m) {
+    var name = WC.roundNames[m.round] || ("Match " + m.m);
+    if (m.round === "FINAL" || m.round === "3RD") return name;
+    return name + " " + koChronoIndex()[m.m];
+  }
+  /* Gemen referensform för "Vinnare …"-platshållare, t.ex. "sextondelsfinal 3",
+     så att en kommande match pekar tydligt tillbaka på rätt rutas etikett. */
+  function koRefLabel(matchNo) {
+    var m = MATCH_BY_NO[matchNo];
+    if (!m) return "match " + matchNo;
+    var name = (WC.roundNames[m.round] || "match " + matchNo).toLowerCase();
+    if (m.round === "FINAL" || m.round === "3RD") return name;
+    return name + " " + koChronoIndex()[matchNo];
+  }
+
   function bracketGridCol(round, side) {
     return side === "left" ? round + 1 : 9 - round;
   }
@@ -1390,8 +1426,8 @@
     if (slot.t === "w") return "Etta grupp " + slot.g;
     if (slot.t === "r") return "Tvåa grupp " + slot.g;
     if (slot.t === "3") return "3:a grupp " + slot.from.join("/");
-    if (slot.t === "wm") return "Vinnare match " + slot.m;
-    if (slot.t === "lm") return "Förlorare match " + slot.m;
+    if (slot.t === "wm") return "Vinnare " + koRefLabel(slot.m);
+    if (slot.t === "lm") return "Förlorare " + koRefLabel(slot.m);
     return "?";
   }
 
@@ -1445,8 +1481,17 @@
     var awaySide = effectiveSide(res, "away", predHere);
 
     var h = '<div class="' + cls + '" data-m="' + m.m + '"' + open.attr + (opts.grid ? ' style="' + opts.grid + '"' : '') + '">';
-    h += '<div class="m-meta"><span class="m-no">M' + m.m + '</span>' +
-         '<span class="m-rel ' + rel.cls + '">' + rel.txt + '</span></div>';
+    // Final/Brons har redan tydliga egna rubriker – upprepa inte rundnamnet i rutan.
+    var metaLabel = (variant === "final" || variant === "bronze") ? "" : koRoundLabel(m);
+    // Datumet i foten räcker för kommande matcher; statusbrickan visas bara när
+    // den säger något utöver datumet (live/spelad/inväntar resultat).
+    var showRel = rel.cls === "live" || rel.cls === "done" || rel.cls === "await";
+    if (metaLabel || showRel) {
+      h += '<div class="m-meta">' +
+           (metaLabel ? '<span class="m-no">' + esc(metaLabel) + '</span>' : '') +
+           (showRel ? '<span class="m-rel ' + rel.cls + '">' + rel.txt + '</span>' : '') +
+           '</div>';
+    }
     h += sideRow(homeSide, res, "h", hWin);
     h += sideRow(awaySide, res, "a", aWin);
 
@@ -1488,7 +1533,7 @@
       var no = parseInt(btn.getAttribute("data-expand-match"), 10);
       var open = hoverMatch === no;
       btn.classList.toggle("on", open);
-      var label = open ? "Dölj matchinfo" : "Visa matchinfo";
+      var label = open ? "Dölj odds & väg hit" : "Visa odds & väg hit";
       btn.title = label;
       btn.setAttribute("aria-label", label);
       btn.setAttribute("aria-expanded", open ? "true" : "false");
@@ -1507,10 +1552,11 @@
 
     // Panelen äger kvalvägen (seed) och visar tydligt vem som möter vem samt
     // sannolikheterna. Matchrutan i trädet visar bara lagen.
+    var singleMatch = mt.round === "FINAL" || mt.round === "3RD";
     var h = '<div class="aside-head">' +
       '<div class="aside-title">' +
       '<span class="aside-round">' + WC.roundNames[mt.round] + '</span>' +
-      '<span class="aside-match-no">Match ' + matchNo + '</span>' +
+      (singleMatch ? '' : '<span class="aside-match-no">Match ' + koChronoIndex()[matchNo] + '</span>') +
       '</div>' +
       '<button class="aside-close" id="asideClose" title="Återställ">×</button></div>';
 
