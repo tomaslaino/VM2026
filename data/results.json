@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-17T21:32:25.433Z",
+    "updatedAt": "2026-06-17T23:09:36.077Z",
     "source": "espn",
     "matchCount": 22,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -113,21 +113,12 @@
       "status": "FINISHED"
     },
     "g:L:0": {
-      "h": 3,
+      "h": 4,
       "a": 2,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:L:0",
-      "status": "IN_PLAY",
-      "minute": 53,
-      "home": "England",
-      "away": "Croatia",
-      "score": "3-2"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -490,7 +481,7 @@
       "date": "2026-06-17",
       "time": "22:00",
       "utcDate": "2026-06-17T20:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "England",
       "away": "Croatia",
@@ -2259,19 +2250,19 @@
     ],
     "L": [
       {
-        "idx": 1,
+        "idx": 0,
         "position": 1,
-        "pld": 0,
-        "w": 0,
+        "pld": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "pts": 0
+        "gf": 4,
+        "ga": 2,
+        "gd": 2,
+        "pts": 3
       },
       {
-        "idx": 0,
+        "idx": 3,
         "position": 2,
         "pld": 0,
         "w": 0,
@@ -2283,7 +2274,7 @@
         "pts": 0
       },
       {
-        "idx": 3,
+        "idx": 2,
         "position": 3,
         "pld": 0,
         "w": 0,
@@ -2295,15 +2286,15 @@
         "pts": 0
       },
       {
-        "idx": 2,
+        "idx": 1,
         "position": 4,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
         "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
+        "l": 1,
+        "gf": 2,
+        "ga": 4,
+        "gd": -2,
         "pts": 0
       }
     ]

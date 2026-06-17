@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-17T21:32:25.467Z",
+    "updatedAt": "2026-06-17T23:09:36.167Z",
     "source": "espn"
   },
   "details": {
@@ -9430,14 +9430,14 @@
     },
     "g:L:0": {
       "espnId": "760437",
-      "status": "IN_PLAY",
-      "minute": 68,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-17T20:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
-          "h": 3,
+          "h": 4,
           "a": 2
         },
         "ht": {
@@ -9502,10 +9502,22 @@
           "injuryTime": null,
           "team": "h",
           "scorer": "Jude Bellingham",
-          "assist": null,
+          "assist": "Elliot Anderson",
           "type": "REGULAR",
           "score": {
             "h": 3,
+            "a": 2
+          }
+        },
+        {
+          "minute": 85,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Marcus Rashford",
+          "assist": "Bukayo Saka",
+          "type": "REGULAR",
+          "score": {
+            "h": 4,
             "a": 2
           }
         }
@@ -9529,6 +9541,48 @@
           "team": "a",
           "in": "Marco Pasalic",
           "out": "Luka Vuskovic"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Morgan Rogers",
+          "out": "Declan Rice"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Bukayo Saka",
+          "out": "Noni Madueke"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Marcus Rashford",
+          "out": "Anthony Gordon"
+        },
+        {
+          "minute": 78,
+          "team": "a",
+          "in": "Nikola Vlasic",
+          "out": "Martin Baturina"
+        },
+        {
+          "minute": 79,
+          "team": "a",
+          "in": "Andrej Kramaric",
+          "out": "Mario Pasalic"
+        },
+        {
+          "minute": 80,
+          "team": "h",
+          "in": "Djed Spence",
+          "out": "Jude Bellingham"
+        },
+        {
+          "minute": 87,
+          "team": "h",
+          "in": "Marc Guéhi",
+          "out": "John Stones"
         }
       ],
       "penalties": [],
@@ -9595,7 +9649,8 @@
           "bench": [
             {
               "name": "Morgan Rogers",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Jordan Henderson",
@@ -9623,7 +9678,8 @@
             },
             {
               "name": "Djed Spence",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Dan Burn",
@@ -9635,7 +9691,8 @@
             },
             {
               "name": "Marc Guéhi",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true
             },
             {
               "name": "Dean Henderson",
@@ -9643,11 +9700,13 @@
             },
             {
               "name": "Marcus Rashford",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Bukayo Saka",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             }
           ]
         },
@@ -9713,7 +9772,8 @@
           "bench": [
             {
               "name": "Nikola Vlasic",
-              "jersey": "13"
+              "jersey": "13",
+              "in": true
             },
             {
               "name": "Duje Caleta-Car",
@@ -9743,7 +9803,8 @@
             },
             {
               "name": "Andrej Kramaric",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Dominik Kotarski",
@@ -9779,52 +9840,52 @@
       },
       "referee": "Clément Turpin",
       "venue": "AT&T Stadium, Arlington, Texas",
-      "attendance": null,
+      "attendance": 70389,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "55%",
-          "a": "45%"
+          "h": "52%",
+          "a": "48%"
         },
         {
           "key": "totalShots",
-          "h": "18",
-          "a": "4"
+          "h": "22",
+          "a": "10"
         },
         {
           "key": "shotsOnTarget",
-          "h": "10",
-          "a": "2"
+          "h": "11",
+          "a": "5"
         },
         {
           "key": "wonCorners",
           "h": "8",
-          "a": "1"
+          "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "8",
-          "a": "8"
+          "h": "10",
+          "a": "12"
         },
         {
           "key": "offsides",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "saves",
-          "h": "0",
+          "h": "3",
           "a": "7"
         },
         {
           "key": "totalPasses",
-          "h": "349",
-          "a": "295"
+          "h": "473",
+          "a": "442"
         },
         {
           "key": "passPct",
-          "h": "85%",
-          "a": "84%"
+          "h": "86%",
+          "a": "86%"
         },
         {
           "key": "yellowCards",
@@ -9837,7 +9898,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-17T21:32:25.467Z"
+      "updatedAt": "2026-06-17T23:09:36.167Z"
     }
   }
 }
