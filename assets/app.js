@@ -732,20 +732,22 @@
 
   /* Vytitel (Gruppspel/Slutspel/Kalender) visas i innehållsytan,
      inte i bannern – bannern är identisk i alla vyer. */
-  function renderPageIntro(view) {
-    if (!viewEl) return;
+  /* Vytitelns inre HTML (rubrik + underrubrik) – delas av sidintrot och av
+     slutspelets toppra (där lägesväxlaren ligger på samma rad). */
+  function pageIntroMainHtml(view) {
     var t = HERO_TEXTS[view] || HERO_TEXTS.groups;
-    var html = '<div class="page-intro"><div class="page-intro-main">' +
+    return '<div class="page-intro-main">' +
       "<h2>" + t.title + "</h2>" +
       (t.sub ? "<p>" + t.sub + "</p>" : "") +
-      "</div></div>";
-    /* Slutspel: lägg rubriken i scroll-ytan så att den följer med uppåt när
-       man scrollar i trädet (annars låser den fast och täcker tabellen). */
-    if (view === "bracket") {
-      var sc = viewEl.querySelector(".bracket-scroll");
-      if (sc) { sc.insertAdjacentHTML("afterbegin", html); return; }
-    }
-    viewEl.insertAdjacentHTML("afterbegin", html);
+      "</div>";
+  }
+
+  function renderPageIntro(view) {
+    if (!viewEl) return;
+    /* Slutspelsvyn bygger sin egen toppra (rubrik + lägesväxlare) i
+       renderBracket; övriga vyer får sitt intro infogat här. */
+    viewEl.insertAdjacentHTML("afterbegin",
+      '<div class="page-intro">' + pageIntroMainHtml(view) + "</div>");
   }
 
   var headerCollapseAt = 80;
@@ -872,7 +874,10 @@
     }
     else if (view === "players") rebuilt = renderPlayers();
     else rebuilt = renderCalendar();
-    if (view !== "home" && rebuilt) renderPageIntro(view);
+    /* Slutspelsvyn lägger själv in sin rubrik (renderBracket → renderPageIntro)
+       så att rubrik + lägesväxlare hamnar i scroll-ytans topp och scrollen kan
+       bevaras vid omritning – undvik därför dubbelinsättning här. */
+    if (view !== "home" && view !== "bracket" && rebuilt) renderPageIntro(view);
 
     /* Grupp-popupen används i både kalender- och gruppvyn. */
     if (view !== "calendar" && view !== "groups") hideCalGroupPopup();
@@ -1220,17 +1225,16 @@
      ("Etta grupp E") och oddsfavoriter (det mest sannolika laget). */
   function bracketModeBar() {
     var mode = bracketMode();
-    function seg(m, label, sub) {
+    function seg(m, label) {
       var on = mode === m;
       return '<button type="button" class="bmode-btn' + (on ? " on" : "") +
         '" data-bracket-mode="' + m + '" aria-pressed="' + (on ? "true" : "false") + '">' +
-        '<span class="bmode-lbl">' + label + '</span>' +
-        '<span class="bmode-sub">' + sub + '</span></button>';
+        label + '</button>';
     }
     return '<div class="bracket-modebar"><div class="bmode-seg" role="group" ' +
       'aria-label="Visningsläge för slutspelsträdet">' +
-      seg("seed", "Platser", "Grupplaceringar") +
-      seg("odds", "Oddsfavoriter", "Troligaste lagen") +
+      seg("seed", "Platser") +
+      seg("odds", "Oddsfavoriter") +
       '</div></div>';
   }
 
@@ -1238,7 +1242,7 @@
     var ctx = getCtx();
 
     var html = '<div class="bracket-shell">' +
-      bracketModeBar() +
+      '<div class="page-intro bracket-intro">' + pageIntroMainHtml("bracket") + bracketModeBar() + '</div>' +
       '<div class="bracket-scroll"><div class="bracket-wrap">';
     html += '<svg class="bracket-lines" aria-hidden="true"></svg>';
     html += '<div class="bracket two-sided">';
@@ -1285,7 +1289,8 @@
 
     var sc = viewEl.querySelector(".bracket-scroll");
     var preserveScroll = !!sc;
-    var prevScroll = sc ? sc.scrollLeft : 0;
+    var prevScrollLeft = sc ? sc.scrollLeft : 0;
+    var prevScrollTop = sc ? sc.scrollTop : 0;
 
     lastViewSig = null; // slutspelsvyn äger #view själv (scroll/anslutningslinjer)
     viewEl.innerHTML = html;
@@ -1293,7 +1298,8 @@
     var newSc = viewEl.querySelector(".bracket-scroll");
     function restoreBracketScroll() {
       if (!newSc || !preserveScroll) return;
-      newSc.scrollLeft = Math.max(0, Math.min(prevScroll, newSc.scrollWidth - newSc.clientWidth));
+      newSc.scrollLeft = Math.max(0, Math.min(prevScrollLeft, newSc.scrollWidth - newSc.clientWidth));
+      newSc.scrollTop = Math.max(0, Math.min(prevScrollTop, newSc.scrollHeight - newSc.clientHeight));
     }
 
     if (preserveScroll) {
@@ -3080,7 +3086,9 @@
     var bMode = t.closest && t.closest("[data-bracket-mode]");
     if (bMode) {
       var nm = bMode.getAttribute("data-bracket-mode");
-      if (nm !== bracketMode()) { setUi("bracketMode", nm); render(); }
+      /* Rita bara om trädet (inte hela vyn) så att scroll-läget och den
+         hopfällda toppheadern bevaras – annars hoppar sidan vid växling. */
+      if (nm !== bracketMode()) { setUi("bracketMode", nm); renderBracket(); }
       return;
     }
 
