@@ -34,6 +34,7 @@
   var details = {};        // resultatnyckel -> matchdetaljer
   var playerRowsCache = null;
   var teamRowsCache = null;
+  var pidIndex = null;     // pid -> spelarrad (för uppslag utifrån, t.ex. spelarmodalen)
   var rootEl = null;       // monteringspunkt (sätts av mount)
 
   /* UI-läge (ej persistent) */
@@ -253,6 +254,7 @@
 
   function buildPlayerRows() {
     if (playerRowsCache) return playerRowsCache;
+    pidIndex = null;
     var rows = [];
     var events = aggregateEvents();
     var claimed = {};
@@ -953,6 +955,22 @@
     VMLive.openPlayer(p, te ? te.team : { sv: team.name_sv, name: team.name });
   }
 
+  /* VM-statistik för en enskild spelare (utifrån truppens spelar-id). Används
+     av spelarmodalen (assets/live.js) för att slå ihop Wikipedia-profilen med
+     det som spelaren samlat på sig under VM 2026. Returnerar spelarraden (samma
+     form som tabellen) eller null om id saknas/inte hittas. */
+  function getPlayerStatsById(pid) {
+    if (pid == null) return null;
+    var rows = buildPlayerRows();
+    if (!pidIndex) {
+      pidIndex = {};
+      for (var i = 0; i < rows.length; i++) {
+        if (rows[i].pid != null) pidIndex[rows[i].pid] = rows[i];
+      }
+    }
+    return pidIndex[pid] || null;
+  }
+
   /* ---------- Publikt API ---------- */
 
   function mount(viewEl) {
@@ -977,5 +995,5 @@
     if (rootEl && document.body.contains(rootEl)) render();
   }
 
-  window.VMPlayerStats = { mount: mount, setDetails: setDetails };
+  window.VMPlayerStats = { mount: mount, setDetails: setDetails, getPlayerStats: getPlayerStatsById };
 })();

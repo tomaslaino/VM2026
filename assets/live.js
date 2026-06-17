@@ -147,6 +147,7 @@
     m.innerHTML = '<div class="pm-backdrop"></div><div class="pm-card" role="dialog" aria-modal="true"></div>';
     document.body.appendChild(m);
     m.querySelector(".pm-backdrop").addEventListener("click", closePlayer);
+    m.querySelector(".pm-card").addEventListener("click", onModalClick);
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") closePlayer(); });
     return m;
   }
@@ -156,9 +157,73 @@
       '<span class="pm-lbl">' + esc(label) + '</span></div>';
   }
 
+  /** Statruta där Wikipedia-bastalet (base) summeras med det spelaren samlat
+      på sig i VM 2026 (add). Tillskottet visas som en grön "+N"-bricka så att
+      det tydligt syns vad som tillkommit under turneringen. */
+  function statCellPlus(base, add, label) {
+    add = add || 0;
+    var total = base == null ? (add > 0 ? add : null) : base + add;
+    var plus = add > 0
+      ? '<span class="pm-plus" title="' + add + ' nytt i VM 2026">+' + add + '</span>'
+      : "";
+    return '<div class="pm-stat"><span class="pm-val">' +
+      (total == null ? "–" : esc(total)) + plus + '</span>' +
+      '<span class="pm-lbl">' + esc(label) + '</span></div>';
+  }
+
   function infoRow(label, val) {
     return '<div class="pm-row"><span class="pm-row-lbl">' + esc(label) + '</span>' +
       '<span class="pm-row-val">' + dash(val) + '</span></div>';
+  }
+
+  /** VM 2026-statistik för en spelare (från assets/playerstats.js), eller null. */
+  function wcStatsFor(playerId) {
+    var ps = window.VMPlayerStats;
+    if (!ps || typeof ps.getPlayerStats !== "function" || playerId == null) return null;
+    try { return ps.getPlayerStats(playerId); } catch (e) { return null; }
+  }
+
+  /** Profilfliken: Wikipedia-bas + VM-tillskott på landskamper/landslagsmål. */
+  function profilPanelHtml(player, wc) {
+    return '<div class="pm-stats">' +
+        statCell(player.age, "Ålder") +
+        statCellPlus(player.caps, wc ? wc.apps : 0, "Landskamper") +
+        statCellPlus(player.goals, wc ? wc.goals : 0, "Landslagsmål") +
+      '</div>' +
+      '<div class="pm-info">' +
+        infoRow("Tröjnummer", player.shirt_number) +
+        infoRow("Position", player.position_sv) +
+        infoRow("Födelsedatum", fmtDate(player.date_of_birth)) +
+        infoRow("Klubb", player.club) +
+        infoRow("Klubbland", player.club_country) +
+      '</div>' +
+      '<div class="pm-note">Bastal från Wikipedia (före VM-slutspelet). ' +
+        'Gröna <span class="pm-plus pm-plus-inline">+N</span> är tillagt från VM 2026.</div>';
+  }
+
+  /** VM 2026-fliken: enbart det spelaren gjort under detta VM. */
+  function vmPanelHtml(wc) {
+    if (!wc || !wc.played) {
+      return '<div class="pm-empty-vm">Har inte spelat någon match i VM 2026 ännu.</div>';
+    }
+    var goalsTitle = [];
+    if (wc.pens) goalsTitle.push(wc.pens + " på straff");
+    if (wc.og) goalsTitle.push(wc.og + " självmål (räknas ej)");
+    var cards = "";
+    if (wc.y) cards += '<span class="pm-card-pill y">' + wc.y + ' gul' + (wc.y === 1 ? "t" : "a") + '</span>';
+    if (wc.r) cards += '<span class="pm-card-pill r">' + wc.r + ' röd' + (wc.r === 1 ? "tt" : "a") + '</span>';
+    return '<div class="pm-stats pm-stats-vm">' +
+        statCell(wc.apps, "Matcher") +
+        statCell(wc.min ? wc.min + "'" : 0, "Minuter") +
+        statCell(wc.goals, "Mål") +
+        statCell(wc.assists, "Assist") +
+      '</div>' +
+      '<div class="pm-info">' +
+        (goalsTitle.length ? infoRow("Varav", goalsTitle.join(" · ")) : "") +
+        '<div class="pm-row"><span class="pm-row-lbl">Kort</span>' +
+          '<span class="pm-row-val">' + (cards || "–") + '</span></div>' +
+      '</div>' +
+      '<div class="pm-note">Samlas in automatiskt från matchrapporterna (ESPN) under VM 2026.</div>';
   }
 
   function openPlayer(player, team) {
@@ -166,6 +231,9 @@
     var sub = [];
     if (player.shirt_number != null) sub.push("#" + player.shirt_number);
     sub.push(player.position_sv || "");
+
+    var wc = wcStatsFor(player.id);
+    var hasWc = !!(wc && wc.played);
 
     var avatar = '<div class="pm-photo placeholder">' +
       esc((player.name || "?").charAt(0)) + '</div>';
@@ -180,22 +248,34 @@
           '<span class="pm-sub">' + esc(team.sv || team.name) + ' · ' +
             esc(sub.filter(Boolean).join(" · ")) + '</span>' +
         '</div></div>' +
-      '<div class="pm-stats">' +
-        statCell(player.age, "Ålder") +
-        statCell(player.caps, "Landskamper") +
-        statCell(player.goals, "Landslagsmål") +
+      '<div class="pm-tabs" role="tablist">' +
+        '<button type="button" class="pm-tab active" data-pm-tab="profil">Profil</button>' +
+        '<button type="button" class="pm-tab" data-pm-tab="vm">VM 2026' +
+          (hasWc ? '<span class="pm-tab-badge">' + (wc.points || wc.apps) + '</span>' : "") +
+        '</button>' +
       '</div>' +
-      '<div class="pm-info">' +
-        infoRow("Tröjnummer", player.shirt_number) +
-        infoRow("Position", player.position_sv) +
-        infoRow("Födelsedatum", fmtDate(player.date_of_birth)) +
-        infoRow("Klubb", player.club) +
-        infoRow("Klubbland", player.club_country) +
-      '</div>' +
-      '<div class="pm-note">Landslagsstatistik från Wikipedia, inhämtad före VM-slutspelet. Uppdateras inte under turneringen.</div>';
+      '<div class="pm-tab-panels">' +
+        '<div class="pm-tab-panel active" data-pm-panel="profil">' + profilPanelHtml(player, wc) + '</div>' +
+        '<div class="pm-tab-panel" data-pm-panel="vm">' + vmPanelHtml(wc) + '</div>' +
+      '</div>';
 
     m.querySelector(".pm-close").addEventListener("click", closePlayer);
     m.classList.add("open");
+  }
+
+  /** Flikbyte i spelarmodalen (delegerat). */
+  function onModalClick(e) {
+    var tab = e.target.closest && e.target.closest("[data-pm-tab]");
+    if (!tab) return;
+    var card = tab.closest(".pm-card");
+    if (!card) return;
+    var name = tab.getAttribute("data-pm-tab");
+    card.querySelectorAll("[data-pm-tab]").forEach(function (b) {
+      b.classList.toggle("active", b === tab);
+    });
+    card.querySelectorAll("[data-pm-panel]").forEach(function (p) {
+      p.classList.toggle("active", p.getAttribute("data-pm-panel") === name);
+    });
   }
 
   function closePlayer() {

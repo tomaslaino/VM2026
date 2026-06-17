@@ -2518,6 +2518,7 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   width: min(440px, calc(100vw - 32px)); background: var(--card);
   border: 1px solid var(--line); border-radius: var(--radius);
   box-shadow: var(--shadow-lg); padding: 22px;
+  max-height: min(90vh, 760px); overflow-y: auto; scrollbar-gutter: stable;
 }
 .pm-close {
   position: absolute; top: 12px; right: 12px; width: 32px; height: 32px;
@@ -2550,6 +2551,48 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .pm-row-lbl { color: var(--ink-soft); font-size: 13px; flex: none; }
 .pm-row-val { font-weight: 500; text-align: right; min-width: 0; }
 .pm-note { margin-top: 16px; font-size: 12px; color: var(--ink-soft); text-align: center; }
+
+/* Flikar i spelarprofilen (Profil / VM 2026) */
+.pm-tabs {
+  display: flex; gap: 4px; margin: 18px 0 0;
+  padding: 3px; border-radius: 10px; background: var(--bg-soft); border: 1px solid var(--line);
+}
+.pm-tab {
+  flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  border: 0; border-radius: 8px; padding: 8px 6px;
+  font: inherit; font-size: 12.5px; font-weight: 700;
+  color: var(--ink-soft); background: transparent; cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.pm-tab:hover { color: var(--ink); }
+.pm-tab.active { background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.18); }
+.pm-tab-badge {
+  display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px;
+  padding: 0 5px; border-radius: 999px; background: var(--adv); color: #fff;
+  font-size: 11px; font-weight: 800; font-variant-numeric: tabular-nums;
+}
+.pm-tab-panels { padding-top: 16px; min-height: 220px; }
+.pm-tab-panel { display: none; }
+.pm-tab-panel.active { display: block; }
+
+/* "+N" – det som tillkommit under VM 2026 */
+.pm-plus {
+  margin-left: 5px; font-size: 12px; font-weight: 800; color: var(--adv);
+  font-variant-numeric: tabular-nums; vertical-align: baseline;
+}
+.pm-plus-inline { margin: 0 1px; padding: 1px 4px; border-radius: 5px; background: color-mix(in srgb, var(--adv) 16%, transparent); }
+.pm-stats-vm { grid-template-columns: repeat(4, 1fr); }
+.pm-stats-vm .pm-val { font-size: 19px; }
+.pm-empty-vm {
+  padding: 28px 12px; text-align: center; color: var(--ink-soft); font-size: 13.5px;
+  background: var(--bg-soft); border: 1px dashed var(--line); border-radius: var(--radius-sm);
+}
+.pm-card-pill {
+  display: inline-flex; align-items: center; gap: 5px; margin-left: 6px;
+  padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 700;
+}
+.pm-card-pill.y { background: color-mix(in srgb, #e6b800 22%, transparent); color: color-mix(in srgb, #e6b800 60%, var(--ink)); }
+.pm-card-pill.r { background: color-mix(in srgb, #c0392b 20%, transparent); color: color-mix(in srgb, #c0392b 70%, var(--ink)); }
 
 /* ---------- Mål-notiser (WebSocket) ---------- */
 #liveToasts { position: fixed; right: 16px; bottom: 16px; z-index: 90; display: flex; flex-direction: column; gap: 10px; }
