@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-16T22:33:50.409Z",
+    "updatedAt": "2026-06-17T00:03:04.156Z",
     "source": "espn",
     "matchCount": 18,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -93,21 +93,12 @@
       "status": "FINISHED"
     },
     "g:I:1": {
-      "h": 0,
-      "a": 0,
-      "status": "IN_PLAY"
+      "h": 4,
+      "a": 1,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:I:1",
-      "status": "IN_PLAY",
-      "minute": 6,
-      "home": "Norway",
-      "away": "Iraq",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -402,7 +393,7 @@
       "date": "2026-06-17",
       "time": "00:00",
       "utcDate": "2026-06-16T22:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Norway",
       "away": "Iraq",

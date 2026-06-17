@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-16T22:33:50.659Z",
+    "updatedAt": "2026-06-17T00:03:04.234Z",
     "source": "espn"
   },
   "details": {
@@ -7614,17 +7614,20 @@
     },
     "g:I:1": {
       "espnId": "760430",
-      "status": "IN_PLAY",
-      "minute": 32,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-16T22:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
-          "h": 1,
-          "a": 0
+          "h": 4,
+          "a": 1
         },
-        "ht": null,
+        "ht": {
+          "h": 2,
+          "a": 1
+        },
         "rt": null,
         "et": null,
         "pen": null
@@ -7641,10 +7644,126 @@
             "h": 1,
             "a": 0
           }
+        },
+        {
+          "minute": 39,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Aymen Hussein",
+          "assist": "Amir Al-Ammari",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        },
+        {
+          "minute": 43,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Erling Haaland",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 1
+          }
+        },
+        {
+          "minute": 76,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Leo Østigard",
+          "assist": "Martin Ødegaard",
+          "type": "REGULAR",
+          "score": {
+            "h": 3,
+            "a": 1
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 6,
+          "team": "h",
+          "scorer": "Aymen Hussein",
+          "assist": null,
+          "type": "OWN",
+          "score": {
+            "h": 4,
+            "a": 1
+          }
         }
       ],
-      "bookings": [],
-      "subs": [],
+      "bookings": [
+        {
+          "minute": 86,
+          "team": "a",
+          "player": "Zaid Tahseen",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 59,
+          "team": "a",
+          "in": "Zidane Iqbal",
+          "out": "Zaid Ismael"
+        },
+        {
+          "minute": 59,
+          "team": "a",
+          "in": "Marko Farji",
+          "out": "Ali Al-Hamadi"
+        },
+        {
+          "minute": 73,
+          "team": "h",
+          "in": "Andreas Schjelderup",
+          "out": "Antonio Nusa"
+        },
+        {
+          "minute": 73,
+          "team": "h",
+          "in": "Kristian Thorstvedt",
+          "out": "Fredrik Aursnes"
+        },
+        {
+          "minute": 73,
+          "team": "h",
+          "in": "Leo Østigard",
+          "out": "David Møller Wolfe"
+        },
+        {
+          "minute": 73,
+          "team": "h",
+          "in": "Oscar Bobb",
+          "out": "Alexander Sørloth"
+        },
+        {
+          "minute": 73,
+          "team": "a",
+          "in": "Mustafa Saadoon",
+          "out": "Hussein Ali"
+        },
+        {
+          "minute": 73,
+          "team": "a",
+          "in": "Ahmed Qasim",
+          "out": "Ali Jasim"
+        },
+        {
+          "minute": 78,
+          "team": "a",
+          "in": "Mohanad Ali",
+          "out": "Ibrahim Bayesh"
+        },
+        {
+          "minute": 81,
+          "team": "h",
+          "in": "Patrick Berg",
+          "out": "Martin Ødegaard"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -7717,7 +7836,8 @@
             },
             {
               "name": "Oscar Bobb",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "Henrik Falchener",
@@ -7725,19 +7845,23 @@
             },
             {
               "name": "Kristian Thorstvedt",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true
             },
             {
               "name": "Leo Østigard",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true
             },
             {
               "name": "Andreas Schjelderup",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Patrick Berg",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true
             },
             {
               "name": "Thelo Aasgaard",
@@ -7835,7 +7959,8 @@
             },
             {
               "name": "Mustafa Saadoon",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Munaf Younus",
@@ -7851,7 +7976,8 @@
             },
             {
               "name": "Ahmed Qasim",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Youssef Amyn",
@@ -7875,7 +8001,8 @@
             },
             {
               "name": "Marko Farji",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Aimar Sher",
@@ -7883,68 +8010,70 @@
             },
             {
               "name": "Mohanad Ali",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true
             },
             {
               "name": "Zidane Iqbal",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             }
           ]
         }
       },
       "referee": "Pierre Atcho",
       "venue": "Gillette Stadium, Foxborough, Massachusetts",
-      "attendance": null,
+      "attendance": 0,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "63%",
-          "a": "37%"
+          "h": "61%",
+          "a": "39%"
         },
         {
           "key": "totalShots",
-          "h": "4",
-          "a": "3"
+          "h": "13",
+          "a": "11"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
-          "a": "0"
+          "h": "5",
+          "a": "1"
         },
         {
           "key": "wonCorners",
-          "h": "2",
-          "a": "0"
+          "h": "5",
+          "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "4",
-          "a": "3"
+          "h": "13",
+          "a": "12"
         },
         {
           "key": "offsides",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "saves",
           "h": "0",
-          "a": "0"
+          "a": "2"
         },
         {
           "key": "totalPasses",
-          "h": "176",
-          "a": "98"
+          "h": "535",
+          "a": "333"
         },
         {
           "key": "passPct",
-          "h": "88%",
-          "a": "72%"
+          "h": "89%",
+          "a": "81%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -7952,7 +8081,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-16T22:33:50.482Z"
+      "updatedAt": "2026-06-17T00:03:04.233Z"
     }
   }
 }
