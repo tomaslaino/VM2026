@@ -1732,16 +1732,23 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .prob-empty { color: var(--ink-soft); font-size: 12.5px; padding: 4px 0; }
 @media (max-width: 420px) { .prob-sides { grid-template-columns: 1fr; } }
 
-/* Detaljpanel – uppdateras direkt vid hovring i sannolikhetslistan. */
-.prob-detail {
-  border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
-  background: var(--bg-soft);
+/* Liten ledtext under lagraderna. */
+.prob-hover-hint {
+  font-size: 11px; color: var(--ink-soft); text-align: center;
+  padding: 2px 0 4px; opacity: .85;
 }
-.pd-hint {
-  font-size: 11px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase;
-  color: var(--ink-soft); padding: 7px 12px; border-bottom: 1px solid var(--line);
+
+/* Detaljfönster – flyter bredvid sidopanelen vid hovring över ett lag. */
+.prob-popup {
+  position: fixed; z-index: 90;
+  width: 320px; max-width: calc(100vw - 20px);
+  max-height: calc(100vh - 20px); overflow-y: auto;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  box-shadow: var(--shadow-lg); padding: 14px;
+  opacity: 0; visibility: hidden; transform: translateX(4px); pointer-events: none;
+  transition: opacity .14s ease, transform .14s ease, visibility .14s;
 }
-.pd-body { padding: 12px; }
+.prob-popup.show { opacity: 1; visibility: visible; transform: none; }
 .pd-card { display: flex; flex-direction: column; gap: 10px; }
 .pd-head { display: flex; align-items: center; gap: 8px; }
 .pd-head .flag { width: 26px; height: 18px; border-radius: 3px; flex: 0 0 auto; }

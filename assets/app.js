@@ -1534,6 +1534,7 @@
   function hideAside() {
     var el = document.getElementById("bracketAside");
     if (el) el.classList.remove("show", "aside-left");
+    hideProbPopup();
   }
 
   function syncExpandButtons() {
@@ -1553,6 +1554,7 @@
   function updateAside(matchNo, ctx) {
     var el = document.getElementById("bracketAside");
     if (!el) return;
+    hideProbPopup();
     el.classList.toggle("aside-left", bracketAsideSide(matchNo) === "left");
     el.classList.add("show");
     var res = ctx.resolved[matchNo];
@@ -1716,10 +1718,9 @@
     return (Math.round(v * 10) / 10).toString();
   }
 
-  // Detaljpanelen som visas/uppdateras direkt vid hovring – innehåll per lag
-  // förberäknas i updateAside så att det dyker upp utan fördröjning.
+  // Lagdetaljerna som visas i det flytande fönstret vid hovring – innehåll per
+  // lag förberäknas i updateAside så att det dyker upp utan fördröjning.
   var asideDetails = {};        // detaljnyckel -> färdig HTML
-  var asideDefaultKey = null;   // laget som visas innan man hovrar (mest sannolika)
 
   // Vilken grupp ett lag tillhör (via iso, oberoende av objektsreferens).
   function groupLetterOf(team) {
@@ -1759,58 +1760,39 @@
     return h + '</div>';
   }
 
-  // Pedagogisk, lite fylligare förklaring till sannolikheten för ett lag.
+  // Kort, enkel och pedagogisk förklaring: vad platsen är + lagets chans, och
+  // en konkret hållpunkt (var laget ligger just nu). Detaljerna visas grafiskt
+  // i staplarna nedanför, så texten håller sig till två korta meningar.
   function probDetailText(engName, prob, round, slotLabel, ctx, L) {
     var t = teamByName(engName);
     var nm = t ? t.sv : engName;
     var pct = fmtPct(prob) + " %";
-    var gp = bracketProbs.groupPositions && bracketProbs.groupPositions[engName];
-    var rds = bracketProbs.rounds && bracketProbs.rounds[engName];
     var parts = [];
     var c0 = slotLabel ? slotLabel.charAt(0) : "";
 
     if (round === "r32" && c0 === "1") {
-      parts.push("Den här platsen tillhör vinnaren av grupp " + slotLabel.slice(1) + ". " +
-        nm + " vinner gruppen i " + pct + " av oddssimuleringarna.");
+      parts.push("Platsen tillhör vinnaren av grupp " + slotLabel.slice(1) + ". " +
+        nm + " vinner gruppen i " + pct + " av simuleringarna.");
     } else if (round === "r32" && c0 === "2") {
-      parts.push("Hit går tvåan i grupp " + slotLabel.slice(1) + ". " +
-        nm + " slutar tvåa i " + pct + " av simuleringarna.");
+      parts.push("Platsen tillhör tvåan i grupp " + slotLabel.slice(1) + ". " +
+        nm + " blir tvåa i " + pct + ".");
     } else if (round === "r32" && slotLabel && slotLabel.indexOf("3/") === 0) {
-      var p3 = gp ? Math.round((gp["3"] || 0) * 100) : null;
-      parts.push("Platsen går till en av de fyra bästa grupptreorna. " + nm + " blir trea i sin grupp" +
-        (p3 != null ? " i ungefär " + p3 + " % av fallen" : "") +
-        " och rankas tillräckligt högt för just den här platsen i " + pct + " av simuleringarna.");
+      parts.push("Platsen går till en av de bästa grupptreorna. " +
+        nm + " tar den i " + pct + ".");
     } else if (round === "bronze") {
-      parts.push(nm + " spelar bronsmatchen i " + pct +
-        " av oddssimuleringarna – laget når då semifinalen men förlorar den.");
+      parts.push(nm + " når bronsmatchen i " + pct + " – det kräver en förlorad semifinal.");
     } else {
       var rn = { r16: "åttondelsfinal", qf: "kvartsfinal", sf: "semifinal", final: "final" }[round] || "den här matchen";
-      parts.push(nm + " tar sig hit (" + rn + ") i " + pct +
-        " av oddssimuleringarna – det kräver segrar i alla tidigare ronder.");
+      parts.push(nm + " når " + rn + " i " + pct + ".");
     }
 
     if (L && ctx.tables[L]) {
       var idx = -1, s = null;
       ctx.tables[L].forEach(function (e, i) { if (t && e.team.iso === t.iso) { idx = i; s = e; } });
       if (s) {
-        parts.push("Just nu ligger laget " + (idx + 1) + ":a i grupp " + L + " med " + s.pts +
-          " poäng efter " + s.pld + " spelade matcher.");
+        parts.push("Ligger just nu " + (idx + 1) + ":a i grupp " + L + " med " + s.pts +
+          " p efter " + s.pld + " matcher.");
       }
-    }
-
-    if (gp) {
-      var adv = (gp["1"] || 0) + (gp["2"] || 0);
-      parts.push(adv >= 0.7 ? "Laget är en tydlig favorit i sin grupp."
-        : adv >= 0.45 ? "Laget väntas oftast ta sig vidare från gruppspelet."
-        : "Laget är en utmanare som behöver överraska för att gå vidare.");
-    }
-
-    if (rds) {
-      var bits = [];
-      if (rds.qf != null) bits.push("kvartsfinal i " + fmtPct(rds.qf) + " %");
-      if (rds.sf != null) bits.push("semifinal i " + fmtPct(rds.sf) + " %");
-      if (rds.win != null) bits.push("vinner hela VM i " + fmtPct(rds.win) + " %");
-      if (bits.length) parts.push("Längre fram når laget enligt oddsen " + bits.join(", ") + ".");
     }
 
     return parts.join(" ");
@@ -1858,7 +1840,6 @@
       var w = top > 0 ? Math.round((e[1] / top) * 100) : 0;
       var key = sideKey + "|" + e[0];
       asideDetails[key] = probDetailHtml(e[0], e[1], round, slotLabel, ctx);
-      if (!asideDefaultKey) asideDefaultKey = key;
       return '<div class="prob-row" data-detail="' + esc(key) + '">' +
         '<span class="team">' + flagImg(iso) + '<span class="t-name">' + esc(nm) + '</span></span>' +
         '<span class="prob-bar"><span style="width:' + w + '%"></span></span>' +
@@ -1868,7 +1849,8 @@
     return '<div class="prob-col">' + lab + (rows || '<div class="prob-empty">–</div>') + '</div>';
   }
 
-  // Bygger sannolikhetsblocket för en match (båda sidor) + detaljpanelen.
+  // Bygger sannolikhetsblocket för en match (båda sidor). Lagdetaljerna
+  // förberäknas i asideDetails och visas i ett flytande fönster vid hovring.
   function asideProbBlock(matchNo, ctx) {
     if (!bracketProbs || !bracketProbs.nodes) return "";
     if (!bracketPosByMatch) bracketPosByMatch = buildBracketPosMap();
@@ -1882,17 +1864,13 @@
       ' <span class="prob-stamp">· odds ' + updated.toLocaleDateString("sv-SE") + '</span>' : '';
 
     asideDetails = {};
-    asideDefaultKey = null;
     var sides = '<div class="prob-sides">' +
       asideProbSide(nodes[pos.home], labels ? labels[pos.home] : null, pos.round, "h", ctx) +
       asideProbSide(nodes[pos.away], labels ? labels[pos.away] : null, pos.round, "a", ctx) +
       '</div>';
-    var def = asideDefaultKey ? asideDetails[asideDefaultKey] : "";
     return '<div class="aside-section-title">Sannolikhet att nå hit' + stamp + '</div>' +
       sides +
-      '<div class="prob-detail" id="probDetail">' +
-      '<div class="pd-hint">Håll muspekaren över ett lag ovan för dess läge och chanser</div>' +
-      '<div class="pd-body" id="probDetailBody">' + def + '</div></div>';
+      '<div class="prob-hover-hint">Håll muspekaren över ett lag för läge och chanser</div>';
   }
 
   function bracketProbsUrl() {
@@ -3124,21 +3102,83 @@
     }
   }
 
-  // Hovring i sannolikhetslistan → byt detaljpanelens innehåll direkt.
+  // Hovring i sannolikhetslistan → visa lagets detaljer i ett flytande fönster
+  // bredvid sidopanelen (i stället för längre ner i samma ruta).
   function onProbHover(e) {
     var row = e.target.closest && e.target.closest(".prob-row[data-detail]");
     if (!row) return;
-    var body = document.getElementById("probDetailBody");
-    if (!body) return;
-    var html = asideDetails[row.getAttribute("data-detail")];
+    var pop = document.getElementById("probPopup");
+    if (!pop) return;
+    var key = row.getAttribute("data-detail");
+    var html = asideDetails[key];
     if (html == null) return;
-    if (body.getAttribute("data-key") === row.getAttribute("data-detail")) return;
-    body.innerHTML = html;
-    body.setAttribute("data-key", row.getAttribute("data-detail"));
+    if (pop.getAttribute("data-key") !== key) {
+      pop.innerHTML = html;
+      pop.setAttribute("data-key", key);
+    }
     document.querySelectorAll("#bracketAside .prob-row.active").forEach(function (r) {
       r.classList.remove("active");
     });
     row.classList.add("active");
+    positionProbPopup(row);
+    pop.classList.add("show");
+  }
+
+  // Dölj detaljfönstret när muspekaren lämnar lagraderna (men inte när den
+  // bara flyttas mellan två rader).
+  function onProbOut(e) {
+    var to = e.relatedTarget;
+    if (to && to.closest && to.closest(".prob-row[data-detail]")) return;
+    hideProbPopup();
+  }
+
+  function hideProbPopup() {
+    var pop = document.getElementById("probPopup");
+    if (pop) { pop.classList.remove("show"); pop.removeAttribute("data-key"); }
+    document.querySelectorAll("#bracketAside .prob-row.active").forEach(function (r) {
+      r.classList.remove("active");
+    });
+  }
+
+  // Placera fönstret bredvid sidopanelen (åt skärmens mitt). Får det inte plats
+  // vid sidan (smal skärm/bottenpanel) centreras det ovanför panelen i stället.
+  function positionProbPopup(row) {
+    var pop = document.getElementById("probPopup");
+    var aside = document.getElementById("bracketAside");
+    if (!pop || !aside) return;
+    pop.style.maxHeight = "";
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var margin = 10, gap = 12;
+    var ar = aside.getBoundingClientRect();
+    var pw = pop.offsetWidth || 320;
+    var roomLeft = ar.left - margin;
+    var roomRight = vw - ar.right - margin;
+    var asideOnRight = ar.left >= vw - ar.right;
+    var left, beside = true;
+    if (asideOnRight && roomLeft >= pw + gap) left = ar.left - gap - pw;
+    else if (!asideOnRight && roomRight >= pw + gap) left = ar.right + gap;
+    else if (roomLeft >= pw + gap) left = ar.left - gap - pw;
+    else if (roomRight >= pw + gap) left = ar.right + gap;
+    else beside = false;
+
+    var ph = pop.offsetHeight;
+    var maxH = vh - 2 * margin;
+    if (ph > maxH) { pop.style.maxHeight = maxH + "px"; ph = maxH; }
+
+    var top;
+    if (beside) {
+      var rr = row.getBoundingClientRect();
+      top = rr.top;
+    } else {
+      left = (vw - pw) / 2;
+      if (ar.top - gap - ph >= margin) top = ar.top - gap - ph;          // ovanför bottenpanelen
+      else if (ar.bottom + gap + ph <= vh - margin) top = ar.bottom + gap; // under topp-panelen
+      else top = (vh - ph) / 2;
+    }
+    left = Math.max(margin, Math.min(left, vw - pw - margin));
+    top = Math.max(margin, Math.min(top, vh - ph - margin));
+    pop.style.left = left + "px";
+    pop.style.top = top + "px";
   }
 
   function onOver(e) {
@@ -3201,8 +3241,19 @@
 
     var aside = document.createElement("aside"); aside.id = "bracketAside"; aside.className = "bracket-aside";
     document.body.appendChild(aside);
-    // Direkt (utan webbläsarens title-fördröjning) uppdatera detaljpanelen vid hovring.
+    // Flytande detaljfönster som visas bredvid sidopanelen vid hovring.
+    var probPopup = document.createElement("div");
+    probPopup.id = "probPopup";
+    probPopup.className = "prob-popup";
+    document.body.appendChild(probPopup);
+    // Direkt (utan webbläsarens title-fördröjning) visa detaljfönstret vid hovring.
     aside.addEventListener("mouseover", onProbHover);
+    aside.addEventListener("mouseout", onProbOut);
+    aside.addEventListener("scroll", function () {
+      if (!probPopup.classList.contains("show")) return;
+      var active = aside.querySelector(".prob-row.active");
+      if (active) positionProbPopup(active); else hideProbPopup();
+    }, { passive: true });
     document.body.addEventListener("input", onInput);
     document.body.addEventListener("click", onClick);
     document.addEventListener("click", onDocClick);
@@ -3214,6 +3265,7 @@
       if (e.key === "Escape") {
         closeTeam(); hideTip();
         hideCalGroupPopup();
+        hideProbPopup();
         if (hoverMatch) { hoverMatch = null; hideAside(); syncExpandButtons(); }
       }
       // Aktivera klickbar länk (role=link, t.ex. varumärket) med Enter/Space.
@@ -3240,6 +3292,7 @@
 
     var bracketLineTimer;
     window.addEventListener("resize", function () {
+      hideProbPopup();
       if (ui("view", "groups") !== "bracket") return;
       clearTimeout(bracketLineTimer);
       bracketLineTimer = setTimeout(drawBracketConnectors, 120);
