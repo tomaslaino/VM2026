@@ -1733,9 +1733,21 @@
       var b = bracketFavName(prev, pos * 2 + 1);
       var pa = (dist && a && dist[a] != null) ? dist[a] : -1;
       var pb = (dist && b && dist[b] != null) ? dist[b] : -1;
-      // Den av de två matande favoriterna som troligast tar sig hit visas.
-      if (pa < 0 && pb < 0) result = topNameOf(dist);
-      else result = pa >= pb ? a : b;
+      if (pa < 0 && pb < 0) {
+        // Ingen av de matande favoriterna finns kvar i den här nodens (beskurna)
+        // fördelning. Falla ALDRIG tillbaka till nodens egen topp – då kan ett lag
+        // dyka upp i t.ex. en kvartsfinal utan att synas i någon av åttondelarna
+        // som leder dit. Välj i stället den matande favorit som är starkast i sin
+        // egen ruta, så att vägen genom trädet alltid hänger ihop.
+        var prevNodes = bracketProbs.nodes[prev] || [];
+        var na = prevNodes[pos * 2], nb = prevNodes[pos * 2 + 1];
+        var qa = (na && a && na[a] != null) ? na[a] : -1;
+        var qb = (nb && b && nb[b] != null) ? nb[b] : -1;
+        result = qa >= qb ? (a || b) : (b || a);
+      } else {
+        // Den av de två matande favoriterna som troligast tar sig hit visas.
+        result = pa >= pb ? a : b;
+      }
     }
     bracketFavCache[key] = result || null;
     return bracketFavCache[key];

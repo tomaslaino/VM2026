@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-18T14:18:50.752Z",
+    "updatedAt": "2026-06-18T16:56:46.912Z",
     "source": "espn"
   },
   "details": {
@@ -10788,6 +10788,349 @@
         }
       ],
       "updatedAt": "2026-06-18T06:31:33.655Z"
+    },
+    "g:A:1": {
+      "espnId": "760438",
+      "status": "PAUSED",
+      "minute": 45,
+      "utcDate": "2026-06-18T16:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 1
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 6,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Michal Sadílek",
+          "assist": "Alexandr Sojka",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 33,
+          "team": "h",
+          "player": "Teboho Mokoena",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 40,
+          "team": "h",
+          "player": "Thalente Mbatha",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Ronwen Williams",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Khuliso Mudau",
+              "jersey": "20",
+              "pos": "RB"
+            },
+            {
+              "name": "Aubrey Modiba",
+              "jersey": "6",
+              "pos": "LB"
+            },
+            {
+              "name": "Teboho Mokoena",
+              "jersey": "4",
+              "pos": "CM"
+            },
+            {
+              "name": "Ime Okon",
+              "jersey": "21",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Mbekezeli Mbokazi",
+              "jersey": "14",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Thalente Mbatha",
+              "jersey": "5",
+              "pos": "RM"
+            },
+            {
+              "name": "Jayden Adams",
+              "jersey": "23",
+              "pos": "LM"
+            },
+            {
+              "name": "Iqraam Rayners",
+              "jersey": "15",
+              "pos": "F"
+            },
+            {
+              "name": "Thapelo Maseko",
+              "jersey": "12",
+              "pos": "RF"
+            },
+            {
+              "name": "Oswin Appollis",
+              "jersey": "7",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Sipho Chaine",
+              "jersey": "16"
+            },
+            {
+              "name": "Nkosinathi Sibisi",
+              "jersey": "19"
+            },
+            {
+              "name": "Samukele Kabini",
+              "jersey": "18"
+            },
+            {
+              "name": "Ricardo Goss",
+              "jersey": "22"
+            },
+            {
+              "name": "Thabang Matuludi",
+              "jersey": "2"
+            },
+            {
+              "name": "Tshepang Moremi",
+              "jersey": "8"
+            },
+            {
+              "name": "Olwethu Makhanya",
+              "jersey": "24"
+            },
+            {
+              "name": "Kamogelo Sebelebele",
+              "jersey": "25"
+            },
+            {
+              "name": "Evidence Makgopa",
+              "jersey": "17"
+            },
+            {
+              "name": "Khulumani Ndamane",
+              "jersey": "3"
+            },
+            {
+              "name": "Lyle Foster",
+              "jersey": "9"
+            },
+            {
+              "name": "Relebohile Mofokeng",
+              "jersey": "10"
+            },
+            {
+              "name": "Bradley Cross",
+              "jersey": "26"
+            }
+          ]
+        },
+        "a": {
+          "formation": "3-5-2",
+          "starters": [
+            {
+              "name": "Matej Kovár",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Vladimír Coufal",
+              "jersey": "5",
+              "pos": "RM"
+            },
+            {
+              "name": "Alexandr Sojka",
+              "jersey": "24",
+              "pos": "LM"
+            },
+            {
+              "name": "Ladislav Krejcí",
+              "jersey": "7",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Robin Hranác",
+              "jersey": "4",
+              "pos": "CD"
+            },
+            {
+              "name": "Tomás Holes",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Vladimír Darida",
+              "jersey": "8",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Michal Sadílek",
+              "jersey": "18",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Adam Hlozek",
+              "jersey": "9",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Patrik Schick",
+              "jersey": "10",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Lukás Cerv",
+              "jersey": "12",
+              "pos": "AM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Jaroslav Zelený",
+              "jersey": "20"
+            },
+            {
+              "name": "Mojmír Chytil",
+              "jersey": "13"
+            },
+            {
+              "name": "Stepán Chaloupek",
+              "jersey": "6"
+            },
+            {
+              "name": "Denis Visinský",
+              "jersey": "26"
+            },
+            {
+              "name": "Jan Kuchta",
+              "jersey": "11"
+            },
+            {
+              "name": "Lukás Provod",
+              "jersey": "17"
+            },
+            {
+              "name": "Tomás Chorý",
+              "jersey": "19"
+            },
+            {
+              "name": "Tomás Soucek",
+              "jersey": "22"
+            },
+            {
+              "name": "David Doudera",
+              "jersey": "21"
+            },
+            {
+              "name": "Lukás Hornícek",
+              "jersey": "23"
+            },
+            {
+              "name": "Jindrich Stanek",
+              "jersey": "16"
+            },
+            {
+              "name": "Hugo Sochurek",
+              "jersey": "25"
+            },
+            {
+              "name": "David Zima",
+              "jersey": "2"
+            },
+            {
+              "name": "Pavel Sulc",
+              "jersey": "15"
+            }
+          ]
+        }
+      },
+      "referee": "Tori Penso",
+      "venue": "Mercedes-Benz Stadium, Atlanta, Georgia",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "63%",
+          "a": "37%"
+        },
+        {
+          "key": "totalShots",
+          "h": "5",
+          "a": "5"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "3",
+          "a": "2"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "4",
+          "a": "8"
+        },
+        {
+          "key": "offsides",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "281",
+          "a": "159"
+        },
+        {
+          "key": "passPct",
+          "h": "90%",
+          "a": "84%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "2",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-18T16:56:46.912Z"
     }
   }
 }
