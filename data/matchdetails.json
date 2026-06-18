@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-18T17:37:59.561Z",
+    "updatedAt": "2026-06-18T17:58:19.999Z",
     "source": "espn"
   },
   "details": {
@@ -10792,13 +10792,13 @@
     "g:A:1": {
       "espnId": "760438",
       "status": "IN_PLAY",
-      "minute": 76,
+      "minute": 90,
       "utcDate": "2026-06-18T16:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
-          "h": 0,
+          "h": 1,
           "a": 1
         },
         "ht": {
@@ -10819,6 +10819,18 @@
           "type": "REGULAR",
           "score": {
             "h": 0,
+            "a": 1
+          }
+        },
+        {
+          "minute": 83,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Teboho Mokoena",
+          "assist": null,
+          "type": "PENALTY",
+          "score": {
+            "h": 1,
             "a": 1
           }
         }
@@ -10879,6 +10891,18 @@
           "team": "a",
           "in": "Lukás Provod",
           "out": "Adam Hlozek"
+        },
+        {
+          "minute": 78,
+          "team": "a",
+          "in": "David Zima",
+          "out": "Lukás Cerv"
+        },
+        {
+          "minute": 84,
+          "team": "h",
+          "in": "Kamogelo Sebelebele",
+          "out": "Thapelo Maseko"
         }
       ],
       "penalties": [],
@@ -10973,7 +10997,8 @@
             },
             {
               "name": "Kamogelo Sebelebele",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Evidence Makgopa",
@@ -11112,7 +11137,8 @@
             },
             {
               "name": "David Zima",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Pavel Sulc",
@@ -11128,53 +11154,53 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "61%",
-          "a": "40%"
+          "h": "62%",
+          "a": "39%"
         },
         {
           "key": "totalShots",
-          "h": "9",
-          "a": "11"
+          "h": "15",
+          "a": "14"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
+          "h": "4",
           "a": "3"
         },
         {
           "key": "wonCorners",
           "h": "4",
-          "a": "4"
+          "a": "5"
         },
         {
           "key": "foulsCommitted",
-          "h": "9",
-          "a": "9"
+          "h": "10",
+          "a": "12"
         },
         {
           "key": "offsides",
           "h": "3",
-          "a": "1"
+          "a": "2"
         },
         {
           "key": "saves",
           "h": "2",
-          "a": "1"
+          "a": "3"
         },
         {
           "key": "totalPasses",
-          "h": "433",
-          "a": "277"
+          "h": "548",
+          "a": "336"
         },
         {
           "key": "passPct",
           "h": "90%",
-          "a": "82%"
+          "a": "80%"
         },
         {
           "key": "yellowCards",
           "h": "2",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -11182,7 +11208,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-18T17:37:59.561Z"
+      "updatedAt": "2026-06-18T17:58:19.998Z"
     }
   }
 }
