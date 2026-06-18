@@ -78,17 +78,16 @@ body {
   left: 0;
   right: 0;
   top: 0;
-  height: clamp(140px, 22vw, 200px);
+  height: clamp(84px, 12vw, 120px);
   pointer-events: none;
   z-index: -1;
   transition: opacity .25s ease;
   background: linear-gradient(
     180deg,
     rgba(4, 8, 18, .92) 0%,
-    rgba(4, 8, 18, .78) 16%,
-    rgba(4, 8, 18, .55) 38%,
-    rgba(4, 8, 18, .32) 58%,
-    rgba(4, 8, 18, .14) 78%,
+    rgba(4, 8, 18, .72) 30%,
+    rgba(4, 8, 18, .42) 58%,
+    rgba(4, 8, 18, .16) 82%,
     transparent 100%
   );
 }
