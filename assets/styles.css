@@ -1261,15 +1261,22 @@ html.view-bracket .bracket .round-title.bracket-jump.bronze-title:hover {
 /* Knapprad: växla trädet mellan platsetiketter och oddsfavoriter. Ligger på
    samma rad som slutspelsrubriken (page-intro), längst till höger. */
 .bracket-modebar {
-  flex: none;
+  flex: 0 0 auto;
   display: flex;
-  justify-content: flex-end;
 }
-/* Rubrikrad i slutspelet: titel till vänster, lägesväxlare till höger. */
-.page-intro.bracket-intro { flex: none; align-items: center; }
-@media (max-width: 560px) {
-  .page-intro.bracket-intro .bracket-modebar { width: 100%; justify-content: flex-start; }
+/* Rubrikrad i slutspelet: titel till vänster, lägesväxlare till höger så länge
+   den ryms. Vi håller raden i row+wrap på ALLA bredder (åsidosätter den
+   generella .page-intro-kolumnen i mediafrågorna) så att pillret bryts ned som
+   en hel enhet på egen rad – vänsterställt, symmetriskt med rubriken och med
+   övriga vyers intro – i stället för att klämma ihop titeln på höjden. */
+.page-intro.bracket-intro {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
 }
+.page-intro.bracket-intro .page-intro-main { flex: 1 1 320px; }
 .bmode-seg {
   display: inline-flex;
   gap: 4px;
@@ -1354,7 +1361,7 @@ html.view-bracket .bracket-scroll::-webkit-scrollbar-thumb:hover {
 html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
 .bracket .match {
   box-shadow: 0 4px 18px rgba(0,0,0,.45);
-  background: color-mix(in srgb, var(--card) 96%, var(--usa-navy));
+  background: linear-gradient(180deg, rgba(20, 36, 60, .94), rgba(11, 21, 37, .9));
   width: 100%;
   align-self: center;
 }
@@ -1869,15 +1876,15 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   font-weight: 700;
   letter-spacing: .02em;
   color: var(--ink);
-  background: color-mix(in srgb, var(--usa-blue) 20%, var(--card));
-  border: 1px solid color-mix(in srgb, var(--usa-blue) 45%, var(--line));
+  background: linear-gradient(180deg, rgba(20, 36, 60, .82), rgba(11, 21, 38, .85));
+  border: 1px solid rgba(255, 255, 255, .085);
   border-radius: 999px;
   cursor: pointer;
   transition: background .15s ease, border-color .15s ease, transform .1s ease;
 }
 .cal-jump:hover {
-  background: color-mix(in srgb, var(--usa-blue) 32%, var(--card));
-  border-color: var(--usa-blue);
+  background: linear-gradient(180deg, rgba(26, 46, 74, .88), rgba(15, 27, 48, .9));
+  border-color: color-mix(in srgb, var(--usa-blue) 45%, var(--line));
 }
 .cal-jump:active { transform: translateY(1px); }
 .cal-jump.is-live {

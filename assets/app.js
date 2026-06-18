@@ -728,10 +728,10 @@
   var countdownTimer = null;
 
   var HERO_TEXTS = {
-    groups: { title: "Gruppspel", sub: "11 juni – 19 juli · 48 lag · 104 matcher" },
-    bracket: { title: "Slutspel", sub: "28 juni – 19 juli · 32 lag · sextondelsfinal till final" },
-    calendar: { title: "Kalender", sub: "Alla matcher · grupp- & slutspelsfas" },
-    players: { title: "Statistik", sub: "Spelare & lag · samlas in automatiskt från matcherna" }
+    groups: { title: "Gruppspel", sub: "" },
+    bracket: { title: "Slutspel", sub: "" },
+    calendar: { title: "Kalender", sub: "" },
+    players: { title: "Statistik", sub: "" }
   };
 
   /* Vytitel (Gruppspel/Slutspel/Kalender) visas i innehållsytan,
@@ -1234,13 +1234,11 @@
     html += '<div class="bracket two-sided">';
 
     BR_HALF.left.forEach(function (col) {
-      html += bracketRoundTitle(col.title, bracketGridCol(col.round, "left"),
-        { sub: bracketRoundDates(col.nums, ctx.resolved) });
+      html += bracketRoundTitle(col.title, bracketGridCol(col.round, "left"));
     });
-    html += bracketRoundTitle("Final", 5, { final: true, sub: bracketRoundDates([104], ctx.resolved) });
+    html += bracketRoundTitle("Final", 5, { final: true });
     BR_HALF.right.forEach(function (col) {
-      html += bracketRoundTitle(col.title, bracketGridCol(col.round, "right"),
-        { sub: bracketRoundDates(col.nums, ctx.resolved) });
+      html += bracketRoundTitle(col.title, bracketGridCol(col.round, "right"));
     });
 
     BR_HALF.left.forEach(function (col) {
