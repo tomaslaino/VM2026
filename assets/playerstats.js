@@ -478,19 +478,36 @@
       : PLAYER_SORTS;
   }
 
-  /* Per-90 som skiljedomare: vid lika rubriksiffra (t.ex. lika många mål)
-     rankas den med högre mål/90 högre upp – dvs den som gjort det på färre
-     minuter. Kräver minst 2 spelade minuter; okvalificerade (0–1 min) rankas
-     efter kvalificerade och sinsemellan på flest spelade minuter.
-     Returnerar positivt om b före a. */
+  /* Tiebreak-steg: 0/NaN ignoreras så nästa kriterium provas (|| skulle
+     felaktigt hoppa över t.ex. per-90 vid NaN och falla tillbaka på minuter). */
+  function tieChain() {
+    for (var i = 0; i < arguments.length; i++) {
+      var d = arguments[i];
+      if (d) return d;
+    }
+    return 0;
+  }
+
+  function per90Rate(r, kind) {
+    if (kind === "a") return r.a90 != null ? r.a90 : per90(r.assists, r.min);
+    if (kind === "gi") return r.gi90 != null ? r.gi90 : per90(r.goals + r.assists, r.min);
+    return r.g90 != null ? r.g90 : per90(r.goals, r.min);
+  }
+
+  /* Per-90 som skiljedomare: vid lika rubriksiffra rankas högre mål/90 (eller
+     ass/90 / mål+ass/90) högre upp. Kräver minst 2 spelade minuter; okvalificerade
+     (0–1 min) rankas efter kvalificerade. Returnerar positivt om b före a. */
   function per90Tie(a, b, kind) {
     if (a.qualified && b.qualified) {
-      var av = kind === "a" ? a.a90 : kind === "gi" ? a.gi90 : a.g90;
-      var bv = kind === "a" ? b.a90 : kind === "gi" ? b.gi90 : b.g90;
-      return bv - av;
+      return per90Rate(b, kind) - per90Rate(a, kind);
     }
     if (a.qualified !== b.qualified) return a.qualified ? -1 : 1;
     return b.min - a.min;
+  }
+
+  /* Färre spelade minuter = högre effektivitet vid lika per-90. */
+  function minEffTie(a, b) {
+    return a.min - b.min;
   }
 
   /* Sekundärordning. Vid sortering på mål/assist-kolumnerna: först antal,
@@ -499,24 +516,24 @@
      tyngre än assist (3 mål slår 1 mål + 2 assist) innan per-90 används. */
   function playerTiebreak(a, b, key) {
     if (key === "goals") {
-      return (b.goals - a.goals) || per90Tie(a, b, "g") ||
-        (b.assists - a.assists) || a.name.localeCompare(b.name, "sv");
+      return tieChain(b.goals - a.goals, per90Tie(a, b, "g"),
+        b.assists - a.assists, minEffTie(a, b), a.name.localeCompare(b.name, "sv"));
     }
     if (key === "assists") {
-      return (b.assists - a.assists) || per90Tie(a, b, "a") ||
-        (b.goals - a.goals) || a.name.localeCompare(b.name, "sv");
+      return tieChain(b.assists - a.assists, per90Tie(a, b, "a"),
+        b.goals - a.goals, minEffTie(a, b), a.name.localeCompare(b.name, "sv"));
     }
     if (key === "g90") {
-      return per90Tie(a, b, "g") || (b.goals - a.goals) || (b.assists - a.assists) ||
-        (b.min - a.min) || a.name.localeCompare(b.name, "sv");
+      return tieChain(per90Tie(a, b, "g"), b.goals - a.goals, b.assists - a.assists,
+        minEffTie(a, b), a.name.localeCompare(b.name, "sv"));
     }
     if (key === "a90") {
-      return per90Tie(a, b, "a") || (b.assists - a.assists) || (b.goals - a.goals) ||
-        (b.min - a.min) || a.name.localeCompare(b.name, "sv");
+      return tieChain(per90Tie(a, b, "a"), b.assists - a.assists, b.goals - a.goals,
+        minEffTie(a, b), a.name.localeCompare(b.name, "sv"));
     }
-    /* points + övriga kolumner: poäng → mål → assist → per-90 → speltid → namn */
-    return (b.points - a.points) || (b.goals - a.goals) || (b.assists - a.assists) ||
-      per90Tie(a, b, "gi") || (b.min - a.min) || a.name.localeCompare(b.name, "sv");
+    /* points + övriga kolumner: poäng → mål → assist → per-90 → färre min → namn */
+    return tieChain(b.points - a.points, b.goals - a.goals, b.assists - a.assists,
+      per90Tie(a, b, "gi"), minEffTie(a, b), a.name.localeCompare(b.name, "sv"));
   }
 
   function cmpPlayers(a, b) {
@@ -698,10 +715,16 @@
     var rank = cfg.rankFn || cfg.valFn;
     return cfg.rows.filter(function (r) { return cfg.valFn(r) > 0; })
       .sort(function (a, b) {
-        return (rank(b) - rank(a)) ||
-          (cfg.tieKind ? per90Tie(a, b, cfg.tieKind) : 0) ||
-          (cfg.kind === "players" ? (b.points - a.points) : (b.pts - a.pts)) ||
-          (cfg.kind === "players" ? (b.min - a.min) : 0);
+        var d = rank(b) - rank(a);
+        if (d) return d;
+        if (cfg.kind === "players" && (cfg.id === "goals" || cfg.id === "assists")) {
+          return playerTiebreak(a, b, cfg.id);
+        }
+        return tieChain(
+          cfg.tieKind ? per90Tie(a, b, cfg.tieKind) : 0,
+          cfg.kind === "players" ? (b.points - a.points) : (b.pts - a.pts),
+          cfg.kind === "players" ? minEffTie(a, b) : 0
+        );
       })
       .slice(0, n);
   }
