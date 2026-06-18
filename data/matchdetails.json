@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-18T16:56:46.912Z",
+    "updatedAt": "2026-06-18T17:37:59.561Z",
     "source": "espn"
   },
   "details": {
@@ -10791,8 +10791,8 @@
     },
     "g:A:1": {
       "espnId": "760438",
-      "status": "PAUSED",
-      "minute": 45,
+      "status": "IN_PLAY",
+      "minute": 76,
       "utcDate": "2026-06-18T16:00Z",
       "duration": "REGULAR",
       "winner": null,
@@ -10801,7 +10801,10 @@
           "h": 0,
           "a": 1
         },
-        "ht": null,
+        "ht": {
+          "h": 0,
+          "a": 1
+        },
         "rt": null,
         "et": null,
         "pen": null
@@ -10832,9 +10835,52 @@
           "team": "h",
           "player": "Thalente Mbatha",
           "card": "YELLOW"
+        },
+        {
+          "minute": 75,
+          "team": "a",
+          "player": "Ladislav Krejcí",
+          "card": "YELLOW"
         }
       ],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Relebohile Mofokeng",
+          "out": "Jayden Adams"
+        },
+        {
+          "minute": 55,
+          "team": "a",
+          "in": "Pavel Sulc",
+          "out": "Vladimír Darida"
+        },
+        {
+          "minute": 55,
+          "team": "a",
+          "in": "Jaroslav Zelený",
+          "out": "Alexandr Sojka"
+        },
+        {
+          "minute": 66,
+          "team": "h",
+          "in": "Evidence Makgopa",
+          "out": "Iqraam Rayners"
+        },
+        {
+          "minute": 67,
+          "team": "a",
+          "in": "Tomás Soucek",
+          "out": "Michal Sadílek"
+        },
+        {
+          "minute": 67,
+          "team": "a",
+          "in": "Lukás Provod",
+          "out": "Adam Hlozek"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -10931,7 +10977,8 @@
             },
             {
               "name": "Evidence Makgopa",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Khulumani Ndamane",
@@ -10943,7 +10990,8 @@
             },
             {
               "name": "Relebohile Mofokeng",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true
             },
             {
               "name": "Bradley Cross",
@@ -11013,7 +11061,8 @@
           "bench": [
             {
               "name": "Jaroslav Zelený",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Mojmír Chytil",
@@ -11033,7 +11082,8 @@
             },
             {
               "name": "Lukás Provod",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Tomás Chorý",
@@ -11041,7 +11091,8 @@
             },
             {
               "name": "Tomás Soucek",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "David Doudera",
@@ -11065,7 +11116,8 @@
             },
             {
               "name": "Pavel Sulc",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             }
           ]
         }
@@ -11076,48 +11128,48 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "63%",
-          "a": "37%"
+          "h": "61%",
+          "a": "40%"
         },
         {
           "key": "totalShots",
-          "h": "5",
-          "a": "5"
+          "h": "9",
+          "a": "11"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "1"
+          "h": "1",
+          "a": "3"
         },
         {
           "key": "wonCorners",
-          "h": "3",
-          "a": "2"
+          "h": "4",
+          "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "4",
-          "a": "8"
+          "h": "9",
+          "a": "9"
         },
         {
           "key": "offsides",
-          "h": "2",
+          "h": "3",
           "a": "1"
         },
         {
           "key": "saves",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "1"
         },
         {
           "key": "totalPasses",
-          "h": "281",
-          "a": "159"
+          "h": "433",
+          "a": "277"
         },
         {
           "key": "passPct",
           "h": "90%",
-          "a": "84%"
+          "a": "82%"
         },
         {
           "key": "yellowCards",
@@ -11130,7 +11182,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-18T16:56:46.912Z"
+      "updatedAt": "2026-06-18T17:37:59.561Z"
     }
   }
 }
