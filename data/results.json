@@ -1,10 +1,10 @@
 {
   "meta": {
-    "updatedAt": "2026-06-18T17:58:19.957Z",
+    "updatedAt": "2026-06-18T18:15:24.378Z",
     "source": "espn",
     "matchCount": 25,
-    "liveCount": 1,
-    "apiCalls": 2
+    "liveCount": 0,
+    "apiCalls": 12
   },
   "results": {
     "g:A:2": {
@@ -130,19 +130,10 @@
     "g:A:1": {
       "h": 1,
       "a": 1,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:A:1",
-      "status": "IN_PLAY",
-      "minute": 90,
-      "home": "South Africa",
-      "away": "Czechia",
-      "score": "1-1"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -556,7 +547,7 @@
       "date": "2026-06-18",
       "time": "18:00",
       "utcDate": "2026-06-18T16:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "South Africa",
       "away": "Czechia",
@@ -1750,26 +1741,26 @@
       {
         "idx": 3,
         "position": 3,
-        "pld": 1,
+        "pld": 2,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 1,
-        "gf": 1,
-        "ga": 2,
+        "gf": 2,
+        "ga": 3,
         "gd": -1,
-        "pts": 0
+        "pts": 1
       },
       {
         "idx": 2,
         "position": 4,
-        "pld": 1,
+        "pld": 2,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 1,
-        "gf": 0,
-        "ga": 2,
+        "gf": 1,
+        "ga": 3,
         "gd": -2,
-        "pts": 0
+        "pts": 1
       }
     ],
     "B": [

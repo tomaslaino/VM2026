@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-18T17:58:19.999Z",
+    "updatedAt": "2026-06-18T18:15:24.383Z",
     "source": "espn"
   },
   "details": {
@@ -10791,11 +10791,11 @@
     },
     "g:A:1": {
       "espnId": "760438",
-      "status": "IN_PLAY",
-      "minute": 90,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-18T16:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "DRAW",
       "score": {
         "ft": {
           "h": 1,
@@ -11150,16 +11150,16 @@
       },
       "referee": "Tori Penso",
       "venue": "Mercedes-Benz Stadium, Atlanta, Georgia",
-      "attendance": null,
+      "attendance": 0,
       "stats": [
         {
           "key": "possessionPct",
           "h": "62%",
-          "a": "39%"
+          "a": "38%"
         },
         {
           "key": "totalShots",
-          "h": "15",
+          "h": "17",
           "a": "14"
         },
         {
@@ -11169,7 +11169,7 @@
         },
         {
           "key": "wonCorners",
-          "h": "4",
+          "h": "5",
           "a": "5"
         },
         {
@@ -11189,8 +11189,8 @@
         },
         {
           "key": "totalPasses",
-          "h": "548",
-          "a": "336"
+          "h": "564",
+          "a": "339"
         },
         {
           "key": "passPct",
@@ -11208,7 +11208,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-18T17:58:19.998Z"
+      "updatedAt": "2026-06-18T18:00:21.411Z"
     }
   }
 }

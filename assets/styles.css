@@ -1203,60 +1203,25 @@ html.view-bracket body {
   background-attachment: fixed;
 }
 html.view-bracket {
-  height: 100%;
-  /* Behåll samma vertikala scrollbar-gutter som övriga vyer (overflow-y: scroll
-     ärvs från grundregeln på rad 44) så att layouten inte hoppar sidledes när
-     man öppnar Slutspel. body (100vh, overflow:hidden) hindrar att sidan scrollar. */
+  /* Slutspelet scrollar nu som övriga vyer: hela sidan rullar och endast den
+     globala headern (.hero-header, position: sticky) hänger med ned. Rubriken
+     "Slutspel" + lägesväxlaren (Platser/Oddsfavoriter) ligger i vanligt
+     dokumentflöde och rullar bort med innehållet. overflow-x hålls dold så det
+     breda trädet inte ger sidled-scroll på <body> – trädet har egen vågrät
+     scroll i .bracket-scroll. */
   overflow-x: hidden;
 }
-html.view-bracket body {
-  display: flex;
-  flex-direction: column;
-  height: 100dvh;
-  height: 100vh;
-  max-height: 100dvh;
-  overflow: hidden;
-}
-/* Slutspel: ingen sid-scroll – bannern krymper via .hero-collapsed (JS). */
-html.view-bracket .hero-header {
-  flex: none;
-  position: relative;
-  top: 0 !important;
-  transition: box-shadow .2s;
-}
-html.view-bracket .hero-header.hero-collapsed .hero-head,
-html.view-bracket .hero-header.hero-collapsed .hero-bg,
-html.view-bracket .hero-header.hero-collapsed .hero-shade {
-  display: none;
-}
 html.view-bracket main.container {
-  flex: 1 1 0;
-  min-height: 0;
-  height: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
   /* Samma topp-luft som .container på övriga vyer (26px) så vytiteln "Slutspel"
-     hamnar på exakt samma höjd som "Gruppspel"/"Kalender" – annars ser det ut
-     som att hela sidan hoppar uppåt när man byter till just den här fliken. */
-  padding: 26px 20px 0;
+     hamnar på exakt samma höjd som "Gruppspel"/"Kalender". */
+  padding: 26px 20px 10px;
 }
 /* Slutspelets toppra (rubrik + lägesväxlare) ligger överst i .bracket-shell,
    ovanför den scrollbara trädytan. Samma marginal som .page-intro på övriga
    vyer så rubriken ligger symmetriskt med dem. */
 html.view-bracket .page-intro { margin: 4px 0 22px; }
-html.view-bracket .bracket-shell {
-  flex: 1 1 0;
-  min-height: 0;
-  height: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
 html.view-bracket .foot {
-  flex: none;
-  margin-top: 0;
-  padding: 10px 20px 14px;
+  padding: 18px 20px 28px;
   font-size: 11px;
 }
 /* Vyrubriken "Slutspel" + underrubrik följer samma stil som Gruppspel/Kalender
@@ -1347,13 +1312,14 @@ html.view-bracket .bracket .round-title.bracket-jump.bronze-title:hover {
   background: transparent;
 }
 html.view-bracket .bracket-scroll {
-  flex: 1 1 0;
-  min-height: 0;
-  height: 0;
   width: 100%;
-  overflow: auto;
-  overscroll-behavior: auto;
-  scrollbar-gutter: stable;
+  /* Endast vågrät scroll här – sidan (body) sköter lodrät scroll. Lodrät luft
+     (>= 6px upp/ned) ryms så faskolumnernas panel (margin: -6px) inte ger en
+     onödig lodrät scrollbar inuti trädet. */
+  padding: 10px 4px 12px 12px;
+  overflow-x: auto;
+  overflow-y: visible;
+  overscroll-behavior-x: contain;
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--ink-soft) 50%, var(--line)) transparent;
 }
@@ -1424,10 +1390,10 @@ html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
   border-color: rgba(224, 178, 58, .24);
 }
 
-/* Fasrubrik som pill – fastnar i överkant när man rullar i trädet. */
+/* Fasrubrik som pill överst i varje faskolumn. (Sidan rullar i sin helhet, så
+   rubriken följer med innehållet bort precis som på övriga vyer.) */
 .bracket.two-sided > .round-cell .round-title {
-  position: sticky;
-  top: 6px;
+  position: relative;
   z-index: 6;
   pointer-events: auto;
   width: auto;
@@ -2401,7 +2367,7 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   }
   html.view-bracket .bracket-scroll {
     margin: 0 -14px;
-    padding: 4px 0 0 10px;
+    padding: 8px 0 12px 10px;
     scroll-padding-inline: 14px;
   }
   html.view-bracket .foot {
@@ -2427,10 +2393,6 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
     align-items: stretch;
   }
   .live-toast { min-width: 0; max-width: none; width: 100%; }
-}
-
-@media (max-height: 720px) {
-  html.view-bracket .foot { display: none; }
 }
 
 @media (max-width: 560px) {

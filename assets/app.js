@@ -794,7 +794,7 @@
     var was = header.classList.contains("hero-collapsed");
     if (was === !!on) return;
 
-    var mobileCompact = window.innerWidth <= 780 && ui("view", "groups") !== "bracket";
+    var mobileCompact = window.innerWidth <= 780;
     var beforeH = mobileCompact ? header.offsetHeight : 0;
 
     header.classList.toggle("hero-collapsed", !!on);
@@ -828,23 +828,11 @@
     } else if (y > 8) {
       header.classList.add("is-scrolled");
     }
-    if (ui("view", "groups") === "bracket") return;
     if (header.classList.contains("hero-collapsed")) {
       if (y <= headerExpandAt) setBracketHeroCollapsed(false);
     } else if (y > headerCollapseAt) {
       setBracketHeroCollapsed(true);
     }
-  }
-
-  function setupBracketHeroCollapse() {
-    var sc = viewEl.querySelector(".bracket-scroll");
-    if (!sc || sc._heroCollapseBound) return;
-    sc._heroCollapseBound = true;
-
-    sc.addEventListener("scroll", function () {
-      if (sc.scrollTop > 6) setBracketHeroCollapsed(true);
-      else if (sc.scrollTop <= 0) setBracketHeroCollapsed(false);
-    }, { passive: true });
   }
 
   /* Skriv bara om #view när innehållet faktiskt ändrats. En oförändrad
@@ -880,7 +868,6 @@
     if (view === "home") rebuilt = renderHome();
     else if (view === "groups") rebuilt = renderGroups();
     else if (view === "bracket") {
-      setBracketHeroCollapsed(false);
       rebuilt = renderBracket();
     }
     else if (view === "players") rebuilt = renderPlayers();
@@ -1310,7 +1297,6 @@
 
     if (hoverMatch && ctx.resolved[hoverMatch]) updateAside(hoverMatch, ctx);
     else hideAside();
-    setupBracketHeroCollapse();
     return true;
   }
 
@@ -3410,13 +3396,6 @@
     });
     window.addEventListener("load", updateHeroSticky);
     window.addEventListener("scroll", syncHeaderCompact, { passive: true });
-
-    window.addEventListener("wheel", function (e) {
-      if (ui("view", "groups") !== "bracket") return;
-      var sc = viewEl.querySelector(".bracket-scroll");
-      if (e.deltaY > 2) setBracketHeroCollapsed(true);
-      else if (e.deltaY < -2 && (!sc || sc.scrollTop <= 0)) setBracketHeroCollapsed(false);
-    }, { passive: true });
 
     if (ui("view", "groups") === "calendar") calScrollPending = true;
     render();
