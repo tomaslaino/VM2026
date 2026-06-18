@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-18T19:56:11.871Z",
+    "updatedAt": "2026-06-18T22:20:10.167Z",
     "source": "espn"
   },
   "details": {
@@ -11212,24 +11212,159 @@
     },
     "g:B:3": {
       "espnId": "760439",
-      "status": "PAUSED",
-      "minute": 45,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-18T19:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
+          "h": 1,
+          "a": 4
+        },
+        "ht": {
           "h": 0,
           "a": 0
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
-      "bookings": [],
-      "subs": [],
+      "goals": [
+        {
+          "minute": 74,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Johan Manzambi",
+          "assist": null,
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 84,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Rubén Vargas",
+          "assist": "Breel Embolo",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 90,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Johan Manzambi",
+          "assist": "Rubén Vargas",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "h",
+          "scorer": "Ermin Mahmic",
+          "assist": null,
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 90,
+          "injuryTime": 7,
+          "team": "a",
+          "scorer": "Granit Xhaka",
+          "assist": null,
+          "type": "PENALTY",
+          "score": null
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 59,
+          "team": "h",
+          "player": "Amar Dedic",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 61,
+          "team": "h",
+          "player": "Edin Dzeko",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 65,
+          "team": "a",
+          "player": "Nico Elvedi",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 80,
+          "team": "h",
+          "player": "Tarik Muharemovic",
+          "card": "RED"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 63,
+          "team": "h",
+          "in": "Ivan Basic",
+          "out": "Benjamin Tahirovic"
+        },
+        {
+          "minute": 64,
+          "team": "h",
+          "in": "Esmir Bajraktarevic",
+          "out": "Edin Dzeko"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Djibril Sow",
+          "out": "Michel Aebischer"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Johan Manzambi",
+          "out": "Dan Ndoye"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Rubén Vargas",
+          "out": "Fabian Rieder"
+        },
+        {
+          "minute": 86,
+          "team": "h",
+          "in": "Jovo Lukic",
+          "out": "Ermedin Demirovic"
+        },
+        {
+          "minute": 86,
+          "team": "h",
+          "in": "Amir Hadziahmetovic",
+          "out": "Ivan Sunjic"
+        },
+        {
+          "minute": 86,
+          "team": "a",
+          "in": "Luca Jaquez",
+          "out": "Silvan Widmer"
+        },
+        {
+          "minute": 89,
+          "team": "a",
+          "in": "Cedric Itten",
+          "out": "Breel Embolo"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Ermin Mahmic",
+          "out": "Kerim Alajbegovic"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -11294,7 +11429,8 @@
           "bench": [
             {
               "name": "Ermin Mahmic",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Martin Zlomislic",
@@ -11318,11 +11454,13 @@
             },
             {
               "name": "Ivan Basic",
-              "jersey": "13"
+              "jersey": "13",
+              "in": true
             },
             {
               "name": "Amir Hadziahmetovic",
-              "jersey": "16"
+              "jersey": "16",
+              "in": true
             },
             {
               "name": "Samed Bazdar",
@@ -11330,7 +11468,8 @@
             },
             {
               "name": "Jovo Lukic",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Stjepan Radeljic",
@@ -11346,7 +11485,8 @@
             },
             {
               "name": "Esmir Bajraktarevic",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Armin Gigovic",
@@ -11424,11 +11564,13 @@
             },
             {
               "name": "Djibril Sow",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Luca Jaquez",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Aurèle Amenda",
@@ -11456,15 +11598,18 @@
             },
             {
               "name": "Cedric Itten",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Rubén Vargas",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Johan Manzambi",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Ardon Jashari",
@@ -11475,65 +11620,65 @@
       },
       "referee": "João Pinheiro",
       "venue": "SoFi Stadium, Inglewood, California",
-      "attendance": null,
+      "attendance": 70026,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "31%",
-          "a": "69%"
+          "h": "38%",
+          "a": "62%"
         },
         {
           "key": "totalShots",
-          "h": "3",
-          "a": "4"
+          "h": "5",
+          "a": "13"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
-          "a": "1"
+          "h": "3",
+          "a": "7"
         },
         {
           "key": "wonCorners",
-          "h": "2",
-          "a": "4"
+          "h": "3",
+          "a": "7"
         },
         {
           "key": "foulsCommitted",
-          "h": "8",
-          "a": "3"
+          "h": "18",
+          "a": "7"
         },
         {
           "key": "offsides",
           "h": "1",
-          "a": "2"
+          "a": "3"
         },
         {
           "key": "saves",
-          "h": "1",
-          "a": "1"
+          "h": "3",
+          "a": "2"
         },
         {
           "key": "totalPasses",
-          "h": "153",
-          "a": "344"
+          "h": "353",
+          "a": "587"
         },
         {
           "key": "passPct",
-          "h": "76%",
-          "a": "89%"
+          "h": "81%",
+          "a": "88%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "1"
         },
         {
           "key": "redCards",
-          "h": "0",
+          "h": "1",
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-18T19:56:11.871Z"
+      "updatedAt": "2026-06-18T22:20:10.167Z"
     }
   }
 }

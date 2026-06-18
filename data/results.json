@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-18T19:56:11.822Z",
+    "updatedAt": "2026-06-18T22:20:10.050Z",
     "source": "espn",
     "matchCount": 26,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -133,21 +133,12 @@
       "status": "FINISHED"
     },
     "g:B:3": {
-      "h": 0,
-      "a": 0,
-      "status": "PAUSED"
+      "h": 1,
+      "a": 4,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:B:3",
-      "status": "PAUSED",
-      "minute": 45,
-      "home": "Bosnia-Herzegovina",
-      "away": "Switzerland",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -578,7 +569,7 @@
       "date": "2026-06-18",
       "time": "21:00",
       "utcDate": "2026-06-18T19:00Z",
-      "status": "PAUSED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Bosnia-Herzegovina",
       "away": "Switzerland",
@@ -1781,14 +1772,14 @@
       {
         "idx": 1,
         "position": 1,
-        "pld": 1,
-        "w": 0,
+        "pld": 2,
+        "w": 1,
         "d": 1,
         "l": 0,
-        "gf": 1,
-        "ga": 1,
-        "gd": 0,
-        "pts": 1
+        "gf": 5,
+        "ga": 2,
+        "gd": 3,
+        "pts": 4
       },
       {
         "idx": 0,
@@ -1803,19 +1794,19 @@
         "pts": 1
       },
       {
-        "idx": 2,
+        "idx": 3,
         "position": 3,
-        "pld": 1,
+        "pld": 2,
         "w": 0,
         "d": 1,
-        "l": 0,
-        "gf": 1,
-        "ga": 1,
-        "gd": 0,
+        "l": 1,
+        "gf": 2,
+        "ga": 5,
+        "gd": -3,
         "pts": 1
       },
       {
-        "idx": 3,
+        "idx": 2,
         "position": 4,
         "pld": 1,
         "w": 0,
