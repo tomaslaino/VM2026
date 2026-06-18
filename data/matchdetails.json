@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-18T01:43:35.310Z",
+    "updatedAt": "2026-06-18T06:31:33.655Z",
     "source": "espn"
   },
   "details": {
@@ -10323,6 +10323,471 @@
         }
       ],
       "updatedAt": "2026-06-18T01:43:35.310Z"
+    },
+    "g:K:5": {
+      "espnId": "760436",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-18T02:00Z",
+      "duration": "REGULAR",
+      "winner": "HOME_TEAM",
+      "score": {
+        "ft": {
+          "h": 3,
+          "a": 1
+        },
+        "ht": {
+          "h": 1,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 40,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Daniel Muñoz",
+          "assist": "Luis Díaz",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        },
+        {
+          "minute": 60,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Abbosbek Fayzullaev",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        },
+        {
+          "minute": 65,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Luis Díaz",
+          "assist": "Gustavo Puerta",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 1
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 9,
+          "team": "h",
+          "scorer": "Jáminton Campaz",
+          "assist": "Cucho Hernández",
+          "type": "REGULAR",
+          "score": {
+            "h": 3,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 7,
+          "team": "h",
+          "player": "Johan Mojica",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 34,
+          "team": "a",
+          "player": "Abdukodir Khusanov",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Dostonbek Khamdamov",
+          "out": "Oston Urunov"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Farrukh Sayfiev",
+          "out": "Sherzod Nasrullaev"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Jáminton Campaz",
+          "out": "James Rodríguez"
+        },
+        {
+          "minute": 77,
+          "team": "a",
+          "in": "Jakhongir Urozov",
+          "out": "Rustam Ashurmatov"
+        },
+        {
+          "minute": 77,
+          "team": "a",
+          "in": "Azizbek Amonov",
+          "out": "Abbosbek Fayzullaev"
+        },
+        {
+          "minute": 80,
+          "team": "h",
+          "in": "Richard Ríos",
+          "out": "Gustavo Puerta"
+        },
+        {
+          "minute": 80,
+          "team": "h",
+          "in": "Cucho Hernández",
+          "out": "Luis Suárez"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Andrés Gómez",
+          "out": "Luis Díaz"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Kevin Castaño",
+          "out": "Jhon Arias"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Igor Sergeev",
+          "out": "Eldor Shomurodov"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Camilo Vargas",
+              "jersey": "12",
+              "pos": "G"
+            },
+            {
+              "name": "Daniel Muñoz",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Johan Mojica",
+              "jersey": "17",
+              "pos": "LB"
+            },
+            {
+              "name": "Jefferson Lerma",
+              "jersey": "16",
+              "pos": "CM"
+            },
+            {
+              "name": "Davinson Sánchez",
+              "jersey": "23",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Jhon Lucumí",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Gustavo Puerta",
+              "jersey": "14",
+              "pos": "RM"
+            },
+            {
+              "name": "Jhon Arias",
+              "jersey": "11",
+              "pos": "LM"
+            },
+            {
+              "name": "Luis Suárez",
+              "jersey": "25",
+              "pos": "F"
+            },
+            {
+              "name": "James Rodríguez",
+              "jersey": "10",
+              "pos": "RF"
+            },
+            {
+              "name": "Luis Díaz",
+              "jersey": "7",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "David Ospina",
+              "jersey": "1"
+            },
+            {
+              "name": "Yerry Mina",
+              "jersey": "13"
+            },
+            {
+              "name": "Juan Fernando Quintero",
+              "jersey": "20"
+            },
+            {
+              "name": "Jhon Córdoba",
+              "jersey": "9"
+            },
+            {
+              "name": "Willer Ditta",
+              "jersey": "18"
+            },
+            {
+              "name": "Álvaro Montero",
+              "jersey": "24"
+            },
+            {
+              "name": "Santiago Arias",
+              "jersey": "4"
+            },
+            {
+              "name": "Jáminton Campaz",
+              "jersey": "21",
+              "in": true
+            },
+            {
+              "name": "Deiver Machado",
+              "jersey": "22"
+            },
+            {
+              "name": "Kevin Castaño",
+              "jersey": "5",
+              "in": true
+            },
+            {
+              "name": "Juan Portilla",
+              "jersey": "15"
+            },
+            {
+              "name": "Jorge Carrascal",
+              "jersey": "8"
+            },
+            {
+              "name": "Andrés Gómez",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Richard Ríos",
+              "jersey": "6",
+              "in": true
+            },
+            {
+              "name": "Cucho Hernández",
+              "jersey": "19",
+              "in": true
+            }
+          ]
+        },
+        "a": {
+          "formation": "3-4-2-1",
+          "starters": [
+            {
+              "name": "Utkir Yusupov",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Behruzjon Karimov",
+              "jersey": "24",
+              "pos": "RM"
+            },
+            {
+              "name": "Sherzod Nasrullaev",
+              "jersey": "13",
+              "pos": "LM"
+            },
+            {
+              "name": "Rustam Ashurmatov",
+              "jersey": "5",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Abdulla Abdullaev",
+              "jersey": "18",
+              "pos": "CD"
+            },
+            {
+              "name": "Abdukodir Khusanov",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Akmal Mozgovoy",
+              "jersey": "6",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Otabek Shukurov",
+              "jersey": "7",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Eldor Shomurodov",
+              "jersey": "14",
+              "pos": "F"
+            },
+            {
+              "name": "Abbosbek Fayzullaev",
+              "jersey": "22",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Oston Urunov",
+              "jersey": "11",
+              "pos": "CF-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Avazbek Ulmasaliyev",
+              "jersey": "25"
+            },
+            {
+              "name": "Botirali Ergashev",
+              "jersey": "16"
+            },
+            {
+              "name": "Farrukh Sayfiev",
+              "jersey": "4",
+              "in": true
+            },
+            {
+              "name": "Azizbek Amonov",
+              "jersey": "20",
+              "in": true
+            },
+            {
+              "name": "Jakhongir Urozov",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Khojiakbar Alijonov",
+              "jersey": "3"
+            },
+            {
+              "name": "Umar Eshmurodov",
+              "jersey": "15"
+            },
+            {
+              "name": "Azizjon Ganiev",
+              "jersey": "19"
+            },
+            {
+              "name": "Dostonbek Khamdamov",
+              "jersey": "17",
+              "in": true
+            },
+            {
+              "name": "Odiljon Xamrobekov",
+              "jersey": "9"
+            },
+            {
+              "name": "Igor Sergeev",
+              "jersey": "21",
+              "in": true
+            },
+            {
+              "name": "Jamshid Iskanderov",
+              "jersey": "8"
+            },
+            {
+              "name": "Sherzod Esanov",
+              "jersey": "23"
+            },
+            {
+              "name": "Ruslanbek Jiyanov",
+              "jersey": "10"
+            },
+            {
+              "name": "Abduvohid Nematov",
+              "jersey": "12"
+            }
+          ]
+        }
+      },
+      "referee": "Anthony Taylor",
+      "venue": "Estadio Banorte, Mexico City",
+      "attendance": 80824,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "61%",
+          "a": "39%"
+        },
+        {
+          "key": "totalShots",
+          "h": "15",
+          "a": "8"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "4",
+          "a": "2"
+        },
+        {
+          "key": "wonCorners",
+          "h": "4",
+          "a": "3"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "11",
+          "a": "14"
+        },
+        {
+          "key": "offsides",
+          "h": "3",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "519",
+          "a": "319"
+        },
+        {
+          "key": "passPct",
+          "h": "86%",
+          "a": "76%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-18T06:31:33.655Z"
     }
   }
 }
