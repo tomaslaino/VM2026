@@ -1700,20 +1700,59 @@
   // (oddsfavoriten i hela trädet). Växlas via knappraden överst i slutspelsvyn.
   function bracketMode() { return ui("bracketMode", "seed") === "odds" ? "odds" : "seed"; }
 
+  // Mest sannolika laget i en fördelning (eller null).
+  function topNameOf(dist) {
+    if (!dist) return null;
+    var bestName = null, bestP = -1;
+    Object.keys(dist).forEach(function (n) {
+      if (dist[n] > bestP) { bestP = dist[n]; bestName = n; }
+    });
+    return bestName;
+  }
+
+  // Vilken runda matar in i en given runda (barn-positioner = 2p, 2p+1).
+  var BRACKET_PREV_ROUND = { r16: "r32", qf: "r16", sf: "qf", final: "sf" };
+  var bracketFavCache = null;     // "round:pos" -> lagnamn (oddsfavorit i trädet)
+
+  // Oddsfavoriten i en trädposition – KONSEKVENT uppåt i trädet: en plats kan
+  // bara visa ett lag som också är favorit i en av de två matande platserna
+  // (annars dök t.ex. Portugal upp i en kvartsfinal utan att synas i någon av
+  // åttondelsfinalerna som leder dit). Leder (r32/brons) använder marginalen.
+  function bracketFavName(round, pos) {
+    if (!bracketProbs || !bracketProbs.nodes) return null;
+    if (!bracketFavCache) bracketFavCache = {};
+    var key = round + ":" + pos;
+    if (key in bracketFavCache) return bracketFavCache[key];
+    var dist = bracketProbs.nodes[round] && bracketProbs.nodes[round][pos];
+    var prev = BRACKET_PREV_ROUND[round];
+    var result;
+    if (!prev) {
+      result = topNameOf(dist);                       // löv (r32) eller brons
+    } else {
+      var a = bracketFavName(prev, pos * 2);
+      var b = bracketFavName(prev, pos * 2 + 1);
+      var pa = (dist && a && dist[a] != null) ? dist[a] : -1;
+      var pb = (dist && b && dist[b] != null) ? dist[b] : -1;
+      // Den av de två matande favoriterna som troligast tar sig hit visas.
+      if (pa < 0 && pb < 0) result = topNameOf(dist);
+      else result = pa >= pb ? a : b;
+    }
+    bracketFavCache[key] = result || null;
+    return bracketFavCache[key];
+  }
+
   // Mest sannolika laget för en matchsida enligt prob-noderna (eller null).
   function nodeTopSide(matchNo, which) {
     if (!bracketProbs || !bracketProbs.nodes) return null;
     if (!bracketPosByMatch) bracketPosByMatch = buildBracketPosMap();
     var pos = bracketPosByMatch[matchNo];
     if (!pos) return null;
-    var nodes = bracketProbs.nodes[pos.round];
-    var dist = nodes && nodes[which === "home" ? pos.home : pos.away];
-    if (!dist) return null;
-    var bestName = null, bestP = -1;
-    Object.keys(dist).forEach(function (n) {
-      if (dist[n] > bestP) { bestP = dist[n]; bestName = n; }
-    });
-    var t = bestName && teamByName(bestName);
+    var p = which === "home" ? pos.home : pos.away;
+    var bestName = bracketFavName(pos.round, p);
+    if (!bestName) return null;
+    var dist = bracketProbs.nodes[pos.round] && bracketProbs.nodes[pos.round][p];
+    var bestP = dist && dist[bestName] != null ? dist[bestName] : null;
+    var t = teamByName(bestName);
     return t ? { team: t, decided: false, predicted: true, prob: bestP } : null;
   }
 
@@ -1923,6 +1962,7 @@
       .then(function (d) {
         if (d && d.nodes) {
           bracketProbs = d;
+          bracketFavCache = null;     // ny data → räkna om trädets favoriter
           // Trädet ritar om så att oddsfavoriten i "nästa match"-rundan dyker
           // upp (renderBracket återställer även den öppna infopanelen).
           if (ui("view", "groups") === "bracket") renderBracket();

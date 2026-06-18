@@ -1183,7 +1183,10 @@ html.view-bracket body {
 }
 html.view-bracket {
   height: 100%;
-  overflow: hidden;
+  /* Behåll samma vertikala scrollbar-gutter som övriga vyer (overflow-y: scroll
+     ärvs från grundregeln på rad 44) så att layouten inte hoppar sidledes när
+     man öppnar Slutspel. body (100vh, overflow:hidden) hindrar att sidan scrollar. */
+  overflow-x: hidden;
 }
 html.view-bracket body {
   display: flex;
