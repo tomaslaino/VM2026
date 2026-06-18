@@ -66,24 +66,30 @@ body {
   top: 0;
   z-index: 40;
   overflow-anchor: none;
-  /* Genomskinlig header (Viaplay-stil): sidans bakgrundsbild syns rakt igenom.
-     En mjuk mörk toppgradient (i stället för en solid platta) håller logga,
-     meny och sök läsbara mot bilden utan att dölja den. */
-  background: linear-gradient(180deg, rgba(6, 12, 24, .68) 0%, rgba(6, 12, 24, .38) 55%, transparent 100%);
+  /* Genomskinlig header (Viaplay-stil): en sammanhängande scrim i ::before
+     sträcker sig långt ned så kanten smälter in utan synlig "band"-kant. */
+  background: transparent;
 }
-/* Mjuk uttoning (fade) som fortsätter nedanför headern – samma idé som
-   gradient-overlayen i en videospelare: kanten smälter in i innehållet i
-   stället för att sluta tvärt. */
-.hero-header::after {
+.hero-header::before {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
-  top: 100%;
-  height: 72px;
+  top: 0;
+  height: clamp(140px, 22vw, 200px);
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(6, 12, 24, .45) 0%, rgba(6, 12, 24, .22) 40%, transparent 100%);
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 8, 18, .92) 0%,
+    rgba(4, 8, 18, .78) 16%,
+    rgba(4, 8, 18, .55) 38%,
+    rgba(4, 8, 18, .32) 58%,
+    rgba(4, 8, 18, .14) 78%,
+    transparent 100%
+  );
 }
+.topbar { position: relative; z-index: 1; }
 .topbar-inner {
   max-width: var(--maxw); margin: 0 auto; padding: 10px 20px;
   display: flex; align-items: center; gap: 16px;
@@ -128,7 +134,7 @@ body {
 .brand:hover .brand-mark { transform: translateY(-1px); box-shadow: 0 7px 20px rgba(196, 30, 58, .5), 0 1px 2px rgba(0, 0, 0, .35); }
 .brand:hover .brand-txt b { color: #fff8ec; }
 .brand:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 8px; }
-.nav { display: inline-flex; background: rgba(10, 22, 40, .72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 12px; padding: 4px; gap: 2px; }
+.nav { display: inline-flex; background: rgba(10, 22, 40, .42); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid rgba(50, 85, 120, .32); border-radius: 12px; padding: 4px; gap: 2px; }
 .seg {
   border: 0; background: transparent; color: #b9c9dd; font: inherit; font-weight: 600; font-size: 14px;
   padding: 8px 14px; border-radius: 9px; cursor: pointer; transition: .15s;
@@ -142,8 +148,8 @@ body {
 .search { position: relative; flex: 0 1 280px; min-width: 150px; margin-left: auto; }
 #teamSearch {
   width: 100%; font: inherit; font-size: 14px; padding: 9px 14px; border-radius: 11px;
-  border: 1px solid #325578; background: rgba(10, 22, 40, .72); color: #f0f4f9;
-  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border: 1px solid rgba(50, 85, 120, .38); background: rgba(10, 22, 40, .42); color: #f0f4f9;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
 }
 #teamSearch::placeholder { color: #8fa5bf; }
 #teamSearch:focus { outline: none; border-color: var(--focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 28%, transparent); }
