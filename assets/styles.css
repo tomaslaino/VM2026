@@ -69,7 +69,7 @@ body {
   /* Genomskinlig header (Viaplay-stil): sidans bakgrundsbild syns rakt igenom.
      En mjuk mörk toppgradient (i stället för en solid platta) håller logga,
      meny och sök läsbara mot bilden utan att dölja den. */
-  background: linear-gradient(180deg, rgba(6, 12, 24, .58) 0%, rgba(6, 12, 24, .28) 55%, transparent 100%);
+  background: linear-gradient(180deg, rgba(6, 12, 24, .68) 0%, rgba(6, 12, 24, .38) 55%, transparent 100%);
 }
 /* Mjuk uttoning (fade) som fortsätter nedanför headern – samma idé som
    gradient-overlayen i en videospelare: kanten smälter in i innehållet i
@@ -80,9 +80,9 @@ body {
   left: 0;
   right: 0;
   top: 100%;
-  height: 48px;
+  height: 72px;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(6, 12, 24, .28) 0%, rgba(6, 12, 24, .12) 45%, transparent 100%);
+  background: linear-gradient(180deg, rgba(6, 12, 24, .45) 0%, rgba(6, 12, 24, .22) 40%, transparent 100%);
 }
 .topbar-inner {
   max-width: var(--maxw); margin: 0 auto; padding: 10px 20px;
