@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-17T23:09:36.077Z",
+    "updatedAt": "2026-06-18T01:43:35.234Z",
     "source": "espn",
-    "matchCount": 22,
+    "matchCount": 23,
     "liveCount": 0,
     "apiCalls": 2
   },
@@ -115,6 +115,11 @@
     "g:L:0": {
       "h": 4,
       "a": 2,
+      "status": "FINISHED"
+    },
+    "g:L:1": {
+      "h": 0,
+      "a": 1,
       "status": "FINISHED"
     }
   },
@@ -498,7 +503,7 @@
       "date": "2026-06-18",
       "time": "01:00",
       "utcDate": "2026-06-17T23:00Z",
-      "status": "TIMED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Panama",
       "away": "Ghana",
@@ -2264,25 +2269,25 @@
       {
         "idx": 3,
         "position": 2,
-        "pld": 0,
-        "w": 0,
+        "pld": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
+        "gf": 1,
         "ga": 0,
-        "gd": 0,
-        "pts": 0
+        "gd": 1,
+        "pts": 3
       },
       {
         "idx": 2,
         "position": 3,
-        "pld": 0,
+        "pld": 1,
         "w": 0,
         "d": 0,
-        "l": 0,
+        "l": 1,
         "gf": 0,
-        "ga": 0,
-        "gd": 0,
+        "ga": 1,
+        "gd": -1,
         "pts": 0
       },
       {

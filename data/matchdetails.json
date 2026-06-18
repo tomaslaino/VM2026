@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-17T23:09:36.167Z",
+    "updatedAt": "2026-06-18T01:43:35.310Z",
     "source": "espn"
   },
   "details": {
@@ -9899,6 +9899,430 @@
         }
       ],
       "updatedAt": "2026-06-17T23:09:36.167Z"
+    },
+    "g:L:1": {
+      "espnId": "760434",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-17T23:00Z",
+      "duration": "REGULAR",
+      "winner": "AWAY_TEAM",
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 1
+        },
+        "ht": {
+          "h": 0,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 90,
+          "injuryTime": 5,
+          "team": "a",
+          "scorer": "Caleb Yirenkyi",
+          "assist": "Brandon Thomas-Asante",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 16,
+          "team": "a",
+          "player": "Caleb Yirenkyi",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "player": "César Blackman",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Carlos Harvey",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Benjamin Asare",
+          "out": "Lawrence Ati Zigi"
+        },
+        {
+          "minute": 58,
+          "team": "a",
+          "in": "Brandon Thomas-Asante",
+          "out": "Kamaldeen Sulemana"
+        },
+        {
+          "minute": 58,
+          "team": "a",
+          "in": "Fatawu Issahaku",
+          "out": "Ernest Nuamah"
+        },
+        {
+          "minute": 63,
+          "team": "h",
+          "in": "José Fajardo",
+          "out": "Cecilio Waterman"
+        },
+        {
+          "minute": 63,
+          "team": "h",
+          "in": "Azarias Londoño",
+          "out": "Cristian Martínez"
+        },
+        {
+          "minute": 74,
+          "team": "h",
+          "in": "Ismael Díaz",
+          "out": "José Luis Rodríguez"
+        },
+        {
+          "minute": 78,
+          "team": "a",
+          "in": "Kwasi Sibo",
+          "out": "Elisha Owusu"
+        },
+        {
+          "minute": 87,
+          "team": "a",
+          "in": "Prince Adu",
+          "out": "Jordan Ayew"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Aníbal Godoy",
+          "out": "César Blackman"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "3-4-3",
+          "starters": [
+            {
+              "name": "Orlando Mosquera",
+              "jersey": "22",
+              "pos": "G"
+            },
+            {
+              "name": "Amir Murillo",
+              "jersey": "23",
+              "pos": "RM"
+            },
+            {
+              "name": "César Blackman",
+              "jersey": "2",
+              "pos": "LM"
+            },
+            {
+              "name": "Andrés Andrade",
+              "jersey": "16",
+              "pos": "CD-L"
+            },
+            {
+              "name": "José Córdoba",
+              "jersey": "3",
+              "pos": "CD"
+            },
+            {
+              "name": "Jiovany Ramos",
+              "jersey": "13",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Carlos Harvey",
+              "jersey": "14",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Édgar Yoel Bárcenas",
+              "jersey": "11",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Cecilio Waterman",
+              "jersey": "18",
+              "pos": "F"
+            },
+            {
+              "name": "Cristian Martínez",
+              "jersey": "6",
+              "pos": "CF-R"
+            },
+            {
+              "name": "José Luis Rodríguez",
+              "jersey": "7",
+              "pos": "CF-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Éric Davis",
+              "jersey": "15"
+            },
+            {
+              "name": "Azarias Londoño",
+              "jersey": "24",
+              "in": true
+            },
+            {
+              "name": "Ismael Díaz",
+              "jersey": "10",
+              "in": true
+            },
+            {
+              "name": "Roderick Miller",
+              "jersey": "25"
+            },
+            {
+              "name": "Alberto Quintero",
+              "jersey": "19"
+            },
+            {
+              "name": "José Fajardo",
+              "jersey": "17",
+              "in": true
+            },
+            {
+              "name": "Adalberto Carrasquilla",
+              "jersey": "8"
+            },
+            {
+              "name": "César Yanis",
+              "jersey": "21"
+            },
+            {
+              "name": "Jorge Gutiérrez",
+              "jersey": "26"
+            },
+            {
+              "name": "Aníbal Godoy",
+              "jersey": "20",
+              "in": true
+            },
+            {
+              "name": "César Samudio",
+              "jersey": "12"
+            },
+            {
+              "name": "Fidel Escobar",
+              "jersey": "4"
+            },
+            {
+              "name": "Edgardo Fariña",
+              "jersey": "5"
+            },
+            {
+              "name": "Tomás Rodríguez",
+              "jersey": "9"
+            },
+            {
+              "name": "Luis Mejía",
+              "jersey": "1"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-4-1-1",
+          "starters": [
+            {
+              "name": "Lawrence Ati Zigi",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Marvin Senaya",
+              "jersey": "26",
+              "pos": "RB"
+            },
+            {
+              "name": "Gideon Mensah",
+              "jersey": "14",
+              "pos": "LB"
+            },
+            {
+              "name": "Caleb Yirenkyi",
+              "jersey": "3",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Jonas Adjetey",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Jerome Opoku",
+              "jersey": "18",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Ernest Nuamah",
+              "jersey": "24",
+              "pos": "RM"
+            },
+            {
+              "name": "Elisha Owusu",
+              "jersey": "15",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Jordan Ayew",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Kamaldeen Sulemana",
+              "jersey": "22",
+              "pos": "RCF"
+            },
+            {
+              "name": "Antoine Semenyo",
+              "jersey": "11",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Alidu Seidu",
+              "jersey": "2"
+            },
+            {
+              "name": "Joseph Anang",
+              "jersey": "12"
+            },
+            {
+              "name": "Kojo Peprah Oppong",
+              "jersey": "21"
+            },
+            {
+              "name": "Baba Rahman",
+              "jersey": "17"
+            },
+            {
+              "name": "Prince Adu",
+              "jersey": "25",
+              "in": true
+            },
+            {
+              "name": "Benjamin Asare",
+              "jersey": "16",
+              "in": true
+            },
+            {
+              "name": "Christopher Bonsu Baah",
+              "jersey": "13"
+            },
+            {
+              "name": "Brandon Thomas-Asante",
+              "jersey": "10",
+              "in": true
+            },
+            {
+              "name": "Iñaki Williams",
+              "jersey": "19"
+            },
+            {
+              "name": "Fatawu Issahaku",
+              "jersey": "7",
+              "in": true
+            },
+            {
+              "name": "Kwasi Sibo",
+              "jersey": "8",
+              "in": true
+            },
+            {
+              "name": "Abdul Mumin",
+              "jersey": "6"
+            },
+            {
+              "name": "Derrick Luckassen",
+              "jersey": "23"
+            },
+            {
+              "name": "Augustine Boakye",
+              "jersey": "20"
+            }
+          ]
+        }
+      },
+      "referee": "Glenn Nyberg",
+      "venue": "BMO Field, Toronto",
+      "attendance": 42942,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "62%",
+          "a": "38%"
+        },
+        {
+          "key": "totalShots",
+          "h": "11",
+          "a": "8"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "4",
+          "a": "2"
+        },
+        {
+          "key": "wonCorners",
+          "h": "2",
+          "a": "2"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "11",
+          "a": "9"
+        },
+        {
+          "key": "offsides",
+          "h": "1",
+          "a": "4"
+        },
+        {
+          "key": "saves",
+          "h": "2",
+          "a": "4"
+        },
+        {
+          "key": "totalPasses",
+          "h": "582",
+          "a": "353"
+        },
+        {
+          "key": "passPct",
+          "h": "86%",
+          "a": "83%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-18T01:43:35.310Z"
     }
   }
 }
