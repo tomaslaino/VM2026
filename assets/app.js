@@ -818,10 +818,17 @@
   /* Grupp/kalender: dölj sökfältet vid scroll – varumärke och nav behåller storlek. */
   function syncHeaderCompact() {
     if (headerScrollLock) return;
-    if (ui("view", "groups") === "bracket") return;
     var header = document.querySelector(".hero-header");
     if (!header) return;
     var y = window.scrollY;
+    /* Frostad panel så snart sidan rullats en aning – håller headertexten läsbar
+       mot innehållet bakom. Liten tröskel + hysteres så det inte flimrar vid 0. */
+    if (header.classList.contains("is-scrolled")) {
+      if (y <= 2) header.classList.remove("is-scrolled");
+    } else if (y > 8) {
+      header.classList.add("is-scrolled");
+    }
+    if (ui("view", "groups") === "bracket") return;
     if (header.classList.contains("hero-collapsed")) {
       if (y <= headerExpandAt) setBracketHeroCollapsed(false);
     } else if (y > headerCollapseAt) {

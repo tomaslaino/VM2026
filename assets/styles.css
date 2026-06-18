@@ -69,6 +69,8 @@ body {
   /* Genomskinlig header (Viaplay-stil): en sammanhängande scrim i ::before
      sträcker sig långt ned så kanten smälter in utan synlig "band"-kant. */
   background: transparent;
+  transition: background .25s ease, box-shadow .25s ease,
+    -webkit-backdrop-filter .25s ease, backdrop-filter .25s ease;
 }
 .hero-header::before {
   content: "";
@@ -79,6 +81,7 @@ body {
   height: clamp(140px, 22vw, 200px);
   pointer-events: none;
   z-index: -1;
+  transition: opacity .25s ease;
   background: linear-gradient(
     180deg,
     rgba(4, 8, 18, .92) 0%,
@@ -89,6 +92,18 @@ body {
     transparent 100%
   );
 }
+/* När man scrollat ned räcker inte topp-faden – innehållet rullar bakom nav/sök
+   och texten blir oläslig. Då byter headern till en tät, frostad panel som täcker
+   exakt topbar-höjden, med en mjuk underkant. Topp-faden tonas bort (behövs bara
+   allra överst på sidan för hjältelooken). */
+.hero-header.is-scrolled {
+  background: color-mix(in srgb, var(--usa-navy) 86%, transparent);
+  -webkit-backdrop-filter: blur(12px) saturate(125%);
+  backdrop-filter: blur(12px) saturate(125%);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, .42),
+    inset 0 -1px 0 rgba(120, 150, 190, .2);
+}
+.hero-header.is-scrolled::before { opacity: 0; }
 .topbar { position: relative; z-index: 1; }
 .topbar-inner {
   max-width: var(--maxw); margin: 0 auto; padding: 10px 20px;
