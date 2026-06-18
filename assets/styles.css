@@ -71,6 +71,19 @@ body {
      meny och sök läsbara mot bilden utan att dölja den. */
   background: linear-gradient(180deg, rgba(6, 12, 24, .58) 0%, rgba(6, 12, 24, .28) 55%, transparent 100%);
 }
+/* Mjuk uttoning (fade) som fortsätter nedanför headern – samma idé som
+   gradient-overlayen i en videospelare: kanten smälter in i innehållet i
+   stället för att sluta tvärt. */
+.hero-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 48px;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(6, 12, 24, .28) 0%, rgba(6, 12, 24, .12) 45%, transparent 100%);
+}
 .topbar-inner {
   max-width: var(--maxw); margin: 0 auto; padding: 10px 20px;
   display: flex; align-items: center; gap: 16px;
@@ -1203,11 +1216,15 @@ html.view-bracket main.container {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 8px 20px 0;
+  /* Samma topp-luft som .container på övriga vyer (26px) så vytiteln "Slutspel"
+     hamnar på exakt samma höjd som "Gruppspel"/"Kalender" – annars ser det ut
+     som att hela sidan hoppar uppåt när man byter till just den här fliken. */
+  padding: 26px 20px 0;
 }
 /* Slutspelets toppra (rubrik + lägesväxlare) ligger överst i .bracket-shell,
-   ovanför den scrollbara trädytan – kompakt och alltid synlig. */
-html.view-bracket .page-intro { margin: 2px 0 12px; }
+   ovanför den scrollbara trädytan. Samma marginal som .page-intro på övriga
+   vyer så rubriken ligger symmetriskt med dem. */
+html.view-bracket .page-intro { margin: 4px 0 22px; }
 html.view-bracket .bracket-shell {
   flex: 1 1 0;
   min-height: 0;
