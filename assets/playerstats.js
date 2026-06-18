@@ -494,18 +494,26 @@
     return b.min - a.min;
   }
 
-  /* Sekundärordning. Mål väger alltid tyngre än assist: 3 mål rankas högre
-     än 1 mål + 2 assist trots lika poäng. Först total produktion (mål, sedan
-     assist), därefter effektivitet (per 90 spelade minuter) och till sist
-     namn. Per-90 är alltså en finliga skiljedomare, inte överordnad antalet. */
+  /* Sekundärordning. Vid sortering på mål/assist-kolumnerna: först antal,
+     sedan per-90 (högre mål/90 eller ass/90 rankas högre vid lika rubriksiffra),
+     därefter övrig produktion och namn. Vid poäng/övriga kolumner väger mål
+     tyngre än assist (3 mål slår 1 mål + 2 assist) innan per-90 används. */
   function playerTiebreak(a, b, key) {
     if (key === "goals") {
-      return (b.goals - a.goals) || (b.assists - a.assists) ||
-        per90Tie(a, b, "g") || a.name.localeCompare(b.name, "sv");
+      return (b.goals - a.goals) || per90Tie(a, b, "g") ||
+        (b.assists - a.assists) || a.name.localeCompare(b.name, "sv");
     }
     if (key === "assists") {
-      return (b.assists - a.assists) || (b.goals - a.goals) ||
-        per90Tie(a, b, "a") || a.name.localeCompare(b.name, "sv");
+      return (b.assists - a.assists) || per90Tie(a, b, "a") ||
+        (b.goals - a.goals) || a.name.localeCompare(b.name, "sv");
+    }
+    if (key === "g90") {
+      return per90Tie(a, b, "g") || (b.goals - a.goals) || (b.assists - a.assists) ||
+        (b.min - a.min) || a.name.localeCompare(b.name, "sv");
+    }
+    if (key === "a90") {
+      return per90Tie(a, b, "a") || (b.assists - a.assists) || (b.goals - a.goals) ||
+        (b.min - a.min) || a.name.localeCompare(b.name, "sv");
     }
     /* points + övriga kolumner: poäng → mål → assist → per-90 → speltid → namn */
     return (b.points - a.points) || (b.goals - a.goals) || (b.assists - a.assists) ||
@@ -692,8 +700,8 @@
     return cfg.rows.filter(function (r) { return cfg.valFn(r) > 0; })
       .sort(function (a, b) {
         return (rank(b) - rank(a)) ||
-          (cfg.kind === "players" ? (b.points - a.points) : (b.pts - a.pts)) ||
           (cfg.tieKind ? per90Tie(a, b, cfg.tieKind) : 0) ||
+          (cfg.kind === "players" ? (b.points - a.points) : (b.pts - a.pts)) ||
           (cfg.kind === "players" ? (b.min - a.min) : 0);
       })
       .slice(0, n);

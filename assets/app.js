@@ -1093,8 +1093,6 @@
       '<th class="c-goals">Mål</th><th class="c-stat">+/-</th>' +
       '<th class="c-stat c-fp" title="Fair play-poäng: −1 gult kort, −3 två gula, −4 direkt rött, −5 gult + direkt rött">FP</th>' +
       '<th class="c-pts">P</th><th class="c-status">Kval</th></tr></thead><tbody>';
-    var anyFpDecided = thirds.ranking.some(function (e) { return e.fpDecided; });
-    var anyContested = thirds.ranking.some(function (e) { return e.contested; });
     thirds.ranking.forEach(function (e, i) {
       var cls = e.qualified ? "r-third-q" : "r-third-o";
       if (i === 7) cls += " cut-line"; // sista kvalplatsen
@@ -1118,17 +1116,7 @@
         '<td class="c-pts">' + e.s.pts + '</td>' +
         '<td class="c-status">' + (e.qualified ? '<span class="qbadge">✓</span>' : '<span class="xbadge">✗</span>') + '</td></tr>';
     });
-    h += '</tbody></table><p class="note">Endast de <strong>8 bästa treorna</strong> går vidare (de 4 sämsta treorna + alla fyror åker ut). ' +
-      'Rangordning enligt FIFA: poäng → målskillnad → gjorda mål → fair play → FIFA-ranking. ' +
-      '<strong>FP</strong> = fair play-poäng, beräknade från korten i matcherna ' +
-      '(−1 gult kort, −3 två gula i samma match, −4 direkt rött, −5 gult + direkt rött). ' +
-      (anyFpDecided
-        ? '<br><strong>FP</strong>-markerade lag står lika på poäng, målskillnad och gjorda mål och särskiljs just nu av fair play-poängen. '
-        : '') +
-      (anyContested
-        ? '<br><strong>FIFA</strong>-markerade lag är lika även på fair play och ordnas på FIFA-ranking. '
-        : '') +
-      'De 8 placeras automatiskt i slutspelsträdet enligt FIFA:s 495 kombinationer (Annex C).</p></section>';
+    h += '</tbody></table><p class="note">8 bästa treorna går vidare. Tiebreak: poäng → målskillnad → mål → fair play (FP) → FIFA-ranking.</p></section>';
     return h;
   }
 
