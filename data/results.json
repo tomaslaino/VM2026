@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-19T22:35:11.495Z",
+    "updatedAt": "2026-06-19T23:45:55.354Z",
     "source": "espn",
-    "matchCount": 29,
-    "liveCount": 0,
+    "matchCount": 30,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -151,9 +151,23 @@
       "h": 2,
       "a": 0,
       "status": "FINISHED"
+    },
+    "g:C:5": {
+      "h": 1,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:C:5",
+      "status": "IN_PLAY",
+      "minute": 75,
+      "home": "Morocco",
+      "away": "Scotland",
+      "score": "1-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -652,7 +666,7 @@
       "date": "2026-06-20",
       "time": "00:00",
       "utcDate": "2026-06-19T22:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Morocco",
       "away": "Scotland",
