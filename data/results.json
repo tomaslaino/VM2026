@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-19T05:23:43.657Z",
+    "updatedAt": "2026-06-19T09:58:39.041Z",
     "source": "espn",
     "matchCount": 28,
     "liveCount": 0,
@@ -1446,9 +1446,12 @@
       "utcDate": "2026-07-01T01:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Group A Winner",
+      "home": "Mexico",
       "away": "Third Place Group C/E/F/H/I",
-      "homeRef": null,
+      "homeRef": {
+        "group": "A",
+        "idx": 0
+      },
       "awayRef": null
     },
     "k:80": {
