@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-19T00:07:05.897Z",
+    "updatedAt": "2026-06-19T05:23:43.711Z",
     "source": "espn"
   },
   "details": {
@@ -12176,6 +12176,428 @@
         }
       ],
       "updatedAt": "2026-06-19T00:07:05.897Z"
+    },
+    "g:A:0": {
+      "espnId": "760441",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-19T01:00Z",
+      "duration": "REGULAR",
+      "winner": "HOME_TEAM",
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 0
+        },
+        "ht": {
+          "h": 0,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 50,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Luis Romo",
+          "assist": null,
+          "type": "REGULAR",
+          "score": null
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 4,
+          "team": "a",
+          "player": "Lee Kang-In",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 58,
+          "team": "a",
+          "player": "Paik Seung-Ho",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 57,
+          "team": "a",
+          "in": "Hwang Hee-Chan",
+          "out": "Lee Jae-Sung"
+        },
+        {
+          "minute": 57,
+          "team": "a",
+          "in": "Oh Hyeon-Gyu",
+          "out": "Son Heung-Min"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Orbelín Pineda",
+          "out": "Brian Gutiérrez"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Obed Vargas",
+          "out": "Luis Romo"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Eom Ji-Sung",
+          "out": "Kim Moon-Hwan"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Yang Hyun-Jun",
+          "out": "Seol Young-Woo"
+        },
+        {
+          "minute": 77,
+          "team": "a",
+          "in": "Cho Gue-Sung",
+          "out": "Paik Seung-Ho"
+        },
+        {
+          "minute": 80,
+          "team": "h",
+          "in": "Israel Reyes",
+          "out": "Roberto Alvarado"
+        },
+        {
+          "minute": 80,
+          "team": "h",
+          "in": "Santiago Gimenez",
+          "out": "Raúl Jiménez"
+        },
+        {
+          "minute": 84,
+          "team": "h",
+          "in": "César Huerta",
+          "out": "Julián Quiñones"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Raúl Rangel",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Jorge Sánchez",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Jesús Gallardo",
+              "jersey": "23",
+              "pos": "LB"
+            },
+            {
+              "name": "Érik Lira",
+              "jersey": "6",
+              "pos": "CM"
+            },
+            {
+              "name": "Edson Álvarez",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Johan Vásquez",
+              "jersey": "5",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Brian Gutiérrez",
+              "jersey": "26",
+              "pos": "RM"
+            },
+            {
+              "name": "Luis Romo",
+              "jersey": "7",
+              "pos": "LM"
+            },
+            {
+              "name": "Raúl Jiménez",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Roberto Alvarado",
+              "jersey": "25",
+              "pos": "RF"
+            },
+            {
+              "name": "Julián Quiñones",
+              "jersey": "16",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Mateo Chávez",
+              "jersey": "20"
+            },
+            {
+              "name": "Obed Vargas",
+              "jersey": "18",
+              "in": true
+            },
+            {
+              "name": "Álvaro Fidalgo",
+              "jersey": "8"
+            },
+            {
+              "name": "Gilberto Mora",
+              "jersey": "19"
+            },
+            {
+              "name": "Santiago Gimenez",
+              "jersey": "11",
+              "in": true
+            },
+            {
+              "name": "Carlos Acevedo",
+              "jersey": "12"
+            },
+            {
+              "name": "Israel Reyes",
+              "jersey": "15",
+              "in": true
+            },
+            {
+              "name": "César Huerta",
+              "jersey": "21",
+              "in": true
+            },
+            {
+              "name": "Orbelín Pineda",
+              "jersey": "17",
+              "in": true
+            },
+            {
+              "name": "Guillermo Martínez",
+              "jersey": "22"
+            },
+            {
+              "name": "Luis Chávez",
+              "jersey": "24"
+            },
+            {
+              "name": "Armando González",
+              "jersey": "14"
+            },
+            {
+              "name": "Guillermo Ochoa",
+              "jersey": "13"
+            },
+            {
+              "name": "Alexis Vega",
+              "jersey": "10"
+            }
+          ]
+        },
+        "a": {
+          "formation": "3-4-2-1",
+          "starters": [
+            {
+              "name": "Kim Seung-Gyu",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Kim Moon-Hwan",
+              "jersey": "15",
+              "pos": "RM"
+            },
+            {
+              "name": "Seol Young-Woo",
+              "jersey": "22",
+              "pos": "LM"
+            },
+            {
+              "name": "Lee Gi-Hyuk",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Kim Min-Jae",
+              "jersey": "4",
+              "pos": "CD"
+            },
+            {
+              "name": "Lee Han-Beom",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Hwang In-Beom",
+              "jersey": "6",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Paik Seung-Ho",
+              "jersey": "8",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Son Heung-Min",
+              "jersey": "7",
+              "pos": "F"
+            },
+            {
+              "name": "Lee Kang-In",
+              "jersey": "19",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Lee Jae-Sung",
+              "jersey": "10",
+              "pos": "CF-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Jo Hyeon-Woo",
+              "jersey": "21"
+            },
+            {
+              "name": "Cho Wi-Je",
+              "jersey": "14"
+            },
+            {
+              "name": "Jens Castrop",
+              "jersey": "23"
+            },
+            {
+              "name": "Oh Hyeon-Gyu",
+              "jersey": "18",
+              "in": true
+            },
+            {
+              "name": "Lee Tae-Seok",
+              "jersey": "13"
+            },
+            {
+              "name": "Kim Tae-Hyeon",
+              "jersey": "5"
+            },
+            {
+              "name": "Eom Ji-Sung",
+              "jersey": "25",
+              "in": true
+            },
+            {
+              "name": "Hwang Hee-Chan",
+              "jersey": "11",
+              "in": true
+            },
+            {
+              "name": "Cho Gue-Sung",
+              "jersey": "9",
+              "in": true
+            },
+            {
+              "name": "Bae Jun-Ho",
+              "jersey": "17"
+            },
+            {
+              "name": "Lee Dong-Gyeong",
+              "jersey": "26"
+            },
+            {
+              "name": "Song Bum-Keun",
+              "jersey": "12"
+            },
+            {
+              "name": "Yang Hyun-Jun",
+              "jersey": "20",
+              "in": true
+            },
+            {
+              "name": "Park Jin-Seop",
+              "jersey": "16"
+            },
+            {
+              "name": "Kim Jin-Gyu",
+              "jersey": "24"
+            }
+          ]
+        }
+      },
+      "referee": "Gustavo Tejera",
+      "venue": "Estadio Akron, Guadalajara",
+      "attendance": 45522,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "42%",
+          "a": "58%"
+        },
+        {
+          "key": "totalShots",
+          "h": "8",
+          "a": "9"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "4",
+          "a": "2"
+        },
+        {
+          "key": "wonCorners",
+          "h": "1",
+          "a": "2"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "9",
+          "a": "7"
+        },
+        {
+          "key": "offsides",
+          "h": "3",
+          "a": "6"
+        },
+        {
+          "key": "saves",
+          "h": "2",
+          "a": "3"
+        },
+        {
+          "key": "totalPasses",
+          "h": "427",
+          "a": "578"
+        },
+        {
+          "key": "passPct",
+          "h": "82%",
+          "a": "84%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "2"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-19T05:23:43.711Z"
     }
   }
 }
