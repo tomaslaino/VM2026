@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-19T18:16:20.429Z",
+    "updatedAt": "2026-06-19T20:08:04.070Z",
     "source": "espn"
   },
   "details": {
@@ -12598,6 +12598,363 @@
         }
       ],
       "updatedAt": "2026-06-19T05:23:43.711Z"
+    },
+    "g:D:2": {
+      "espnId": "760442",
+      "status": "PAUSED",
+      "minute": 45,
+      "utcDate": "2026-06-19T19:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 2,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 11,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Cameron Burgess",
+          "assist": null,
+          "type": "OWN",
+          "score": null
+        },
+        {
+          "minute": 43,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Alex Freeman",
+          "assist": null,
+          "type": "REGULAR",
+          "score": null
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 16,
+          "team": "a",
+          "player": "Jordan Bos",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 32,
+          "team": "a",
+          "player": "Alessandro Circati",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Matt Freese",
+              "jersey": "24",
+              "pos": "G"
+            },
+            {
+              "name": "Alex Freeman",
+              "jersey": "16",
+              "pos": "RB"
+            },
+            {
+              "name": "Antonee Robinson",
+              "jersey": "5",
+              "pos": "LB"
+            },
+            {
+              "name": "Tyler Adams",
+              "jersey": "4",
+              "pos": "CM"
+            },
+            {
+              "name": "Chris Richards",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Tim Ream",
+              "jersey": "13",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Weston McKennie",
+              "jersey": "8",
+              "pos": "RM"
+            },
+            {
+              "name": "Malik Tillman",
+              "jersey": "17",
+              "pos": "LM"
+            },
+            {
+              "name": "Folarin Balogun",
+              "jersey": "20",
+              "pos": "F"
+            },
+            {
+              "name": "Sergiño Dest",
+              "jersey": "2",
+              "pos": "RF"
+            },
+            {
+              "name": "Ricardo Pepi",
+              "jersey": "9",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Giovanni Reyna",
+              "jersey": "7"
+            },
+            {
+              "name": "Timothy Weah",
+              "jersey": "21"
+            },
+            {
+              "name": "Miles Robinson",
+              "jersey": "12"
+            },
+            {
+              "name": "Mark McKenzie",
+              "jersey": "22"
+            },
+            {
+              "name": "Joe Scally",
+              "jersey": "23"
+            },
+            {
+              "name": "Max Arfsten",
+              "jersey": "18"
+            },
+            {
+              "name": "Cristian Roldan",
+              "jersey": "15"
+            },
+            {
+              "name": "Sebastian Berhalter",
+              "jersey": "14"
+            },
+            {
+              "name": "Matt Turner",
+              "jersey": "1"
+            },
+            {
+              "name": "Chris Brady",
+              "jersey": "25"
+            },
+            {
+              "name": "Auston Trusty",
+              "jersey": "6"
+            },
+            {
+              "name": "Haji Wright",
+              "jersey": "19"
+            },
+            {
+              "name": "Alejandro Zendejas",
+              "jersey": "26"
+            },
+            {
+              "name": "Brenden Aaronson",
+              "jersey": "11"
+            }
+          ]
+        },
+        "a": {
+          "formation": "5-4-1",
+          "starters": [
+            {
+              "name": "Patrick Beach",
+              "jersey": "18",
+              "pos": "G"
+            },
+            {
+              "name": "Jacob Italiano",
+              "jersey": "4",
+              "pos": "RB"
+            },
+            {
+              "name": "Jordan Bos",
+              "jersey": "5",
+              "pos": "LB"
+            },
+            {
+              "name": "Cameron Burgess",
+              "jersey": "21",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Harry Souttar",
+              "jersey": "19",
+              "pos": "CD"
+            },
+            {
+              "name": "Alessandro Circati",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Mathew Leckie",
+              "jersey": "7",
+              "pos": "RM"
+            },
+            {
+              "name": "Aiden O'Neill",
+              "jersey": "13",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Mohamed Toure",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Paul Okon-Engstler",
+              "jersey": "24",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Nishan Velupillay",
+              "jersey": "23",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Aziz Behich",
+              "jersey": "16"
+            },
+            {
+              "name": "Kai Trewin",
+              "jersey": "15"
+            },
+            {
+              "name": "Connor Metcalfe",
+              "jersey": "8"
+            },
+            {
+              "name": "Awer Mabil",
+              "jersey": "11"
+            },
+            {
+              "name": "Lucas Herrington",
+              "jersey": "25"
+            },
+            {
+              "name": "Ajdin Hrustic",
+              "jersey": "10"
+            },
+            {
+              "name": "Milos Degenek",
+              "jersey": "2"
+            },
+            {
+              "name": "Jason Geria",
+              "jersey": "6"
+            },
+            {
+              "name": "Nestory Irankunda",
+              "jersey": "17"
+            },
+            {
+              "name": "Tete Yengi",
+              "jersey": "26"
+            },
+            {
+              "name": "Mathew Ryan",
+              "jersey": "1"
+            },
+            {
+              "name": "Cameron Devlin",
+              "jersey": "14"
+            },
+            {
+              "name": "Jackson Irvine",
+              "jersey": "22"
+            },
+            {
+              "name": "Paul Izzo",
+              "jersey": "12"
+            },
+            {
+              "name": "Cristian Volpato",
+              "jersey": "20"
+            }
+          ]
+        }
+      },
+      "referee": "Felix Zwayer",
+      "venue": "Lumen Field, Seattle, Washington",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "70%",
+          "a": "30%"
+        },
+        {
+          "key": "totalShots",
+          "h": "9",
+          "a": "2"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "3",
+          "a": "2"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "8",
+          "a": "8"
+        },
+        {
+          "key": "offsides",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "293",
+          "a": "125"
+        },
+        {
+          "key": "passPct",
+          "h": "88%",
+          "a": "62%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "2"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-19T20:08:04.070Z"
     }
   }
 }

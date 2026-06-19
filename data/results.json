@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-19T18:16:20.423Z",
+    "updatedAt": "2026-06-19T20:08:04.046Z",
     "source": "espn",
-    "matchCount": 28,
-    "liveCount": 0,
+    "matchCount": 29,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -146,9 +146,23 @@
       "h": 1,
       "a": 0,
       "status": "FINISHED"
+    },
+    "g:D:2": {
+      "h": 1,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:D:2",
+      "status": "IN_PLAY",
+      "minute": 41,
+      "home": "United States",
+      "away": "Australia",
+      "score": "1-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -630,7 +644,7 @@
       "date": "2026-06-19",
       "time": "21:00",
       "utcDate": "2026-06-19T19:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "United States",
       "away": "Australia",
