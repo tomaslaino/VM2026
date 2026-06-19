@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-18T22:20:10.167Z",
+    "updatedAt": "2026-06-19T00:07:05.897Z",
     "source": "espn"
   },
   "details": {
@@ -11679,6 +11679,503 @@
         }
       ],
       "updatedAt": "2026-06-18T22:20:10.167Z"
+    },
+    "g:B:2": {
+      "espnId": "760440",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-18T22:00Z",
+      "duration": "REGULAR",
+      "winner": "HOME_TEAM",
+      "score": {
+        "ft": {
+          "h": 6,
+          "a": 0
+        },
+        "ht": {
+          "h": 3,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 16,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Cyle Larin",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        },
+        {
+          "minute": 29,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Jonathan David",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 0
+          }
+        },
+        {
+          "minute": 45,
+          "injuryTime": 3,
+          "team": "h",
+          "scorer": "Jonathan David",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 3,
+            "a": 0
+          }
+        },
+        {
+          "minute": 64,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Nathan Saliba",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 4,
+            "a": 0
+          }
+        },
+        {
+          "minute": 75,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Mohamed Manai",
+          "assist": null,
+          "type": "OWN",
+          "score": {
+            "h": 5,
+            "a": 0
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 2,
+          "team": "h",
+          "scorer": "Jonathan David",
+          "assist": "Nathan Saliba",
+          "type": "REGULAR",
+          "score": {
+            "h": 6,
+            "a": 0
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 9,
+          "team": "h",
+          "player": "Derek Cornelius",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 33,
+          "team": "a",
+          "player": "Homam Ahmed",
+          "card": "RED"
+        },
+        {
+          "minute": 53,
+          "team": "a",
+          "player": "Assim Madibo",
+          "card": "RED"
+        },
+        {
+          "minute": 62,
+          "team": "a",
+          "player": "Ahmed Fathy",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 40,
+          "team": "a",
+          "in": "Sultan Al-Brake",
+          "out": "Yusuf Abdurisag"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Ahmed Fathy",
+          "out": "Edmílson Junior"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Mohamed Manai",
+          "out": "Jassem Gaber"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Moïse Bombito",
+          "out": "Derek Cornelius"
+        },
+        {
+          "minute": 57,
+          "team": "h",
+          "in": "Nathan Saliba",
+          "out": "Ismaël Koné"
+        },
+        {
+          "minute": 59,
+          "team": "a",
+          "in": "Al-Hashmi Al-Hussain",
+          "out": "Akram Afif"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Jacob Shaffelburg",
+          "out": "Luc de Fougerolles"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Tani Oluwaseyi",
+          "out": "Ali Ahmed"
+        },
+        {
+          "minute": 83,
+          "team": "h",
+          "in": "Niko Sigur",
+          "out": "Tajon Buchanan"
+        },
+        {
+          "minute": 87,
+          "team": "a",
+          "in": "Lucas Mendes",
+          "out": "Ahmed Fathy"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Maxime Crépeau",
+              "jersey": "16",
+              "pos": "G"
+            },
+            {
+              "name": "Alistair Johnston",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Richie Laryea",
+              "jersey": "22",
+              "pos": "LB"
+            },
+            {
+              "name": "Ismaël Koné",
+              "jersey": "8",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Luc de Fougerolles",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Derek Cornelius",
+              "jersey": "13",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Tajon Buchanan",
+              "jersey": "17",
+              "pos": "RM"
+            },
+            {
+              "name": "Stephen Eustáquio",
+              "jersey": "7",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Cyle Larin",
+              "jersey": "9",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Jonathan David",
+              "jersey": "10",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Ali Ahmed",
+              "jersey": "20",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Jonathan Osorio",
+              "jersey": "21"
+            },
+            {
+              "name": "Tani Oluwaseyi",
+              "jersey": "12",
+              "in": true
+            },
+            {
+              "name": "Jayden Nelson",
+              "jersey": "26"
+            },
+            {
+              "name": "Dayne St. Clair",
+              "jersey": "1"
+            },
+            {
+              "name": "Promise David",
+              "jersey": "24"
+            },
+            {
+              "name": "Mathieu Choinière",
+              "jersey": "6"
+            },
+            {
+              "name": "Joel Waterman",
+              "jersey": "5"
+            },
+            {
+              "name": "Niko Sigur",
+              "jersey": "23",
+              "in": true
+            },
+            {
+              "name": "Moïse Bombito",
+              "jersey": "15",
+              "in": true
+            },
+            {
+              "name": "Liam Millar",
+              "jersey": "11"
+            },
+            {
+              "name": "Alphonso Davies",
+              "jersey": "19"
+            },
+            {
+              "name": "Owen Goodman",
+              "jersey": "18"
+            },
+            {
+              "name": "Jacob Shaffelburg",
+              "jersey": "14",
+              "in": true
+            },
+            {
+              "name": "Nathan Saliba",
+              "jersey": "25",
+              "in": true
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Mahmoud Abunada",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Ayoub Al-Oui",
+              "jersey": "13",
+              "pos": "RB"
+            },
+            {
+              "name": "Homam Ahmed",
+              "jersey": "14",
+              "pos": "LB"
+            },
+            {
+              "name": "Assim Madibo",
+              "jersey": "23",
+              "pos": "CM"
+            },
+            {
+              "name": "Pedro Miguel",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Boualem Khoukhi",
+              "jersey": "16",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Jassem Gaber",
+              "jersey": "5",
+              "pos": "RM"
+            },
+            {
+              "name": "Issa Laye",
+              "jersey": "4",
+              "pos": "LM"
+            },
+            {
+              "name": "Yusuf Abdurisag",
+              "jersey": "15",
+              "pos": "F"
+            },
+            {
+              "name": "Edmílson Junior",
+              "jersey": "8",
+              "pos": "RF"
+            },
+            {
+              "name": "Akram Afif",
+              "jersey": "11",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Hassan Al-Haydos",
+              "jersey": "10"
+            },
+            {
+              "name": "Tahsin Jamshid",
+              "jersey": "24"
+            },
+            {
+              "name": "Mohamed Manai",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Almoez Ali",
+              "jersey": "19"
+            },
+            {
+              "name": "Mohammed Muntari",
+              "jersey": "9"
+            },
+            {
+              "name": "Lucas Mendes",
+              "jersey": "3",
+              "in": true
+            },
+            {
+              "name": "Meshaal Barsham",
+              "jersey": "22"
+            },
+            {
+              "name": "Sultan Al-Brake",
+              "jersey": "18",
+              "in": true
+            },
+            {
+              "name": "Al-Hashmi Al-Hussain",
+              "jersey": "25",
+              "in": true
+            },
+            {
+              "name": "Ahmed Fathy",
+              "jersey": "20",
+              "in": true
+            },
+            {
+              "name": "Ahmed Al-Ganehi",
+              "jersey": "17"
+            },
+            {
+              "name": "Salah Zakaria",
+              "jersey": "21"
+            },
+            {
+              "name": "Ahmed Alaaeldin",
+              "jersey": "7"
+            },
+            {
+              "name": "Karim Boudiaf",
+              "jersey": "12"
+            },
+            {
+              "name": "Abdulaziz Hatem",
+              "jersey": "6"
+            }
+          ]
+        }
+      },
+      "referee": "Cristián Garay",
+      "venue": "BC Place, Vancouver",
+      "attendance": 0,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "79%",
+          "a": "21%"
+        },
+        {
+          "key": "totalShots",
+          "h": "33",
+          "a": "2"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "10",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "19",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "9",
+          "a": "10"
+        },
+        {
+          "key": "offsides",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "4"
+        },
+        {
+          "key": "totalPasses",
+          "h": "566",
+          "a": "164"
+        },
+        {
+          "key": "passPct",
+          "h": "91%",
+          "a": "63%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "2"
+        }
+      ],
+      "updatedAt": "2026-06-19T00:07:05.897Z"
     }
   }
 }

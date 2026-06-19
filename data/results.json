@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-18T22:20:10.050Z",
+    "updatedAt": "2026-06-19T00:07:05.859Z",
     "source": "espn",
-    "matchCount": 26,
+    "matchCount": 27,
     "liveCount": 0,
     "apiCalls": 2
   },
@@ -135,6 +135,11 @@
     "g:B:3": {
       "h": 1,
       "a": 4,
+      "status": "FINISHED"
+    },
+    "g:B:2": {
+      "h": 6,
+      "a": 0,
       "status": "FINISHED"
     }
   },
@@ -586,7 +591,7 @@
       "date": "2026-06-19",
       "time": "00:00",
       "utcDate": "2026-06-18T22:00Z",
-      "status": "TIMED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Canada",
       "away": "Qatar",
@@ -1770,8 +1775,20 @@
     ],
     "B": [
       {
-        "idx": 1,
+        "idx": 0,
         "position": 1,
+        "pld": 2,
+        "w": 1,
+        "d": 1,
+        "l": 0,
+        "gf": 7,
+        "ga": 1,
+        "gd": 6,
+        "pts": 4
+      },
+      {
+        "idx": 1,
+        "position": 2,
         "pld": 2,
         "w": 1,
         "d": 1,
@@ -1780,18 +1797,6 @@
         "ga": 2,
         "gd": 3,
         "pts": 4
-      },
-      {
-        "idx": 0,
-        "position": 2,
-        "pld": 1,
-        "w": 0,
-        "d": 1,
-        "l": 0,
-        "gf": 1,
-        "ga": 1,
-        "gd": 0,
-        "pts": 1
       },
       {
         "idx": 3,
@@ -1808,13 +1813,13 @@
       {
         "idx": 2,
         "position": 4,
-        "pld": 1,
+        "pld": 2,
         "w": 0,
         "d": 1,
-        "l": 0,
+        "l": 1,
         "gf": 1,
-        "ga": 1,
-        "gd": 0,
+        "ga": 7,
+        "gd": -6,
         "pts": 1
       }
     ],
