@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-19T20:08:04.046Z",
+    "updatedAt": "2026-06-19T21:34:22.208Z",
     "source": "espn",
     "matchCount": 29,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -148,21 +148,12 @@
       "status": "FINISHED"
     },
     "g:D:2": {
-      "h": 1,
+      "h": 2,
       "a": 0,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:D:2",
-      "status": "IN_PLAY",
-      "minute": 41,
-      "home": "United States",
-      "away": "Australia",
-      "score": "1-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -644,7 +635,7 @@
       "date": "2026-06-19",
       "time": "21:00",
       "utcDate": "2026-06-19T19:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "United States",
       "away": "Australia",
@@ -1899,25 +1890,25 @@
       {
         "idx": 0,
         "position": 1,
-        "pld": 1,
-        "w": 1,
+        "pld": 2,
+        "w": 2,
         "d": 0,
         "l": 0,
-        "gf": 4,
+        "gf": 6,
         "ga": 1,
-        "gd": 3,
-        "pts": 3
+        "gd": 5,
+        "pts": 6
       },
       {
         "idx": 2,
         "position": 2,
-        "pld": 1,
+        "pld": 2,
         "w": 1,
         "d": 0,
-        "l": 0,
+        "l": 1,
         "gf": 2,
-        "ga": 0,
-        "gd": 2,
+        "ga": 2,
+        "gd": 0,
         "pts": 3
       },
       {

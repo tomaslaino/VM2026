@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-19T20:08:04.070Z",
+    "updatedAt": "2026-06-19T21:34:22.301Z",
     "source": "espn"
   },
   "details": {
@@ -12601,17 +12601,20 @@
     },
     "g:D:2": {
       "espnId": "760442",
-      "status": "PAUSED",
-      "minute": 45,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-19T19:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
           "h": 2,
           "a": 0
         },
-        "ht": null,
+        "ht": {
+          "h": 2,
+          "a": 0
+        },
         "rt": null,
         "et": null,
         "pen": null
@@ -12648,13 +12651,104 @@
           "team": "a",
           "player": "Alessandro Circati",
           "card": "YELLOW"
+        },
+        {
+          "minute": 56,
+          "team": "h",
+          "player": "Antonee Robinson",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 88,
+          "team": "a",
+          "player": "Harry Souttar",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 89,
+          "team": "h",
+          "player": "Folarin Balogun",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 89,
+          "team": "a",
+          "player": "Jacob Italiano",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Chris Richards",
+          "card": "YELLOW"
         }
       ],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Jason Geria",
+          "out": "Cameron Burgess"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Connor Metcalfe",
+          "out": "Nishan Velupillay"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Nestory Irankunda",
+          "out": "Mohamed Toure"
+        },
+        {
+          "minute": 61,
+          "team": "a",
+          "in": "Cristian Volpato",
+          "out": "Mathew Leckie"
+        },
+        {
+          "minute": 74,
+          "team": "h",
+          "in": "Sebastian Berhalter",
+          "out": "Ricardo Pepi"
+        },
+        {
+          "minute": 78,
+          "team": "a",
+          "in": "Jackson Irvine",
+          "out": "Paul Okon-Engstler"
+        },
+        {
+          "minute": 80,
+          "team": "h",
+          "in": "Joe Scally",
+          "out": "Sergiño Dest"
+        },
+        {
+          "minute": 80,
+          "team": "h",
+          "in": "Auston Trusty",
+          "out": "Antonee Robinson"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Haji Wright",
+          "out": "Folarin Balogun"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Giovanni Reyna",
+          "out": "Weston McKennie"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
-          "formation": "4-3-3",
+          "formation": "3-5-2",
           "starters": [
             {
               "name": "Matt Freese",
@@ -12662,24 +12756,14 @@
               "pos": "G"
             },
             {
-              "name": "Alex Freeman",
-              "jersey": "16",
-              "pos": "RB"
+              "name": "Sergiño Dest",
+              "jersey": "2",
+              "pos": "RM"
             },
             {
               "name": "Antonee Robinson",
               "jersey": "5",
-              "pos": "LB"
-            },
-            {
-              "name": "Tyler Adams",
-              "jersey": "4",
-              "pos": "CM"
-            },
-            {
-              "name": "Chris Richards",
-              "jersey": "3",
-              "pos": "CD-R"
+              "pos": "LM"
             },
             {
               "name": "Tim Ream",
@@ -12687,35 +12771,46 @@
               "pos": "CD-L"
             },
             {
+              "name": "Chris Richards",
+              "jersey": "3",
+              "pos": "CD"
+            },
+            {
+              "name": "Alex Freeman",
+              "jersey": "16",
+              "pos": "CD-R"
+            },
+            {
               "name": "Weston McKennie",
               "jersey": "8",
-              "pos": "RM"
+              "pos": "CM-R"
             },
             {
               "name": "Malik Tillman",
               "jersey": "17",
-              "pos": "LM"
-            },
-            {
-              "name": "Folarin Balogun",
-              "jersey": "20",
-              "pos": "F"
-            },
-            {
-              "name": "Sergiño Dest",
-              "jersey": "2",
-              "pos": "RF"
+              "pos": "CM-L"
             },
             {
               "name": "Ricardo Pepi",
               "jersey": "9",
-              "pos": "LF"
+              "pos": "CF-L"
+            },
+            {
+              "name": "Folarin Balogun",
+              "jersey": "20",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Tyler Adams",
+              "jersey": "4",
+              "pos": "AM"
             }
           ],
           "bench": [
             {
               "name": "Giovanni Reyna",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Timothy Weah",
@@ -12731,7 +12826,8 @@
             },
             {
               "name": "Joe Scally",
-              "jersey": "23"
+              "jersey": "23",
+              "in": true
             },
             {
               "name": "Max Arfsten",
@@ -12743,7 +12839,8 @@
             },
             {
               "name": "Sebastian Berhalter",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Matt Turner",
@@ -12755,11 +12852,13 @@
             },
             {
               "name": "Auston Trusty",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true
             },
             {
               "name": "Haji Wright",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Alejandro Zendejas",
@@ -12841,7 +12940,8 @@
             },
             {
               "name": "Connor Metcalfe",
-              "jersey": "8"
+              "jersey": "8",
+              "in": true
             },
             {
               "name": "Awer Mabil",
@@ -12861,11 +12961,13 @@
             },
             {
               "name": "Jason Geria",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true
             },
             {
               "name": "Nestory Irankunda",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Tete Yengi",
@@ -12881,7 +12983,8 @@
             },
             {
               "name": "Jackson Irvine",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "Paul Izzo",
@@ -12889,39 +12992,40 @@
             },
             {
               "name": "Cristian Volpato",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             }
           ]
         }
       },
       "referee": "Felix Zwayer",
       "venue": "Lumen Field, Seattle, Washington",
-      "attendance": null,
+      "attendance": 66925,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "70%",
-          "a": "30%"
+          "h": "62%",
+          "a": "38%"
         },
         {
           "key": "totalShots",
-          "h": "9",
-          "a": "2"
+          "h": "10",
+          "a": "5"
         },
         {
           "key": "shotsOnTarget",
           "h": "2",
-          "a": "1"
-        },
-        {
-          "key": "wonCorners",
-          "h": "3",
           "a": "2"
         },
         {
+          "key": "wonCorners",
+          "h": "7",
+          "a": "4"
+        },
+        {
           "key": "foulsCommitted",
-          "h": "8",
-          "a": "8"
+          "h": "12",
+          "a": "16"
         },
         {
           "key": "offsides",
@@ -12930,23 +13034,23 @@
         },
         {
           "key": "saves",
-          "h": "1",
+          "h": "2",
           "a": "1"
         },
         {
           "key": "totalPasses",
-          "h": "293",
-          "a": "125"
+          "h": "524",
+          "a": "308"
         },
         {
           "key": "passPct",
-          "h": "88%",
-          "a": "62%"
+          "h": "85%",
+          "a": "71%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
-          "a": "2"
+          "h": "3",
+          "a": "4"
         },
         {
           "key": "redCards",
@@ -12954,7 +13058,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-19T20:08:04.070Z"
+      "updatedAt": "2026-06-19T21:34:22.300Z"
     }
   }
 }
