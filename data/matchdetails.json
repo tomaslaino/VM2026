@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-20T01:55:31.390Z",
+    "updatedAt": "2026-06-20T06:26:36.631Z",
     "source": "espn"
   },
   "details": {
@@ -13484,11 +13484,11 @@
     },
     "g:C:4": {
       "espnId": "760444",
-      "status": "IN_PLAY",
-      "minute": 60,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-20T00:30Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 0,
@@ -13552,6 +13552,18 @@
           "team": "h",
           "player": "Frantzdy Pierrot",
           "card": "YELLOW"
+        },
+        {
+          "minute": 65,
+          "team": "a",
+          "player": "Douglas Santos",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "player": "Danley Jean Jacques",
+          "card": "YELLOW"
         }
       ],
       "subs": [
@@ -13572,6 +13584,48 @@
           "team": "h",
           "in": "Wilson Isidor",
           "out": "Frantzdy Pierrot"
+        },
+        {
+          "minute": 62,
+          "team": "h",
+          "in": "Louicius Deedson",
+          "out": "Josué Casimir"
+        },
+        {
+          "minute": 64,
+          "team": "a",
+          "in": "Gabriel Martinelli",
+          "out": "Lucas Paquetá"
+        },
+        {
+          "minute": 64,
+          "team": "a",
+          "in": "Endrick",
+          "out": "Matheus Cunha"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Lenny Joseph",
+          "out": "Ruben Providence"
+        },
+        {
+          "minute": 81,
+          "team": "a",
+          "in": "Danilo Santos",
+          "out": "Vinícius Júnior"
+        },
+        {
+          "minute": 81,
+          "team": "a",
+          "in": "Éderson",
+          "out": "Bruno Guimarães"
+        },
+        {
+          "minute": 81,
+          "team": "h",
+          "in": "Derrick Etienne Jr.",
+          "out": "Jean-Ricner Bellegarde"
         }
       ],
       "penalties": [],
@@ -13646,7 +13700,8 @@
             },
             {
               "name": "Lenny Joseph",
-              "jersey": "16"
+              "jersey": "16",
+              "in": true
             },
             {
               "name": "Wilson Isidor",
@@ -13655,7 +13710,8 @@
             },
             {
               "name": "Louicius Deedson",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Garven Metusala",
@@ -13671,7 +13727,8 @@
             },
             {
               "name": "Derrick Etienne Jr.",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Duckens Nazon",
@@ -13766,7 +13823,8 @@
             },
             {
               "name": "Gabriel Martinelli",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "Rayan",
@@ -13779,7 +13837,8 @@
             },
             {
               "name": "Endrick",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Igor Thiago",
@@ -13807,11 +13866,13 @@
             },
             {
               "name": "Danilo Santos",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true
             },
             {
               "name": "Éderson",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Fabinho",
@@ -13822,57 +13883,57 @@
       },
       "referee": "Alejandro José Hernández Hernández",
       "venue": "Lincoln Financial Field, Philadelphia, Pennsylvania",
-      "attendance": null,
+      "attendance": 68324,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "39%",
-          "a": "61%"
+          "h": "43%",
+          "a": "57%"
         },
         {
           "key": "totalShots",
-          "h": "2",
-          "a": "6"
+          "h": "7",
+          "a": "8"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
+          "h": "3",
           "a": "5"
         },
         {
           "key": "wonCorners",
-          "h": "1",
+          "h": "4",
           "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "6",
-          "a": "7"
+          "h": "14",
+          "a": "13"
         },
         {
           "key": "offsides",
-          "h": "2",
-          "a": "6"
+          "h": "4",
+          "a": "8"
         },
         {
           "key": "saves",
           "h": "2",
-          "a": "0"
+          "a": "3"
         },
         {
           "key": "totalPasses",
-          "h": "256",
-          "a": "398"
+          "h": "399",
+          "a": "525"
         },
         {
           "key": "passPct",
-          "h": "82%",
-          "a": "90%"
+          "h": "83%",
+          "a": "88%"
         },
         {
           "key": "yellowCards",
-          "h": "2",
-          "a": "0"
+          "h": "3",
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -13880,7 +13941,442 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-20T01:55:31.366Z"
+      "updatedAt": "2026-06-20T06:26:36.631Z"
+    },
+    "g:D:3": {
+      "espnId": "760443",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-20T03:00Z",
+      "duration": "REGULAR",
+      "winner": "AWAY_TEAM",
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 1
+        },
+        "ht": {
+          "h": 0,
+          "a": 1
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 2,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Matías Galarza",
+          "assist": "Julio Enciso",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 4,
+          "team": "a",
+          "player": "Matías Galarza",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "player": "Miguel Almirón",
+          "card": "RED"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "player": "Eren Elmali",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Damián Bobadilla",
+          "out": "Isidro Pitta"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Baris Alper Yilmaz",
+          "out": "Kerem Aktürkoglu"
+        },
+        {
+          "minute": 60,
+          "team": "h",
+          "in": "Can Uzun",
+          "out": "Ismail Yüksek"
+        },
+        {
+          "minute": 60,
+          "team": "h",
+          "in": "Deniz Gül",
+          "out": "Yunus Akgün"
+        },
+        {
+          "minute": 67,
+          "team": "a",
+          "in": "Gustavo Velázquez",
+          "out": "Diego Gómez"
+        },
+        {
+          "minute": 70,
+          "team": "h",
+          "in": "Eren Elmali",
+          "out": "Ferdi Kadioglu"
+        },
+        {
+          "minute": 81,
+          "team": "a",
+          "in": "Alexandro Maidana",
+          "out": "Juan Jose Cáceres"
+        },
+        {
+          "minute": 86,
+          "team": "h",
+          "in": "Orkun Kökçü",
+          "out": "Abdülkerim Bardakçi"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Gabriel Ávalos",
+          "out": "Julio Enciso"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "José Canale",
+          "out": "Matías Galarza"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Ugurcan Çakir",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Mert Müldür",
+              "jersey": "18",
+              "pos": "RB"
+            },
+            {
+              "name": "Ferdi Kadioglu",
+              "jersey": "20",
+              "pos": "LB"
+            },
+            {
+              "name": "Hakan Çalhanoglu",
+              "jersey": "10",
+              "pos": "LM"
+            },
+            {
+              "name": "Merih Demiral",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Abdülkerim Bardakçi",
+              "jersey": "14",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Yunus Akgün",
+              "jersey": "19",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Ismail Yüksek",
+              "jersey": "16",
+              "pos": "RM"
+            },
+            {
+              "name": "Kerem Aktürkoglu",
+              "jersey": "7",
+              "pos": "F"
+            },
+            {
+              "name": "Arda Güler",
+              "jersey": "8",
+              "pos": "AM"
+            },
+            {
+              "name": "Kenan Yildiz",
+              "jersey": "11",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Zeki Çelik",
+              "jersey": "2"
+            },
+            {
+              "name": "Can Uzun",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Irfan Can Kahveci",
+              "jersey": "17"
+            },
+            {
+              "name": "Deniz Gül",
+              "jersey": "9",
+              "in": true
+            },
+            {
+              "name": "Eren Elmali",
+              "jersey": "13",
+              "in": true
+            },
+            {
+              "name": "Baris Alper Yilmaz",
+              "jersey": "21",
+              "in": true
+            },
+            {
+              "name": "Salih Özcan",
+              "jersey": "5"
+            },
+            {
+              "name": "Kaan Ayhan",
+              "jersey": "22"
+            },
+            {
+              "name": "Oguz Aydin",
+              "jersey": "24"
+            },
+            {
+              "name": "Altay Bayindir",
+              "jersey": "12"
+            },
+            {
+              "name": "Ozan Kabak",
+              "jersey": "15"
+            },
+            {
+              "name": "Çaglar Söyüncü",
+              "jersey": "4"
+            },
+            {
+              "name": "Mert Günok",
+              "jersey": "1"
+            },
+            {
+              "name": "Samet Akaydin",
+              "jersey": "25"
+            },
+            {
+              "name": "Orkun Kökçü",
+              "jersey": "6",
+              "in": true
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Orlando Gil",
+              "jersey": "12",
+              "pos": "G"
+            },
+            {
+              "name": "Juan Jose Cáceres",
+              "jersey": "4",
+              "pos": "RB"
+            },
+            {
+              "name": "Júnior Alonso",
+              "jersey": "6",
+              "pos": "LB"
+            },
+            {
+              "name": "Andrés Cubas",
+              "jersey": "14",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Gustavo Gómez",
+              "jersey": "15",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Omar Alderete",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Miguel Almirón",
+              "jersey": "10",
+              "pos": "RM"
+            },
+            {
+              "name": "Diego Gómez",
+              "jersey": "8",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Julio Enciso",
+              "jersey": "19",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Isidro Pitta",
+              "jersey": "25",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Matías Galarza",
+              "jersey": "23",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Alejandro Romero Gamarra",
+              "jersey": "17"
+            },
+            {
+              "name": "Damián Bobadilla",
+              "jersey": "16",
+              "in": true
+            },
+            {
+              "name": "Alexandro Maidana",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Braian Ojeda",
+              "jersey": "20"
+            },
+            {
+              "name": "Gatito Fernández",
+              "jersey": "1"
+            },
+            {
+              "name": "Ramón Sosa",
+              "jersey": "7"
+            },
+            {
+              "name": "José Canale",
+              "jersey": "13",
+              "in": true
+            },
+            {
+              "name": "Gustavo Caballero",
+              "jersey": "24"
+            },
+            {
+              "name": "Fabián Balbuena",
+              "jersey": "5"
+            },
+            {
+              "name": "Alex Arce",
+              "jersey": "18"
+            },
+            {
+              "name": "Antonio Sanabria",
+              "jersey": "9"
+            },
+            {
+              "name": "Maurício",
+              "jersey": "11"
+            },
+            {
+              "name": "Gastón Olveira",
+              "jersey": "22"
+            },
+            {
+              "name": "Gabriel Ávalos",
+              "jersey": "21",
+              "in": true
+            },
+            {
+              "name": "Gustavo Velázquez",
+              "jersey": "2",
+              "in": true
+            }
+          ]
+        }
+      },
+      "referee": "Iván Arcides Barton Cisneros",
+      "venue": "Levi's Stadium, Santa Clara, California",
+      "attendance": 68827,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "79%",
+          "a": "22%"
+        },
+        {
+          "key": "totalShots",
+          "h": "32",
+          "a": "7"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "5",
+          "a": "2"
+        },
+        {
+          "key": "wonCorners",
+          "h": "12",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "14",
+          "a": "15"
+        },
+        {
+          "key": "offsides",
+          "h": "2",
+          "a": "3"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "5"
+        },
+        {
+          "key": "totalPasses",
+          "h": "628",
+          "a": "178"
+        },
+        {
+          "key": "passPct",
+          "h": "89%",
+          "a": "53%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "1"
+        }
+      ],
+      "updatedAt": "2026-06-20T06:26:36.609Z"
     }
   }
 }
