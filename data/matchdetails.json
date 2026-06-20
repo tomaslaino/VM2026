@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-20T21:39:49.939Z",
+    "updatedAt": "2026-06-20T22:50:14.264Z",
     "source": "espn"
   },
   "details": {
@@ -14871,14 +14871,14 @@
     },
     "g:E:2": {
       "espnId": "760448",
-      "status": "IN_PLAY",
-      "minute": 76,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-20T20:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
-          "h": 1,
+          "h": 2,
           "a": 1
         },
         "ht": {
@@ -14905,6 +14905,15 @@
           "team": "h",
           "scorer": "Deniz Undav",
           "assist": "Nadiem Amiri",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "h",
+          "scorer": "Deniz Undav",
+          "assist": "Felix Nmecha",
           "type": "REGULAR",
           "score": null
         }
@@ -14952,6 +14961,24 @@
           "team": "a",
           "in": "Simon Adingra",
           "out": "Amad Diallo"
+        },
+        {
+          "minute": 82,
+          "team": "a",
+          "in": "Guela Doué",
+          "out": "Wilfried Singo"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Nicolas Pépé",
+          "out": "Yan Diomande"
+        },
+        {
+          "minute": 85,
+          "team": "h",
+          "in": "Leon Goretzka",
+          "out": "Kai Havertz"
         }
       ],
       "penalties": [],
@@ -15053,7 +15080,8 @@
             },
             {
               "name": "Leon Goretzka",
-              "jersey": "8"
+              "jersey": "8",
+              "in": true
             },
             {
               "name": "Antonio Rüdiger",
@@ -15148,11 +15176,13 @@
             },
             {
               "name": "Nicolas Pépé",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Guela Doué",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Elye Wahi",
@@ -15210,32 +15240,32 @@
       },
       "referee": "Juan Gabriel Benítez",
       "venue": "BMO Field, Toronto",
-      "attendance": null,
+      "attendance": 43036,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "62%",
-          "a": "38%"
+          "h": "59%",
+          "a": "41%"
         },
         {
           "key": "totalShots",
-          "h": "12",
-          "a": "8"
+          "h": "16",
+          "a": "9"
         },
         {
           "key": "shotsOnTarget",
-          "h": "3",
+          "h": "7",
           "a": "2"
         },
         {
           "key": "wonCorners",
           "h": "8",
-          "a": "2"
+          "a": "3"
         },
         {
           "key": "foulsCommitted",
-          "h": "3",
-          "a": "5"
+          "h": "5",
+          "a": "7"
         },
         {
           "key": "offsides",
@@ -15245,17 +15275,17 @@
         {
           "key": "saves",
           "h": "1",
-          "a": "2"
+          "a": "5"
         },
         {
           "key": "totalPasses",
-          "h": "518",
-          "a": "326"
+          "h": "622",
+          "a": "431"
         },
         {
           "key": "passPct",
           "h": "89%",
-          "a": "87%"
+          "a": "85%"
         },
         {
           "key": "yellowCards",
@@ -15268,7 +15298,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-20T21:39:49.939Z"
+      "updatedAt": "2026-06-20T22:50:14.264Z"
     }
   }
 }

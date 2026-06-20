@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-20T21:39:49.915Z",
+    "updatedAt": "2026-06-20T22:50:14.231Z",
     "source": "espn",
     "matchCount": 34,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -173,21 +173,12 @@
       "status": "FINISHED"
     },
     "g:E:2": {
-      "h": 1,
+      "h": 2,
       "a": 1,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:E:2",
-      "status": "IN_PLAY",
-      "minute": 75,
-      "home": "Germany",
-      "away": "Ivory Coast",
-      "score": "1-1"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -754,7 +745,7 @@
       "date": "2026-06-20",
       "time": "22:00",
       "utcDate": "2026-06-20T20:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Germany",
       "away": "Ivory Coast",
@@ -1977,25 +1968,25 @@
       {
         "idx": 0,
         "position": 1,
-        "pld": 1,
-        "w": 1,
+        "pld": 2,
+        "w": 2,
         "d": 0,
         "l": 0,
-        "gf": 7,
-        "ga": 1,
-        "gd": 6,
-        "pts": 3
+        "gf": 9,
+        "ga": 2,
+        "gd": 7,
+        "pts": 6
       },
       {
         "idx": 2,
         "position": 2,
-        "pld": 1,
+        "pld": 2,
         "w": 1,
         "d": 0,
-        "l": 0,
-        "gf": 1,
-        "ga": 0,
-        "gd": 1,
+        "l": 1,
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
         "pts": 3
       },
       {
