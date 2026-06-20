@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-20T20:08:12.969Z",
+    "updatedAt": "2026-06-20T21:39:49.939Z",
     "source": "espn"
   },
   "details": {
@@ -14868,6 +14868,407 @@
         }
       ],
       "updatedAt": "2026-06-20T20:08:12.968Z"
+    },
+    "g:E:2": {
+      "espnId": "760448",
+      "status": "IN_PLAY",
+      "minute": 76,
+      "utcDate": "2026-06-20T20:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 1
+        },
+        "ht": {
+          "h": 0,
+          "a": 1
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 30,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Franck Kessié",
+          "assist": null,
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 68,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Deniz Undav",
+          "assist": "Nadiem Amiri",
+          "type": "REGULAR",
+          "score": null
+        }
+      ],
+      "bookings": [],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Antonio Rüdiger",
+          "out": "Nico Schlotterbeck"
+        },
+        {
+          "minute": 60,
+          "team": "h",
+          "in": "Jamie Leweling",
+          "out": "Leroy Sané"
+        },
+        {
+          "minute": 60,
+          "team": "h",
+          "in": "Deniz Undav",
+          "out": "Jamal Musiala"
+        },
+        {
+          "minute": 60,
+          "team": "h",
+          "in": "Nadiem Amiri",
+          "out": "Aleksandar Pavlovic"
+        },
+        {
+          "minute": 75,
+          "team": "a",
+          "in": "Evann Guessand",
+          "out": "Ange-Yoan Bonny"
+        },
+        {
+          "minute": 75,
+          "team": "a",
+          "in": "Seko Fofana",
+          "out": "Ibrahim Sangaré"
+        },
+        {
+          "minute": 75,
+          "team": "a",
+          "in": "Simon Adingra",
+          "out": "Amad Diallo"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Manuel Neuer",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Joshua Kimmich",
+              "jersey": "6",
+              "pos": "RB"
+            },
+            {
+              "name": "Nathaniel Brown",
+              "jersey": "18",
+              "pos": "LB"
+            },
+            {
+              "name": "Aleksandar Pavlovic",
+              "jersey": "5",
+              "pos": "LM"
+            },
+            {
+              "name": "Jonathan Tah",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Nico Schlotterbeck",
+              "jersey": "15",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Leroy Sané",
+              "jersey": "19",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Felix Nmecha",
+              "jersey": "23",
+              "pos": "RM"
+            },
+            {
+              "name": "Kai Havertz",
+              "jersey": "7",
+              "pos": "F"
+            },
+            {
+              "name": "Jamal Musiala",
+              "jersey": "10",
+              "pos": "AM"
+            },
+            {
+              "name": "Florian Wirtz",
+              "jersey": "17",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "David Raum",
+              "jersey": "22"
+            },
+            {
+              "name": "Deniz Undav",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Angelo Stiller",
+              "jersey": "16"
+            },
+            {
+              "name": "Nadiem Amiri",
+              "jersey": "20",
+              "in": true
+            },
+            {
+              "name": "Oliver Baumann",
+              "jersey": "12"
+            },
+            {
+              "name": "Jamie Leweling",
+              "jersey": "9",
+              "in": true
+            },
+            {
+              "name": "Maximilian Beier",
+              "jersey": "14"
+            },
+            {
+              "name": "Alexander Nübel",
+              "jersey": "21"
+            },
+            {
+              "name": "Leon Goretzka",
+              "jersey": "8"
+            },
+            {
+              "name": "Antonio Rüdiger",
+              "jersey": "2",
+              "in": true
+            },
+            {
+              "name": "Assan Ouédraogo",
+              "jersey": "25"
+            },
+            {
+              "name": "Waldemar Anton",
+              "jersey": "3"
+            },
+            {
+              "name": "Pascal Gross",
+              "jersey": "13"
+            },
+            {
+              "name": "Malick Thiaw",
+              "jersey": "24"
+            },
+            {
+              "name": "Nick Woltemade",
+              "jersey": "11"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-1-4-1",
+          "starters": [
+            {
+              "name": "Yahia Fofana",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Wilfried Singo",
+              "jersey": "5",
+              "pos": "RB"
+            },
+            {
+              "name": "Ghislain Konan",
+              "jersey": "3",
+              "pos": "LB"
+            },
+            {
+              "name": "Ibrahim Sangaré",
+              "jersey": "18",
+              "pos": "DM"
+            },
+            {
+              "name": "Odilon Kossounou",
+              "jersey": "7",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Emmanuel Agbadou",
+              "jersey": "20",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Amad Diallo",
+              "jersey": "15",
+              "pos": "RM"
+            },
+            {
+              "name": "Franck Kessié",
+              "jersey": "8",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Ange-Yoan Bonny",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Christ Inao Oulaï",
+              "jersey": "26",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Yan Diomande",
+              "jersey": "11",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Evan Ndicka",
+              "jersey": "21"
+            },
+            {
+              "name": "Nicolas Pépé",
+              "jersey": "19"
+            },
+            {
+              "name": "Guela Doué",
+              "jersey": "17"
+            },
+            {
+              "name": "Elye Wahi",
+              "jersey": "12"
+            },
+            {
+              "name": "Ousmane Diomande",
+              "jersey": "2"
+            },
+            {
+              "name": "Oumar Diakité",
+              "jersey": "14"
+            },
+            {
+              "name": "Christopher Operi",
+              "jersey": "13"
+            },
+            {
+              "name": "Simon Adingra",
+              "jersey": "10",
+              "in": true
+            },
+            {
+              "name": "Parfait Guiagon",
+              "jersey": "25"
+            },
+            {
+              "name": "Seko Fofana",
+              "jersey": "6",
+              "in": true
+            },
+            {
+              "name": "Jean Michaël Seri",
+              "jersey": "4"
+            },
+            {
+              "name": "Mohamed Koné",
+              "jersey": "16"
+            },
+            {
+              "name": "Alban Lafont",
+              "jersey": "23"
+            },
+            {
+              "name": "Bazoumana Touré",
+              "jersey": "24"
+            },
+            {
+              "name": "Evann Guessand",
+              "jersey": "22",
+              "in": true
+            }
+          ]
+        }
+      },
+      "referee": "Juan Gabriel Benítez",
+      "venue": "BMO Field, Toronto",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "62%",
+          "a": "38%"
+        },
+        {
+          "key": "totalShots",
+          "h": "12",
+          "a": "8"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "3",
+          "a": "2"
+        },
+        {
+          "key": "wonCorners",
+          "h": "8",
+          "a": "2"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "3",
+          "a": "5"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "2"
+        },
+        {
+          "key": "totalPasses",
+          "h": "518",
+          "a": "326"
+        },
+        {
+          "key": "passPct",
+          "h": "89%",
+          "a": "87%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-20T21:39:49.939Z"
     }
   }
 }
