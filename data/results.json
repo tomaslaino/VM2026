@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-19T23:45:55.354Z",
+    "updatedAt": "2026-06-20T01:55:31.337Z",
     "source": "espn",
-    "matchCount": 30,
+    "matchCount": 31,
     "liveCount": 1,
     "apiCalls": 2
   },
@@ -155,17 +155,22 @@
     "g:C:5": {
       "h": 1,
       "a": 0,
+      "status": "FINISHED"
+    },
+    "g:C:4": {
+      "h": 0,
+      "a": 3,
       "status": "IN_PLAY"
     }
   },
   "live": [
     {
-      "key": "g:C:5",
+      "key": "g:C:4",
       "status": "IN_PLAY",
-      "minute": 75,
-      "home": "Morocco",
-      "away": "Scotland",
-      "score": "1-0"
+      "minute": 54,
+      "home": "Haiti",
+      "away": "Brazil",
+      "score": "0-3"
     }
   ],
   "fixtures": {
@@ -666,7 +671,7 @@
       "date": "2026-06-20",
       "time": "00:00",
       "utcDate": "2026-06-19T22:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Morocco",
       "away": "Scotland",
@@ -683,7 +688,7 @@
       "date": "2026-06-20",
       "time": "02:30",
       "utcDate": "2026-06-20T00:30Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Haiti",
       "away": "Brazil",
@@ -1852,28 +1857,28 @@
     ],
     "C": [
       {
-        "idx": 2,
-        "position": 1,
-        "pld": 1,
-        "w": 1,
-        "d": 0,
-        "l": 0,
-        "gf": 1,
-        "ga": 0,
-        "gd": 1,
-        "pts": 3
-      },
-      {
         "idx": 1,
-        "position": 2,
-        "pld": 1,
-        "w": 0,
+        "position": 1,
+        "pld": 2,
+        "w": 1,
         "d": 1,
         "l": 0,
+        "gf": 2,
+        "ga": 1,
+        "gd": 1,
+        "pts": 4
+      },
+      {
+        "idx": 2,
+        "position": 2,
+        "pld": 2,
+        "w": 1,
+        "d": 0,
+        "l": 1,
         "gf": 1,
         "ga": 1,
         "gd": 0,
-        "pts": 1
+        "pts": 3
       },
       {
         "idx": 0,

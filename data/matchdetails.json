@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-19T23:45:55.381Z",
+    "updatedAt": "2026-06-20T01:55:31.390Z",
     "source": "espn"
   },
   "details": {
@@ -13062,11 +13062,11 @@
     },
     "g:C:5": {
       "espnId": "760445",
-      "status": "IN_PLAY",
-      "minute": 83,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-19T22:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
           "h": 1,
@@ -13126,6 +13126,42 @@
           "team": "a",
           "in": "Kenny McLean",
           "out": "Ryan Christie"
+        },
+        {
+          "minute": 84,
+          "team": "h",
+          "in": "Soufiane Rahimi",
+          "out": "Ismael Saibari"
+        },
+        {
+          "minute": 84,
+          "team": "h",
+          "in": "Chemsdine Talbi",
+          "out": "Bilal El Khannouss"
+        },
+        {
+          "minute": 84,
+          "team": "h",
+          "in": "Ayoube Amaimouni",
+          "out": "Brahim Díaz"
+        },
+        {
+          "minute": 89,
+          "team": "a",
+          "in": "Anthony Ralston",
+          "out": "Nathan Patterson"
+        },
+        {
+          "minute": 89,
+          "team": "a",
+          "in": "Ross Stewart",
+          "out": "John McGinn"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Samir El Mourabet",
+          "out": "Azzedine Ounahi"
         }
       ],
       "penalties": [],
@@ -13196,7 +13232,8 @@
             },
             {
               "name": "Ayoube Amaimouni",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Amine Sbaï",
@@ -13216,7 +13253,8 @@
             },
             {
               "name": "Chemsdine Talbi",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Zakaria El Ouahdi",
@@ -13228,7 +13266,8 @@
             },
             {
               "name": "Samir El Mourabet",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Sofyan Amrabat",
@@ -13248,7 +13287,8 @@
             },
             {
               "name": "Soufiane Rahimi",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             }
           ]
         },
@@ -13318,7 +13358,8 @@
             },
             {
               "name": "Anthony Ralston",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "John Souttar",
@@ -13356,7 +13397,8 @@
             },
             {
               "name": "Ross Stewart",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Lyndon Dykes",
@@ -13380,17 +13422,17 @@
       },
       "referee": "Ilgiz Tantashev",
       "venue": "Gillette Stadium, Foxborough, Massachusetts",
-      "attendance": null,
+      "attendance": 64146,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "62%",
-          "a": "38%"
+          "h": "59%",
+          "a": "41%"
         },
         {
           "key": "totalShots",
-          "h": "9",
-          "a": "3"
+          "h": "12",
+          "a": "6"
         },
         {
           "key": "shotsOnTarget",
@@ -13400,12 +13442,12 @@
         {
           "key": "wonCorners",
           "h": "5",
-          "a": "0"
+          "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "6",
-          "a": "10"
+          "h": "8",
+          "a": "11"
         },
         {
           "key": "offsides",
@@ -13419,13 +13461,13 @@
         },
         {
           "key": "totalPasses",
-          "h": "584",
-          "a": "351"
+          "h": "670",
+          "a": "456"
         },
         {
           "key": "passPct",
-          "h": "91%",
-          "a": "86%"
+          "h": "90%",
+          "a": "85%"
         },
         {
           "key": "yellowCards",
@@ -13438,7 +13480,407 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-19T23:45:55.381Z"
+      "updatedAt": "2026-06-20T01:55:31.390Z"
+    },
+    "g:C:4": {
+      "espnId": "760444",
+      "status": "IN_PLAY",
+      "minute": 60,
+      "utcDate": "2026-06-20T00:30Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 3
+        },
+        "ht": {
+          "h": 0,
+          "a": 3
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 23,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Matheus Cunha",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        },
+        {
+          "minute": 36,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Matheus Cunha",
+          "assist": "Vinícius Júnior",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 2
+          }
+        },
+        {
+          "minute": 45,
+          "injuryTime": 3,
+          "team": "a",
+          "scorer": "Vinícius Júnior",
+          "assist": "Lucas Paquetá",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 3
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 4,
+          "team": "h",
+          "player": "Carlens Arcus",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "player": "Frantzdy Pierrot",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 40,
+          "team": "a",
+          "in": "Rayan",
+          "out": "Raphinha "
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Dominique Simon",
+          "out": "Carlens Arcus"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Wilson Isidor",
+          "out": "Frantzdy Pierrot"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "5-4-1",
+          "starters": [
+            {
+              "name": "Johny Placide",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Carlens Arcus",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Martin Expérience",
+              "jersey": "8",
+              "pos": "LB"
+            },
+            {
+              "name": "Hannes Delcroix",
+              "jersey": "5",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Ricardo Adé",
+              "jersey": "4",
+              "pos": "CD"
+            },
+            {
+              "name": "Jean-Kévin Duverne",
+              "jersey": "22",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Josué Casimir",
+              "jersey": "21",
+              "pos": "RM"
+            },
+            {
+              "name": "Danley Jean Jacques",
+              "jersey": "17",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Frantzdy Pierrot",
+              "jersey": "20",
+              "pos": "F"
+            },
+            {
+              "name": "Jean-Ricner Bellegarde",
+              "jersey": "10",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Ruben Providence",
+              "jersey": "15",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Alexandre Pierre",
+              "jersey": "12"
+            },
+            {
+              "name": "Josué Duverger",
+              "jersey": "23"
+            },
+            {
+              "name": "Lenny Joseph",
+              "jersey": "16"
+            },
+            {
+              "name": "Wilson Isidor",
+              "jersey": "18",
+              "in": true
+            },
+            {
+              "name": "Louicius Deedson",
+              "jersey": "11"
+            },
+            {
+              "name": "Garven Metusala",
+              "jersey": "14"
+            },
+            {
+              "name": "Carl Sainté",
+              "jersey": "6"
+            },
+            {
+              "name": "Markhus Lacroix",
+              "jersey": "13"
+            },
+            {
+              "name": "Derrick Etienne Jr.",
+              "jersey": "7"
+            },
+            {
+              "name": "Duckens Nazon",
+              "jersey": "9"
+            },
+            {
+              "name": "Keeto Thermoncy",
+              "jersey": "3"
+            },
+            {
+              "name": "Dominique Simon",
+              "jersey": "25",
+              "in": true
+            },
+            {
+              "name": "Yassin Fortuné",
+              "jersey": "19"
+            },
+            {
+              "name": "Wilguens Paugain",
+              "jersey": "24"
+            },
+            {
+              "name": "Woodensky Pierre",
+              "jersey": "26"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Alisson Becker",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Danilo",
+              "jersey": "13",
+              "pos": "RB"
+            },
+            {
+              "name": "Douglas Santos",
+              "jersey": "16",
+              "pos": "LB"
+            },
+            {
+              "name": "Casemiro",
+              "jersey": "5",
+              "pos": "CM"
+            },
+            {
+              "name": "Marquinhos",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Gabriel Magalhães",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Bruno Guimarães",
+              "jersey": "8",
+              "pos": "RM"
+            },
+            {
+              "name": "Lucas Paquetá",
+              "jersey": "20",
+              "pos": "LM"
+            },
+            {
+              "name": "Matheus Cunha",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Raphinha ",
+              "jersey": "11",
+              "pos": "RF"
+            },
+            {
+              "name": "Vinícius Júnior",
+              "jersey": "7",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Alex Sandro",
+              "jersey": "6"
+            },
+            {
+              "name": "Gabriel Martinelli",
+              "jersey": "22"
+            },
+            {
+              "name": "Rayan",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Bremer",
+              "jersey": "14"
+            },
+            {
+              "name": "Endrick",
+              "jersey": "19"
+            },
+            {
+              "name": "Igor Thiago",
+              "jersey": "25"
+            },
+            {
+              "name": "Léo Pereira",
+              "jersey": "15"
+            },
+            {
+              "name": "Roger Ibañez",
+              "jersey": "24"
+            },
+            {
+              "name": "Weverton",
+              "jersey": "12"
+            },
+            {
+              "name": "Luiz Henrique",
+              "jersey": "21"
+            },
+            {
+              "name": "Ederson ",
+              "jersey": "23"
+            },
+            {
+              "name": "Danilo Santos",
+              "jersey": "18"
+            },
+            {
+              "name": "Éderson",
+              "jersey": "2"
+            },
+            {
+              "name": "Fabinho",
+              "jersey": "17"
+            }
+          ]
+        }
+      },
+      "referee": "Alejandro José Hernández Hernández",
+      "venue": "Lincoln Financial Field, Philadelphia, Pennsylvania",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "39%",
+          "a": "61%"
+        },
+        {
+          "key": "totalShots",
+          "h": "2",
+          "a": "6"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "5"
+        },
+        {
+          "key": "wonCorners",
+          "h": "1",
+          "a": "4"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "6",
+          "a": "7"
+        },
+        {
+          "key": "offsides",
+          "h": "2",
+          "a": "6"
+        },
+        {
+          "key": "saves",
+          "h": "2",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "256",
+          "a": "398"
+        },
+        {
+          "key": "passPct",
+          "h": "82%",
+          "a": "90%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "2",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-20T01:55:31.366Z"
     }
   }
 }
