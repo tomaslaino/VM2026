@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-20T17:05:36.605Z",
+    "updatedAt": "2026-06-20T18:44:09.899Z",
     "source": "espn"
   },
   "details": {
@@ -14377,6 +14377,471 @@
         }
       ],
       "updatedAt": "2026-06-20T06:26:36.609Z"
+    },
+    "g:F:4": {
+      "espnId": "760447",
+      "status": "IN_PLAY",
+      "minute": 83,
+      "utcDate": "2026-06-20T17:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 4
+        },
+        "ht": {
+          "h": 0,
+          "a": 2
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 5,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Brian Brobbey",
+          "assist": "Cody Gakpo",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        },
+        {
+          "minute": 17,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Brian Brobbey",
+          "assist": "Denzel Dumfries",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 2
+          }
+        },
+        {
+          "minute": 47,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Cody Gakpo",
+          "assist": "Denzel Dumfries",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 3
+          }
+        },
+        {
+          "minute": 54,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Cody Gakpo",
+          "assist": "Crysencio Summerville",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 4
+          }
+        },
+        {
+          "minute": 59,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Anthony Elanga",
+          "assist": "Alexander Isak",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 4
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 53,
+          "team": "h",
+          "player": "Gabriel Gudmundsson",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 75,
+          "team": "h",
+          "player": "Yasin Ayari",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 80,
+          "team": "h",
+          "player": "Lucas Bergvall",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Crysencio Summerville",
+          "out": "Donyell Malen"
+        },
+        {
+          "minute": 55,
+          "team": "h",
+          "in": "Anthony Elanga",
+          "out": "Alexander Bernhardsson"
+        },
+        {
+          "minute": 56,
+          "team": "h",
+          "in": "Besfort Zeneli",
+          "out": "Jesper Karlström"
+        },
+        {
+          "minute": 56,
+          "team": "h",
+          "in": "Lucas Bergvall",
+          "out": "Benjamin Nygren"
+        },
+        {
+          "minute": 59,
+          "team": "a",
+          "in": "Teun Koopmeiners",
+          "out": "Frenkie de Jong"
+        },
+        {
+          "minute": 59,
+          "team": "a",
+          "in": "Guus Til",
+          "out": "Tijjani Reijnders"
+        },
+        {
+          "minute": 72,
+          "team": "a",
+          "in": "Memphis Depay",
+          "out": "Brian Brobbey"
+        },
+        {
+          "minute": 79,
+          "team": "h",
+          "in": "Taha Ali",
+          "out": "Yasin Ayari"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "3-1-4-2",
+          "starters": [
+            {
+              "name": "Kristoffer Nordfeldt",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Alexander Bernhardsson",
+              "jersey": "21",
+              "pos": "RM"
+            },
+            {
+              "name": "Gabriel Gudmundsson",
+              "jersey": "5",
+              "pos": "LM"
+            },
+            {
+              "name": "Isak Hien",
+              "jersey": "4",
+              "pos": "CD"
+            },
+            {
+              "name": "Gustaf Lagerbielke",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Victor Lindelöf",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Benjamin Nygren",
+              "jersey": "10",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Jesper Karlström",
+              "jersey": "16",
+              "pos": "SW"
+            },
+            {
+              "name": "Viktor Gyökeres",
+              "jersey": "17",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Alexander Isak",
+              "jersey": "9",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Yasin Ayari",
+              "jersey": "18",
+              "pos": "CM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Hjalmar Ekdal",
+              "jersey": "14"
+            },
+            {
+              "name": "Herman Johansson",
+              "jersey": "6"
+            },
+            {
+              "name": "Ken Sema",
+              "jersey": "13"
+            },
+            {
+              "name": "Taha Ali",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Anthony Elanga",
+              "jersey": "11",
+              "in": true
+            },
+            {
+              "name": "Gustaf Nilsson",
+              "jersey": "25"
+            },
+            {
+              "name": "Elliot Stroud",
+              "jersey": "24"
+            },
+            {
+              "name": "Eric Smith",
+              "jersey": "20"
+            },
+            {
+              "name": "Carl Starfelt",
+              "jersey": "15"
+            },
+            {
+              "name": "Jacob Widell Zetterström",
+              "jersey": "1"
+            },
+            {
+              "name": "Viktor Johansson",
+              "jersey": "12"
+            },
+            {
+              "name": "Mattias Svanberg",
+              "jersey": "19"
+            },
+            {
+              "name": "Lucas Bergvall",
+              "jersey": "7",
+              "in": true
+            },
+            {
+              "name": "Besfort Zeneli",
+              "jersey": "22",
+              "in": true
+            },
+            {
+              "name": "Daniel Svensson",
+              "jersey": "8"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Bart Verbruggen",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Denzel Dumfries",
+              "jersey": "22",
+              "pos": "RB"
+            },
+            {
+              "name": "Micky van de Ven",
+              "jersey": "15",
+              "pos": "LB"
+            },
+            {
+              "name": "Frenkie de Jong",
+              "jersey": "21",
+              "pos": "CM"
+            },
+            {
+              "name": "Jan Paul van Hecke",
+              "jersey": "6",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Virgil van Dijk",
+              "jersey": "4",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Ryan Gravenberch",
+              "jersey": "8",
+              "pos": "RM"
+            },
+            {
+              "name": "Tijjani Reijnders",
+              "jersey": "14",
+              "pos": "LM"
+            },
+            {
+              "name": "Brian Brobbey",
+              "jersey": "19",
+              "pos": "F"
+            },
+            {
+              "name": "Donyell Malen",
+              "jersey": "18",
+              "pos": "RF"
+            },
+            {
+              "name": "Cody Gakpo",
+              "jersey": "11",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Wout Weghorst",
+              "jersey": "9"
+            },
+            {
+              "name": "Nathan Aké",
+              "jersey": "5"
+            },
+            {
+              "name": "Crysencio Summerville",
+              "jersey": "24",
+              "in": true
+            },
+            {
+              "name": "Lutsharel Geertruida",
+              "jersey": "2"
+            },
+            {
+              "name": "Marten de Roon",
+              "jersey": "3"
+            },
+            {
+              "name": "Robin Roefs",
+              "jersey": "13"
+            },
+            {
+              "name": "Mats Wieffer",
+              "jersey": "12"
+            },
+            {
+              "name": "Guus Til",
+              "jersey": "16",
+              "in": true
+            },
+            {
+              "name": "Teun Koopmeiners",
+              "jersey": "20",
+              "in": true
+            },
+            {
+              "name": "Noa Lang",
+              "jersey": "17"
+            },
+            {
+              "name": "Mark Flekken",
+              "jersey": "23"
+            },
+            {
+              "name": "Memphis Depay",
+              "jersey": "10",
+              "in": true
+            },
+            {
+              "name": "Jorrel Hato",
+              "jersey": "25"
+            },
+            {
+              "name": "Justin Kluivert",
+              "jersey": "7"
+            }
+          ]
+        }
+      },
+      "referee": "Michael Oliver",
+      "venue": "NRG Stadium, Houston, Texas",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "45%",
+          "a": "55%"
+        },
+        {
+          "key": "totalShots",
+          "h": "12",
+          "a": "9"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "5",
+          "a": "6"
+        },
+        {
+          "key": "wonCorners",
+          "h": "3",
+          "a": "2"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "10",
+          "a": "7"
+        },
+        {
+          "key": "offsides",
+          "h": "3",
+          "a": "3"
+        },
+        {
+          "key": "saves",
+          "h": "2",
+          "a": "4"
+        },
+        {
+          "key": "totalPasses",
+          "h": "340",
+          "a": "418"
+        },
+        {
+          "key": "passPct",
+          "h": "86%",
+          "a": "90%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "3",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-20T18:44:09.899Z"
     }
   }
 }

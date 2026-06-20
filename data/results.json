@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-20T17:05:36.599Z",
+    "updatedAt": "2026-06-20T18:44:09.871Z",
     "source": "espn",
-    "matchCount": 32,
-    "liveCount": 0,
+    "matchCount": 33,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -166,9 +166,23 @@
       "h": 0,
       "a": 1,
       "status": "FINISHED"
+    },
+    "g:F:4": {
+      "h": 1,
+      "a": 4,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:F:4",
+      "status": "IN_PLAY",
+      "minute": 78,
+      "home": "Sweden",
+      "away": "Netherlands",
+      "score": "1-4"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -718,7 +732,7 @@
       "date": "2026-06-20",
       "time": "19:00",
       "utcDate": "2026-06-20T17:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Sweden",
       "away": "Netherlands",
