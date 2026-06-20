@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-20T18:44:09.871Z",
+    "updatedAt": "2026-06-20T20:08:12.939Z",
     "source": "espn",
     "matchCount": 33,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -169,20 +169,11 @@
     },
     "g:F:4": {
       "h": 1,
-      "a": 4,
-      "status": "IN_PLAY"
+      "a": 5,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:F:4",
-      "status": "IN_PLAY",
-      "minute": 78,
-      "home": "Sweden",
-      "away": "Netherlands",
-      "score": "1-4"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -732,7 +723,7 @@
       "date": "2026-06-20",
       "time": "19:00",
       "utcDate": "2026-06-20T17:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Sweden",
       "away": "Netherlands",
@@ -2020,31 +2011,31 @@
     ],
     "F": [
       {
-        "idx": 3,
+        "idx": 0,
         "position": 1,
-        "pld": 1,
+        "pld": 2,
+        "w": 1,
+        "d": 1,
+        "l": 0,
+        "gf": 7,
+        "ga": 3,
+        "gd": 4,
+        "pts": 4
+      },
+      {
+        "idx": 3,
+        "position": 2,
+        "pld": 2,
         "w": 1,
         "d": 0,
-        "l": 0,
-        "gf": 5,
-        "ga": 1,
-        "gd": 4,
+        "l": 1,
+        "gf": 6,
+        "ga": 6,
+        "gd": 0,
         "pts": 3
       },
       {
         "idx": 1,
-        "position": 2,
-        "pld": 1,
-        "w": 0,
-        "d": 1,
-        "l": 0,
-        "gf": 2,
-        "ga": 2,
-        "gd": 0,
-        "pts": 1
-      },
-      {
-        "idx": 0,
         "position": 3,
         "pld": 1,
         "w": 0,

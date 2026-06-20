@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-20T18:44:09.899Z",
+    "updatedAt": "2026-06-20T20:08:12.969Z",
     "source": "espn"
   },
   "details": {
@@ -14380,15 +14380,15 @@
     },
     "g:F:4": {
       "espnId": "760447",
-      "status": "IN_PLAY",
-      "minute": 83,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-20T17:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 1,
-          "a": 4
+          "a": 5
         },
         "ht": {
           "h": 0,
@@ -14457,6 +14457,18 @@
           "score": {
             "h": 1,
             "a": 4
+          }
+        },
+        {
+          "minute": 89,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Crysencio Summerville",
+          "assist": "Memphis Depay",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 5
           }
         }
       ],
@@ -14528,6 +14540,18 @@
           "team": "h",
           "in": "Taha Ali",
           "out": "Yasin Ayari"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Noa Lang",
+          "out": "Cody Gakpo"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Elliot Stroud",
+          "out": "Gabriel Gudmundsson"
         }
       ],
       "penalties": [],
@@ -14620,7 +14644,8 @@
             },
             {
               "name": "Elliot Stroud",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Eric Smith",
@@ -14759,7 +14784,8 @@
             },
             {
               "name": "Noa Lang",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Mark Flekken",
@@ -14783,32 +14809,32 @@
       },
       "referee": "Michael Oliver",
       "venue": "NRG Stadium, Houston, Texas",
-      "attendance": null,
+      "attendance": 68777,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "45%",
-          "a": "55%"
+          "h": "49%",
+          "a": "51%"
         },
         {
           "key": "totalShots",
-          "h": "12",
-          "a": "9"
+          "h": "16",
+          "a": "10"
         },
         {
           "key": "shotsOnTarget",
-          "h": "5",
-          "a": "6"
+          "h": "8",
+          "a": "7"
         },
         {
           "key": "wonCorners",
-          "h": "3",
+          "h": "5",
           "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "10",
-          "a": "7"
+          "h": "12",
+          "a": "9"
         },
         {
           "key": "offsides",
@@ -14818,17 +14844,17 @@
         {
           "key": "saves",
           "h": "2",
-          "a": "4"
+          "a": "7"
         },
         {
           "key": "totalPasses",
-          "h": "340",
-          "a": "418"
+          "h": "424",
+          "a": "450"
         },
         {
           "key": "passPct",
-          "h": "86%",
-          "a": "90%"
+          "h": "85%",
+          "a": "88%"
         },
         {
           "key": "yellowCards",
@@ -14841,7 +14867,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-20T18:44:09.899Z"
+      "updatedAt": "2026-06-20T20:08:12.968Z"
     }
   }
 }
