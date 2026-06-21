@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-20T23:58:55.961Z",
+    "updatedAt": "2026-06-21T05:10:28.225Z",
     "source": "espn",
-    "matchCount": 34,
-    "liveCount": 0,
+    "matchCount": 36,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -176,9 +176,28 @@
       "h": 2,
       "a": 1,
       "status": "FINISHED"
+    },
+    "g:E:3": {
+      "h": 0,
+      "a": 0,
+      "status": "FINISHED"
+    },
+    "g:F:5": {
+      "h": 2,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:F:5",
+      "status": "IN_PLAY",
+      "minute": 47,
+      "home": "Japan",
+      "away": "Tunisia",
+      "score": "2-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -762,7 +781,7 @@
       "date": "2026-06-21",
       "time": "02:00",
       "utcDate": "2026-06-21T00:00Z",
-      "status": "TIMED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Curaçao",
       "away": "Ecuador",
@@ -779,7 +798,7 @@
       "date": "2026-06-21",
       "time": "06:00",
       "utcDate": "2026-06-21T04:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Japan",
       "away": "Tunisia",
@@ -1432,9 +1451,12 @@
       "utcDate": "2026-06-29T20:30Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Group E Winner",
+      "home": "Germany",
       "away": "Third Place Group A/B/C/D/F",
-      "homeRef": null,
+      "homeRef": {
+        "group": "E",
+        "idx": 0
+      },
       "awayRef": null
     },
     "k:75": {
@@ -1992,26 +2014,26 @@
       {
         "idx": 1,
         "position": 3,
-        "pld": 1,
+        "pld": 2,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 1,
         "gf": 0,
         "ga": 1,
         "gd": -1,
-        "pts": 0
+        "pts": 1
       },
       {
         "idx": 3,
         "position": 4,
-        "pld": 1,
+        "pld": 2,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 1,
         "gf": 1,
         "ga": 7,
         "gd": -6,
-        "pts": 0
+        "pts": 1
       }
     ],
     "F": [
