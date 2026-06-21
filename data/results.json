@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-21T22:05:18.596Z",
+    "updatedAt": "2026-06-21T23:43:09.931Z",
     "source": "espn",
-    "matchCount": 38,
-    "liveCount": 0,
+    "matchCount": 39,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -196,9 +196,23 @@
       "h": 0,
       "a": 0,
       "status": "FINISHED"
+    },
+    "g:H:3": {
+      "h": 2,
+      "a": 2,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:H:3",
+      "status": "IN_PLAY",
+      "minute": 75,
+      "home": "Cape Verde",
+      "away": "Uruguay",
+      "score": "2-2"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -850,7 +864,7 @@
       "date": "2026-06-22",
       "time": "00:00",
       "utcDate": "2026-06-21T22:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Cape Verde",
       "away": "Uruguay",

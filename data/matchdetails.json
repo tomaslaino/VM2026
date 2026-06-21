@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-21T22:05:18.665Z",
+    "updatedAt": "2026-06-21T23:43:10.074Z",
     "source": "espn"
   },
   "details": {
@@ -17055,6 +17055,429 @@
         }
       ],
       "updatedAt": "2026-06-21T22:05:18.665Z"
+    },
+    "g:H:3": {
+      "espnId": "760450",
+      "status": "IN_PLAY",
+      "minute": 77,
+      "utcDate": "2026-06-21T22:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 2,
+          "a": 2
+        },
+        "ht": {
+          "h": 1,
+          "a": 2
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 21,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Kevin Pina",
+          "assist": null,
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 44,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Maxi Araújo",
+          "assist": null,
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 45,
+          "injuryTime": 6,
+          "team": "a",
+          "scorer": "Agustín Cano",
+          "assist": "Maxi Araújo",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 61,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Hélio Varela",
+          "assist": null,
+          "type": "REGULAR",
+          "score": null
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 5,
+          "team": "h",
+          "player": "Sidny Lopes Cabral",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 20,
+          "team": "a",
+          "player": "Rodrigo Bentancur",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 58,
+          "team": "a",
+          "player": "Mathías Olivera",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Deroy Duarte",
+          "out": "Telmo Arcanjo"
+        },
+        {
+          "minute": 58,
+          "team": "h",
+          "in": "Nuno da Costa",
+          "out": "Gilson Benchimol"
+        },
+        {
+          "minute": 58,
+          "team": "h",
+          "in": "Hélio Varela",
+          "out": "Garry Rodrigues"
+        },
+        {
+          "minute": 70,
+          "team": "a",
+          "in": "Darwin Núñez",
+          "out": "Federico Viñas"
+        },
+        {
+          "minute": 70,
+          "team": "a",
+          "in": "Nicolás de la Cruz",
+          "out": "Manuel Ugarte"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Laros Duarte",
+          "out": "Kevin Pina"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-1-4-1",
+          "starters": [
+            {
+              "name": "Vozinha",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Steven Moreira",
+              "jersey": "22",
+              "pos": "RB"
+            },
+            {
+              "name": "Sidny Lopes Cabral",
+              "jersey": "13",
+              "pos": "LB"
+            },
+            {
+              "name": "Kevin Pina",
+              "jersey": "6",
+              "pos": "DM"
+            },
+            {
+              "name": "Pico Lopes",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Diney Borges",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Ryan Mendes",
+              "jersey": "20",
+              "pos": "RM"
+            },
+            {
+              "name": "Telmo Arcanjo",
+              "jersey": "18",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Gilson Benchimol",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Jamiro Monteiro",
+              "jersey": "10",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Garry Rodrigues",
+              "jersey": "11",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "João Paulo",
+              "jersey": "8"
+            },
+            {
+              "name": "Willy Semedo",
+              "jersey": "17"
+            },
+            {
+              "name": "Jovane Cabral",
+              "jersey": "7"
+            },
+            {
+              "name": "Deroy Duarte",
+              "jersey": "14",
+              "in": true
+            },
+            {
+              "name": "Yannick Semedo",
+              "jersey": "16"
+            },
+            {
+              "name": "Kelvin Pires",
+              "jersey": "25"
+            },
+            {
+              "name": "Márcio Rosa",
+              "jersey": "12"
+            },
+            {
+              "name": "Nuno da Costa",
+              "jersey": "21",
+              "in": true
+            },
+            {
+              "name": "Laros Duarte",
+              "jersey": "15",
+              "in": true
+            },
+            {
+              "name": "Dailon Livramento",
+              "jersey": "19"
+            },
+            {
+              "name": "Logan Costa",
+              "jersey": "5"
+            },
+            {
+              "name": "CJ dos Santos",
+              "jersey": "23"
+            },
+            {
+              "name": "Stopira",
+              "jersey": "2"
+            },
+            {
+              "name": "Wagner Pina",
+              "jersey": "24"
+            },
+            {
+              "name": "Hélio Varela",
+              "jersey": "26",
+              "in": true
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-1-4-1",
+          "starters": [
+            {
+              "name": "Fernando Muslera",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Guillermo Varela",
+              "jersey": "13",
+              "pos": "RB"
+            },
+            {
+              "name": "Juan Manuel Sanabria",
+              "jersey": "25",
+              "pos": "LB"
+            },
+            {
+              "name": "Manuel Ugarte",
+              "jersey": "5",
+              "pos": "DM"
+            },
+            {
+              "name": "Sebastián Cáceres",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Mathías Olivera",
+              "jersey": "16",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Agustín Cano",
+              "jersey": "14",
+              "pos": "RM"
+            },
+            {
+              "name": "Rodrigo Bentancur",
+              "jersey": "6",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Federico Viñas",
+              "jersey": "21",
+              "pos": "F"
+            },
+            {
+              "name": "Federico Valverde",
+              "jersey": "8",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Maxi Araújo",
+              "jersey": "20",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Rodrigo Zalazar",
+              "jersey": "26"
+            },
+            {
+              "name": "Nicolás de la Cruz",
+              "jersey": "7",
+              "in": true
+            },
+            {
+              "name": "Rodrigo Aguirre",
+              "jersey": "19"
+            },
+            {
+              "name": "José María Giménez",
+              "jersey": "2"
+            },
+            {
+              "name": "Brian Rodríguez",
+              "jersey": "18"
+            },
+            {
+              "name": "Facundo Pellistri",
+              "jersey": "11"
+            },
+            {
+              "name": "Matías Viña",
+              "jersey": "17"
+            },
+            {
+              "name": "Joaquín Piquerez",
+              "jersey": "22"
+            },
+            {
+              "name": "Emiliano Martínez",
+              "jersey": "15"
+            },
+            {
+              "name": "Santiago Bueno",
+              "jersey": "24"
+            },
+            {
+              "name": "Santiago Mele",
+              "jersey": "12"
+            },
+            {
+              "name": "Darwin Núñez",
+              "jersey": "9",
+              "in": true
+            },
+            {
+              "name": "Sergio Rochet",
+              "jersey": "1"
+            }
+          ]
+        }
+      },
+      "referee": "Espen Eskas",
+      "venue": "Hard Rock Stadium, Miami Gardens, Florida",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "34%",
+          "a": "66%"
+        },
+        {
+          "key": "totalShots",
+          "h": "7",
+          "a": "12"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "2",
+          "a": "2"
+        },
+        {
+          "key": "wonCorners",
+          "h": "3",
+          "a": "6"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "3",
+          "a": "8"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "3"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "220",
+          "a": "418"
+        },
+        {
+          "key": "passPct",
+          "h": "75%",
+          "a": "84%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "2"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-21T23:43:10.074Z"
     }
   }
 }
