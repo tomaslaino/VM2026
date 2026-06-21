@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-21T19:06:26.844Z",
+    "updatedAt": "2026-06-21T20:46:36.782Z",
     "source": "espn"
   },
   "details": {
@@ -16645,7 +16645,7 @@
     "g:G:0": {
       "espnId": "760451",
       "status": "IN_PLAY",
-      "minute": 5,
+      "minute": 81,
       "utcDate": "2026-06-21T19:00Z",
       "duration": "REGULAR",
       "winner": null,
@@ -16654,7 +16654,10 @@
           "h": 0,
           "a": 0
         },
-        "ht": null,
+        "ht": {
+          "h": 0,
+          "a": 0
+        },
         "rt": null,
         "et": null,
         "pen": null
@@ -16666,9 +16669,70 @@
           "team": "h",
           "player": "Romelu Lukaku",
           "card": "YELLOW"
+        },
+        {
+          "minute": 33,
+          "team": "a",
+          "player": "Saeid Ezatolahi",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 66,
+          "team": "h",
+          "player": "Nathan Ngoy",
+          "card": "RED"
         }
       ],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Alireza Jahanbakhsh",
+          "out": "Saleh Hardani"
+        },
+        {
+          "minute": 58,
+          "team": "h",
+          "in": "Timothy Castagne",
+          "out": "Thomas Meunier"
+        },
+        {
+          "minute": 58,
+          "team": "h",
+          "in": "Hans Vanaken",
+          "out": "Nicolas Raskin"
+        },
+        {
+          "minute": 58,
+          "team": "h",
+          "in": "Dodi Lukébakio",
+          "out": "Alexis Saelemaekers"
+        },
+        {
+          "minute": 66,
+          "team": "a",
+          "in": "Mehdi Torabi",
+          "out": "Mohammad Mohebbi"
+        },
+        {
+          "minute": 66,
+          "team": "a",
+          "in": "Milad Mohammadi",
+          "out": "Ehsan Hajsafi"
+        },
+        {
+          "minute": 73,
+          "team": "h",
+          "in": "Arthur Theate",
+          "out": "Romelu Lukaku"
+        },
+        {
+          "minute": 79,
+          "team": "a",
+          "in": "Shahriyar Moghanloo",
+          "out": "Saman Ghoddos"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -16753,7 +16817,8 @@
             },
             {
               "name": "Arthur Theate",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true
             },
             {
               "name": "Charles De Ketelaere",
@@ -16761,11 +16826,13 @@
             },
             {
               "name": "Hans Vanaken",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Timothy Castagne",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Senne Lammens",
@@ -16773,7 +16840,8 @@
             },
             {
               "name": "Dodi Lukébakio",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Matias Fernandez-Pardo",
@@ -16786,7 +16854,7 @@
           ]
         },
         "a": {
-          "formation": "4-5-1",
+          "formation": "5-4-1",
           "starters": [
             {
               "name": "Alireza Beiranvand",
@@ -16799,14 +16867,19 @@
               "pos": "RB"
             },
             {
-              "name": "Ali Nemati",
-              "jersey": "19",
+              "name": "Ehsan Hajsafi",
+              "jersey": "3",
               "pos": "LB"
             },
             {
-              "name": "Saman Ghoddos",
-              "jersey": "14",
-              "pos": "CM-R"
+              "name": "Ali Nemati",
+              "jersey": "19",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Shoja Khalilzadeh",
+              "jersey": "4",
+              "pos": "CD"
             },
             {
               "name": "Hossein Kanani",
@@ -16814,19 +16887,14 @@
               "pos": "CD-R"
             },
             {
-              "name": "Shoja Khalilzadeh",
-              "jersey": "4",
-              "pos": "CD-L"
-            },
-            {
               "name": "Ramin Rezaeian",
               "jersey": "23",
               "pos": "RM"
             },
             {
-              "name": "Saeid Ezatolahi",
-              "jersey": "6",
-              "pos": "CM-L"
+              "name": "Saman Ghoddos",
+              "jersey": "14",
+              "pos": "CM-R"
             },
             {
               "name": "Mehdi Taremi",
@@ -16834,9 +16902,9 @@
               "pos": "F"
             },
             {
-              "name": "Ehsan Hajsafi",
-              "jersey": "3",
-              "pos": "AM"
+              "name": "Saeid Ezatolahi",
+              "jersey": "6",
+              "pos": "CM-L"
             },
             {
               "name": "Mohammad Mohebbi",
@@ -16851,7 +16919,8 @@
             },
             {
               "name": "Shahriyar Moghanloo",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Dennis Dargahi",
@@ -16863,7 +16932,8 @@
             },
             {
               "name": "Alireza Jahanbakhsh",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Payam Niazmand",
@@ -16875,7 +16945,8 @@
             },
             {
               "name": "Mehdi Torabi",
-              "jersey": "16"
+              "jersey": "16",
+              "in": true
             },
             {
               "name": "Arya Yousefi",
@@ -16887,7 +16958,8 @@
             },
             {
               "name": "Milad Mohammadi",
-              "jersey": "5"
+              "jersey": "5",
+              "in": true
             },
             {
               "name": "Mohammad Ghorbani",
@@ -16914,61 +16986,61 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "93%",
-          "a": "7%"
+          "h": "72%",
+          "a": "28%"
         },
         {
           "key": "totalShots",
-          "h": "0",
-          "a": "0"
+          "h": "17",
+          "a": "5"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "0"
-        },
-        {
-          "key": "wonCorners",
-          "h": "1",
-          "a": "0"
-        },
-        {
-          "key": "foulsCommitted",
-          "h": "1",
-          "a": "0"
-        },
-        {
-          "key": "offsides",
-          "h": "0",
-          "a": "0"
-        },
-        {
-          "key": "saves",
-          "h": "0",
-          "a": "0"
-        },
-        {
-          "key": "totalPasses",
-          "h": "25",
+          "h": "6",
           "a": "2"
         },
         {
+          "key": "wonCorners",
+          "h": "4",
+          "a": "2"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "7",
+          "a": "8"
+        },
+        {
+          "key": "offsides",
+          "h": "3",
+          "a": "2"
+        },
+        {
+          "key": "saves",
+          "h": "2",
+          "a": "6"
+        },
+        {
+          "key": "totalPasses",
+          "h": "541",
+          "a": "210"
+        },
+        {
           "key": "passPct",
-          "h": "84%",
-          "a": "0%"
+          "h": "86%",
+          "a": "72%"
         },
         {
           "key": "yellowCards",
           "h": "1",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
-          "h": "0",
+          "h": "1",
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-21T19:06:26.813Z"
+      "updatedAt": "2026-06-21T20:46:36.782Z"
     }
   }
 }
