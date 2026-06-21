@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-21T15:55:17.158Z",
+    "updatedAt": "2026-06-21T17:43:12.391Z",
     "source": "espn",
-    "matchCount": 36,
-    "liveCount": 0,
+    "matchCount": 37,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -186,9 +186,23 @@
       "h": 4,
       "a": 0,
       "status": "FINISHED"
+    },
+    "g:H:2": {
+      "h": 4,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:H:2",
+      "status": "IN_PLAY",
+      "minute": 75,
+      "home": "Spain",
+      "away": "Saudi Arabia",
+      "score": "4-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -806,7 +820,7 @@
       "date": "2026-06-21",
       "time": "18:00",
       "utcDate": "2026-06-21T16:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Spain",
       "away": "Saudi Arabia",
