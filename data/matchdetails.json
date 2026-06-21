@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-21T05:10:28.274Z",
+    "updatedAt": "2026-06-21T09:02:58.656Z",
     "source": "espn"
   },
   "details": {
@@ -15302,14 +15302,14 @@
     },
     "g:F:5": {
       "espnId": "760449",
-      "status": "IN_PLAY",
-      "minute": 50,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-21T04:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
-          "h": 2,
+          "h": 4,
           "a": 0
         },
         "ht": {
@@ -15344,6 +15344,30 @@
             "h": 2,
             "a": 0
           }
+        },
+        {
+          "minute": 69,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Junya Ito",
+          "assist": "Ayase Ueda",
+          "type": "REGULAR",
+          "score": {
+            "h": 3,
+            "a": 0
+          }
+        },
+        {
+          "minute": 83,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Ayase Ueda",
+          "assist": "Kaishu Sano",
+          "type": "REGULAR",
+          "score": {
+            "h": 4,
+            "a": 0
+          }
         }
       ],
       "bookings": [],
@@ -15359,6 +15383,54 @@
           "team": "a",
           "in": "Mohamed Amine Ben Hamida",
           "out": "Dylan Bronn"
+        },
+        {
+          "minute": 64,
+          "team": "a",
+          "in": "Firas Chaouat",
+          "out": "Sebastian Tounekti"
+        },
+        {
+          "minute": 73,
+          "team": "h",
+          "in": "Junnosuke Suzuki",
+          "out": "Daichi Kamada"
+        },
+        {
+          "minute": 74,
+          "team": "h",
+          "in": "Yukinari Sugawara",
+          "out": "Ritsu Doan"
+        },
+        {
+          "minute": 79,
+          "team": "h",
+          "in": "Yuito Suzuki",
+          "out": "Keito Nakamura"
+        },
+        {
+          "minute": 79,
+          "team": "h",
+          "in": "Ayumu Seko",
+          "out": "Takehiro Tomiyasu"
+        },
+        {
+          "minute": 84,
+          "team": "h",
+          "in": "Keisuke Goto",
+          "out": "Ayase Ueda"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Rani Khedira",
+          "out": "Ellyes Skhiri"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Elias Achouri",
+          "out": "Ali Abdi"
         }
       ],
       "penalties": [],
@@ -15425,15 +15497,18 @@
           "bench": [
             {
               "name": "Ayumu Seko",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Yuito Suzuki",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Junnosuke Suzuki",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Tsuyoshi Watanabe",
@@ -15457,7 +15532,8 @@
             },
             {
               "name": "Keisuke Goto",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Tomoki Hayakawa",
@@ -15469,7 +15545,8 @@
             },
             {
               "name": "Yukinari Sugawara",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Kento Shiogai",
@@ -15548,7 +15625,8 @@
             },
             {
               "name": "Firas Chaouat",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Raed Chikhaoui",
@@ -15564,7 +15642,8 @@
             },
             {
               "name": "Rani Khedira",
-              "jersey": "13"
+              "jersey": "13",
+              "in": true
             },
             {
               "name": "Khalil Ayari",
@@ -15576,7 +15655,8 @@
             },
             {
               "name": "Elias Achouri",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Hazem Mastouri",
@@ -15604,37 +15684,37 @@
       },
       "referee": "Istvan Kovacs",
       "venue": "Estadio BBVA, Guadalupe",
-      "attendance": null,
+      "attendance": 51243,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "65%",
-          "a": "35%"
+          "h": "62%",
+          "a": "38%"
         },
         {
           "key": "totalShots",
-          "h": "6",
+          "h": "11",
           "a": "2"
         },
         {
           "key": "shotsOnTarget",
-          "h": "3",
+          "h": "5",
           "a": "0"
         },
         {
           "key": "wonCorners",
-          "h": "2",
-          "a": "1"
+          "h": "5",
+          "a": "3"
         },
         {
           "key": "foulsCommitted",
-          "h": "9",
-          "a": "5"
+          "h": "15",
+          "a": "8"
         },
         {
           "key": "offsides",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "1"
         },
         {
           "key": "saves",
@@ -15643,13 +15723,13 @@
         },
         {
           "key": "totalPasses",
-          "h": "328",
-          "a": "178"
+          "h": "582",
+          "a": "353"
         },
         {
           "key": "passPct",
           "h": "90%",
-          "a": "76%"
+          "a": "80%"
         },
         {
           "key": "yellowCards",
@@ -15662,7 +15742,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-21T05:10:28.248Z"
+      "updatedAt": "2026-06-21T09:02:58.656Z"
     },
     "g:E:3": {
       "espnId": "760446",
