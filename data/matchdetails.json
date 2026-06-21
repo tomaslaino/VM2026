@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-21T17:43:12.484Z",
+    "updatedAt": "2026-06-21T19:06:26.844Z",
     "source": "espn"
   },
   "details": {
@@ -16179,11 +16179,11 @@
     },
     "g:H:2": {
       "espnId": "760453",
-      "status": "IN_PLAY",
-      "minute": 80,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-21T16:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
           "h": 4,
@@ -16315,6 +16315,12 @@
           "team": "h",
           "in": "Fabián Ruiz",
           "out": "Pedri "
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Khalid Al-Ghannam",
+          "out": "Nasser Al-Dawsari"
         }
       ],
       "penalties": [],
@@ -16555,7 +16561,8 @@
             },
             {
               "name": "Khalid Al-Ghannam",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Nawaf Boushal",
@@ -16575,22 +16582,22 @@
       },
       "referee": "Raphael Claus",
       "venue": "Mercedes-Benz Stadium, Atlanta, Georgia",
-      "attendance": null,
+      "attendance": 68239,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "71%",
-          "a": "29%"
+          "h": "67%",
+          "a": "33%"
         },
         {
           "key": "totalShots",
-          "h": "21",
-          "a": "2"
+          "h": "22",
+          "a": "3"
         },
         {
           "key": "shotsOnTarget",
           "h": "8",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "wonCorners",
@@ -16599,28 +16606,28 @@
         },
         {
           "key": "foulsCommitted",
-          "h": "7",
+          "h": "10",
           "a": "2"
         },
         {
           "key": "offsides",
-          "h": "1",
+          "h": "2",
           "a": "3"
         },
         {
           "key": "saves",
-          "h": "0",
+          "h": "1",
           "a": "5"
         },
         {
           "key": "totalPasses",
-          "h": "558",
-          "a": "238"
+          "h": "725",
+          "a": "364"
         },
         {
           "key": "passPct",
           "h": "92%",
-          "a": "75%"
+          "a": "80%"
         },
         {
           "key": "yellowCards",
@@ -16633,7 +16640,335 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-21T17:43:12.484Z"
+      "updatedAt": "2026-06-21T19:06:26.844Z"
+    },
+    "g:G:0": {
+      "espnId": "760451",
+      "status": "IN_PLAY",
+      "minute": 5,
+      "utcDate": "2026-06-21T19:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [
+        {
+          "minute": 3,
+          "team": "h",
+          "player": "Romelu Lukaku",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Thibaut Courtois",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Thomas Meunier",
+              "jersey": "15",
+              "pos": "RB"
+            },
+            {
+              "name": "Maxim De Cuyper",
+              "jersey": "5",
+              "pos": "LB"
+            },
+            {
+              "name": "Youri Tielemans",
+              "jersey": "8",
+              "pos": "LM"
+            },
+            {
+              "name": "Nathan Ngoy",
+              "jersey": "25",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Brandon Mechele",
+              "jersey": "4",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Alexis Saelemaekers",
+              "jersey": "22",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Nicolas Raskin",
+              "jersey": "23",
+              "pos": "RM"
+            },
+            {
+              "name": "Romelu Lukaku",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Kevin De Bruyne",
+              "jersey": "7",
+              "pos": "AM"
+            },
+            {
+              "name": "Leandro Trossard",
+              "jersey": "10",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Axel Witsel",
+              "jersey": "6"
+            },
+            {
+              "name": "Joaquin Seys",
+              "jersey": "18"
+            },
+            {
+              "name": "Diego Moreira",
+              "jersey": "19"
+            },
+            {
+              "name": "Mike Penders",
+              "jersey": "13"
+            },
+            {
+              "name": "Koni De Winter",
+              "jersey": "16"
+            },
+            {
+              "name": "Arthur Theate",
+              "jersey": "3"
+            },
+            {
+              "name": "Charles De Ketelaere",
+              "jersey": "17"
+            },
+            {
+              "name": "Hans Vanaken",
+              "jersey": "20"
+            },
+            {
+              "name": "Timothy Castagne",
+              "jersey": "21"
+            },
+            {
+              "name": "Senne Lammens",
+              "jersey": "12"
+            },
+            {
+              "name": "Dodi Lukébakio",
+              "jersey": "14"
+            },
+            {
+              "name": "Matias Fernandez-Pardo",
+              "jersey": "26"
+            },
+            {
+              "name": "Amadou Onana",
+              "jersey": "24"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-5-1",
+          "starters": [
+            {
+              "name": "Alireza Beiranvand",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Saleh Hardani",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Ali Nemati",
+              "jersey": "19",
+              "pos": "LB"
+            },
+            {
+              "name": "Saman Ghoddos",
+              "jersey": "14",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Hossein Kanani",
+              "jersey": "13",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Shoja Khalilzadeh",
+              "jersey": "4",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Ramin Rezaeian",
+              "jersey": "23",
+              "pos": "RM"
+            },
+            {
+              "name": "Saeid Ezatolahi",
+              "jersey": "6",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Mehdi Taremi",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Ehsan Hajsafi",
+              "jersey": "3",
+              "pos": "AM"
+            },
+            {
+              "name": "Mohammad Mohebbi",
+              "jersey": "8",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Danial Iri",
+              "jersey": "25"
+            },
+            {
+              "name": "Shahriyar Moghanloo",
+              "jersey": "20"
+            },
+            {
+              "name": "Dennis Dargahi",
+              "jersey": "24"
+            },
+            {
+              "name": "Mehdi Ghayedi",
+              "jersey": "10"
+            },
+            {
+              "name": "Alireza Jahanbakhsh",
+              "jersey": "7"
+            },
+            {
+              "name": "Payam Niazmand",
+              "jersey": "12"
+            },
+            {
+              "name": "Amirhossein Hosseinzadeh",
+              "jersey": "18"
+            },
+            {
+              "name": "Mehdi Torabi",
+              "jersey": "16"
+            },
+            {
+              "name": "Arya Yousefi",
+              "jersey": "17"
+            },
+            {
+              "name": "Hossein Hosseini",
+              "jersey": "22"
+            },
+            {
+              "name": "Milad Mohammadi",
+              "jersey": "5"
+            },
+            {
+              "name": "Mohammad Ghorbani",
+              "jersey": "21"
+            },
+            {
+              "name": "Ali Alipour",
+              "jersey": "11"
+            },
+            {
+              "name": "Roozbeh Cheshmi",
+              "jersey": "15"
+            },
+            {
+              "name": "Amirmohammad Razzaghinia",
+              "jersey": "26"
+            }
+          ]
+        }
+      },
+      "referee": "Dario Herrera",
+      "venue": "SoFi Stadium, Inglewood, California",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "93%",
+          "a": "7%"
+        },
+        {
+          "key": "totalShots",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "25",
+          "a": "2"
+        },
+        {
+          "key": "passPct",
+          "h": "84%",
+          "a": "0%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-21T19:06:26.813Z"
     }
   }
 }

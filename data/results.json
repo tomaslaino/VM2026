@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-21T17:43:12.391Z",
+    "updatedAt": "2026-06-21T19:06:26.780Z",
     "source": "espn",
-    "matchCount": 37,
+    "matchCount": 38,
     "liveCount": 1,
     "apiCalls": 2
   },
@@ -190,17 +190,22 @@
     "g:H:2": {
       "h": 4,
       "a": 0,
+      "status": "FINISHED"
+    },
+    "g:G:0": {
+      "h": 0,
+      "a": 0,
       "status": "IN_PLAY"
     }
   },
   "live": [
     {
-      "key": "g:H:2",
+      "key": "g:G:0",
       "status": "IN_PLAY",
-      "minute": 75,
-      "home": "Spain",
-      "away": "Saudi Arabia",
-      "score": "4-0"
+      "minute": 5,
+      "home": "Belgium",
+      "away": "Iran",
+      "score": "0-0"
     }
   ],
   "fixtures": {
@@ -820,7 +825,7 @@
       "date": "2026-06-21",
       "time": "18:00",
       "utcDate": "2026-06-21T16:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Spain",
       "away": "Saudi Arabia",
@@ -837,7 +842,7 @@
       "date": "2026-06-21",
       "time": "21:00",
       "utcDate": "2026-06-21T19:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Belgium",
       "away": "Iran",
@@ -2143,19 +2148,19 @@
     ],
     "H": [
       {
-        "idx": 1,
+        "idx": 0,
         "position": 1,
-        "pld": 1,
-        "w": 0,
+        "pld": 2,
+        "w": 1,
         "d": 1,
         "l": 0,
-        "gf": 1,
-        "ga": 1,
-        "gd": 0,
-        "pts": 1
+        "gf": 4,
+        "ga": 0,
+        "gd": 4,
+        "pts": 4
       },
       {
-        "idx": 2,
+        "idx": 1,
         "position": 2,
         "pld": 1,
         "w": 0,
@@ -2167,15 +2172,15 @@
         "pts": 1
       },
       {
-        "idx": 0,
+        "idx": 2,
         "position": 3,
-        "pld": 1,
+        "pld": 2,
         "w": 0,
         "d": 1,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 5,
+        "gd": -4,
         "pts": 1
       },
       {
