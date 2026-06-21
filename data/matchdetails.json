@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-21T20:46:36.782Z",
+    "updatedAt": "2026-06-21T22:05:18.665Z",
     "source": "espn"
   },
   "details": {
@@ -16644,11 +16644,11 @@
     },
     "g:G:0": {
       "espnId": "760451",
-      "status": "IN_PLAY",
-      "minute": 81,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-21T19:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "DRAW",
       "score": {
         "ft": {
           "h": 0,
@@ -16731,6 +16731,18 @@
           "team": "a",
           "in": "Shahriyar Moghanloo",
           "out": "Saman Ghoddos"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Amirhossein Hosseinzadeh",
+          "out": "Saeid Ezatolahi"
+        },
+        {
+          "minute": 87,
+          "team": "h",
+          "in": "Matias Fernandez-Pardo",
+          "out": "Kevin De Bruyne"
         }
       ],
       "penalties": [],
@@ -16845,7 +16857,8 @@
             },
             {
               "name": "Matias Fernandez-Pardo",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Amadou Onana",
@@ -16941,7 +16954,8 @@
             },
             {
               "name": "Amirhossein Hosseinzadeh",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true
             },
             {
               "name": "Mehdi Torabi",
@@ -16982,22 +16996,22 @@
       },
       "referee": "Dario Herrera",
       "venue": "SoFi Stadium, Inglewood, California",
-      "attendance": null,
+      "attendance": 70317,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "72%",
-          "a": "28%"
+          "h": "70%",
+          "a": "30%"
         },
         {
           "key": "totalShots",
-          "h": "17",
-          "a": "5"
+          "h": "23",
+          "a": "7"
         },
         {
           "key": "shotsOnTarget",
-          "h": "6",
-          "a": "2"
+          "h": "7",
+          "a": "3"
         },
         {
           "key": "wonCorners",
@@ -17007,27 +17021,27 @@
         {
           "key": "foulsCommitted",
           "h": "7",
-          "a": "8"
+          "a": "9"
         },
         {
           "key": "offsides",
           "h": "3",
-          "a": "2"
+          "a": "4"
         },
         {
           "key": "saves",
-          "h": "2",
-          "a": "6"
+          "h": "3",
+          "a": "7"
         },
         {
           "key": "totalPasses",
-          "h": "541",
-          "a": "210"
+          "h": "622",
+          "a": "268"
         },
         {
           "key": "passPct",
           "h": "86%",
-          "a": "72%"
+          "a": "74%"
         },
         {
           "key": "yellowCards",
@@ -17040,7 +17054,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-21T20:46:36.782Z"
+      "updatedAt": "2026-06-21T22:05:18.665Z"
     }
   }
 }

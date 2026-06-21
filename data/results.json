@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-21T20:46:36.743Z",
+    "updatedAt": "2026-06-21T22:05:18.596Z",
     "source": "espn",
     "matchCount": 38,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -195,19 +195,10 @@
     "g:G:0": {
       "h": 0,
       "a": 0,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:G:0",
-      "status": "IN_PLAY",
-      "minute": 81,
-      "home": "Belgium",
-      "away": "Iran",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -842,7 +833,7 @@
       "date": "2026-06-21",
       "time": "21:00",
       "utcDate": "2026-06-21T19:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Belgium",
       "away": "Iran",
@@ -2098,38 +2089,38 @@
     ],
     "G": [
       {
-        "idx": 3,
-        "position": 1,
-        "pld": 1,
-        "w": 0,
-        "d": 1,
-        "l": 0,
-        "gf": 2,
-        "ga": 2,
-        "gd": 0,
-        "pts": 1
-      },
-      {
         "idx": 1,
-        "position": 2,
-        "pld": 1,
+        "position": 1,
+        "pld": 2,
         "w": 0,
-        "d": 1,
+        "d": 2,
         "l": 0,
         "gf": 2,
         "ga": 2,
         "gd": 0,
-        "pts": 1
+        "pts": 2
       },
       {
         "idx": 0,
+        "position": 2,
+        "pld": 2,
+        "w": 0,
+        "d": 2,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "gd": 0,
+        "pts": 2
+      },
+      {
+        "idx": 3,
         "position": 3,
         "pld": 1,
         "w": 0,
         "d": 1,
         "l": 0,
-        "gf": 1,
-        "ga": 1,
+        "gf": 2,
+        "ga": 2,
         "gd": 0,
         "pts": 1
       },
