@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-22T17:59:39.758Z",
+    "updatedAt": "2026-06-22T21:11:33.913Z",
     "source": "espn",
-    "matchCount": 41,
+    "matchCount": 42,
     "liveCount": 1,
     "apiCalls": 2
   },
@@ -208,19 +208,24 @@
       "status": "FINISHED"
     },
     "g:J:0": {
-      "h": 1,
+      "h": 2,
+      "a": 0,
+      "status": "FINISHED"
+    },
+    "g:I:4": {
+      "h": 0,
       "a": 0,
       "status": "IN_PLAY"
     }
   },
   "live": [
     {
-      "key": "g:J:0",
+      "key": "g:I:4",
       "status": "IN_PLAY",
-      "minute": 42,
-      "home": "Argentina",
-      "away": "Austria",
-      "score": "1-0"
+      "minute": 10,
+      "home": "Iraq",
+      "away": "France",
+      "score": "0-0"
     }
   ],
   "fixtures": {
@@ -908,7 +913,7 @@
       "date": "2026-06-22",
       "time": "19:00",
       "utcDate": "2026-06-22T17:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Argentina",
       "away": "Austria",
@@ -925,7 +930,7 @@
       "date": "2026-06-22",
       "time": "23:00",
       "utcDate": "2026-06-22T21:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Iraq",
       "away": "France",
@@ -2265,25 +2270,25 @@
       {
         "idx": 0,
         "position": 1,
-        "pld": 1,
-        "w": 1,
+        "pld": 2,
+        "w": 2,
         "d": 0,
         "l": 0,
-        "gf": 3,
+        "gf": 5,
         "ga": 0,
-        "gd": 3,
-        "pts": 3
+        "gd": 5,
+        "pts": 6
       },
       {
         "idx": 1,
         "position": 2,
-        "pld": 1,
+        "pld": 2,
         "w": 1,
         "d": 0,
-        "l": 0,
+        "l": 1,
         "gf": 3,
-        "ga": 1,
-        "gd": 2,
+        "ga": 3,
+        "gd": 0,
         "pts": 3
       },
       {
