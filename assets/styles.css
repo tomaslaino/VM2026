@@ -402,9 +402,9 @@ html.view-bracket .site-bg { display: none; }
 .fh-home { justify-content: flex-end; text-align: right; }
 .fh-away { justify-content: flex-start; text-align: left; }
 .fh-name {
-  font-family: var(--display);
+  font-family: var(--display), system-ui, sans-serif;
   font-size: clamp(22px, 4.4vw, 52px); font-weight: 800;
-  line-height: .95; letter-spacing: .01em; text-transform: uppercase;
+  line-height: .95; letter-spacing: .01em;
   color: var(--bone);
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
@@ -494,6 +494,50 @@ html.view-bracket .site-bg { display: none; }
   font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.4px;
   color: var(--ink-soft);
 }
+
+/* ---- "Nästa match"-ruta under en nyss avslutad match ---- */
+.fh-next {
+  display: block; width: 100%; text-align: left;
+  padding: clamp(16px, 2.4vw, 26px) clamp(18px, 3.4vw, 40px) clamp(20px, 2.8vw, 30px);
+  border-top: 1px solid rgba(255, 255, 255, .09);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, 0));
+  transition: background .2s ease;
+}
+.fh-next.match-openable { cursor: pointer; }
+.fh-next.match-openable:hover { background: rgba(255, 255, 255, .04); }
+.fh-next.match-openable:focus-visible { outline: 2px solid var(--focus); outline-offset: -4px; }
+.fh-next-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-bottom: clamp(12px, 1.8vw, 18px);
+}
+.fh-next-teams {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center; gap: clamp(10px, 2vw, 24px);
+}
+.fhn-team { display: flex; align-items: center; gap: clamp(8px, 1.4vw, 14px); min-width: 0; }
+.fhn-home { justify-content: flex-end; text-align: right; }
+.fhn-away { justify-content: flex-start; text-align: left; }
+.fhn-name {
+  font-family: var(--display), system-ui, sans-serif; font-weight: 800;
+  font-size: clamp(16px, 2.6vw, 30px); line-height: .98; letter-spacing: .01em;
+  color: var(--bone);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.fhn-flag { flex: none; line-height: 0; }
+.fhn-flag .flag {
+  width: clamp(30px, 4.4vw, 52px); height: auto; aspect-ratio: 3 / 2;
+  border-radius: 4px; box-shadow: 0 4px 12px rgba(0, 0, 0, .5);
+}
+.fhn-vs {
+  font-family: var(--display); font-weight: 800; text-transform: uppercase;
+  font-size: clamp(15px, 2vw, 24px); letter-spacing: .04em;
+  color: var(--ink-soft); opacity: .6;
+}
+.fh-next-meta {
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+  gap: 8px 14px; margin-top: clamp(12px, 1.8vw, 18px);
+}
+.fh-next .fh-countdown { margin-top: clamp(14px, 2vw, 20px); }
 
 /* ---- Två kompakta hjältekort (samtidiga matcher) ---- */
 .focus-hero.is-multi { padding: clamp(18px, 2.6vw, 26px); }
@@ -1281,33 +1325,33 @@ html.view-bracket .bracket .round-title.bracket-jump.bronze-title:hover {
   display: inline-flex;
   gap: 4px;
   padding: 4px;
-  border-radius: 999px;
+  border-radius: 12px;
   background: var(--bg-soft);
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-strong);
 }
 .bmode-btn {
-  border: none;
+  border: 0;
   background: transparent;
   color: var(--ink-soft);
   font: inherit;
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: .2px;
+  font-weight: 700;
+  font-size: 14px;
   line-height: 1.2;
   cursor: pointer;
-  padding: 8px 20px;
-  border-radius: 999px;
+  padding: 7px 20px;
+  border-radius: 9px;
+  transition: .15s;
   white-space: nowrap;
   transition: background .15s, color .15s, box-shadow .15s;
 }
 .bmode-btn:hover { color: var(--ink); }
 .bmode-btn.on {
-  background: color-mix(in srgb, var(--usa-blue) 32%, var(--bg-soft));
-  color: var(--ink);
-  box-shadow: 0 1px 7px rgba(0,0,0,.28);
+  color: #fff;
+  background: linear-gradient(90deg, var(--usa-red), color-mix(in srgb, var(--usa-red) 70%, var(--usa-navy)));
+  box-shadow: 0 2px 10px rgba(196, 30, 58, .3);
 }
 @media (max-width: 560px) {
-  .bmode-btn { padding: 8px 14px; font-size: 12.5px; }
+  .bmode-btn { padding: 8px 14px; }
 }
 
 

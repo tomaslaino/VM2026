@@ -71,6 +71,11 @@
     if (och > 0) return sv.slice(0, och);
     return sv;
   }
+  /* Versaler i JS – Big Shoulders Display saknar å/ä/ö och CSS text-transform
+     tappar diakritiska tecken (t.ex. Österrike → Osterrike). */
+  function teamSvDisplay(team) {
+    return teamSvFixture(team).toLocaleUpperCase("sv-SE");
+  }
   function fixtureTeamName(team) {
     var compact = teamSvFixture(team);
     return '<span class="t-name" title="' + esc(team.sv) + '">' + esc(compact) + '</span>';
@@ -2213,9 +2218,10 @@
     return !!(rs && rs.status === "PAUSED");
   }
 
-  /* Avslutad match ligger kvar i hjälten ~2h efter slutsignal, sen faller ytan
-     tillbaka till nästa avspark. */
-  var FOCUS_FT_GRACE_MS = 2 * 3600 * 1000;
+  /* Avslutad match ligger kvar i hjälten 30 min efter (uppskattad) slutsignal –
+     med nedräkning till nästa match – sen tar den sedvanliga nästa-match-
+     hjälten över. */
+  var FOCUS_FT_GRACE_MS = 30 * 60 * 1000;
 
   /** Vilken match hjälten ("Match i fokus") ska visa och i vilket läge.
       Prioritet: pågående > nyss avslutad (~2h) > nästa avspark.
@@ -2278,10 +2284,12 @@
       return { state: "live", kickoff: live[0].ko, matches: live.slice(0, 2) };
     }
     if (finished.length) {
+      upcoming.sort(byKey);
       var maxKo = Math.max.apply(null, finished.map(function (e) { return e.ko; }));
       return {
         state: "ft", kickoff: maxKo,
-        matches: finished.filter(function (e) { return e.ko === maxKo; }).sort(byKey).slice(0, 2)
+        matches: finished.filter(function (e) { return e.ko === maxKo; }).sort(byKey).slice(0, 2),
+        next: upcoming.length ? upcoming[0] : null
       };
     }
     if (upcoming.length) {
@@ -2310,7 +2318,7 @@
   /** En lagsida i hjälten – flaggan vänd inåt mot ställningen. */
   function focusTeamSide(team, side) {
     var flag = '<span class="fh-flag">' + flagImg(team.iso) + '</span>';
-    var name = '<span class="fh-name" title="' + esc(team.sv) + '">' + esc(teamSvFixture(team)) + '</span>';
+    var name = '<span class="fh-name" title="' + esc(team.sv) + '">' + esc(teamSvDisplay(team)) + '</span>';
     return '<div class="fh-team fh-' + side + '">' + (side === "home" ? name + flag : flag + name) + '</div>';
   }
 
@@ -2355,14 +2363,45 @@
       '</div>';
   }
 
-  function focusCountdown(kickoff) {
+  function focusCountdown(kickoff, id, prefix) {
+    id = id || "focusTimer";
+    prefix = prefix || "fh";
     var p = countdownParts(kickoff);
-    return '<div class="fh-countdown" id="focusTimer" data-kickoff="' + (kickoff || "") + '" aria-live="polite">' +
-      nextMatchTimerUnit("fh-d", p.d, "dygn") +
-      nextMatchTimerUnit("fh-h", pad(p.h), "tim") +
-      nextMatchTimerUnit("fh-m", pad(p.m), "min") +
-      nextMatchTimerUnit("fh-s", pad(p.s), "sek") +
+    return '<div class="fh-countdown" id="' + id + '" data-kickoff="' + (kickoff || "") + '" aria-live="polite">' +
+      nextMatchTimerUnit(prefix + "-d", p.d, "dygn") +
+      nextMatchTimerUnit(prefix + "-h", pad(p.h), "tim") +
+      nextMatchTimerUnit(prefix + "-m", pad(p.m), "min") +
+      nextMatchTimerUnit(prefix + "-s", pad(p.s), "sek") +
       "</div>";
+  }
+
+  /** "Nästa match"-ruta med nedräkning, visas under en nyss avslutad match
+      tills den sedvanliga nästa-match-hjälten tar över (~30 min efter slut). */
+  function focusNextTease(e) {
+    if (!e) return "";
+    var open = matchOpenAttr(e.key);
+    var when = whenLabels(e.m);
+    var h = '<div class="fh-next' + open.cls + '"' + open.attr + '>';
+    h += '<div class="fh-next-head">' +
+      '<span class="fh-eyebrow">Nästa match</span>' +
+      focusGroupChip(e, "fh-group") +
+      '</div>';
+    h += '<div class="fh-next-teams">' +
+      '<span class="fhn-team fhn-home">' +
+        '<span class="fhn-name" title="' + esc(e.home.sv) + '">' + esc(teamSvDisplay(e.home)) + '</span>' +
+        '<span class="fhn-flag">' + flagImg(e.home.iso) + '</span></span>' +
+      '<span class="fhn-vs" aria-hidden="true">vs</span>' +
+      '<span class="fhn-team fhn-away">' +
+        '<span class="fhn-flag">' + flagImg(e.away.iso) + '</span>' +
+        '<span class="fhn-name" title="' + esc(e.away.sv) + '">' + esc(teamSvDisplay(e.away)) + '</span></span>' +
+      '</div>';
+    h += '<div class="fh-next-meta">' +
+      '<span class="fh-when">' + esc(when.dateLabel + " · " + when.time) + '</span>' +
+      spotlightTvHtml(e.channel) +
+      '</div>';
+    h += focusCountdown(e.ko, "ftNextTimer", "ftn");
+    h += '</div>';
+    return h;
   }
 
   /** Grupp-/rondetikett i hjälten – grupper får sin riktiga färg (group-pill). */
@@ -2463,6 +2502,7 @@
       h += '</div>';
       if (f.state === "next") h += focusCountdown(f.kickoff);
     }
+    if (f.state === "ft" && f.next) h += focusNextTease(f.next);
     h += '</section>';
     return h;
   }
@@ -2485,6 +2525,7 @@
 
   function updateNextCountdown() {
     updatePanelCountdown("focusTimer", "fh");
+    updatePanelCountdown("ftNextTimer", "ftn");
   }
 
   /** Nyckel, matchobjekt och spelad-status för kalenderpost. */
