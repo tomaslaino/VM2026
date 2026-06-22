@@ -1406,9 +1406,16 @@ html.view-bracket .bracket-scroll::-webkit-scrollbar-thumb:hover {
 /* OBS: inget z-index här – fasrubrikerna (sticky) ska kunna lägga sig ovanpå linjerna. */
 .bracket.two-sided { position: relative; }
 html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
+/* Slutspelskorten använder exakt samma genomskinliga glasstil som korten på
+   övriga sidor (.card, gruppkort, kalenderkort) så att rutorna ser likadana ut
+   över hela sajten: samma gradient/opacitet, glasoskärpa, subtila vita kant och
+   ljusa innerkant upptill. */
 .bracket .match {
-  box-shadow: 0 4px 18px rgba(0,0,0,.45);
-  background: linear-gradient(180deg, rgba(20, 36, 60, .94), rgba(11, 21, 37, .9));
+  background: linear-gradient(180deg, rgba(20, 36, 60, .82), rgba(11, 21, 38, .85));
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  backdrop-filter: blur(14px) saturate(1.15);
+  border-color: rgba(255, 255, 255, .085);
+  box-shadow: 0 16px 38px -24px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 255, 255, .05);
   width: 100%;
   align-self: center;
 }
