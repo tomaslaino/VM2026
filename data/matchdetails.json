@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-22T21:11:34.011Z",
+    "updatedAt": "2026-06-22T22:56:22.340Z",
     "source": "espn"
   },
   "details": {
@@ -18433,21 +18433,34 @@
     "g:I:4": {
       "espnId": "760457",
       "status": "IN_PLAY",
-      "minute": 11,
+      "minute": 45,
       "utcDate": "2026-06-22T21:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
           "h": 0,
-          "a": 0
+          "a": 1
         },
         "ht": null,
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
+      "goals": [
+        {
+          "minute": 14,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Kylian Mbappé",
+          "assist": "Michael Olise",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        }
+      ],
       "bookings": [
         {
           "minute": 6,
@@ -18456,11 +18469,18 @@
           "card": "YELLOW"
         }
       ],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 26,
+          "team": "h",
+          "in": "Ali Al-Hamadi",
+          "out": "Aymen Hussein"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
-          "formation": "4-3-3",
+          "formation": "4-1-4-1",
           "starters": [
             {
               "name": "Ahmed Basil",
@@ -18480,7 +18500,7 @@
             {
               "name": "Amir Al-Ammari",
               "jersey": "16",
-              "pos": "CM"
+              "pos": "DM"
             },
             {
               "name": "Zaid Tahseen",
@@ -18493,14 +18513,14 @@
               "pos": "CD-L"
             },
             {
-              "name": "Zaid Ismael",
-              "jersey": "24",
+              "name": "Ahmed Qasim",
+              "jersey": "11",
               "pos": "RM"
             },
             {
-              "name": "Zidane Iqbal",
-              "jersey": "14",
-              "pos": "LM"
+              "name": "Zaid Ismael",
+              "jersey": "24",
+              "pos": "CM-R"
             },
             {
               "name": "Aymen Hussein",
@@ -18508,14 +18528,14 @@
               "pos": "F"
             },
             {
-              "name": "Ahmed Qasim",
-              "jersey": "11",
-              "pos": "RF"
+              "name": "Zidane Iqbal",
+              "jersey": "14",
+              "pos": "CM-L"
             },
             {
               "name": "Ibrahim Bayesh",
               "jersey": "8",
-              "pos": "LF"
+              "pos": "LM"
             }
           ],
           "bench": [
@@ -18525,7 +18545,8 @@
             },
             {
               "name": "Ali Al-Hamadi",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Marko Farji",
@@ -18710,28 +18731,28 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "46%",
-          "a": "54%"
+          "h": "42%",
+          "a": "58%"
         },
         {
           "key": "totalShots",
-          "h": "0",
-          "a": "3"
+          "h": "2",
+          "a": "7"
         },
         {
           "key": "shotsOnTarget",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "wonCorners",
-          "h": "0",
+          "h": "1",
           "a": "1"
         },
         {
           "key": "foulsCommitted",
-          "h": "1",
-          "a": "1"
+          "h": "2",
+          "a": "5"
         },
         {
           "key": "offsides",
@@ -18745,13 +18766,13 @@
         },
         {
           "key": "totalPasses",
-          "h": "47",
-          "a": "52"
+          "h": "233",
+          "a": "316"
         },
         {
           "key": "passPct",
-          "h": "81%",
-          "a": "88%"
+          "h": "82%",
+          "a": "90%"
         },
         {
           "key": "yellowCards",
@@ -18764,7 +18785,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-22T21:11:33.936Z"
+      "updatedAt": "2026-06-22T22:56:22.340Z"
     }
   }
 }
