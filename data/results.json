@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-22T13:20:17.547Z",
+    "updatedAt": "2026-06-22T17:59:39.758Z",
     "source": "espn",
-    "matchCount": 40,
-    "liveCount": 0,
+    "matchCount": 41,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -206,9 +206,23 @@
       "h": 3,
       "a": 1,
       "status": "FINISHED"
+    },
+    "g:J:0": {
+      "h": 1,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:J:0",
+      "status": "IN_PLAY",
+      "minute": 42,
+      "home": "Argentina",
+      "away": "Austria",
+      "score": "1-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -894,7 +908,7 @@
       "date": "2026-06-22",
       "time": "19:00",
       "utcDate": "2026-06-22T17:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Argentina",
       "away": "Austria",
