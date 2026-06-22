@@ -882,8 +882,10 @@
        så att rubrik + lägesväxlare hamnar i scroll-ytans topp och scrollen kan
        bevaras vid omritning – undvik därför dubbelinsättning här.
        Statistikvyn bygger själv sin toppra (rubrik + lägesväxlare på samma rad)
-       i playerstats.js, så den hoppas också över här. */
-    if (view !== "home" && view !== "bracket" && view !== "players" && rebuilt) renderPageIntro(view);
+       i playerstats.js, och kalendern bygger sin egen toppra (rubrik +
+       "Hoppa till idag" på samma rad) i renderCalendar, så de hoppas också
+       över här. */
+    if (view !== "home" && view !== "bracket" && view !== "players" && view !== "calendar" && rebuilt) renderPageIntro(view);
 
     /* Grupp-popupen används i både kalender- och gruppvyn. */
     if (view !== "calendar" && view !== "groups") hideCalGroupPopup();
@@ -2663,8 +2665,9 @@
         '<span class="cal-jump-txt">' + calView.jumpLabel + "</span>" +
         '<span class="cal-jump-ico" aria-hidden="true">↓</span></button>'
       : "";
-    var html = '<div class="calendar-layout">' +
-      '<div class="cal-shell">' + jumpBtn + '<div class="cal">';
+    var html = '<div class="page-intro cal-intro">' + pageIntroMainHtml("calendar") + jumpBtn + '</div>' +
+      '<div class="calendar-layout">' +
+      '<div class="cal-shell"><div class="cal">';
     var lastDate = null;
     items.forEach(function (it) {
       if (it.date !== lastDate) {
