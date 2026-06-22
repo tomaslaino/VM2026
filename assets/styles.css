@@ -270,8 +270,30 @@ html.view-home main.container { padding-top: clamp(18px, 2.8vw, 26px); }
   filter: saturate(.96) brightness(.9);
   animation: homeBgIn 1.1s ease both;
 }
-/* Slutspelet har egen, lika mörk pokalbakgrund – dölj den globala bilden där. */
-html.view-bracket .site-bg { display: none; }
+/* Slutspelet använder SAMMA fasta .site-bg-element som övriga vyer, men byter ut
+   motivet mot pokalbilden. På så vis får slutspelet exakt samma mörkande filter
+   (saturate/brightness) och samma navy-scrimmar som resten av sajten – tidigare
+   målades bakgrunden direkt på <body> där inget filter kunde användas, vilket
+   gjorde pokalbilden ljusare och mer lila. Nu är färgsignaturen identisk. */
+html.view-bracket .site-bg {
+  display: block;
+  background:
+    /* Tät, kall navy-wash i fronten. Pokalbildens varma toner (röd slips, hud,
+       rödaktig himmel) drar annars mot lila tillsammans med den blå scrimmen –
+       denna täta blågröna wash neutraliserar det magenta och ger samma kalla
+       navy-signatur som startsidan. */
+    linear-gradient(180deg, rgba(7,15,34,.66), rgba(4,10,24,.78)),
+    /* Mjuk mörkare botten så korten möter en mörk yta. */
+    linear-gradient(180deg, transparent 50%, rgba(5,10,22,.66) 100%),
+    /* Endast blått rampljus kvar (rött borttaget) så ingen varm ton återstår. */
+    radial-gradient(900px 600px at 4% 2%, rgba(61,109,181,.1), transparent 60%),
+    /* Extra mörkning så pokalbilden hålls subtil. */
+    linear-gradient(180deg, rgba(4,8,16,.5) 0%, rgba(5,10,20,.42) 48%, rgba(3,6,12,.56) 100%),
+    url("bracket-bg.png") center top / auto 110% no-repeat #04060c;
+  /* Kraftigt avmättat + nedmörkat så den varma/lila nyansen försvinner och bilden
+     bara anas som textur, precis som startsidans Trump-bild. */
+  filter: saturate(.5) brightness(.72);
+}
 @keyframes homeBgIn { from { opacity: 0; } to { opacity: 1; } }
 
 .home-intro {
@@ -1239,26 +1261,10 @@ td.c-fp.has-cards { color: var(--ink-soft); font-variant-numeric: tabular-nums; 
 ==================================================================== */
 html.view-bracket,
 html.view-bracket body {
+  /* Själva pokalbilden ligger numera i det fasta .site-bg-elementet (se ovan) så
+     att den får samma mörkande filter som övriga vyer. Här behålls bara en mörk
+     grundfärg bakom allt. */
   background-color: #04060c;
-  /* Behåller pokalbilden men lägger lagren i exakt samma ordning som .site-bg på
-     övriga sidor: den mörkblå navy-washen ligger FRAMFÖR de röd/blå strålkastarna
-     och dämpar dem, så att de inte längre blandas till lila ovanpå pokalbilden.
-     Resultatet är samma mörkblå färgsignatur som resten av sajten. */
-  background-image:
-    /* 1) Navy-wash i fronten (samma som .site-bg) – ger den blå grundtonen. */
-    linear-gradient(180deg, rgba(8,16,36,.46), rgba(5,11,26,.6)),
-    /* 2) Mjuk mörkare botten (samma som .site-bg). */
-    linear-gradient(180deg, transparent 56%, rgba(5,10,22,.58) 100%),
-    /* 3-4) Röd/blå rampljus – nu BAKOM navy-washen → mildare, ingen lila. */
-    radial-gradient(1000px 620px at 86% -2%, rgba(196, 30, 58, .12), transparent 60%),
-    radial-gradient(900px 600px at 4% 2%, rgba(61, 109, 181, .12), transparent 60%),
-    /* 5) Extra mörkning så pokalbilden hålls subtil. */
-    linear-gradient(180deg, rgba(4,8,16,.5) 0%, rgba(5,10,20,.42) 48%, rgba(3,6,12,.56) 100%),
-    url("bracket-bg.png");
-  background-position: center, center, center, center, center center, center top;
-  background-size: auto, auto, auto, auto, auto, auto 110%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 html.view-bracket {
   /* Slutspelet scrollar nu som övriga vyer: hela sidan rullar och endast den
@@ -3173,7 +3179,7 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 }
 .ps-mode-seg {
   border: 0; background: transparent; color: var(--ink-soft);
-  font: inherit; font-size: 14px; font-weight: 700;
+  font: inherit; font-size: 14px; font-weight: 700; line-height: 1.2;
   padding: 7px 20px; border-radius: 9px; cursor: pointer; transition: .15s;
 }
 .ps-mode-seg:hover { color: var(--ink); }
