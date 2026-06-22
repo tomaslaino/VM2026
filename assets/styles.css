@@ -3019,10 +3019,13 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .mi-stat-row .mi-stat-val:last-child { text-align: right; }
 .mi-stat-lbl { color: var(--ink-soft); font-size: 12.5px; text-align: center; flex: 1; }
 .mi-stat-bar {
-  display: flex; height: 4px; margin-top: 6px;
-  border-radius: 2px; overflow: hidden; background: var(--line);
+  display: flex; gap: 2px; height: 5px; margin-top: 6px;
+  border-radius: 3px; overflow: hidden;
 }
-.mi-stat-bar .home { background: var(--accent); border-radius: 2px; }
+.mi-stat-bar .home,
+.mi-stat-bar .away { display: block; height: 100%; min-width: 0; border-radius: 2px; }
+.mi-stat-bar .home { background: var(--accent); }
+.mi-stat-bar .away { background: var(--usa-blue); }
 
 .mi-empty {
   padding: 14px; border: 1px dashed var(--line);

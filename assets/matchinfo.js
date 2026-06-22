@@ -530,13 +530,17 @@
       if (!isFinite(hv)) hv = 0;
       if (!isFinite(av)) av = 0;
       var pct = hv + av > 0 ? Math.round((hv / (hv + av)) * 100) : 50;
+      var awayPct = 100 - pct;
       h += '<div class="mi-stat">' +
         '<div class="mi-stat-row">' +
           '<span class="mi-stat-val">' + esc(s.h) + '</span>' +
           '<span class="mi-stat-lbl">' + esc(label) + '</span>' +
           '<span class="mi-stat-val">' + esc(s.a) + '</span>' +
         '</div>' +
-        '<div class="mi-stat-bar"><span class="home" style="width:' + pct + '%"></span></div>' +
+        '<div class="mi-stat-bar">' +
+          '<span class="home" style="width:' + pct + '%"></span>' +
+          '<span class="away" style="width:' + awayPct + '%"></span>' +
+        '</div>' +
         '</div>';
     });
     h += "</div>";
