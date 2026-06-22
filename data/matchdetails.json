@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-22T02:10:44.152Z",
+    "updatedAt": "2026-06-22T07:43:01.525Z",
     "source": "espn"
   },
   "details": {
@@ -17501,14 +17501,14 @@
     },
     "g:G:1": {
       "espnId": "760452",
-      "status": "IN_PLAY",
-      "minute": 50,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-22T01:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
-          "h": 0,
+          "h": 3,
           "a": 1
         },
         "ht": {
@@ -17529,6 +17529,42 @@
           "type": "REGULAR",
           "score": {
             "h": 0,
+            "a": 1
+          }
+        },
+        {
+          "minute": 58,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Mostafa Zico",
+          "assist": "Mohamed Hany",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        },
+        {
+          "minute": 67,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Mohamed Salah",
+          "assist": "Mostafa Zico",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 1
+          }
+        },
+        {
+          "minute": 82,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Trézéguet",
+          "assist": "Mohamed Salah",
+          "type": "REGULAR",
+          "score": {
+            "h": 3,
             "a": 1
           }
         }
@@ -17559,6 +17595,66 @@
           "team": "h",
           "in": "Ramy Rabia",
           "out": "Hamdy Fathy"
+        },
+        {
+          "minute": 66,
+          "team": "a",
+          "in": "Ben Old",
+          "out": "Callum McCowatt"
+        },
+        {
+          "minute": 76,
+          "team": "a",
+          "in": "Jesse Randall",
+          "out": "Liberato Cacace"
+        },
+        {
+          "minute": 76,
+          "team": "a",
+          "in": "Ryan Thomas",
+          "out": "Sarpreet Singh"
+        },
+        {
+          "minute": 76,
+          "team": "h",
+          "in": "Trézéguet",
+          "out": "Omar Marmoush"
+        },
+        {
+          "minute": 76,
+          "team": "h",
+          "in": "Hamza Abdelkarim",
+          "out": "Mostafa Zico"
+        },
+        {
+          "minute": 85,
+          "team": "h",
+          "in": "Zizo",
+          "out": "Emam Ashour"
+        },
+        {
+          "minute": 85,
+          "team": "h",
+          "in": "Hossam Abdelmaguid",
+          "out": "Mohamed Salah"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Tyler Bindon",
+          "out": "Tim Payne"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Francis de Vries",
+          "out": "Elijah Just"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Mohamed Abdelmoneim",
+          "out": "Hossam Abdelmaguid"
         }
       ],
       "penalties": [],
@@ -17629,7 +17725,8 @@
             },
             {
               "name": "Mohamed Abdelmoneim",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true
             },
             {
               "name": "Haissem Hassan",
@@ -17641,7 +17738,8 @@
             },
             {
               "name": "Hossam Abdelmaguid",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true
             },
             {
               "name": "Mohamed El Shenawy",
@@ -17653,7 +17751,8 @@
             },
             {
               "name": "Zizo",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Ramy Rabia",
@@ -17666,7 +17765,8 @@
             },
             {
               "name": "Trézéguet",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Mahdy Soliman",
@@ -17674,7 +17774,8 @@
             },
             {
               "name": "Hamza Abdelkarim",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Mahmoud Saber",
@@ -17748,11 +17849,13 @@
           "bench": [
             {
               "name": "Francis de Vries",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true
             },
             {
               "name": "Ryan Thomas",
-              "jersey": "23"
+              "jersey": "23",
+              "in": true
             },
             {
               "name": "Alex Paulsen",
@@ -17764,7 +17867,8 @@
             },
             {
               "name": "Ben Old",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Ben Waine",
@@ -17772,7 +17876,8 @@
             },
             {
               "name": "Tyler Bindon",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true
             },
             {
               "name": "Callan Elliot",
@@ -17804,58 +17909,59 @@
             },
             {
               "name": "Jesse Randall",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             }
           ]
         }
       },
       "referee": "Omar Al Ali",
       "venue": "BC Place, Vancouver",
-      "attendance": null,
+      "attendance": 52497,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "58%",
-          "a": "42%"
+          "h": "56%",
+          "a": "44%"
         },
         {
           "key": "totalShots",
-          "h": "9",
-          "a": "7"
+          "h": "19",
+          "a": "11"
         },
         {
           "key": "shotsOnTarget",
-          "h": "2",
-          "a": "3"
+          "h": "7",
+          "a": "5"
         },
         {
           "key": "wonCorners",
-          "h": "1",
-          "a": "1"
+          "h": "4",
+          "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "3",
-          "a": "10"
+          "h": "8",
+          "a": "14"
         },
         {
           "key": "offsides",
           "h": "0",
-          "a": "2"
+          "a": "3"
         },
         {
           "key": "saves",
-          "h": "2",
-          "a": "2"
+          "h": "4",
+          "a": "4"
         },
         {
           "key": "totalPasses",
-          "h": "314",
-          "a": "222"
+          "h": "526",
+          "a": "421"
         },
         {
           "key": "passPct",
-          "h": "90%",
+          "h": "87%",
           "a": "80%"
         },
         {
@@ -17869,7 +17975,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-22T02:10:44.122Z"
+      "updatedAt": "2026-06-22T07:43:01.525Z"
     }
   }
 }

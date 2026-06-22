@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-22T02:10:44.057Z",
+    "updatedAt": "2026-06-22T07:43:01.497Z",
     "source": "espn",
     "matchCount": 40,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -203,21 +203,12 @@
       "status": "FINISHED"
     },
     "g:G:1": {
-      "h": 0,
+      "h": 3,
       "a": 1,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:G:1",
-      "status": "IN_PLAY",
-      "minute": 49,
-      "home": "Egypt",
-      "away": "New Zealand",
-      "score": "0-1"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -886,7 +877,7 @@
       "date": "2026-06-22",
       "time": "03:00",
       "utcDate": "2026-06-22T01:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Egypt",
       "away": "New Zealand",
@@ -2108,8 +2099,20 @@
     ],
     "G": [
       {
-        "idx": 1,
+        "idx": 2,
         "position": 1,
+        "pld": 2,
+        "w": 1,
+        "d": 1,
+        "l": 0,
+        "gf": 4,
+        "ga": 2,
+        "gd": 2,
+        "pts": 4
+      },
+      {
+        "idx": 1,
+        "position": 2,
         "pld": 2,
         "w": 0,
         "d": 2,
@@ -2121,7 +2124,7 @@
       },
       {
         "idx": 0,
-        "position": 2,
+        "position": 3,
         "pld": 2,
         "w": 0,
         "d": 2,
@@ -2133,26 +2136,14 @@
       },
       {
         "idx": 3,
-        "position": 3,
-        "pld": 1,
-        "w": 0,
-        "d": 1,
-        "l": 0,
-        "gf": 2,
-        "ga": 2,
-        "gd": 0,
-        "pts": 1
-      },
-      {
-        "idx": 2,
         "position": 4,
-        "pld": 1,
+        "pld": 2,
         "w": 0,
         "d": 1,
-        "l": 0,
-        "gf": 1,
-        "ga": 1,
-        "gd": 0,
+        "l": 1,
+        "gf": 3,
+        "ga": 5,
+        "gd": -2,
         "pts": 1
       }
     ],
