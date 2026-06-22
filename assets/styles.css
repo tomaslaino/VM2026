@@ -2850,12 +2850,19 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 
 .mi-timeline { display: flex; flex-direction: column; }
 .mi-ev {
-  display: flex; align-items: center; gap: 10px;
+  display: grid; grid-template-columns: 1fr 44px 1fr; align-items: center;
   padding: 8px 2px; border-top: 1px solid var(--line);
 }
 .mi-ev:first-child { border-top: 0; }
+.mi-ev-side {
+  display: flex; align-items: center; gap: 8px; min-width: 0;
+}
+.mi-ev.home .mi-ev-side { grid-column: 1; justify-content: flex-end; }
+.mi-ev.away .mi-ev-side { grid-column: 3; justify-content: flex-start; }
+.mi-ev.home .mi-ev-body { align-items: flex-end; text-align: right; }
+.mi-ev.away .mi-ev-body { align-items: flex-start; text-align: left; }
 .mi-ev-min {
-  flex: none; min-width: 38px; text-align: right;
+  grid-column: 2; text-align: center;
   font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink-soft);
 }
 .mi-ev-ic {
@@ -2888,7 +2895,7 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   object-fit: cover; box-shadow: 0 0 0 1px var(--line);
 }
 .mi-ev-flag-ph { flex: none; width: 18px; }
-.mi-ev-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.mi-ev-body { flex: 0 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
 .mi-ev-main {
   font-size: 13.5px; font-weight: 600; line-height: 1.3;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;

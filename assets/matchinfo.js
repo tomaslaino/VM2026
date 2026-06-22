@@ -261,15 +261,22 @@
           h += '<div class="mi-ev-divider"><span>' + esc(d.label + ds) + '</span></div>';
         }
       }
-      var iso = e.team === "h" ? (info.home && info.home.iso) : e.team === "a" ? (info.away && info.away.iso) : null;
-      h += '<div class="mi-ev' + (e.goal ? " goal" : "") + '">' +
+      // Sidoindelad tidslinje: hemmalagets händelser till vänster, bortalagets
+      // speglade till höger, med minuten i mitten. Tydliggör vilket lag varje
+      // händelse hör till (annars ser allt ut att hända på ett lags sida).
+      var side = e.team === "a" ? "away" : "home";
+      var iso = side === "away" ? (info.away && info.away.iso) : (info.home && info.home.iso);
+      var flag = iso ? flagImg(iso) : '<span class="mi-ev-flag-ph"></span>';
+      var icon = '<span class="mi-ev-ic">' + e.icon + '</span>';
+      var body = '<span class="mi-ev-body"><span class="mi-ev-main">' + e.main + '</span>' +
+        (e.detail ? '<span class="mi-ev-detail">' + e.detail + '</span>' : '') + '</span>';
+      var score = e.score ? '<span class="mi-ev-score">' + esc(e.score) + '</span>' : '';
+      var content = side === "away"
+        ? score + body + icon + flag
+        : flag + icon + body + score;
+      h += '<div class="mi-ev ' + side + (e.goal ? " goal" : "") + '">' +
+        '<span class="mi-ev-side">' + content + '</span>' +
         '<span class="mi-ev-min">' + esc(minuteLabel(e.minute, e.injuryTime)) + '</span>' +
-        '<span class="mi-ev-ic">' + e.icon + '</span>' +
-        (iso ? flagImg(iso) : '<span class="mi-ev-flag-ph"></span>') +
-        '<span class="mi-ev-body"><span class="mi-ev-main">' + e.main + '</span>' +
-        (e.detail ? '<span class="mi-ev-detail">' + e.detail + '</span>' : '') +
-        '</span>' +
-        (e.score ? '<span class="mi-ev-score">' + esc(e.score) + '</span>' : '') +
         '</div>';
     });
     h += "</div>";
