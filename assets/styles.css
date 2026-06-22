@@ -3113,6 +3113,21 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 }
 .ps-leader:hover .ps-leader-more { color: var(--usa-red); }
 
+/* Toppra i statistikvyn: rubrik vänster, lägesväxlare centrerad – samma rad.
+   1fr | auto | 1fr gör att .ps-modes centreras i hela radens bredd oavsett
+   rubrikens längd. Avståndet ner till korten = 4px marginal + 18px ps-view-gap
+   = 22px, dvs samma som .page-intro/.groups-layout på övriga vyer. */
+.ps-intro {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px 20px;
+  margin: 4px 0;
+}
+.ps-intro .page-intro-main { flex: none; max-width: none; }
+.ps-intro .page-intro-main h2 { margin: 0; }
+.ps-intro .ps-modes { grid-column: 2; align-self: center; }
+
 /* Lägesväljare: Spelare / Lag */
 .ps-modes {
   display: inline-flex; gap: 4px; padding: 4px;
@@ -3261,6 +3276,8 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 
 @media (max-width: 700px) {
   .ps-count { width: 100%; margin-left: 0; }
+  .ps-intro { grid-template-columns: 1fr; }
+  .ps-intro .ps-modes { grid-column: 1; }
   .ps-modes { width: 100%; }
   .ps-mode-seg { flex: 1; padding: 8px 0; }
   .ps-top-rate { display: none; }

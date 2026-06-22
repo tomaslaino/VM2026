@@ -880,8 +880,10 @@
     else rebuilt = renderCalendar();
     /* Slutspelsvyn lägger själv in sin rubrik (renderBracket → renderPageIntro)
        så att rubrik + lägesväxlare hamnar i scroll-ytans topp och scrollen kan
-       bevaras vid omritning – undvik därför dubbelinsättning här. */
-    if (view !== "home" && view !== "bracket" && rebuilt) renderPageIntro(view);
+       bevaras vid omritning – undvik därför dubbelinsättning här.
+       Statistikvyn bygger själv sin toppra (rubrik + lägesväxlare på samma rad)
+       i playerstats.js, så den hoppas också över här. */
+    if (view !== "home" && view !== "bracket" && view !== "players" && rebuilt) renderPageIntro(view);
 
     /* Grupp-popupen används i både kalender- och gruppvyn. */
     if (view !== "calendar" && view !== "groups") hideCalGroupPopup();

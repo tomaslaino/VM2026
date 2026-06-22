@@ -1045,6 +1045,15 @@
       seg("players", "Spelare") + seg("teams", "Lag") + seg("regions", "Region") + "</div>";
   }
 
+  /* Toppra: vytitel till vänster, lägesväxlaren centrerad – på samma rad.
+     Statistikvyn äger #view själv (app.js hoppar över sin page-intro här). */
+  function introHtml() {
+    return '<div class="page-intro ps-intro">' +
+      '<div class="page-intro-main"><h2>Statistik</h2></div>' +
+      modeToggleHtml() +
+      "</div>";
+  }
+
   function toolbarHtml() {
     if (stateUi.mode === "regions") {
       return '<div class="ps-toolbar ps-toolbar-region">' +
@@ -1102,7 +1111,7 @@
   function render() {
     if (!rootEl || !document.body.contains(rootEl)) return;
     rootEl.innerHTML =
-      modeToggleHtml() +
+      introHtml() +
       leadersHtml() +
       '<section class="card ps-card">' +
       toolbarHtml() +
