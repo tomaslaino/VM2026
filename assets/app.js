@@ -2618,7 +2618,7 @@
     var jumpDate, jumpLabel;
     if (hasToday) {
       jumpDate = todayStr;
-      jumpLabel = jumpLive ? "Till matchen som pågår" : "Hoppa till idag";
+      jumpLabel = jumpLive ? "Till matchen som pågår" : "Dagens matcher";
     } else if (nextDate) {
       jumpDate = nextDate;
       jumpLabel = "Hoppa till nästa match";
@@ -2642,16 +2642,39 @@
     });
   }
 
+  /* Aktivt "hopp" till en matchdag. Vi minns målet en kort stund så att en
+     omritning (live-synken ritar om kalendern) eller headerns automatiska
+     ihopfällning inte kapar den mjuka scrollen och kastar tillbaka oss till
+     toppen mitt i hoppet. */
+  var calJumpDate = null;
+  var calJumpUntil = 0;
+  var calJumpTimer = null;
+
+  function calDayTargetTop(el) {
+    var topbar = document.querySelector(".topbar");
+    var offset = (topbar ? topbar.offsetHeight : 72) + 8;
+    return Math.max(0, el.getBoundingClientRect().top + window.scrollY - offset);
+  }
+
+  function applyCalendarJump(smooth) {
+    if (!calJumpDate || !viewEl) return;
+    var el = viewEl.querySelector('.cal-day[data-date="' + calJumpDate + '"]');
+    if (!el) return;
+    window.scrollTo({ top: calDayTargetTop(el), left: 0, behavior: smooth ? "smooth" : "instant" });
+  }
+
   function scrollCalendarToDate(dateStr, smooth) {
     if (!dateStr || !viewEl) return;
-    requestAnimationFrame(function () {
-      var el = viewEl.querySelector('.cal-day[data-date="' + dateStr + '"]');
-      if (!el) return;
-      var topbar = document.querySelector(".topbar");
-      var offset = (topbar ? topbar.offsetHeight : 72) + 8;
-      var top = el.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top: Math.max(0, top), left: 0, behavior: smooth ? "smooth" : "instant" });
-    });
+    calJumpDate = dateStr;
+    calJumpUntil = Date.now() + 1600;
+    headerScrollLock = true; // håll headern stilla så scrollen inte kapas
+    clearTimeout(calJumpTimer);
+    calJumpTimer = setTimeout(function () {
+      headerScrollLock = false;
+      calJumpDate = null;
+      syncHeaderCompact(); // sätt rätt header-läge när hoppet landat
+    }, 1600);
+    requestAnimationFrame(function () { applyCalendarJump(smooth); });
   }
 
   function renderCalendar() {
@@ -2694,6 +2717,10 @@
     if (calScrollPending) {
       calScrollPending = false;
       scrollCalendarTop(); // börja alltid högst upp – knappen tar dig till idag/nästa match
+    } else if (calJumpDate && Date.now() < calJumpUntil) {
+      // Omritning mitt i ett pågående hopp – återställ målet istället för att
+      // låta scrollen studsa tillbaka till toppen.
+      requestAnimationFrame(function () { applyCalendarJump(false); });
     }
     if (wrote && calGroupOpen) renderCalGroupPopup();
     return wrote;

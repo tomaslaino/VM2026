@@ -270,8 +270,8 @@ html.view-home main.container { padding-top: clamp(18px, 2.8vw, 26px); }
   filter: saturate(.96) brightness(.9);
   animation: homeBgIn 1.1s ease both;
 }
-/* Slutspelet använder samma globala bakgrund (.site-bg) som övriga sidor, så
-   ingen särskild dölj-regel längre. */
+/* Slutspelet har egen, lika mörk pokalbakgrund – dölj den globala bilden där. */
+html.view-bracket .site-bg { display: none; }
 @keyframes homeBgIn { from { opacity: 0; } to { opacity: 1; } }
 
 .home-intro {
@@ -1237,9 +1237,29 @@ td.c-fp.has-cards { color: var(--ink-soft); font-variant-numeric: tabular-nums; 
 /* ====================================================================
    SLUTSPELSTRÄD (tvåsidigt)
 ==================================================================== */
-/* Slutspelet ärver nu samma bakgrund som övriga vyer (body-gradienterna +
-   den globala .site-bg-hjältebilden). Ingen egen pokalbakgrund längre, så att
-   sidan får exakt samma mörka, mindre "lila" färgsignatur som resten av sajten. */
+html.view-bracket,
+html.view-bracket body {
+  background-color: #04060c;
+  /* Behåller pokalbilden men lägger lagren i exakt samma ordning som .site-bg på
+     övriga sidor: den mörkblå navy-washen ligger FRAMFÖR de röd/blå strålkastarna
+     och dämpar dem, så att de inte längre blandas till lila ovanpå pokalbilden.
+     Resultatet är samma mörkblå färgsignatur som resten av sajten. */
+  background-image:
+    /* 1) Navy-wash i fronten (samma som .site-bg) – ger den blå grundtonen. */
+    linear-gradient(180deg, rgba(8,16,36,.46), rgba(5,11,26,.6)),
+    /* 2) Mjuk mörkare botten (samma som .site-bg). */
+    linear-gradient(180deg, transparent 56%, rgba(5,10,22,.58) 100%),
+    /* 3-4) Röd/blå rampljus – nu BAKOM navy-washen → mildare, ingen lila. */
+    radial-gradient(1000px 620px at 86% -2%, rgba(196, 30, 58, .12), transparent 60%),
+    radial-gradient(900px 600px at 4% 2%, rgba(61, 109, 181, .12), transparent 60%),
+    /* 5) Extra mörkning så pokalbilden hålls subtil. */
+    linear-gradient(180deg, rgba(4,8,16,.5) 0%, rgba(5,10,20,.42) 48%, rgba(3,6,12,.56) 100%),
+    url("bracket-bg.png");
+  background-position: center, center, center, center, center center, center top;
+  background-size: auto, auto, auto, auto, auto, auto 110%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 html.view-bracket {
   /* Slutspelet scrollar nu som övriga vyer: hela sidan rullar och endast den
      globala headern (.hero-header, position: sticky) hänger med ned. Rubriken
@@ -2438,6 +2458,8 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   .cal-tv-empty { display: none; }
 
   /* Slutspel */
+  html.view-bracket,
+  html.view-bracket body { background-attachment: scroll; }
   html.view-bracket main.container {
     padding: 16px 14px 0;
   }
