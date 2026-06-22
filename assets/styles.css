@@ -1340,7 +1340,6 @@ html.view-bracket .bracket .round-title.bracket-jump.bronze-title:hover {
   cursor: pointer;
   padding: 7px 20px;
   border-radius: 9px;
-  transition: .15s;
   white-space: nowrap;
   transition: background .15s, color .15s, box-shadow .15s;
 }
