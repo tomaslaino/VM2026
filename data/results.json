@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-21T23:43:09.931Z",
+    "updatedAt": "2026-06-22T02:10:44.057Z",
     "source": "espn",
-    "matchCount": 39,
+    "matchCount": 40,
     "liveCount": 1,
     "apiCalls": 2
   },
@@ -200,17 +200,22 @@
     "g:H:3": {
       "h": 2,
       "a": 2,
+      "status": "FINISHED"
+    },
+    "g:G:1": {
+      "h": 0,
+      "a": 1,
       "status": "IN_PLAY"
     }
   },
   "live": [
     {
-      "key": "g:H:3",
+      "key": "g:G:1",
       "status": "IN_PLAY",
-      "minute": 75,
-      "home": "Cape Verde",
-      "away": "Uruguay",
-      "score": "2-2"
+      "minute": 49,
+      "home": "Egypt",
+      "away": "New Zealand",
+      "score": "0-1"
     }
   ],
   "fixtures": {
@@ -864,7 +869,7 @@
       "date": "2026-06-22",
       "time": "00:00",
       "utcDate": "2026-06-21T22:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Cape Verde",
       "away": "Uruguay",
@@ -881,7 +886,7 @@
       "date": "2026-06-22",
       "time": "03:00",
       "utcDate": "2026-06-22T01:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Egypt",
       "away": "New Zealand",
@@ -2167,18 +2172,30 @@
       {
         "idx": 1,
         "position": 2,
-        "pld": 1,
+        "pld": 2,
         "w": 0,
-        "d": 1,
+        "d": 2,
         "l": 0,
-        "gf": 1,
-        "ga": 1,
+        "gf": 3,
+        "ga": 3,
         "gd": 0,
-        "pts": 1
+        "pts": 2
+      },
+      {
+        "idx": 3,
+        "position": 3,
+        "pld": 2,
+        "w": 0,
+        "d": 2,
+        "l": 0,
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
+        "pts": 2
       },
       {
         "idx": 2,
-        "position": 3,
+        "position": 4,
         "pld": 2,
         "w": 0,
         "d": 1,
@@ -2186,18 +2203,6 @@
         "gf": 1,
         "ga": 5,
         "gd": -4,
-        "pts": 1
-      },
-      {
-        "idx": 3,
-        "position": 4,
-        "pld": 1,
-        "w": 0,
-        "d": 1,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
         "pts": 1
       }
     ],

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-21T23:43:10.074Z",
+    "updatedAt": "2026-06-22T02:10:44.152Z",
     "source": "espn"
   },
   "details": {
@@ -17058,11 +17058,11 @@
     },
     "g:H:3": {
       "espnId": "760450",
-      "status": "IN_PLAY",
-      "minute": 77,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-21T22:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "DRAW",
       "score": {
         "ft": {
           "h": 2,
@@ -17099,7 +17099,7 @@
           "minute": 45,
           "injuryTime": 6,
           "team": "a",
-          "scorer": "Agustín Cano",
+          "scorer": "Agustín Canobbio",
           "assist": "Maxi Araújo",
           "type": "REGULAR",
           "score": null
@@ -17131,6 +17131,12 @@
           "minute": 58,
           "team": "a",
           "player": "Mathías Olivera",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Diney Borges",
           "card": "YELLOW"
         }
       ],
@@ -17170,6 +17176,18 @@
           "team": "h",
           "in": "Laros Duarte",
           "out": "Kevin Pina"
+        },
+        {
+          "minute": 80,
+          "team": "h",
+          "in": "Yannick Semedo",
+          "out": "Jamiro Monteiro"
+        },
+        {
+          "minute": 81,
+          "team": "a",
+          "in": "Brian Rodríguez",
+          "out": "Maxi Araújo"
         }
       ],
       "penalties": [],
@@ -17253,7 +17271,8 @@
             },
             {
               "name": "Yannick Semedo",
-              "jersey": "16"
+              "jersey": "16",
+              "in": true
             },
             {
               "name": "Kelvin Pires",
@@ -17334,7 +17353,7 @@
               "pos": "CD-L"
             },
             {
-              "name": "Agustín Cano",
+              "name": "Agustín Canobbio",
               "jersey": "14",
               "pos": "RM"
             },
@@ -17379,7 +17398,8 @@
             },
             {
               "name": "Brian Rodríguez",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true
             },
             {
               "name": "Facundo Pellistri",
@@ -17419,32 +17439,32 @@
       },
       "referee": "Espen Eskas",
       "venue": "Hard Rock Stadium, Miami Gardens, Florida",
-      "attendance": null,
+      "attendance": 64003,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "34%",
-          "a": "66%"
+          "h": "35%",
+          "a": "65%"
         },
         {
           "key": "totalShots",
-          "h": "7",
-          "a": "12"
+          "h": "12",
+          "a": "17"
         },
         {
           "key": "shotsOnTarget",
-          "h": "2",
+          "h": "4",
           "a": "2"
         },
         {
           "key": "wonCorners",
-          "h": "3",
-          "a": "6"
+          "h": "4",
+          "a": "11"
         },
         {
           "key": "foulsCommitted",
-          "h": "3",
-          "a": "8"
+          "h": "4",
+          "a": "11"
         },
         {
           "key": "offsides",
@@ -17454,17 +17474,389 @@
         {
           "key": "saves",
           "h": "0",
-          "a": "0"
+          "a": "2"
         },
         {
           "key": "totalPasses",
-          "h": "220",
-          "a": "418"
+          "h": "277",
+          "a": "511"
         },
         {
           "key": "passPct",
-          "h": "75%",
-          "a": "84%"
+          "h": "74%",
+          "a": "82%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "2",
+          "a": "2"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-22T02:10:44.152Z"
+    },
+    "g:G:1": {
+      "espnId": "760452",
+      "status": "IN_PLAY",
+      "minute": 50,
+      "utcDate": "2026-06-22T01:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 1
+        },
+        "ht": {
+          "h": 0,
+          "a": 1
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 15,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Finn Surman",
+          "assist": "Tim Payne",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 17,
+          "team": "h",
+          "player": "Mohanad Lashin",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 20,
+          "team": "a",
+          "player": "Sarpreet Singh",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 34,
+          "team": "a",
+          "player": "Callum McCowatt",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 41,
+          "team": "h",
+          "in": "Ramy Rabia",
+          "out": "Hamdy Fathy"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Mostafa Shoubir",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Mohamed Hany",
+              "jersey": "3",
+              "pos": "RB"
+            },
+            {
+              "name": "Ahmed Fatouh",
+              "jersey": "13",
+              "pos": "LB"
+            },
+            {
+              "name": "Mohanad Lashin",
+              "jersey": "17",
+              "pos": "LM"
+            },
+            {
+              "name": "Yasser Ibrahim",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Hamdy Fathy",
+              "jersey": "14",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Mostafa Zico",
+              "jersey": "11",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Marawan Attia",
+              "jersey": "19",
+              "pos": "RM"
+            },
+            {
+              "name": "Omar Marmoush",
+              "jersey": "22",
+              "pos": "F"
+            },
+            {
+              "name": "Mohamed Salah",
+              "jersey": "10",
+              "pos": "AM"
+            },
+            {
+              "name": "Emam Ashour",
+              "jersey": "8",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Mohamed Alaa",
+              "jersey": "26"
+            },
+            {
+              "name": "Mohamed Abdelmoneim",
+              "jersey": "6"
+            },
+            {
+              "name": "Haissem Hassan",
+              "jersey": "12"
+            },
+            {
+              "name": "Tarek Alaa",
+              "jersey": "24"
+            },
+            {
+              "name": "Hossam Abdelmaguid",
+              "jersey": "4"
+            },
+            {
+              "name": "Mohamed El Shenawy",
+              "jersey": "1"
+            },
+            {
+              "name": "Ibrahim Adel",
+              "jersey": "20"
+            },
+            {
+              "name": "Zizo",
+              "jersey": "25"
+            },
+            {
+              "name": "Ramy Rabia",
+              "jersey": "5",
+              "in": true
+            },
+            {
+              "name": "Nabil Donga",
+              "jersey": "18"
+            },
+            {
+              "name": "Trézéguet",
+              "jersey": "7"
+            },
+            {
+              "name": "Mahdy Soliman",
+              "jersey": "16"
+            },
+            {
+              "name": "Hamza Abdelkarim",
+              "jersey": "9"
+            },
+            {
+              "name": "Mahmoud Saber",
+              "jersey": "21"
+            },
+            {
+              "name": "Karim Hafez",
+              "jersey": "15"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Max Crocombe",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Tim Payne",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Liberato Cacace",
+              "jersey": "13",
+              "pos": "LB"
+            },
+            {
+              "name": "Marko Stamenic",
+              "jersey": "8",
+              "pos": "LM"
+            },
+            {
+              "name": "Finn Surman",
+              "jersey": "16",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Michael Boxall",
+              "jersey": "5",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Callum McCowatt",
+              "jersey": "20",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Joe Bell",
+              "jersey": "6",
+              "pos": "RM"
+            },
+            {
+              "name": "Chris Wood",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Sarpreet Singh",
+              "jersey": "10",
+              "pos": "AM"
+            },
+            {
+              "name": "Elijah Just",
+              "jersey": "11",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Francis de Vries",
+              "jersey": "3"
+            },
+            {
+              "name": "Ryan Thomas",
+              "jersey": "23"
+            },
+            {
+              "name": "Alex Paulsen",
+              "jersey": "12"
+            },
+            {
+              "name": "Lachlan Bayliss",
+              "jersey": "25"
+            },
+            {
+              "name": "Ben Old",
+              "jersey": "19"
+            },
+            {
+              "name": "Ben Waine",
+              "jersey": "18"
+            },
+            {
+              "name": "Tyler Bindon",
+              "jersey": "4"
+            },
+            {
+              "name": "Callan Elliot",
+              "jersey": "24"
+            },
+            {
+              "name": "Logan Rogerson",
+              "jersey": "7"
+            },
+            {
+              "name": "Alex Rufer",
+              "jersey": "14"
+            },
+            {
+              "name": "Tommy Smith",
+              "jersey": "26"
+            },
+            {
+              "name": "Nando Pijnaker",
+              "jersey": "15"
+            },
+            {
+              "name": "Michael Woud",
+              "jersey": "22"
+            },
+            {
+              "name": "Kosta Barbarouses",
+              "jersey": "17"
+            },
+            {
+              "name": "Jesse Randall",
+              "jersey": "21"
+            }
+          ]
+        }
+      },
+      "referee": "Omar Al Ali",
+      "venue": "BC Place, Vancouver",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "58%",
+          "a": "42%"
+        },
+        {
+          "key": "totalShots",
+          "h": "9",
+          "a": "7"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "2",
+          "a": "3"
+        },
+        {
+          "key": "wonCorners",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "3",
+          "a": "10"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "2"
+        },
+        {
+          "key": "saves",
+          "h": "2",
+          "a": "2"
+        },
+        {
+          "key": "totalPasses",
+          "h": "314",
+          "a": "222"
+        },
+        {
+          "key": "passPct",
+          "h": "90%",
+          "a": "80%"
         },
         {
           "key": "yellowCards",
@@ -17477,7 +17869,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-21T23:43:10.074Z"
+      "updatedAt": "2026-06-22T02:10:44.122Z"
     }
   }
 }
