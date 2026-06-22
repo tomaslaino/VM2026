@@ -71,8 +71,9 @@
     if (och > 0) return sv.slice(0, och);
     return sv;
   }
-  /* Versaler i JS – Big Shoulders Display saknar å/ä/ö och CSS text-transform
-     tappar diakritiska tecken (t.ex. Österrike → Osterrike). */
+  /* Versaler i JS med svensk locale (säkrare än CSS text-transform).
+     OBS: Big Shoulders HAR å/ä/ö – men diakriterna sitter högt; ge rubrik-
+     elementen vertikal padding så de inte klipps av overflow:hidden (se CSS). */
   function teamSvDisplay(team) {
     return teamSvFixture(team).toLocaleUpperCase("sv-SE");
   }

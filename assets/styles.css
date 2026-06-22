@@ -406,6 +406,9 @@ html.view-bracket .site-bg { display: none; }
   font-size: clamp(22px, 4.4vw, 52px); font-weight: 800;
   line-height: .95; letter-spacing: .01em;
   color: var(--bone);
+  /* Big Shoulders har höga diakriter (Å/Ä/Ö); symmetrisk padding ger toppen
+     andrum så prickarna inte klipps av overflow:hidden (ellipsen). */
+  padding-block: .14em;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .fh-flag { flex: none; line-height: 0; }
@@ -521,6 +524,7 @@ html.view-bracket .site-bg { display: none; }
   font-family: var(--display), system-ui, sans-serif; font-weight: 800;
   font-size: clamp(16px, 2.6vw, 30px); line-height: .98; letter-spacing: .01em;
   color: var(--bone);
+  padding-block: .14em;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .fhn-flag { flex: none; line-height: 0; }
