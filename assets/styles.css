@@ -3024,8 +3024,6 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 }
 .mi-stat-bar .home,
 .mi-stat-bar .away { display: block; height: 100%; min-width: 0; border-radius: 2px; }
-.mi-stat-bar .home { background: var(--accent); }
-.mi-stat-bar .away { background: var(--usa-blue); }
 
 .mi-empty {
   padding: 14px; border: 1px dashed var(--line);

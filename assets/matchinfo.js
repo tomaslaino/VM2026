@@ -295,8 +295,10 @@
   /* ---------- Lagf\u00e4rger till nummerbrickorna ---------- */
 
   var DEFAULT_TEAM_COLOR = ["#c41e3a", "#3d6db5"];
+  var BG_COLOR = "#122238";                             // --card, d\u00e4r statistik och uppst\u00e4llning visas
   var COLOR_MIN_DIST = 96;                              // min RGB-avst\u00e5nd mellan lagens f\u00e4rger
-  var COLOR_FALLBACKS = ["#3f8edb", "#e8b400", "#9fb2c4"];
+  var BG_MIN_DIST = 58;                                 // min RGB-avst\u00e5nd fr\u00e5n m\u00f6rk bakgrund
+  var COLOR_FALLBACKS = ["#3f8edb", "#e8b400", "#9fb2c4", "#e0212e", "#4a93d4"];
 
   function teamColors(iso) {
     var m = window.WC && WC.teamColors;
@@ -329,14 +331,27 @@
     });
     return { color: best, dist: bestD };
   }
+  /* V\u00e4lj en f\u00e4rg som syns mot den m\u00f6rka modalbakgrunden \u2013 annars lagets alternativ
+     eller den mest avvikande reservf\u00e4rgen. */
+  function visibleOrAlt(color, iso) {
+    if (colorDist(color, BG_COLOR) >= BG_MIN_DIST) return color;
+    var pair = teamColors(iso);
+    if (pair[1] && colorDist(pair[1], BG_COLOR) >= BG_MIN_DIST) return pair[1];
+    return farthest(BG_COLOR, pair.concat(COLOR_FALLBACKS)).color;
+  }
   /* Hemma f\u00e5r sin prim\u00e4rf\u00e4rg; borta sin prim\u00e4r om den \u00e4r tydligt skild, annars
      sitt alternativ (eller en garanterat avvikande reservf\u00e4rg) s\u00e5 lagen syns is\u00e4r. */
   function matchColors(hIso, aIso) {
-    var hc = teamColors(hIso)[0];
+    var hc = visibleOrAlt(teamColors(hIso)[0], hIso);
     var aPair = teamColors(aIso);
-    var pick = farthest(hc, [aPair[0], aPair[1]]);
+    var a0 = visibleOrAlt(aPair[0], aIso);
+    var a1 = aPair[1] ? visibleOrAlt(aPair[1], aIso) : a0;
+    var pick = farthest(hc, [a0, a1]);
     if (pick.dist < COLOR_MIN_DIST) {
-      var fb = farthest(hc, COLOR_FALLBACKS);
+      var visibleFallbacks = COLOR_FALLBACKS.filter(function (c) {
+        return colorDist(c, BG_COLOR) >= BG_MIN_DIST;
+      });
+      var fb = farthest(hc, visibleFallbacks.length ? visibleFallbacks : COLOR_FALLBACKS);
       if (fb.dist > pick.dist) pick = fb;
     }
     return { home: hc, away: pick.color };
@@ -517,9 +532,12 @@
     redCards: "Röda kort"
   };
 
-  function statsHtml(det, noTitle) {
+  function statsHtml(det, info, noTitle) {
     var stats = (det && det.stats) || [];
     if (!stats.length) return "";
+    var hIso = info && info.home && info.home.iso;
+    var aIso = info && info.away && info.away.iso;
+    var cols = matchColors(hIso, aIso);
     var h = noTitle ? '<div class="mi-stats">' :
       '<div class="mi-section-title">Statistik</div><div class="mi-stats">';
     stats.forEach(function (s) {
@@ -538,8 +556,8 @@
           '<span class="mi-stat-val">' + esc(s.a) + '</span>' +
         '</div>' +
         '<div class="mi-stat-bar">' +
-          '<span class="home" style="width:' + pct + '%"></span>' +
-          '<span class="away" style="width:' + awayPct + '%"></span>' +
+          '<span class="home" style="width:' + pct + '%;background:' + cols.home + '"></span>' +
+          '<span class="away" style="width:' + awayPct + '%;background:' + cols.away + '"></span>' +
         '</div>' +
         '</div>';
     });
@@ -637,7 +655,7 @@
     h += "</div>";
 
     h += '<div class="mi-tab-panel' + (activeTab === "stats" ? " active" : "") + '" data-mi-panel="stats">';
-    if (det && det.stats && det.stats.length) h += statsHtml(det, true);
+    if (det && det.stats && det.stats.length) h += statsHtml(det, info, true);
     else h += emptyHintForTab("stats", info);
     h += "</div>";
 
