@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-23T16:38:06.479Z",
+    "updatedAt": "2026-06-23T18:31:04.173Z",
     "source": "espn",
-    "matchCount": 44,
-    "liveCount": 0,
+    "matchCount": 45,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -226,9 +226,23 @@
       "h": 2,
       "a": 1,
       "status": "FINISHED"
+    },
+    "g:K:2": {
+      "h": 4,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:K:2",
+      "status": "IN_PLAY",
+      "minute": 67,
+      "home": "Portugal",
+      "away": "Uzbekistan",
+      "score": "4-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -982,7 +996,7 @@
       "date": "2026-06-23",
       "time": "19:00",
       "utcDate": "2026-06-23T17:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Portugal",
       "away": "Uzbekistan",

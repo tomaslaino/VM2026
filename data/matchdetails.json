@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-23T16:38:06.488Z",
+    "updatedAt": "2026-06-23T18:31:04.213Z",
     "source": "espn"
   },
   "details": {
@@ -19789,6 +19789,430 @@
         }
       ],
       "updatedAt": "2026-06-23T08:18:19.049Z"
+    },
+    "g:K:2": {
+      "espnId": "760461",
+      "status": "IN_PLAY",
+      "minute": 67,
+      "utcDate": "2026-06-23T17:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 4,
+          "a": 0
+        },
+        "ht": {
+          "h": 3,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 6,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Cristiano Ronaldo",
+          "assist": "João Cancelo",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        },
+        {
+          "minute": 17,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Nuno Mendes",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 0
+          }
+        },
+        {
+          "minute": 39,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Cristiano Ronaldo",
+          "assist": "Bruno Fernandes",
+          "type": "REGULAR",
+          "score": {
+            "h": 3,
+            "a": 0
+          }
+        },
+        {
+          "minute": 60,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Abduvohid Nematov",
+          "assist": null,
+          "type": "OWN",
+          "score": {
+            "h": 4,
+            "a": 0
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 14,
+          "team": "a",
+          "player": "Odiljon Xamrobekov",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Akmal Mozgovoy",
+          "out": "Odiljon Xamrobekov"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Nélson Semedo",
+          "out": "João Cancelo"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Khojiakbar Alijonov",
+          "out": "Sherzod Nasrullaev"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Francisco Conceição",
+          "out": "Pedro Neto"
+        },
+        {
+          "minute": 64,
+          "team": "h",
+          "in": "Francisco Trincão",
+          "out": "João Félix"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Diogo Costa",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "João Cancelo",
+              "jersey": "20",
+              "pos": "RB"
+            },
+            {
+              "name": "Nuno Mendes",
+              "jersey": "25",
+              "pos": "LB"
+            },
+            {
+              "name": "Vitinha ",
+              "jersey": "23",
+              "pos": "LM"
+            },
+            {
+              "name": "Rúben Dias",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Renato Veiga",
+              "jersey": "13",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Pedro Neto",
+              "jersey": "18",
+              "pos": "AM-R"
+            },
+            {
+              "name": "João Neves",
+              "jersey": "15",
+              "pos": "RM"
+            },
+            {
+              "name": "Cristiano Ronaldo",
+              "jersey": "7",
+              "pos": "F"
+            },
+            {
+              "name": "Bruno Fernandes",
+              "jersey": "8",
+              "pos": "AM"
+            },
+            {
+              "name": "João Félix",
+              "jersey": "11",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "José Sá",
+              "jersey": "12"
+            },
+            {
+              "name": "Nélson Semedo",
+              "jersey": "2",
+              "in": true
+            },
+            {
+              "name": "Bernardo Silva",
+              "jersey": "10"
+            },
+            {
+              "name": "Francisco Trincão",
+              "jersey": "16",
+              "in": true
+            },
+            {
+              "name": "Rúben Neves",
+              "jersey": "21"
+            },
+            {
+              "name": "Gonçalo Inácio",
+              "jersey": "14"
+            },
+            {
+              "name": "Rafael Leão",
+              "jersey": "17"
+            },
+            {
+              "name": "Rui Silva",
+              "jersey": "22"
+            },
+            {
+              "name": "Samú Costa",
+              "jersey": "24"
+            },
+            {
+              "name": "Diogo Dalot",
+              "jersey": "5"
+            },
+            {
+              "name": "Matheus Nunes",
+              "jersey": "6"
+            },
+            {
+              "name": "Gonçalo Ramos",
+              "jersey": "9"
+            },
+            {
+              "name": "Gonçalo Guedes",
+              "jersey": "19"
+            },
+            {
+              "name": "Francisco Conceição",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Tomás Araújo",
+              "jersey": "4"
+            }
+          ]
+        },
+        "a": {
+          "formation": "3-4-2-1",
+          "starters": [
+            {
+              "name": "Abduvohid Nematov",
+              "jersey": "12",
+              "pos": "G"
+            },
+            {
+              "name": "Behruzjon Karimov",
+              "jersey": "24",
+              "pos": "RM"
+            },
+            {
+              "name": "Sherzod Nasrullaev",
+              "jersey": "13",
+              "pos": "LM"
+            },
+            {
+              "name": "Rustam Ashurmatov",
+              "jersey": "5",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Abdulla Abdullaev",
+              "jersey": "18",
+              "pos": "CD"
+            },
+            {
+              "name": "Abdukodir Khusanov",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Odiljon Xamrobekov",
+              "jersey": "9",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Otabek Shukurov",
+              "jersey": "7",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Eldor Shomurodov",
+              "jersey": "14",
+              "pos": "F"
+            },
+            {
+              "name": "Azizjon Ganiev",
+              "jersey": "19",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Abbosbek Fayzullaev",
+              "jersey": "22",
+              "pos": "CF-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Oston Urunov",
+              "jersey": "11"
+            },
+            {
+              "name": "Khojiakbar Alijonov",
+              "jersey": "3",
+              "in": true
+            },
+            {
+              "name": "Azizbek Amonov",
+              "jersey": "20"
+            },
+            {
+              "name": "Igor Sergeev",
+              "jersey": "21"
+            },
+            {
+              "name": "Botirali Ergashev",
+              "jersey": "16"
+            },
+            {
+              "name": "Ruslanbek Jiyanov",
+              "jersey": "10"
+            },
+            {
+              "name": "Dostonbek Khamdamov",
+              "jersey": "17"
+            },
+            {
+              "name": "Avazbek Ulmasaliyev",
+              "jersey": "25"
+            },
+            {
+              "name": "Akmal Mozgovoy",
+              "jersey": "6",
+              "in": true
+            },
+            {
+              "name": "Umar Eshmurodov",
+              "jersey": "15"
+            },
+            {
+              "name": "Jamshid Iskanderov",
+              "jersey": "8"
+            },
+            {
+              "name": "Jakhongir Urozov",
+              "jersey": "26"
+            },
+            {
+              "name": "Utkir Yusupov",
+              "jersey": "1"
+            },
+            {
+              "name": "Farrukh Sayfiev",
+              "jersey": "4"
+            },
+            {
+              "name": "Sherzod Esanov",
+              "jersey": "23"
+            }
+          ]
+        }
+      },
+      "referee": "Jalal Jayed",
+      "venue": "NRG Stadium, Houston, Texas",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "65%",
+          "a": "35%"
+        },
+        {
+          "key": "totalShots",
+          "h": "11",
+          "a": "6"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "5",
+          "a": "2"
+        },
+        {
+          "key": "wonCorners",
+          "h": "2",
+          "a": "2"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "10",
+          "a": "9"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "420",
+          "a": "227"
+        },
+        {
+          "key": "passPct",
+          "h": "89%",
+          "a": "80%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-23T18:31:04.213Z"
     }
   }
 }
