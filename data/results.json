@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-23T00:15:39.155Z",
+    "updatedAt": "2026-06-23T04:34:06.760Z",
     "source": "espn",
-    "matchCount": 43,
-    "liveCount": 2,
+    "matchCount": 44,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -214,31 +214,28 @@
     },
     "g:I:4": {
       "h": 0,
-      "a": 1,
-      "status": "IN_PLAY"
+      "a": 3,
+      "status": "FINISHED"
     },
     "g:I:5": {
-      "h": 0,
-      "a": 0,
+      "h": 2,
+      "a": 3,
+      "status": "FINISHED"
+    },
+    "g:J:1": {
+      "h": 1,
+      "a": 1,
       "status": "IN_PLAY"
     }
   },
   "live": [
     {
-      "key": "g:I:4",
+      "key": "g:J:1",
       "status": "IN_PLAY",
-      "minute": 52,
-      "home": "Iraq",
-      "away": "France",
-      "score": "0-1"
-    },
-    {
-      "key": "g:I:5",
-      "status": "IN_PLAY",
-      "minute": 8,
-      "home": "Senegal",
-      "away": "Norway",
-      "score": "0-0"
+      "minute": 72,
+      "home": "Algeria",
+      "away": "Jordan",
+      "score": "1-1"
     }
   ],
   "fixtures": {
@@ -943,7 +940,7 @@
       "date": "2026-06-22",
       "time": "23:00",
       "utcDate": "2026-06-22T21:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Iraq",
       "away": "France",
@@ -960,7 +957,7 @@
       "date": "2026-06-23",
       "time": "02:00",
       "utcDate": "2026-06-23T00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Senegal",
       "away": "Norway",
@@ -977,7 +974,7 @@
       "date": "2026-06-23",
       "time": "05:00",
       "utcDate": "2026-06-23T03:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Algeria",
       "away": "Jordan",
@@ -2231,51 +2228,51 @@
     ],
     "I": [
       {
-        "idx": 2,
+        "idx": 0,
         "position": 1,
-        "pld": 1,
-        "w": 1,
+        "pld": 2,
+        "w": 2,
         "d": 0,
         "l": 0,
-        "gf": 4,
+        "gf": 6,
         "ga": 1,
-        "gd": 3,
-        "pts": 3
+        "gd": 5,
+        "pts": 6
       },
       {
-        "idx": 0,
+        "idx": 2,
         "position": 2,
-        "pld": 1,
-        "w": 1,
+        "pld": 2,
+        "w": 2,
         "d": 0,
         "l": 0,
-        "gf": 3,
-        "ga": 1,
-        "gd": 2,
-        "pts": 3
+        "gf": 7,
+        "ga": 3,
+        "gd": 4,
+        "pts": 6
       },
       {
         "idx": 1,
         "position": 3,
-        "pld": 1,
+        "pld": 2,
         "w": 0,
         "d": 0,
-        "l": 1,
-        "gf": 1,
-        "ga": 3,
-        "gd": -2,
+        "l": 2,
+        "gf": 3,
+        "ga": 6,
+        "gd": -3,
         "pts": 0
       },
       {
         "idx": 3,
         "position": 4,
-        "pld": 1,
+        "pld": 2,
         "w": 0,
         "d": 0,
-        "l": 1,
+        "l": 2,
         "gf": 1,
-        "ga": 4,
-        "gd": -3,
+        "ga": 7,
+        "gd": -6,
         "pts": 0
       }
     ],

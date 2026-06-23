@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-23T00:15:39.231Z",
+    "updatedAt": "2026-06-23T04:34:06.862Z",
     "source": "espn"
   },
   "details": {
@@ -18432,15 +18432,15 @@
     },
     "g:I:4": {
       "espnId": "760457",
-      "status": "IN_PLAY",
-      "minute": 59,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-22T21:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 0,
-          "a": 2
+          "a": 3
         },
         "ht": {
           "h": 0,
@@ -18474,6 +18474,18 @@
             "h": 0,
             "a": 2
           }
+        },
+        {
+          "minute": 66,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Ousmane Dembélé",
+          "assist": "Michael Olise",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 3
+          }
         }
       ],
       "bookings": [
@@ -18502,6 +18514,48 @@
           "team": "h",
           "in": "Youssef Amyn",
           "out": "Zaid Ismael"
+        },
+        {
+          "minute": 68,
+          "team": "a",
+          "in": "Désiré Doué",
+          "out": "Ousmane Dembélé"
+        },
+        {
+          "minute": 68,
+          "team": "a",
+          "in": "Rayan Cherki",
+          "out": "Michael Olise"
+        },
+        {
+          "minute": 68,
+          "team": "h",
+          "in": "Aimar Sher",
+          "out": "Amir Al-Ammari"
+        },
+        {
+          "minute": 69,
+          "team": "h",
+          "in": "Marko Farji",
+          "out": "Ibrahim Bayesh"
+        },
+        {
+          "minute": 83,
+          "team": "a",
+          "in": "Maghnes Akliouche",
+          "out": "Bradley Barcola"
+        },
+        {
+          "minute": 83,
+          "team": "a",
+          "in": "Malo Gusto",
+          "out": "Jules Koundé"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Marcus Thuram",
+          "out": "Kylian Mbappé"
         }
       ],
       "penalties": [],
@@ -18577,7 +18631,8 @@
             },
             {
               "name": "Marko Farji",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Munaf Younus",
@@ -18607,7 +18662,8 @@
             },
             {
               "name": "Aimar Sher",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Mustafa Saadoon",
@@ -18697,7 +18753,8 @@
             },
             {
               "name": "Malo Gusto",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Maxence Lacroix",
@@ -18705,11 +18762,13 @@
             },
             {
               "name": "Rayan Cherki",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Désiré Doué",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Ibrahima Konaté",
@@ -18741,11 +18800,13 @@
             },
             {
               "name": "Marcus Thuram",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Maghnes Akliouche",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Theo Hernández",
@@ -18756,51 +18817,51 @@
       },
       "referee": "Drew Fischer",
       "venue": "Lincoln Financial Field, Philadelphia, Pennsylvania",
-      "attendance": null,
+      "attendance": 68324,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "43%",
-          "a": "57%"
+          "h": "44%",
+          "a": "56%"
         },
         {
           "key": "totalShots",
-          "h": "2",
-          "a": "12"
+          "h": "4",
+          "a": "19"
         },
         {
           "key": "shotsOnTarget",
           "h": "0",
-          "a": "3"
+          "a": "5"
         },
         {
           "key": "wonCorners",
-          "h": "1",
-          "a": "1"
+          "h": "2",
+          "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "3",
-          "a": "5"
+          "h": "4",
+          "a": "8"
         },
         {
           "key": "offsides",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "saves",
-          "h": "1",
+          "h": "2",
           "a": "0"
         },
         {
           "key": "totalPasses",
-          "h": "313",
-          "a": "401"
+          "h": "481",
+          "a": "603"
         },
         {
           "key": "passPct",
-          "h": "84%",
+          "h": "86%",
           "a": "90%"
         },
         {
@@ -18814,26 +18875,90 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-23T00:15:39.197Z"
+      "updatedAt": "2026-06-23T04:34:06.862Z"
     },
     "g:I:5": {
       "espnId": "760454",
-      "status": "IN_PLAY",
-      "minute": 16,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-23T00:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
-          "h": 0,
-          "a": 0
+          "h": 2,
+          "a": 3
         },
-        "ht": null,
+        "ht": {
+          "h": 0,
+          "a": 1
+        },
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
+      "goals": [
+        {
+          "minute": 43,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Marcus Holmgren Pedersen",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        },
+        {
+          "minute": 48,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Erling Haaland",
+          "assist": "Martin Ødegaard",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 2
+          }
+        },
+        {
+          "minute": 53,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Ismaïla Sarr",
+          "assist": "Sadio Mané",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 2
+          }
+        },
+        {
+          "minute": 58,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Erling Haaland",
+          "assist": "Patrick Berg",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 3
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "h",
+          "scorer": "Ismaïla Sarr",
+          "assist": "Nicolas Jackson",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 3
+          }
+        }
+      ],
       "bookings": [],
       "subs": [
         {
@@ -18841,6 +18966,60 @@
           "team": "a",
           "in": "Marcus Holmgren Pedersen",
           "out": "Julian Ryerson"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Patrick Berg",
+          "out": "Fredrik Aursnes"
+        },
+        {
+          "minute": 54,
+          "team": "h",
+          "in": "Ismail Jakobs",
+          "out": "El Hadji Malick Diouf"
+        },
+        {
+          "minute": 54,
+          "team": "h",
+          "in": "Ibrahim Mbaye",
+          "out": "Pape Gueye"
+        },
+        {
+          "minute": 63,
+          "team": "h",
+          "in": "Mory Diaw",
+          "out": "Édouard Mendy"
+        },
+        {
+          "minute": 63,
+          "team": "h",
+          "in": "Pathé Ciss",
+          "out": "Lamine Camara"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Andreas Schjelderup",
+          "out": "Antonio Nusa"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Pape Matar Sarr",
+          "out": "Kalidou Koulibaly"
+        },
+        {
+          "minute": 84,
+          "team": "a",
+          "in": "Oscar Bobb",
+          "out": "Alexander Sørloth"
+        },
+        {
+          "minute": 84,
+          "team": "a",
+          "in": "Leo Østigard",
+          "out": "Torbjørn Heggem"
         }
       ],
       "penalties": [],
@@ -18919,7 +19098,8 @@
             },
             {
               "name": "Pape Matar Sarr",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Abdoulaye Seck",
@@ -18927,7 +19107,8 @@
             },
             {
               "name": "Ismail Jakobs",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Mamadou Sarr",
@@ -18935,7 +19116,8 @@
             },
             {
               "name": "Pathé Ciss",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true
             },
             {
               "name": "Iliman Ndiaye",
@@ -18947,11 +19129,13 @@
             },
             {
               "name": "Ibrahim Mbaye",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Mory Diaw",
-              "jersey": "23"
+              "jersey": "23",
+              "in": true
             },
             {
               "name": "Bara Sapoko Ndiaye",
@@ -19037,7 +19221,8 @@
             },
             {
               "name": "Patrick Berg",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true
             },
             {
               "name": "Henrik Falchener",
@@ -19049,7 +19234,8 @@
             },
             {
               "name": "Andreas Schjelderup",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Jens Petter Hauge",
@@ -19078,7 +19264,8 @@
             },
             {
               "name": "Leo Østigard",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true
             },
             {
               "name": "Thelo Aasgaard",
@@ -19086,58 +19273,59 @@
             },
             {
               "name": "Oscar Bobb",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             }
           ]
         }
       },
       "referee": "Wilton Pereira Sampaio",
       "venue": "MetLife Stadium, East Rutherford, New Jersey",
-      "attendance": null,
+      "attendance": 80663,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "44%",
-          "a": "56%"
+          "h": "58%",
+          "a": "42%"
         },
         {
           "key": "totalShots",
-          "h": "1",
-          "a": "2"
+          "h": "16",
+          "a": "13"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "1"
+          "h": "4",
+          "a": "7"
         },
         {
           "key": "wonCorners",
-          "h": "0",
-          "a": "4"
+          "h": "4",
+          "a": "5"
         },
         {
           "key": "foulsCommitted",
-          "h": "1",
-          "a": "1"
+          "h": "5",
+          "a": "13"
         },
         {
           "key": "offsides",
-          "h": "2",
+          "h": "4",
           "a": "0"
         },
         {
           "key": "saves",
-          "h": "1",
-          "a": "0"
+          "h": "3",
+          "a": "2"
         },
         {
           "key": "totalPasses",
-          "h": "36",
-          "a": "45"
+          "h": "489",
+          "a": "353"
         },
         {
           "key": "passPct",
-          "h": "86%",
+          "h": "88%",
           "a": "80%"
         },
         {
@@ -19151,7 +19339,388 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-23T00:15:39.231Z"
+      "updatedAt": "2026-06-23T04:34:06.839Z"
+    },
+    "g:J:1": {
+      "espnId": "760455",
+      "status": "IN_PLAY",
+      "minute": 72,
+      "utcDate": "2026-06-23T03:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 1
+        },
+        "ht": {
+          "h": 0,
+          "a": 1
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 36,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Nizar Al-Rashdan",
+          "assist": "Mousa Al-Tamari",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        },
+        {
+          "minute": 69,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Nadhir Benbouali",
+          "assist": "Riyad Mahrez",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 44,
+          "team": "h",
+          "player": "Ramiz Zerrouki",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 64,
+          "team": "a",
+          "player": "Husam Abu Dahab",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Nabil Bentaleb",
+          "out": "Ramiz Zerrouki"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Nadhir Benbouali",
+          "out": "Hicham Boudaoui"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Luca Zidane",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Rafik Belghali",
+              "jersey": "17",
+              "pos": "RB"
+            },
+            {
+              "name": "Rayan Aït-Nouri",
+              "jersey": "15",
+              "pos": "LB"
+            },
+            {
+              "name": "Ramiz Zerrouki",
+              "jersey": "6",
+              "pos": "LM"
+            },
+            {
+              "name": "Aïssa Mandi",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Ramy Bensebaini",
+              "jersey": "21",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Riyad Mahrez",
+              "jersey": "7",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Hicham Boudaoui",
+              "jersey": "14",
+              "pos": "RM"
+            },
+            {
+              "name": "Amine Gouiri",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Ibrahim Maza",
+              "jersey": "22",
+              "pos": "AM"
+            },
+            {
+              "name": "Farès Chaïbi",
+              "jersey": "10",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Mohamed Amine Tougai",
+              "jersey": "4"
+            },
+            {
+              "name": "Zineddine Belaïd",
+              "jersey": "5"
+            },
+            {
+              "name": "Farès Ghedjemis",
+              "jersey": "25"
+            },
+            {
+              "name": "Anis Hadj Moussa",
+              "jersey": "11"
+            },
+            {
+              "name": "Oussama Benbot",
+              "jersey": "16"
+            },
+            {
+              "name": "Achraf Abada",
+              "jersey": "3"
+            },
+            {
+              "name": "Adil Boulbina",
+              "jersey": "20"
+            },
+            {
+              "name": "Houssem Aouar",
+              "jersey": "8"
+            },
+            {
+              "name": "Yassine Titraoui",
+              "jersey": "24"
+            },
+            {
+              "name": "Jaouen Hadjam",
+              "jersey": "13"
+            },
+            {
+              "name": "Nabil Bentaleb",
+              "jersey": "19",
+              "in": true
+            },
+            {
+              "name": "Nadhir Benbouali",
+              "jersey": "12",
+              "in": true
+            },
+            {
+              "name": "Samir Chergui",
+              "jersey": "26"
+            },
+            {
+              "name": "Melvin Mastil",
+              "jersey": "1"
+            }
+          ]
+        },
+        "a": {
+          "formation": "3-4-2-1",
+          "starters": [
+            {
+              "name": "Yazeed Abulaila",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Ehsan Haddad",
+              "jersey": "23",
+              "pos": "RM"
+            },
+            {
+              "name": "Mohannad Abu Taha",
+              "jersey": "20",
+              "pos": "LM"
+            },
+            {
+              "name": "Husam Abu Dahab",
+              "jersey": "4",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Yazan Al-Arab",
+              "jersey": "5",
+              "pos": "CD"
+            },
+            {
+              "name": "Abdallah Nasib",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Nizar Al-Rashdan",
+              "jersey": "21",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Noor Al-Rawabdeh",
+              "jersey": "8",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Mousa Al-Tamari",
+              "jersey": "10",
+              "pos": "F"
+            },
+            {
+              "name": "Ali Olwan",
+              "jersey": "9",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Mahmoud Al-Mardi",
+              "jersey": "13",
+              "pos": "CF-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Mohammad Abu Hasheesh",
+              "jersey": "2"
+            },
+            {
+              "name": "Mohammad Abughoush",
+              "jersey": "18"
+            },
+            {
+              "name": "Saed Al-Rosan",
+              "jersey": "19"
+            },
+            {
+              "name": "Saleem Obaid",
+              "jersey": "17"
+            },
+            {
+              "name": "Ibrahim Sadeh",
+              "jersey": "15"
+            },
+            {
+              "name": "Abdallah Al-Fakhouri",
+              "jersey": "22"
+            },
+            {
+              "name": "Rajaei Ayed",
+              "jersey": "14"
+            },
+            {
+              "name": "Mohammed Abu Zraiq",
+              "jersey": "7"
+            },
+            {
+              "name": "Mohammad Abualnadi",
+              "jersey": "16"
+            },
+            {
+              "name": "Ali Azaizeh",
+              "jersey": "24"
+            },
+            {
+              "name": "Odeh Fakhoury",
+              "jersey": "11"
+            },
+            {
+              "name": "Amer Jamous",
+              "jersey": "6"
+            },
+            {
+              "name": "Mohammad Al-Daoud",
+              "jersey": "25"
+            },
+            {
+              "name": "Anas Badawi",
+              "jersey": "26"
+            },
+            {
+              "name": "Nour Bani Ateyah",
+              "jersey": "12"
+            }
+          ]
+        }
+      },
+      "referee": "Slavko Vincici",
+      "venue": "Levi's Stadium, Santa Clara, California",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "74%",
+          "a": "26%"
+        },
+        {
+          "key": "totalShots",
+          "h": "11",
+          "a": "8"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "5",
+          "a": "4"
+        },
+        {
+          "key": "wonCorners",
+          "h": "6",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "6",
+          "a": "6"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "3",
+          "a": "4"
+        },
+        {
+          "key": "totalPasses",
+          "h": "538",
+          "a": "189"
+        },
+        {
+          "key": "passPct",
+          "h": "89%",
+          "a": "74%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-23T04:34:06.812Z"
     }
   }
 }
