@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-22T22:56:22.340Z",
+    "updatedAt": "2026-06-23T00:15:39.231Z",
     "source": "espn"
   },
   "details": {
@@ -18433,16 +18433,19 @@
     "g:I:4": {
       "espnId": "760457",
       "status": "IN_PLAY",
-      "minute": 45,
+      "minute": 59,
       "utcDate": "2026-06-22T21:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
           "h": 0,
+          "a": 2
+        },
+        "ht": {
+          "h": 0,
           "a": 1
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
@@ -18458,6 +18461,18 @@
           "score": {
             "h": 0,
             "a": 1
+          }
+        },
+        {
+          "minute": 54,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Kylian Mbappé",
+          "assist": "Ousmane Dembélé",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 2
           }
         }
       ],
@@ -18475,6 +18490,18 @@
           "team": "h",
           "in": "Ali Al-Hamadi",
           "out": "Aymen Hussein"
+        },
+        {
+          "minute": 60,
+          "team": "h",
+          "in": "Rebin Sulaka",
+          "out": "Zaid Tahseen"
+        },
+        {
+          "minute": 60,
+          "team": "h",
+          "in": "Youssef Amyn",
+          "out": "Zaid Ismael"
         }
       ],
       "penalties": [],
@@ -18566,7 +18593,8 @@
             },
             {
               "name": "Rebin Sulaka",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Ahmed Maknazi",
@@ -18574,7 +18602,8 @@
             },
             {
               "name": "Youssef Amyn",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Aimar Sher",
@@ -18731,18 +18760,18 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "42%",
-          "a": "58%"
+          "h": "43%",
+          "a": "57%"
         },
         {
           "key": "totalShots",
           "h": "2",
-          "a": "7"
+          "a": "12"
         },
         {
           "key": "shotsOnTarget",
           "h": "0",
-          "a": "1"
+          "a": "3"
         },
         {
           "key": "wonCorners",
@@ -18751,7 +18780,7 @@
         },
         {
           "key": "foulsCommitted",
-          "h": "2",
+          "h": "3",
           "a": "5"
         },
         {
@@ -18761,17 +18790,17 @@
         },
         {
           "key": "saves",
-          "h": "0",
+          "h": "1",
           "a": "0"
         },
         {
           "key": "totalPasses",
-          "h": "233",
-          "a": "316"
+          "h": "313",
+          "a": "401"
         },
         {
           "key": "passPct",
-          "h": "82%",
+          "h": "84%",
           "a": "90%"
         },
         {
@@ -18785,7 +18814,344 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-22T22:56:22.340Z"
+      "updatedAt": "2026-06-23T00:15:39.197Z"
+    },
+    "g:I:5": {
+      "espnId": "760454",
+      "status": "IN_PLAY",
+      "minute": 16,
+      "utcDate": "2026-06-23T00:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [],
+      "subs": [
+        {
+          "minute": 13,
+          "team": "a",
+          "in": "Marcus Holmgren Pedersen",
+          "out": "Julian Ryerson"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Édouard Mendy",
+              "jersey": "16",
+              "pos": "G"
+            },
+            {
+              "name": "Krépin Diatta",
+              "jersey": "15",
+              "pos": "RB"
+            },
+            {
+              "name": "El Hadji Malick Diouf",
+              "jersey": "25",
+              "pos": "LB"
+            },
+            {
+              "name": "Pape Gueye",
+              "jersey": "26",
+              "pos": "LM"
+            },
+            {
+              "name": "Kalidou Koulibaly",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Moussa Niakhaté",
+              "jersey": "19",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Ismaïla Sarr",
+              "jersey": "18",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Idrissa Gueye",
+              "jersey": "5",
+              "pos": "RM"
+            },
+            {
+              "name": "Nicolas Jackson",
+              "jersey": "11",
+              "pos": "F"
+            },
+            {
+              "name": "Lamine Camara",
+              "jersey": "8",
+              "pos": "AM"
+            },
+            {
+              "name": "Sadio Mané",
+              "jersey": "10",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Habib Diarra",
+              "jersey": "21"
+            },
+            {
+              "name": "Antoine Mendy",
+              "jersey": "24"
+            },
+            {
+              "name": "Bamba Dieng",
+              "jersey": "9"
+            },
+            {
+              "name": "Pape Matar Sarr",
+              "jersey": "17"
+            },
+            {
+              "name": "Abdoulaye Seck",
+              "jersey": "4"
+            },
+            {
+              "name": "Ismail Jakobs",
+              "jersey": "14"
+            },
+            {
+              "name": "Mamadou Sarr",
+              "jersey": "2"
+            },
+            {
+              "name": "Pathé Ciss",
+              "jersey": "6"
+            },
+            {
+              "name": "Iliman Ndiaye",
+              "jersey": "13"
+            },
+            {
+              "name": "Yehvann Diouf",
+              "jersey": "1"
+            },
+            {
+              "name": "Ibrahim Mbaye",
+              "jersey": "20"
+            },
+            {
+              "name": "Mory Diaw",
+              "jersey": "23"
+            },
+            {
+              "name": "Bara Sapoko Ndiaye",
+              "jersey": "22"
+            },
+            {
+              "name": "Assane Diao",
+              "jersey": "7"
+            },
+            {
+              "name": "Cherif Ndiaye",
+              "jersey": "12"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Ørjan Nyland",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Julian Ryerson",
+              "jersey": "26",
+              "pos": "RB"
+            },
+            {
+              "name": "David Møller Wolfe",
+              "jersey": "5",
+              "pos": "LB"
+            },
+            {
+              "name": "Sander Berge",
+              "jersey": "8",
+              "pos": "CM"
+            },
+            {
+              "name": "Kristoffer Ajer",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Torbjørn Heggem",
+              "jersey": "17",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Martin Ødegaard",
+              "jersey": "10",
+              "pos": "RM"
+            },
+            {
+              "name": "Fredrik Aursnes",
+              "jersey": "14",
+              "pos": "LM"
+            },
+            {
+              "name": "Erling Haaland",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Alexander Sørloth",
+              "jersey": "7",
+              "pos": "RF"
+            },
+            {
+              "name": "Antonio Nusa",
+              "jersey": "20",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Jørgen Strand Larsen",
+              "jersey": "11"
+            },
+            {
+              "name": "Fredrik André Bjørkan",
+              "jersey": "15"
+            },
+            {
+              "name": "Patrick Berg",
+              "jersey": "6"
+            },
+            {
+              "name": "Henrik Falchener",
+              "jersey": "25"
+            },
+            {
+              "name": "Sondre Langas",
+              "jersey": "24"
+            },
+            {
+              "name": "Andreas Schjelderup",
+              "jersey": "21"
+            },
+            {
+              "name": "Jens Petter Hauge",
+              "jersey": "23"
+            },
+            {
+              "name": "Morten Thorsby",
+              "jersey": "2"
+            },
+            {
+              "name": "Egil Selvik",
+              "jersey": "13"
+            },
+            {
+              "name": "Marcus Holmgren Pedersen",
+              "jersey": "16",
+              "in": true
+            },
+            {
+              "name": "Sander Tangvik",
+              "jersey": "12"
+            },
+            {
+              "name": "Kristian Thorstvedt",
+              "jersey": "18"
+            },
+            {
+              "name": "Leo Østigard",
+              "jersey": "4"
+            },
+            {
+              "name": "Thelo Aasgaard",
+              "jersey": "19"
+            },
+            {
+              "name": "Oscar Bobb",
+              "jersey": "22"
+            }
+          ]
+        }
+      },
+      "referee": "Wilton Pereira Sampaio",
+      "venue": "MetLife Stadium, East Rutherford, New Jersey",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "44%",
+          "a": "56%"
+        },
+        {
+          "key": "totalShots",
+          "h": "1",
+          "a": "2"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "0",
+          "a": "4"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "offsides",
+          "h": "2",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "36",
+          "a": "45"
+        },
+        {
+          "key": "passPct",
+          "h": "86%",
+          "a": "80%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-23T00:15:39.231Z"
     }
   }
 }
