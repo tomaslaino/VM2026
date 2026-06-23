@@ -2393,7 +2393,7 @@
     if (!e) return "";
     var open = matchOpenAttr(e.key);
     var when = whenLabels(e.m);
-    var h = '<div class="fh-next' + open.cls + '"' + open.attr + '>';
+    var h = '<section class="focus-tease ft-next fh-next' + open.cls + '"' + open.attr + '>';
     h += '<div class="fh-next-head">' +
       '<span class="fh-eyebrow">Nästa match</span>' +
       focusGroupChip(e, "fh-group") +
@@ -2412,7 +2412,7 @@
       spotlightTvHtml(e.channel) +
       '</div>';
     h += focusCountdown(e.ko, "ftNextTimer", "ftn");
-    h += '</div>';
+    h += '</section>';
     return h;
   }
 
@@ -2422,7 +2422,7 @@
     if (!e) return "";
     var open = focusOpenAttr(e);
     var when = whenLabels(e.m);
-    var h = '<div class="fh-next fh-prev' + open.cls + '"' + open.attr + '>';
+    var h = '<section class="focus-tease ft-prev fh-next fh-prev' + open.cls + '"' + open.attr + '>';
     h += '<div class="fh-next-head">' +
       '<span class="fh-eyebrow">Senaste match</span>' +
       focusGroupChip(e, "fh-group") +
@@ -2443,7 +2443,7 @@
       '<span class="fh-when">' + esc(when.dateLabel + " · " + when.time) + '</span>' +
       spotlightTvHtml(e.channel) +
       '</div>';
-    h += '</div>';
+    h += '</section>';
     return h;
   }
 
@@ -2545,9 +2545,9 @@
       h += '</div>';
       if (f.state === "next") h += focusCountdown(f.kickoff);
     }
+    h += '</section>';
     if (f.state === "ft" && f.next) h += focusNextTease(f.next);
     if (f.state === "next" && f.prev) h += focusPrevTease(f.prev);
-    h += '</section>';
     return h;
   }
 

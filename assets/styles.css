@@ -529,16 +529,34 @@ html.view-bracket .site-bg {
   color: var(--ink-soft);
 }
 
+/* ---- Fristående "Nästa/Senaste match"-kort (egna rutor under hjälten) ---- */
+.focus-tease {
+  position: relative;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  background: linear-gradient(180deg, rgba(20, 36, 60, .82), rgba(11, 21, 38, .86));
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  backdrop-filter: blur(20px) saturate(1.2);
+  box-shadow: 0 30px 70px -28px rgba(0, 0, 0, .9), inset 0 1px 0 rgba(255, 255, 255, .07);
+  overflow: hidden;
+}
+/* Smal färgaccent högst upp – speglar hjältens accentremsa. */
+.focus-tease::before {
+  content: "";
+  position: absolute; inset: 0 0 auto 0; height: 3px;
+  background: linear-gradient(90deg, var(--usa-red), var(--usa-blue));
+  opacity: .9;
+}
+.focus-tease.ft-next::before { background: linear-gradient(90deg, var(--adv), var(--usa-blue)); }
+
 /* ---- "Nästa match"-ruta under en nyss avslutad match ---- */
 .fh-next {
   display: block; width: 100%; text-align: left;
   padding: clamp(16px, 2.4vw, 26px) clamp(18px, 3.4vw, 40px) clamp(20px, 2.8vw, 30px);
-  border-top: 1px solid rgba(255, 255, 255, .09);
-  background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, 0));
   transition: background .2s ease;
 }
 .fh-next.match-openable { cursor: pointer; }
-.fh-next.match-openable:hover { background: rgba(255, 255, 255, .04); }
+.fh-next.match-openable:hover { background: rgba(255, 255, 255, .03); }
 .fh-next.match-openable:focus-visible { outline: 2px solid var(--focus); outline-offset: -4px; }
 .fh-next-head {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
@@ -743,6 +761,7 @@ html.view-bracket .site-bg {
 }
 .home-intro > *,
 .home-layout > .focus-hero,
+.home-layout > .focus-tease,
 .home-layout > .teams-strip {
   animation: homeRise .72s cubic-bezier(.22, .61, .36, 1) both;
 }
@@ -750,7 +769,8 @@ html.view-bracket .site-bg {
 .home-intro h2              { animation-delay: .12s; }
 .home-intro p               { animation-delay: .20s; }
 .home-layout > .focus-hero  { animation-delay: .30s; }
-.home-layout > .teams-strip { animation-delay: .42s; }
+.home-layout > .focus-tease { animation-delay: .40s; }
+.home-layout > .teams-strip { animation-delay: .48s; }
 
 /* Mjukt rampljus uppifrån bakom matchställningen ger fokuskortet mer liv och
    knyter färgen till sidans läge (blå = kommande, röd = live, grön = avslutad). */
@@ -795,6 +815,7 @@ html.view-bracket .site-bg {
   .site-bg,
   .home-intro > *,
   .home-layout > .focus-hero,
+  .home-layout > .focus-tease,
   .home-layout > .teams-strip { animation: none; }
 }
 
