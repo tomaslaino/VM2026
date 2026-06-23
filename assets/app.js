@@ -2060,6 +2060,101 @@
     { iso: "uy", title: "Uruguay", accent: "76, 188, 232" }
   ];
 
+  /* Gravstensbild per spotlight-lag (visas när drömmen är begravd). */
+  var GRAVE_IMG = { se: "assets/grave-se.png", uy: "assets/grave-uy.png" };
+
+  /* ---------- Begravningen: avgör om Sverige/Uruguay åkt ur ---------- */
+
+  /** Förlorade laget matchen? (slutspel avgörs även på straffar via r.pw) */
+  function teamLostMatch(isHome, r) {
+    if (!r || r.h == null || r.a == null) return false;
+    if (r.h === r.a) {
+      if (r.pw === "h") return !isHome;
+      if (r.pw === "a") return isHome;
+      return false; // oavgjort utan straffvinnare slår inte ut någon
+    }
+    return isHome ? r.h < r.a : r.a < r.h;
+  }
+
+  /** Antal hela dagar mellan två "YYYY-MM-DD"-datum (aldrig negativt). */
+  function daysBetween(startStr, endStr) {
+    var ms = parseDateUTC(endStr).getTime() - parseDateUTC(startStr).getTime();
+    return Math.max(0, Math.round(ms / 86400000));
+  }
+
+  /** "15 juni". */
+  function fmtGraveDay(dateStr) {
+    var d = parseDateUTC(dateStr);
+    return d.getUTCDate() + " " + MONTHS_LONG[d.getUTCMonth()];
+  }
+
+  /** Värdigt datumintervall, t.ex. "15–27 juni 2026" eller "28 juni – 3 juli 2026". */
+  function fmtGraveRange(startStr, endStr) {
+    var s = parseDateUTC(startStr), e = parseDateUTC(endStr);
+    var year = e.getUTCFullYear();
+    if (s.getUTCFullYear() === e.getUTCFullYear() && s.getUTCMonth() === e.getUTCMonth()) {
+      return s.getUTCDate() + "–" + e.getUTCDate() + " " + MONTHS_LONG[e.getUTCMonth()] + " " + year;
+    }
+    return fmtGraveDay(startStr) + " – " + fmtGraveDay(endStr) + " " + year;
+  }
+
+  /** Kort dödsorsak till gravstenen. */
+  function graveCause(f) {
+    if (f.stage === "ko") {
+      var round = f.lastMatch && f.lastMatch.label ? f.lastMatch.label.split(" · ")[0] : "";
+      return round ? "Slogs ut i " + round.toLowerCase() : "Utslagen i slutspelet";
+    }
+    if (f.pos === 4) return "Sist i grupp " + f.group;
+    if (f.pos === 3) return "Trea i grupp " + f.group + " – räckte inte hela vägen";
+    return "Utslagen i gruppspelet";
+  }
+
+  /** Lagets öde: null om laget fortfarande lever, annars gravdata.
+      Drömmen "föds" vid första matchen och "dör" den dag laget åker ur. */
+  function spotlightFate(iso, ctx) {
+    var info = findTeamByIso(iso);
+    if (!info) return null;
+    var team = info.team, L = info.group;
+    var matches = teamMatches(team, L, ctx);
+    if (!matches.length) return null;
+    var playedMatches = matches.filter(function (m) { return m.played && m.home && m.away; });
+    if (!playedMatches.length) return null; // VM har inte börjat för laget ännu
+
+    var startDate = matches[0].date; // första matchen (gruppspelets omgång 1)
+
+    function buildFate(deathDate, stage, lastMatch, pos) {
+      return {
+        team: team, iso: iso, group: L,
+        startDate: startDate, deathDate: deathDate,
+        days: daysBetween(startDate, deathDate),
+        range: fmtGraveRange(startDate, deathDate),
+        stage: stage, pos: pos || null, lastMatch: lastMatch || null
+      };
+    }
+
+    // 1) Slutspel: senast spelade slutspelsmatch avgör – förlust = begravd.
+    var lastKo = null;
+    for (var i = playedMatches.length - 1; i >= 0; i--) {
+      if (playedMatches[i].kind === "ko") { lastKo = playedMatches[i]; break; }
+    }
+    if (lastKo && teamLostMatch(lastKo.isHome, lastKo.r)) {
+      return buildFate(lastKo.date, "ko", lastKo);
+    }
+
+    // 2) Gruppspel klart och laget går inte vidare (fyra, eller trea utan plats).
+    if (ctx.groupComplete[L]) {
+      var st = ctx.tables[L], pos = 0;
+      for (var k = 0; k < st.length; k++) { if (st[k].team === team) { pos = k + 1; break; } }
+      var out = (pos === 4) || (pos === 3 && ctx.allComplete && !isThirdQ(ctx, L));
+      if (out) {
+        var lastGroup = null;
+        playedMatches.forEach(function (m) { if (m.kind === "group") lastGroup = m; });
+        return buildFate(lastGroup ? lastGroup.date : startDate, "group", lastGroup, pos);
+      }
+    }
+    return null; // lever vidare
+  }
+
   function findTeamByIso(iso) {
     var found = null;
     WC.groupLetters.forEach(function (L) {
@@ -2196,17 +2291,47 @@
       inner + '</button>';
   }
 
+  /** Gravsten-memorial: ersätter lagets kort i remsan när drömmen är begravd. */
+  function teamGraveItem(tp) {
+    var f = tp.fate;
+    var accent = tp.accent ? ' style="--ts-accent: ' + tp.accent + '"' : "";
+    var img = GRAVE_IMG[tp.iso] || "";
+    var dayWord = f.days === 1 ? "dag" : "dagar";
+    var cause = graveCause(f);
+    var inner =
+      '<img class="grave-stone" src="' + img + '" alt="Gravsten för ' + esc(tp.title) + 's VM-dröm 2026" loading="lazy">' +
+      '<span class="grave-epitaph">' +
+        '<span class="grave-rip">Vila i frid</span>' +
+        '<span class="grave-team">' + esc(tp.title) + '</span>' +
+        (cause ? '<span class="grave-cause">' + esc(cause) + '</span>' : "") +
+        '<span class="grave-range">' + esc(f.range) + '</span>' +
+        '<span class="grave-days">Drömmen varade i <strong>' + f.days + ' ' + dayWord + '</strong></span>' +
+      '</span>';
+    return '<button type="button" class="ts-item ts-grave team-open" data-team-open="' + tp.iso + '"' +
+      accent + ' title="' + esc(tp.title) + ' – ' + esc(f.range) + '">' + inner + '</button>';
+  }
+
   /** Smal spotlight-remsa: nästa relevanta match för Sverige och Uruguay.
-      Sekundär – ligger under hjälten och konkurrerar inte med "Match i fokus". */
+      Sekundär – ligger under hjälten och konkurrerar inte med "Match i fokus".
+      Har laget åkt ur ersätts kortet av en värdig gravsten. */
   function teamsSpotlightStrip(ctx) {
     var teams = TEAM_SPOTLIGHT.map(function (t) {
-      return { title: t.title, iso: t.iso, accent: t.accent, match: findTeamNextMatch(ctx, t.iso) };
+      var fate = spotlightFate(t.iso, ctx);
+      return {
+        title: t.title, iso: t.iso, accent: t.accent,
+        fate: fate,
+        match: fate ? null : findTeamNextMatch(ctx, t.iso)
+      };
     });
     var anyLive = teams.some(function (t) { return t.match && t.match.live; });
-    var h = '<section class="teams-strip' + (anyLive ? " is-live" : "") + '" id="teamsSpotlight" aria-label="Sverige och Uruguay">';
-    h += '<span class="ts-label">' + flagImg("se") + flagImg("uy") + 'Sverige &amp; Uruguay</span>';
+    var anyGrave = teams.some(function (t) { return t.fate; });
+    var allGrave = teams.every(function (t) { return t.fate; });
+    var h = '<section class="teams-strip' + (anyLive ? " is-live" : "") + (anyGrave ? " has-grave" : "") +
+      '" id="teamsSpotlight" aria-label="Sverige och Uruguay">';
+    var labelTxt = allGrave ? "In memoriam" : "Sverige &amp; Uruguay";
+    h += '<span class="ts-label">' + flagImg("se") + flagImg("uy") + labelTxt + '</span>';
     h += '<div class="ts-items">';
-    teams.forEach(function (tp) { h += teamStripItem(tp); });
+    teams.forEach(function (tp) { h += tp.fate ? teamGraveItem(tp) : teamStripItem(tp); });
     h += '</div></section>';
     return h;
   }
@@ -2421,14 +2546,13 @@
   function focusPrevTease(e) {
     if (!e) return "";
     var open = focusOpenAttr(e);
-    var when = whenLabels(e.m);
     var hs = e.r.h != null ? e.r.h : 0;
     var as = e.r.a != null ? e.r.a : 0;
     var hCls = hs > as ? " is-win" : (hs < as ? " is-loss" : "");
     var aCls = as > hs ? " is-win" : (as < hs ? " is-loss" : "");
     var h = '<section class="focus-tease ft-prev fh-next fh-prev' + open.cls + '"' + open.attr + '>';
     h += '<div class="fh-next-head">' +
-      '<span class="fh-eyebrow">Senaste match</span>' +
+      '<span class="fh-eyebrow">Senaste matchen</span>' +
       '<span class="fhn-head-right">' +
         '<span class="fhn-ft">Slutspelad</span>' +
         focusGroupChip(e, "fh-group") +
@@ -2446,12 +2570,54 @@
         '<span class="fhn-flag">' + flagImg(e.away.iso) + '</span>' +
         '<span class="fhn-name" title="' + esc(e.away.sv) + '">' + esc(teamSvDisplay(e.away)) + '</span></span>' +
       '</div>';
-    h += '<div class="fh-next-meta">' +
-      '<span class="fh-when">' + esc(when.dateLabel + " · " + when.time) + '</span>' +
-      spotlightTvHtml(e.channel) +
-      '</div>';
+    h += focusPrevEvents(e);
     h += '</section>';
     return h;
+  }
+
+  /** Mål + röda kort för "Senaste matchen"-rutan – grupperade per lag, en rad
+      per händelse med minut (mål slås ihop per skytt, röda kort visas separat
+      med röd kortmarkör). */
+  function focusPrevEvents(e) {
+    var det = focusDetails[e.key];
+    if (!det) return "";
+    var goals = det.goals || [];
+    var reds = (det.bookings || []).filter(function (b) { return b.card === "RED"; });
+    if (!goals.length && !reds.length) return "";
+    var sides = { h: [], a: [] };
+    var idx = { h: {}, a: {} };
+    goals.forEach(function (g) {
+      var side = g.team === "a" ? "a" : "h";
+      var name = g.scorer || "Mål";
+      if (idx[side][name] == null) {
+        idx[side][name] = sides[side].length;
+        sides[side].push({ kind: "goal", name: name, tokens: [] });
+      }
+      sides[side][idx[side][name]].tokens.push(goalMinuteToken(g));
+    });
+    reds.forEach(function (b) {
+      var side = b.team === "a" ? "a" : "h";
+      var min = (b.minute != null ? b.minute : "") + (b.injuryTime ? "+" + b.injuryTime : "");
+      sides[side].push({
+        kind: "red", name: b.player || "Rött kort",
+        tokens: [min !== "" ? min + "'" : ""]
+      });
+    });
+    function render(side) {
+      return sides[side].map(function (s) {
+        var mark = s.kind === "red"
+          ? '<span class="fh-red-card" aria-hidden="true"></span>' : "";
+        return '<span class="fh-sc-line' + (s.kind === "red" ? " is-red" : "") + '">' +
+          '<span class="fh-sc-name">' + mark + esc(s.name) + '</span>' +
+          '<span class="fh-sc-min">' + esc(s.tokens.filter(Boolean).join(", ")) + '</span>' +
+          '</span>';
+      }).join("");
+    }
+    return '<div class="fh-scorers fh-prev-events" aria-label="Mål och röda kort">' +
+      '<div class="fh-sc-side fh-sc-home">' + render("h") + '</div>' +
+      '<span class="fh-sc-ball" aria-hidden="true">⚽</span>' +
+      '<div class="fh-sc-side fh-sc-away">' + render("a") + '</div>' +
+      '</div>';
   }
 
   /** Grupp-/rondetikett i hjälten – grupper får sin riktiga färg (group-pill). */
