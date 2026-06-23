@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-23T22:04:07.947Z",
+    "updatedAt": "2026-06-23T23:20:10.550Z",
     "source": "espn",
-    "matchCount": 46,
-    "liveCount": 0,
+    "matchCount": 47,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -236,9 +236,23 @@
       "h": 0,
       "a": 0,
       "status": "FINISHED"
+    },
+    "g:L:5": {
+      "h": 0,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:L:5",
+      "status": "IN_PLAY",
+      "minute": 3,
+      "home": "Croatia",
+      "away": "Panama",
+      "score": "0-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1026,7 +1040,7 @@
       "date": "2026-06-24",
       "time": "01:00",
       "utcDate": "2026-06-23T23:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Croatia",
       "away": "Panama",
