@@ -2422,20 +2422,27 @@
     if (!e) return "";
     var open = focusOpenAttr(e);
     var when = whenLabels(e.m);
+    var hs = e.r.h != null ? e.r.h : 0;
+    var as = e.r.a != null ? e.r.a : 0;
+    var hCls = hs > as ? " is-win" : (hs < as ? " is-loss" : "");
+    var aCls = as > hs ? " is-win" : (as < hs ? " is-loss" : "");
     var h = '<section class="focus-tease ft-prev fh-next fh-prev' + open.cls + '"' + open.attr + '>';
     h += '<div class="fh-next-head">' +
       '<span class="fh-eyebrow">Senaste match</span>' +
-      focusGroupChip(e, "fh-group") +
+      '<span class="fhn-head-right">' +
+        '<span class="fhn-ft">Slutspelad</span>' +
+        focusGroupChip(e, "fh-group") +
+      '</span>' +
       '</div>';
     h += '<div class="fh-next-teams">' +
-      '<span class="fhn-team fhn-home">' +
+      '<span class="fhn-team fhn-home' + hCls + '">' +
         '<span class="fhn-name" title="' + esc(e.home.sv) + '">' + esc(teamSvDisplay(e.home)) + '</span>' +
         '<span class="fhn-flag">' + flagImg(e.home.iso) + '</span></span>' +
       '<span class="fhn-score">' +
-        '<span class="fhn-sc">' + (e.r.h != null ? e.r.h : 0) + '</span>' +
+        '<span class="fhn-sc' + hCls + '">' + hs + '</span>' +
         '<span class="fhn-dash" aria-hidden="true">–</span>' +
-        '<span class="fhn-sc">' + (e.r.a != null ? e.r.a : 0) + '</span></span>' +
-      '<span class="fhn-team fhn-away">' +
+        '<span class="fhn-sc' + aCls + '">' + as + '</span></span>' +
+      '<span class="fhn-team fhn-away' + aCls + '">' +
         '<span class="fhn-flag">' + flagImg(e.away.iso) + '</span>' +
         '<span class="fhn-name" title="' + esc(e.away.sv) + '">' + esc(teamSvDisplay(e.away)) + '</span></span>' +
       '</div>';

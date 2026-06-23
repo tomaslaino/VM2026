@@ -548,6 +548,9 @@ html.view-bracket .site-bg {
   opacity: .9;
 }
 .focus-tease.ft-next::before { background: linear-gradient(90deg, var(--adv), var(--usa-blue)); }
+/* Avslutad-variant: grön accent signalerar "färdigspelad" (speglar hjältens
+   slutresultat-läge) – tydlig kontrast mot live (röd) och nästa (blå). */
+.focus-tease.ft-prev::before { background: linear-gradient(90deg, var(--adv), var(--usa-blue)); }
 
 /* ---- "Nästa match"-ruta under en nyss avslutad match ---- */
 .fh-next {
@@ -600,6 +603,20 @@ html.view-bracket .site-bg {
 .fh-prev .fhn-name { font-size: clamp(13px, 1.7vw, 19px); }
 .fh-prev .fhn-flag .flag { width: clamp(22px, 3vw, 34px); }
 .fh-prev .fh-next-meta { margin-top: clamp(8px, 1.2vw, 12px); }
+/* "Slutspelad"-markör – motsvarigheten till live-badgen, fast grön och statisk. */
+.fhn-head-right { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+.fhn-ft {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10.5px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase;
+  color: var(--adv); white-space: nowrap;
+  padding: 4px 10px; border-radius: 999px;
+  background: color-mix(in srgb, var(--adv) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--adv) 30%, transparent);
+}
+.fhn-ft::before { content: "✓"; font-size: 11px; line-height: 1; }
+/* Vinnaren framhävs, förloraren tonas ned – avgjort resultat läses av direkt. */
+.fhn-team.is-loss { opacity: .6; }
+.fhn-sc.is-loss { color: var(--ink-soft); }
 .fhn-score {
   display: inline-flex; align-items: baseline; gap: clamp(4px, .8vw, 8px);
   font-family: var(--display); font-weight: 800;
