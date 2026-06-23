@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-22T20:31:21.226468+00:00",
+  "updated": "2026-06-23T02:02:55.121594+00:00",
   "source": "the-odds-api.com",
   "market": "VM-vinnare (outright)",
   "teams": [
@@ -13,27 +13,27 @@
     },
     {
       "team": "Spain",
-      "bestOdds": 7.0,
+      "bestOdds": 7.2,
       "bestBook": "Betfair",
-      "avgOdds": 6.67,
+      "avgOdds": 6.8,
       "books": 3,
-      "impliedPct": 15.0
+      "impliedPct": 14.7
     },
     {
       "team": "England",
-      "bestOdds": 7.4,
+      "bestOdds": 7.6,
       "bestBook": "Betfair",
-      "avgOdds": 7.27,
+      "avgOdds": 7.4,
       "books": 3,
-      "impliedPct": 13.8
+      "impliedPct": 13.5
     },
     {
       "team": "Argentina",
-      "bestOdds": 7.8,
+      "bestOdds": 7.6,
       "bestBook": "Betfair",
-      "avgOdds": 7.7,
+      "avgOdds": 7.57,
       "books": 3,
-      "impliedPct": 13.0
+      "impliedPct": 13.2
     },
     {
       "team": "Portugal",
@@ -69,11 +69,19 @@
     },
     {
       "team": "USA",
-      "bestOdds": 36.0,
+      "bestOdds": 38.0,
       "bestBook": "Betfair",
-      "avgOdds": 35.33,
+      "avgOdds": 36.67,
       "books": 3,
-      "impliedPct": 2.8
+      "impliedPct": 2.7
+    },
+    {
+      "team": "Norway",
+      "bestOdds": 40.0,
+      "bestBook": "Betfair",
+      "avgOdds": 37.33,
+      "books": 3,
+      "impliedPct": 2.7
     },
     {
       "team": "Morocco",
@@ -84,14 +92,6 @@
       "impliedPct": 2.5
     },
     {
-      "team": "Norway",
-      "bestOdds": 48.0,
-      "bestBook": "Betfair",
-      "avgOdds": 43.33,
-      "books": 3,
-      "impliedPct": 2.3
-    },
-    {
       "team": "Japan",
       "bestOdds": 50.0,
       "bestBook": "Betfair",
@@ -100,16 +100,16 @@
       "impliedPct": 2.1
     },
     {
-      "team": "Belgium",
+      "team": "Colombia",
       "bestOdds": 65.0,
       "bestBook": "Betfair",
-      "avgOdds": 60.33,
+      "avgOdds": 57.0,
       "books": 3,
-      "impliedPct": 1.7
+      "impliedPct": 1.8
     },
     {
-      "team": "Colombia",
-      "bestOdds": 70.0,
+      "team": "Belgium",
+      "bestOdds": 65.0,
       "bestBook": "Betfair",
       "avgOdds": 60.33,
       "books": 3,
@@ -133,11 +133,11 @@
     },
     {
       "team": "Senegal",
-      "bestOdds": 160.0,
+      "bestOdds": 170.0,
       "bestBook": "Betfair",
-      "avgOdds": 148.67,
+      "avgOdds": 155.33,
       "books": 3,
-      "impliedPct": 0.7
+      "impliedPct": 0.6
     },
     {
       "team": "Croatia",
@@ -172,18 +172,18 @@
       "impliedPct": 0.4
     },
     {
-      "team": "Austria",
-      "bestOdds": 360.0,
+      "team": "Sweden",
+      "bestOdds": 340.0,
       "bestBook": "Betfair",
-      "avgOdds": 278.67,
+      "avgOdds": 277.0,
       "books": 3,
       "impliedPct": 0.4
     },
     {
-      "team": "Sweden",
-      "bestOdds": 350.0,
+      "team": "Austria",
+      "bestOdds": 360.0,
       "bestBook": "Betfair",
-      "avgOdds": 283.67,
+      "avgOdds": 282.0,
       "books": 3,
       "impliedPct": 0.4
     },
@@ -213,25 +213,17 @@
     },
     {
       "team": "South Korea",
-      "bestOdds": 500.0,
+      "bestOdds": 470.0,
       "bestBook": "Betfair",
-      "avgOdds": 450.33,
-      "books": 3,
-      "impliedPct": 0.2
-    },
-    {
-      "team": "Iran",
-      "bestOdds": 750.0,
-      "bestBook": "Betfair",
-      "avgOdds": 553.67,
+      "avgOdds": 430.33,
       "books": 3,
       "impliedPct": 0.2
     },
     {
       "team": "Paraguay",
-      "bestOdds": 740.0,
+      "bestOdds": 730.0,
       "bestBook": "Betfair",
-      "avgOdds": 607.0,
+      "avgOdds": 603.67,
       "books": 3,
       "impliedPct": 0.2
     },
@@ -245,9 +237,17 @@
     },
     {
       "team": "Ghana",
-      "bestOdds": 900.0,
+      "bestOdds": 880.0,
       "bestBook": "Betfair",
-      "avgOdds": 717.0,
+      "avgOdds": 683.67,
+      "books": 3,
+      "impliedPct": 0.1
+    },
+    {
+      "team": "Iran",
+      "bestOdds": 1000.0,
+      "bestBook": "Betfair",
+      "avgOdds": 683.67,
       "books": 3,
       "impliedPct": 0.1
     },
