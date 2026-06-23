@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-23T18:31:04.213Z",
+    "updatedAt": "2026-06-23T20:37:05.180Z",
     "source": "espn"
   },
   "details": {
@@ -19792,14 +19792,14 @@
     },
     "g:K:2": {
       "espnId": "760461",
-      "status": "IN_PLAY",
-      "minute": 67,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-23T17:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
-          "h": 4,
+          "h": 5,
           "a": 0
         },
         "ht": {
@@ -19858,6 +19858,18 @@
             "h": 4,
             "a": 0
           }
+        },
+        {
+          "minute": 87,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Rafael Leão",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 5,
+            "a": 0
+          }
         }
       ],
       "bookings": [
@@ -19866,9 +19878,21 @@
           "team": "a",
           "player": "Odiljon Xamrobekov",
           "card": "YELLOW"
+        },
+        {
+          "minute": 68,
+          "team": "h",
+          "player": "Renato Veiga",
+          "card": "YELLOW"
         }
       ],
       "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Khojiakbar Alijonov",
+          "out": "Sherzod Nasrullaev"
+        },
         {
           "minute": 45,
           "team": "a",
@@ -19883,21 +19907,45 @@
         },
         {
           "minute": 45,
-          "team": "a",
-          "in": "Khojiakbar Alijonov",
-          "out": "Sherzod Nasrullaev"
-        },
-        {
-          "minute": 45,
           "team": "h",
           "in": "Francisco Conceição",
           "out": "Pedro Neto"
         },
         {
-          "minute": 64,
+          "minute": 63,
           "team": "h",
           "in": "Francisco Trincão",
           "out": "João Félix"
+        },
+        {
+          "minute": 73,
+          "team": "a",
+          "in": "Igor Sergeev",
+          "out": "Abbosbek Fayzullaev"
+        },
+        {
+          "minute": 76,
+          "team": "h",
+          "in": "Bernardo Silva",
+          "out": "João Neves"
+        },
+        {
+          "minute": 83,
+          "team": "h",
+          "in": "Rafael Leão",
+          "out": "Vitinha "
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Ruslanbek Jiyanov",
+          "out": "Behruzjon Karimov"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Sherzod Esanov",
+          "out": "Otabek Shukurov"
         }
       ],
       "penalties": [],
@@ -19973,7 +20021,8 @@
             },
             {
               "name": "Bernardo Silva",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true
             },
             {
               "name": "Francisco Trincão",
@@ -19990,7 +20039,8 @@
             },
             {
               "name": "Rafael Leão",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Rui Silva",
@@ -20102,7 +20152,8 @@
             },
             {
               "name": "Igor Sergeev",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Botirali Ergashev",
@@ -20110,7 +20161,8 @@
             },
             {
               "name": "Ruslanbek Jiyanov",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true
             },
             {
               "name": "Dostonbek Khamdamov",
@@ -20147,63 +20199,64 @@
             },
             {
               "name": "Sherzod Esanov",
-              "jersey": "23"
+              "jersey": "23",
+              "in": true
             }
           ]
         }
       },
       "referee": "Jalal Jayed",
       "venue": "NRG Stadium, Houston, Texas",
-      "attendance": null,
+      "attendance": 68777,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "65%",
-          "a": "35%"
+          "h": "66%",
+          "a": "34%"
         },
         {
           "key": "totalShots",
-          "h": "11",
-          "a": "6"
+          "h": "17",
+          "a": "7"
         },
         {
           "key": "shotsOnTarget",
-          "h": "5",
+          "h": "9",
           "a": "2"
         },
         {
           "key": "wonCorners",
-          "h": "2",
+          "h": "3",
           "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "10",
-          "a": "9"
+          "h": "14",
+          "a": "15"
         },
         {
           "key": "offsides",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "2"
         },
         {
           "key": "saves",
           "h": "2",
-          "a": "1"
+          "a": "4"
         },
         {
           "key": "totalPasses",
-          "h": "420",
-          "a": "227"
+          "h": "624",
+          "a": "325"
         },
         {
           "key": "passPct",
-          "h": "89%",
-          "a": "80%"
+          "h": "90%",
+          "a": "81%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
+          "h": "1",
           "a": "1"
         },
         {
@@ -20212,7 +20265,336 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-23T18:31:04.213Z"
+      "updatedAt": "2026-06-23T20:37:05.179Z"
+    },
+    "g:L:4": {
+      "espnId": "760458",
+      "status": "IN_PLAY",
+      "minute": 36,
+      "utcDate": "2026-06-23T20:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-1-4-1",
+          "starters": [
+            {
+              "name": "Benjamin Asare",
+              "jersey": "16",
+              "pos": "G"
+            },
+            {
+              "name": "Marvin Senaya",
+              "jersey": "26",
+              "pos": "RB"
+            },
+            {
+              "name": "Gideon Mensah",
+              "jersey": "14",
+              "pos": "LB"
+            },
+            {
+              "name": "Thomas Partey",
+              "jersey": "5",
+              "pos": "DM"
+            },
+            {
+              "name": "Jonas Adjetey",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Jerome Opoku",
+              "jersey": "18",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Iñaki Williams",
+              "jersey": "19",
+              "pos": "RM"
+            },
+            {
+              "name": "Caleb Yirenkyi",
+              "jersey": "3",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Jordan Ayew",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Kwasi Sibo",
+              "jersey": "8",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Antoine Semenyo",
+              "jersey": "11",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Joseph Anang",
+              "jersey": "12"
+            },
+            {
+              "name": "Prince Adu",
+              "jersey": "25"
+            },
+            {
+              "name": "Kojo Peprah Oppong",
+              "jersey": "21"
+            },
+            {
+              "name": "Augustine Boakye",
+              "jersey": "20"
+            },
+            {
+              "name": "Kamaldeen Sulemana",
+              "jersey": "22"
+            },
+            {
+              "name": "Alidu Seidu",
+              "jersey": "2"
+            },
+            {
+              "name": "Elisha Owusu",
+              "jersey": "15"
+            },
+            {
+              "name": "Abdul Mumin",
+              "jersey": "6"
+            },
+            {
+              "name": "Derrick Luckassen",
+              "jersey": "23"
+            },
+            {
+              "name": "Baba Rahman",
+              "jersey": "17"
+            },
+            {
+              "name": "Brandon Thomas-Asante",
+              "jersey": "10"
+            },
+            {
+              "name": "Christopher Bonsu Baah",
+              "jersey": "13"
+            },
+            {
+              "name": "Ernest Nuamah",
+              "jersey": "24"
+            },
+            {
+              "name": "Lawrence Ati Zigi",
+              "jersey": "1"
+            },
+            {
+              "name": "Fatawu Issahaku",
+              "jersey": "7"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Jordan Pickford",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Reece James",
+              "jersey": "24",
+              "pos": "RB"
+            },
+            {
+              "name": "Djed Spence",
+              "jersey": "25",
+              "pos": "LB"
+            },
+            {
+              "name": "Declan Rice",
+              "jersey": "4",
+              "pos": "LM"
+            },
+            {
+              "name": "Ezri Konsa",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Marc Guéhi",
+              "jersey": "6",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Noni Madueke",
+              "jersey": "20",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Elliot Anderson",
+              "jersey": "8",
+              "pos": "RM"
+            },
+            {
+              "name": "Harry Kane",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Jude Bellingham",
+              "jersey": "10",
+              "pos": "AM"
+            },
+            {
+              "name": "Anthony Gordon",
+              "jersey": "18",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Jordan Henderson",
+              "jersey": "14"
+            },
+            {
+              "name": "Trevoh Chalobah",
+              "jersey": "12"
+            },
+            {
+              "name": "Ivan Toney",
+              "jersey": "22"
+            },
+            {
+              "name": "Morgan Rogers",
+              "jersey": "17"
+            },
+            {
+              "name": "Eberechi Eze",
+              "jersey": "21"
+            },
+            {
+              "name": "Jarell Quansah",
+              "jersey": "26"
+            },
+            {
+              "name": "Ollie Watkins",
+              "jersey": "19"
+            },
+            {
+              "name": "John Stones",
+              "jersey": "5"
+            },
+            {
+              "name": "Dean Henderson",
+              "jersey": "13"
+            },
+            {
+              "name": "Marcus Rashford",
+              "jersey": "11"
+            },
+            {
+              "name": "Dan Burn",
+              "jersey": "15"
+            },
+            {
+              "name": "Nico O'Reilly",
+              "jersey": "3"
+            },
+            {
+              "name": "Bukayo Saka",
+              "jersey": "7"
+            },
+            {
+              "name": "Kobbie Mainoo",
+              "jersey": "16"
+            },
+            {
+              "name": "James Trafford",
+              "jersey": "23"
+            }
+          ]
+        }
+      },
+      "referee": "Martínez, Héctor",
+      "venue": "Gillette Stadium, Foxborough, Massachusetts",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "16%",
+          "a": "84%"
+        },
+        {
+          "key": "totalShots",
+          "h": "0",
+          "a": "4"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "8",
+          "a": "5"
+        },
+        {
+          "key": "offsides",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "52",
+          "a": "268"
+        },
+        {
+          "key": "passPct",
+          "h": "73%",
+          "a": "96%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-23T20:37:05.083Z"
     }
   }
 }
