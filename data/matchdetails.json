@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-23T04:34:06.862Z",
+    "updatedAt": "2026-06-23T08:18:19.049Z",
     "source": "espn"
   },
   "details": {
@@ -19343,14 +19343,14 @@
     },
     "g:J:1": {
       "espnId": "760455",
-      "status": "IN_PLAY",
-      "minute": 72,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-23T03:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
-          "h": 1,
+          "h": 2,
           "a": 1
         },
         "ht": {
@@ -19385,6 +19385,18 @@
             "h": 1,
             "a": 1
           }
+        },
+        {
+          "minute": 82,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Amine Gouiri",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 1
+          }
         }
       ],
       "bookings": [
@@ -19413,6 +19425,54 @@
           "team": "h",
           "in": "Nadhir Benbouali",
           "out": "Hicham Boudaoui"
+        },
+        {
+          "minute": 76,
+          "team": "h",
+          "in": "Anis Hadj Moussa",
+          "out": "Riyad Mahrez"
+        },
+        {
+          "minute": 76,
+          "team": "a",
+          "in": "Odeh Fakhoury",
+          "out": "Mahmoud Al-Mardi"
+        },
+        {
+          "minute": 84,
+          "team": "a",
+          "in": "Ali Azaizeh",
+          "out": "Mousa Al-Tamari"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Mohammad Abu Hasheesh",
+          "out": "Mohannad Abu Taha"
+        },
+        {
+          "minute": 85,
+          "team": "h",
+          "in": "Jaouen Hadjam",
+          "out": "Rayan Aït-Nouri"
+        },
+        {
+          "minute": 86,
+          "team": "h",
+          "in": "Zineddine Belaïd",
+          "out": "Amine Gouiri"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Saleem Obaid",
+          "out": "Husam Abu Dahab"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Mohammed Abu Zraiq",
+          "out": "Ali Olwan"
         }
       ],
       "penalties": [],
@@ -19483,7 +19543,8 @@
             },
             {
               "name": "Zineddine Belaïd",
-              "jersey": "5"
+              "jersey": "5",
+              "in": true
             },
             {
               "name": "Farès Ghedjemis",
@@ -19491,7 +19552,8 @@
             },
             {
               "name": "Anis Hadj Moussa",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Oussama Benbot",
@@ -19515,7 +19577,8 @@
             },
             {
               "name": "Jaouen Hadjam",
-              "jersey": "13"
+              "jersey": "13",
+              "in": true
             },
             {
               "name": "Nabil Bentaleb",
@@ -19599,7 +19662,8 @@
           "bench": [
             {
               "name": "Mohammad Abu Hasheesh",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Mohammad Abughoush",
@@ -19611,7 +19675,8 @@
             },
             {
               "name": "Saleem Obaid",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Ibrahim Sadeh",
@@ -19627,7 +19692,8 @@
             },
             {
               "name": "Mohammed Abu Zraiq",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Mohammad Abualnadi",
@@ -19635,11 +19701,13 @@
             },
             {
               "name": "Ali Azaizeh",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Odeh Fakhoury",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Amer Jamous",
@@ -19662,32 +19730,32 @@
       },
       "referee": "Slavko Vincici",
       "venue": "Levi's Stadium, Santa Clara, California",
-      "attendance": null,
+      "attendance": 68371,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "74%",
-          "a": "26%"
+          "h": "72%",
+          "a": "28%"
         },
         {
           "key": "totalShots",
-          "h": "11",
+          "h": "17",
           "a": "8"
         },
         {
           "key": "shotsOnTarget",
-          "h": "5",
+          "h": "8",
           "a": "4"
         },
         {
           "key": "wonCorners",
-          "h": "6",
+          "h": "10",
           "a": "1"
         },
         {
           "key": "foulsCommitted",
           "h": "6",
-          "a": "6"
+          "a": "11"
         },
         {
           "key": "offsides",
@@ -19697,17 +19765,17 @@
         {
           "key": "saves",
           "h": "3",
-          "a": "4"
+          "a": "6"
         },
         {
           "key": "totalPasses",
-          "h": "538",
-          "a": "189"
+          "h": "641",
+          "a": "251"
         },
         {
           "key": "passPct",
-          "h": "89%",
-          "a": "74%"
+          "h": "88%",
+          "a": "72%"
         },
         {
           "key": "yellowCards",
@@ -19720,7 +19788,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-23T04:34:06.812Z"
+      "updatedAt": "2026-06-23T08:18:19.049Z"
     }
   }
 }

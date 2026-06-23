@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-23T04:34:06.760Z",
+    "updatedAt": "2026-06-23T08:18:18.976Z",
     "source": "espn",
     "matchCount": 44,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -223,21 +223,12 @@
       "status": "FINISHED"
     },
     "g:J:1": {
-      "h": 1,
+      "h": 2,
       "a": 1,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:J:1",
-      "status": "IN_PLAY",
-      "minute": 72,
-      "home": "Algeria",
-      "away": "Jordan",
-      "score": "1-1"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -974,7 +965,7 @@
       "date": "2026-06-23",
       "time": "05:00",
       "utcDate": "2026-06-23T03:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Algeria",
       "away": "Jordan",
@@ -1632,9 +1623,12 @@
       "utcDate": "2026-07-03T22:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Group J Winner",
+      "home": "Argentina",
       "away": "Group H 2nd Place",
-      "homeRef": null,
+      "homeRef": {
+        "group": "J",
+        "idx": 0
+      },
       "awayRef": null
     },
     "k:87": {
@@ -2302,26 +2296,26 @@
         "pts": 3
       },
       {
-        "idx": 3,
+        "idx": 2,
         "position": 3,
-        "pld": 1,
-        "w": 0,
+        "pld": 2,
+        "w": 1,
         "d": 0,
         "l": 1,
-        "gf": 1,
-        "ga": 3,
+        "gf": 2,
+        "ga": 4,
         "gd": -2,
-        "pts": 0
+        "pts": 3
       },
       {
-        "idx": 2,
+        "idx": 3,
         "position": 4,
-        "pld": 1,
+        "pld": 2,
         "w": 0,
         "d": 0,
-        "l": 1,
-        "gf": 0,
-        "ga": 3,
+        "l": 2,
+        "gf": 2,
+        "ga": 5,
         "gd": -3,
         "pts": 0
       }
