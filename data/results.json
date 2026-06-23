@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-23T20:37:05.039Z",
+    "updatedAt": "2026-06-23T22:04:07.947Z",
     "source": "espn",
     "matchCount": 46,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -235,19 +235,10 @@
     "g:L:4": {
       "h": 0,
       "a": 0,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:L:4",
-      "status": "IN_PLAY",
-      "minute": 3,
-      "home": "Ghana",
-      "away": "England",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1018,7 +1009,7 @@
       "date": "2026-06-23",
       "time": "22:00",
       "utcDate": "2026-06-23T20:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Ghana",
       "away": "England",
@@ -2393,26 +2384,26 @@
       {
         "idx": 0,
         "position": 1,
-        "pld": 1,
+        "pld": 2,
         "w": 1,
-        "d": 0,
+        "d": 1,
         "l": 0,
         "gf": 4,
         "ga": 2,
         "gd": 2,
-        "pts": 3
+        "pts": 4
       },
       {
         "idx": 3,
         "position": 2,
-        "pld": 1,
+        "pld": 2,
         "w": 1,
-        "d": 0,
+        "d": 1,
         "l": 0,
         "gf": 1,
         "ga": 0,
         "gd": 1,
-        "pts": 3
+        "pts": 4
       },
       {
         "idx": 2,

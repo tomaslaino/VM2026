@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-23T20:37:05.180Z",
+    "updatedAt": "2026-06-23T22:04:07.980Z",
     "source": "espn"
   },
   "details": {
@@ -20269,24 +20269,95 @@
     },
     "g:L:4": {
       "espnId": "760458",
-      "status": "IN_PLAY",
-      "minute": 36,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-23T20:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "DRAW",
       "score": {
         "ft": {
           "h": 0,
           "a": 0
         },
-        "ht": null,
+        "ht": {
+          "h": 0,
+          "a": 0
+        },
         "rt": null,
         "et": null,
         "pen": null
       },
       "goals": [],
-      "bookings": [],
-      "subs": [],
+      "bookings": [
+        {
+          "minute": 41,
+          "team": "a",
+          "player": "Declan Rice",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 60,
+          "team": "h",
+          "player": "Iñaki Williams",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 65,
+          "team": "a",
+          "in": "Bukayo Saka",
+          "out": "Anthony Gordon"
+        },
+        {
+          "minute": 66,
+          "team": "a",
+          "in": "Nico O'Reilly",
+          "out": "Djed Spence"
+        },
+        {
+          "minute": 66,
+          "team": "h",
+          "in": "Fatawu Issahaku",
+          "out": "Iñaki Williams"
+        },
+        {
+          "minute": 67,
+          "team": "h",
+          "in": "Prince Adu",
+          "out": "Jordan Ayew"
+        },
+        {
+          "minute": 73,
+          "team": "a",
+          "in": "Morgan Rogers",
+          "out": "Jude Bellingham"
+        },
+        {
+          "minute": 74,
+          "team": "a",
+          "in": "Eberechi Eze",
+          "out": "Elliot Anderson"
+        },
+        {
+          "minute": 83,
+          "team": "a",
+          "in": "Marcus Rashford",
+          "out": "Noni Madueke"
+        },
+        {
+          "minute": 87,
+          "team": "h",
+          "in": "Kojo Peprah Oppong",
+          "out": "Marvin Senaya"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Baba Rahman",
+          "out": "Prince Adu"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -20355,11 +20426,13 @@
             },
             {
               "name": "Prince Adu",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Kojo Peprah Oppong",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Augustine Boakye",
@@ -20387,7 +20460,8 @@
             },
             {
               "name": "Baba Rahman",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Brandon Thomas-Asante",
@@ -20407,7 +20481,8 @@
             },
             {
               "name": "Fatawu Issahaku",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             }
           ]
         },
@@ -20485,11 +20560,13 @@
             },
             {
               "name": "Morgan Rogers",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Eberechi Eze",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Jarell Quansah",
@@ -20509,7 +20586,8 @@
             },
             {
               "name": "Marcus Rashford",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Dan Burn",
@@ -20517,11 +20595,13 @@
             },
             {
               "name": "Nico O'Reilly",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true
             },
             {
               "name": "Bukayo Saka",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Kobbie Mainoo",
@@ -20536,57 +20616,57 @@
       },
       "referee": "Martínez, Héctor",
       "venue": "Gillette Stadium, Foxborough, Massachusetts",
-      "attendance": null,
+      "attendance": 63983,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "16%",
-          "a": "84%"
+          "h": "21%",
+          "a": "79%"
         },
         {
           "key": "totalShots",
-          "h": "0",
-          "a": "4"
+          "h": "2",
+          "a": "19"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "3"
         },
         {
           "key": "wonCorners",
-          "h": "0",
-          "a": "1"
+          "h": "2",
+          "a": "9"
         },
         {
           "key": "foulsCommitted",
-          "h": "8",
-          "a": "5"
+          "h": "24",
+          "a": "14"
         },
         {
           "key": "offsides",
-          "h": "1",
-          "a": "0"
+          "h": "2",
+          "a": "2"
         },
         {
           "key": "saves",
-          "h": "0",
+          "h": "3",
           "a": "0"
         },
         {
           "key": "totalPasses",
-          "h": "52",
-          "a": "268"
+          "h": "173",
+          "a": "633"
         },
         {
           "key": "passPct",
-          "h": "73%",
-          "a": "96%"
+          "h": "74%",
+          "a": "93%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -20594,7 +20674,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-23T20:37:05.083Z"
+      "updatedAt": "2026-06-23T22:04:07.980Z"
     }
   }
 }
