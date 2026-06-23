@@ -2234,7 +2234,7 @@
   function findFocusMatch(ctx) {
     var items = buildSchedule();
     var now = Date.now();
-    var live = [], finished = [], upcoming = [];
+    var live = [], finished = [], upcoming = [], playedAll = [];
 
     items.forEach(function (it) {
       var key, label, home, away, m, channel, groupLetter = null;
@@ -2273,9 +2273,10 @@
         entry.state = "live";
         entry.paused = matchIsPaused(key);
         live.push(entry);
-      } else if (played && now < ko + LIVE_MATCH_MS + FOCUS_FT_GRACE_MS) {
+      } else if (played) {
         entry.state = "ft";
-        finished.push(entry);
+        playedAll.push(entry);
+        if (now < ko + LIVE_MATCH_MS + FOCUS_FT_GRACE_MS) finished.push(entry);
       } else if (!played && ko >= now) {
         entry.state = "next";
         upcoming.push(entry);
@@ -2300,9 +2301,15 @@
     if (upcoming.length) {
       upcoming.sort(byKey);
       var best = upcoming[0].ko;
+      var prev = null;
+      if (playedAll.length) {
+        playedAll.sort(byKey);
+        prev = playedAll[playedAll.length - 1];
+      }
       return {
         state: "next", kickoff: best,
-        matches: upcoming.filter(function (e) { return e.ko === best; }).slice(0, 2)
+        matches: upcoming.filter(function (e) { return e.ko === best; }).slice(0, 2),
+        prev: prev
       };
     }
     return { state: "none", kickoff: null, matches: [] };
@@ -2409,6 +2416,37 @@
     return h;
   }
 
+  /** "Senaste match"-ruta, visas litet under nästa-match-hjälten – spegelvänd
+      variant av focusNextTease men med slutresultat istället för nedräkning. */
+  function focusPrevTease(e) {
+    if (!e) return "";
+    var open = focusOpenAttr(e);
+    var when = whenLabels(e.m);
+    var h = '<div class="fh-next fh-prev' + open.cls + '"' + open.attr + '>';
+    h += '<div class="fh-next-head">' +
+      '<span class="fh-eyebrow">Senaste match</span>' +
+      focusGroupChip(e, "fh-group") +
+      '</div>';
+    h += '<div class="fh-next-teams">' +
+      '<span class="fhn-team fhn-home">' +
+        '<span class="fhn-name" title="' + esc(e.home.sv) + '">' + esc(teamSvDisplay(e.home)) + '</span>' +
+        '<span class="fhn-flag">' + flagImg(e.home.iso) + '</span></span>' +
+      '<span class="fhn-score">' +
+        '<span class="fhn-sc">' + (e.r.h != null ? e.r.h : 0) + '</span>' +
+        '<span class="fhn-dash" aria-hidden="true">–</span>' +
+        '<span class="fhn-sc">' + (e.r.a != null ? e.r.a : 0) + '</span></span>' +
+      '<span class="fhn-team fhn-away">' +
+        '<span class="fhn-flag">' + flagImg(e.away.iso) + '</span>' +
+        '<span class="fhn-name" title="' + esc(e.away.sv) + '">' + esc(teamSvDisplay(e.away)) + '</span></span>' +
+      '</div>';
+    h += '<div class="fh-next-meta">' +
+      '<span class="fh-when">' + esc(when.dateLabel + " · " + when.time) + '</span>' +
+      spotlightTvHtml(e.channel) +
+      '</div>';
+    h += '</div>';
+    return h;
+  }
+
   /** Grupp-/rondetikett i hjälten – grupper får sin riktiga färg (group-pill). */
   function focusGroupChip(e, cls) {
     if (e.groupLetter) {
@@ -2508,6 +2546,7 @@
       if (f.state === "next") h += focusCountdown(f.kickoff);
     }
     if (f.state === "ft" && f.next) h += focusNextTease(f.next);
+    if (f.state === "next" && f.prev) h += focusPrevTease(f.prev);
     h += '</section>';
     return h;
   }
