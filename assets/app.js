@@ -2007,6 +2007,20 @@
       return t ? teamSvFixture(t) : nm;
     }).join("/");
   }
+  // Exempel på de troligaste "lättare" motståndarna – speglar topplags-etiketten.
+  function r32GoodLabel() {
+    if (!r32Result || !r32Result.outcomes) return "";
+    var good = r32Result.outcomes
+      .filter(function (o) { return o.good === true && o.prob > 0; })
+      .sort(function (a, b) { return b.prob - a.prob; })
+      .slice(0, 3);
+    if (!good.length) return "";
+    var byName = r32EnglishToTeam();
+    return good.map(function (o) {
+      var t = byName[o.label];
+      return t ? teamSvFixture(t) : r32SvName(o.label);
+    }).join("/");
+  }
 
   /* ---------- panel-skelett ---------- */
   function r32PanelHtml() {
@@ -2031,9 +2045,8 @@
         '<div class="r32-head">' +
           '<div class="r32-titlewrap">' +
             '<h3 id="r32-title">' + esc(r32TitleText(sel.team.sv)) + '</h3>' +
-            '<p class="r32-sub">Klicka i hur du tror att matcherna som är kvar i grupperna slutar. ' +
-              'Då visar vi vilka lag ' + esc(sel.team.sv) + ' troligen ställs mot i sextondelsfinalen – ' +
-              'och hur stor chansen är att slippa de tuffaste motståndarna. ' +
+            '<p class="r32-sub">Klicka i hur gruppmatcherna slutar – så ser du vilka lag ' +
+              esc(sel.team.sv) + ' kan möta i sextondelsfinalen. ' +
               '<span class="r32-status" id="r32-status"></span></p>' +
           '</div>' +
           '<div class="r32-pick">' +
@@ -2047,8 +2060,8 @@
         '<div class="r32-body">' +
           '<div class="r32-col r32-games-col">' +
             '<div class="r32-colhead"><h4>Matcher kvar att spela</h4>' +
-              '<span class="r32-legend">Klicka på det du tror händer. Färgen visar vad det ger ' + esc(sel.team.sv) + ': ' +
-                '<i class="sw good"></i>bättre läge <i class="sw neu"></i>ingen skillnad <i class="sw bad"></i>sämre läge</span>' +
+              '<span class="r32-legend">Färgen visar läget för ' + esc(sel.team.sv) + ': ' +
+                '<i class="sw good"></i>bättre <i class="sw neu"></i>oförändrat <i class="sw bad"></i>sämre</span>' +
             '</div>' +
             '<div id="r32-games" class="r32-games"></div>' +
           '</div>' +
@@ -2092,8 +2105,9 @@
     var s = r32Result.summary;
     var el = document.getElementById("r32-summary");
     if (!el) return;
+    var good = r32GoodLabel();
     el.innerHTML =
-      '<div class="r32-stat good"><div class="v">' + r32Pct(s.good) + '</div><div class="l">Möter ett lag de bör klara</div></div>' +
+      '<div class="r32-stat good"><div class="v">' + r32Pct(s.good) + '</div><div class="l">Möter ett lag de bör klara' + (good ? ' (' + esc(good) + ')' : '') + '</div></div>' +
       '<div class="r32-stat bad"><div class="v">' + r32Pct(s.bad) + '</div><div class="l">Möter ett topplag (' + esc(avoid) + ')</div></div>' +
       '<div class="r32-stat out"><div class="v">' + r32Pct(s.eliminated) + '</div><div class="l">Åker ut i gruppspelet</div></div>';
   }
@@ -2226,11 +2240,11 @@
       var tip = r32TipId(r32ResultTip(g, r));
       var who = r === "1" ? homeT : awayT;
       var label = r === "X"
-        ? '<span class="rr"><span class="rwho">Oavgjort</span></span>'
-        : '<span class="rr"><span class="rwho">' + (who ? flagImg(who.iso) + esc(teamSvFixture(who)) : esc(r32SvName(r === "1" ? g.home : g.away))) + '</span><small>vinner</small></span>';
+        ? '<span class="rwho">Oavgjort</span>'
+        : '<span class="rwho">' + (who ? flagImg(who.iso) + '<span class="rnm">' + esc(teamSvFixture(who)) + '</span>' : '<span class="rnm">' + esc(r32SvName(r === "1" ? g.home : g.away)) + '</span>') + '</span>';
       return '<button type="button" class="' + cls + '" data-r32-gid="' + g.id + '" data-r32-r="' + r + '"' +
         (style ? ' style="' + style + '"' : '') + ' data-r32-tip="' + tip + '">' +
-        label + '<span class="rsub">' + r32Pct(g.result_probs[r]) + ' chans</span>' +
+        label + '<span class="rsub">' + r32Pct(g.result_probs[r]) + '</span>' +
         (scorish ? '<span class="rtag">▸</span>' : '') + '</button>';
     }).join("");
 
@@ -2917,13 +2931,16 @@
     return tvChHtml(ch);
   }
 
-  /** Ett lag i matchraden – flagga + namn, fokuslaget (Sverige/Uruguay) lyfts fram. */
-  function tsTeamName(name, iso, focusIso, live) {
+  /** Ett lag i matchraden – fokuslaget (Sverige/Uruguay) lyfts fram. Flaggan
+      vänds inåt mot mitten precis som i hjälten: hemma = namn+flagga, borta =
+      flagga+namn (solo = enskilt lag, centrerat). */
+  function tsTeamName(name, iso, focusIso, side) {
     var focus = iso && iso === focusIso;
-    var dot = (focus && live) ? '<span class="ts-livedot"><span class="live-dot"></span></span>' : "";
-    return '<span class="ts-team' + (focus ? " is-focus" : "") + '">' +
-      '<span class="ts-tflag">' + flagImg(iso) + dot + '</span>' +
-      '<span class="ts-tname">' + esc(name) + '</span></span>';
+    var flag = '<span class="ts-tflag">' + flagImg(iso) + '</span>';
+    var nm = '<span class="ts-tname">' + esc(name) + '</span>';
+    side = side || "home";
+    var inner = side === "home" ? nm + flag : flag + nm;
+    return '<span class="ts-team ts-' + side + (focus ? " is-focus" : "") + '">' + inner + '</span>';
   }
 
   /** Grupp-/rondetikett – grupper återanvänder den färgade group-pill:en. */
@@ -2934,27 +2951,32 @@
     return '<span class="ts-grp ts-grp-round">' + esc(m.label) + '</span>';
   }
 
-  /** En lag-cell i den smala Sverige/Uruguay-remsan (sekundär under hjälten). */
+  /** En lag-cell i den smala Sverige/Uruguay-remsan (sekundär under hjälten).
+      Speglar hjältekortet i miniatyr: topprad (grupp + status), mittrad med
+      flaggorna vända mot varandra, och en TV-rad i foten. */
   function teamStripItem(tp) {
     var accent = tp.accent ? ' style="--ts-accent: ' + tp.accent + '"' : "";
     var m = tp.match;
     if (!m) {
       return '<button type="button" class="ts-item is-empty team-open" data-team-open="' + tp.iso + '"' + accent + '>' +
-        '<span class="ts-body"><span class="ts-when nm-muted">Ingen kommande match</span>' +
-        '<span class="ts-teams">' + tsTeamName(tp.title, tp.iso, tp.iso, false) + '</span></span></button>';
+        '<div class="ts-top"><span class="ts-grp ts-grp-round">VM 2026</span>' +
+          '<span class="ts-when nm-muted"><span class="ts-when-time">Ingen kommande match</span></span></div>' +
+        '<div class="ts-main ts-main-solo">' + tsTeamName(tp.title, tp.iso, tp.iso, "solo") + '</div>' +
+        '</button>';
     }
-    var whenLine = tsGroupChip(m) + '<span class="ts-when-time">' + esc(m.whenText) + '</span>';
+    var status = m.live
+      ? '<span class="ts-when is-live"><span class="live-dot"></span><span class="ts-when-time">Pågår nu</span></span>'
+      : '<span class="ts-when"><span class="ts-when-time">' + esc(m.whenText) + '</span></span>';
     var teamsTitle = (m.teamsFull && m.teamsFull !== m.teams) ? ' title="' + esc(m.teamsFull) + '"' : "";
-    // Båda lagen med flagga; fokuslaget framhävt. Fall tillbaka på platt text.
+    var center = '<span class="ts-vs" aria-hidden="true">' + (m.live ? "–" : "vs") + '</span>';
+    // Båda lagen med flagga vänd inåt; fokuslaget framhävt. Fall tillbaka på platt text.
     var teamsInner = m.homeName
-      ? tsTeamName(m.homeName, m.homeIso, tp.iso, m.live) + '<span class="ts-sep">–</span>' + tsTeamName(m.awayName, m.awayIso, tp.iso, m.live)
+      ? tsTeamName(m.homeName, m.homeIso, tp.iso, "home") + center + tsTeamName(m.awayName, m.awayIso, tp.iso, "away")
       : esc(m.teams);
     var inner =
-      '<span class="ts-body">' +
-        '<span class="ts-when' + (m.live ? " is-live" : "") + '">' + whenLine + '</span>' +
-        '<span class="ts-teams"' + teamsTitle + '>' + teamsInner + '</span>' +
-      '</span>' +
-      spotlightTvHtml(m.channel);
+      '<div class="ts-top">' + tsGroupChip(m) + status + '</div>' +
+      '<div class="ts-main"' + teamsTitle + '>' + teamsInner + '</div>' +
+      '<div class="ts-foot">' + spotlightTvHtml(m.channel) + '</div>';
     // Med matchnyckel öppnar cellen matchinfo-modalen; annars laget (fallback).
     var open = m.key ? matchOpenAttr(m.key) : { attr: "", cls: "" };
     if (open.attr) {
