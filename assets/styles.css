@@ -209,14 +209,23 @@ body {
 /* Själva av/på-vredet */
 .spoiler-switch {
   position: relative; flex: 0 0 auto;
-  width: 34px; height: 19px; border-radius: 999px;
+  width: 52px; height: 20px; border-radius: 999px;
   background: rgba(120, 145, 175, .3);
   border: 1px solid rgba(120, 150, 180, .32);
   transition: background .2s ease, border-color .2s ease;
 }
+/* "Av"/"På"-text inuti vredet, på motsatt sida om knoppen */
+.spoiler-state {
+  position: absolute; top: 0; bottom: 0; right: 7px;
+  display: flex; align-items: center;
+  font-size: 10px; font-weight: 800; letter-spacing: .04em;
+  color: rgba(225, 232, 245, .82);
+  transition: color .2s ease;
+}
+.spoiler-state::after { content: "Av"; }
 .spoiler-knob {
   position: absolute; top: 1.5px; left: 2px;
-  width: 14px; height: 14px; border-radius: 50%;
+  width: 15px; height: 15px; border-radius: 50%;
   background: #e7eefb;
   box-shadow: 0 1px 3px rgba(0, 0, 0, .45);
   transition: transform .2s ease, background .2s ease;
@@ -231,7 +240,12 @@ body {
   background: var(--usa-red);
   border-color: color-mix(in srgb, var(--usa-red) 70%, #fff);
 }
-.spoiler-toggle.is-on .spoiler-knob { transform: translateX(15px); }
+.spoiler-toggle.is-on .spoiler-state {
+  right: auto; left: 8px;
+  color: #fff;
+}
+.spoiler-toggle.is-on .spoiler-state::after { content: "På"; }
+.spoiler-toggle.is-on .spoiler-knob { transform: translateX(32px); }
 
 /* Info-ikon + tooltip */
 .spoiler-info {
@@ -3366,8 +3380,21 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
    Minimalistisk layout: en kolumn per kanal med kanalbrickan centrerad överst
    och länkarna som luftiga pillerknappar under – inga tunga rutor. Kolumnerna
    är likabreda så SVT- och TV4-sidan står symmetriskt även med olika många klipp. */
-.mi-watch { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 20px; align-items: start; }
+.mi-watch {
+  position: relative;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 20px; align-items: start; margin-top: 18px;
+}
 .mi-watch.is-single { grid-template-columns: minmax(0, 1fr); max-width: 320px; margin-inline: auto; }
+/* Titeln ("Repriser" m.m.) sitter på samma rad som kanalmärkena (SVT/TV4),
+   längst till vänster, medan märkena är centrerade över sina knappkolumner. */
+.mi-watch-title {
+  position: absolute; top: 0; left: 0; height: 22px;
+  display: flex; align-items: center; margin: 0;
+  font-size: 11.5px; font-weight: 800;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft);
+  pointer-events: none;
+}
 .mi-watch-ch {
   display: flex; flex-direction: column; gap: 9px; min-width: 0;
 }
@@ -3714,19 +3741,24 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
    R32-MOTSTÅNDARSIMULATOR (inbäddad i slutspelsvyn)
    ============================================================ */
 .bracket-modebar { gap: 10px; align-items: center; flex-wrap: wrap; }
+/* "Vem möter vi?" – diskret pelarknapp som öppnar simulatorn. Samma höjd och
+   formspråk som lägesväxlaren bredvid; markeras med en lugn blå ton när aktiv. */
 .r32-toggle {
-  border: 1px solid var(--line-strong); border-radius: 12px; padding: 9px 16px;
+  border: 1px solid var(--line-strong); border-radius: 11px; padding: 8px 15px;
   background: var(--bg-soft); color: var(--ink-soft); cursor: pointer;
-  font-weight: 800; font-size: 14px; display: inline-flex; align-items: center; gap: 7px;
+  font: inherit; font-weight: 700; font-size: 14px;
+  display: inline-flex; align-items: center; gap: 8px;
   transition: border-color .15s, color .15s, background .15s, box-shadow .15s;
 }
-.r32-toggle .r32-toggle-ico { font-size: 15px; }
+.r32-toggle .r32-toggle-ico { flex-shrink: 0; opacity: .85; transition: opacity .15s, transform .25s ease; }
 .r32-toggle:hover { color: var(--ink); border-color: var(--focus); }
+.r32-toggle:hover .r32-toggle-ico { opacity: 1; color: var(--focus); }
 .r32-toggle.on {
-  color: #fff; border-color: transparent;
-  background: linear-gradient(95deg, var(--usa-blue), color-mix(in srgb, var(--usa-blue) 60%, var(--usa-navy)));
-  box-shadow: 0 3px 14px rgba(61, 109, 181, .35);
+  color: var(--ink); border-color: color-mix(in srgb, var(--usa-blue) 70%, var(--line-strong));
+  background: color-mix(in srgb, var(--usa-blue) 18%, var(--bg-soft));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--usa-blue) 35%, transparent);
 }
+.r32-toggle.on .r32-toggle-ico { opacity: 1; color: var(--focus); transform: rotate(90deg); }
 
 .r32-panel {
   max-width: var(--maxw); margin: 4px auto 22px; padding: 18px 20px 20px;
@@ -3748,9 +3780,11 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 .r32-pick { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
 .r32-quicktabs { display: flex; gap: 6px; }
 .r32-quick {
+  display: inline-flex; align-items: center; gap: 7px;
   border: 1px solid var(--line-strong); background: var(--bg-soft); color: var(--ink-soft);
-  border-radius: 9px; padding: 6px 11px; font-weight: 700; font-size: 13px; cursor: pointer;
+  border-radius: 9px; padding: 6px 11px; font: inherit; font-weight: 700; font-size: 13px; cursor: pointer;
 }
+.r32-quick .flag { width: 19px; height: 13px; border-radius: 2px; flex-shrink: 0; }
 .r32-quick:hover { color: var(--ink); border-color: var(--focus); }
 .r32-quick.on { color: #fff; background: color-mix(in srgb, var(--usa-blue) 70%, var(--usa-navy)); border-color: var(--usa-blue); }
 .r32-select { display: inline-flex; align-items: center; gap: 7px; color: var(--ink-soft); font-size: 12px; font-weight: 700; }
@@ -3764,18 +3798,21 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 }
 .r32-reset:hover { color: var(--ink); border-color: var(--accent); }
 
-.r32-summary { display: flex; gap: 12px; margin: 16px 0 6px; flex-wrap: wrap; }
+.r32-summary { display: flex; gap: 10px; margin: 16px 0 6px; flex-wrap: wrap; }
 .r32-stat {
-  flex: 1; min-width: 130px; text-align: center; padding: 11px 14px;
+  flex: 1; min-width: 130px; text-align: center; padding: 12px 14px 11px;
   border: 1px solid var(--line); border-radius: 12px; background: var(--bg-soft);
+  position: relative; overflow: hidden;
 }
-.r32-stat .v { font-size: 30px; font-weight: 900; line-height: 1; font-family: var(--display); }
-.r32-stat .l { font-size: 10.5px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .5px; margin-top: 6px; font-weight: 800; }
-.r32-stat.good { border-color: color-mix(in srgb, var(--adv) 55%, var(--line)); }
+/* tunn färgmarkör upptill i stället för en kraftig ram runt hela kortet */
+.r32-stat::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--line-strong); }
+.r32-stat .v { font-size: 27px; font-weight: 900; line-height: 1; font-family: var(--display); }
+.r32-stat .l { font-size: 10.5px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .5px; margin-top: 7px; font-weight: 800; }
+.r32-stat.good::before { background: var(--adv); }
 .r32-stat.good .v { color: var(--adv); }
-.r32-stat.bad { border-color: color-mix(in srgb, var(--live) 55%, var(--line)); }
+.r32-stat.bad::before { background: var(--live); }
 .r32-stat.bad .v { color: #ff8898; }
-.r32-stat.out .v { color: var(--ink-soft); }
+.r32-stat.out .v { color: var(--ink); }
 
 .r32-body { display: grid; grid-template-columns: 1fr 340px; gap: 18px; margin-top: 14px; align-items: start; }
 .r32-col { min-width: 0; }
@@ -3803,16 +3840,23 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 }
 .r32-gnames { font-weight: 700; font-size: 14px; color: var(--ink); min-width: 0; }
 .r32-gstar { font-size: 11px; }
-.r32-gmsg { font-size: 11.5px; color: var(--ink-soft); margin-top: 2px; font-weight: 600; }
-.r32-gmsg.matters { color: #9ec2ff; }
+.r32-gmsg { font-size: 11.5px; color: var(--ink-soft); margin-top: 3px; font-weight: 600; display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px 7px; }
 .r32-gmsg.locked { color: var(--focus); font-weight: 700; }
+.r32-lockico { font-size: 11px; }
+/* liten lugn tagg för "målskillnad avgör" i stället för en lång mening */
+.r32-gtag {
+  font-size: 9.5px; font-weight: 800; letter-spacing: .4px; text-transform: uppercase;
+  color: #9ec2ff; background: color-mix(in srgb, var(--usa-blue) 22%, transparent);
+  border: 1px solid color-mix(in srgb, var(--usa-blue) 45%, transparent);
+  border-radius: 5px; padding: 1px 6px; white-space: nowrap;
+}
 
 .r32-chips { display: flex; gap: 6px; align-items: stretch; }
 .r32-chip {
   position: relative; min-width: 60px; cursor: pointer; text-align: center;
   border-radius: 9px; padding: 5px 8px 4px; color: var(--ink); font-weight: 800;
-  background: hsl(142 0% 16%); border: 1px solid hsl(142 0% 30%); border-bottom: 4px solid hsl(142 0% 42%);
-  font: inherit; font-weight: 800;
+  background: hsl(142 0% 15%); border: 1px solid hsl(142 0% 27%); border-bottom: 2px solid hsl(142 0% 38%);
+  font: inherit; font-weight: 800; transition: filter .12s;
 }
 .r32-chip:hover { filter: brightness(1.18); }
 .r32-chip .rr { display: block; font-size: 15px; line-height: 1.05; }

@@ -746,11 +746,13 @@
   }
 
   // Lägg .is-single när bara en kanal har innehåll, så det enda kortet inte
-  // klistras mot vänsterkanten i tvåkolumnsrutnätet.
-  function watchWrapHtml(groups, extraCls) {
+  // klistras mot vänsterkanten i tvåkolumnsrutnätet. Titeln ("Repriser" m.m.)
+  // läggs på samma rad som kanalmärkena (SVT/TV4).
+  function watchWrapHtml(title, groups, extraCls) {
     var count = (groups.match(/mi-watch-ch/g) || []).length;
     var cls = "mi-watch" + (extraCls ? " " + extraCls : "") + (count <= 1 ? " is-single" : "");
-    return '<div class="' + cls + '">' + groups + "</div>";
+    var head = title ? '<div class="mi-watch-title">' + esc(title) + "</div>" : "";
+    return '<div class="' + cls + '">' + head + groups + "</div>";
   }
 
   function recordedWatchGroups(info) {
@@ -764,7 +766,7 @@
     if (!info || !info.played) return "";
     var groups = recordedWatchGroups(info);
     if (!groups) return "";
-    return '<div class="mi-section-title">Repriser</div>' + watchWrapHtml(groups);
+    return watchWrapHtml("Repriser", groups);
   }
 
   /* ---------- Spoilerfritt läge ----------
@@ -788,7 +790,7 @@
       '</div>';
     var groups = recordedWatchGroups(info);
     if (groups) {
-      h += '<div class="mi-section-title">Repriser</div>' + watchWrapHtml(groups);
+      h += watchWrapHtml("Repriser", groups);
     } else {
       h += '<div class="mi-empty">Sammandrag och repriser dyker upp här när de publicerats.</div>';
     }
@@ -820,7 +822,7 @@
     var groups = liveChannelHtml("SVT", hl.SVT, info.live) + liveChannelHtml("TV4", hl.TV4, info.live);
     if (!groups) return "";
     var title = info.live ? "Se matchen live" : "Se sändningen live";
-    return '<div class="mi-section-title">' + title + "</div>" + watchWrapHtml(groups, "mi-watch-live");
+    return watchWrapHtml(title, groups, "mi-watch-live");
   }
 
   function renderModal() {

@@ -1340,15 +1340,19 @@
         '" data-bracket-mode="' + m + '" aria-pressed="' + (on ? "true" : "false") + '">' +
         label + '</button>';
     }
+    var ico = '<svg class="r32-toggle-ico" viewBox="0 0 24 24" width="16" height="16" ' +
+      'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">' +
+      '<circle cx="12" cy="12" r="8"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/>' +
+      '<circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/></svg>';
     return '<div class="bracket-modebar"><div class="bmode-seg" role="group" ' +
       'aria-label="Visningsläge för slutspelsträdet">' +
       seg("seed", "Platser") +
       seg("odds", "Oddsfavoriter") +
       '</div>' +
-      '<button type="button" class="bmode-btn r32-toggle' + (r32Open ? " on" : "") +
+      '<button type="button" class="r32-toggle' + (r32Open ? " on" : "") +
         '" data-r32-toggle aria-pressed="' + (r32Open ? "true" : "false") + '" ' +
-        'title="Simulera vem du möter i sextondelsfinalen utifrån oddsen på de återstående gruppmatcherna">' +
-        '<span class="r32-toggle-ico" aria-hidden="true">🎯</span> Vem möter vi?</button>' +
+        'title="Räkna ut vilka du troligen möter i sextondelsfinalen">' +
+        ico + '<span>Vem möter vi?</span></button>' +
       '</div>';
   }
 
@@ -2016,9 +2020,10 @@
       return '<optgroup label="Grupp ' + L + '">' + opts + "</optgroup>";
     }).join("");
 
-    function quick(key, label) {
+    function quick(key) {
+      var t = r32TeamByKey(key).team;
       return '<button type="button" class="r32-quick' + (key === r32TeamKey ? " on" : "") +
-        '" data-r32-tab="' + key + '">' + label + "</button>";
+        '" data-r32-tab="' + key + '">' + flagImg(t.iso) + '<span>' + esc(t.sv) + '</span></button>';
     }
 
     return '' +
@@ -2026,12 +2031,12 @@
         '<div class="r32-head">' +
           '<div class="r32-titlewrap">' +
             '<h3 id="r32-title">' + esc(sel.team.sv) + ' → sextondelsfinal</h3>' +
-            '<p class="r32-sub">Lås resultat på de återstående gruppmatcherna och se vem ' +
-              esc(sel.team.sv) + ' möter – och chansen att slippa de tunga lagen. ' +
+            '<p class="r32-sub">Tippa de matcher som återstår i grupperna, så räknar vi ut vilka ' +
+              esc(sel.team.sv) + ' troligen möter – och chansen att slippa de tyngsta lagen. ' +
               '<span class="r32-status" id="r32-status"></span></p>' +
           '</div>' +
           '<div class="r32-pick">' +
-            '<div class="r32-quicktabs">' + quick("F:3", "🇸🇪 Sverige") + quick("H:1", "🇺🇾 Uruguay") + '</div>' +
+            '<div class="r32-quicktabs">' + quick("F:3") + quick("H:1") + '</div>' +
             '<label class="r32-select"><span>Lag</span>' +
               '<select id="r32-team">' + optgroups + '</select></label>' +
             '<button type="button" class="r32-reset" data-r32-reset>Återställ val</button>' +
@@ -2041,9 +2046,8 @@
         '<div class="r32-body">' +
           '<div class="r32-col r32-games-col">' +
             '<div class="r32-colhead"><h4>Återstående gruppmatcher</h4>' +
-              '<span class="r32-legend">' +
-                '<i class="sw bad"></i>sämre <i class="sw neu"></i>oförändrat <i class="sw good"></i>bättre' +
-                ' · <i class="sw score"></i>målskillnaden avgör – öppna ▸</span>' +
+              '<span class="r32-legend">Färgen visar hur resultatet påverkar dig: ' +
+                '<i class="sw good"></i>hjälper <i class="sw neu"></i>spelar ingen roll <i class="sw bad"></i>sämre</span>' +
             '</div>' +
             '<div id="r32-games" class="r32-games"></div>' +
           '</div>' +
@@ -2138,8 +2142,9 @@
         '<div class="bar"><div style="width:' + (o.prob / maxP * 100).toFixed(1) + '%"></div></div></div>';
     }).join("");
     var sub = document.getElementById("r32-outcome-sub");
-    if (sub) sub.innerHTML = outs.length + ' möjliga utfall · <i class="dot good"></i>bra ' +
-      '<i class="dot bad"></i>' + esc(avoid) + ' · vinst% = chans i matchen';
+    if (sub) sub.innerHTML = outs.length + ' möjliga motståndare. ' +
+      '<i class="dot good"></i> överkomligt · <i class="dot bad"></i> ' + esc(avoid) + '. ' +
+      'Stapeln visar hur trolig motståndaren är.';
   }
 
   function r32OutcomeTip(o) {
@@ -2187,10 +2192,10 @@
     if (delta == null) return null;
     var t = Math.max(-1, Math.min(1, delta / 0.15));
     var hue = t >= 0 ? 142 : 2;
-    var sat = Math.round(Math.abs(t) * 70);
-    return "background:hsl(" + hue + " " + sat + "% 16%);" +
-      "border-color:hsl(" + hue + " " + sat + "% 30%);" +
-      "border-bottom-color:hsl(" + hue + " " + Math.min(sat + 8, 80) + "% 44%);";
+    var sat = Math.round(Math.abs(t) * 50);
+    return "background:hsl(" + hue + " " + sat + "% 15%);" +
+      "border-color:hsl(" + hue + " " + sat + "% 28%);" +
+      "border-bottom-color:hsl(" + hue + " " + Math.min(sat + 8, 64) + "% 40%);";
   }
 
   function renderR32Games() {
@@ -2224,15 +2229,17 @@
         (scorish ? '<span class="rtag">▸</span>' : '') + '</button>';
     }).join("");
 
-    var lockMsg = locked ? "🔒 låst: " + r32FixLabel(g, fx) : esc(g.message || "");
-    var msgCls = "r32-gmsg" + (locked ? " locked" : (g.score_matters ? " matters" : ""));
+    var msgHtml = locked
+      ? '<span class="r32-lockico" aria-hidden="true">🔒</span> Låst på ' + esc(r32FixLabel(g, fx))
+      : r32MsgHtml(g);
+    var msgCls = "r32-gmsg" + (locked ? " locked" : "");
 
     var row = '<div class="r32-game' + (star ? " star" : "") + (locked ? " islocked" : "") + '">' +
       '<div class="r32-gtop">' +
         '<span class="r32-gpill grp-' + g.group + '">' + g.group + '</span>' +
         '<div class="r32-gnames">' + esc(r32SvName(g.home)) + ' – ' + esc(r32SvName(g.away)) +
-          (star ? ' <span class="r32-gstar" title="Mest avgörande match">⭐</span>' : '') +
-          '<div class="' + msgCls + '">' + lockMsg + '</div></div>' +
+          (star ? ' <span class="r32-gstar" title="Matchen som påverkar dig mest">⭐</span>' : '') +
+          (msgHtml ? '<div class="' + msgCls + '">' + msgHtml + '</div>' : '') + '</div>' +
         '<div class="r32-chips">' + chips +
           '<button type="button" class="r32-exp" data-r32-expand="' + g.id + '" title="Välj exakt resultat">' +
             (open ? "▾" : "▸") + '</button>' +
@@ -2246,6 +2253,18 @@
   function r32FixLabel(g, fx) {
     if (fx[0] === "score") return fx[1] + "–" + fx[2];
     return { "1": r32SvName(g.home) + " vinner", "X": "oavgjort", "2": r32SvName(g.away) + " vinner" }[fx[1]];
+  }
+
+  // Pedagogiskt radtips för en match: visar bara något när resultatet faktiskt
+  // spelar roll för det valda laget. "målskillnad avgör" visas som egen tagg.
+  function r32MsgHtml(g) {
+    var m = g.message;
+    if (!m || m.kind !== "cheer") return "";
+    var txt = m.best === "X"
+      ? "Bäst för dig: oavgjort"
+      : "Bäst för dig: " + esc(r32SvName(m.best === "1" ? g.home : g.away)) + " vinner";
+    if (g.score_matters) txt += ' <span class="r32-gtag">målskillnad avgör</span>';
+    return txt;
   }
 
   function r32ResultTip(g, r) {

@@ -471,15 +471,17 @@
     return false;
   }
 
+  // Returnerar ett strukturerat tips (inte färdig text) så att vyn kan bygga
+  // svensk copy med rätt lagnamn. kind: "min" = liten påverkan, "cheer" = ett
+  // resultat hjälper dig mest, best = "1" | "X" | "2".
   function headline(results, importance, m, scoreMatters) {
     var valid = {};
     ["1", "X", "2"].forEach(function (r) { if (results[r].good != null) valid[r] = results[r].good; });
-    if (importance < 0.035 && !scoreMatters) return "påverkar minimalt";
+    if (importance < 0.035 && !scoreMatters) return { kind: "min" };
     var best = null, bestV = -1;
     Object.keys(valid).forEach(function (r) { if (valid[r] > bestV) { bestV = valid[r]; best = r; } });
-    if (best == null) return "";
-    var cheer = { "1": m.home, "X": "oavgjort", "2": m.away }[best];
-    return "bäst: heja " + cheer + (scoreMatters ? " — och målskillnaden spelar roll" : "");
+    if (best == null) return { kind: "min" };
+    return { kind: "cheer", best: best };
   }
 
   root.R32Engine = { simulate: simulate, GROUPS: GROUPS };
