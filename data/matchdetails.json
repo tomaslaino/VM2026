@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-24T20:06:12.774Z",
+    "updatedAt": "2026-06-24T21:43:19.190Z",
     "source": "espn"
   },
   "details": {
@@ -21521,17 +21521,20 @@
     },
     "g:B:1": {
       "espnId": "760462",
-      "status": "PAUSED",
-      "minute": 45,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-24T19:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 1,
+          "a": 3
+        },
+        "ht": {
+          "h": 1,
           "a": 2
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
@@ -21550,7 +21553,7 @@
           "minute": 34,
           "injuryTime": null,
           "team": "a",
-          "scorer": "Sultan Al-Brake",
+          "scorer": "Mahmoud Abunada",
           "assist": null,
           "type": "OWN",
           "score": null
@@ -21563,10 +21566,93 @@
           "assist": "Edmílson Junior",
           "type": "REGULAR",
           "score": null
+        },
+        {
+          "minute": 80,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Ermin Mahmic",
+          "assist": "Dennis Hadzikadunic",
+          "type": "REGULAR",
+          "score": null
         }
       ],
-      "bookings": [],
-      "subs": [],
+      "bookings": [
+        {
+          "minute": 78,
+          "team": "h",
+          "player": "Ahmed Fathy",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 82,
+          "team": "a",
+          "player": "Ermin Mahmic",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Benjamin Tahirovic",
+          "out": "Ivan Sunjic"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Amar Memic",
+          "out": "Arjan Malic"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Abdulaziz Hatem",
+          "out": "Jassem Gaber"
+        },
+        {
+          "minute": 56,
+          "team": "h",
+          "in": "Ahmed Al-Ganehi",
+          "out": "Hassan Al-Haydos"
+        },
+        {
+          "minute": 63,
+          "team": "a",
+          "in": "Dennis Hadzikadunic",
+          "out": "Nikola Katic"
+        },
+        {
+          "minute": 64,
+          "team": "a",
+          "in": "Ermin Mahmic",
+          "out": "Edin Dzeko"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Almoez Ali",
+          "out": "Karim Boudiaf"
+        },
+        {
+          "minute": 79,
+          "team": "h",
+          "in": "Ahmed Alaaeldin",
+          "out": "Edmílson Junior"
+        },
+        {
+          "minute": 79,
+          "team": "h",
+          "in": "Mohamed Manai",
+          "out": "Ahmed Fathy"
+        },
+        {
+          "minute": 82,
+          "team": "a",
+          "in": "Dzenis Burnic",
+          "out": "Kerim Alajbegovic"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -21639,7 +21725,8 @@
             },
             {
               "name": "Mohamed Manai",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Salah Zakaria",
@@ -21647,7 +21734,8 @@
             },
             {
               "name": "Ahmed Al-Ganehi",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Tahsin Jamshid",
@@ -21655,7 +21743,8 @@
             },
             {
               "name": "Ahmed Alaaeldin",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Mohammed Muntari",
@@ -21663,7 +21752,8 @@
             },
             {
               "name": "Abdulaziz Hatem",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true
             },
             {
               "name": "Meshaal Barsham",
@@ -21671,7 +21761,8 @@
             },
             {
               "name": "Almoez Ali",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Al-Hashmi Al-Hussain",
@@ -21749,7 +21840,8 @@
             },
             {
               "name": "Benjamin Tahirovic",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true
             },
             {
               "name": "Jovo Lukic",
@@ -21761,11 +21853,13 @@
             },
             {
               "name": "Dennis Hadzikadunic",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true
             },
             {
               "name": "Dzenis Burnic",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Amir Hadziahmetovic",
@@ -21773,7 +21867,8 @@
             },
             {
               "name": "Ermin Mahmic",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Nihad Mujakic",
@@ -21789,7 +21884,8 @@
             },
             {
               "name": "Amar Memic",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Martin Zlomislic",
@@ -21804,57 +21900,57 @@
       },
       "referee": "Jesús Valenzuela",
       "venue": "Lumen Field, Seattle, Washington",
-      "attendance": null,
+      "attendance": 66925,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "41%",
-          "a": "59%"
+          "h": "46%",
+          "a": "55%"
         },
         {
           "key": "totalShots",
-          "h": "4",
-          "a": "9"
+          "h": "9",
+          "a": "14"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
-          "a": "3"
+          "h": "3",
+          "a": "5"
         },
         {
           "key": "wonCorners",
-          "h": "1",
-          "a": "4"
+          "h": "5",
+          "a": "5"
         },
         {
           "key": "foulsCommitted",
-          "h": "6",
-          "a": "6"
+          "h": "14",
+          "a": "9"
         },
         {
           "key": "offsides",
-          "h": "2",
-          "a": "0"
+          "h": "3",
+          "a": "1"
         },
         {
           "key": "saves",
-          "h": "2",
-          "a": "0"
+          "h": "3",
+          "a": "2"
         },
         {
           "key": "totalPasses",
-          "h": "208",
-          "a": "288"
+          "h": "434",
+          "a": "517"
         },
         {
           "key": "passPct",
-          "h": "86%",
-          "a": "89%"
+          "h": "85%",
+          "a": "88%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -21862,19 +21958,19 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-24T20:06:12.753Z"
+      "updatedAt": "2026-06-24T21:43:19.171Z"
     },
     "g:B:0": {
       "espnId": "760463",
-      "status": "IN_PLAY",
-      "minute": 47,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-24T19:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
-          "h": 0,
-          "a": 1
+          "h": 1,
+          "a": 2
         },
         "ht": {
           "h": 0,
@@ -21890,11 +21986,35 @@
           "injuryTime": null,
           "team": "a",
           "scorer": "Rubén Vargas",
-          "assist": null,
+          "assist": "Johan Manzambi",
           "type": "REGULAR",
           "score": {
             "h": 0,
             "a": 1
+          }
+        },
+        {
+          "minute": 57,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Johan Manzambi",
+          "assist": "Breel Embolo",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 2
+          }
+        },
+        {
+          "minute": 76,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Promise David",
+          "assist": "Nathan Saliba",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 2
           }
         }
       ],
@@ -21910,9 +22030,76 @@
           "team": "a",
           "player": "Granit Xhaka",
           "card": "YELLOW"
+        },
+        {
+          "minute": 87,
+          "team": "h",
+          "player": "Liam Millar",
+          "card": "YELLOW"
         }
       ],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 58,
+          "team": "h",
+          "in": "Stephen Eustáquio",
+          "out": "Mathieu Choinière"
+        },
+        {
+          "minute": 58,
+          "team": "h",
+          "in": "Tani Oluwaseyi",
+          "out": "Cyle Larin"
+        },
+        {
+          "minute": 58,
+          "team": "h",
+          "in": "Liam Millar",
+          "out": "Ali Ahmed"
+        },
+        {
+          "minute": 74,
+          "team": "a",
+          "in": "Michel Aebischer",
+          "out": "Djibril Sow"
+        },
+        {
+          "minute": 74,
+          "team": "a",
+          "in": "Silvan Widmer",
+          "out": "Luca Jaquez"
+        },
+        {
+          "minute": 75,
+          "team": "h",
+          "in": "Promise David",
+          "out": "Tajon Buchanan"
+        },
+        {
+          "minute": 80,
+          "team": "a",
+          "in": "Dan Ndoye",
+          "out": "Rubén Vargas"
+        },
+        {
+          "minute": 83,
+          "team": "h",
+          "in": "Jacob Shaffelburg",
+          "out": "Richie Laryea"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Christian Fassnacht",
+          "out": "Johan Manzambi"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Cedric Itten",
+          "out": "Breel Embolo"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -21985,7 +22172,8 @@
             },
             {
               "name": "Tani Oluwaseyi",
-              "jersey": "12"
+              "jersey": "12",
+              "in": true
             },
             {
               "name": "Niko Sigur",
@@ -21997,11 +22185,13 @@
             },
             {
               "name": "Jacob Shaffelburg",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Stephen Eustáquio",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Jonathan Osorio",
@@ -22009,7 +22199,8 @@
             },
             {
               "name": "Liam Millar",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Dayne St. Clair",
@@ -22021,7 +22212,8 @@
             },
             {
               "name": "Promise David",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Jayden Nelson",
@@ -22091,7 +22283,8 @@
           "bench": [
             {
               "name": "Silvan Widmer",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true
             },
             {
               "name": "Fabian Rieder",
@@ -22103,11 +22296,13 @@
             },
             {
               "name": "Dan Ndoye",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Cedric Itten",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Eray Cömert",
@@ -22115,11 +22310,13 @@
             },
             {
               "name": "Michel Aebischer",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Christian Fassnacht",
-              "jersey": "16"
+              "jersey": "16",
+              "in": true
             },
             {
               "name": "Aurèle Amenda",
@@ -22150,32 +22347,32 @@
       },
       "referee": "Ramon Abatti Abel",
       "venue": "BC Place, Vancouver",
-      "attendance": null,
+      "attendance": 52497,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "30%",
-          "a": "70%"
+          "h": "45%",
+          "a": "55%"
         },
         {
           "key": "totalShots",
-          "h": "5",
-          "a": "5"
+          "h": "13",
+          "a": "6"
         },
         {
           "key": "shotsOnTarget",
-          "h": "3",
-          "a": "3"
+          "h": "7",
+          "a": "4"
         },
         {
           "key": "wonCorners",
-          "h": "1",
+          "h": "7",
           "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "5",
-          "a": "11"
+          "h": "13",
+          "a": "19"
         },
         {
           "key": "offsides",
@@ -22185,21 +22382,21 @@
         {
           "key": "saves",
           "h": "2",
-          "a": "3"
+          "a": "6"
         },
         {
           "key": "totalPasses",
-          "h": "125",
-          "a": "303"
+          "h": "339",
+          "a": "441"
         },
         {
           "key": "passPct",
-          "h": "75%",
-          "a": "86%"
+          "h": "80%",
+          "a": "83%"
         },
         {
           "key": "yellowCards",
-          "h": "1",
+          "h": "2",
           "a": "1"
         },
         {
@@ -22208,7 +22405,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-24T20:06:12.773Z"
+      "updatedAt": "2026-06-24T21:43:19.190Z"
     }
   }
 }

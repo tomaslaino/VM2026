@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-24T20:06:12.717Z",
+    "updatedAt": "2026-06-24T21:43:19.126Z",
     "source": "espn",
     "matchCount": 50,
-    "liveCount": 2,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -249,33 +249,16 @@
     },
     "g:B:1": {
       "h": 1,
-      "a": 2,
-      "status": "PAUSED"
+      "a": 3,
+      "status": "FINISHED"
     },
     "g:B:0": {
-      "h": 0,
-      "a": 0,
-      "status": "PAUSED"
+      "h": 1,
+      "a": 2,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:B:1",
-      "status": "PAUSED",
-      "minute": 45,
-      "home": "Qatar",
-      "away": "Bosnia-Herzegovina",
-      "score": "1-2"
-    },
-    {
-      "key": "g:B:0",
-      "status": "PAUSED",
-      "minute": 45,
-      "home": "Canada",
-      "away": "Switzerland",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1097,7 +1080,7 @@
       "date": "2026-06-24",
       "time": "21:00",
       "utcDate": "2026-06-24T19:00Z",
-      "status": "PAUSED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Qatar",
       "away": "Bosnia-Herzegovina",
@@ -1114,7 +1097,7 @@
       "date": "2026-06-24",
       "time": "21:00",
       "utcDate": "2026-06-24T19:00Z",
-      "status": "PAUSED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Canada",
       "away": "Switzerland",
@@ -1508,9 +1491,12 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Group A 2nd Place",
-      "away": "Group B 2nd Place",
+      "away": "Canada",
       "homeRef": null,
-      "awayRef": null
+      "awayRef": {
+        "group": "B",
+        "idx": 0
+      }
     },
     "k:76": {
       "date": "2026-06-29",
@@ -1648,9 +1634,12 @@
       "utcDate": "2026-07-03T03:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Group B Winner",
+      "home": "Switzerland",
       "away": "Third Place Group E/F/G/I/J",
-      "homeRef": null,
+      "homeRef": {
+        "group": "B",
+        "idx": 1
+      },
       "awayRef": null
     },
     "k:88": {
@@ -1919,51 +1908,51 @@
     ],
     "B": [
       {
-        "idx": 0,
+        "idx": 1,
         "position": 1,
-        "pld": 2,
-        "w": 1,
+        "pld": 3,
+        "w": 2,
         "d": 1,
         "l": 0,
         "gf": 7,
-        "ga": 1,
-        "gd": 6,
-        "pts": 4
+        "ga": 3,
+        "gd": 4,
+        "pts": 7
       },
       {
-        "idx": 1,
+        "idx": 0,
         "position": 2,
-        "pld": 2,
+        "pld": 3,
         "w": 1,
         "d": 1,
-        "l": 0,
-        "gf": 5,
-        "ga": 2,
-        "gd": 3,
+        "l": 1,
+        "gf": 8,
+        "ga": 3,
+        "gd": 5,
         "pts": 4
       },
       {
         "idx": 3,
         "position": 3,
-        "pld": 2,
-        "w": 0,
+        "pld": 3,
+        "w": 1,
         "d": 1,
         "l": 1,
-        "gf": 2,
-        "ga": 5,
-        "gd": -3,
-        "pts": 1
+        "gf": 5,
+        "ga": 6,
+        "gd": -1,
+        "pts": 4
       },
       {
         "idx": 2,
         "position": 4,
-        "pld": 2,
+        "pld": 3,
         "w": 0,
         "d": 1,
-        "l": 1,
-        "gf": 1,
-        "ga": 7,
-        "gd": -6,
+        "l": 2,
+        "gf": 2,
+        "ga": 10,
+        "gd": -8,
         "pts": 1
       }
     ],
