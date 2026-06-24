@@ -135,7 +135,16 @@
   }
 
   /* ---------- Resultathantering (endast från API) ---------- */
-  function getRes(key) { return state.results[key] || null; }
+  /* getRes är spoilerfilter-grindad: i spoilerfritt läge döljs resultat för
+     matcher som spelats det senaste dygnet, så att tabeller, slutspel, kalender,
+     statistik och startsida behandlar dem som "ännu inte spelade". rawRes ger
+     det verkliga resultatet (används bara där spoilern medvetet ska kringgås,
+     t.ex. "visa ändå" i matchmodalen). */
+  function rawRes(key) { return state.results[key] || null; }
+  function getRes(key) {
+    if (isSpoilerHidden(key)) return null;
+    return state.results[key] || null;
+  }
   function isPlayed(r) { return r && r.h !== undefined && r.a !== undefined; }
 
   function isLiveStatus(status) {
@@ -143,14 +152,77 @@
   }
 
   function isMatchLive(key) {
+    // Spoilerfritt läge: en match från det senaste dygnet räknas inte som
+    // pågående (annars skulle "LIVE"-märket avslöja att den spelas just nu).
+    if (isSpoilerHidden(key)) return false;
     // Backendens live-lista är den färskaste signalen – ta den först så att en
     // match räknas som pågående även i glappet innan status/resultat hunnit
     // skrivas in i results/fixtures.
     if (apiLive[key]) return true;
     var fx = getApiFixture(key);
     if (fx && isLiveStatus(fx.status)) return true;
-    var rs = getRes(key);
+    var rs = rawRes(key);
     return rs && isLiveStatus(rs.status);
+  }
+
+  /* ---------- Spoilerfritt läge ----------
+     Döljer resultat (och tabell-/statistikpåverkan) för matcher som spelats
+     under det senaste dygnet – typiskt nattens matcher i USA. Så kan man gå in
+     i kalendern och se highlights/hela matchen utan att veta hur det gick. */
+  var SPOILER_WINDOW_MS = 24 * 3600 * 1000;
+  function spoilerFreeOn() { return !!ui("spoilerFree", false); }
+
+  /* Avsparkstid (ms, UTC) för en resultatnyckel utan att läsa resultat
+     (undviker rekursion med getRes). */
+  function kickoffMsForKey(key) {
+    var g = /^g:([A-L]):(\d+)$/.exec(key);
+    if (g) {
+      var L = g[1], idx = parseInt(g[2], 10);
+      var sched = getApiFixture(key) || (WC.groupSchedule && WC.groupSchedule[key]);
+      var date = sched ? sched.date : (WC.groupDates[L] && WC.groupDates[L][Math.floor(idx / 2)]);
+      var edt = sched ? (sched.time || sched.edt) : null;
+      if (!date) return null;
+      return kickoffUTC({ date: date, edt: edt }).getTime();
+    }
+    var k = /^k:(\d+)$/.exec(key);
+    if (k) {
+      var fx = getApiFixture(key);
+      var mt = MATCH_BY_NO[parseInt(k[1], 10)];
+      var date2 = (fx && fx.date) || (mt && mt.date);
+      var edt2 = (fx && fx.time) || (mt && mt.edt);
+      if (!date2) return null;
+      return kickoffUTC({ date: date2, edt: edt2 }).getTime();
+    }
+    return null;
+  }
+
+  function isSpoilerHidden(key) {
+    if (!spoilerFreeOn()) return false;
+    var ko = kickoffMsForKey(key);
+    if (ko == null) return false;
+    var now = Date.now();
+    return ko <= now && ko > now - SPOILER_WINDOW_MS;
+  }
+
+  /* Matchdetaljer filtrerade efter spoilerläget – döljer mål/kort/byten för
+     matcher från det senaste dygnet så spelar-, lag- och regionstatistiken
+     (assets/playerstats.js) inte heller avslöjar dem. */
+  function visibleDetails(src) {
+    src = src || focusDetails;
+    if (!spoilerFreeOn()) return src;
+    var out = {};
+    Object.keys(src || {}).forEach(function (key) {
+      if (!isSpoilerHidden(key)) out[key] = src[key];
+    });
+    return out;
+  }
+  function pushVisibleDetailsToStats() {
+    if (window.VMPlayerStats && typeof window.VMPlayerStats.setDetails === "function") {
+      try { window.VMPlayerStats.setDetails(visibleDetails(focusDetails)); } catch (e) {}
+    }
+  }
+  function recomputeFairPlay() {
+    fairPlayMap = computeFairPlay(focusDetails);
   }
 
   function scoreDisplay(val) {
@@ -221,6 +293,16 @@
     info.live = isMatchLive(key);
     info.played = isPlayed(info.r);
     info.when = whenLabels(info.m);
+    // Spoilerfritt läge: matchen spelades det senaste dygnet men resultatet är
+    // dolt. Matchmodalen kan då visa highlights och en "visa ändå"-knapp utan
+    // att avslöja resultatet i förväg. raw* speglar det verkliga utfallet.
+    info.spoiler = isSpoilerHidden(key);
+    if (info.spoiler) {
+      var raw = rawRes(key);
+      info.rawR = raw;
+      info.rawPlayed = isPlayed(raw);
+      info.rawLive = !!apiLive[key] || isLiveStatus(raw && raw.status);
+    }
     return info;
   }
 
@@ -307,6 +389,8 @@
     Object.keys(details || {}).forEach(function (key) {
       var g = /^g:([A-L]):(\d+)$/.exec(key);
       if (!g) return;
+      // Spoilerfritt läge: räkna inte in kort (fair play) från dolda matcher.
+      if (isSpoilerHidden(key)) return;
       var det = details[key];
       if (!det || !det.bookings || !det.bookings.length) return;
       var L = g[1];
@@ -347,7 +431,7 @@
     rawDetailsJson = rawJson;
     focusDetails = details || {};
     if (window.VMPlayerStats && typeof window.VMPlayerStats.setDetails === "function") {
-      try { window.VMPlayerStats.setDetails(details); } catch (e) {}
+      try { window.VMPlayerStats.setDetails(visibleDetails(focusDetails)); } catch (e) {}
     }
     var next = computeFairPlay(details);
     if (JSON.stringify(next) === JSON.stringify(fairPlayMap)) return;
@@ -2207,6 +2291,8 @@
 
       var m = mm.m;
       var key = mm.kind === "group" ? mm.m.key : "k:" + mm.m.m;
+      // Spoilerfritt: hoppa över matcher från senaste dygnet (även pågående).
+      if (isSpoilerHidden(key)) continue;
       var when = whenLabels(m);
       var ko = kickoffUTC(m).getTime();
       var rs = getRes(key);
@@ -2381,6 +2467,9 @@
         channel = tvLookupKo(m);
       }
       if (!home || !away) return;
+      // Spoilerfritt läge: dölj matcher från det senaste dygnet helt ur hjälten
+      // (även de som just nu spelas) så varken resultat eller "LIVE" avslöjas.
+      if (isSpoilerHidden(key)) return;
 
       var r = getRes(key);
       var ko = kickoffUTC(m).getTime();
@@ -3604,6 +3693,36 @@
     }
   }
 
+  /* ---------- Spoilerfri-knapp i headern ---------- */
+  function syncSpoilerToggle(btn) {
+    btn = btn || document.getElementById("spoilerToggle");
+    if (!btn) return;
+    var on = spoilerFreeOn();
+    btn.classList.toggle("is-on", on);
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+    document.documentElement.classList.toggle("spoiler-free", on);
+    var txt = btn.querySelector(".spoiler-txt");
+    if (txt) txt.textContent = on ? "Spoilerfri på" : "Spoilerfri";
+  }
+  function setupSpoilerToggle() {
+    var btn = document.getElementById("spoilerToggle");
+    if (!btn) return;
+    syncSpoilerToggle(btn);
+    btn.addEventListener("click", function () {
+      setUi("spoilerFree", !spoilerFreeOn());
+      syncSpoilerToggle(btn);
+      // Fair play (kort) och spelar-/lag-/regionstatistik beror på vilka matcher
+      // som är dolda – räkna om och skicka in det filtrerade underlaget igen.
+      recomputeFairPlay();
+      pushVisibleDetailsToStats();
+      lastViewSig = null; // tvinga full omritning trots oförändrad HTML-signatur
+      refresh({ full: true });
+      if (window.VMMatchInfo && typeof window.VMMatchInfo.onSpoilerChange === "function") {
+        try { window.VMMatchInfo.onSpoilerChange(); } catch (e) {}
+      }
+    });
+  }
+
   /* ---------- Init ---------- */
   function init() {
     viewEl = document.getElementById("view");
@@ -3696,6 +3815,8 @@
     });
     window.addEventListener("load", updateHeroSticky);
     window.addEventListener("scroll", syncHeaderCompact, { passive: true });
+
+    setupSpoilerToggle();
 
     if (ui("view", "groups") === "calendar") calScrollPending = true;
     render();

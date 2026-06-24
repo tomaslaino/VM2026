@@ -25,6 +25,7 @@
   var openKey = null;      // öppen match (resultatnyckel) eller null
   var pollTimer = null;
   var activeTab = "events";
+  var revealed = {};       // nyckel -> true: spoilern är manuellt "visad ändå"
 
   var TABS = [
     { id: "events", label: "Händelser" },
@@ -183,6 +184,13 @@
   }
 
   function onDataUpdated() {
+    if (openKey) renderModal();
+  }
+
+  /* Spoilerläget slogs på/av i headern – nollställ ev. "visa ändå" och rita om
+     den öppna modalen så den speglar det nya läget direkt. */
+  function onSpoilerChange() {
+    revealed = {};
     if (openKey) renderModal();
   }
 
@@ -745,14 +753,46 @@
     return '<div class="' + cls + '">' + groups + "</div>";
   }
 
+  function recordedWatchGroups(info) {
+    var hl = info && highlights[info.key];
+    if (!hl) return "";
+    return channelLinksHtml("SVT", hl.SVT) + channelLinksHtml("TV4", hl.TV4);
+  }
+
   function highlightsHtml(info) {
     // Bara spelade matcher har repris/sammandrag att länka till.
     if (!info || !info.played) return "";
-    var hl = highlights[info.key];
-    if (!hl) return "";
-    var groups = channelLinksHtml("SVT", hl.SVT) + channelLinksHtml("TV4", hl.TV4);
+    var groups = recordedWatchGroups(info);
     if (!groups) return "";
     return '<div class="mi-section-title">Se matchen i efterhand</div>' + watchWrapHtml(groups);
+  }
+
+  /* ---------- Spoilerfritt läge ----------
+     Matchen spelades det senaste dygnet men resultatet är dolt. Visa highlights/
+     repriser (de avslöjar inget i sig) plus en "visa ändå"-knapp – men inte mål,
+     ställning, statistik eller laguppställning (som skulle spoila resultatet). */
+  function spoilerStatusChip() {
+    return '<span class="mi-status spoiler"><span class="mi-spoiler-dot" aria-hidden="true"></span>Resultat dolt</span>';
+  }
+
+  function spoilerBodyHtml(info) {
+    var h = '<div class="mi-spoiler-panel">' +
+      '<span class="mi-spoiler-ic" aria-hidden="true">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">' +
+        '<path d="M9.9 5.1A10.4 10.4 0 0 1 12 5c6.4 0 10 7 10 7a18.6 18.6 0 0 1-3 3.9M6.2 6.3A18.5 18.5 0 0 0 2 12s3.6 7 10 7a10.4 10.4 0 0 0 4-.8"/>' +
+        '<path d="M9.5 9.6A3 3 0 0 0 14.4 13.8"/><path d="M3 3l18 18"/></svg>' +
+      '</span>' +
+      '<div class="mi-spoiler-msg"><strong>Spoilerfritt läge är på</strong>' +
+        '<span>Resultat, mål, statistik och laguppställning för matcher från det senaste dygnet är dolda – så att du kan se sammandrag eller hela matchen utan att veta hur det gick.</span></div>' +
+      '<button type="button" class="mi-reveal" data-mi-reveal="' + esc(info.key) + '">Visa resultatet ändå</button>' +
+      '</div>';
+    var groups = recordedWatchGroups(info);
+    if (groups) {
+      h += '<div class="mi-section-title">Se matchen i efterhand</div>' + watchWrapHtml(groups);
+    } else {
+      h += '<div class="mi-empty">Sammandrag och repriser dyker upp här när de publicerats.</div>';
+    }
+    return h;
   }
 
   /* Livesändning / försnack: länk till SVT Play / TV4 Play där matchen visas
@@ -790,6 +830,50 @@
     var info = window.VMApp.describeMatch(openKey);
     if (!info) { close(); return; }
     var det = details[openKey] || null;
+
+    // Spoilerfritt läge: matchen är dold tills användaren valt "visa ändå".
+    // Vid avslöjande speglas det verkliga utfallet (raw*) så modalen ritar som
+    // vanligt med mål, ställning och statistik.
+    var spoilerHidden = info.spoiler && !revealed[openKey];
+    if (info.spoiler && revealed[openKey]) {
+      info.played = info.rawPlayed;
+      info.live = info.rawLive;
+      info.r = info.rawR;
+      info.spoiler = false;
+    }
+
+    if (spoilerHidden) {
+      // Gruppmatcher: visa den färgade grupp-pillen; KO-matcher textetiketten.
+      var gmHeadEarly = /^g:([A-L]):/.exec(info.key || "");
+      var labelHtmlEarly = gmHeadEarly
+        ? '<span class="group-pill grp-' + gmHeadEarly[1] + ' is-lg">' + esc(info.label) + '</span>'
+        : '<span class="mi-label">' + esc(info.label) + '</span>';
+      var hName0 = teamName(info.home, info.homeLabel);
+      var aName0 = teamName(info.away, info.awayLabel);
+      var sh = '<button class="mi-close" title="Stäng">×</button>';
+      sh += '<div class="mi-head">' + labelHtmlEarly + spoilerStatusChip() + '</div>';
+      sh += '<div class="mi-score-row">' +
+        '<span class="mi-team home">' + flagImg(info.home && info.home.iso) +
+          '<span class="mi-team-name">' + esc(hName0) + '</span></span>' +
+        '<span class="mi-score mi-score-hidden" title="Resultatet är dolt">' +
+          '<span class="mi-hidden-pip"></span><span class="mi-dash">–</span><span class="mi-hidden-pip"></span></span>' +
+        '<span class="mi-team away">' + flagImg(info.away && info.away.iso) +
+          '<span class="mi-team-name">' + esc(aName0) + '</span></span>' +
+        '</div>';
+      sh += spoilerBodyHtml(info);
+      sh += '<div class="mi-note">Matchdata: ESPN · dold i spoilerfritt läge</div>';
+      card.innerHTML = sh;
+      card.querySelector(".mi-close").addEventListener("click", close);
+      var revealBtn = card.querySelector("[data-mi-reveal]");
+      if (revealBtn) {
+        revealBtn.addEventListener("click", function () {
+          revealed[openKey] = true;
+          activeTab = "events";
+          renderModal();
+        });
+      }
+      return;
+    }
 
     var score = scoreOf(info, det);
     var hName = teamName(info.home, info.homeLabel);
@@ -875,6 +959,6 @@
 
   window.VMMatchInfo = {
     open: open, close: close, onDataUpdated: onDataUpdated,
-    refreshDetails: refreshDetails
+    onSpoilerChange: onSpoilerChange, refreshDetails: refreshDetails
   };
 })();

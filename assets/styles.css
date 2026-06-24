@@ -185,6 +185,42 @@ body {
 .sr-empty { padding: 12px; color: var(--ink-soft); font-size: 13px; }
 
 .controls { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
+/* ---------- Spoilerfri-knapp (header) ----------
+   Pill i samma stil som nav/sök. Lyfts i rött när den är på. Den hör hemma
+   högst upp på sidan – när headern scrollats (.is-scrolled / .hero-collapsed)
+   döljs den så att bara de vanliga flikarna följer med ned. */
+.spoiler-toggle {
+  display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid rgba(50, 85, 120, .38);
+  background: rgba(10, 22, 40, .42);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  color: #b9c9dd; font: inherit; font-weight: 600; font-size: 13px;
+  padding: 8px 13px; border-radius: 11px; cursor: pointer; white-space: nowrap;
+  transition: color .15s, background .2s ease, border-color .2s ease,
+    box-shadow .2s ease, opacity .2s ease, transform .2s ease;
+}
+.spoiler-toggle:hover { color: #fff; border-color: rgba(85, 125, 165, .58); }
+.spoiler-toggle:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.spoiler-toggle .spoiler-ico { display: inline-flex; width: 16px; height: 16px; }
+.spoiler-toggle .spoiler-ico svg { width: 100%; height: 100%; display: block; }
+.spoiler-toggle .spoiler-eye-off { display: none; }
+.spoiler-toggle.is-on {
+  color: #fff;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--usa-red) 32%, #122238), #122238);
+  border-color: color-mix(in srgb, var(--usa-red) 55%, rgba(50, 85, 120, .4));
+  box-shadow: inset 0 -2px 0 var(--usa-red), 0 4px 14px rgba(196, 30, 58, .26);
+}
+.spoiler-toggle.is-on .spoiler-eye { display: none; }
+.spoiler-toggle.is-on .spoiler-eye-off { display: inline-flex; }
+/* Följer inte med vid scroll – bara navflikarna ska finnas kvar då. */
+.hero-header.is-scrolled .spoiler-toggle,
+.hero-header.hero-collapsed .spoiler-toggle { display: none; }
+/* Smala skärmar: ikonen räcker (texten skulle trängas med statusbrickan). */
+@media (max-width: 560px) {
+  .spoiler-toggle { padding: 8px 9px; gap: 0; }
+  .spoiler-toggle .spoiler-txt { display: none; }
+}
 .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 0 rgba(226,59,59,.5); animation: pulse 2s infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(226,59,59,.5);} 70% { box-shadow: 0 0 0 6px rgba(226,59,59,0);} 100% { box-shadow: 0 0 0 0 rgba(226,59,59,0);} }
 .reset {
@@ -3003,6 +3039,50 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .mi-score { font-size: 34px; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .mi-dash { color: var(--ink-soft); padding: 0 4px; }
 .mi-subscore { text-align: center; font-size: 12.5px; color: var(--ink-soft); margin-bottom: 4px; }
+
+/* Spoilerfritt läge i matchmodalen */
+.mi-status.spoiler {
+  background: color-mix(in srgb, var(--usa-red) 16%, transparent);
+  color: color-mix(in srgb, var(--usa-red) 78%, #fff);
+}
+.mi-spoiler-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.mi-score-hidden { color: var(--ink-soft); display: inline-flex; align-items: center; gap: 9px; }
+.mi-hidden-pip {
+  width: 16px; height: 16px; border-radius: 5px;
+  background: repeating-linear-gradient(45deg,
+    color-mix(in srgb, var(--ink-soft) 40%, transparent) 0 3px,
+    transparent 3px 6px);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.mi-spoiler-panel {
+  display: flex; align-items: flex-start; gap: 13px; flex-wrap: wrap;
+  margin-top: 14px; padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--usa-red) 26%, var(--line));
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--usa-red) 7%, var(--bg-soft));
+}
+.mi-spoiler-ic {
+  display: inline-flex; width: 26px; height: 26px; flex: none;
+  color: color-mix(in srgb, var(--usa-red) 80%, #fff);
+}
+.mi-spoiler-ic svg { width: 100%; height: 100%; }
+.mi-spoiler-msg { flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.mi-spoiler-msg strong { font-size: 14px; color: var(--ink); }
+.mi-spoiler-msg span { font-size: 12.8px; line-height: 1.45; color: var(--ink-soft); }
+.mi-reveal {
+  flex: none; align-self: center;
+  border: 1px solid color-mix(in srgb, var(--usa-red) 45%, var(--line));
+  background: color-mix(in srgb, var(--usa-red) 18%, transparent);
+  color: color-mix(in srgb, var(--usa-red) 82%, #fff);
+  font: inherit; font-weight: 700; font-size: 13px;
+  padding: 9px 15px; border-radius: 10px; cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.mi-reveal:hover { background: color-mix(in srgb, var(--usa-red) 30%, transparent); color: #fff; }
+.mi-reveal:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+@media (max-width: 480px) {
+  .mi-reveal { width: 100%; align-self: stretch; }
+}
 
 /* Flikar */
 .mi-tabs {
