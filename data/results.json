@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-24T21:43:19.126Z",
+    "updatedAt": "2026-06-24T22:55:06.286Z",
     "source": "espn",
-    "matchCount": 50,
-    "liveCount": 0,
+    "matchCount": 52,
+    "liveCount": 2,
     "apiCalls": 2
   },
   "results": {
@@ -256,9 +256,36 @@
       "h": 1,
       "a": 2,
       "status": "FINISHED"
+    },
+    "g:C:3": {
+      "h": 2,
+      "a": 2,
+      "status": "IN_PLAY"
+    },
+    "g:C:2": {
+      "h": 2,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:C:3",
+      "status": "IN_PLAY",
+      "minute": 45,
+      "home": "Haiti",
+      "away": "Morocco",
+      "score": "2-2"
+    },
+    {
+      "key": "g:C:2",
+      "status": "IN_PLAY",
+      "minute": 45,
+      "home": "Brazil",
+      "away": "Scotland",
+      "score": "2-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1114,7 +1141,7 @@
       "date": "2026-06-25",
       "time": "00:00",
       "utcDate": "2026-06-24T22:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Haiti",
       "away": "Morocco",
@@ -1131,7 +1158,7 @@
       "date": "2026-06-25",
       "time": "00:00",
       "utcDate": "2026-06-24T22:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Brazil",
       "away": "Scotland",
