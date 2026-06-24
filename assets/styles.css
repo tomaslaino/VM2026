@@ -832,13 +832,6 @@ html.view-bracket .site-bg {
   box-shadow: 0 16px 40px -26px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 255, 255, .05);
 }
 .teams-strip.is-live { border-color: color-mix(in srgb, var(--live) 30%, rgba(255, 255, 255, .09)); }
-.ts-label {
-  display: inline-flex; align-items: center; gap: 4px; flex: none;
-  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
-  color: #9fb4cd; padding-right: 14px;
-  border-right: 1px solid rgba(255, 255, 255, .1);
-}
-.ts-label .flag { width: 18px; height: 12px; border-radius: 2px; }
 .ts-items { display: flex; flex: 1 1 auto; gap: 14px; min-width: 0; flex-wrap: wrap; }
 .ts-item {
   --ts-accent: 130, 170, 220;          /* fallback om laget saknar identitetsfärg */
@@ -917,14 +910,12 @@ html.view-bracket .site-bg {
   color: var(--ink-soft); opacity: .55; text-align: center;
 }
 
-/* Fot: TV-kanal centrerad med fin avskiljare – speglar hjältens .fh-meta. */
-.ts-foot { display: flex; align-items: center; justify-content: center; padding-top: 11px; border-top: 1px solid rgba(255, 255, 255, .08); }
+/* Fot: TV-kanal nederst till höger – speglar Qatar/Bosnien-rutans .fm-foot. */
+.ts-foot { display: flex; align-items: center; justify-content: flex-end; margin-top: auto; }
 .ts-item .cal-tv { flex: none; }
 
 /* ---- Gravsten-memorial (laget har åkt ur VM) ----
    Värdig, dämpad sten i mörk granit med guldtext – ersätter lagets matchkort. */
-.ts-label { transition: color .2s ease; }
-.teams-strip.has-grave .ts-label { color: #c9b277; letter-spacing: 1.4px; }
 .ts-item.ts-grave {
   flex-direction: row;
   align-items: center;
@@ -979,7 +970,6 @@ html.view-bracket .site-bg {
   .fh-main { gap: 8px; }
   .focus-mini-grid { grid-template-columns: 1fr; }
   .teams-strip { flex-direction: column; align-items: stretch; }
-  .ts-label { border-right: 0; padding-right: 0; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, .1); }
   .ts-item.ts-grave { justify-content: flex-start; }
 }
 @media (max-width: 640px) {

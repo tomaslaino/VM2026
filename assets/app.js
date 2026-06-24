@@ -3020,11 +3020,8 @@
     });
     var anyLive = teams.some(function (t) { return t.match && t.match.live; });
     var anyGrave = teams.some(function (t) { return t.fate; });
-    var allGrave = teams.every(function (t) { return t.fate; });
     var h = '<section class="teams-strip' + (anyLive ? " is-live" : "") + (anyGrave ? " has-grave" : "") +
       '" id="teamsSpotlight" aria-label="Sverige och Uruguay">';
-    var labelTxt = allGrave ? "In memoriam" : "Sverige &amp; Uruguay";
-    h += '<span class="ts-label">' + flagImg("se") + flagImg("uy") + labelTxt + '</span>';
     h += '<div class="ts-items">';
     teams.forEach(function (tp) { h += tp.fate ? teamGraveItem(tp) : teamStripItem(tp); });
     h += '</div></section>';
