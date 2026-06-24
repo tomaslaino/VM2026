@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-24T01:22:15.908Z",
+    "updatedAt": "2026-06-24T05:33:23.849Z",
     "source": "espn",
-    "matchCount": 47,
+    "matchCount": 48,
     "liveCount": 0,
     "apiCalls": 2
   },
@@ -240,6 +240,11 @@
     "g:L:5": {
       "h": 1,
       "a": 0,
+      "status": "FINISHED"
+    },
+    "g:K:3": {
+      "h": 0,
+      "a": 1,
       "status": "FINISHED"
     }
   },
@@ -1048,7 +1053,7 @@
       "date": "2026-06-24",
       "time": "04:00",
       "utcDate": "2026-06-24T02:00Z",
-      "status": "TIMED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Congo DR",
       "away": "Colombia",
@@ -2337,8 +2342,20 @@
     ],
     "K": [
       {
-        "idx": 0,
+        "idx": 1,
         "position": 1,
+        "pld": 2,
+        "w": 2,
+        "d": 0,
+        "l": 0,
+        "gf": 4,
+        "ga": 1,
+        "gd": 3,
+        "pts": 6
+      },
+      {
+        "idx": 0,
+        "position": 2,
         "pld": 2,
         "w": 1,
         "d": 1,
@@ -2349,27 +2366,15 @@
         "pts": 4
       },
       {
-        "idx": 1,
-        "position": 2,
-        "pld": 1,
-        "w": 1,
-        "d": 0,
-        "l": 0,
-        "gf": 3,
-        "ga": 1,
-        "gd": 2,
-        "pts": 3
-      },
-      {
         "idx": 3,
         "position": 3,
-        "pld": 1,
+        "pld": 2,
         "w": 0,
         "d": 1,
-        "l": 0,
+        "l": 1,
         "gf": 1,
-        "ga": 1,
-        "gd": 0,
+        "ga": 2,
+        "gd": -1,
         "pts": 1
       },
       {

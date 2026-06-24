@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-24T01:22:16.021Z",
+    "updatedAt": "2026-06-24T05:33:23.895Z",
     "source": "espn"
   },
   "details": {
@@ -21097,6 +21097,427 @@
         }
       ],
       "updatedAt": "2026-06-24T01:22:16.021Z"
+    },
+    "g:K:3": {
+      "espnId": "760459",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-24T02:00Z",
+      "duration": "REGULAR",
+      "winner": "AWAY_TEAM",
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 1
+        },
+        "ht": {
+          "h": 0,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 76,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Daniel Muñoz",
+          "assist": "Juan Fernando Quintero",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 56,
+          "team": "a",
+          "player": "Jhon Lucumí",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Charles Pickel",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Jefferson Lerma",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Noah Sadiki",
+          "out": "Ngal'ayel Mukau"
+        },
+        {
+          "minute": 57,
+          "team": "h",
+          "in": "Simon Banza",
+          "out": "Cédric Bakambu"
+        },
+        {
+          "minute": 58,
+          "team": "a",
+          "in": "Jhon Córdoba",
+          "out": "Luis Suárez"
+        },
+        {
+          "minute": 58,
+          "team": "a",
+          "in": "Juan Fernando Quintero",
+          "out": "James Rodríguez"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Joris Kayembe",
+          "out": "Arthur Masuaku"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Charles Pickel",
+          "out": "Edo Kayembe"
+        },
+        {
+          "minute": 78,
+          "team": "a",
+          "in": "Richard Ríos",
+          "out": "Jhon Arias"
+        },
+        {
+          "minute": 82,
+          "team": "h",
+          "in": "Nathanaël Mbuku",
+          "out": "Samuel Moutoussamy"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "5-3-2",
+          "starters": [
+            {
+              "name": "Lionel Mpasi",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Aaron Wan-Bissaka",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Arthur Masuaku",
+              "jersey": "26",
+              "pos": "LB"
+            },
+            {
+              "name": "Steve Kapuadi",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Axel Tuanzebe",
+              "jersey": "4",
+              "pos": "CD"
+            },
+            {
+              "name": "Chancel Mbemba",
+              "jersey": "22",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Ngal'ayel Mukau",
+              "jersey": "6",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Samuel Moutoussamy",
+              "jersey": "8",
+              "pos": "CM"
+            },
+            {
+              "name": "Yoane Wissa",
+              "jersey": "20",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Cédric Bakambu",
+              "jersey": "17",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Edo Kayembe",
+              "jersey": "25",
+              "pos": "CM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Joris Kayembe",
+              "jersey": "12",
+              "in": true
+            },
+            {
+              "name": "Matthieu Epolo",
+              "jersey": "21"
+            },
+            {
+              "name": "Nathanaël Mbuku",
+              "jersey": "7",
+              "in": true
+            },
+            {
+              "name": "Gédéon Kalulu",
+              "jersey": "24"
+            },
+            {
+              "name": "Timothy Fayulu",
+              "jersey": "16"
+            },
+            {
+              "name": "Dylan Batubinsika",
+              "jersey": "5"
+            },
+            {
+              "name": "Théo Bongonda",
+              "jersey": "10"
+            },
+            {
+              "name": "Gaël Kakuta",
+              "jersey": "11"
+            },
+            {
+              "name": "Brian Cipenga",
+              "jersey": "9"
+            },
+            {
+              "name": "Aaron Tshibola",
+              "jersey": "15"
+            },
+            {
+              "name": "Noah Sadiki",
+              "jersey": "14",
+              "in": true
+            },
+            {
+              "name": "Charles Pickel",
+              "jersey": "18",
+              "in": true
+            },
+            {
+              "name": "Fiston Mayele",
+              "jersey": "19"
+            },
+            {
+              "name": "Meschack Elia",
+              "jersey": "13"
+            },
+            {
+              "name": "Simon Banza",
+              "jersey": "23",
+              "in": true
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Camilo Vargas",
+              "jersey": "12",
+              "pos": "G"
+            },
+            {
+              "name": "Daniel Muñoz",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Johan Mojica",
+              "jersey": "17",
+              "pos": "LB"
+            },
+            {
+              "name": "Jefferson Lerma",
+              "jersey": "16",
+              "pos": "CM"
+            },
+            {
+              "name": "Davinson Sánchez",
+              "jersey": "23",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Jhon Lucumí",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Gustavo Puerta",
+              "jersey": "14",
+              "pos": "RM"
+            },
+            {
+              "name": "Jhon Arias",
+              "jersey": "11",
+              "pos": "LM"
+            },
+            {
+              "name": "Luis Suárez",
+              "jersey": "25",
+              "pos": "F"
+            },
+            {
+              "name": "James Rodríguez",
+              "jersey": "10",
+              "pos": "RF"
+            },
+            {
+              "name": "Luis Díaz",
+              "jersey": "7",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Deiver Machado",
+              "jersey": "22"
+            },
+            {
+              "name": "Jhon Córdoba",
+              "jersey": "9",
+              "in": true
+            },
+            {
+              "name": "Yerry Mina",
+              "jersey": "13"
+            },
+            {
+              "name": "Kevin Castaño",
+              "jersey": "5"
+            },
+            {
+              "name": "Juan Portilla",
+              "jersey": "15"
+            },
+            {
+              "name": "Willer Ditta",
+              "jersey": "18"
+            },
+            {
+              "name": "Jorge Carrascal",
+              "jersey": "8"
+            },
+            {
+              "name": "Juan Fernando Quintero",
+              "jersey": "20",
+              "in": true
+            },
+            {
+              "name": "Santiago Arias",
+              "jersey": "4"
+            },
+            {
+              "name": "Jáminton Campaz",
+              "jersey": "21"
+            },
+            {
+              "name": "Richard Ríos",
+              "jersey": "6",
+              "in": true
+            },
+            {
+              "name": "David Ospina",
+              "jersey": "1"
+            },
+            {
+              "name": "Andrés Gómez",
+              "jersey": "26"
+            },
+            {
+              "name": "Álvaro Montero",
+              "jersey": "24"
+            },
+            {
+              "name": "Cucho Hernández",
+              "jersey": "19"
+            }
+          ]
+        }
+      },
+      "referee": "Maurizio Mariani",
+      "venue": "Estadio Akron, Guadalajara",
+      "attendance": 45358,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "37%",
+          "a": "64%"
+        },
+        {
+          "key": "totalShots",
+          "h": "7",
+          "a": "20"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "1",
+          "a": "9"
+        },
+        {
+          "key": "wonCorners",
+          "h": "4",
+          "a": "5"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "16",
+          "a": "12"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "7"
+        },
+        {
+          "key": "saves",
+          "h": "8",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "299",
+          "a": "540"
+        },
+        {
+          "key": "passPct",
+          "h": "75%",
+          "a": "88%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "2"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-24T05:33:23.895Z"
     }
   }
 }
