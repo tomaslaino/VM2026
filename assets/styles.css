@@ -3851,16 +3851,21 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
   border-radius: 5px; padding: 1px 6px; white-space: nowrap;
 }
 
-.r32-chips { display: flex; gap: 6px; align-items: stretch; }
+.r32-chips { display: flex; gap: 6px; align-items: stretch; flex-wrap: wrap; }
 .r32-chip {
-  position: relative; min-width: 60px; cursor: pointer; text-align: center;
-  border-radius: 9px; padding: 5px 8px 4px; color: var(--ink); font-weight: 800;
+  position: relative; min-width: 84px; cursor: pointer; text-align: center;
+  border-radius: 9px; padding: 6px 9px 5px; color: var(--ink); font-weight: 800;
   background: hsl(142 0% 15%); border: 1px solid hsl(142 0% 27%); border-bottom: 2px solid hsl(142 0% 38%);
   font: inherit; font-weight: 800; transition: filter .12s;
 }
 .r32-chip:hover { filter: brightness(1.18); }
-.r32-chip .rr { display: block; font-size: 15px; line-height: 1.05; }
-.r32-chip .rsub { display: block; font-size: 11px; font-weight: 700; color: var(--ink-soft); }
+.r32-chip .rr { display: flex; flex-direction: column; align-items: center; gap: 1px; line-height: 1.1; }
+.r32-chip .rr .rwho {
+  display: inline-flex; align-items: center; gap: 5px; font-size: 13px; white-space: nowrap;
+}
+.r32-chip .rr .rwho .flag { width: 18px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+.r32-chip .rr small { font-size: 10px; font-weight: 700; color: var(--ink-soft); text-transform: lowercase; }
+.r32-chip .rsub { display: block; font-size: 10px; font-weight: 700; color: var(--ink-soft); margin-top: 2px; }
 .r32-chip.nodata { background: var(--bg-soft); border-color: var(--line); border-bottom-color: var(--line); color: var(--ink-soft); }
 .r32-chip.scorish { background: color-mix(in srgb, var(--usa-blue) 24%, var(--bg-soft)); border-color: var(--usa-blue); border-bottom-color: var(--usa-blue); }
 .r32-chip.scorish .rsub { color: #9ec2ff; }

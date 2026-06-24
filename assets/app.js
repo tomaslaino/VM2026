@@ -1347,7 +1347,7 @@
     return '<div class="bracket-modebar"><div class="bmode-seg" role="group" ' +
       'aria-label="Visningsläge för slutspelsträdet">' +
       seg("seed", "Platser") +
-      seg("odds", "Oddsfavoriter") +
+      seg("odds", "Troligaste lag") +
       '</div>' +
       '<button type="button" class="r32-toggle' + (r32Open ? " on" : "") +
         '" data-r32-toggle aria-pressed="' + (r32Open ? "true" : "false") + '" ' +
@@ -1833,9 +1833,9 @@
      ritar resultatet i samma mörka stil som resten av sidan.
   ==================================================================== */
   var R32_RES = ["1", "X", "2"];
+  function r32TitleText(svName) { return "Vem möter " + svName + "?"; }
   function r32Pct(x) { return x == null ? "–" : (x * 100).toFixed(x >= 0.0995 ? 0 : 1) + "%"; }
   function r32Dpp(d) { return (d >= 0 ? "+" : "−") + Math.abs(Math.round(d * 100)) + " pp"; }
-  function r32Odds(o) { return o == null ? "–" : (o < 10 ? o.toFixed(1) : Math.round(o)); }
 
   // Lista över alla lag: { key:"G:idx", g, idx, team }
   function r32AllTeams() {
@@ -1961,7 +1961,7 @@
         var d = e.data || {};
         if (d.seq !== r32Seq) return;     // ett nyare anrop har redan startats
         r32Busy = false;
-        if (d.error) { setR32Status("kunde inte simulera"); return; }
+        if (d.error) { setR32Status("kunde inte räkna ut just nu"); return; }
         r32Result = d.result; r32Key = d.key;
         renderR32Dynamic();
       };
@@ -1981,7 +1981,7 @@
     if (!r32OddsData || r32OddsData === "loading" || r32OddsData === "error") return;
     var built = r32BuildInput(r32OddsData);
     if (r32Key === built.key && r32Result) { renderR32Dynamic(); return; }
-    setR32Status("simulerar …");
+    setR32Status("räknar …");
     r32Seq++;
     var seq = r32Seq, key = built.key;
     r32EnsureWorker();
@@ -1995,7 +1995,7 @@
         try {
           r32Result = window.R32Engine.simulate(built.input); r32Key = key;
           renderR32Dynamic();
-        } catch (err) { setR32Status("kunde inte simulera"); }
+        } catch (err) { setR32Status("kunde inte räkna ut just nu"); }
       }, 16);
     }
   }
@@ -2030,9 +2030,10 @@
       '<section class="r32-panel" aria-label="Motståndarsimulator">' +
         '<div class="r32-head">' +
           '<div class="r32-titlewrap">' +
-            '<h3 id="r32-title">' + esc(sel.team.sv) + ' → sextondelsfinal</h3>' +
-            '<p class="r32-sub">Tippa de matcher som återstår i grupperna, så räknar vi ut vilka ' +
-              esc(sel.team.sv) + ' troligen möter – och chansen att slippa de tyngsta lagen. ' +
+            '<h3 id="r32-title">' + esc(r32TitleText(sel.team.sv)) + '</h3>' +
+            '<p class="r32-sub">Klicka i hur du tror att matcherna som är kvar i grupperna slutar. ' +
+              'Då visar vi vilka lag ' + esc(sel.team.sv) + ' troligen ställs mot i sextondelsfinalen – ' +
+              'och hur stor chansen är att slippa de tuffaste motståndarna. ' +
               '<span class="r32-status" id="r32-status"></span></p>' +
           '</div>' +
           '<div class="r32-pick">' +
@@ -2045,9 +2046,9 @@
         '<div class="r32-summary" id="r32-summary"></div>' +
         '<div class="r32-body">' +
           '<div class="r32-col r32-games-col">' +
-            '<div class="r32-colhead"><h4>Återstående gruppmatcher</h4>' +
-              '<span class="r32-legend">Färgen visar hur resultatet påverkar dig: ' +
-                '<i class="sw good"></i>hjälper <i class="sw neu"></i>spelar ingen roll <i class="sw bad"></i>sämre</span>' +
+            '<div class="r32-colhead"><h4>Matcher kvar att spela</h4>' +
+              '<span class="r32-legend">Klicka på det du tror händer. Färgen visar vad det ger ' + esc(sel.team.sv) + ': ' +
+                '<i class="sw good"></i>bättre läge <i class="sw neu"></i>ingen skillnad <i class="sw bad"></i>sämre läge</span>' +
             '</div>' +
             '<div id="r32-games" class="r32-games"></div>' +
           '</div>' +
@@ -2063,7 +2064,7 @@
   }
 
   function paintR32() {
-    if (r32OddsData === "error") { setR32Status("kunde inte ladda odds"); return; }
+    if (r32OddsData === "error") { setR32Status("kunde inte hämta data"); return; }
     if (!r32Result) setR32Status("laddar …");
     r32EnsureOdds(function () {
       if (!r32Open) return;
@@ -2078,8 +2079,8 @@
     var avoid = r32AvoidLabel();
     var sel = r32TeamByKey(r32TeamKey);
     var titleEl = document.getElementById("r32-title");
-    if (titleEl) titleEl.textContent = sel.team.sv + " → sextondelsfinal";
-    setR32Status(r32Result.n.toLocaleString("sv") + " simuleringar");
+    if (titleEl) titleEl.textContent = r32TitleText(sel.team.sv);
+    setR32Status("");
 
     renderR32Summary(avoid);
     renderR32Outcomes(avoid);
@@ -2092,9 +2093,9 @@
     var el = document.getElementById("r32-summary");
     if (!el) return;
     el.innerHTML =
-      '<div class="r32-stat good"><div class="v">' + r32Pct(s.good) + '</div><div class="l">Möter ett överkomligt lag</div></div>' +
-      '<div class="r32-stat bad"><div class="v">' + r32Pct(s.bad) + '</div><div class="l">Möter ' + esc(avoid) + '</div></div>' +
-      '<div class="r32-stat out"><div class="v">' + r32Pct(s.eliminated) + '</div><div class="l">Utslagen i gruppen</div></div>';
+      '<div class="r32-stat good"><div class="v">' + r32Pct(s.good) + '</div><div class="l">Möter ett lag de bör klara</div></div>' +
+      '<div class="r32-stat bad"><div class="v">' + r32Pct(s.bad) + '</div><div class="l">Möter ett topplag (' + esc(avoid) + ')</div></div>' +
+      '<div class="r32-stat out"><div class="v">' + r32Pct(s.eliminated) + '</div><div class="l">Åker ut i gruppspelet</div></div>';
   }
 
   function r32TipId(html) {
@@ -2105,7 +2106,7 @@
   var r32TipN = 0;
 
   function r32TipBody(b, base) {
-    if (!b || b.good == null) return '<div class="ci">för få simuleringar</div>';
+    if (!b || b.good == null) return '<div class="ci">för lite data</div>';
     var d = b.good - base, ci = b.ci ? " ±" + Math.round(b.ci * 100) : "";
     var cls = d >= 0 ? "g" : "b";
     var s = '<div class="hl">Slippa ' + esc(r32AvoidLabel()) + ': <span class="' + cls + '">' + r32Dpp(d) +
@@ -2117,7 +2118,7 @@
         return '<div class="chg"><span class="' + k + '">' + esc(r32SvName(c.label)) + '</span><b>' + r32Dpp(c.delta) + '</b></div>';
       }).join("");
     }
-    return s + '<div class="ci" style="margin-top:5px">' + (b.n || 0).toLocaleString("sv") + ' sim</div>';
+    return s + '<div class="ci" style="margin-top:5px">' + (b.n || 0).toLocaleString("sv") + ' beräkningar</div>';
   }
 
   function r32SvName(englishName) {
@@ -2133,8 +2134,7 @@
     var maxP = Math.max.apply(null, outs.map(function (o) { return o.prob; }).concat([0.0001]));
     host.innerHTML = outs.map(function (o) {
       var klass = o.good == null ? "out" : (o.good ? "good" : "bad");
-      var win = o.win != null ? " · vinst " + Math.round(o.win * 100) + "%" : "";
-      var od = o.label === "Eliminated" ? "" : ("odds " + r32Odds(o.odds) + win);
+      var od = o.label === "Eliminated" || o.win == null ? "" : ("ni vinner " + Math.round(o.win * 100) + "%");
       var tip = r32TipId(r32OutcomeTip(o));
       return '<div class="r32-outcome ' + klass + '" data-r32-tip="' + tip + '">' +
         '<div class="top"><span class="nm">' + esc(r32SvName(o.label)) + '</span>' +
@@ -2142,9 +2142,8 @@
         '<div class="bar"><div style="width:' + (o.prob / maxP * 100).toFixed(1) + '%"></div></div></div>';
     }).join("");
     var sub = document.getElementById("r32-outcome-sub");
-    if (sub) sub.innerHTML = outs.length + ' möjliga motståndare. ' +
-      '<i class="dot good"></i> överkomligt · <i class="dot bad"></i> ' + esc(avoid) + '. ' +
-      'Stapeln visar hur trolig motståndaren är.';
+    if (sub) sub.innerHTML = outs.length + ' lag kan bli motståndare. Stapeln visar hur troligt det är. ' +
+      '<i class="dot good"></i> lag de bör klara · <i class="dot bad"></i> topplag.';
   }
 
   function r32OutcomeTip(o) {
@@ -2213,6 +2212,8 @@
     var locked = !!fx;
     var open = !!r32OpenGrids[g.id];
 
+    var teamMap = r32EnglishToTeam();
+    var homeT = teamMap[g.home], awayT = teamMap[g.away];
     var chips = R32_RES.map(function (r) {
       var b = g.results[r] || {};
       var scorish = (g.score_flags || {})[r];
@@ -2223,9 +2224,13 @@
       var style = scorish ? "" : r32ImpactStyle(b.good != null ? b.good - base : null);
       var cls = "r32-chip" + (sel ? " sel" : "") + (scorish ? " scorish" : "") + (b.good == null && !scorish ? " nodata" : "");
       var tip = r32TipId(r32ResultTip(g, r));
+      var who = r === "1" ? homeT : awayT;
+      var label = r === "X"
+        ? '<span class="rr"><span class="rwho">Oavgjort</span></span>'
+        : '<span class="rr"><span class="rwho">' + (who ? flagImg(who.iso) + esc(teamSvFixture(who)) : esc(r32SvName(r === "1" ? g.home : g.away))) + '</span><small>vinner</small></span>';
       return '<button type="button" class="' + cls + '" data-r32-gid="' + g.id + '" data-r32-r="' + r + '"' +
         (style ? ' style="' + style + '"' : '') + ' data-r32-tip="' + tip + '">' +
-        '<span class="rr">' + r + '</span><span class="rsub">' + r32Pct(g.result_probs[r]) + '</span>' +
+        label + '<span class="rsub">' + r32Pct(g.result_probs[r]) + ' chans</span>' +
         (scorish ? '<span class="rtag">▸</span>' : '') + '</button>';
     }).join("");
 
@@ -2320,7 +2325,7 @@
       b.classList.toggle("on", b.getAttribute("data-r32-tab") === key);
     });
     var sel = r32TeamByKey(key);
-    var titleEl = document.getElementById("r32-title"); if (titleEl) titleEl.textContent = sel.team.sv + " → sextondelsfinal";
+    var titleEl = document.getElementById("r32-title"); if (titleEl) titleEl.textContent = r32TitleText(sel.team.sv);
     runR32Sim();
   }
 
@@ -2527,7 +2532,7 @@
 
     if (round === "r32" && c0 === "1") {
       parts.push("Platsen tillhör vinnaren av grupp " + slotLabel.slice(1) + ". " +
-        nm + " vinner gruppen i " + pct + " av simuleringarna.");
+        nm + " vinner gruppen i " + pct + " av fallen.");
     } else if (round === "r32" && c0 === "2") {
       parts.push("Platsen tillhör tvåan i grupp " + slotLabel.slice(1) + ". " +
         nm + " blir tvåa i " + pct + ".");
