@@ -2672,23 +2672,39 @@
     return h;
   }
 
-  /** Kompakt hjältekort när två matcher delar fokus (samtidiga avsparkar). */
+  /** Kompakt hjältekort när två matcher delar fokus (samtidiga avsparkar).
+      Lagen ligger horisontellt bredvid varandra (hemma | mitten | borta),
+      i samma anda som "Senaste matchen"-rutan. */
   function focusMiniCard(e, state) {
     var open = focusOpenAttr(e);
     var status = state === "live" ? focusLiveBadge(e)
       : state === "ft" ? '<span class="fm-ft">Slut</span>'
         : '<span class="fm-time">' + esc(e.time || whenLabels(e.m).time) + '</span>';
-    function sideRow(team, sc) {
-      return '<div class="fm-side">' +
-        '<span class="fm-flag">' + flagImg(team.iso) + '</span>' +
-        '<span class="fm-name" title="' + esc(team.sv) + '">' + esc(teamSvFixture(team)) + '</span>' +
-        '<span class="fm-sc">' + sc + '</span></div>';
+    var hs = e.r.h != null ? e.r.h : 0;
+    var as = e.r.a != null ? e.r.a : 0;
+    var hCls = "", aCls = "";
+    var center;
+    if (state === "next") {
+      center = '<span class="fm-vs" aria-hidden="true">vs</span>';
+    } else {
+      hCls = hs > as ? " is-win" : (hs < as ? " is-loss" : "");
+      aCls = as > hs ? " is-win" : (as < hs ? " is-loss" : "");
+      center = '<span class="fm-score">' +
+        '<span class="fm-sc' + hCls + '">' + hs + '</span>' +
+        '<span class="fm-dash" aria-hidden="true">–</span>' +
+        '<span class="fm-sc' + aCls + '">' + as + '</span></span>';
     }
-    var hs = state === "next" ? "" : (e.r.h != null ? e.r.h : 0);
-    var as = state === "next" ? "" : (e.r.a != null ? e.r.a : 0);
+    function teamSide(team, side, cls) {
+      var flag = '<span class="fm-flag">' + flagImg(team.iso) + '</span>';
+      var name = '<span class="fm-name" title="' + esc(team.sv) + '">' + esc(teamSvFixture(team)) + '</span>';
+      return '<span class="fm-team fm-' + side + cls + '">' +
+        (side === "home" ? name + flag : flag + name) + '</span>';
+    }
     var h = '<article class="focus-mini fm-' + state + open.cls + '"' + open.attr + '>';
     h += '<div class="fm-top">' + focusGroupChip(e, "fm-group") + status + '</div>';
-    h += sideRow(e.home, hs) + sideRow(e.away, as);
+    h += '<div class="fm-teams">' +
+      teamSide(e.home, "home", hCls) + center + teamSide(e.away, "away", aCls) +
+      '</div>';
     h += '<div class="fm-foot">' + spotlightTvHtml(e.channel) + '</div>';
     h += '</article>';
     return h;

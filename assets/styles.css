@@ -642,36 +642,63 @@ html.view-bracket .site-bg {
   display: flex; align-items: center; justify-content: space-between; gap: 10px;
   margin-bottom: 16px;
 }
-.focus-mini-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.focus-mini-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 18px); }
 .focus-mini {
-  display: block; width: 100%; text-align: left;
-  padding: 16px; border-radius: 16px;
+  display: flex; flex-direction: column; width: 100%; text-align: left;
+  padding: clamp(14px, 1.8vw, 20px); border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, .1);
-  background: rgba(255, 255, 255, .03);
-  transition: background .18s ease, border-color .18s ease;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .02));
+  transition: background .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease;
 }
 .focus-mini.match-openable { cursor: pointer; }
-.focus-mini.match-openable:hover { background: rgba(255, 255, 255, .06); border-color: rgba(255, 255, 255, .16); }
+.focus-mini.match-openable:hover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .035));
+  border-color: rgba(255, 255, 255, .2);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -22px rgba(0, 0, 0, .85);
+}
 .focus-mini.match-openable:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .focus-mini.fm-live { border-color: color-mix(in srgb, var(--live) 38%, rgba(255, 255, 255, .1)); }
-.fm-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.fm-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: clamp(12px, 1.6vw, 16px); }
 .fm-group { font-size: 11px; font-weight: 800; letter-spacing: .4px; color: var(--ink-soft); }
 .fm-time { font-size: 13px; font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums; }
 .fm-ft { font-size: 10.5px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--ink-soft); }
-.fm-side { display: flex; align-items: center; gap: 10px; padding: 5px 0; }
+
+/* Lagen horisontellt: hemma | mitten (vs/resultat) | borta */
+.fm-teams {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center; gap: clamp(8px, 1.4vw, 16px);
+}
+.fm-team { display: flex; align-items: center; gap: clamp(7px, 1vw, 11px); min-width: 0; }
+.fm-home { justify-content: flex-end; text-align: right; }
+.fm-away { justify-content: flex-start; text-align: left; }
+.fm-team.is-loss { opacity: .58; }
 .fm-flag { line-height: 0; flex: none; }
-.fm-flag .flag { width: 30px; height: 20px; border-radius: 3px; }
+.fm-flag .flag {
+  width: clamp(28px, 3.4vw, 38px); height: auto; aspect-ratio: 3 / 2;
+  border-radius: 4px; box-shadow: 0 3px 10px rgba(0, 0, 0, .5);
+}
 .fm-name {
-  flex: 1 1 auto; min-width: 0;
-  font-size: 17px; font-weight: 700; color: var(--ink);
+  min-width: 0;
+  font-family: var(--display), system-ui, sans-serif; font-weight: 800;
+  font-size: clamp(15px, 1.9vw, 21px); line-height: 1; letter-spacing: .01em;
+  color: var(--bone); padding-block: .12em;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
-.fm-sc {
-  flex: none; font-family: var(--display); font-weight: 800;
-  font-size: 24px; color: var(--bone); font-variant-numeric: tabular-nums;
-  min-width: 1ch; text-align: right;
+.fm-vs {
+  flex: none;
+  font-family: var(--display); font-weight: 800; text-transform: uppercase;
+  font-size: clamp(13px, 1.5vw, 18px); letter-spacing: .04em;
+  color: var(--ink-soft); opacity: .55;
 }
-.fm-foot { display: flex; justify-content: flex-end; margin-top: 10px; min-height: 1px; }
+.fm-score {
+  flex: none; display: inline-flex; align-items: baseline; gap: clamp(4px, .7vw, 7px);
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(18px, 2.2vw, 26px); color: var(--bone); font-variant-numeric: tabular-nums;
+}
+.fm-sc.is-loss { color: var(--ink-soft); }
+.fm-dash { color: var(--ink-soft); opacity: .55; }
+.fm-foot { display: flex; justify-content: flex-end; margin-top: clamp(12px, 1.6vw, 16px); min-height: 1px; }
 
 .fh-empty { margin: 8px 0 0; color: var(--ink-soft); }
 .focus-hero.is-empty { padding: clamp(20px, 3vw, 34px); }
