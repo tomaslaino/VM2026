@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-24T15:09:09.873Z",
+    "updatedAt": "2026-06-24T16:51:43.070Z",
     "source": "svt+tv4",
-    "matchCount": 48
+    "matchCount": 50
   },
   "byKey": {
     "g:A:2": {
@@ -1090,6 +1090,26 @@
           "url": "https://www.tv4play.se/klipp/13ad40bb56c4b90db4d2/video-hojdpunkter-colombia-dr-kongo",
           "title": "Höjdpunkter: Colombia - DR Kongo",
           "until": null
+        }
+      }
+    },
+    "g:B:0": {
+      "TV4": {
+        "live": {
+          "url": "https://www.tv4play.se/video/fdf08229a287b4b8c7aa/schweiz-kanada",
+          "title": "Schweiz - Kanada",
+          "until": "2026-07-24T18:00:00Z",
+          "from": "2026-06-24T18:00:07Z"
+        }
+      }
+    },
+    "g:B:1": {
+      "TV4": {
+        "live": {
+          "url": "https://www.tv4play.se/video/65727d91c4c2c73739a0/bosnien-qatar",
+          "title": "Bosnien - Qatar",
+          "until": "2026-07-24T18:50:00Z",
+          "from": "2026-06-24T18:50:39Z"
         }
       }
     }

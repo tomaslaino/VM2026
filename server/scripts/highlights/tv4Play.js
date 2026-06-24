@@ -103,10 +103,13 @@ function tv4Url(kind, id, slug) {
 }
 
 /**
- * @returns {Object} { matchKey: { full?, long?, short? } }
- * matchKey löses av anroparen via en lagpar-funktion (se syncHighlights).
+ * @param {(ids:string[])=>string|null} matchKeyForTitle löser lagpar → matchnyckel.
+ * @param {Set<string>} liveKeys nycklar för pågående/kommande matcher. För dessa
+ *   blir matchsändningen en "live"-länk (även innan avspark/försnack), i stället
+ *   för en "full"-repris.
+ * @returns {Object} { matchKey: { full?, long?, short?, live? } }
  */
-export async function fetchTv4Highlights(matchKeyForTitle, { log = () => {} } = {}) {
+export async function fetchTv4Highlights(matchKeyForTitle, liveKeys = new Set(), { log = () => {} } = {}) {
   const panels = await fetchPage();
   const now = Date.now();
   const out = {};
@@ -139,11 +142,18 @@ export async function fetchTv4Highlights(matchKeyForTitle, { log = () => {} } = 
         if (ids.length !== 2) continue;
         const from = ev.playableFrom?.isoString ? new Date(ev.playableFrom.isoString).getTime() : 0;
         const until = ev.playableUntil?.isoString || null;
-        // Bara repriser som går att spela nu (inte kommande sändningar).
-        if (from > now) continue;
         if (until && new Date(until).getTime() <= now) continue;
         const key = matchKeyForTitle(ids);
-        put(key, "full", { url: tv4Url("event", ev.id, ev.slug), title: cleanTitle(ev.title), until });
+        if (!key) continue;
+        const entry = { url: tv4Url("event", ev.id, ev.slug), title: cleanTitle(ev.title), until };
+        if (liveKeys.has(key)) {
+          // Pågående/kommande match: själva matchsändningen (live + försnack).
+          if (ev.playableFrom?.isoString) entry.from = ev.playableFrom.isoString;
+          put(key, "live", entry);
+        } else if (from <= now) {
+          // Spelad match: repris som går att spela nu (inte kommande sändningar).
+          put(key, "full", entry);
+        }
       }
     }
   }

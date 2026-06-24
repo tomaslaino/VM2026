@@ -722,15 +722,27 @@
       esc(label) + "</a>";
   }
 
+  function channelBlockHtml(chName, linksHtml) {
+    if (!linksHtml) return "";
+    return '<div class="mi-watch-ch">' +
+      '<span class="cal-tv ' + (chName === "SVT" ? "svt" : "tv4") + '">' + esc(chName) + "</span>" +
+      '<div class="mi-watch-links">' + linksHtml + "</div>" +
+      "</div>";
+  }
+
   function channelLinksHtml(chName, data) {
     if (!data) return "";
     var links = "";
     HL_TYPES.forEach(function (t) { links += watchLinkHtml(data[t], HL_LABELS[t]); });
-    if (!links) return "";
-    return '<div class="mi-watch-ch">' +
-      '<span class="cal-tv ' + (chName === "SVT" ? "svt" : "tv4") + '">' + esc(chName) + "</span>" +
-      '<div class="mi-watch-links">' + links + "</div>" +
-      "</div>";
+    return channelBlockHtml(chName, links);
+  }
+
+  // Lägg .is-single när bara en kanal har innehåll, så det enda kortet inte
+  // klistras mot vänsterkanten i tvåkolumnsrutnätet.
+  function watchWrapHtml(groups, extraCls) {
+    var count = (groups.match(/mi-watch-ch/g) || []).length;
+    var cls = "mi-watch" + (extraCls ? " " + extraCls : "") + (count <= 1 ? " is-single" : "");
+    return '<div class="' + cls + '">' + groups + "</div>";
   }
 
   function highlightsHtml(info) {
@@ -740,8 +752,35 @@
     if (!hl) return "";
     var groups = channelLinksHtml("SVT", hl.SVT) + channelLinksHtml("TV4", hl.TV4);
     if (!groups) return "";
-    return '<div class="mi-section-title">Se matchen i efterhand</div>' +
-      '<div class="mi-watch">' + groups + "</div>";
+    return '<div class="mi-section-title">Se matchen i efterhand</div>' + watchWrapHtml(groups);
+  }
+
+  /* Livesändning / försnack: länk till SVT Play / TV4 Play där matchen visas
+     live. Dyker upp för pågående matcher och inför avspark (när sändningen –
+     ofta med försnack – blivit tillgänglig), men inte för spelade matcher. */
+  function liveChannelHtml(chName, data, isLive) {
+    if (!data || !data.live) return "";
+    var label = isLive ? "Se live" : "Se sändning live";
+    var entry = data.live;
+    if (entry.until && new Date(entry.until).getTime() <= Date.now()) return "";
+    var ico = isLive
+      ? '<span class="live-dot" aria-hidden="true"></span>'
+      : '<span class="mi-watch-ico" aria-hidden="true">▶</span>';
+    var cls = "mi-watch-link " + (isLive ? "is-live" : "is-upcoming");
+    var link = '<a class="' + cls + '" href="' + esc(entry.url) + '" target="_blank" rel="noopener noreferrer" ' +
+      'title="' + esc(entry.title || label) + '">' + ico + esc(label) + "</a>";
+    return channelBlockHtml(chName, link);
+  }
+
+  function liveBroadcastHtml(info) {
+    // Endast pågående eller kommande matcher – aldrig spelade.
+    if (!info || info.played) return "";
+    var hl = highlights[info.key];
+    if (!hl) return "";
+    var groups = liveChannelHtml("SVT", hl.SVT, info.live) + liveChannelHtml("TV4", hl.TV4, info.live);
+    if (!groups) return "";
+    var title = info.live ? "Se matchen live" : "Se sändningen live";
+    return '<div class="mi-section-title">' + title + "</div>" + watchWrapHtml(groups, "mi-watch-live");
   }
 
   function renderModal() {
@@ -783,6 +822,7 @@
     if (det && det.score && det.score.pen) subScore.push("Straffar " + det.score.pen.h + "–" + det.score.pen.a);
     if (subScore.length) h += '<div class="mi-subscore">' + esc(subScore.join(" · ")) + '</div>';
 
+    h += liveBroadcastHtml(info);
     h += highlightsHtml(info);
     h += tabsHtml(info, det);
     h += factsHtml(info, det);

@@ -63,7 +63,7 @@ function sameId2(ids, idH, idA) {
 }
 
 /** Höjdpunkter/repris för en enskild match, eller null om inget hittas. */
-async function fetchForFixture(fx) {
+async function fetchForFixture(fx, { live = false } = {}) {
   const q = `${swedishNameFor(fx.home)} ${swedishNameFor(fx.away)}`;
   const hits = await searchSvt(q);
   const now = Date.now();
@@ -76,7 +76,18 @@ async function fetchForFixture(fx) {
     const urlPath = item.urls?.svtplay || "";
     const heading = teaser.heading || "";
     const name = item.name || "";
-    const type = classifySvt({ typename: item.__typename, urlPath, heading, name });
+
+    // Livesändningen ligger som hel sändning (Episode/Single) under programmet
+    // "FIFA Fotbolls-VM 2026". Före/under matchen finns inga sammandrag ännu, så
+    // i live-läget letar vi bara efter själva sändningssidan.
+    let type;
+    if (live) {
+      const isBroadcast =
+        (item.__typename === "Episode" || item.__typename === "Single") && /fotbolls-vm/i.test(urlPath);
+      type = isBroadcast ? "live" : null;
+    } else {
+      type = classifySvt({ typename: item.__typename, urlPath, heading, name });
+    }
     if (!type) continue;
 
     // Säkerställ att träffen faktiskt gäller den här matchen (rensa <em>-taggar
@@ -137,5 +148,21 @@ export async function fetchSvtHighlights(fixtures, { log = () => {} } = {}) {
     log(`[svt] inga träffar – senaste fel: ${firstError.message || firstError}`);
   }
   log(`[svt] hittade höjdpunkter för ${found}/${fixtures.length} matcher`);
+  return out;
+}
+
+/**
+ * Livesändning/försnack för pågående eller strax kommande matcher.
+ * @param {Array} fixtures matcher från match.loadLiveFixtures()
+ * @returns {Object} { matchKey: { live: {url,title,until} } }
+ */
+export async function fetchSvtLive(fixtures, { log = () => {} } = {}) {
+  if (!fixtures.length) return {};
+  const out = {};
+  const perFixture = await runPool(fixtures, (fx) => fetchForFixture(fx, { live: true }), 5, () => {});
+  fixtures.forEach((fx, i) => {
+    if (perFixture[i]) out[fx.key] = perFixture[i];
+  });
+  log(`[svt] hittade livesändning för ${Object.keys(out).length}/${fixtures.length} pågående/kommande matcher`);
   return out;
 }

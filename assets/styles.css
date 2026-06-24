@@ -3230,21 +3230,40 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 }
 .mi-note { margin-top: 16px; font-size: 11.5px; color: var(--ink-soft); text-align: center; }
 
-/* Repris + sammandrag (SVT Play / TV4 Play) i matchmodalen. */
-.mi-watch { display: flex; flex-direction: column; gap: 10px; }
-.mi-watch-ch { display: flex; align-items: flex-start; gap: 10px; }
-.mi-watch-ch .cal-tv { flex: none; margin-top: 1px; }
-.mi-watch-links { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; min-width: 0; }
+/* Repris + sammandrag samt livesändning (SVT Play / TV4 Play) i matchmodalen.
+   Kanalerna ligger som likabreda kort sida vid sida (en kolumn per kanal) med
+   knapparna staplade och centrerade – så att SVT- och TV4-sidan ser balanserade
+   ut även när de har olika många klipp. */
+.mi-watch { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-items: stretch; }
+.mi-watch.is-single { grid-template-columns: minmax(0, 1fr); }
+.mi-watch-ch {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 12px; min-width: 0;
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background: var(--bg-soft);
+}
+.mi-watch-ch .cal-tv { flex: none; align-self: flex-start; }
+.mi-watch-links { display: flex; flex-direction: column; gap: 6px; }
 .mi-watch-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 6px 11px; border-radius: 999px;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  padding: 9px 12px; border-radius: 999px; text-align: center;
   border: 1px solid var(--line-strong, var(--line));
-  background: var(--bg-soft); color: var(--ink);
+  background: var(--card); color: var(--ink);
   font-size: 13px; font-weight: 600; text-decoration: none;
   transition: background .12s ease, border-color .12s ease;
 }
-.mi-watch-link:hover { background: color-mix(in srgb, var(--usa-blue) 14%, var(--bg-soft)); border-color: var(--usa-blue); }
+.mi-watch-link:hover { background: color-mix(in srgb, var(--usa-blue) 14%, var(--card)); border-color: var(--usa-blue); }
 .mi-watch-ico { font-size: 9px; line-height: 1; opacity: .8; }
+
+/* Livesändning / försnack – samma kortlayout men med live-accent. */
+.mi-watch.mi-watch-live .mi-watch-ch { border-color: color-mix(in srgb, var(--live) 32%, var(--line)); }
+.mi-watch-link.is-live {
+  border-color: color-mix(in srgb, var(--live) 55%, var(--line-strong));
+  background: color-mix(in srgb, var(--live) 10%, var(--card));
+}
+.mi-watch-link.is-live:hover { background: color-mix(in srgb, var(--live) 18%, var(--card)); border-color: var(--live); }
+.mi-watch-link.is-live .live-dot { margin-right: 1px; }
+.mi-watch-link.is-upcoming .mi-watch-ico { color: var(--live); opacity: 1; }
 
 @media (max-width: 560px) {
   .mi-card {
@@ -3253,6 +3272,7 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
     border-radius: var(--radius) var(--radius) 0 0;
   }
   .mi-score { font-size: 28px; }
+  .mi-watch { grid-template-columns: minmax(0, 1fr); }
   .mi-tab { font-size: 11px; padding: 8px 4px; }
   .mi-pl-name { font-size: 10.5px; }
   .mi-pl-pair { gap: 4px; }

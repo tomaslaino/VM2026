@@ -159,6 +159,56 @@ function isKnownTeam(id) {
   return KNOWN_IDS.has(id);
 }
 
+function isFinishedFixture(key, fx, results) {
+  return (
+    fx.status === "FINISHED" ||
+    fx.status === "AWARDED" ||
+    (results[key] && (results[key].status === "FINISHED" || results[key].h != null))
+  );
+}
+
+function fixtureTs(fx) {
+  if (fx.utcDate) {
+    const t = Date.parse(fx.utcDate);
+    if (!Number.isNaN(t)) return t;
+  }
+  if (fx.date && fx.time) {
+    const t = Date.parse(`${fx.date}T${fx.time}`);
+    if (!Number.isNaN(t)) return t;
+  }
+  return NaN;
+}
+
+/**
+ * Pågående eller strax kommande matcher (med kända lag) som kan ha en
+ * livesändning/försnack att länka till. Avgränsas tidsmässigt så att inte hela
+ * spelschemat söks – bara matcher inom ±windowHours från avspark.
+ */
+export function loadLiveFixtures(windowHours = 4) {
+  let json;
+  try {
+    json = JSON.parse(fs.readFileSync(RESULTS_FILE, "utf8"));
+  } catch {
+    return [];
+  }
+  const fixtures = json.fixtures || {};
+  const results = json.results || {};
+  const now = Date.now();
+  const win = windowHours * 3600 * 1000;
+  const out = [];
+  for (const [key, fx] of Object.entries(fixtures)) {
+    if (!fx.home || !fx.away) continue;
+    if (isFinishedFixture(key, fx, results)) continue;
+    const idH = teamId(fx.home);
+    const idA = teamId(fx.away);
+    if (!isKnownTeam(idH) || !isKnownTeam(idA)) continue;
+    const ts = fixtureTs(fx);
+    if (!Number.isNaN(ts) && Math.abs(ts - now) > win) continue;
+    out.push({ key, home: fx.home, away: fx.away, date: fx.date, idH, idA });
+  }
+  return out;
+}
+
 /** Bygg uppslag: lagpar -> matchnyckel för spelade matcher. */
 export function buildPairIndex(fixtures) {
   const idx = new Map();

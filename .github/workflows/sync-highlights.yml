@@ -1,9 +1,10 @@
 name: Synka SVT/TV4-höjdpunkter
 
 # Hämtar länkar till repriser + sammandrag (hela matchen, längre/kortare
-# sammandrag) från SVT Play och TV4 Play för spelade matcher och committar
+# sammandrag) för spelade matcher samt livesändning/försnack för pågående och
+# strax kommande matcher från SVT Play och TV4 Play, och committar
 # data/highlights.json som matchmodalen läser. Länkar dyker upp och försvinner
-# av sig själva i takt med att klippen publiceras/tas bort hos SVT/TV4.
+# av sig själva i takt med att sändningar/klipp publiceras/tas bort hos SVT/TV4.
 
 on:
   schedule:
