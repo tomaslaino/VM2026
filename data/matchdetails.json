@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-23T23:20:10.600Z",
+    "updatedAt": "2026-06-24T01:22:16.021Z",
     "source": "espn"
   },
   "details": {
@@ -20678,24 +20678,108 @@
     },
     "g:L:5": {
       "espnId": "760460",
-      "status": "IN_PLAY",
-      "minute": 20,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-23T23:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
+          "h": 1,
+          "a": 0
+        },
+        "ht": {
           "h": 0,
           "a": 0
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
-      "bookings": [],
-      "subs": [],
+      "goals": [
+        {
+          "minute": 54,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Ante Budimir",
+          "assist": "Josip Stanisic",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 61,
+          "team": "a",
+          "player": "Édgar Yoel Bárcenas",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Petar Sucic",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Ante Budimir",
+          "out": "Petar Musa"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Andrej Kramaric",
+          "out": "Josko Gvardiol"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Luka Sucic",
+          "out": "Marco Pasalic"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Petar Sucic",
+          "out": "Mateo Kovacic"
+        },
+        {
+          "minute": 77,
+          "team": "a",
+          "in": "Cecilio Waterman",
+          "out": "Jiovany Ramos"
+        },
+        {
+          "minute": 81,
+          "team": "h",
+          "in": "Mario Pasalic",
+          "out": "Luka Modric"
+        },
+        {
+          "minute": 83,
+          "team": "a",
+          "in": "Azarias Londoño",
+          "out": "José Fajardo"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Éric Davis",
+          "out": "César Blackman"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Tomás Rodríguez",
+          "out": "Édgar Yoel Bárcenas"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -20760,11 +20844,13 @@
           "bench": [
             {
               "name": "Ante Budimir",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Petar Sucic",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Nikola Vlasic",
@@ -20780,7 +20866,8 @@
             },
             {
               "name": "Andrej Kramaric",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Martin Erlic",
@@ -20796,7 +20883,8 @@
             },
             {
               "name": "Mario Pasalic",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Duje Caleta-Car",
@@ -20812,7 +20900,8 @@
             },
             {
               "name": "Luka Sucic",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Ivor Pandur",
@@ -20914,7 +21003,8 @@
             },
             {
               "name": "Éric Davis",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Edgardo Fariña",
@@ -20926,7 +21016,8 @@
             },
             {
               "name": "Tomás Rodríguez",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Jorge Gutiérrez",
@@ -20934,68 +21025,70 @@
             },
             {
               "name": "Cecilio Waterman",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true
             },
             {
               "name": "Azarias Londoño",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             }
           ]
         }
       },
       "referee": "Pierre Atcho",
       "venue": "BMO Field, Toronto",
-      "attendance": null,
+      "attendance": 43036,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "51%",
-          "a": "49%"
+          "h": "58%",
+          "a": "42%"
         },
         {
           "key": "totalShots",
+          "h": "6",
+          "a": "8"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "2",
+          "a": "7"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "12",
+          "a": "19"
+        },
+        {
+          "key": "offsides",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "saves",
           "h": "1",
           "a": "1"
         },
         {
-          "key": "shotsOnTarget",
-          "h": "0",
-          "a": "0"
-        },
-        {
-          "key": "wonCorners",
-          "h": "0",
-          "a": "0"
-        },
-        {
-          "key": "foulsCommitted",
-          "h": "3",
-          "a": "2"
-        },
-        {
-          "key": "offsides",
-          "h": "0",
-          "a": "0"
-        },
-        {
-          "key": "saves",
-          "h": "0",
-          "a": "0"
-        },
-        {
           "key": "totalPasses",
-          "h": "69",
-          "a": "66"
+          "h": "515",
+          "a": "357"
         },
         {
           "key": "passPct",
-          "h": "91%",
-          "a": "86%"
+          "h": "84%",
+          "a": "78%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -21003,7 +21096,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-23T23:20:10.599Z"
+      "updatedAt": "2026-06-24T01:22:16.021Z"
     }
   }
 }
