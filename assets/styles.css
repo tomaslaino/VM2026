@@ -3840,7 +3840,7 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 }
 .r32-gnames { font-weight: 700; font-size: 14px; color: var(--ink); min-width: 0; }
 .r32-gstar { font-size: 11px; }
-.r32-gmsg { font-size: 11.5px; color: var(--ink-soft); margin-top: 3px; font-weight: 600; display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px 7px; }
+.r32-gmsg { font-size: 11.5px; color: var(--ink-soft); margin-top: 3px; font-weight: 600; display: flex; align-items: center; flex-wrap: wrap; gap: 4px 7px; }
 .r32-gmsg.locked { color: var(--focus); font-weight: 700; }
 .r32-lockico { font-size: 11px; }
 /* liten lugn tagg för "målskillnad avgör" i stället för en lång mening */

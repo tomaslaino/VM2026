@@ -1351,8 +1351,8 @@
       '</div>' +
       '<button type="button" class="r32-toggle' + (r32Open ? " on" : "") +
         '" data-r32-toggle aria-pressed="' + (r32Open ? "true" : "false") + '" ' +
-        'title="Räkna ut vilka du troligen möter i sextondelsfinalen">' +
-        ico + '<span>Vem möter vi?</span></button>' +
+        'title="Räkna ut vilket lag du troligen möter i sextondelsfinalen">' +
+        ico + '<span>Sextondelskollen</span></button>' +
       '</div>';
   }
 
@@ -2092,7 +2092,7 @@
     var el = document.getElementById("r32-summary");
     if (!el) return;
     el.innerHTML =
-      '<div class="r32-stat good"><div class="v">' + r32Pct(s.good) + '</div><div class="l">Slipper ' + esc(avoid) + '</div></div>' +
+      '<div class="r32-stat good"><div class="v">' + r32Pct(s.good) + '</div><div class="l">Möter ett överkomligt lag</div></div>' +
       '<div class="r32-stat bad"><div class="v">' + r32Pct(s.bad) + '</div><div class="l">Möter ' + esc(avoid) + '</div></div>' +
       '<div class="r32-stat out"><div class="v">' + r32Pct(s.eliminated) + '</div><div class="l">Utslagen i gruppen</div></div>';
   }
@@ -2260,9 +2260,10 @@
   function r32MsgHtml(g) {
     var m = g.message;
     if (!m || m.kind !== "cheer") return "";
+    var teamSv = esc(r32TeamByKey(r32TeamKey).team.sv);
     var txt = m.best === "X"
-      ? "Bäst för dig: oavgjort"
-      : "Bäst för dig: " + esc(r32SvName(m.best === "1" ? g.home : g.away)) + " vinner";
+      ? "Bäst för " + teamSv + ": oavgjort"
+      : "Bäst för " + teamSv + ": " + esc(r32SvName(m.best === "1" ? g.home : g.away)) + " vinner";
     if (g.score_matters) txt += ' <span class="r32-gtag">målskillnad avgör</span>';
     return txt;
   }
