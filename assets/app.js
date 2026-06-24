@@ -3146,7 +3146,7 @@
 
   /** Alla målskyttar i hjälten – grupperade per lag, en rad per skytt med
       hopslagna minuter (t.ex. "Mbappé 12', 45'"). */
-  function focusScorers(e) {
+  function focusScorers(e, extraCls) {
     var det = focusDetails[e.key];
     if (!det || !det.goals || !det.goals.length) return "";
     var sides = { h: [], a: [] };
@@ -3169,7 +3169,7 @@
       }).join("");
     }
     if (!sides.h.length && !sides.a.length) return "";
-    return '<div class="fh-scorers" aria-label="Målskyttar">' +
+    return '<div class="fh-scorers' + (extraCls ? " " + extraCls : "") + '" aria-label="Målskyttar">' +
       '<div class="fh-sc-side fh-sc-home">' + render("h") + '</div>' +
       '<span class="fh-sc-ball" aria-hidden="true">⚽</span>' +
       '<div class="fh-sc-side fh-sc-away">' + render("a") + '</div>' +
@@ -3381,6 +3381,7 @@
     h += '<div class="fm-teams">' +
       teamSide(e.home, "home", hCls) + center + teamSide(e.away, "away", aCls) +
       '</div>';
+    if (state === "live" || state === "ft") h += focusScorers(e, "fh-scorers-mini");
     h += '<div class="fm-foot">' + spotlightTvHtml(e.channel) + '</div>';
     h += '</article>';
     return h;
