@@ -1,10 +1,10 @@
 {
   "meta": {
-    "updatedAt": "2026-06-24T18:35:54.377Z",
+    "updatedAt": "2026-06-24T20:06:12.717Z",
     "source": "espn",
-    "matchCount": 48,
-    "liveCount": 0,
-    "apiCalls": 10
+    "matchCount": 50,
+    "liveCount": 2,
+    "apiCalls": 2
   },
   "results": {
     "g:A:2": {
@@ -246,9 +246,36 @@
       "h": 0,
       "a": 1,
       "status": "FINISHED"
+    },
+    "g:B:1": {
+      "h": 1,
+      "a": 2,
+      "status": "PAUSED"
+    },
+    "g:B:0": {
+      "h": 0,
+      "a": 0,
+      "status": "PAUSED"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:B:1",
+      "status": "PAUSED",
+      "minute": 45,
+      "home": "Qatar",
+      "away": "Bosnia-Herzegovina",
+      "score": "1-2"
+    },
+    {
+      "key": "g:B:0",
+      "status": "PAUSED",
+      "minute": 45,
+      "home": "Canada",
+      "away": "Switzerland",
+      "score": "0-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1070,7 +1097,7 @@
       "date": "2026-06-24",
       "time": "21:00",
       "utcDate": "2026-06-24T19:00Z",
-      "status": "TIMED",
+      "status": "PAUSED",
       "matchday": null,
       "home": "Qatar",
       "away": "Bosnia-Herzegovina",
@@ -1087,7 +1114,7 @@
       "date": "2026-06-24",
       "time": "21:00",
       "utcDate": "2026-06-24T19:00Z",
-      "status": "TIMED",
+      "status": "PAUSED",
       "matchday": null,
       "home": "Canada",
       "away": "Switzerland",
