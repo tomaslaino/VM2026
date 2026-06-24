@@ -222,7 +222,7 @@
       if (det && det.duration === "EXTRA_TIME") suffix = " · efter förlängning";
       else if (det && det.duration === "PENALTY_SHOOTOUT") suffix = " · efter straffar";
       else if (!det && info.r && info.r.pw) suffix = " · efter straffar";
-      return '<span class="mi-status done">Slutspelad' + suffix + '</span>';
+      return '<span class="mi-status done">Avslutad' + suffix + '</span>';
     }
     return '<span class="mi-status upcoming">' + esc(info.when.dateLabel + " · " + info.when.time) + '</span>';
   }
@@ -764,7 +764,7 @@
     if (!info || !info.played) return "";
     var groups = recordedWatchGroups(info);
     if (!groups) return "";
-    return '<div class="mi-section-title">Se matchen i efterhand</div>' + watchWrapHtml(groups);
+    return '<div class="mi-section-title">Repriser</div>' + watchWrapHtml(groups);
   }
 
   /* ---------- Spoilerfritt läge ----------
@@ -788,7 +788,7 @@
       '</div>';
     var groups = recordedWatchGroups(info);
     if (groups) {
-      h += '<div class="mi-section-title">Se matchen i efterhand</div>' + watchWrapHtml(groups);
+      h += '<div class="mi-section-title">Repriser</div>' + watchWrapHtml(groups);
     } else {
       h += '<div class="mi-empty">Sammandrag och repriser dyker upp här när de publicerats.</div>';
     }

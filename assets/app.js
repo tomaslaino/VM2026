@@ -10,6 +10,19 @@
   var expandedGroups = {};      // letter -> bool (visa matcher)
   var selectedTeam = null;      // { group, idx } för lag-panelen (ej persistent)
   var hoverMatch = null;        // matchnummer med öppen infopanel i slutspelet
+  // R32-motståndarsimulator (inbäddad i slutspelsvyn)
+  var r32Open = false;          // panelen utfälld
+  var r32TeamKey = "F:3";       // analyserat lag, "grupp:idx" (default Sverige)
+  var r32Fixed = {};            // oddsMatchId -> ["result",r] | ["score",h,a]
+  var r32OpenGrids = {};        // oddsMatchId -> true (utfällt resultatrutnät)
+  var r32OddsData = null;       // normaliserad odds.json | "loading" | "error"
+  var r32Result = null;         // senaste simuleringsresultat
+  var r32Key = null;            // cache-nyckel för r32Result
+  var r32Worker = null;         // Web Worker (eller "none" vid fallback)
+  var r32Seq = 0;               // sekvensnummer för att ignorera gamla svar
+  var r32Busy = false;          // pågående simulering
+  var r32TipMap = {};           // id -> tooltip-HTML
+  var R32_N = 12000;            // antal simuleringar per körning
   var autoSync = { active: false, source: null, updatedAt: null, status: "pending" };
   var apiFixtures = {}; // nyckel -> { date, time, home, away, homeRef, awayRef, status } från API
   var apiStandings = {}; // grupp-bokstav -> [{ idx, position, pld, w, d, l, gf, ga, gd, pts }] från API
@@ -1331,7 +1344,12 @@
       'aria-label="Visningsläge för slutspelsträdet">' +
       seg("seed", "Platser") +
       seg("odds", "Oddsfavoriter") +
-      '</div></div>';
+      '</div>' +
+      '<button type="button" class="bmode-btn r32-toggle' + (r32Open ? " on" : "") +
+        '" data-r32-toggle aria-pressed="' + (r32Open ? "true" : "false") + '" ' +
+        'title="Simulera vem du möter i sextondelsfinalen utifrån oddsen på de återstående gruppmatcherna">' +
+        '<span class="r32-toggle-ico" aria-hidden="true">🎯</span> Vem möter vi?</button>' +
+      '</div>';
   }
 
   function renderBracket() {
@@ -1339,6 +1357,7 @@
 
     var html = '<div class="bracket-shell">' +
       '<div class="page-intro bracket-intro">' + pageIntroMainHtml("bracket") + bracketModeBar() + '</div>' +
+      (r32Open ? r32PanelHtml() : '') +
       '<div class="bracket-scroll"><div class="bracket-wrap">';
     html += '<svg class="bracket-lines" aria-hidden="true"></svg>';
     html += '<div class="bracket two-sided">';
@@ -1405,6 +1424,7 @@
 
     if (hoverMatch && ctx.resolved[hoverMatch]) updateAside(hoverMatch, ctx);
     else hideAside();
+    if (r32Open) paintR32();
     return true;
   }
 
@@ -1800,6 +1820,532 @@
   // Visningsläge för slutspelsträdet: "seed" (platsetiketter) eller "odds"
   // (oddsfavoriten i hela trädet). Växlas via knappraden överst i slutspelsvyn.
   function bracketMode() { return ui("bracketMode", "seed") === "odds" ? "odds" : "seed"; }
+
+  /* ====================================================================
+     R32-MOTSTÅNDARSIMULATOR  (inbäddad i slutspelsvyn)
+     Monte Carlo över de återstående gruppmatchernas resultat-odds → vem man
+     möter i sextondelsfinalen. Motorn (assets/r32engine.js) körs i en Web
+     Worker; här bygger vi indata från de live-resultat sidan redan har och
+     ritar resultatet i samma mörka stil som resten av sidan.
+  ==================================================================== */
+  var R32_RES = ["1", "X", "2"];
+  function r32Pct(x) { return x == null ? "–" : (x * 100).toFixed(x >= 0.0995 ? 0 : 1) + "%"; }
+  function r32Dpp(d) { return (d >= 0 ? "+" : "−") + Math.abs(Math.round(d * 100)) + " pp"; }
+  function r32Odds(o) { return o == null ? "–" : (o < 10 ? o.toFixed(1) : Math.round(o)); }
+
+  // Lista över alla lag: { key:"G:idx", g, idx, team }
+  function r32AllTeams() {
+    var out = [];
+    WC.groupLetters.forEach(function (L) {
+      WC.groups[L].forEach(function (t, i) { out.push({ key: L + ":" + i, g: L, idx: i, team: t }); });
+    });
+    return out;
+  }
+  function r32TeamByKey(key) {
+    var p = (key || "F:3").split(":"); var g = p[0], i = parseInt(p[1], 10);
+    if (!WC.groups[g] || !WC.groups[g][i]) { g = "F"; i = 3; }
+    return { g: g, idx: i, team: WC.groups[g][i] };
+  }
+  function r32EnglishToTeam() {
+    var map = {};
+    WC.groupLetters.forEach(function (L) { WC.groups[L].forEach(function (t) { map[t.name] = t; }); });
+    return map;
+  }
+
+  // De tyngsta lagen att slippa: tre högst FIFA-rankade (utom det analyserade laget).
+  function r32AvoidSet(skipName) {
+    var all = r32AllTeams().filter(function (e) { return e.team.name !== skipName; });
+    all.sort(function (a, b) { return fifaRankOf(a.team) - fifaRankOf(b.team); });
+    return all.slice(0, 3).map(function (e) { return e.team; });
+  }
+
+  // Ladda + normalisera odds.json (en gång). p = (1/odds) normaliserat per match.
+  function r32EnsureOdds(cb) {
+    if (r32OddsData && r32OddsData !== "loading" && r32OddsData !== "error") return cb(r32OddsData);
+    if (r32OddsData === "loading") return;
+    r32OddsData = "loading";
+    fetch("data/odds.json", { cache: "no-store" }).then(function (r) {
+      if (!r.ok) throw new Error("odds " + r.status);
+      return r.json();
+    }).then(function (data) {
+      var matches = (data.matches || []).map(function (m) {
+        var inv = m.scores.map(function (s) { return 1 / s.odds; });
+        var tot = inv.reduce(function (a, b) { return a + b; }, 0);
+        var scores = m.scores.map(function (s, k) { return { h: s.h, a: s.a, p: inv[k] / tot }; });
+        var rp = { "1": 0, "X": 0, "2": 0 };
+        scores.forEach(function (s) { rp[s.h > s.a ? "1" : s.h === s.a ? "X" : "2"] += s.p; });
+        var pair = [m.home_idx, m.away_idx].slice().sort(function (a, b) { return a - b; }).join(",");
+        return {
+          id: m.group + "-" + m.home_idx + "-" + m.away_idx,
+          g: m.group, i: m.home_idx, j: m.away_idx,
+          home: m.home, away: m.away, pair: pair, scores: scores, rp: rp
+        };
+      });
+      r32OddsData = { matches: matches };
+      cb(r32OddsData);
+    }).catch(function () { r32OddsData = "error"; if (r32Open) paintR32(); });
+  }
+
+  // Bygg motorns indata från live-resultat + odds. Returnerar { input, key }.
+  function r32BuildInput(odds) {
+    var sel = r32TeamByKey(r32TeamKey);
+    var names = {}, fifa = {};
+    WC.groupLetters.forEach(function (L) {
+      names[L] = WC.groups[L].map(function (t) { return t.name; });
+      fifa[L] = WC.groups[L].map(function (t) { return fifaRankOf(t); });
+    });
+
+    // matcher med live-resultat = baslinje (inkl. ev. redan spelade slutomgångsmatcher)
+    var played = [], playedPairs = {};
+    WC.groupLetters.forEach(function (L) {
+      playedPairs[L] = {};
+      groupFixtures(L).forEach(function (fx) {
+        var r = getRes(fx.key);
+        if (!isPlayed(r)) return;
+        played.push({ g: L, i: fx.h, j: fx.a, gi: r.h, gj: r.a });
+        playedPairs[L][[fx.h, fx.a].slice().sort(function (a, b) { return a - b; }).join(",")] = true;
+      });
+    });
+
+    // odds-matcher vars fixtur ännu inte spelats = redigerbara, simulerade
+    var oddsPairs = {};
+    var oddsGames = [];
+    odds.matches.forEach(function (m) {
+      oddsPairs[m.g] = oddsPairs[m.g] || {}; oddsPairs[m.g][m.pair] = true;
+      if (playedPairs[m.g] && playedPairs[m.g][m.pair]) return; // redan spelad → ligger i baslinjen
+      oddsGames.push({
+        id: m.id, g: m.g, i: m.i, j: m.j, home: m.home, away: m.away,
+        scores: m.scores, rp: m.rp, fixed: r32Fixed[m.id] || null
+      });
+    });
+
+    // ospelade matcher utan odds = neutral modell (ovanligt så här sent)
+    var neutral = [];
+    WC.groupLetters.forEach(function (L) {
+      groupFixtures(L).forEach(function (fx) {
+        if (isPlayed(getRes(fx.key))) return;
+        var pk = [fx.h, fx.a].slice().sort(function (a, b) { return a - b; }).join(",");
+        if (playedPairs[L][pk] || (oddsPairs[L] && oddsPairs[L][pk])) return;
+        neutral.push({ g: L, i: fx.h, j: fx.a });
+      });
+    });
+
+    var input = {
+      teamG: sel.g, teamIdx: sel.idx, n: R32_N, seed: 0x9e3779b9,
+      groups: names, fifa: fifa,
+      // de hårdaste lagen man faktiskt kan möta väljs i motorn (topp-3 FIFA bland
+      // möjliga motståndare); avoidNames är en reserv om inga motståndare hittas.
+      autoAvoidTop: 3, avoidNames: r32AvoidSet(sel.team.name).map(function (t) { return t.name; }),
+      annexC: window.ANNEX_C, annexSlots: window.ANNEX_C_SLOTS,
+      played: played, oddsGames: oddsGames, neutral: neutral
+    };
+    var key = JSON.stringify({
+      t: r32TeamKey, n: R32_N,
+      pl: played.map(function (p) { return p.g + p.i + p.j + ":" + p.gi + "-" + p.gj; }).sort(),
+      og: oddsGames.map(function (g) { return g.id; }).sort(),
+      fx: Object.keys(r32Fixed).sort().map(function (k) { return k + "=" + r32Fixed[k].join(","); }),
+      ne: neutral.map(function (g) { return g.g + g.i + g.j; }).sort()
+    });
+    return { input: input, key: key };
+  }
+
+  function r32EnsureWorker() {
+    if (r32Worker) return;
+    try {
+      r32Worker = new Worker("assets/r32worker.js");
+      r32Worker.onmessage = function (e) {
+        var d = e.data || {};
+        if (d.seq !== r32Seq) return;     // ett nyare anrop har redan startats
+        r32Busy = false;
+        if (d.error) { setR32Status("kunde inte simulera"); return; }
+        r32Result = d.result; r32Key = d.key;
+        renderR32Dynamic();
+      };
+      r32Worker.onerror = function () {
+        // Worker kunde inte laddas/köras → fall tillbaka på huvudtråden.
+        r32Worker = "none"; r32Busy = false; r32Key = null; runR32Sim();
+      };
+    } catch (err) { r32Worker = "none"; }
+  }
+
+  function setR32Status(txt) {
+    var el = document.getElementById("r32-status");
+    if (el) el.textContent = txt;
+  }
+
+  function runR32Sim() {
+    if (!r32OddsData || r32OddsData === "loading" || r32OddsData === "error") return;
+    var built = r32BuildInput(r32OddsData);
+    if (r32Key === built.key && r32Result) { renderR32Dynamic(); return; }
+    setR32Status("simulerar …");
+    r32Seq++;
+    var seq = r32Seq, key = built.key;
+    r32EnsureWorker();
+    if (r32Worker && r32Worker !== "none") {
+      r32Busy = true;
+      r32Worker.postMessage({ seq: seq, key: key, input: built.input });
+    } else {
+      // fallback: kör på huvudtråden (ger en kort paus men funkar utan Worker)
+      setTimeout(function () {
+        if (seq !== r32Seq) return;
+        try {
+          r32Result = window.R32Engine.simulate(built.input); r32Key = key;
+          renderR32Dynamic();
+        } catch (err) { setR32Status("kunde inte simulera"); }
+      }, 16);
+    }
+  }
+  function r32AvoidLabel() {
+    if (!r32Result || !r32Result.avoidNames || !r32Result.avoidNames.length) return "topplagen";
+    var byName = r32EnglishToTeam();
+    return r32Result.avoidNames.map(function (nm) {
+      var t = byName[nm];
+      return t ? teamSvFixture(t) : nm;
+    }).join("/");
+  }
+
+  /* ---------- panel-skelett ---------- */
+  function r32PanelHtml() {
+    var sel = r32TeamByKey(r32TeamKey);
+    // lag-väljare grupperad per grupp
+    var optgroups = WC.groupLetters.map(function (L) {
+      var opts = WC.groups[L].map(function (t, i) {
+        var k = L + ":" + i;
+        return '<option value="' + k + '"' + (k === r32TeamKey ? " selected" : "") + '>' + esc(t.sv) + "</option>";
+      }).join("");
+      return '<optgroup label="Grupp ' + L + '">' + opts + "</optgroup>";
+    }).join("");
+
+    function quick(key, label) {
+      return '<button type="button" class="r32-quick' + (key === r32TeamKey ? " on" : "") +
+        '" data-r32-tab="' + key + '">' + label + "</button>";
+    }
+
+    return '' +
+      '<section class="r32-panel" aria-label="Motståndarsimulator">' +
+        '<div class="r32-head">' +
+          '<div class="r32-titlewrap">' +
+            '<h3 id="r32-title">' + esc(sel.team.sv) + ' → sextondelsfinal</h3>' +
+            '<p class="r32-sub">Lås resultat på de återstående gruppmatcherna och se vem ' +
+              esc(sel.team.sv) + ' möter – och chansen att slippa de tunga lagen. ' +
+              '<span class="r32-status" id="r32-status"></span></p>' +
+          '</div>' +
+          '<div class="r32-pick">' +
+            '<div class="r32-quicktabs">' + quick("F:3", "🇸🇪 Sverige") + quick("H:1", "🇺🇾 Uruguay") + '</div>' +
+            '<label class="r32-select"><span>Lag</span>' +
+              '<select id="r32-team">' + optgroups + '</select></label>' +
+            '<button type="button" class="r32-reset" data-r32-reset>Återställ val</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="r32-summary" id="r32-summary"></div>' +
+        '<div class="r32-body">' +
+          '<div class="r32-col r32-games-col">' +
+            '<div class="r32-colhead"><h4>Återstående gruppmatcher</h4>' +
+              '<span class="r32-legend">' +
+                '<i class="sw bad"></i>sämre <i class="sw neu"></i>oförändrat <i class="sw good"></i>bättre' +
+                ' · <i class="sw score"></i>målskillnaden avgör – öppna ▸</span>' +
+            '</div>' +
+            '<div id="r32-games" class="r32-games"></div>' +
+          '</div>' +
+          '<div class="r32-col r32-side-col">' +
+            '<div class="r32-card"><h4>Möjliga motståndare</h4>' +
+              '<p class="r32-cardsub" id="r32-outcome-sub"></p>' +
+              '<div id="r32-outcomes" class="r32-outcomes"></div></div>' +
+            '<div class="r32-card"><h4 id="r32-standings-title">Gruppen just nu</h4>' +
+              '<div id="r32-standings"></div></div>' +
+          '</div>' +
+        '</div>' +
+      '</section>';
+  }
+
+  function paintR32() {
+    if (r32OddsData === "error") { setR32Status("kunde inte ladda odds"); return; }
+    if (!r32Result) setR32Status("laddar …");
+    r32EnsureOdds(function () {
+      if (!r32Open) return;
+      runR32Sim();
+    });
+  }
+
+  /* ---------- rita dynamiskt innehåll ---------- */
+  function renderR32Dynamic() {
+    if (!r32Result) return;
+    r32TipN = 0; r32TipMap = {};
+    var avoid = r32AvoidLabel();
+    var sel = r32TeamByKey(r32TeamKey);
+    var titleEl = document.getElementById("r32-title");
+    if (titleEl) titleEl.textContent = sel.team.sv + " → sextondelsfinal";
+    setR32Status(r32Result.n.toLocaleString("sv") + " simuleringar");
+
+    renderR32Summary(avoid);
+    renderR32Outcomes(avoid);
+    renderR32Standings(sel);
+    renderR32Games();
+  }
+
+  function renderR32Summary(avoid) {
+    var s = r32Result.summary;
+    var el = document.getElementById("r32-summary");
+    if (!el) return;
+    el.innerHTML =
+      '<div class="r32-stat good"><div class="v">' + r32Pct(s.good) + '</div><div class="l">Slipper ' + esc(avoid) + '</div></div>' +
+      '<div class="r32-stat bad"><div class="v">' + r32Pct(s.bad) + '</div><div class="l">Möter ' + esc(avoid) + '</div></div>' +
+      '<div class="r32-stat out"><div class="v">' + r32Pct(s.eliminated) + '</div><div class="l">Utslagen i gruppen</div></div>';
+  }
+
+  function r32TipId(html) {
+    var id = "t" + (r32TipN++);
+    r32TipMap[id] = html;
+    return id;
+  }
+  var r32TipN = 0;
+
+  function r32TipBody(b, base) {
+    if (!b || b.good == null) return '<div class="ci">för få simuleringar</div>';
+    var d = b.good - base, ci = b.ci ? " ±" + Math.round(b.ci * 100) : "";
+    var cls = d >= 0 ? "g" : "b";
+    var s = '<div class="hl">Slippa ' + esc(r32AvoidLabel()) + ': <span class="' + cls + '">' + r32Dpp(d) +
+      '<span class="ci">' + ci + '</span></span></div>';
+    if (b.changes && b.changes.length) {
+      s += '<div class="ci" style="margin-top:6px">Motståndare som ändras mest:</div>';
+      s += b.changes.map(function (c) {
+        var k = c.good === true ? "g" : (c.good === false ? "b" : "o");
+        return '<div class="chg"><span class="' + k + '">' + esc(r32SvName(c.label)) + '</span><b>' + r32Dpp(c.delta) + '</b></div>';
+      }).join("");
+    }
+    return s + '<div class="ci" style="margin-top:5px">' + (b.n || 0).toLocaleString("sv") + ' sim</div>';
+  }
+
+  function r32SvName(englishName) {
+    if (englishName === "Eliminated") return "Utslagen";
+    var t = r32EnglishToTeam()[englishName];
+    return t ? t.sv : englishName;
+  }
+
+  function renderR32Outcomes(avoid) {
+    var host = document.getElementById("r32-outcomes");
+    if (!host) return;
+    var outs = r32Result.outcomes.filter(function (o) { return o.prob > 0; });
+    var maxP = Math.max.apply(null, outs.map(function (o) { return o.prob; }).concat([0.0001]));
+    host.innerHTML = outs.map(function (o) {
+      var klass = o.good == null ? "out" : (o.good ? "good" : "bad");
+      var win = o.win != null ? " · vinst " + Math.round(o.win * 100) + "%" : "";
+      var od = o.label === "Eliminated" ? "" : ("odds " + r32Odds(o.odds) + win);
+      var tip = r32TipId(r32OutcomeTip(o));
+      return '<div class="r32-outcome ' + klass + '" data-r32-tip="' + tip + '">' +
+        '<div class="top"><span class="nm">' + esc(r32SvName(o.label)) + '</span>' +
+          '<span class="od">' + r32Pct(o.prob) + (od ? " · " + od : "") + '</span></div>' +
+        '<div class="bar"><div style="width:' + (o.prob / maxP * 100).toFixed(1) + '%"></div></div></div>';
+    }).join("");
+    var sub = document.getElementById("r32-outcome-sub");
+    if (sub) sub.innerHTML = outs.length + ' möjliga utfall · <i class="dot good"></i>bra ' +
+      '<i class="dot bad"></i>' + esc(avoid) + ' · vinst% = chans i matchen';
+  }
+
+  function r32OutcomeTip(o) {
+    var s = '<h4>' + esc(r32SvName(o.label)) + '</h4>';
+    if (o.win != null) s += '<div class="hl">~<b>' + Math.round(o.win * 100) + '%</b> att ' + esc(r32Result.teamName === "Sweden" ? "Sverige" : r32SvName(r32Result.teamName)) + ' vinner matchen</div>';
+    if (o.sweden_pos) s += '<div>Slutar som: <b>' + esc(o.sweden_pos) + '</b></div>';
+    if (o.key_games && o.key_games.length) {
+      s += '<div class="ci" style="margin-top:6px">Påverkas mest av:</div>';
+      s += o.key_games.map(function (k) {
+        return '<div class="chg"><span>' + esc(r32SvMatch(k.match)) + '</span></div>' +
+          '<div class="ci" style="margin:-2px 0 4px">↑ troligare vid ' + esc(r32SvCheer(k.cheer)) + '</div>';
+      }).join("");
+    } else if (o.label !== "Eliminated") {
+      s += '<div class="ci" style="margin-top:4px">styrs mest av egen placering</div>';
+    }
+    return s;
+  }
+  function r32SvMatch(m) {
+    var parts = m.split(" – ");
+    return parts.map(function (p) { return r32SvName(p); }).join(" – ");
+  }
+  function r32SvCheer(c) {
+    if (c === "oavgjort") return "oavgjort";
+    return r32SvName(c);
+  }
+
+  function renderR32Standings(sel) {
+    var host = document.getElementById("r32-standings");
+    if (!host) return;
+    var title = document.getElementById("r32-standings-title");
+    if (title) title.textContent = "Grupp " + sel.g + " just nu";
+    var table = computeTable(sel.g);
+    host.innerHTML = '<table class="r32-standings"><tr><th class="nm">Lag</th><th>S</th><th>MV</th><th>GM</th><th>P</th></tr>' +
+      table.map(function (r, pos) {
+        var isTeam = r.idx === sel.idx;
+        return '<tr' + (isTeam ? ' class="me"' : '') + '>' +
+          '<td class="nm">' + (pos + 1) + '. ' + flagImg(r.team.iso) + esc(r.team.sv) + '</td>' +
+          '<td>' + r.pld + '</td><td>' + (r.gd >= 0 ? "+" : "") + r.gd + '</td>' +
+          '<td>' + r.gf + '</td><td>' + r.pts + '</td></tr>';
+      }).join("") + '</table>';
+  }
+
+  // tint för påverkan (mörkt tema): negativ=röd, neutral=grå, positiv=grön
+  function r32ImpactStyle(delta) {
+    if (delta == null) return null;
+    var t = Math.max(-1, Math.min(1, delta / 0.15));
+    var hue = t >= 0 ? 142 : 2;
+    var sat = Math.round(Math.abs(t) * 70);
+    return "background:hsl(" + hue + " " + sat + "% 16%);" +
+      "border-color:hsl(" + hue + " " + sat + "% 30%);" +
+      "border-bottom-color:hsl(" + hue + " " + Math.min(sat + 8, 80) + "% 44%);";
+  }
+
+  function renderR32Games() {
+    var host = document.getElementById("r32-games");
+    if (!host || !r32Result) return;
+    var games = r32Result.games.slice().sort(function (a, b) { return b.importance - a.importance; });
+    var top2 = {};
+    games.slice(0, 2).forEach(function (g) { if (g.importance > 0.04) top2[g.id] = true; });
+    host.innerHTML = games.map(function (g) { return r32GameRow(g, top2[g.id]); }).join("");
+  }
+
+  function r32GameRow(g, star) {
+    var base = g.base_good != null ? g.base_good : (r32Result.summary.good);
+    var fx = r32Fixed[g.id];
+    var locked = !!fx;
+    var open = !!r32OpenGrids[g.id];
+
+    var chips = R32_RES.map(function (r) {
+      var b = g.results[r] || {};
+      var scorish = (g.score_flags || {})[r];
+      var selR = fx && fx[0] === "result" && fx[1] === r;
+      var selS = fx && fx[0] === "score" &&
+        ((r === "1" && fx[1] > fx[2]) || (r === "X" && fx[1] === fx[2]) || (r === "2" && fx[1] < fx[2]));
+      var sel = selR || selS;
+      var style = scorish ? "" : r32ImpactStyle(b.good != null ? b.good - base : null);
+      var cls = "r32-chip" + (sel ? " sel" : "") + (scorish ? " scorish" : "") + (b.good == null && !scorish ? " nodata" : "");
+      var tip = r32TipId(r32ResultTip(g, r));
+      return '<button type="button" class="' + cls + '" data-r32-gid="' + g.id + '" data-r32-r="' + r + '"' +
+        (style ? ' style="' + style + '"' : '') + ' data-r32-tip="' + tip + '">' +
+        '<span class="rr">' + r + '</span><span class="rsub">' + r32Pct(g.result_probs[r]) + '</span>' +
+        (scorish ? '<span class="rtag">▸</span>' : '') + '</button>';
+    }).join("");
+
+    var lockMsg = locked ? "🔒 låst: " + r32FixLabel(g, fx) : esc(g.message || "");
+    var msgCls = "r32-gmsg" + (locked ? " locked" : (g.score_matters ? " matters" : ""));
+
+    var row = '<div class="r32-game' + (star ? " star" : "") + (locked ? " islocked" : "") + '">' +
+      '<div class="r32-gtop">' +
+        '<span class="r32-gpill grp-' + g.group + '">' + g.group + '</span>' +
+        '<div class="r32-gnames">' + esc(r32SvName(g.home)) + ' – ' + esc(r32SvName(g.away)) +
+          (star ? ' <span class="r32-gstar" title="Mest avgörande match">⭐</span>' : '') +
+          '<div class="' + msgCls + '">' + lockMsg + '</div></div>' +
+        '<div class="r32-chips">' + chips +
+          '<button type="button" class="r32-exp" data-r32-expand="' + g.id + '" title="Välj exakt resultat">' +
+            (open ? "▾" : "▸") + '</button>' +
+        '</div>' +
+      '</div>' +
+      (open ? r32ScoreMatrix(g, base, fx) : "") +
+    '</div>';
+    return row;
+  }
+
+  function r32FixLabel(g, fx) {
+    if (fx[0] === "score") return fx[1] + "–" + fx[2];
+    return { "1": r32SvName(g.home) + " vinner", "X": "oavgjort", "2": r32SvName(g.away) + " vinner" }[fx[1]];
+  }
+
+  function r32ResultTip(g, r) {
+    var head = { "1": r32SvName(g.home) + " vinner", "X": "Oavgjort", "2": r32SvName(g.away) + " vinner" }[r];
+    var s = '<h4>' + esc(head) + '</h4>' + r32TipBody(g.results[r], g.base_good);
+    if ((g.score_flags || {})[r]) s += '<span class="warn">⚠ målskillnaden avgör – öppna ▸</span>';
+    return s;
+  }
+
+  function r32ScoreMatrix(g, base, fx) {
+    var occ = {}; (g.scores_occ || []).forEach(function (s) { occ[s.h + "-" + s.a] = s.p; });
+    var byScore = {}; (g.scores || []).forEach(function (s) { byScore[s.h + "-" + s.a] = s; });
+    var cap = 6;
+    var maxH = Math.min(cap, Math.max.apply(null, (g.scores_occ || [{ h: 0 }]).map(function (s) { return s.h; })));
+    var maxA = Math.min(cap, Math.max.apply(null, (g.scores_occ || [{ a: 0 }]).map(function (s) { return s.a; })));
+    var head = '<tr><th class="corner">' + esc(r32SvName(g.home)) + ' ↓<br>' + esc(r32SvName(g.away)) + ' →</th>';
+    for (var a = 0; a <= maxA; a++) head += '<th>' + a + '</th>';
+    head += '</tr>';
+    var rows = "";
+    for (var h = 0; h <= maxH; h++) {
+      rows += '<tr><th>' + h + '</th>';
+      for (var a2 = 0; a2 <= maxA; a2++) {
+        var key = h + "-" + a2, p = occ[key];
+        if (p == null) { rows += '<td class="empty"></td>'; continue; }
+        var info = byScore[key] || {};
+        var sel = fx && fx[0] === "score" && fx[1] === h && fx[2] === a2;
+        var style = r32ImpactStyle(info.good_shrunk != null ? info.good_shrunk - base : null);
+        var cls = "r32-cell" + (sel ? " sel" : "") + (h === a2 ? " diag" : "") +
+          (info.n != null && info.n < 80 ? " lowdata" : "") + (info.good_shrunk == null ? " nodata" : "");
+        var tip = r32TipId(r32ScoreTip(g, h, a2, info, base));
+        rows += '<td><button type="button" class="' + cls + '" data-r32-gid="' + g.id +
+          '" data-r32-h="' + h + '" data-r32-a="' + a2 + '"' + (style ? ' style="' + style + '"' : '') +
+          ' data-r32-tip="' + tip + '">' + h + '–' + a2 + '<span class="sp">' + r32Pct(p) + '</span></button></td>';
+      }
+      rows += '</tr>';
+    }
+    return '<div class="r32-matrix"><table>' + head + rows + '</table></div>';
+  }
+
+  function r32ScoreTip(g, h, a, info, base) {
+    return '<h4>' + esc(r32SvName(g.home)) + ' ' + h + '–' + a + ' ' + esc(r32SvName(g.away)) + '</h4>' +
+      r32TipBody(info, base);
+  }
+
+  /* ---------- interaktion ---------- */
+  function r32SetTeam(key) {
+    if (key === r32TeamKey) return;
+    r32TeamKey = key; r32Fixed = {}; r32OpenGrids = {};
+    // uppdatera väljarens markering + snabbtabbar utan full omritning
+    var sl = document.getElementById("r32-team"); if (sl) sl.value = key;
+    document.querySelectorAll(".r32-quick").forEach(function (b) {
+      b.classList.toggle("on", b.getAttribute("data-r32-tab") === key);
+    });
+    var sel = r32TeamByKey(key);
+    var titleEl = document.getElementById("r32-title"); if (titleEl) titleEl.textContent = sel.team.sv + " → sextondelsfinal";
+    runR32Sim();
+  }
+
+  function r32HandleClick(t) {
+    var toggle = t.closest && t.closest("[data-r32-toggle]");
+    if (toggle) {
+      r32Open = !r32Open;
+      renderBracket();
+      if (r32Open) {
+        var panel = viewEl.querySelector(".r32-panel");
+        if (panel && panel.scrollIntoView) panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+      return true;
+    }
+    if (!r32Open) return false;
+    var tab = t.closest && t.closest("[data-r32-tab]");
+    if (tab) { r32SetTeam(tab.getAttribute("data-r32-tab")); return true; }
+    if (t.closest && t.closest("[data-r32-reset]")) {
+      r32Fixed = {}; r32OpenGrids = {}; runR32Sim(); return true;
+    }
+    var exp = t.closest && t.closest("[data-r32-expand]");
+    if (exp) {
+      var gid = exp.getAttribute("data-r32-expand");
+      if (r32OpenGrids[gid]) delete r32OpenGrids[gid]; else r32OpenGrids[gid] = true;
+      renderR32Games(); return true;
+    }
+    var cell = t.closest && t.closest("[data-r32-h]");
+    if (cell) {
+      var cgid = cell.getAttribute("data-r32-gid");
+      var ch = parseInt(cell.getAttribute("data-r32-h"), 10), ca = parseInt(cell.getAttribute("data-r32-a"), 10);
+      var cur = r32Fixed[cgid];
+      if (cur && cur[0] === "score" && cur[1] === ch && cur[2] === ca) delete r32Fixed[cgid];
+      else r32Fixed[cgid] = ["score", ch, ca];
+      runR32Sim(); return true;
+    }
+    var chip = t.closest && t.closest("[data-r32-r]");
+    if (chip) {
+      var ggid = chip.getAttribute("data-r32-gid"), rr = chip.getAttribute("data-r32-r");
+      var c2 = r32Fixed[ggid];
+      if (c2 && c2[0] === "result" && c2[1] === rr) delete r32Fixed[ggid];
+      else r32Fixed[ggid] = ["result", rr];
+      runR32Sim(); return true;
+    }
+    return false;
+  }
 
   // Mest sannolika laget i en fördelning (eller null).
   function topNameOf(dist) {
@@ -2659,7 +3205,7 @@
     h += '<div class="fh-next-head">' +
       '<span class="fh-eyebrow">Senaste matchen</span>' +
       '<span class="fhn-head-right">' +
-        '<span class="fhn-ft">Slutspelad</span>' +
+        '<span class="fhn-ft">Avslutad</span>' +
         focusGroupChip(e, "fh-group") +
       '</span>' +
       '</div>';
@@ -3487,6 +4033,7 @@
     h += '<div class="tip-row tip-dim"><span>🏟️</span>' + esc(v.real) + '</div>';
 
     tipEl.innerHTML = h;
+    tipEl.classList.remove("r32");
     tipEl.classList.add("show");
     positionTip(x, y);
   }
@@ -3508,6 +4055,7 @@
 
   function onInput(e) {
     if (e.target.id === "teamSearch") renderSearchResults(e.target.value);
+    else if (e.target.id === "r32-team") r32SetTeam(e.target.value);
   }
 
   function onClick(e) {
@@ -3522,6 +4070,8 @@
       render();
       return;
     }
+
+    if (r32HandleClick(t)) return;
     var sr = t.closest && t.closest(".sr-item");
     if (sr) {
       if (sr.hasAttribute("data-player-id")) openSearchPlayer(sr.getAttribute("data-player-id"));
@@ -3682,6 +4232,12 @@
     if (mc) {
       var no = parseInt(mc.getAttribute("data-m"), 10);
       showTip(no, e.clientX, e.clientY);
+      return;
+    }
+    var rt = e.target.closest && e.target.closest("[data-r32-tip]");
+    if (rt) {
+      var html = r32TipMap[rt.getAttribute("data-r32-tip")];
+      if (html != null) { tipEl.innerHTML = html; tipEl.classList.add("show", "r32"); positionTip(e.clientX, e.clientY); }
     }
   }
   function onMove(e) {
@@ -3691,6 +4247,10 @@
     var mc = e.target.closest && e.target.closest("[data-m]");
     if (mc && (!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest("[data-m]"))) {
       hideTip();
+    }
+    var rt = e.target.closest && e.target.closest("[data-r32-tip]");
+    if (rt && (!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest("[data-r32-tip]"))) {
+      tipEl.classList.remove("show", "r32");
     }
   }
 
@@ -3715,10 +4275,8 @@
     if (!btn) return;
     var on = spoilerFreeOn();
     btn.classList.toggle("is-on", on);
-    btn.setAttribute("aria-pressed", on ? "true" : "false");
+    btn.setAttribute("aria-checked", on ? "true" : "false");
     document.documentElement.classList.toggle("spoiler-free", on);
-    var txt = btn.querySelector(".spoiler-txt");
-    if (txt) txt.textContent = on ? "Spoilerfri på" : "Spoilerfri";
   }
   function setupSpoilerToggle() {
     var btn = document.getElementById("spoilerToggle");

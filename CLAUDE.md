@@ -27,6 +27,9 @@ npm run sync:static # synka till data/results.json + data/matchdetails.json (Git
 | `index.html` | Ingångspunkt, innehåller `window.VM_CONFIG` |
 | `assets/app.js` | Huvudlogik: tabeller, slutspelsträd, kalender |
 | `assets/matchinfo.js` | Matchmodal med detaljer/statistik |
+| `assets/r32engine.js` | Monte Carlo-motor: simulerar vem man möter i R32 utifrån odds (delas av huvudtråd + worker) |
+| `assets/r32worker.js` | Web Worker som kör `r32engine.js` utanför huvudtråden |
+| `data/odds.json` | Exakta resultat-odds för de återstående gruppmatcherna (indata till R32-motorn) |
 | `assets/playerstats.js` | Spelarstatistik |
 | `assets/styles.css` | All CSS |
 | `server/index.js` | Express-server + WebSocket |
