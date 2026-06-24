@@ -166,11 +166,26 @@
   }
 
   /* ---------- Spoilerfritt läge ----------
-     Döljer resultat (och tabell-/statistikpåverkan) för matcher som spelats
-     under det senaste dygnet – typiskt nattens matcher i USA. Så kan man gå in
-     i kalendern och se highlights/hela matchen utan att veta hur det gick. */
-  var SPOILER_WINDOW_MS = 24 * 3600 * 1000;
+     Döljer resultat (och tabell-/statistikpåverkan) för spelade matcher tills de
+     "låses upp" vid en daglig återställning. Tanken: matcher spelas under
+     amerikanska kvällen/natten (svensk kväll/natt), och man vill kunna gå in i
+     kalendern dagen efter och se highlights/hela matchen utan att veta hur det
+     gick. Återställningen sker kl. 18:00 svensk tid (just före kvällens första
+     match ~19:00), och en match förblir dold tills den ANDRA 18:00-gränsen efter
+     avspark passerats. Det innebär att gårdagens/nattens matcher hålls dolda hela
+     dagen och kvällen, och avslöjas först kl. 18:00 dygnet därpå. */
+  var SPOILER_RESET_UTC_HOUR = 16; // 18:00 svensk sommartid (CEST = UTC+2)
   function spoilerFreeOn() { return !!ui("spoilerFree", false); }
+
+  /* Tidpunkt (ms, UTC) då en match med given avspark avslöjas: den andra
+     18:00-gränsen (svensk tid) strikt efter avspark. */
+  function spoilerUnlockMs(ko) {
+    var d = new Date(ko);
+    var boundary = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), SPOILER_RESET_UTC_HOUR, 0, 0);
+    var DAY = 24 * 3600 * 1000;
+    if (boundary <= ko) boundary += DAY; // första 18:00-gränsen strikt efter avspark
+    return boundary + DAY;                // andra gränsen (ett dygn till)
+  }
 
   /* Avsparkstid (ms, UTC) för en resultatnyckel utan att läsa resultat
      (undviker rekursion med getRes). */
@@ -201,7 +216,8 @@
     var ko = kickoffMsForKey(key);
     if (ko == null) return false;
     var now = Date.now();
-    return ko <= now && ko > now - SPOILER_WINDOW_MS;
+    if (ko > now) return false; // inte avspakad än
+    return now < spoilerUnlockMs(ko);
   }
 
   /* Matchdetaljer filtrerade efter spoilerläget – döljer mål/kort/byten för
