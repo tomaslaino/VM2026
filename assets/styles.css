@@ -213,9 +213,9 @@ body {
 }
 .spoiler-toggle.is-on .spoiler-eye { display: none; }
 .spoiler-toggle.is-on .spoiler-eye-off { display: inline-flex; }
-/* Följer inte med vid scroll – bara navflikarna ska finnas kvar då. */
-.hero-header.is-scrolled .spoiler-toggle,
-.hero-header.hero-collapsed .spoiler-toggle { display: none; }
+/* Knappen ska följa med vid scroll på breda fönster. Den döljs bara i det smala,
+   hopfällda läget – då döljs hela .controls (se max-width: 780px) så att enbart
+   de fyra navflikarna blir kvar. Ingen scroll-baserad döljning behövs här. */
 /* Smala skärmar: ikonen räcker (texten skulle trängas med statusbrickan). */
 @media (max-width: 560px) {
   .spoiler-toggle { padding: 8px 9px; gap: 0; }
