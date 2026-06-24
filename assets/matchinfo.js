@@ -15,10 +15,13 @@
   var CFG = window.VM_CONFIG || {};
   var BACKEND = (CFG.backend || "").replace(/\/$/, "");
   var STATIC_URL = CFG.staticDetails || "data/matchdetails.json";
+  var HIGHLIGHTS_URL = CFG.staticHighlights || "data/highlights.json";
   var POLL_MS = 45000;
 
   var details = {};        // key -> detaljobjekt
   var detailsLoaded = false;
+  var highlights = {};     // key -> { SVT?: {full,long,short}, TV4?: {...} }
+  var highlightsLast = 0;
   var openKey = null;      // öppen match (resultatnyckel) eller null
   var pollTimer = null;
   var activeTab = "events";
@@ -67,6 +70,26 @@
         return details;
       })
       .catch(function () { return details; });
+  }
+
+  /* Höjdpunkter/repriser (SVT Play + TV4 Play) skrivs av GitHub Actions till
+     data/highlights.json. Läses alltid från den statiska filen (det finns ingen
+     server-endpoint för detta) och cachas en stund mellan öppningar. */
+  function highlightsUrl() {
+    return HIGHLIGHTS_URL + (HIGHLIGHTS_URL.indexOf("?") === -1 ? "?" : "&") + "t=" + Date.now();
+  }
+
+  function fetchHighlights() {
+    var now = Date.now();
+    if (highlightsLast && now - highlightsLast < 120000) return Promise.resolve(highlights);
+    highlightsLast = now;
+    return fetch(highlightsUrl(), { headers: { Accept: "application/json" }, cache: "no-store" })
+      .then(function (r) { return r && r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (data && data.byKey) highlights = data.byKey;
+        return highlights;
+      })
+      .catch(function () { return highlights; });
   }
 
   /* Hämta om detaljerna (anropas av app.js när nya resultat kommit in).
@@ -145,6 +168,7 @@
     var m = ensureModal();
     m.classList.add("open");
     renderModal();
+    fetchHighlights().then(function () { if (openKey) renderModal(); });
     fetchDetails().then(function () {
       renderModal();
       schedulePoll();
@@ -684,6 +708,42 @@
     return h;
   }
 
+  /* ---------- Höjdpunkter / repriser (SVT Play + TV4 Play) ---------- */
+
+  var HL_LABELS = { full: "Hela matchen", long: "Längre sammandrag", short: "Kortare sammandrag" };
+  var HL_TYPES = ["full", "long", "short"];
+
+  function watchLinkHtml(entry, label) {
+    if (!entry || !entry.url) return "";
+    // Skydd mellan synkar: dölj klipp vars "tillgänglig till" redan passerat.
+    if (entry.until && new Date(entry.until).getTime() <= Date.now()) return "";
+    return '<a class="mi-watch-link" href="' + esc(entry.url) + '" target="_blank" rel="noopener noreferrer" ' +
+      'title="' + esc(entry.title || label) + '"><span class="mi-watch-ico" aria-hidden="true">▶</span>' +
+      esc(label) + "</a>";
+  }
+
+  function channelLinksHtml(chName, data) {
+    if (!data) return "";
+    var links = "";
+    HL_TYPES.forEach(function (t) { links += watchLinkHtml(data[t], HL_LABELS[t]); });
+    if (!links) return "";
+    return '<div class="mi-watch-ch">' +
+      '<span class="cal-tv ' + (chName === "SVT" ? "svt" : "tv4") + '">' + esc(chName) + "</span>" +
+      '<div class="mi-watch-links">' + links + "</div>" +
+      "</div>";
+  }
+
+  function highlightsHtml(info) {
+    // Bara spelade matcher har repris/sammandrag att länka till.
+    if (!info || !info.played) return "";
+    var hl = highlights[info.key];
+    if (!hl) return "";
+    var groups = channelLinksHtml("SVT", hl.SVT) + channelLinksHtml("TV4", hl.TV4);
+    if (!groups) return "";
+    return '<div class="mi-section-title">Se matchen i efterhand</div>' +
+      '<div class="mi-watch">' + groups + "</div>";
+  }
+
   function renderModal() {
     if (!openKey) return;
     var card = document.querySelector("#matchModal .mi-card");
@@ -723,6 +783,7 @@
     if (det && det.score && det.score.pen) subScore.push("Straffar " + det.score.pen.h + "–" + det.score.pen.a);
     if (subScore.length) h += '<div class="mi-subscore">' + esc(subScore.join(" · ")) + '</div>';
 
+    h += highlightsHtml(info);
     h += tabsHtml(info, det);
     h += factsHtml(info, det);
 
