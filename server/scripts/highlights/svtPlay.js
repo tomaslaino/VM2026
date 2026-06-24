@@ -32,14 +32,28 @@ const SEARCH_QUERY = `query($q:String!){
   }
 }`;
 
+/* SVT:s öppna GraphQL svarar på vanliga GET-anrop (query + variables i URL:en).
+   Vi använder GET i stället för POST eftersom POST utan webbläsarlika headers kan
+   blockeras i datacenter-/CI-miljöer (t.ex. GitHub Actions) – då tappas alla
+   SVT-träffar tyst och bara TV4 blir kvar. En webbläsarlik User-Agent läggs till
+   av samma skäl. */
+const SVT_HEADERS = {
+  Accept: "application/json",
+  "Accept-Language": "sv-SE,sv;q=0.9,en;q=0.8",
+  "User-Agent":
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+};
+
 async function searchSvt(query) {
-  const res = await fetch(SVT_GQL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({ query: SEARCH_QUERY, variables: { q: query } }),
-  });
+  const url =
+    `${SVT_GQL}?query=${encodeURIComponent(SEARCH_QUERY)}` +
+    `&variables=${encodeURIComponent(JSON.stringify({ q: query }))}`;
+  const res = await fetch(url, { headers: SVT_HEADERS });
   if (!res.ok) throw new Error(`SVT HTTP ${res.status}`);
   const json = await res.json();
+  if (json?.errors?.length) {
+    throw new Error(`SVT GraphQL: ${json.errors[0]?.message || "okänt fel"}`);
+  }
   return json?.data?.searchPage?.flat?.hits || [];
 }
 
@@ -83,7 +97,7 @@ async function fetchForFixture(fx) {
   return Object.keys(byType).length ? byType : null;
 }
 
-async function runPool(items, worker, concurrency) {
+async function runPool(items, worker, concurrency, onError) {
   const results = new Array(items.length);
   let next = 0;
   async function loop() {
@@ -91,8 +105,9 @@ async function runPool(items, worker, concurrency) {
       const i = next++;
       try {
         results[i] = await worker(items[i]);
-      } catch {
+      } catch (e) {
         results[i] = null;
+        if (onError) onError(e);
       }
     }
   }
@@ -108,10 +123,19 @@ async function runPool(items, worker, concurrency) {
  */
 export async function fetchSvtHighlights(fixtures, { log = () => {} } = {}) {
   const out = {};
-  const perFixture = await runPool(fixtures, fetchForFixture, 5);
+  let firstError = null;
+  const perFixture = await runPool(fixtures, fetchForFixture, 5, (e) => {
+    if (!firstError) firstError = e;
+  });
   fixtures.forEach((fx, i) => {
     if (perFixture[i]) out[fx.key] = perFixture[i];
   });
-  log(`[svt] hittade höjdpunkter för ${Object.keys(out).length}/${fixtures.length} matcher`);
+  const found = Object.keys(out).length;
+  // Syns inga träffar men alla anrop fallerade? Logga orsaken så att ett blockerat
+  // SVT-anrop inte ser ut som "inga klipp publicerade ännu".
+  if (found === 0 && firstError) {
+    log(`[svt] inga träffar – senaste fel: ${firstError.message || firstError}`);
+  }
+  log(`[svt] hittade höjdpunkter för ${found}/${fixtures.length} matcher`);
   return out;
 }
