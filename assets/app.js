@@ -1651,10 +1651,10 @@
     });
   }
 
-  /* Tänd härstamningen för en slutspelsmatch: de två matcher som leder in i den
-     (dess "barn") och matchen den själv leder till (dess "förälder"), plus
-     linjerna däremellan – så att man tydligt ser hur två rutor hör ihop med en.
-     Övriga rutor/linjer dämpas. Anropas vid hover/fokus; no=null nollställer. */
+  /* Tänd härstamningen bakåt för en slutspelsmatch: de matcher som leder in i
+     den (dess "barn") plus linjerna däremellan – så att man ser vilka tidigare
+     matcher som avgör rutan. Matchen den själv leder vidare till (framåt)
+     tänds inte. Övriga rutor/linjer dämpas. no=null nollställer. */
   function setBracketLineage(no) {
     var wrap = viewEl.querySelector(".bracket-wrap");
     if (!wrap) return;
@@ -1670,9 +1670,10 @@
       var p = pth.getAttribute("data-edge-p");
       var k = pth.getAttribute("data-edge-k");
       var kids = k ? k.split(",") : [];
-      if (p === key || kids.indexOf(key) >= 0) {
+      // Tänd enbart bakåt: matcherna som matar in i den hovrade rutan (dess
+      // "barn"), inte matchen den själv leder vidare till (dess "förälder").
+      if (p === key) {
         pth.classList.add("is-lineage");
-        if (p) related[p] = true;
         kids.forEach(function (x) { related[x] = true; });
       }
     });
