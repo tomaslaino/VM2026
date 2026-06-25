@@ -41,7 +41,7 @@ WC.groups = {
     { name: "Canada",            sv: "Kanada",                 iso: "ca",     host: true },
     { name: "Switzerland",       sv: "Schweiz",                iso: "ch" },
     { name: "Qatar",             sv: "Qatar",                  iso: "qa" },
-    { name: "Bosnia-Herzegovina",sv: "Bosnien och Hercegovina",svShort: "Bosnien", iso: "ba" }
+    { name: "Bosnia-Herzegovina",sv: "Bosnien och Hercegovina",iso: "ba" }
   ],
   C: [
     { name: "Brazil",            sv: "Brasilien",              iso: "br" },
@@ -58,11 +58,11 @@ WC.groups = {
   E: [
     { name: "Germany",           sv: "Tyskland",               iso: "de" },
     { name: "Ecuador",           sv: "Ecuador",                iso: "ec" },
-    { name: "Ivory Coast",       sv: "Elfenbenskusten",        svShort: "Elfenben", iso: "ci" },
+    { name: "Ivory Coast",       sv: "Elfenbenskusten",        iso: "ci" },
     { name: "Curaçao",           sv: "Curaçao",                iso: "cw" }
   ],
   F: [
-    { name: "Netherlands",       sv: "Nederländerna",          svShort: "Holland", iso: "nl" },
+    { name: "Netherlands",       sv: "Nederländerna",          iso: "nl" },
     { name: "Japan",             sv: "Japan",                  iso: "jp" },
     { name: "Tunisia",           sv: "Tunisien",               iso: "tn" },
     { name: "Sweden",            sv: "Sverige",                iso: "se" }
@@ -76,7 +76,7 @@ WC.groups = {
   H: [
     { name: "Spain",             sv: "Spanien",                iso: "es" },
     { name: "Uruguay",           sv: "Uruguay",                iso: "uy" },
-    { name: "Saudi Arabia",      sv: "Saudiarabien",           svShort: "Saudi", iso: "sa" },
+    { name: "Saudi Arabia",      sv: "Saudiarabien",           iso: "sa" },
     { name: "Cape Verde",        sv: "Kap Verde",              iso: "cv" }
   ],
   I: [
