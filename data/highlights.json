@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-25T22:07:57.633Z",
+    "updatedAt": "2026-06-25T23:46:05.710Z",
     "source": "svt+tv4",
     "matchCount": 60
   },
@@ -1235,6 +1235,23 @@
           "url": "https://www.svtplay.se/video/8myymA3/fifa-fotbolls-vm-2026/curacao-elfenbenskusten",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-25T23:59:59+02:00"
+        },
+        "long": {
+          "url": "https://www.svtplay.se/klipp/ed6o4q3/utokade-hojdpunkter-grupp-e-curacao-elfenbenskusten",
+          "title": "Utökade höjdpunkter: Grupp E: Curacao – Elfenbenskusten",
+          "until": "2060-01-01T00:00:00+01:00"
+        },
+        "short": {
+          "url": "https://www.svtplay.se/klipp/jN3PN6Q/grupp-e-curacao-elfenbenskusten",
+          "title": "Grupp E: Curacao – Elfenbenskusten",
+          "until": "2060-01-01T00:00:00+01:00"
+        }
+      },
+      "TV4": {
+        "short": {
+          "url": "https://www.tv4play.se/klipp/315981e7bb3abfdaa80a/video-hojdpunkter-curacao-elfenbenskusten",
+          "title": "Höjdpunkter: Curaçao - Elfenbenskusten",
+          "until": null
         }
       }
     },
@@ -1244,13 +1261,30 @@
           "url": "https://www.svtplay.se/video/KPBBWQv/fifa-fotbolls-vm-2026/ecuador-tyskland",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-25T23:59:59+02:00"
+        },
+        "long": {
+          "url": "https://www.svtplay.se/klipp/jBwJzE6/utokade-hojdpunkter-grupp-e-ecuador-tyskland",
+          "title": "Utökade höjdpunkter: Grupp E: Ecuador – Tyskland",
+          "until": "2060-01-01T00:00:00+01:00"
+        },
+        "short": {
+          "url": "https://www.svtplay.se/klipp/89d3xJy/grupp-e-ecuador-tyskland",
+          "title": "Grupp E: Ecuador – Tyskland",
+          "until": "2060-01-01T00:00:00+01:00"
+        }
+      },
+      "TV4": {
+        "short": {
+          "url": "https://www.tv4play.se/klipp/87221be3ee1118acb4f1/video-hojdpunkter-ecuador-tyskland",
+          "title": "Höjdpunkter: Ecuador - Tyskland",
+          "until": null
         }
       }
     },
     "g:F:3": {
       "SVT": {
         "live": {
-          "url": "https://www.svtplay.se/video/jqPPE5P/fifa-fotbolls-vm-2026/japan-sverige",
+          "url": "https://www.svtplay.se/video/KPBBWgo/fifa-fotbolls-vm-2026/hela-sverige-kollar-japan-sverige",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-26T23:59:59+02:00"
         }
@@ -1271,7 +1305,7 @@
           "url": "https://www.tv4play.se/video/da706e7c714b852142ca/paraguay-australien",
           "title": "Paraguay - Australien",
           "until": "2026-07-26T01:50:00Z",
-          "from": "2026-06-26T01:50:15Z"
+          "from": "2026-06-26T01:50:08Z"
         }
       }
     },
