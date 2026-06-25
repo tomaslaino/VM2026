@@ -270,6 +270,27 @@
     }
     GROUPS.forEach(function (g) { names[g].forEach(ensureTeam); });
 
+    // ---- fokuslag: motståndare i varje runda (Slutspelskalkylatorn) --------
+    // För ett valt lag spårar vi, i varje simulering där laget fortfarande är
+    // kvar, vilket lag det möter i resp. match (sextondel→final). Aggregerat ger
+    // det "vem möter du om du tar dig hit"-fördelningen som kalkylatorn ritar.
+    var focalName = input.focalTeam || null;
+    var focalOpp = null, focalReach = null, focalGroup = null;
+    if (focalName) {
+      focalOpp = { r32: {}, r16: {}, qf: {}, sf: {}, final: {} };
+      focalReach = { r32: 0, r16: 0, qf: 0, sf: 0, final: 0 };
+      GROUPS.forEach(function (g) { if (names[g].indexOf(focalName) !== -1) focalGroup = g; });
+    }
+    function recFocal(stage, arr) {
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] === focalName) {
+          focalReach[stage]++;
+          bump(focalOpp[stage], (i % 2 === 0) ? arr[i + 1] : arr[i - 1]);
+          return;
+        }
+      }
+    }
+
     var resultsBuf = {}; GROUPS.forEach(function (g) { resultsBuf[g] = []; });
 
     for (var run = 0; run < n; run++) {
@@ -311,6 +332,7 @@
       // tally + spela av
       var cur = r32;
       for (var qi = 0; qi < 32; qi++) { bump(posCount.r32[qi], cur[qi]); if (cur[qi] != null) reached[cur[qi]].r32++; }
+      if (focalName) recFocal("r32", cur);
       var sfLosers = null;
       for (var ri = 1; ri < ROUND_ORDER.length; ri++) {
         var rnd = ROUND_ORDER[ri], nxt = new Array(cur.length / 2), losers = [];
@@ -321,6 +343,7 @@
         }
         if (rnd === "final") sfLosers = losers;
         cur = nxt;
+        if (focalName) recFocal(rnd, cur);
       }
       // brons (förlorarna i de två semifinalerna) + mästare
       if (sfLosers) { bump(bronzeCount[0], sfLosers[0]); bump(bronzeCount[1], sfLosers[1]); }
@@ -350,6 +373,24 @@
       groupPositions[t] = go;
     });
 
+    var focal = null;
+    if (focalName) {
+      focal = { team: focalName, group: focalGroup };
+      ROUND_ORDER.forEach(function (st) {
+        var cnt = focalReach[st];
+        focal[st] = {
+          // sannolikhet att laget alls spelar den här matchen (= tar sig hit)
+          reachP: Math.round(cnt / n * 1e4) / 1e4,
+          // motståndarfördelning GIVET att laget tar sig hit (mest intuitivt i UI)
+          opponents: cnt ? dist(focalOpp[st], cnt) : {},
+          // motståndarfördelning över ALLA simuleringar (oförändrad bas)
+          opponentsAbs: dist(focalOpp[st], n)
+        };
+      });
+      focal.win = rounds[focalName] ? rounds[focalName].win : 0;
+      focal.groupPositions = groupPositions[focalName] || {};
+    }
+
     return {
       updated: input.updated || new Date().toISOString(),
       nSims: n,
@@ -357,7 +398,8 @@
       slotLabels: { r32: labels },
       nodes: nodes,
       rounds: rounds,
-      groupPositions: groupPositions
+      groupPositions: groupPositions,
+      focal: focal
     };
   }
 

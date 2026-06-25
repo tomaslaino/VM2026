@@ -23,6 +23,13 @@
   var r32Busy = false;          // pågående simulering
   var r32TipMap = {};           // id -> tooltip-HTML
   var R32_N = 12000;            // antal simuleringar per körning
+  // Slutspelskalkylatorn: kör hela trädet (assets/bracketengine.js) med ett valt
+  // fokuslag och visar dess troliga motståndare i varje runda.
+  var calcWorker = null;        // Web Worker (eller "none" vid fallback)
+  var calcSeq = 0;              // sekvensnummer för att ignorera gamla svar
+  var calcResult = null;        // senaste focal-resultat
+  var calcKey = null;           // cache-nyckel för calcResult
+  var CALC_N = 20000;           // simuleringar per körning (snabb men stabil)
   // Hela slutspelsträdet beräknas lokalt (assets/bracketengine.js) på samma data
   // som sextondelskollen, i stället för den servergenererade bracket_probs.json.
   var bracketWorker = null;     // Web Worker för hela trädet (eller "none")
@@ -1064,7 +1071,7 @@
     else if (view === "bracket") {
       rebuilt = renderBracket();
     }
-    else if (view === "r32") rebuilt = renderR32View();
+    else if (view === "r32") rebuilt = renderCalcView();
     else if (view === "players") rebuilt = renderPlayers();
     else rebuilt = renderCalendar();
     /* Slutspelsvyn lägger själv in sin rubrik (renderBracket → renderPageIntro)
@@ -1417,7 +1424,7 @@
       '<button type="button" class="bmode-toggle' + (odds ? " on" : "") + '" ' +
         'data-bracket-toggle role="switch" aria-checked="' + (odds ? "true" : "false") + '" ' +
         'title="Visa troliga lag enligt oddsfavoriter i stället för platshållare">' +
-        '<span class="bmode-toggle-txt">Visa oddsfavoriter</span>' +
+        '<span class="bmode-toggle-txt">Oddsfavoriter</span>' +
         '<span class="bmode-switch" aria-hidden="true"><span class="bmode-knob"></span></span>' +
       '</button>' +
       '</div>';
@@ -4483,7 +4490,7 @@
 
   function onInput(e) {
     if (e.target.id === "teamSearch") renderSearchResults(e.target.value);
-    else if (e.target.id === "r32-team") r32SetTeam(e.target.value);
+    else if (e.target.id === "calc-team") calcSetTeam(e.target.value);
   }
 
   function onClick(e) {
@@ -4499,7 +4506,7 @@
       return;
     }
 
-    if (r32HandleClick(t)) return;
+    if (calcHandleClick(t)) return;
     var sr = t.closest && t.closest(".sr-item");
     if (sr) {
       if (sr.hasAttribute("data-player-id")) openSearchPlayer(sr.getAttribute("data-player-id"));
