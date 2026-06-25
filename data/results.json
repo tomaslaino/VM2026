@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-25T00:16:03.032Z",
+    "updatedAt": "2026-06-25T04:37:55.323Z",
     "source": "espn",
-    "matchCount": 52,
+    "matchCount": 54,
     "liveCount": 0,
     "apiCalls": 2
   },
@@ -265,6 +265,16 @@
     "g:C:2": {
       "h": 3,
       "a": 0,
+      "status": "FINISHED"
+    },
+    "g:A:4": {
+      "h": 0,
+      "a": 3,
+      "status": "FINISHED"
+    },
+    "g:A:5": {
+      "h": 0,
+      "a": 1,
       "status": "FINISHED"
     }
   },
@@ -1158,7 +1168,7 @@
       "date": "2026-06-25",
       "time": "03:00",
       "utcDate": "2026-06-25T01:00Z",
-      "status": "TIMED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Czechia",
       "away": "Mexico",
@@ -1175,7 +1185,7 @@
       "date": "2026-06-25",
       "time": "03:00",
       "utcDate": "2026-06-25T01:00Z",
-      "status": "TIMED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "South Korea",
       "away": "South Africa",
@@ -1500,9 +1510,12 @@
       "utcDate": "2026-06-28T19:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Group A 2nd Place",
+      "home": "South Africa",
       "away": "Canada",
-      "homeRef": null,
+      "homeRef": {
+        "group": "A",
+        "idx": 2
+      },
       "awayRef": {
         "group": "B",
         "idx": 0
@@ -1876,49 +1889,49 @@
       {
         "idx": 0,
         "position": 1,
-        "pld": 2,
-        "w": 2,
+        "pld": 3,
+        "w": 3,
         "d": 0,
         "l": 0,
-        "gf": 3,
+        "gf": 6,
         "ga": 0,
-        "gd": 3,
-        "pts": 6
+        "gd": 6,
+        "pts": 9
       },
       {
-        "idx": 1,
+        "idx": 2,
         "position": 2,
-        "pld": 2,
+        "pld": 3,
         "w": 1,
-        "d": 0,
-        "l": 1,
-        "gf": 2,
-        "ga": 2,
-        "gd": 0,
-        "pts": 3
-      },
-      {
-        "idx": 3,
-        "position": 3,
-        "pld": 2,
-        "w": 0,
         "d": 1,
         "l": 1,
         "gf": 2,
         "ga": 3,
         "gd": -1,
-        "pts": 1
+        "pts": 4
       },
       {
-        "idx": 2,
+        "idx": 1,
+        "position": 3,
+        "pld": 3,
+        "w": 1,
+        "d": 0,
+        "l": 2,
+        "gf": 2,
+        "ga": 3,
+        "gd": -1,
+        "pts": 3
+      },
+      {
+        "idx": 3,
         "position": 4,
-        "pld": 2,
+        "pld": 3,
         "w": 0,
         "d": 1,
-        "l": 1,
-        "gf": 1,
-        "ga": 3,
-        "gd": -2,
+        "l": 2,
+        "gf": 2,
+        "ga": 6,
+        "gd": -4,
         "pts": 1
       }
     ],

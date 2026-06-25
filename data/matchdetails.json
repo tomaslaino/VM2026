@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-25T00:16:03.114Z",
+    "updatedAt": "2026-06-25T04:37:55.483Z",
     "source": "espn"
   },
   "details": {
@@ -23356,6 +23356,853 @@
         }
       ],
       "updatedAt": "2026-06-25T00:16:03.114Z"
+    },
+    "g:A:4": {
+      "espnId": "760467",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-25T01:00Z",
+      "duration": "REGULAR",
+      "winner": "AWAY_TEAM",
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 3
+        },
+        "ht": {
+          "h": 0,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 55,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Mateo Chávez",
+          "assist": "Luis Romo",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        },
+        {
+          "minute": 61,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Julián Quiñones",
+          "assist": "Jorge Sánchez",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 2
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "a",
+          "scorer": "Álvaro Fidalgo",
+          "assist": "Roberto Alvarado",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 3
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 64,
+          "team": "a",
+          "player": "Edson Álvarez",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 56,
+          "team": "h",
+          "in": "Lukás Provod",
+          "out": "Denis Visinský"
+        },
+        {
+          "minute": 63,
+          "team": "a",
+          "in": "Santiago Gimenez",
+          "out": "Guillermo Martínez"
+        },
+        {
+          "minute": 63,
+          "team": "a",
+          "in": "Obed Vargas",
+          "out": "Luis Romo"
+        },
+        {
+          "minute": 64,
+          "team": "h",
+          "in": "Patrik Schick",
+          "out": "Adam Hlozek"
+        },
+        {
+          "minute": 64,
+          "team": "h",
+          "in": "Tomás Soucek",
+          "out": "Tomás Holes"
+        },
+        {
+          "minute": 72,
+          "team": "a",
+          "in": "Álvaro Fidalgo",
+          "out": "Gilberto Mora"
+        },
+        {
+          "minute": 78,
+          "team": "a",
+          "in": "Guillermo Ochoa",
+          "out": "Raúl Rangel"
+        },
+        {
+          "minute": 78,
+          "team": "a",
+          "in": "Jesús Gallardo",
+          "out": "Mateo Chávez"
+        },
+        {
+          "minute": 87,
+          "team": "h",
+          "in": "Tomás Chorý",
+          "out": "Lukás Cerv"
+        },
+        {
+          "minute": 87,
+          "team": "h",
+          "in": "Alexandr Sojka",
+          "out": "Tomás Soucek"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "3-4-2-1",
+          "starters": [
+            {
+              "name": "Matej Kovár",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Vladimír Coufal",
+              "jersey": "5",
+              "pos": "RM"
+            },
+            {
+              "name": "David Doudera",
+              "jersey": "21",
+              "pos": "LM"
+            },
+            {
+              "name": "Ladislav Krejcí",
+              "jersey": "7",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Robin Hranác",
+              "jersey": "4",
+              "pos": "CD"
+            },
+            {
+              "name": "Tomás Holes",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Lukás Cerv",
+              "jersey": "12",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Michal Sadílek",
+              "jersey": "18",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Adam Hlozek",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Pavel Sulc",
+              "jersey": "15",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Denis Visinský",
+              "jersey": "26",
+              "pos": "CF-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Lukás Provod",
+              "jersey": "17",
+              "in": true
+            },
+            {
+              "name": "David Zima",
+              "jersey": "2"
+            },
+            {
+              "name": "Jaroslav Zelený",
+              "jersey": "20"
+            },
+            {
+              "name": "Lukás Hornícek",
+              "jersey": "23"
+            },
+            {
+              "name": "Hugo Sochurek",
+              "jersey": "25"
+            },
+            {
+              "name": "Tomás Chorý",
+              "jersey": "19",
+              "in": true
+            },
+            {
+              "name": "Stepán Chaloupek",
+              "jersey": "6"
+            },
+            {
+              "name": "Patrik Schick",
+              "jersey": "10",
+              "in": true
+            },
+            {
+              "name": "Jan Kuchta",
+              "jersey": "11"
+            },
+            {
+              "name": "Mojmír Chytil",
+              "jersey": "13"
+            },
+            {
+              "name": "Tomás Soucek",
+              "jersey": "22",
+              "in": true
+            },
+            {
+              "name": "Vladimír Darida",
+              "jersey": "8"
+            },
+            {
+              "name": "Jindrich Stanek",
+              "jersey": "16"
+            },
+            {
+              "name": "Alexandr Sojka",
+              "jersey": "24",
+              "in": true
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Raúl Rangel",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Jorge Sánchez",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Mateo Chávez",
+              "jersey": "20",
+              "pos": "LB"
+            },
+            {
+              "name": "Edson Álvarez",
+              "jersey": "4",
+              "pos": "CM"
+            },
+            {
+              "name": "César Montes",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Israel Reyes",
+              "jersey": "15",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Gilberto Mora",
+              "jersey": "19",
+              "pos": "RM"
+            },
+            {
+              "name": "Luis Romo",
+              "jersey": "7",
+              "pos": "LM"
+            },
+            {
+              "name": "Guillermo Martínez",
+              "jersey": "22",
+              "pos": "F"
+            },
+            {
+              "name": "Roberto Alvarado",
+              "jersey": "25",
+              "pos": "RF"
+            },
+            {
+              "name": "Julián Quiñones",
+              "jersey": "16",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Jesús Gallardo",
+              "jersey": "23",
+              "in": true
+            },
+            {
+              "name": "Johan Vásquez",
+              "jersey": "5"
+            },
+            {
+              "name": "Orbelín Pineda",
+              "jersey": "17"
+            },
+            {
+              "name": "Érik Lira",
+              "jersey": "6"
+            },
+            {
+              "name": "César Huerta",
+              "jersey": "21"
+            },
+            {
+              "name": "Raúl Jiménez",
+              "jersey": "9"
+            },
+            {
+              "name": "Luis Chávez",
+              "jersey": "24"
+            },
+            {
+              "name": "Armando González",
+              "jersey": "14"
+            },
+            {
+              "name": "Alexis Vega",
+              "jersey": "10"
+            },
+            {
+              "name": "Guillermo Ochoa",
+              "jersey": "13",
+              "in": true
+            },
+            {
+              "name": "Obed Vargas",
+              "jersey": "18",
+              "in": true
+            },
+            {
+              "name": "Brian Gutiérrez",
+              "jersey": "26"
+            },
+            {
+              "name": "Álvaro Fidalgo",
+              "jersey": "8",
+              "in": true
+            },
+            {
+              "name": "Santiago Gimenez",
+              "jersey": "11",
+              "in": true
+            },
+            {
+              "name": "Carlos Acevedo",
+              "jersey": "12"
+            }
+          ]
+        }
+      },
+      "referee": "Yael Falcón Pérez",
+      "venue": "Estadio Banorte, Mexico City",
+      "attendance": 80824,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "52%",
+          "a": "48%"
+        },
+        {
+          "key": "totalShots",
+          "h": "13",
+          "a": "11"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "1",
+          "a": "5"
+        },
+        {
+          "key": "wonCorners",
+          "h": "5",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "9",
+          "a": "13"
+        },
+        {
+          "key": "offsides",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "398",
+          "a": "388"
+        },
+        {
+          "key": "passPct",
+          "h": "83%",
+          "a": "85%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-25T04:37:55.387Z"
+    },
+    "g:A:5": {
+      "espnId": "760466",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-25T01:00Z",
+      "duration": "REGULAR",
+      "winner": "AWAY_TEAM",
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 1
+        },
+        "ht": {
+          "h": 0,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 63,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Thapelo Maseko",
+          "assist": "Tshepang Moremi",
+          "type": "REGULAR",
+          "score": null
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 73,
+          "team": "a",
+          "player": "Aubrey Modiba",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 79,
+          "team": "h",
+          "player": "Cho Gue-Sung",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Son Heung-Min",
+          "out": "Hwang Hee-Chan"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Kim Jin-Gyu",
+          "out": "Paik Seung-Ho"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Jens Castrop",
+          "out": "Lee Tae-Seok"
+        },
+        {
+          "minute": 62,
+          "team": "a",
+          "in": "Tshepang Moremi",
+          "out": "Oswin Appollis"
+        },
+        {
+          "minute": 65,
+          "team": "h",
+          "in": "Park Jin-Seop",
+          "out": "Kim Min-Jae"
+        },
+        {
+          "minute": 74,
+          "team": "h",
+          "in": "Cho Gue-Sung",
+          "out": "Oh Hyeon-Gyu"
+        },
+        {
+          "minute": 75,
+          "team": "a",
+          "in": "Iqraam Rayners",
+          "out": "Thapelo Maseko"
+        },
+        {
+          "minute": 80,
+          "team": "a",
+          "in": "Jayden Adams",
+          "out": "Relebohile Mofokeng"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "3-4-2-1",
+          "starters": [
+            {
+              "name": "Kim Seung-Gyu",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Seol Young-Woo",
+              "jersey": "22",
+              "pos": "RM"
+            },
+            {
+              "name": "Lee Tae-Seok",
+              "jersey": "13",
+              "pos": "LM"
+            },
+            {
+              "name": "Lee Gi-Hyuk",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Kim Min-Jae",
+              "jersey": "4",
+              "pos": "CD"
+            },
+            {
+              "name": "Lee Han-Beom",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Paik Seung-Ho",
+              "jersey": "8",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Hwang In-Beom",
+              "jersey": "6",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Oh Hyeon-Gyu",
+              "jersey": "18",
+              "pos": "F"
+            },
+            {
+              "name": "Lee Kang-In",
+              "jersey": "19",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Hwang Hee-Chan",
+              "jersey": "11",
+              "pos": "CF-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Lee Dong-Gyeong",
+              "jersey": "26"
+            },
+            {
+              "name": "Kim Jin-Gyu",
+              "jersey": "24",
+              "in": true
+            },
+            {
+              "name": "Jens Castrop",
+              "jersey": "23",
+              "in": true
+            },
+            {
+              "name": "Cho Gue-Sung",
+              "jersey": "9",
+              "in": true
+            },
+            {
+              "name": "Jo Hyeon-Woo",
+              "jersey": "21"
+            },
+            {
+              "name": "Kim Tae-Hyeon",
+              "jersey": "5"
+            },
+            {
+              "name": "Song Bum-Keun",
+              "jersey": "12"
+            },
+            {
+              "name": "Park Jin-Seop",
+              "jersey": "16",
+              "in": true
+            },
+            {
+              "name": "Eom Ji-Sung",
+              "jersey": "25"
+            },
+            {
+              "name": "Kim Moon-Hwan",
+              "jersey": "15"
+            },
+            {
+              "name": "Bae Jun-Ho",
+              "jersey": "17"
+            },
+            {
+              "name": "Son Heung-Min",
+              "jersey": "7",
+              "in": true
+            },
+            {
+              "name": "Cho Wi-Je",
+              "jersey": "14"
+            },
+            {
+              "name": "Lee Jae-Sung",
+              "jersey": "10"
+            },
+            {
+              "name": "Yang Hyun-Jun",
+              "jersey": "20"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Ronwen Williams",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Khuliso Mudau",
+              "jersey": "20",
+              "pos": "RB"
+            },
+            {
+              "name": "Aubrey Modiba",
+              "jersey": "6",
+              "pos": "LB"
+            },
+            {
+              "name": "Sphephelo Sithole",
+              "jersey": "13",
+              "pos": "LM"
+            },
+            {
+              "name": "Ime Okon",
+              "jersey": "21",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Mbekezeli Mbokazi",
+              "jersey": "14",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Thapelo Maseko",
+              "jersey": "12",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Thalente Mbatha",
+              "jersey": "5",
+              "pos": "RM"
+            },
+            {
+              "name": "Evidence Makgopa",
+              "jersey": "17",
+              "pos": "F"
+            },
+            {
+              "name": "Relebohile Mofokeng",
+              "jersey": "10",
+              "pos": "AM"
+            },
+            {
+              "name": "Oswin Appollis",
+              "jersey": "7",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Lyle Foster",
+              "jersey": "9"
+            },
+            {
+              "name": "Olwethu Makhanya",
+              "jersey": "24"
+            },
+            {
+              "name": "Khulumani Ndamane",
+              "jersey": "3"
+            },
+            {
+              "name": "Bradley Cross",
+              "jersey": "26"
+            },
+            {
+              "name": "Ricardo Goss",
+              "jersey": "22"
+            },
+            {
+              "name": "Thabang Matuludi",
+              "jersey": "2"
+            },
+            {
+              "name": "Nkosinathi Sibisi",
+              "jersey": "19"
+            },
+            {
+              "name": "Samukele Kabini",
+              "jersey": "18"
+            },
+            {
+              "name": "Sipho Chaine",
+              "jersey": "16"
+            },
+            {
+              "name": "Tshepang Moremi",
+              "jersey": "8",
+              "in": true
+            },
+            {
+              "name": "Kamogelo Sebelebele",
+              "jersey": "25"
+            },
+            {
+              "name": "Jayden Adams",
+              "jersey": "23",
+              "in": true
+            },
+            {
+              "name": "Iqraam Rayners",
+              "jersey": "15",
+              "in": true
+            }
+          ]
+        }
+      },
+      "referee": "Facundo Tello",
+      "venue": "Estadio BBVA, Guadalupe",
+      "attendance": 0,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "69%",
+          "a": "32%"
+        },
+        {
+          "key": "totalShots",
+          "h": "8",
+          "a": "13"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "3",
+          "a": "4"
+        },
+        {
+          "key": "wonCorners",
+          "h": "6",
+          "a": "4"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "9",
+          "a": "7"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "3"
+        },
+        {
+          "key": "saves",
+          "h": "3",
+          "a": "2"
+        },
+        {
+          "key": "totalPasses",
+          "h": "720",
+          "a": "338"
+        },
+        {
+          "key": "passPct",
+          "h": "89%",
+          "a": "82%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-25T04:37:55.483Z"
     }
   }
 }
