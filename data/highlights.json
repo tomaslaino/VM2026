@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-25T13:38:24.381Z",
+    "updatedAt": "2026-06-25T16:07:28.303Z",
     "source": "svt+tv4",
-    "matchCount": 54
+    "matchCount": 56
   },
   "byKey": {
     "g:A:2": {
@@ -1226,6 +1226,24 @@
           "url": "https://www.tv4play.se/klipp/c46e93f73db5edcd3106/video-hojdpunkter-sydafrika-sydkorea",
           "title": "Höjdpunkter: Sydafrika - Sydkorea",
           "until": null
+        }
+      }
+    },
+    "g:E:1": {
+      "SVT": {
+        "live": {
+          "url": "https://www.svtplay.se/video/8myymA3/fifa-fotbolls-vm-2026/curacao-elfenbenskusten",
+          "title": "FIFA Fotbolls-VM 2026",
+          "until": "2026-07-25T23:59:59+02:00"
+        }
+      }
+    },
+    "g:E:0": {
+      "SVT": {
+        "live": {
+          "url": "https://www.svtplay.se/video/KPBBWQv/fifa-fotbolls-vm-2026/ecuador-tyskland",
+          "title": "FIFA Fotbolls-VM 2026",
+          "until": "2026-07-25T23:59:59+02:00"
         }
       }
     }
