@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-25T17:58:08.858Z",
+    "updatedAt": "2026-06-25T20:17:51.477Z",
     "source": "espn",
-    "matchCount": 54,
-    "liveCount": 0,
+    "matchCount": 56,
+    "liveCount": 2,
     "apiCalls": 2
   },
   "results": {
@@ -276,9 +276,36 @@
       "h": 0,
       "a": 1,
       "status": "FINISHED"
+    },
+    "g:E:1": {
+      "h": 1,
+      "a": 0,
+      "status": "IN_PLAY"
+    },
+    "g:E:0": {
+      "h": 1,
+      "a": 1,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:E:1",
+      "status": "IN_PLAY",
+      "minute": 16,
+      "home": "Ivory Coast",
+      "away": "Curaçao",
+      "score": "1-0"
+    },
+    {
+      "key": "g:E:0",
+      "status": "IN_PLAY",
+      "minute": 17,
+      "home": "Germany",
+      "away": "Ecuador",
+      "score": "1-1"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1202,7 +1229,7 @@
       "date": "2026-06-25",
       "time": "22:00",
       "utcDate": "2026-06-25T20:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Ivory Coast",
       "away": "Curaçao",
@@ -1219,7 +1246,7 @@
       "date": "2026-06-25",
       "time": "22:00",
       "utcDate": "2026-06-25T20:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Germany",
       "away": "Ecuador",
