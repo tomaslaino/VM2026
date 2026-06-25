@@ -10,6 +10,7 @@
   var expandedGroups = {};      // letter -> bool (visa matcher)
   var selectedTeam = null;      // { group, idx } för lag-panelen (ej persistent)
   var hoverMatch = null;        // matchnummer med öppen infopanel i slutspelet
+  var hoverLineage = null;      // matchnummer vars härstamning (in/ut) är highlightad
   // R32-motståndarsimulator (inbäddad i slutspelsvyn)
   var r32Open = false;          // panelen utfälld
   var r32TeamKey = "F:3";       // analyserat lag, "grupp:idx" (default Sverige)
@@ -1087,6 +1088,7 @@
     if (view !== "calendar" && view !== "groups") hideCalGroupPopup();
     if (view !== "bracket") {
       hoverMatch = null;
+      hoverLineage = null;
       hideAside();
       setBracketHeroCollapsed(false);
     }
@@ -1544,6 +1546,10 @@
 
       var wrapRect = wrap.getBoundingClientRect();
       var paths = [];
+      // Aktuell härstamnings-edge (parent + barn-matcher) som varje path-segment
+      // tillhör, så att linjerna kan tändas tillsammans med rätt rutor vid hover.
+      var edge = null;
+      function push(d) { paths.push({ d: d, p: edge ? edge.p : null, k: edge ? edge.k : null }); }
 
       function pos(el) {
         var r = el.getBoundingClientRect();
@@ -1562,16 +1568,16 @@
         var midY = (a.y + b.y) / 2;
         if (side === "left") {
           var midX = (Math.max(a.right, b.right) + p.left) / 2;
-          paths.push("M" + a.right + "," + a.y + " H" + midX);
-          paths.push("M" + b.right + "," + b.y + " H" + midX);
-          paths.push("M" + midX + "," + a.y + " V" + b.y);
-          paths.push("M" + midX + "," + midY + " H" + p.left);
+          push("M" + a.right + "," + a.y + " H" + midX);
+          push("M" + b.right + "," + b.y + " H" + midX);
+          push("M" + midX + "," + a.y + " V" + b.y);
+          push("M" + midX + "," + midY + " H" + p.left);
         } else {
           var midX = (Math.min(a.left, b.left) + p.right) / 2;
-          paths.push("M" + a.left + "," + a.y + " H" + midX);
-          paths.push("M" + b.left + "," + b.y + " H" + midX);
-          paths.push("M" + midX + "," + a.y + " V" + b.y);
-          paths.push("M" + midX + "," + midY + " H" + p.right);
+          push("M" + a.left + "," + a.y + " H" + midX);
+          push("M" + b.left + "," + b.y + " H" + midX);
+          push("M" + midX + "," + a.y + " V" + b.y);
+          push("M" + midX + "," + midY + " H" + p.right);
         }
       }
 
@@ -1579,14 +1585,14 @@
         var f = pos(fromEl), t = pos(toEl);
         if (side === "left") {
           var midX = (f.right + t.left) / 2;
-          paths.push("M" + f.right + "," + f.y + " H" + midX);
-          paths.push("M" + midX + "," + f.y + " V" + t.y);
-          paths.push("M" + midX + "," + t.y + " H" + t.left);
+          push("M" + f.right + "," + f.y + " H" + midX);
+          push("M" + midX + "," + f.y + " V" + t.y);
+          push("M" + midX + "," + t.y + " H" + t.left);
         } else {
           var midX = (f.left + t.right) / 2;
-          paths.push("M" + f.left + "," + f.y + " H" + midX);
-          paths.push("M" + midX + "," + f.y + " V" + t.y);
-          paths.push("M" + midX + "," + t.y + " H" + t.right);
+          push("M" + f.left + "," + f.y + " H" + midX);
+          push("M" + midX + "," + f.y + " V" + t.y);
+          push("M" + midX + "," + t.y + " H" + t.right);
         }
       }
 
@@ -1594,11 +1600,11 @@
         var a = pos(aEl), b = pos(bEl), brz = pos(bronzeEl);
         var entryY = brz.y;
 
-        paths.push("M" + a.cx + "," + a.bottom + " V" + entryY);
-        paths.push("M" + a.cx + "," + entryY + " H" + brz.left);
+        push("M" + a.cx + "," + a.bottom + " V" + entryY);
+        push("M" + a.cx + "," + entryY + " H" + brz.left);
 
-        paths.push("M" + b.cx + "," + b.bottom + " V" + entryY);
-        paths.push("M" + b.cx + "," + entryY + " H" + brz.right);
+        push("M" + b.cx + "," + b.bottom + " V" + entryY);
+        push("M" + b.cx + "," + entryY + " H" + brz.right);
       }
 
       ["left", "right"].forEach(function (side) {
@@ -1611,7 +1617,10 @@
             var elA = br.querySelector('[data-m="' + kids[j * 2] + '"]');
             var elB = br.querySelector('[data-m="' + kids[j * 2 + 1] + '"]');
             var elP = br.querySelector('[data-m="' + pars[j] + '"]');
-            if (elA && elB && elP) forkPair(elA, elB, elP, side);
+            if (elA && elB && elP) {
+              edge = { p: pars[j], k: [kids[j * 2], kids[j * 2 + 1]] };
+              forkPair(elA, elB, elP, side);
+            }
           }
         }
       });
@@ -1620,20 +1629,58 @@
       var sfL = br.querySelector('[data-m="101"]');
       var sfR = br.querySelector('[data-m="102"]');
       var bronze = br.querySelector('[data-m="103"]');
-      if (fin && sfL) linkSingle(sfL, fin, "left");
-      if (fin && sfR) linkSingle(sfR, fin, "right");
-      if (bronze && sfL && sfR) linkBronze(sfL, sfR, bronze);
+      if (fin && sfL) { edge = { p: 104, k: [101] }; linkSingle(sfL, fin, "left"); }
+      if (fin && sfR) { edge = { p: 104, k: [102] }; linkSingle(sfR, fin, "right"); }
+      if (bronze && sfL && sfR) { edge = { p: 103, k: [101, 102] }; linkBronze(sfL, sfR, bronze); }
+      edge = null;
 
       var w = wrap.offsetWidth;
       var h = wrap.offsetHeight;
       svg.setAttribute("viewBox", "0 0 " + w + " " + h);
       svg.setAttribute("width", w);
       svg.setAttribute("height", h);
-      svg.innerHTML = paths.map(function (d) {
-        return '<path d="' + d + '" fill="none" stroke-linecap="square"/>';
+      svg.innerHTML = paths.map(function (o) {
+        var attr = "";
+        if (o.p != null) attr += ' data-edge-p="' + o.p + '"';
+        if (o.k) attr += ' data-edge-k="' + o.k.join(",") + '"';
+        return '<path d="' + o.d + '"' + attr + ' fill="none" stroke-linecap="square"/>';
       }).join("");
+      // Återställ ev. aktiv hover-markering efter omritning av linjerna.
+      if (hoverLineage != null) setBracketLineage(hoverLineage);
       if (typeof afterLayout === "function") afterLayout();
     });
+  }
+
+  /* Tänd härstamningen för en slutspelsmatch: de två matcher som leder in i den
+     (dess "barn") och matchen den själv leder till (dess "förälder"), plus
+     linjerna däremellan – så att man tydligt ser hur två rutor hör ihop med en.
+     Övriga rutor/linjer dämpas. Anropas vid hover/fokus; no=null nollställer. */
+  function setBracketLineage(no) {
+    var wrap = viewEl.querySelector(".bracket-wrap");
+    if (!wrap) return;
+    wrap.classList.remove("lineage-active");
+    wrap.querySelectorAll(".is-lineage").forEach(function (el) { el.classList.remove("is-lineage"); });
+    hoverLineage = (no == null ? null : no);
+    if (hoverLineage == null) return;
+
+    var key = String(no);
+    var related = {};
+    related[key] = true;
+    wrap.querySelectorAll(".bracket-lines path").forEach(function (pth) {
+      var p = pth.getAttribute("data-edge-p");
+      var k = pth.getAttribute("data-edge-k");
+      var kids = k ? k.split(",") : [];
+      if (p === key || kids.indexOf(key) >= 0) {
+        pth.classList.add("is-lineage");
+        if (p) related[p] = true;
+        kids.forEach(function (x) { related[x] = true; });
+      }
+    });
+    Object.keys(related).forEach(function (m) {
+      var card = wrap.querySelector('.match[data-m="' + m + '"]');
+      if (card) card.classList.add("is-lineage");
+    });
+    wrap.classList.add("lineage-active");
   }
 
   function centerBracketColumn(col, anchorEl) {
@@ -2566,6 +2613,358 @@
     return false;
   }
 
+  /* ====================================================================
+     SLUTSPELSKALKYLATORN  (egen vy via top-navet, route "r32")
+     Kör HELA slutspelsträdet (assets/bracketengine.js) med ett valt fokuslag
+     och ritar en vertikal "resa": Gruppspel → Sextondel → Åttondel → Kvart →
+     Semi → Final. Per steg visas chansen att ta sig dit + troligaste
+     motståndare (givet att man når dit) + din uppskattade vinstchans. En ren
+     kontrollpanel låter dig klicka i hur kvarvarande gruppmatcher slutar.
+  ==================================================================== */
+  var CALC_ROUNDS = [
+    { key: "r32", title: "Sextondelsfinal", next: "r16" },
+    { key: "r16", title: "Åttondelsfinal", next: "qf" },
+    { key: "qf", title: "Kvartsfinal", next: "sf" },
+    { key: "sf", title: "Semifinal", next: "final" },
+    { key: "final", title: "Final", next: "win" }
+  ];
+  var CALC_POSLBL = { 1: "Vinner gruppen", 2: "Tvåa", 3: "Trea" };
+
+  function setCalcStatus(txt) {
+    var el = document.getElementById("calc-status");
+    if (el) el.textContent = txt || "";
+  }
+
+  // Uppskattad vinstchans i en match: logistisk på styrkan ur vinnarodds (samma
+  // modell + K som motorn). Saknas styrka faller den tillbaka på FIFA-ranking.
+  function calcWinP(aName, bName) {
+    if (bracketStrength && bracketStrength[aName] != null && bracketStrength[bName] != null) {
+      return 1 / (1 + Math.exp(-0.6 * (bracketStrength[aName] - bracketStrength[bName])));
+    }
+    var map = r32EnglishToTeam(), ta = map[aName], tb = map[bName];
+    if (!ta || !tb) return null;
+    var f = function (x) { return 1500 - 130 * Math.log(x); };
+    return 1 / (1 + Math.pow(10, (f(fifaRankOf(tb)) - f(fifaRankOf(ta))) / 400));
+  }
+
+  // Kvarvarande (ej färdigspelade) gruppmatcher med odds, för kontrollpanelen.
+  function calcRemainingMatches(odds) {
+    var playedPairs = {};
+    WC.groupLetters.forEach(function (L) {
+      playedPairs[L] = {};
+      groupFixtures(L).forEach(function (fx) {
+        if (!isFinishedMatch(fx.key, getRes(fx.key))) return;
+        playedPairs[L][[fx.h, fx.a].slice().sort(function (a, b) { return a - b; }).join(",")] = true;
+      });
+    });
+    var out = [];
+    (odds.matches || []).forEach(function (m) {
+      if (playedPairs[m.g] && playedPairs[m.g][m.pair]) return;
+      out.push({ id: m.id, g: m.g, i: m.i, j: m.j, home: m.home, away: m.away, rp: m.rp });
+    });
+    return out;
+  }
+
+  /* ---------- vy-skelett ---------- */
+  function renderCalcView() {
+    lastViewSig = null;
+    viewEl.innerHTML = '<div class="calc-view">' + calcPanelHtml() + '</div>';
+    var sl = document.getElementById("calc-team");
+    if (sl) sl.value = r32TeamKey;
+    paintCalc();
+    return true;
+  }
+
+  function calcQuickTab(key) {
+    var t = r32TeamByKey(key).team;
+    return '<button type="button" class="calc-quick' + (key === r32TeamKey ? " on" : "") +
+      '" data-calc-tab="' + key + '">' + flagImg(t.iso) + '<span>' + esc(t.sv) + '</span></button>';
+  }
+
+  function calcPanelHtml() {
+    var sel = r32TeamByKey(r32TeamKey);
+    var optgroups = WC.groupLetters.map(function (L) {
+      var opts = WC.groups[L].map(function (t, i) {
+        var k = L + ":" + i;
+        return '<option value="' + k + '"' + (k === r32TeamKey ? " selected" : "") + '>' + esc(t.sv) + "</option>";
+      }).join("");
+      return '<optgroup label="Grupp ' + L + '">' + opts + "</optgroup>";
+    }).join("");
+
+    return '' +
+      '<section class="calc-panel" aria-label="Slutspelskalkylator">' +
+        '<div class="calc-head">' +
+          '<div class="calc-titlewrap">' +
+            '<h3 id="calc-title">Slutspelskalkylator</h3>' +
+            '<p class="calc-sub" id="calc-sub">Följ <b>' + esc(sel.team.sv) + '</b> genom slutspelet och se vilka lag de kan möta i varje runda. ' +
+              '<span class="calc-status" id="calc-status"></span></p>' +
+          '</div>' +
+          '<div class="calc-pick">' +
+            '<div class="calc-quicktabs">' + calcQuickTab("F:3") + calcQuickTab("H:1") + '</div>' +
+            '<label class="calc-select"><span>Lag</span>' +
+              '<select id="calc-team">' + optgroups + '</select></label>' +
+            '<button type="button" class="calc-reset" data-calc-reset>Återställ</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="calc-body">' +
+          '<div class="calc-journey" id="calc-journey"></div>' +
+          '<aside class="calc-controls" id="calc-controls"></aside>' +
+        '</div>' +
+      '</section>';
+  }
+
+  function paintCalc() {
+    if (r32OddsData === "error") { setCalcStatus("kunde inte hämta data"); return; }
+    if (!calcResult) setCalcStatus("laddar …");
+    if (!window.BracketEngine) { setCalcStatus("kunde inte räkna ut just nu"); return; }
+    bracketEnsureExtras(function () {
+      r32EnsureOdds(function () {
+        if (!r32Open) return;
+        runCalc();
+      });
+    });
+  }
+
+  function calcEnsureWorker() {
+    if (calcWorker) return;
+    try {
+      calcWorker = new Worker("assets/bracketworker.js?v=3");
+      calcWorker.onmessage = function (e) {
+        var d = e.data || {};
+        if (d.seq !== calcSeq) return;
+        if (d.error || !d.result) { setCalcStatus("kunde inte räkna ut just nu"); return; }
+        calcResult = d.result; calcKey = d.key;
+        renderCalcDynamic();
+      };
+      calcWorker.onerror = function () { calcWorker = "none"; };
+    } catch (err) { calcWorker = "none"; }
+  }
+
+  function runCalc() {
+    if (!r32OddsData || r32OddsData === "loading" || r32OddsData === "error") return;
+    if (!bracketMapData || bracketMapData === "loading" || bracketMapData === "error" || !bracketStrength) return;
+    var built = bracketBuildInput(r32OddsData);
+    var sel = r32TeamByKey(r32TeamKey);
+    built.input.n = CALC_N;
+    built.input.focalTeam = sel.team.name;
+    var key = built.key + "|" + sel.team.name + "|" + CALC_N;
+    if (calcKey === key && calcResult) { renderCalcDynamic(); return; }
+    setCalcStatus("räknar …");
+    calcSeq++;
+    var seq = calcSeq;
+    calcEnsureWorker();
+    if (calcWorker && calcWorker !== "none") {
+      calcWorker.postMessage({ seq: seq, key: key, input: built.input });
+    } else {
+      setTimeout(function () {
+        if (seq !== calcSeq) return;
+        try { calcResult = window.BracketEngine.compute(built.input); calcKey = key; renderCalcDynamic(); }
+        catch (err) { setCalcStatus("kunde inte räkna ut just nu"); }
+      }, 16);
+    }
+  }
+
+  /* ---------- dynamiskt innehåll ---------- */
+  function renderCalcDynamic() {
+    r32TipN = 0; r32TipMap = {};
+    setCalcStatus("");
+    var sel = r32TeamByKey(r32TeamKey);
+    var sub = document.getElementById("calc-sub");
+    if (sub) sub.innerHTML = 'Följ <b>' + esc(sel.team.sv) + '</b> genom slutspelet och se vilka lag de kan möta i varje runda. ' +
+      '<span class="calc-status" id="calc-status"></span>';
+    renderCalcJourney(sel);
+    renderCalcControls();
+  }
+
+  function renderCalcJourney(sel) {
+    var host = document.getElementById("calc-journey");
+    if (!host || !calcResult) return;
+    var focal = calcResult.focal;
+    if (!focal) { host.innerHTML = '<div class="calc-faint">Ingen data.</div>'; return; }
+
+    var winPct = r32Pct(focal.win);
+    var head = '<div class="calc-start">' +
+      '<div class="calc-teamchip">' + flagImg(sel.team.iso) +
+        '<span class="calc-teamname">' + esc(sel.team.sv) + '</span>' +
+        '<span class="calc-teamwin" title="Sannolikhet att vinna hela VM">🏆 ' + winPct + '</span>' +
+      '</div></div>';
+
+    var steps = '<ol class="calc-steps">' + calcStepGroup(sel, focal) +
+      CALC_ROUNDS.map(function (r) { return calcStepKO(r, focal, sel); }).join("") +
+      '</ol>';
+
+    host.innerHTML = head + steps;
+  }
+
+  function calcStepGroup(sel, focal) {
+    var advance = focal.r32 ? focal.r32.reachP : 0;
+    var gp = focal.groupPositions || {};
+    var table = computeTable(sel.g);
+    var rows = table.map(function (r, pos) {
+      var me = r.idx === sel.idx;
+      return '<tr' + (me ? ' class="me"' : '') + '>' +
+        '<td class="nm">' + (pos + 1) + '. ' + flagImg(r.team.iso) + esc(r.team.sv) + '</td>' +
+        '<td>' + r.pld + '</td><td>' + (r.gd >= 0 ? "+" : "") + r.gd + '</td>' +
+        '<td>' + r.gf + '</td><td>' + r.pts + '</td></tr>';
+    }).join("");
+    var poschips = [1, 2, 3].map(function (p) {
+      return '<span class="calc-poschip"><b>' + r32Pct(gp[p] || 0) + '</b> ' + CALC_POSLBL[p] + '</span>';
+    }).join("") + '<span class="calc-poschip out"><b>' + r32Pct(Math.max(0, 1 - advance)) + '</b> Åker ut</span>';
+
+    return '<li class="calc-step group">' +
+      '<div class="calc-rail"><span class="calc-dot start"></span></div>' +
+      '<div class="calc-card">' +
+        '<div class="calc-cardhead">' +
+          '<span class="calc-round">Gruppspelet · Grupp ' + sel.g + '</span>' +
+          '<span class="calc-reach"><b>' + r32Pct(advance) + '</b> går vidare</span>' +
+        '</div>' +
+        '<div class="calc-reachbar"><div class="fill" style="width:' + (advance * 100).toFixed(1) + '%"></div></div>' +
+        '<table class="calc-standings"><tr><th class="nm">Lag</th><th>S</th><th>MV</th><th>GM</th><th>P</th></tr>' + rows + '</table>' +
+        '<div class="calc-poschips">' + poschips + '</div>' +
+      '</div></li>';
+  }
+
+  function calcStepKO(round, focal, sel) {
+    var data = focal[round.key] || { reachP: 0, opponents: {} };
+    var reach = data.reachP || 0;
+    var champ = round.key === "final"; // final-kortet visar även "vinner VM"
+    var body;
+    if (reach < 0.005) {
+      body = '<div class="calc-faint">Osannolikt att ' + esc(sel.team.sv) + ' når hit.</div>';
+    } else {
+      body = '<div class="calc-opps">' + calcOppRows(data.opponents, sel) + '</div>';
+    }
+    var sub = champ
+      ? '<span class="calc-reach"><b>' + r32Pct(reach) + '</b> når finalen</span>'
+      : '<span class="calc-reach"><b>' + r32Pct(reach) + '</b> tar sig hit</span>';
+
+    return '<li class="calc-step ko" data-round="' + round.key + '">' +
+      '<div class="calc-rail"><span class="calc-dot"></span></div>' +
+      '<div class="calc-card">' +
+        '<div class="calc-cardhead">' +
+          '<span class="calc-round">' + round.title + '</span>' + sub +
+        '</div>' +
+        '<div class="calc-reachbar"><div class="fill" style="width:' + (reach * 100).toFixed(1) + '%"></div></div>' +
+        body +
+      '</div></li>';
+  }
+
+  // Motståndarrader (givet att laget når rundan), sorterade efter sannolikhet.
+  function calcOppRows(opps, sel) {
+    var entries = Object.keys(opps || {}).map(function (nm) { return { nm: nm, p: opps[nm] }; })
+      .sort(function (a, b) { return b.p - a.p; });
+    if (!entries.length) return '<div class="calc-faint">för lite underlag</div>';
+    var maxP = entries[0].p || 0.0001;
+    var show = entries.slice(0, 6), tail = entries.slice(6);
+    var rows = show.map(function (e) {
+      var map = r32EnglishToTeam(), t = map[e.nm];
+      var win = calcWinP(sel.team.name, e.nm);
+      var winTxt = win == null ? "" : '<span class="calc-opp-win">ni vinner ' + Math.round(win * 100) + '%</span>';
+      var tip = r32TipId('<h4>' + esc(r32SvName(e.nm)) + '</h4>' +
+        '<div class="hl"><b>' + r32Pct(e.p) + '</b> chans att mötas här (om ni når rundan)</div>' +
+        (win != null ? '<div>~<b>' + Math.round(win * 100) + '%</b> att ' + esc(sel.team.sv) + ' vinner matchen</div>' : ''));
+      return '<div class="calc-opp" data-r32-tip="' + tip + '">' +
+        '<span class="calc-opp-flag">' + (t ? flagImg(t.iso) : "") + '</span>' +
+        '<span class="calc-opp-name">' + esc(r32SvName(e.nm)) + '</span>' +
+        '<span class="calc-opp-bar"><i style="width:' + (e.p / maxP * 100).toFixed(0) + '%"></i></span>' +
+        '<span class="calc-opp-p">' + r32Pct(e.p) + '</span>' +
+        winTxt +
+        '</div>';
+    }).join("");
+    if (tail.length) {
+      var tailP = tail.reduce(function (s, e) { return s + e.p; }, 0);
+      rows += '<div class="calc-opp tail"><span class="calc-opp-name">+ ' + tail.length + ' andra lag</span>' +
+        '<span class="calc-opp-p">' + r32Pct(tailP) + '</span></div>';
+    }
+    return rows;
+  }
+
+  /* ---------- kontrollpanel (vad-händer-om) ---------- */
+  function renderCalcControls() {
+    var host = document.getElementById("calc-controls");
+    if (!host || r32OddsData === "loading" || r32OddsData === "error" || !r32OddsData) return;
+    var sel = r32TeamByKey(r32TeamKey);
+    var all = calcRemainingMatches(r32OddsData);
+    var mine = all.filter(function (m) { return m.g === sel.g; });
+    var others = all.filter(function (m) { return m.g !== sel.g; });
+    var showAll = ui("calcAllGroups", "0") === "1";
+    var nFixed = Object.keys(r32Fixed).length;
+
+    var html = '<div class="calc-controls-head">' +
+      '<h4>Vad händer om?</h4>' +
+      '<p>Klicka i hur matcherna slutar – siffrorna räknas om direkt.' +
+      (nFixed ? ' <button type="button" class="calc-clear" data-calc-reset>Nollställ (' + nFixed + ')</button>' : '') +
+      '</p></div>';
+
+    if (!all.length) {
+      html += '<div class="calc-faint">Alla gruppmatcher är spelade.</div>';
+    } else {
+      if (mine.length) {
+        html += '<div class="calc-ctrl-group"><div class="calc-ctrl-grouptitle">' + esc(sel.team.sv) + 's grupp (' + sel.g + ')</div>' +
+          mine.map(calcMatchRow).join("") + '</div>';
+      }
+      if (others.length) {
+        html += '<div class="calc-ctrl-group">' +
+          '<button type="button" class="calc-ctrl-grouptitle toggle" data-calc-allgroups aria-expanded="' + (showAll ? "true" : "false") + '">' +
+            'Övriga matcher (påverkar motståndarna) <span class="chev">' + (showAll ? "▾" : "▸") + '</span></button>' +
+          (showAll ? others.map(calcMatchRow).join("") : "") +
+        '</div>';
+      }
+    }
+    host.innerHTML = html;
+  }
+
+  function calcMatchRow(m) {
+    var map = r32EnglishToTeam();
+    var fx = r32Fixed[m.id];
+    var opts = [["1", m.home], ["X", null], ["2", m.away]].map(function (o) {
+      var r = o[0];
+      var on = fx && ((fx[0] === "result" && fx[1] === r) ||
+        (fx[0] === "score" && ((r === "1" && fx[1] > fx[2]) || (r === "X" && fx[1] === fx[2]) || (r === "2" && fx[1] < fx[2]))));
+      var t = o[1] ? map[o[1]] : null;
+      var label = r === "X" ? '<span class="cm-x">Oavgjort</span>'
+        : (t ? flagImg(t.iso) + '<span class="cm-nm">' + esc(teamSvFixture(t)) + '</span>' : esc(r32SvName(r === "1" ? m.home : m.away)));
+      return '<button type="button" class="calc-opt' + (on ? " on" : "") + '" data-calc-res="' + m.id + '" data-calc-r="' + r + '">' +
+        label + '<span class="cm-p">' + r32Pct(m.rp[r]) + '</span></button>';
+    }).join("");
+    return '<div class="calc-match' + (fx ? " locked" : "") + '">' +
+      '<span class="calc-match-grp grp-' + m.g + '">' + m.g + '</span>' +
+      '<div class="calc-match-opts">' + opts + '</div></div>';
+  }
+
+  /* ---------- interaktion ---------- */
+  function calcSetTeam(key) {
+    if (key === r32TeamKey) return;
+    r32TeamKey = key;
+    var sl = document.getElementById("calc-team"); if (sl) sl.value = key;
+    document.querySelectorAll(".calc-quick").forEach(function (b) {
+      b.classList.toggle("on", b.getAttribute("data-calc-tab") === key);
+    });
+    runCalc();
+  }
+
+  function calcHandleClick(t) {
+    if (!r32Open) return false;
+    var tab = t.closest && t.closest("[data-calc-tab]");
+    if (tab) { calcSetTeam(tab.getAttribute("data-calc-tab")); return true; }
+    if (t.closest && t.closest("[data-calc-reset]")) {
+      r32Fixed = {}; renderCalcControls(); runCalc(); return true;
+    }
+    if (t.closest && t.closest("[data-calc-allgroups]")) {
+      setUi("calcAllGroups", ui("calcAllGroups", "0") === "1" ? "0" : "1");
+      renderCalcControls(); return true;
+    }
+    var res = t.closest && t.closest("[data-calc-res]");
+    if (res) {
+      var id = res.getAttribute("data-calc-res"), r = res.getAttribute("data-calc-r");
+      var cur = r32Fixed[id];
+      if (cur && cur[0] === "result" && cur[1] === r) delete r32Fixed[id];
+      else r32Fixed[id] = ["result", r];
+      renderCalcControls(); runCalc(); return true;
+    }
+    return false;
+  }
+
   // Mest sannolika laget i en fördelning (eller null).
   function topNameOf(dist) {
     if (!dist) return null;
@@ -3004,7 +3403,7 @@
   function bracketEnsureWorker() {
     if (bracketWorker) return;
     try {
-      bracketWorker = new Worker("assets/bracketworker.js");
+      bracketWorker = new Worker("assets/bracketworker.js?v=3");
       bracketWorker.onmessage = function (e) {
         var d = e.data || {};
         if (d.seq !== bracketSeq) return;       // ett nyare anrop har startats
@@ -4671,6 +5070,7 @@
     var mc = e.target.closest && e.target.closest("[data-m]");
     if (mc) {
       var no = parseInt(mc.getAttribute("data-m"), 10);
+      if (ui("view", "groups") === "bracket") setBracketLineage(no);
       showTip(no, e.clientX, e.clientY);
       return;
     }
@@ -4687,6 +5087,7 @@
     var mc = e.target.closest && e.target.closest("[data-m]");
     if (mc && (!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest("[data-m]"))) {
       hideTip();
+      if (hoverLineage != null) setBracketLineage(null);
     }
     var rt = e.target.closest && e.target.closest("[data-r32-tip]");
     if (rt && (!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest("[data-r32-tip]"))) {
@@ -4784,6 +5185,17 @@
     viewEl.addEventListener("mouseover", onOver);
     viewEl.addEventListener("mousemove", onMove);
     viewEl.addEventListener("mouseout", onOut);
+    // Tangentbord: tänd härstamningen när en slutspelsruta får fokus.
+    viewEl.addEventListener("focusin", function (e) {
+      if (ui("view", "groups") !== "bracket") return;
+      var mc = e.target.closest && e.target.closest("[data-m]");
+      if (mc) setBracketLineage(parseInt(mc.getAttribute("data-m"), 10));
+    });
+    viewEl.addEventListener("focusout", function (e) {
+      if (hoverLineage == null) return;
+      var to = e.relatedTarget;
+      if (!to || !to.closest || !to.closest("[data-m]")) setBracketLineage(null);
+    });
 
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") {

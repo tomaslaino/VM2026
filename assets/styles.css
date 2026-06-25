@@ -1770,7 +1770,31 @@ html.view-bracket .bracket-scroll::-webkit-scrollbar-thumb:hover {
   overflow: visible;
   color: var(--line-strong);
 }
-.bracket-lines path { stroke: currentColor; stroke-width: 1.5; opacity: .58; }
+.bracket-lines path { stroke: currentColor; stroke-width: 1.5; opacity: .58; transition: stroke .15s ease, stroke-width .15s ease, opacity .15s ease; }
+
+/* Härstamnings-highlight: när en slutspelsruta hovras/fokuseras tänds de två
+   matcher som leder in i den och matchen den leder till (plus linjerna), medan
+   resten dämpas – så att "två rutor hör ihop med en" blir lätt att följa. */
+.bracket-wrap.lineage-active .bracket-lines path:not(.is-lineage) { opacity: .16; }
+.bracket-wrap .bracket-lines path.is-lineage {
+  stroke: var(--gold);
+  stroke-width: 2.4;
+  opacity: 1;
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--gold) 55%, transparent));
+}
+.bracket-wrap.lineage-active .match { transition: opacity .15s ease, border-color .15s ease, box-shadow .15s ease; }
+.bracket-wrap.lineage-active .match:not(.is-lineage) { opacity: .42; }
+.bracket-wrap.lineage-active .match.is-lineage {
+  border-color: color-mix(in srgb, var(--gold) 60%, rgba(255, 255, 255, .14));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--gold) 45%, transparent),
+    0 0 18px -4px color-mix(in srgb, var(--gold) 50%, transparent),
+    0 16px 38px -24px rgba(0, 0, 0, .8);
+}
+@media (prefers-reduced-motion: reduce) {
+  .bracket-lines path,
+  .bracket-wrap.lineage-active .match { transition: none; }
+}
 /* OBS: inget z-index här – fasrubrikerna (sticky) ska kunna lägga sig ovanpå linjerna. */
 .bracket.two-sided { position: relative; }
 html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
@@ -4195,4 +4219,171 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
   .r32-head h3 { font-size: 22px; }
   .r32-gtop { grid-template-columns: 26px 1fr; }
   .r32-chips { grid-column: 1 / -1; margin-top: 6px; justify-content: flex-start; }
+}
+
+/* ====================================================================
+   SLUTSPELSKALKYLATORN – vertikal "resa" + kontrollpanel
+==================================================================== */
+.calc-panel {
+  max-width: var(--maxw); margin: 4px auto 22px; padding: 18px 20px 22px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card) 92%, transparent), var(--bg-soft));
+  border: 1px solid var(--line-strong); border-radius: var(--radius);
+  box-shadow: var(--shadow); animation: r32in .18s ease;
+}
+.calc-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; flex-wrap: wrap; }
+.calc-titlewrap { min-width: 240px; flex: 1; }
+.calc-head h3 {
+  margin: 0; font-family: var(--display); font-weight: 800; letter-spacing: .3px;
+  font-size: 26px; color: var(--bone); text-transform: uppercase;
+}
+.calc-sub { margin: 5px 0 0; color: var(--ink-soft); font-size: 13px; max-width: 640px; }
+.calc-sub b { color: var(--ink); }
+.calc-status { color: var(--focus); font-weight: 700; white-space: nowrap; }
+
+.calc-pick { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.calc-quicktabs { display: flex; gap: 6px; }
+.calc-quick {
+  display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid var(--line-strong); background: var(--bg-soft); color: var(--ink-soft);
+  border-radius: 9px; padding: 6px 11px; font: inherit; font-weight: 700; font-size: 13px; cursor: pointer;
+}
+.calc-quick .flag { width: 19px; height: 13px; border-radius: 2px; flex-shrink: 0; }
+.calc-quick:hover { color: var(--ink); border-color: var(--focus); }
+.calc-quick.on { color: #fff; background: color-mix(in srgb, var(--usa-blue) 70%, var(--usa-navy)); border-color: var(--usa-blue); }
+.calc-select { display: inline-flex; align-items: center; gap: 7px; color: var(--ink-soft); font-size: 12px; font-weight: 700; }
+.calc-select select {
+  background: var(--bg-soft); color: var(--ink); border: 1px solid var(--line-strong);
+  border-radius: 9px; padding: 6px 9px; font: inherit; font-weight: 700; font-size: 13px; cursor: pointer;
+}
+.calc-reset {
+  border: 1px solid var(--line); background: transparent; color: var(--ink-soft);
+  border-radius: 9px; padding: 5px 11px; font-size: 12.5px; font-weight: 600; cursor: pointer;
+}
+.calc-reset:hover { color: var(--ink); border-color: var(--accent); }
+
+.calc-body { display: grid; grid-template-columns: 1fr 320px; gap: 22px; margin-top: 18px; align-items: start; }
+
+/* ---- resan ---- */
+.calc-start { margin-bottom: 14px; }
+.calc-teamchip {
+  display: inline-flex; align-items: center; gap: 10px; padding: 9px 15px;
+  border-radius: 12px; border: 1px solid color-mix(in srgb, var(--focus) 45%, var(--line-strong));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--usa-blue) 24%, var(--bg-soft)), var(--bg-soft));
+}
+.calc-teamchip .flag { width: 30px; height: 21px; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,.4); }
+.calc-teamname { font-family: var(--display); font-weight: 800; font-size: 21px; color: var(--ink); letter-spacing: .3px; }
+.calc-teamwin { margin-left: 4px; font-size: 12.5px; font-weight: 800; color: var(--gold); white-space: nowrap; }
+
+.calc-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.calc-step { display: grid; grid-template-columns: 30px 1fr; gap: 14px; }
+.calc-rail { position: relative; display: flex; justify-content: center; }
+.calc-rail::before {
+  content: ""; position: absolute; top: 6px; bottom: -24px; width: 2px;
+  background: linear-gradient(180deg, var(--line-strong), var(--line));
+}
+.calc-step:last-child .calc-rail::before { display: none; }
+.calc-dot {
+  position: relative; z-index: 1; width: 15px; height: 15px; border-radius: 50%; margin-top: 13px;
+  background: var(--bg-soft); border: 2px solid var(--line-strong);
+}
+.calc-dot.start { border-color: var(--focus); background: color-mix(in srgb, var(--focus) 65%, var(--bg-soft)); }
+
+.calc-card {
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 13px; padding: 13px 16px 14px;
+}
+.calc-step.group .calc-card { border-color: color-mix(in srgb, var(--focus) 30%, var(--line)); }
+.calc-step[data-round="final"] .calc-card { border-color: color-mix(in srgb, var(--gold) 32%, var(--line)); }
+.calc-cardhead { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.calc-round { font-family: var(--display); font-weight: 800; font-size: 16px; letter-spacing: .4px; color: var(--ink); text-transform: uppercase; }
+.calc-reach { font-size: 12px; color: var(--ink-soft); font-weight: 600; white-space: nowrap; }
+.calc-reach b { font-size: 15px; color: var(--ink); font-weight: 900; font-variant-numeric: tabular-nums; }
+
+.calc-reachbar { height: 6px; border-radius: 4px; background: rgba(255,255,255,.07); overflow: hidden; margin: 9px 0 12px; }
+.calc-reachbar .fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--usa-blue), var(--adv)); }
+.calc-step[data-round="final"] .calc-reachbar .fill { background: linear-gradient(90deg, var(--usa-blue), var(--gold)); }
+
+.calc-opps { display: flex; flex-direction: column; gap: 6px; }
+.calc-opp {
+  display: grid; grid-template-columns: 24px 1fr 64px auto auto; align-items: center; gap: 9px;
+  padding: 4px 6px; border-radius: 8px;
+}
+.calc-opp:hover { background: rgba(255,255,255,.04); }
+.calc-opp .flag { width: 22px; height: 15px; border-radius: 2px; }
+.calc-opp-name { font-weight: 700; font-size: 13px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.calc-opp-bar { height: 7px; border-radius: 4px; background: rgba(255,255,255,.07); overflow: hidden; }
+.calc-opp-bar i { display: block; height: 100%; border-radius: 4px; background: var(--usa-blue); }
+.calc-opp-p { font-size: 12.5px; font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums; text-align: right; }
+.calc-opp-win { font-size: 11px; color: var(--ink-soft); font-weight: 600; white-space: nowrap; }
+.calc-opp.tail { grid-template-columns: 1fr auto; color: var(--ink-soft); font-size: 12px; padding-top: 6px; }
+.calc-opp.tail .calc-opp-name { color: var(--ink-soft); font-weight: 600; font-style: italic; }
+.calc-faint { color: var(--ink-soft); font-size: 12.5px; padding: 4px 2px; }
+
+.calc-standings { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-bottom: 11px; }
+.calc-standings td, .calc-standings th { padding: 4px 5px; text-align: right; border-bottom: 1px solid var(--line); }
+.calc-standings td.nm, .calc-standings th.nm { text-align: left; }
+.calc-standings td.nm .flag { width: 20px; height: 14px; margin: 0 5px -2px 4px; border-radius: 2px; }
+.calc-standings th { color: var(--ink-soft); font-size: 10.5px; font-weight: 700; }
+.calc-standings tr.me td { background: color-mix(in srgb, var(--focus) 16%, transparent); font-weight: 800; }
+.calc-standings tr.me td.nm { box-shadow: inset 3px 0 0 var(--focus); }
+
+.calc-poschips { display: flex; flex-wrap: wrap; gap: 6px; }
+.calc-poschip {
+  font-size: 11px; color: var(--ink-soft); font-weight: 600; padding: 3px 9px;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--card);
+}
+.calc-poschip b { color: var(--ink); font-weight: 900; font-variant-numeric: tabular-nums; }
+.calc-poschip.out b { color: #ff8898; }
+
+/* ---- kontrollpanel ---- */
+.calc-controls {
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 13px;
+  padding: 14px 15px 15px; position: sticky; top: 12px;
+}
+.calc-controls-head h4 { margin: 0 0 3px; font-size: 15px; color: var(--ink); }
+.calc-controls-head p { margin: 0 0 12px; font-size: 11.5px; color: var(--ink-soft); line-height: 1.45; }
+.calc-clear {
+  display: inline-block; margin-top: 4px; border: 1px solid var(--line-strong); background: transparent;
+  color: var(--ink-soft); border-radius: 999px; padding: 2px 9px; font-size: 11px; font-weight: 700; cursor: pointer;
+}
+.calc-clear:hover { color: var(--ink); border-color: var(--accent); }
+.calc-ctrl-group { margin-bottom: 12px; }
+.calc-ctrl-grouptitle {
+  display: block; width: 100%; text-align: left; font-size: 11px; font-weight: 800; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--ink-soft); margin: 0 0 7px; padding: 0;
+}
+button.calc-ctrl-grouptitle { background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+button.calc-ctrl-grouptitle:hover { color: var(--ink); }
+.calc-ctrl-grouptitle .chev { font-size: 10px; }
+
+.calc-match { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+.calc-match-grp {
+  flex: none; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 6px;
+  font-size: 11px; font-weight: 900; color: var(--ink-soft); background: var(--card); border: 1px solid var(--line);
+}
+.calc-match-opts { flex: 1; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
+.calc-opt {
+  display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0;
+  border: 1px solid var(--line); background: var(--card); color: var(--ink-soft);
+  border-radius: 8px; padding: 5px 4px; font: inherit; font-size: 11px; font-weight: 700; cursor: pointer;
+}
+.calc-opt .flag { width: 18px; height: 12px; border-radius: 2px; }
+.calc-opt .cm-nm, .calc-opt .cm-x { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.calc-opt .cm-p { font-size: 10px; font-weight: 700; color: var(--ink-soft); opacity: .8; }
+.calc-opt:hover { color: var(--ink); border-color: var(--focus); }
+.calc-opt.on {
+  color: #fff; border-color: var(--usa-blue);
+  background: color-mix(in srgb, var(--usa-blue) 60%, var(--usa-navy));
+}
+.calc-opt.on .cm-p { color: #dfeaf7; opacity: .9; }
+
+@media (max-width: 900px) {
+  .calc-body { grid-template-columns: 1fr; }
+  .calc-controls { position: static; order: -1; }
+  .calc-pick { align-items: stretch; }
+  .calc-quicktabs { justify-content: flex-start; }
+}
+@media (max-width: 560px) {
+  .calc-head h3 { font-size: 22px; }
+  .calc-opp { grid-template-columns: 22px 1fr auto; }
+  .calc-opp-bar, .calc-opp-win { display: none; }
 }
