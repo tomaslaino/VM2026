@@ -812,7 +812,10 @@ html.view-bracket .site-bg {
 }
 .fm-sc.is-loss { color: var(--ink-soft); }
 .fm-dash { color: var(--ink-soft); opacity: .55; }
-.fm-foot { display: flex; justify-content: flex-end; margin-top: clamp(12px, 1.6vw, 16px); min-height: 1px; }
+/* margin-top:auto ankrar TV-kanalen i kortets nederkant så att den hamnar på
+   samma höjd oavsett hur lång målskyttelistan är (korten är redan lika höga via
+   grid-stretch). padding-top håller ett minsta avstånd till innehållet ovanför. */
+.fm-foot { display: flex; justify-content: flex-end; margin-top: auto; padding-top: clamp(12px, 1.6vw, 16px); min-height: 1px; }
 
 .fh-empty { margin: 8px 0 0; color: var(--ink-soft); }
 .focus-hero.is-empty { padding: clamp(20px, 3vw, 34px); }
@@ -1558,17 +1561,22 @@ html.view-bracket {
   overflow-x: hidden;
 }
 html.view-bracket main.container {
-  /* Samma topp-luft som .container på övriga vyer (26px) så vytiteln "Slutspel"
-     hamnar på exakt samma höjd som "Gruppspel"/"Kalender". */
-  padding: 26px 20px 10px;
+  /* Slutspelsträdet är brett – låt det nyttja hela fönsterbredden i stället för
+     att kapas av sidans normala max-width (--maxw) som annars ger stora tomma
+     marginaler på vardera sida och tvingar fram vågrät scroll i trädet. Smal
+     sidopadding så trädet får så mycket bredd som möjligt. Topp-luften (26px)
+     hålls lika med övriga vyer så vytiteln "Slutspel" ligger på samma höjd. */
+  max-width: none;
+  padding: 2px 10px 0;
 }
 /* Slutspelets toppra (rubrik + lägesväxlare) ligger överst i .bracket-shell,
    ovanför den scrollbara trädytan. Samma marginal som .page-intro på övriga
    vyer så rubriken ligger symmetriskt med dem. */
-html.view-bracket .page-intro { margin: 4px 0 22px; }
+html.view-bracket .page-intro { margin: 2px 0 10px; }
 html.view-bracket .foot {
-  padding: 18px 20px 28px;
-  font-size: 11px;
+  /* Den globala sidfoten döljs i slutspelet – den visas i stället som en
+     centrerad kapsel längst ner inuti själva trädet (.bracket-foot). */
+  display: none;
 }
 /* Vyrubriken "Slutspel" + underrubrik följer samma stil som Gruppspel/Kalender
    (se .page-intro h2 / p ovan) – bakgrunden är nu lika mörk på alla vyer. */
@@ -1609,8 +1617,16 @@ html.view-bracket .bracket .round-title.bracket-jump.bronze-title:hover {
 .bracket-modebar {
   display: flex;
   justify-content: center;
-  grid-column: 2;
 }
+/* Lägesväxlaren ligger numera i mittkolumnen, mellan "Final"-rubriken och
+   VM-FINAL-rutan. Den är bredare än finalkolumnen och får svämma ut symmetriskt
+   över de (här tomma) semifinalkolumnerna på var sida. */
+.bracket-modebar-slot {
+  align-self: center;
+  justify-self: center;
+  z-index: 7;
+}
+.bracket-modebar-slot .bracket-modebar { flex-wrap: nowrap; white-space: nowrap; }
 /* Rubrikrad i slutspelet: titel till vänster, lägesväxlare centrerad – exakt
    som statistikvyns toppra (.ps-intro). 1fr | auto | 1fr gör att pillret
    centreras i hela radens bredd oavsett rubrikens längd. */
@@ -1650,6 +1666,54 @@ html.view-bracket .bracket .round-title.bracket-jump.bronze-title:hover {
   background: linear-gradient(90deg, var(--usa-red), color-mix(in srgb, var(--usa-red) 70%, var(--usa-navy)));
   box-shadow: 0 2px 10px rgba(196, 30, 58, .3);
 }
+/* Enkel på/av-toggle i slutspelsträdet ("Visa oddsfavoriter"). */
+.bmode-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-soft);
+  color: var(--ink-soft);
+  font: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+  cursor: pointer;
+  padding: 7px 14px 7px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: background .15s, color .15s, box-shadow .15s, border-color .15s;
+}
+.bmode-toggle:hover { color: var(--ink); border-color: var(--focus); }
+.bmode-toggle .bmode-switch {
+  position: relative;
+  width: 38px;
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .14);
+  transition: background .18s;
+  flex-shrink: 0;
+}
+.bmode-toggle .bmode-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+  transition: transform .18s;
+}
+.bmode-toggle.on {
+  color: #fff;
+  background: linear-gradient(90deg, var(--usa-red), color-mix(in srgb, var(--usa-red) 70%, var(--usa-navy)));
+  border-color: transparent;
+  box-shadow: 0 2px 10px rgba(196, 30, 58, .3);
+}
+.bmode-toggle.on .bmode-switch { background: rgba(255, 255, 255, .35); }
+.bmode-toggle.on .bmode-knob { transform: translateX(18px); }
+
 @media (max-width: 700px) {
   .page-intro.bracket-intro { grid-template-columns: 1fr; }
   .page-intro.bracket-intro .bracket-modebar { grid-column: 1; }
@@ -1672,8 +1736,9 @@ html.view-bracket .bracket-scroll {
   width: 100%;
   /* Endast vågrät scroll här – sidan (body) sköter lodrät scroll. Lodrät luft
      (>= 6px upp/ned) ryms så faskolumnernas panel (margin: -6px) inte ger en
-     onödig lodrät scrollbar inuti trädet. */
-  padding: 10px 4px 12px 12px;
+     onödig lodrät scrollbar inuti trädet. Smal sidopadding så trädet får
+     maximal bredd och slipper vågrät scroll. */
+  padding: 2px 4px 0 4px;
   overflow-x: auto;
   overflow-y: visible;
   overscroll-behavior-x: contain;
@@ -1717,20 +1782,29 @@ html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
   background: linear-gradient(180deg, rgba(20, 36, 60, .82), rgba(11, 21, 38, .85));
   -webkit-backdrop-filter: blur(14px) saturate(1.15);
   backdrop-filter: blur(14px) saturate(1.15);
-  border-color: rgba(255, 255, 255, .085);
-  box-shadow: 0 16px 38px -24px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 255, 255, .05);
+  /* Något tydligare kant + en hårfin ljusare yttre ring så varje match-ruta
+     avgränsas lite skarpare visuellt (subtilt, mot de yttersta pixlarna). */
+  border-color: rgba(255, 255, 255, .14);
+  box-shadow: 0 16px 38px -24px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 255, 255, .06), 0 0 0 1px rgba(255, 255, 255, .045);
   width: 100%;
   align-self: center;
 }
 .bracket.two-sided {
   display: grid;
-  grid-template-columns: repeat(4, 196px) 196px repeat(4, 196px);
-  /* Första raden är fast: fasrubrikerna ligger i kolumnceller som spänner
-     hela höjden (för sticky), så raden kan inte auto-storleksättas. */
-  grid-template-rows: 58px repeat(8, minmax(74px, auto));
-  gap: 10px 20px;
+  /* Kolumnbredden är flytande: trädet (9 kolumner + 8 mellanrum) krymper för
+     att alltid rymmas på en skärm utan vågrät scroll, men växer aldrig bredare
+     än 188px/kolumn så det inte blir glest på stora skärmar. ~160px overhead =
+     sidopadding + scrollist + lite luft. */
+  --bcol: clamp(120px, calc((100vw - 160px) / 9), 188px);
+  grid-template-columns: repeat(4, var(--bcol)) var(--bcol) repeat(4, var(--bcol));
+  /* 8 rader (en per sextondelsmatch) – ingen separat rubrikrad längre, så
+     matcherna börjar högst upp. Radhöjd och radmellanrum sätts dynamiskt av
+     layoutBracketRows() i JS så de 8 matcherna fyller höjden jämnt. Värdena
+     här är bara en rimlig fallback innan JS hinner köra. */
+  grid-template-rows: repeat(8, minmax(60px, 1fr));
+  gap: 12px 14px;
   align-items: center;
-  min-width: max-content;
+  min-width: 0;
 }
 
 /* Faskolumn – subtil panel bakom varje omgång som grupperar fasen visuellt,
@@ -1744,7 +1818,7 @@ html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
   align-items: center;
   pointer-events: none;
   margin: -6px -7px;
-  padding-top: 8px;
+  padding-top: 0;
   border-radius: 16px;
   background: linear-gradient(180deg, rgba(16, 30, 52, .55), rgba(14, 26, 44, .24) 22%, rgba(14, 26, 44, .24) 78%, rgba(16, 30, 52, .45));
   border: 1px solid rgba(120, 152, 185, .14);
@@ -1754,6 +1828,12 @@ html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
   border-color: rgba(224, 178, 58, .24);
 }
 
+/* Kolumnrubrikerna ("Sextondelsfinal", "Åttondelsfinal" … samt "Final") är
+   borttagna så matcherna går hela vägen upp. Själva bakgrundspanelen per
+   omgång (.round-cell) behålls som subtil kolumnindelning. Bronsmatchens och
+   VM-finalens egna etiketter ligger utanför .round-cell och påverkas inte. */
+.bracket.two-sided > .round-cell .round-title { display: none; }
+
 /* Fasrubrik som pill överst i varje faskolumn. (Sidan rullar i sin helhet, så
    rubriken följer med innehållet bort precis som på övriga vyer.) */
 .bracket.two-sided > .round-cell .round-title {
@@ -1762,9 +1842,9 @@ html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
   pointer-events: auto;
   width: auto;
   max-width: calc(100% - 12px);
-  padding: 6px 16px 7px;
-  border-radius: 12px;
-  line-height: 1.25;
+  padding: 3px 16px 4px;
+  border-radius: 11px;
+  line-height: 1.2;
   /* Trädet ligger alltid på mörk fotobakgrund – pillern är därför alltid mörk
      med ljus text, oavsett ljust/mörkt färgschema. */
   color: #f0f4f9;
@@ -1790,7 +1870,9 @@ html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
 .round-title.final-label .round-sub { color: color-mix(in srgb, var(--gold) 60%, #a8bdd4); }
 .bracket-center-stack {
   display: grid;
-  grid-template-rows: repeat(8, minmax(74px, auto));
+  /* Proportionella rader så final-/bronsblocken följer samma höjdfördelning som
+     trädets 8 dynamiska rader (mittstacken sträcks över hela trädhöjden). */
+  grid-template-rows: repeat(8, 1fr);
   align-items: center;
   width: 100%;
   min-width: 0;
@@ -1902,6 +1984,71 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
    att visningsläget aldrig ändrar rutstorleken – lagnamn/resultat centreras. */
 .bracket .side { min-height: 44px; }
 .bracket .match.bronze .side { min-height: 40px; }
+
+/* ====================================================================
+   KOMPAKT SLUTSPELSTRÄD – pressa ihop korten på höjden så hela trädet
+   ryms på en skärm utan lodrät scroll. Allt scopat till .view-bracket.
+==================================================================== */
+html.view-bracket .bracket .match { padding: 2px 8px; }
+/* Rundnamnet (m-meta) står redan i kolumnrubriken – dölj den redundanta raden
+   i trädet. Live/spelad-status syns ändå via kortets ram och resultatsiffrorna. */
+html.view-bracket .bracket .match .m-meta { display: none; }
+html.view-bracket .bracket .side {
+  min-height: 22px;
+  padding: 1px 4px;
+  font-size: 12.5px;
+}
+html.view-bracket .bracket .side + .side { margin-top: 0; }
+html.view-bracket .bracket .match.bronze .side { min-height: 22px; }
+/* Platshållaren ("Vinnare match …") på en rad i kompaktläget – kolumnrubriken
+   ger ändå sammanhanget, så vi behöver inte reservera plats för två rader. */
+html.view-bracket .bracket .side .s-name.placeholder.seed-chip {
+  -webkit-line-clamp: 1;
+  font-size: 11px;
+}
+html.view-bracket .bracket .k-score { width: 28px; height: 22px; }
+html.view-bracket .bracket .m-footer {
+  margin-top: 1px;
+  padding-top: 2px;
+  font-size: 9.5px;
+}
+/* Datum/tid ("mån 29/6 · 22:30") ska alltid rymmas på en rad – ingen
+   radbrytning, så alla kort behåller exakt samma höjd. */
+html.view-bracket .bracket .m-when { white-space: nowrap; }
+html.view-bracket .bracket .match-expand {
+  height: 16px;
+  padding: 0 6px 0 8px;
+  font-size: 9.5px;
+}
+html.view-bracket .bracket .match-expand-icon { width: 11px; height: 11px; }
+
+/* Centrerad sidfot i kapsel längst ner i trädet. Spänner mitt under
+   bronsmatchen och får en halvgenomskinlig mörk bakgrund så texten är läsbar
+   över de olika bakgrundsfärgerna och anslutningslinjerna bakom. */
+.bracket-foot {
+  /* Grid-cell i nedersta raden, centrerad i mitten av trädet och botten-justerad
+     så den hamnar i den tomma ytan under bronsmatchen – inte under hela trädet.
+     På så vis slutar sidan precis vid den sista sextondelsmatchen. */
+  justify-self: center;
+  align-self: end;
+  text-align: center;
+  z-index: 6;
+}
+.bracket-foot-cap {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(4, 8, 16, .62);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(120, 152, 185, .16);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .4);
+  color: var(--ink-soft);
+  font-size: 11px;
+  line-height: 1.4;
+}
+.bracket-foot-cap a { color: color-mix(in srgb, var(--ink) 70%, var(--gold)); text-decoration: none; }
+.bracket-foot-cap a:hover { text-decoration: underline; }
 .match.bronze {
   border-color: color-mix(in srgb, #b07a3a 45%, var(--line));
   box-shadow: none;
@@ -2148,6 +2295,9 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .prob-bar { grid-column: 1 / -1; height: 3px; border-radius: 2px; background: var(--line); overflow: hidden; }
 .prob-bar > span { display: block; height: 100%; background: var(--accent, #5aa9e6); }
 .prob-empty { color: var(--ink-soft); font-size: 12.5px; padding: 4px 0; }
+.prob-row-rest { opacity: .62; }
+.prob-row-rest .t-name { font-style: italic; }
+.prob-row-rest .prob-bar > span { background: var(--ink-soft); }
 @media (max-width: 420px) { .prob-sides { grid-template-columns: 1fr; } }
 
 /* Liten ledtext under lagraderna. */
@@ -2486,6 +2636,19 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
 .cal-tv.svt { color: #8fd6a6; border-color: rgba(143, 214, 166, .42); background: rgba(143, 214, 166, .09); }
 .cal-tv.tv4 { color: #f0a8b0; border-color: rgba(240, 168, 176, .42); background: rgba(240, 168, 176, .09); }
 .cal-tv-empty { visibility: hidden; }
+
+/* "Se live"-länk på pågående matcher: TV-brickan blir klickbar med en liten
+   play-trekant och lyfts fram lite mer än det vanliga kanalmärket. */
+a.cal-tv.tv-live { gap: 5px; text-decoration: none; cursor: pointer; transition: filter .15s ease, transform .15s ease; }
+a.cal-tv.tv-live:hover { filter: brightness(1.18); transform: translateY(-1px); }
+a.cal-tv.tv-live:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+a.cal-tv.tv-live.svt { background: rgba(143, 214, 166, .16); }
+a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
+.tv-live-ico {
+  width: 0; height: 0; flex: 0 0 auto;
+  border-style: solid; border-width: 4px 0 4px 6px;
+  border-color: transparent transparent transparent currentColor;
+}
 
 /* ====================================================================
    LAG-PANEL (drawer)
@@ -3848,8 +4011,22 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 
 .r32-body { display: grid; grid-template-columns: 1fr 340px; gap: 18px; margin-top: 14px; align-items: start; }
 .r32-col { min-width: 0; }
-.r32-colhead { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.r32-colhead { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
 .r32-colhead h4, .r32-card h4 { margin: 0; font-size: 15px; color: var(--ink); }
+/* Sorteringsväljare för matchlistan (spelordning/viktigast). */
+.r32-sort { display: inline-flex; align-items: center; gap: 4px; }
+.r32-sort-lbl { font-size: 11px; font-weight: 700; color: var(--ink-soft); margin-right: 3px; }
+.r32-sortbtn {
+  border: 1px solid var(--line-strong); background: var(--bg-soft); color: var(--ink-soft);
+  font: inherit; font-weight: 700; font-size: 11.5px; cursor: pointer;
+  padding: 4px 11px; border-radius: 999px; white-space: nowrap;
+  transition: color .15s, background .15s, border-color .15s;
+}
+.r32-sortbtn:hover { color: var(--ink); border-color: var(--focus); }
+.r32-sortbtn.on {
+  color: #fff; border-color: var(--usa-blue);
+  background: color-mix(in srgb, var(--usa-blue) 70%, var(--usa-navy));
+}
 .r32-legend { font-size: 11px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; }
 .r32-legend .sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; margin-left: 6px; }
 .r32-legend .sw:first-child { margin-left: 0; }
@@ -3863,7 +4040,7 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 .r32-game { border: 1px solid var(--line); border-radius: 12px; background: var(--card); padding: 9px 11px; }
 .r32-game.star { border-color: color-mix(in srgb, var(--gold) 55%, var(--line-strong)); box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 30%, transparent); }
 .r32-game.islocked { border-color: var(--focus); }
-.r32-gtop { display: grid; grid-template-columns: 30px 1fr 336px; gap: 11px; align-items: center; }
+.r32-gtop { display: grid; grid-template-columns: 30px 1fr 462px; gap: 11px; align-items: center; }
 .r32-gpill {
   width: 26px; height: 26px; border-radius: 7px; display: grid; place-items: center;
   font-weight: 900; font-size: 13px; color: var(--grp-fg, var(--ink-soft));
@@ -3886,7 +4063,7 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 .r32-chips { display: flex; gap: 6px; align-items: stretch; flex-wrap: nowrap; }
 .r32-chip {
   position: relative; flex: 1 1 0; min-width: 0; cursor: pointer; text-align: center;
-  border-radius: 9px; padding: 7px 6px 6px; color: var(--ink); font-weight: 800;
+  border-radius: 9px; padding: 7px 5px 6px; color: var(--ink); font-weight: 800;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
   background: hsl(142 0% 15%); border: 1px solid hsl(142 0% 27%); border-bottom: 2px solid hsl(142 0% 38%);
   font: inherit; font-weight: 800; transition: filter .12s;
@@ -3964,6 +4141,23 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 .tooltip.r32 .chg { display: flex; justify-content: space-between; gap: 12px; }
 .tooltip.r32 .chg b { font-variant-numeric: tabular-nums; }
 .tooltip.r32 .warn { color: #9ec2ff; margin-top: 6px; display: block; }
+
+/* Omdesignat påverkanskort: omdöme + motståndarlista (färg = bra/dåligt FÖR DIG) */
+.tooltip.r32 .r32t-main { display: flex; align-items: baseline; gap: 7px; margin: 1px 0 9px; }
+.tooltip.r32 .r32t-delta { font-size: 17px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1; }
+.tooltip.r32 .r32t-lbl { font-size: 12.5px; color: var(--ink-soft); }
+.tooltip.r32 .r32t-main.good .r32t-delta { color: #5fe39a; }
+.tooltip.r32 .r32t-main.bad .r32t-delta { color: #ff8898; }
+.tooltip.r32 .r32t-main.neutral .r32t-delta { color: var(--ink-soft); }
+.tooltip.r32 .r32t-cap { font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 4px; }
+.tooltip.r32 .r32t-list { display: flex; flex-direction: column; gap: 3px; }
+.tooltip.r32 .r32t-chg { display: grid; grid-template-columns: 13px 1fr auto; align-items: center; gap: 8px; font-size: 12.5px; }
+.tooltip.r32 .r32t-chg .ar { text-align: center; font-weight: 800; }
+.tooltip.r32 .r32t-chg .nm { color: var(--ink); }
+.tooltip.r32 .r32t-chg .d { font-variant-numeric: tabular-nums; font-weight: 700; }
+.tooltip.r32 .r32t-chg.good .ar, .tooltip.r32 .r32t-chg.good .d { color: #5fe39a; }
+.tooltip.r32 .r32t-chg.bad .ar, .tooltip.r32 .r32t-chg.bad .d { color: #ff8898; }
+.tooltip.r32 .r32t-empty { color: var(--ink-soft); font-size: 12px; }
 
 @media (max-width: 900px) {
   .r32-body { grid-template-columns: 1fr; }

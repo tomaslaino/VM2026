@@ -23,6 +23,14 @@
   var r32Busy = false;          // pågående simulering
   var r32TipMap = {};           // id -> tooltip-HTML
   var R32_N = 12000;            // antal simuleringar per körning
+  // Hela slutspelsträdet beräknas lokalt (assets/bracketengine.js) på samma data
+  // som sextondelskollen, i stället för den servergenererade bracket_probs.json.
+  var bracketWorker = null;     // Web Worker för hela trädet (eller "none")
+  var bracketSeq = 0;           // sekvensnummer för att ignorera gamla svar
+  var bracketEngKey = null;     // cache-nyckel för senaste lokala beräkning
+  var bracketMapData = null;    // data/bracket_map.json | "loading" | "error"
+  var bracketStrength = null;   // styrka per lag ur data/winner_odds.json
+  var BRACKET_N = 40000;        // simuleringar för hela trädet
   var autoSync = { active: false, source: null, updatedAt: null, status: "pending" };
   var apiFixtures = {}; // nyckel -> { date, time, home, away, homeRef, awayRef, status } från API
   var apiStandings = {}; // grupp-bokstav -> [{ idx, position, pld, w, d, l, gf, ga, gd, pts }] från API
@@ -125,6 +133,13 @@
     return { dateLabel: dateLabel, time: m.edt };
   }
 
+  /* Kompakt datum för slutspelsträdet: numerisk månad ("mån 29/6") så datum+tid
+     ryms på en rad i de smala korten. */
+  function bracketDateShort(m) {
+    var d = parseDateUTC(m.date);
+    return WEEKDAYS[d.getUTCDay()] + " " + d.getUTCDate() + "/" + (d.getUTCMonth() + 1);
+  }
+
   /* Relativ tid till avspark, ex "om 3 dagar", "Pågår", "Spelad". */
   function relativeLabel(m, played, resKey) {
     if (played) return { cls: "done", txt: "Spelad" };
@@ -176,6 +191,16 @@
     if (fx && isLiveStatus(fx.status)) return true;
     var rs = rawRes(key);
     return rs && isLiveStatus(rs.status);
+  }
+
+  // Färdigspelad match = har ett resultat OCH spelas inte just nu. En pågående
+  // (live) match ska INTE låsas i 16delskollen utan fortsätta simuleras ur sina
+  // odds tills den är slutspelad – annars skulle delresultatet (t.ex. en
+  // ledning i halvtid) felaktigt frysas som slutresultat i tabellen.
+  function isFinishedMatch(key, r) {
+    if (!isPlayed(r)) return false;
+    if (isMatchLive(key)) return false;
+    return !isLiveStatus(r.status);
   }
 
   /* ---------- Spoilerfritt läge ----------
@@ -972,14 +997,64 @@
     var sig = viewSignature(html);
     if (sig === lastViewSig) return false;
     lastViewSig = sig;
-    viewEl.innerHTML = html;
+    morphView(viewEl, html);
     return true;
+  }
+
+  /* Patcha #view PÅ PLATS mot ny HTML i stället för att slänga och bygga om
+     hela DOM:en (viewEl.innerHTML = html). Oförändrade noder – särskilt
+     flaggbilder – lämnas orörda, så 30-sekunderstimerns kosmetiska
+     uppdateringar ("om X / Pågår" m.m.) inte längre ger ett synligt flimmer
+     eller tappad scroll. Appen använder delegerade event-lyssnare (på
+     document), så inga lyssnare tappas vid patchning. Positionsbaserad morf
+     räcker eftersom layouten är stabil mellan uppdateringar. */
+  function morphView(container, html) {
+    var tmp = document.createElement("div");
+    tmp.innerHTML = html;
+    morphChildren(container, tmp);
+  }
+  function sameMorphNode(a, b) {
+    if (a.nodeType !== b.nodeType) return false;
+    if (a.nodeType === 1) return a.tagName === b.tagName && a.id === b.id;
+    return true;
+  }
+  function morphChildren(oldParent, newParent) {
+    var newKids = Array.prototype.slice.call(newParent.childNodes);
+    var oldKid = oldParent.firstChild;
+    for (var i = 0; i < newKids.length; i++) {
+      var nk = newKids[i];
+      if (!oldKid) { oldParent.appendChild(nk); continue; }
+      var next = oldKid.nextSibling;
+      if (sameMorphNode(oldKid, nk)) patchMorphNode(oldKid, nk);
+      else oldParent.replaceChild(nk, oldKid);
+      oldKid = next;
+    }
+    while (oldKid) { var n2 = oldKid.nextSibling; oldParent.removeChild(oldKid); oldKid = n2; }
+  }
+  function patchMorphNode(oldNode, newNode) {
+    if (oldNode.nodeType === 3 || oldNode.nodeType === 8) { // text / kommentar
+      if (oldNode.nodeValue !== newNode.nodeValue) oldNode.nodeValue = newNode.nodeValue;
+      return;
+    }
+    if (oldNode.nodeType !== 1) return;
+    var oldA = oldNode.attributes;
+    for (var i = oldA.length - 1; i >= 0; i--) {
+      if (!newNode.hasAttribute(oldA[i].name)) oldNode.removeAttribute(oldA[i].name);
+    }
+    var newA = newNode.attributes;
+    for (var j = 0; j < newA.length; j++) {
+      if (oldNode.getAttribute(newA[j].name) !== newA[j].value) oldNode.setAttribute(newA[j].name, newA[j].value);
+    }
+    morphChildren(oldNode, newNode);
   }
 
   function render() {
     var view = ui("view", "home");
     document.documentElement.classList.toggle("view-bracket", view === "bracket");
     document.documentElement.classList.toggle("view-home", view === "home");
+    document.documentElement.classList.toggle("view-r32", view === "r32");
+    /* Sextondelskollen är nu en egen vy: panelen är "öppen" bara där. */
+    r32Open = view === "r32";
     document.querySelectorAll("[data-nav]").forEach(function (b) {
       b.classList.toggle("active", b.getAttribute("data-nav") === view);
     });
@@ -989,6 +1064,7 @@
     else if (view === "bracket") {
       rebuilt = renderBracket();
     }
+    else if (view === "r32") rebuilt = renderR32View();
     else if (view === "players") rebuilt = renderPlayers();
     else rebuilt = renderCalendar();
     /* Slutspelsvyn lägger själv in sin rubrik (renderBracket → renderPageIntro)
@@ -998,7 +1074,7 @@
        i playerstats.js, och kalendern bygger sin egen toppra (rubrik +
        "Hoppa till idag" på samma rad) i renderCalendar, så de hoppas också
        över här. */
-    if (view !== "home" && view !== "bracket" && view !== "players" && view !== "calendar" && rebuilt) renderPageIntro(view);
+    if (view !== "home" && view !== "bracket" && view !== "r32" && view !== "players" && view !== "calendar" && rebuilt) renderPageIntro(view);
 
     /* Grupp-popupen används i både kalender- och gruppvyn. */
     if (view !== "calendar" && view !== "groups") hideCalGroupPopup();
@@ -1019,6 +1095,9 @@
     if (a && a.classList && a.classList.contains("score")) return;
     if (a && a.id === "psSearch") return; // stör inte pågående sökning i spelarvyn
     if (a && a.id === "teamSearch") { render(); restoreSearchFocus(); return; }
+    // Räkna om slutspelssannolikheterna lokalt (dedupar på ställningar/odds/
+    // live-läge, så det är gratis när inget ändrats – men fångar nya mål).
+    updateBracketProbs();
     if (!opts.full && ui("view", "groups") === "bracket") {
       updateBracketTimers();
       return;
@@ -1305,7 +1384,7 @@
 
   function bracketGridRow(round, idx) {
     var span = Math.pow(2, round);
-    return "grid-row:" + (2 + idx * span) + "/span " + span;
+    return "grid-row:" + (1 + idx * span) + "/span " + span;
   }
 
   function bracketRoundTitle(title, col, opts) {
@@ -1333,26 +1412,14 @@
   /* Knapprad överst i slutspelsvyn: växla hela trädet mellan platsetiketter
      ("Etta grupp E") och oddsfavoriter (det mest sannolika laget). */
   function bracketModeBar() {
-    var mode = bracketMode();
-    function seg(m, label) {
-      var on = mode === m;
-      return '<button type="button" class="bmode-btn' + (on ? " on" : "") +
-        '" data-bracket-mode="' + m + '" aria-pressed="' + (on ? "true" : "false") + '">' +
-        label + '</button>';
-    }
-    var ico = '<svg class="r32-toggle-ico" viewBox="0 0 24 24" width="16" height="16" ' +
-      'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">' +
-      '<circle cx="12" cy="12" r="8"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/>' +
-      '<circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/></svg>';
-    return '<div class="bracket-modebar"><div class="bmode-seg" role="group" ' +
-      'aria-label="Visningsläge för slutspelsträdet">' +
-      seg("seed", "Platser") +
-      seg("odds", "Troligaste lag") +
-      '</div>' +
-      '<button type="button" class="r32-toggle' + (r32Open ? " on" : "") +
-        '" data-r32-toggle aria-pressed="' + (r32Open ? "true" : "false") + '" ' +
-        'title="Räkna ut vilket lag du troligen möter i sextondelsfinalen">' +
-        ico + '<span>Sextondelskollen</span></button>' +
+    var odds = bracketMode() === "odds";
+    return '<div class="bracket-modebar">' +
+      '<button type="button" class="bmode-toggle' + (odds ? " on" : "") + '" ' +
+        'data-bracket-toggle role="switch" aria-checked="' + (odds ? "true" : "false") + '" ' +
+        'title="Visa troliga lag enligt oddsfavoriter i stället för platshållare">' +
+        '<span class="bmode-toggle-txt">Visa oddsfavoriter</span>' +
+        '<span class="bmode-switch" aria-hidden="true"><span class="bmode-knob"></span></span>' +
+      '</button>' +
       '</div>';
   }
 
@@ -1360,8 +1427,6 @@
     var ctx = getCtx();
 
     var html = '<div class="bracket-shell">' +
-      '<div class="page-intro bracket-intro">' + pageIntroMainHtml("bracket") + bracketModeBar() + '</div>' +
-      (r32Open ? r32PanelHtml() : '') +
       '<div class="bracket-scroll"><div class="bracket-wrap">';
     html += '<svg class="bracket-lines" aria-hidden="true"></svg>';
     html += '<div class="bracket two-sided">';
@@ -1383,7 +1448,9 @@
       });
     });
 
-    html += '<div class="bracket-center-stack" style="grid-column:5;grid-row:2/span 8">' +
+    html += '<div class="bracket-modebar-slot" style="grid-column:4 / 7;grid-row:1 / 3">' +
+      bracketModeBar() + '</div>';
+    html += '<div class="bracket-center-stack" style="grid-column:5;grid-row:1/span 8">' +
       '<div class="bracket-finals-block">' +
         championBanner(ctx.resolved[104]) +
         matchCard(ctx.resolved[104], "final") +
@@ -1402,6 +1469,12 @@
       });
     });
 
+    html += '<div class="bracket-foot" style="grid-column:3 / 8;grid-row:8">' +
+      '<span class="bracket-foot-cap">' +
+      'Data: FIFA &amp; Wikipedia · Resultat &amp; statistik: ' +
+      '<a href="https://www.espn.com/soccer/" target="_blank" rel="noopener">ESPN</a>' +
+      ' · Tider kan ändras – <a href="https://www.fifa.com/" target="_blank" rel="noopener">FIFA.com</a>' +
+      '</span></div>';
     html += '</div></div></div></div>';
 
     var sc = viewEl.querySelector(".bracket-scroll");
@@ -1428,12 +1501,35 @@
 
     if (hoverMatch && ctx.resolved[hoverMatch]) updateAside(hoverMatch, ctx);
     else hideAside();
-    if (r32Open) paintR32();
     return true;
+  }
+
+  /* Fyll trädets höjd dynamiskt: de 8 sextondelsmatcherna sprids jämnt över den
+     tillgängliga höjden (inget tomrum nedtill). Finns inte plats för minsta
+     mellanrum så blir det vågrät/lodrät scroll i stället. Körs efter varje
+     rendering och vid resize (via drawBracketConnectors). */
+  function layoutBracketRows() {
+    var sc = viewEl.querySelector(".bracket-scroll");
+    var br = sc && sc.querySelector(".bracket.two-sided");
+    if (!br) return;
+    var card = br.querySelector(".match.side-left");
+    var cardH = card ? Math.ceil(card.getBoundingClientRect().height) : 71;
+    if (cardH < 40) cardH = 71;
+    var gridTop = br.getBoundingClientRect().top;
+    var BOTTOM_PAD = 16; // minimal luft nedtill
+    var avail = window.innerHeight - gridTop - BOTTOM_PAD;
+    var n = 8;
+    var minGap = 12; // minsta mellanrum (något mer än tidigare); under detta → scroll
+    var gap = (avail - n * cardH) / (n - 1);
+    if (!isFinite(gap) || gap < minGap) gap = minGap;
+    gap = Math.round(gap);
+    br.style.gridTemplateRows = "repeat(8, " + cardH + "px)";
+    br.style.rowGap = gap + "px";
   }
 
   function drawBracketConnectors(afterLayout) {
     requestAnimationFrame(function () {
+      layoutBracketRows();
       var wrap = viewEl.querySelector(".bracket-wrap");
       var br = wrap && wrap.querySelector(".bracket");
       var svg = wrap && wrap.querySelector(".bracket-lines");
@@ -1679,7 +1775,7 @@
       h += '<div class="pen-row"><span>Straffar: ' + esc(penWinner) + " vann</span></div>";
     }
     h += '<div class="m-footer">' +
-         '<span class="m-when">' + when.dateLabel + ' · ' + when.time + '</span>' +
+         '<span class="m-when">' + bracketDateShort(m) + ' · ' + when.time + '</span>' +
          matchExpandBtn(m.m, expanded) + '</div>';
     h += '</div>';
     return h;
@@ -1835,7 +1931,14 @@
   var R32_RES = ["1", "X", "2"];
   function r32TitleText(svName) { return "Vem möter " + svName + "?"; }
   function r32Pct(x) { return x == null ? "–" : (x * 100).toFixed(x >= 0.0995 ? 0 : 1) + "%"; }
-  function r32Dpp(d) { return (d >= 0 ? "+" : "−") + Math.abs(Math.round(d * 100)) + " pp"; }
+  // Förändring i procentenheter, men visad som "%" för läsbarhet (genomsnitts-
+  // användaren tänker i procent). ±0 % när skillnaden avrundas till noll.
+  function r32Dpp(d) {
+    var v = Math.round(d * 100);
+    if (v === 0) return "±0 %";
+    return (v > 0 ? "+" : "−") + Math.abs(v) + " %";
+  }
+  function r32DirCls(d) { var v = Math.round(d * 100); return v > 0 ? "good" : v < 0 ? "bad" : "neutral"; }
 
   // Lista över alla lag: { key:"G:idx", g, idx, team }
   function r32AllTeams() {
@@ -1899,13 +2002,14 @@
       fifa[L] = WC.groups[L].map(function (t) { return fifaRankOf(t); });
     });
 
-    // matcher med live-resultat = baslinje (inkl. ev. redan spelade slutomgångsmatcher)
+    // FÄRDIGSPELADE matcher = baslinje. Live-matcher låses inte här utan
+    // hamnar bland odds-matcherna nedan och simuleras tills de är slutspelade.
     var played = [], playedPairs = {};
     WC.groupLetters.forEach(function (L) {
       playedPairs[L] = {};
       groupFixtures(L).forEach(function (fx) {
         var r = getRes(fx.key);
-        if (!isPlayed(r)) return;
+        if (!isFinishedMatch(fx.key, r)) return;
         played.push({ g: L, i: fx.h, j: fx.a, gi: r.h, gj: r.a });
         playedPairs[L][[fx.h, fx.a].slice().sort(function (a, b) { return a - b; }).join(",")] = true;
       });
@@ -1927,7 +2031,7 @@
     var neutral = [];
     WC.groupLetters.forEach(function (L) {
       groupFixtures(L).forEach(function (fx) {
-        if (isPlayed(getRes(fx.key))) return;
+        if (isFinishedMatch(fx.key, getRes(fx.key))) return;
         var pk = [fx.h, fx.a].slice().sort(function (a, b) { return a - b; }).join(",");
         if (playedPairs[L][pk] || (oddsPairs[L] && oddsPairs[L][pk])) return;
         neutral.push({ g: L, i: fx.h, j: fx.a });
@@ -2023,6 +2127,32 @@
   }
 
   /* ---------- panel-skelett ---------- */
+  /* Sextondelskollen som egen vy (nås via top-navet, inte längre från
+     slutspelsträdet). Panelen äger #view själv – på samma sätt som
+     slutspelsvyn – så vi nollställer signaturcachen och målar dynamiken. */
+  function renderR32View() {
+    lastViewSig = null;
+    viewEl.innerHTML = '<div class="r32-view">' + r32PanelHtml() + '</div>';
+    var sl = document.getElementById("r32-team");
+    if (sl) sl.value = r32TeamKey;
+    paintR32();
+    return true;
+  }
+
+  /* Sorteringsväljare för matchlistan: spelordning (kronologisk, default) eller
+     viktigast (störst påverkan för det valda laget). */
+  function r32SortControl() {
+    var sort = ui("r32Sort", "time");
+    function btn(v, label) {
+      return '<button type="button" class="r32-sortbtn' + (sort === v ? " on" : "") +
+        '" data-r32-sort="' + v + '" aria-pressed="' + (sort === v ? "true" : "false") + '">' + label + '</button>';
+    }
+    return '<div class="r32-sort" role="group" aria-label="Sortera matcher">' +
+      '<span class="r32-sort-lbl">Sortera:</span>' +
+      btn("time", "Spelordning") + btn("impact", "Viktigast") +
+      '</div>';
+  }
+
   function r32PanelHtml() {
     var sel = r32TeamByKey(r32TeamKey);
     // lag-väljare grupperad per grupp
@@ -2060,9 +2190,10 @@
         '<div class="r32-body">' +
           '<div class="r32-col r32-games-col">' +
             '<div class="r32-colhead"><h4>Matcher kvar att spela</h4>' +
-              '<span class="r32-legend">Färgen visar läget för ' + esc(sel.team.sv) + ': ' +
-                '<i class="sw good"></i>bättre <i class="sw neu"></i>oförändrat <i class="sw bad"></i>sämre</span>' +
+              r32SortControl() +
             '</div>' +
+            '<div class="r32-legend">Färgen visar läget för ' + esc(sel.team.sv) + ': ' +
+              '<i class="sw good"></i>bättre <i class="sw neu"></i>oförändrat <i class="sw bad"></i>sämre</div>' +
             '<div id="r32-games" class="r32-games"></div>' +
           '</div>' +
           '<div class="r32-col r32-side-col">' +
@@ -2119,20 +2250,32 @@
   }
   var r32TipN = 0;
 
+  // Kortet som visas när man hovrar ett tänkbart utfall: hur det påverkar det
+  // valda lagets lottning. Headline = lätt-att-förstå omdöme ("bättre/sämre
+  // lottning") med färg. Listan = vilka motståndare som blir troligare (↑) eller
+  // mindre troliga (↓), där PIL + SIFFRA färgas efter om skiftet är bra (grönt)
+  // eller dåligt (rött) FÖR DIG – inte efter om motståndaren är vass. Lagnamnet
+  // hålls neutralt så färgen entydigt betyder "bra/dåligt för dig".
   function r32TipBody(b, base) {
-    if (!b || b.good == null) return '<div class="ci">för lite data</div>';
-    var d = b.good - base, ci = b.ci ? " ±" + Math.round(b.ci * 100) : "";
-    var cls = d >= 0 ? "g" : "b";
-    var s = '<div class="hl">Slippa ' + esc(r32AvoidLabel()) + ': <span class="' + cls + '">' + r32Dpp(d) +
-      '<span class="ci">' + ci + '</span></span></div>';
+    if (!b || b.good == null) return '<div class="r32t-empty">för lite underlag</div>';
+    var d = b.good - base, dir = r32DirCls(d);
+    var verdict = dir === "good" ? "bättre lottning" : dir === "bad" ? "sämre lottning" : "oförändrad lottning";
+    var s = '<div class="r32t-main ' + dir + '"><span class="r32t-delta">' + r32Dpp(d) +
+      '</span><span class="r32t-lbl">' + verdict + '</span></div>';
     if (b.changes && b.changes.length) {
-      s += '<div class="ci" style="margin-top:6px">Motståndare som ändras mest:</div>';
+      s += '<div class="r32t-cap">Motståndare</div><div class="r32t-list">';
       s += b.changes.map(function (c) {
-        var k = c.good === true ? "g" : (c.good === false ? "b" : "o");
-        return '<div class="chg"><span class="' + k + '">' + esc(r32SvName(c.label)) + '</span><b>' + r32Dpp(c.delta) + '</b></div>';
+        // Bra för dig = möta ett spelbart lag oftare, eller ett topplag mer sällan.
+        var goodForMe = (c.good === true) ? (c.delta > 0) : (c.delta < 0);
+        var arrow = c.delta > 0 ? "↑" : "↓";
+        return '<div class="r32t-chg ' + (goodForMe ? "good" : "bad") + '">' +
+          '<span class="ar">' + arrow + '</span>' +
+          '<span class="nm">' + esc(r32SvName(c.label)) + '</span>' +
+          '<span class="d">' + r32Dpp(c.delta) + '</span></div>';
       }).join("");
+      s += '</div>';
     }
-    return s + '<div class="ci" style="margin-top:5px">' + (b.n || 0).toLocaleString("sv") + ' beräkningar</div>';
+    return s;
   }
 
   function r32SvName(englishName) {
@@ -2211,12 +2354,40 @@
       "border-bottom-color:hsl(" + hue + " " + Math.min(sat + 8, 64) + "% 40%);";
   }
 
+  /* Avsparkstid (ms) för en kvarvarande gruppmatch utifrån dess id ("L-i-j"),
+     så listan kan sorteras i spelordning. Okänt datum sorteras sist. */
+  function r32GameKickoff(g) {
+    var p = String(g.id).split("-");
+    if (p.length < 3) return Infinity;
+    var L = p[0], hi = +p[1], ai = +p[2];
+    var fxs = groupFixtures(L);
+    for (var k = 0; k < fxs.length; k++) {
+      var fx = fxs[k];
+      if ((fx.h === hi && fx.a === ai) || (fx.h === ai && fx.a === hi)) {
+        var ko = kickoffMsForKey(fx.key);
+        return ko == null ? Infinity : ko;
+      }
+    }
+    return Infinity;
+  }
+
   function renderR32Games() {
     var host = document.getElementById("r32-games");
     if (!host || !r32Result) return;
-    var games = r32Result.games.slice().sort(function (a, b) { return b.importance - a.importance; });
+    var sort = ui("r32Sort", "time");
+    var games = r32Result.games.slice();
+    if (sort === "impact") {
+      games.sort(function (a, b) { return b.importance - a.importance; });
+    } else {
+      games.sort(function (a, b) {
+        return (r32GameKickoff(a) - r32GameKickoff(b)) || (b.importance - a.importance);
+      });
+    }
+    // Stjärnan markerar alltid de 2 mest avgörande matcherna, oavsett sortering.
     var top2 = {};
-    games.slice(0, 2).forEach(function (g) { if (g.importance > 0.04) top2[g.id] = true; });
+    r32Result.games.slice()
+      .sort(function (a, b) { return b.importance - a.importance; })
+      .slice(0, 2).forEach(function (g) { if (g.importance > 0.04) top2[g.id] = true; });
     host.innerHTML = games.map(function (g) { return r32GameRow(g, top2[g.id]); }).join("");
   }
 
@@ -2344,17 +2515,19 @@
   }
 
   function r32HandleClick(t) {
-    var toggle = t.closest && t.closest("[data-r32-toggle]");
-    if (toggle) {
-      r32Open = !r32Open;
-      renderBracket();
-      if (r32Open) {
-        var panel = viewEl.querySelector(".r32-panel");
-        if (panel && panel.scrollIntoView) panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }
+    if (!r32Open) return false;
+    var sortBtn = t.closest && t.closest("[data-r32-sort]");
+    if (sortBtn) {
+      setUi("r32Sort", sortBtn.getAttribute("data-r32-sort"));
+      var grp = sortBtn.parentNode;
+      if (grp) grp.querySelectorAll("[data-r32-sort]").forEach(function (b) {
+        var on = b === sortBtn;
+        b.classList.toggle("on", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      renderR32Games();
       return true;
     }
-    if (!r32Open) return false;
     var tab = t.closest && t.closest("[data-r32-tab]");
     if (tab) { r32SetTeam(tab.getAttribute("data-r32-tab")); return true; }
     if (t.closest && t.closest("[data-r32-reset]")) {
@@ -2492,6 +2665,19 @@
     return (Math.round(v * 10) / 10).toString();
   }
 
+  // Som fmtPct men ärlig vid extremvärden: ett värde som avrundar till 100 men
+  // inte ÄR exakt 100 visas som "~100", och ett värde > 0 som avrundar till 0
+  // visas som "~0". Används i sannolikhetspanelen där t.ex. 99,94 % annars
+  // skulle se ut som ett säkert "100".
+  function fmtProbPct(p) {
+    if (p >= 1) return "100";
+    var v = p * 100;
+    if (v >= 99.5) return "~100";
+    if (v >= 9.95) return String(Math.round(v));
+    if (v >= 0.05) return (Math.round(v * 10) / 10).toString();
+    return v > 0 ? "~0" : "0";
+  }
+
   // Lagdetaljerna som visas i det flytande fönstret vid hovring – innehåll per
   // lag förberäknas i updateAside så att det dyker upp utan fördröjning.
   var asideDetails = {};        // detaljnyckel -> färdig HTML
@@ -2602,6 +2788,11 @@
   // En sida av en match: lag -> sannolikhet, fallande, döljer < 0.1 %.
   // Varje rad får en detaljnyckel; detaljerna förberäknas i asideDetails.
   function asideProbSide(dist, slotLabel, round, sideKey, ctx) {
+    // Hela fördelningens summa (även de minsta som inte listas) – så att
+    // "övriga lag <0,1 %" kan visas och ett enda lag på 99,94 % inte ser ut
+    // som ett säkert 100 %.
+    var total = 0;
+    Object.keys(dist || {}).forEach(function (n) { total += dist[n]; });
     var entries = Object.keys(dist || {})
       .map(function (n) { return [n, dist[n]]; })
       .filter(function (e) { return e[1] >= 0.001; })
@@ -2617,8 +2808,19 @@
       return '<div class="prob-row" data-detail="' + esc(key) + '">' +
         '<span class="team">' + flagImg(iso) + '<span class="t-name">' + esc(nm) + '</span></span>' +
         '<span class="prob-bar"><span style="width:' + w + '%"></span></span>' +
-        '<span class="prob-pct">' + fmtPct(e[1]) + ' %</span></div>';
+        '<span class="prob-pct">' + fmtProbPct(e[1]) + ' %</span></div>';
     }).join("");
+    // Lag med <0,1 % vardera har sållats bort i datan – men de finns. Visa deras
+    // sammanlagda andel som en samlad rad så panelen inte påstår 100 % när det
+    // egentligen finns andra möjliga utfall.
+    var shown = entries.reduce(function (s, e) { return s + e[1]; }, 0);
+    var rest = Math.max(0, (total || shown) - shown);
+    if (rest >= 0.0005) {
+      rows += '<div class="prob-row prob-row-rest">' +
+        '<span class="team"><span class="t-name">Övriga lag</span></span>' +
+        '<span class="prob-bar"><span style="width:' + (top > 0 ? Math.round((rest / top) * 100) : 0) + '%"></span></span>' +
+        '<span class="prob-pct">' + (rest < 0.001 ? "&lt;0,1" : fmtProbPct(rest)) + ' %</span></div>';
+    }
     var lab = slotLabel ? '<div class="prob-slot">' + esc(slotLabelText(slotLabel)) + '</div>' : '';
     return '<div class="prob-col">' + lab + (rows || '<div class="prob-empty">–</div>') + '</div>';
   }
@@ -2667,6 +2869,174 @@
         }
       })
       .catch(function () { /* tyst – panelen funkar utan */ });
+  }
+
+  /* ---------- Lokal slutspelsmotor (hela trädet) ----------
+   * Ersätter den servergenererade bracket_probs.json med en beräkning på DIN
+   * data: exakt-resultatodds + FIFA 2026-tiebreakers (inbördes först) hela vägen
+   * genom gruppspel → Annex C → R32 → final. Live-matcher villkoras på sin
+   * aktuella ställning och kvarvarande tid, så siffrorna uppdateras efter varje
+   * mål. Faller tillbaka på loadBracketProbs() om motorn/datan saknas. */
+
+  // Ladda bracket-karta (officiellt träd + Annex C) och vinnarodds (styrkeankare).
+  function bracketEnsureExtras(cb) {
+    if (bracketMapData && bracketMapData !== "loading" && bracketMapData !== "error" && bracketStrength) return cb();
+    if (bracketMapData === "loading") return;
+    bracketMapData = "loading";
+    Promise.all([
+      fetch("data/bracket_map.json", { cache: "no-store" }).then(function (r) { return r && r.ok ? r.json() : null; }),
+      fetch("data/winner_odds.json", { cache: "no-store" }).then(function (r) { return r && r.ok ? r.json() : null; })
+    ]).then(function (res) {
+      var map = res[0], wo = res[1];
+      if (!map || !map.order || !wo || !wo.teams || !window.BracketEngine) { bracketMapData = "error"; loadBracketProbs(); return; }
+      bracketMapData = map;
+      bracketStrength = window.BracketEngine.strengthsFromOutrights(wo.teams);
+      cb();
+    }).catch(function () { bracketMapData = "error"; loadBracketProbs(); });
+  }
+
+  // Aktuell ställning + andel kvarvarande tid för en LIVE gruppmatch (annars null).
+  // Används för att villkora matchen i simuleringen efter varje mål.
+  function liveMatchState(key) {
+    if (!isMatchLive(key)) return null;
+    var lv = apiLive[key] || {};
+    // Aktuell ställning: results (uppdateras löpande) är pålitligast, annars live.
+    var ch = null, ca = null, rr = getRes(key);
+    if (rr && rr.h != null && rr.a != null) { ch = rr.h; ca = rr.a; }
+    else { var sc = lv.score || {}; ch = (sc.home != null ? sc.home : sc.h); ca = (sc.away != null ? sc.away : sc.a); }
+    if (ch == null || ca == null) return null;
+    // Kvarvarande andel av ordinarie tid (90 min). Paus/okänd minut → halva kvar.
+    var min = (typeof lv.minute === "number") ? lv.minute : null;
+    var st = ((lv.status || (rr && rr.status) || "") + "").toUpperCase();
+    var frac;
+    if (st === "PAUSED" || st === "HT" || st === "HALFTIME") frac = 0.5;
+    else if (min == null) frac = 0.5;
+    else frac = Math.max(0.04, Math.min(1, (90 - min) / 90));
+    return { h: ch, a: ca, frac: frac };
+  }
+
+  // Bygg motorns indata för HELA trädet (lag-agnostiskt). Returnerar { input, key }.
+  function bracketBuildInput(odds) {
+    var names = {}, fifa = {};
+    WC.groupLetters.forEach(function (L) {
+      names[L] = WC.groups[L].map(function (t) { return t.name; });
+      fifa[L] = WC.groups[L].map(function (t) { return fifaRankOf(t); });
+    });
+
+    // Färdigspelade matcher = baslinje (låsta resultat). Samtidigt byggs en karta
+    // par → fixtur-nyckel så live-läge kan slås upp för odds-matcherna nedan.
+    var played = [], playedPairs = {}, fxKeyByPair = {};
+    WC.groupLetters.forEach(function (L) {
+      playedPairs[L] = {}; fxKeyByPair[L] = {};
+      groupFixtures(L).forEach(function (fx) {
+        var pair = [fx.h, fx.a].slice().sort(function (a, b) { return a - b; }).join(",");
+        fxKeyByPair[L][pair] = fx.key;
+        var r = getRes(fx.key);
+        if (!isFinishedMatch(fx.key, r)) return;
+        played.push({ g: L, i: fx.h, j: fx.a, gi: r.h, gj: r.a });
+        playedPairs[L][pair] = true;
+      });
+    });
+
+    // Ospelade/pågående matcher med odds = simulerade. Live-matcher villkoras på
+    // sin aktuella ställning + kvarvarande tid (Poisson på resterande mål).
+    var oddsPairs = {}, oddsGames = [], liveSig = [];
+    odds.matches.forEach(function (m) {
+      oddsPairs[m.g] = oddsPairs[m.g] || {}; oddsPairs[m.g][m.pair] = true;
+      if (playedPairs[m.g] && playedPairs[m.g][m.pair]) return;
+      var fxKey = fxKeyByPair[m.g] && fxKeyByPair[m.g][m.pair];
+      var live = fxKey ? liveMatchState(fxKey) : null;
+      var g = { id: m.id, g: m.g, i: m.i, j: m.j, scores: m.scores, fixed: r32Fixed[m.id] || null };
+      if (live) {
+        // förväntade mål per lag ur exakt-resultatoddsen → skala mot kvarvarande tid
+        var muH = 0, muA = 0;
+        m.scores.forEach(function (s) { muH += s.h * s.p; muA += s.a * s.p; });
+        g.live = { h: live.h, a: live.a, lamH: muH * live.frac, lamA: muA * live.frac };
+        liveSig.push(m.id + "@" + live.h + "-" + live.a + ":" + live.frac.toFixed(2));
+      }
+      oddsGames.push(g);
+    });
+
+    // Ospelade matcher utan odds = neutral modell (ovanligt).
+    var neutral = [];
+    WC.groupLetters.forEach(function (L) {
+      groupFixtures(L).forEach(function (fx) {
+        if (isFinishedMatch(fx.key, getRes(fx.key))) return;
+        var pk = [fx.h, fx.a].slice().sort(function (a, b) { return a - b; }).join(",");
+        if (playedPairs[L][pk] || (oddsPairs[L] && oddsPairs[L][pk])) return;
+        neutral.push({ g: L, i: fx.h, j: fx.a });
+      });
+    });
+
+    // Förväntade mål per lag i varje gruppmatch (ur exakt-resultatoddsen) –
+    // underlag för att anpassa lagens anfall/försvar för slutspelsmatcherna.
+    var ratingMatches = odds.matches.map(function (m) {
+      var muH = 0, muA = 0;
+      m.scores.forEach(function (s) { muH += s.h * s.p; muA += s.a * s.p; });
+      return { home: m.home, away: m.away, g: m.g, muH: muH, muA: muA };
+    });
+
+    var input = {
+      n: BRACKET_N, seed: 0x9e3779b9,
+      groups: names, fifa: fifa,
+      annexC: bracketMapData.annexC, annexSlots: bracketMapData.annexCSlots,
+      order: bracketMapData.order, labels: bracketMapData.labels,
+      strength: bracketStrength, K: 0.6, ratingMatches: ratingMatches,
+      played: played, oddsGames: oddsGames, neutral: neutral
+    };
+    var key = JSON.stringify({
+      n: BRACKET_N,
+      pl: played.map(function (p) { return p.g + p.i + p.j + ":" + p.gi + "-" + p.gj; }).sort(),
+      og: oddsGames.map(function (g) { return g.id + (g.fixed ? ("=" + g.fixed.join(",")) : ""); }).sort(),
+      lv: liveSig.sort(),
+      ne: neutral.map(function (g) { return g.g + g.i + g.j; }).sort()
+    });
+    return { input: input, key: key };
+  }
+
+  function bracketEnsureWorker() {
+    if (bracketWorker) return;
+    try {
+      bracketWorker = new Worker("assets/bracketworker.js");
+      bracketWorker.onmessage = function (e) {
+        var d = e.data || {};
+        if (d.seq !== bracketSeq) return;       // ett nyare anrop har startats
+        if (d.error || !d.result) { loadBracketProbs(); return; }
+        applyBracketProbs(d.result, d.key);
+      };
+      bracketWorker.onerror = function () { bracketWorker = "none"; updateBracketProbs(); };
+    } catch (err) { bracketWorker = "none"; }
+  }
+
+  function applyBracketProbs(result, key) {
+    bracketProbs = result;
+    bracketEngKey = key;
+    bracketFavCache = null;                      // ny data → räkna om trädets favoriter
+    if (ui("view", "groups") === "bracket") renderBracket();
+  }
+
+  // Räkna om hela trädet lokalt. Dedupar på indata-nyckeln (ställningar/odds/
+  // live-läge) så att den är gratis att anropa ofta, t.ex. var 30:e sekund.
+  function updateBracketProbs() {
+    if (!window.BracketEngine) { loadBracketProbs(); return; }
+    bracketEnsureExtras(function () {
+      r32EnsureOdds(function (odds) {
+        var built = bracketBuildInput(odds);
+        if (bracketEngKey === built.key && bracketProbs) return;
+        bracketSeq++;
+        var seq = bracketSeq, key = built.key;
+        bracketEnsureWorker();
+        if (bracketWorker && bracketWorker !== "none") {
+          bracketWorker.postMessage({ seq: seq, key: key, input: built.input });
+        } else {
+          setTimeout(function () {
+            if (seq !== bracketSeq) return;
+            try { applyBracketProbs(window.BracketEngine.compute(built.input), key); }
+            catch (e) { loadBracketProbs(); }
+          }, 16);
+        }
+      });
+    });
   }
 
   /* ---------- Kalendervy ---------- */
@@ -2926,8 +3296,21 @@
     return null;
   }
 
-  function spotlightTvHtml(ch) {
+  // Var man kan se sändningen (svensk WC-sändare). Saknas djuplänk per match,
+  // så vi länkar till spelartjänstens startsida där den pågående matchen ligger.
+  var TV_LIVE_URL = { SVT: "https://www.svtplay.se/", TV4: "https://www.tv4play.se/" };
+
+  function spotlightTvHtml(ch, live) {
     if (!ch) return '<span class="cal-tv cal-tv-empty" aria-hidden="true"></span>';
+    // På pågående matcher blir TV-brickan en klickbar "se live"-länk till
+    // sändaren. På övriga matcher visas bara kanalmärket.
+    if (live && TV_LIVE_URL[ch]) {
+      var lbl = "Se matchen live på " + ch;
+      return '<a class="cal-tv tv-live ' + (ch === "SVT" ? "svt" : "tv4") +
+        '" href="' + TV_LIVE_URL[ch] + '" target="_blank" rel="noopener"' +
+        ' title="' + esc(lbl) + '" aria-label="' + esc(lbl) + '">' +
+        '<span class="tv-live-ico" aria-hidden="true"></span>' + ch + '</a>';
+    }
     return tvChHtml(ch);
   }
 
@@ -3360,7 +3743,7 @@
     if (state === "live" || state === "ft") h += focusScorers(e);
     h += '<div class="fh-meta">' +
       '<span class="fh-when">' + esc(when.dateLabel + " · " + when.time) + '</span>' +
-      spotlightTvHtml(e.channel) +
+      spotlightTvHtml(e.channel, state === "live") +
       '</div>';
     if (state === "next") h += focusCountdown(kickoff != null ? kickoff : e.ko);
     h += '</article>';
@@ -3401,7 +3784,7 @@
       teamSide(e.home, "home", hCls) + center + teamSide(e.away, "away", aCls) +
       '</div>';
     if (state === "live" || state === "ft") h += focusScorers(e, "fh-scorers-mini");
-    h += '<div class="fm-foot">' + spotlightTvHtml(e.channel) + '</div>';
+    h += '<div class="fm-foot">' + spotlightTvHtml(e.channel, state === "live") + '</div>';
     h += '</article>';
     return h;
   }
@@ -4125,12 +4508,13 @@
       return;
     }
 
-    var bMode = t.closest && t.closest("[data-bracket-mode]");
-    if (bMode) {
-      var nm = bMode.getAttribute("data-bracket-mode");
-      /* Rita bara om trädet (inte hela vyn) så att scroll-läget och den
+    var bToggle = t.closest && t.closest("[data-bracket-toggle]");
+    if (bToggle) {
+      /* En enda på/av-toggle: av = platshållare ("seed"), på = oddsfavoriter.
+         Rita bara om trädet (inte hela vyn) så att scroll-läget och den
          hopfällda toppheadern bevaras – annars hoppar sidan vid växling. */
-      if (nm !== bracketMode()) { setUi("bracketMode", nm); renderBracket(); }
+      setUi("bracketMode", bracketMode() === "odds" ? "seed" : "odds");
+      renderBracket();
       return;
     }
 
@@ -4177,6 +4561,10 @@
       openTeamByIso(teamEl.getAttribute("data-team-open"));
       return;
     }
+
+    // En riktig länk (t.ex. "se live på SVT/TV4") ska bara följa sin href –
+    // inte även öppna matchinfo-modalen.
+    if (t.closest && t.closest("a[href]")) return;
 
     // klick på matchrad (pågående/spelad) → öppna matchinfo
     var matchEl = t.closest && t.closest("[data-match-open]");
@@ -4442,8 +4830,8 @@
     updateSyncBadge();
 
     bracketPosByMatch = buildBracketPosMap();
-    loadBracketProbs();
-    setInterval(loadBracketProbs, 300000);   // uppdateras under turneringen
+    updateBracketProbs();                    // lokal motor på din data (med statisk fallback)
+    setInterval(updateBracketProbs, 300000); // periodisk omräkning under turneringen
   }
 
   window.VMApp = {
@@ -4452,7 +4840,12 @@
     autoSync: autoSync,
     describeMatch: describeMatch,
     setMatchDetails: setMatchDetails,
-    groupTableHtml: groupTableHtml
+    groupTableHtml: groupTableHtml,
+    // Läsbar för felsökning: var kommer slutspelssiffrorna ifrån + ett stickprov.
+    debugBracketProbs: function () {
+      if (!bracketProbs) return null;
+      return { note: bracketProbs.note, nSims: bracketProbs.nSims, r32pos0: bracketProbs.nodes && bracketProbs.nodes.r32 && bracketProbs.nodes.r32[0], champ: bracketProbs.rounds && Object.keys(bracketProbs.rounds).length };
+    }
   };
 
   document.addEventListener("DOMContentLoaded", init);
