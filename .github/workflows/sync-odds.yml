@@ -1,0 +1,77 @@
+name: Synka correct-score-odds
+
+# Hämtar correct-score från oddschecker via hemmagenten (din dator + Chrome).
+# Kräver repo-secrets:
+#   ODDS_AGENT_URL   – t.ex. http://100.x.x.x:9847 (Tailscale)
+#   ODDS_AGENT_TOKEN – samma token som ODDS_AGENT_TOKEN på agenten
+#
+# Triggas ~15 min efter nya resultat (debounce så bookmakers hinner uppdatera).
+
+on:
+  repository_dispatch:
+    types: [results-updated]
+  workflow_dispatch: {}
+
+concurrency:
+  group: sync-odds
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  odds:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Vänta efter resultat (debounce)
+        if: github.event_name != 'workflow_dispatch'
+        run: sleep 900
+
+      - name: Checka ut repo
+        uses: actions/checkout@v4
+
+      - name: Hämta odds från hemmagent
+        id: fetch
+        env:
+          ODDS_AGENT_URL: ${{ secrets.ODDS_AGENT_URL }}
+          ODDS_AGENT_TOKEN: ${{ secrets.ODDS_AGENT_TOKEN }}
+        run: |
+          if [ -z "$ODDS_AGENT_URL" ] || [ -z "$ODDS_AGENT_TOKEN" ]; then
+            echo "ODDS_AGENT_URL/TOKEN saknas – hoppar över."
+            echo "skip=1" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "skip=0" >> "$GITHUB_OUTPUT"
+          code=$(curl -sS -w "%{http_code}" -o /tmp/odds-resp.json \
+            -X POST "$ODDS_AGENT_URL/sync" \
+            -H "Authorization: Bearer $ODDS_AGENT_TOKEN" \
+            -H "Content-Type: application/json" \
+            --max-time 1800)
+          if [ "$code" != "200" ]; then
+            echo "Agent svarade HTTP $code"
+            cat /tmp/odds-resp.json || true
+            exit 1
+          fi
+          node -e "
+            const fs=require('fs');
+            const r=JSON.parse(fs.readFileSync('/tmp/odds-resp.json','utf8'));
+            const d=r.data||r;
+            if(!d.matches||!d.matches.length) process.exit(2);
+            fs.writeFileSync('data/odds.json', JSON.stringify({
+              updated:d.updated, source:d.source, market:d.market, agent:d.agent, matches:d.matches
+            }, null, 2)+'\n');
+            console.log('matches', d.matches.length);
+          "
+
+      - name: Committa odds
+        if: steps.fetch.outputs.skip != '1'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/odds.json
+          if git diff --staged --quiet; then
+            echo "Inga odds-ändringar."
+            exit 0
+          fi
+          git commit -m "Auto-synk correct-score-odds $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git pull --rebase --autostash origin main && git push

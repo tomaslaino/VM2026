@@ -23,3 +23,8 @@ __pycache__/
 # Lokalt datalager (genereras av API-anrop)
 server/data/store.json
 server/data/results.json
+
+# Odds-agent: lokal Chrome-profil (cookies/CF-session)
+scripts/odds-agent/.chrome-odds/
+scripts/.chrome-verify/
+scripts/.chrome-shot/

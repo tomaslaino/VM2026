@@ -13,7 +13,13 @@
     "sync:static": "node server/scripts/syncStatic.js",
     "squads": "node server/jobs/fetchSquads.js",
     "live": "node server/jobs/livePoll.js",
-    "finalize": "node server/jobs/finalize.js"
+    "finalize": "node server/jobs/finalize.js",
+    "odds:sync": "node scripts/odds-agent/sync.mjs",
+    "odds:agent": "node scripts/odds-agent/server.mjs",
+    "odds:agent:start": "powershell -ExecutionPolicy Bypass -File scripts/odds-agent/start-agent.ps1",
+    "odds:chrome": "powershell -ExecutionPolicy Bypass -File scripts/odds-agent/start-chrome.ps1 -Minimized",
+    "odds:chrome:shortcut": "powershell -ExecutionPolicy Bypass -File scripts/odds-agent/create-shortcut.ps1",
+    "odds:chrome:install": "powershell -ExecutionPolicy Bypass -File scripts/odds-agent/install-autostart.ps1"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",
