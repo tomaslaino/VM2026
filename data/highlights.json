@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-25T18:26:38.189Z",
+    "updatedAt": "2026-06-25T20:34:11.409Z",
     "source": "svt+tv4",
-    "matchCount": 56
+    "matchCount": 58
   },
   "byKey": {
     "g:A:2": {
@@ -1231,7 +1231,7 @@
     },
     "g:E:1": {
       "SVT": {
-        "live": {
+        "full": {
           "url": "https://www.svtplay.se/video/8myymA3/fifa-fotbolls-vm-2026/curacao-elfenbenskusten",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-25T23:59:59+02:00"
@@ -1240,10 +1240,28 @@
     },
     "g:E:0": {
       "SVT": {
-        "live": {
+        "full": {
           "url": "https://www.svtplay.se/video/KPBBWQv/fifa-fotbolls-vm-2026/ecuador-tyskland",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-25T23:59:59+02:00"
+        }
+      }
+    },
+    "g:F:3": {
+      "SVT": {
+        "live": {
+          "url": "https://www.svtplay.se/video/jqPPE5P/fifa-fotbolls-vm-2026/japan-sverige",
+          "title": "FIFA Fotbolls-VM 2026",
+          "until": "2026-07-26T23:59:59+02:00"
+        }
+      }
+    },
+    "g:F:2": {
+      "SVT": {
+        "live": {
+          "url": "https://www.svtplay.se/video/KZxxWy7/fifa-fotbolls-vm-2026/tunisien-nederlanderna",
+          "title": "FIFA Fotbolls-VM 2026",
+          "until": "2026-07-26T23:59:59+02:00"
         }
       }
     }
