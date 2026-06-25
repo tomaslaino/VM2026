@@ -1795,7 +1795,7 @@ html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
      att alltid rymmas på en skärm utan vågrät scroll, men växer aldrig bredare
      än 188px/kolumn så det inte blir glest på stora skärmar. ~160px overhead =
      sidopadding + scrollist + lite luft. */
-  --bcol: clamp(120px, calc((100vw - 160px) / 9), 188px);
+  --bcol: clamp(120px, calc((100vw - 148px) / 9), 188px);
   grid-template-columns: repeat(4, var(--bcol)) var(--bcol) repeat(4, var(--bcol));
   /* 8 rader (en per sextondelsmatch) – ingen separat rubrikrad längre, så
      matcherna börjar högst upp. Radhöjd och radmellanrum sätts dynamiskt av
@@ -1881,21 +1881,35 @@ html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
   grid-row: 3 / span 4;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 8px;
   align-self: center;
   width: 100%;
+  min-width: 0;
 }
 .bracket-finals-block .match.final {
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--gold) 42%, transparent),
     0 6px 28px rgba(0,0,0,.5);
 }
+/* Final- och bronskorten sitter i mittstacken (kolumn 5) som inte är en fast
+   trädkolumn – utan min-width:0 växer de till sitt innehålls min-content och
+   svämmar över åt höger, så att de tränger in på den högra semifinalen (trädet
+   ser snett ut). Lås dem därför till mittkolumnens bredd precis som de vanliga
+   matchkorten, så de centreras exakt mellan semifinal 1 och 2. */
+.bracket-finals-block > .match,
+.bracket-bronze-block > .match {
+  width: 100%;
+  min-width: 0;
+}
 .bracket-bronze-block {
   grid-row: 7 / span 2;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 6px;
   align-self: start;
   width: 100%;
+  min-width: 0;
   margin: 0 auto;
   opacity: .92;
 }
@@ -1989,23 +2003,37 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
    KOMPAKT SLUTSPELSTRÄD – pressa ihop korten på höjden så hela trädet
    ryms på en skärm utan lodrät scroll. Allt scopat till .view-bracket.
 ==================================================================== */
-html.view-bracket .bracket .match { padding: 2px 8px; }
+html.view-bracket .bracket .match { padding: 2px 6px; }
 /* Rundnamnet (m-meta) står redan i kolumnrubriken – dölj den redundanta raden
    i trädet. Live/spelad-status syns ändå via kortets ram och resultatsiffrorna. */
 html.view-bracket .bracket .match .m-meta { display: none; }
 html.view-bracket .bracket .side {
-  min-height: 22px;
+  /* Reservera höjd för två rader så att rutorna är exakt lika höga oavsett om de
+     visar ett kort lagnamn (en rad) eller en lång platsetikett ("Vinnare
+     sextondelsfinal 3", två rader) – trädet hoppar då inte när man växlar
+     Platser/Oddsfavoriter och anslutningslinjerna möter alltid mitten av rutan. */
+  min-height: 30px;
   padding: 1px 4px;
   font-size: 12.5px;
 }
 html.view-bracket .bracket .side + .side { margin-top: 0; }
-html.view-bracket .bracket .match.bronze .side { min-height: 22px; }
-/* Platshållaren ("Vinnare match …") på en rad i kompaktläget – kolumnrubriken
-   ger ändå sammanhanget, så vi behöver inte reservera plats för två rader. */
+html.view-bracket .bracket .match.bronze .side { min-height: 30px; }
+/* Platshållaren ("Vinnare sextondelsfinal 3") bryts till två rader och fyller
+   rutbredden. Lite mindre stil än lagnamnen så även de längsta rundorden får
+   plats på en bruten rad utan att kapas. */
 html.view-bracket .bracket .side .s-name.placeholder.seed-chip {
-  -webkit-line-clamp: 1;
-  font-size: 11px;
+  -webkit-line-clamp: 2;
+  font-size: 10px;
+  line-height: 1.16;
+  /* Smal innerkant så även det längsta rundordet ("sextondelsfinal 16") ryms på
+     en bruten rad i de smalaste rutorna utan att kapas. */
+  padding: 1px 4px;
 }
+/* Kommande matcher har inget resultat ännu – den tomma "–"-rutan stal ~22px på
+   varje rad och tvingade fram kapade lagnamn ("Tys…", "Vinnar…"). Dölj den i
+   trädet så namn/platsetikett får hela rutbredden. Spelade matcher visar förstås
+   sina siffror som vanligt. */
+html.view-bracket .bracket .side .score-display.score-empty { display: none; }
 html.view-bracket .bracket .k-score { width: 28px; height: 22px; }
 html.view-bracket .bracket .m-footer {
   margin-top: 1px;
