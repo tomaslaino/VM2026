@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-25T20:17:51.525Z",
+    "updatedAt": "2026-06-25T21:56:59.663Z",
     "source": "espn"
   },
   "details": {
@@ -24207,16 +24207,19 @@
     "g:E:1": {
       "espnId": "760473",
       "status": "IN_PLAY",
-      "minute": 16,
+      "minute": 90,
       "utcDate": "2026-06-25T20:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
+          "h": 2,
+          "a": 0
+        },
+        "ht": {
           "h": 1,
           "a": 0
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
@@ -24230,10 +24233,99 @@
           "assist": "Yan Diomande",
           "type": "REGULAR",
           "score": null
+        },
+        {
+          "minute": 64,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Nicolas Pépé",
+          "assist": "Ibrahim Sangaré",
+          "type": "REGULAR",
+          "score": null
         }
       ],
-      "bookings": [],
-      "subs": [],
+      "bookings": [
+        {
+          "minute": 35,
+          "team": "h",
+          "player": "Nicolas Pépé",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 75,
+          "team": "a",
+          "player": "Juninho Bacuna",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 83,
+          "team": "a",
+          "player": "Gervane Kastaneer",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Christ Inao Oulaï",
+          "out": "Amad Diallo"
+        },
+        {
+          "minute": 61,
+          "team": "a",
+          "in": "Jeremy Antonisse",
+          "out": "Livano Comenencia"
+        },
+        {
+          "minute": 67,
+          "team": "h",
+          "in": "Oumar Diakité",
+          "out": "Ange-Yoan Bonny"
+        },
+        {
+          "minute": 67,
+          "team": "h",
+          "in": "Elye Wahi",
+          "out": "Nicolas Pépé"
+        },
+        {
+          "minute": 67,
+          "team": "h",
+          "in": "Bazoumana Touré",
+          "out": "Yan Diomande"
+        },
+        {
+          "minute": 77,
+          "team": "a",
+          "in": "Gervane Kastaneer",
+          "out": "Juriën Gaari"
+        },
+        {
+          "minute": 77,
+          "team": "a",
+          "in": "Tyrese Noslin",
+          "out": "Deveron Fonville"
+        },
+        {
+          "minute": 77,
+          "team": "h",
+          "in": "Jean Michaël Seri",
+          "out": "Franck Kessié"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Shurandy Sambo",
+          "out": "Joshua Brenet"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Brandley Kuwas",
+          "out": "Jürgen Locadia"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -24314,7 +24406,8 @@
             },
             {
               "name": "Christ Inao Oulaï",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Evann Guessand",
@@ -24334,15 +24427,18 @@
             },
             {
               "name": "Jean Michaël Seri",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true
             },
             {
               "name": "Bazoumana Touré",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Oumar Diakité",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Emmanuel Agbadou",
@@ -24350,7 +24446,8 @@
             },
             {
               "name": "Elye Wahi",
-              "jersey": "12"
+              "jersey": "12",
+              "in": true
             },
             {
               "name": "Simon Adingra",
@@ -24420,15 +24517,18 @@
           "bench": [
             {
               "name": "Brandley Kuwas",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Jeremy Antonisse",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Shurandy Sambo",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Jearl Margaritha",
@@ -24440,11 +24540,13 @@
             },
             {
               "name": "Gervane Kastaneer",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Tyrese Noslin",
-              "jersey": "13"
+              "jersey": "13",
+              "in": true
             },
             {
               "name": "Sontje Hansen",
@@ -24487,43 +24589,43 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "68%",
-          "a": "32%"
+          "h": "63%",
+          "a": "37%"
         },
         {
           "key": "totalShots",
-          "h": "2",
-          "a": "2"
+          "h": "7",
+          "a": "12"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
-          "a": "1"
-        },
-        {
-          "key": "wonCorners",
-          "h": "0",
-          "a": "0"
-        },
-        {
-          "key": "foulsCommitted",
-          "h": "0",
+          "h": "3",
           "a": "3"
         },
         {
+          "key": "wonCorners",
+          "h": "6",
+          "a": "4"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "6",
+          "a": "11"
+        },
+        {
           "key": "offsides",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "2"
         },
         {
           "key": "saves",
-          "h": "1",
-          "a": "0"
+          "h": "3",
+          "a": "1"
         },
         {
           "key": "totalPasses",
-          "h": "140",
-          "a": "67"
+          "h": "592",
+          "a": "349"
         },
         {
           "key": "passPct",
@@ -24532,8 +24634,8 @@
         },
         {
           "key": "yellowCards",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "2"
         },
         {
           "key": "redCards",
@@ -24541,21 +24643,24 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-25T20:17:51.499Z"
+      "updatedAt": "2026-06-25T21:56:59.627Z"
     },
     "g:E:0": {
       "espnId": "760468",
       "status": "IN_PLAY",
-      "minute": 17,
+      "minute": 90,
       "utcDate": "2026-06-25T20:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
           "h": 1,
+          "a": 2
+        },
+        "ht": {
+          "h": 1,
           "a": 1
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
@@ -24584,14 +24689,112 @@
             "h": 1,
             "a": 1
           }
+        },
+        {
+          "minute": 77,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Gonzalo Plata",
+          "assist": "Kevin Rodríguez",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 2
+          }
         }
       ],
-      "bookings": [],
-      "subs": [],
+      "bookings": [
+        {
+          "minute": 43,
+          "team": "a",
+          "player": "Piero Hincapié",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 44,
+          "team": "h",
+          "player": "Aleksandar Pavlovic",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 50,
+          "team": "a",
+          "player": "Alan Franco",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 89,
+          "team": "a",
+          "player": "Gonzalo Plata",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Angelo Stiller",
+          "out": "Aleksandar Pavlovic"
+        },
+        {
+          "minute": 60,
+          "team": "h",
+          "in": "Deniz Undav",
+          "out": "Kai Havertz"
+        },
+        {
+          "minute": 60,
+          "team": "h",
+          "in": "Malick Thiaw",
+          "out": "Joshua Kimmich"
+        },
+        {
+          "minute": 64,
+          "team": "a",
+          "in": "Kevin Rodríguez",
+          "out": "Enner Valencia"
+        },
+        {
+          "minute": 64,
+          "team": "a",
+          "in": "Ángelo Preciado",
+          "out": "Alan Franco"
+        },
+        {
+          "minute": 64,
+          "team": "h",
+          "in": "Maximilian Beier",
+          "out": "Felix Nmecha"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Pervis Estupiñán",
+          "out": "Piero Hincapié"
+        },
+        {
+          "minute": 73,
+          "team": "h",
+          "in": "Pascal Gross",
+          "out": "Florian Wirtz"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Félix Torres",
+          "out": "John Yeboah"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Jordy Caicedo",
+          "out": "Nilson Angulo"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
-          "formation": "4-2-3-1",
+          "formation": "3-4-2-1",
           "starters": [
             {
               "name": "Manuel Neuer",
@@ -24599,24 +24802,14 @@
               "pos": "G"
             },
             {
-              "name": "Joshua Kimmich",
-              "jersey": "6",
-              "pos": "RB"
+              "name": "Leroy Sané",
+              "jersey": "19",
+              "pos": "RM"
             },
             {
               "name": "David Raum",
               "jersey": "22",
-              "pos": "LB"
-            },
-            {
-              "name": "Aleksandar Pavlovic",
-              "jersey": "5",
               "pos": "LM"
-            },
-            {
-              "name": "Jonathan Tah",
-              "jersey": "4",
-              "pos": "CD-R"
             },
             {
               "name": "Antonio Rüdiger",
@@ -24624,14 +24817,24 @@
               "pos": "CD-L"
             },
             {
-              "name": "Leroy Sané",
-              "jersey": "19",
-              "pos": "AM-R"
+              "name": "Jonathan Tah",
+              "jersey": "4",
+              "pos": "CD"
+            },
+            {
+              "name": "Joshua Kimmich",
+              "jersey": "6",
+              "pos": "CD-R"
             },
             {
               "name": "Felix Nmecha",
               "jersey": "23",
-              "pos": "RM"
+              "pos": "CM-R"
+            },
+            {
+              "name": "Aleksandar Pavlovic",
+              "jersey": "5",
+              "pos": "CM-L"
             },
             {
               "name": "Kai Havertz",
@@ -24641,12 +24844,12 @@
             {
               "name": "Jamal Musiala",
               "jersey": "10",
-              "pos": "AM"
+              "pos": "CF-R"
             },
             {
               "name": "Florian Wirtz",
               "jersey": "17",
-              "pos": "AM-L"
+              "pos": "CF-L"
             }
           ],
           "bench": [
@@ -24664,11 +24867,13 @@
             },
             {
               "name": "Deniz Undav",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Malick Thiaw",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Leon Goretzka",
@@ -24688,7 +24893,8 @@
             },
             {
               "name": "Pascal Gross",
-              "jersey": "13"
+              "jersey": "13",
+              "in": true
             },
             {
               "name": "Jamie Leweling",
@@ -24696,11 +24902,13 @@
             },
             {
               "name": "Maximilian Beier",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Angelo Stiller",
-              "jersey": "16"
+              "jersey": "16",
+              "in": true
             }
           ]
         },
@@ -24770,11 +24978,13 @@
             },
             {
               "name": "Ángelo Preciado",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Félix Torres",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Anthony Valencia",
@@ -24786,7 +24996,8 @@
             },
             {
               "name": "Pervis Estupiñán",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Denil Castillo",
@@ -24818,11 +25029,13 @@
             },
             {
               "name": "Jordy Caicedo",
-              "jersey": "16"
+              "jersey": "16",
+              "in": true
             },
             {
               "name": "Kevin Rodríguez",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             }
           ]
         }
@@ -24833,53 +25046,53 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "76%",
-          "a": "24%"
+          "h": "61%",
+          "a": "39%"
         },
         {
           "key": "totalShots",
-          "h": "3",
-          "a": "1"
+          "h": "10",
+          "a": "7"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
-          "a": "1"
+          "h": "3",
+          "a": "3"
         },
         {
           "key": "wonCorners",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "3"
         },
         {
           "key": "foulsCommitted",
-          "h": "2",
-          "a": "4"
+          "h": "9",
+          "a": "15"
         },
         {
           "key": "offsides",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "saves",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "2"
         },
         {
           "key": "totalPasses",
-          "h": "111",
-          "a": "36"
+          "h": "581",
+          "a": "373"
         },
         {
           "key": "passPct",
-          "h": "93%",
-          "a": "83%"
+          "h": "88%",
+          "a": "82%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "3"
         },
         {
           "key": "redCards",
@@ -24887,7 +25100,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-25T20:17:51.525Z"
+      "updatedAt": "2026-06-25T21:56:59.662Z"
     }
   }
 }
