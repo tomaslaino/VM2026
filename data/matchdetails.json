@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-25T21:56:59.663Z",
+    "updatedAt": "2026-06-25T23:24:46.464Z",
     "source": "espn"
   },
   "details": {
@@ -24206,11 +24206,11 @@
     },
     "g:E:1": {
       "espnId": "760473",
-      "status": "IN_PLAY",
-      "minute": 90,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-25T20:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
           "h": 2,
@@ -24585,7 +24585,7 @@
       },
       "referee": "Glenn Nyberg",
       "venue": "Lincoln Financial Field, Philadelphia, Pennsylvania",
-      "attendance": null,
+      "attendance": 68324,
       "stats": [
         {
           "key": "possessionPct",
@@ -24595,12 +24595,12 @@
         {
           "key": "totalShots",
           "h": "7",
-          "a": "12"
+          "a": "11"
         },
         {
           "key": "shotsOnTarget",
           "h": "3",
-          "a": "3"
+          "a": "2"
         },
         {
           "key": "wonCorners",
@@ -24619,18 +24619,18 @@
         },
         {
           "key": "saves",
-          "h": "3",
+          "h": "2",
           "a": "1"
         },
         {
           "key": "totalPasses",
-          "h": "592",
-          "a": "349"
+          "h": "623",
+          "a": "354"
         },
         {
           "key": "passPct",
-          "h": "89%",
-          "a": "84%"
+          "h": "90%",
+          "a": "83%"
         },
         {
           "key": "yellowCards",
@@ -24643,15 +24643,15 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-25T21:56:59.627Z"
+      "updatedAt": "2026-06-25T23:24:46.405Z"
     },
     "g:E:0": {
       "espnId": "760468",
-      "status": "IN_PLAY",
-      "minute": 90,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-25T20:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 1,
@@ -25042,7 +25042,7 @@
       },
       "referee": "Tori Penso",
       "venue": "MetLife Stadium, East Rutherford, New Jersey",
-      "attendance": null,
+      "attendance": 80663,
       "stats": [
         {
           "key": "possessionPct",
@@ -25051,7 +25051,7 @@
         },
         {
           "key": "totalShots",
-          "h": "10",
+          "h": "11",
           "a": "7"
         },
         {
@@ -25066,7 +25066,7 @@
         },
         {
           "key": "foulsCommitted",
-          "h": "9",
+          "h": "10",
           "a": "15"
         },
         {
@@ -25081,13 +25081,13 @@
         },
         {
           "key": "totalPasses",
-          "h": "581",
-          "a": "373"
+          "h": "592",
+          "a": "379"
         },
         {
           "key": "passPct",
-          "h": "88%",
-          "a": "82%"
+          "h": "87%",
+          "a": "83%"
         },
         {
           "key": "yellowCards",
@@ -25100,7 +25100,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-25T21:56:59.662Z"
+      "updatedAt": "2026-06-25T23:24:46.464Z"
     }
   }
 }

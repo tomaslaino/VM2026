@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-25T21:56:59.598Z",
+    "updatedAt": "2026-06-25T23:24:46.322Z",
     "source": "espn",
     "matchCount": 56,
-    "liveCount": 2,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -280,32 +280,15 @@
     "g:E:1": {
       "h": 2,
       "a": 0,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     },
     "g:E:0": {
       "h": 1,
       "a": 2,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:E:1",
-      "status": "IN_PLAY",
-      "minute": 90,
-      "home": "Ivory Coast",
-      "away": "Curaçao",
-      "score": "2-0"
-    },
-    {
-      "key": "g:E:0",
-      "status": "IN_PLAY",
-      "minute": 90,
-      "home": "Germany",
-      "away": "Ecuador",
-      "score": "1-2"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1229,7 +1212,7 @@
       "date": "2026-06-25",
       "time": "22:00",
       "utcDate": "2026-06-25T20:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Ivory Coast",
       "away": "Curaçao",
@@ -1246,7 +1229,7 @@
       "date": "2026-06-25",
       "time": "22:00",
       "utcDate": "2026-06-25T20:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Germany",
       "away": "Ecuador",
@@ -1596,9 +1579,12 @@
       "utcDate": "2026-06-30T17:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Group E 2nd Place",
+      "home": "Ivory Coast",
       "away": "Group I 2nd Place",
-      "homeRef": null,
+      "homeRef": {
+        "group": "E",
+        "idx": 2
+      },
       "awayRef": null
     },
     "k:77": {
@@ -2116,49 +2102,49 @@
       {
         "idx": 0,
         "position": 1,
-        "pld": 2,
+        "pld": 3,
         "w": 2,
         "d": 0,
-        "l": 0,
-        "gf": 9,
-        "ga": 2,
-        "gd": 7,
+        "l": 1,
+        "gf": 10,
+        "ga": 4,
+        "gd": 6,
         "pts": 6
       },
       {
         "idx": 2,
         "position": 2,
-        "pld": 2,
-        "w": 1,
+        "pld": 3,
+        "w": 2,
         "d": 0,
         "l": 1,
-        "gf": 2,
+        "gf": 4,
         "ga": 2,
-        "gd": 0,
-        "pts": 3
+        "gd": 2,
+        "pts": 6
       },
       {
         "idx": 1,
         "position": 3,
-        "pld": 2,
-        "w": 0,
+        "pld": 3,
+        "w": 1,
         "d": 1,
         "l": 1,
-        "gf": 0,
-        "ga": 1,
-        "gd": -1,
-        "pts": 1
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
+        "pts": 4
       },
       {
         "idx": 3,
         "position": 4,
-        "pld": 2,
+        "pld": 3,
         "w": 0,
         "d": 1,
-        "l": 1,
+        "l": 2,
         "gf": 1,
-        "ga": 7,
-        "gd": -6,
+        "ga": 9,
+        "gd": -8,
         "pts": 1
       }
     ],
