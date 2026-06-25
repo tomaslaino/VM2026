@@ -241,6 +241,64 @@ export const EXTRACT_JS = `(() => {
   return { error: "empty_table", pageTitle };
 })()`;
 
+// 1X2 på /winner-sidan (slutspel + gruppspel).
+export const EXTRACT_H2H_JS = `(() => {
+  function norm(s) { return (s || "").replace(/\\s+/g, " ").trim(); }
+  function parseFractional(raw) {
+    const s = norm(raw);
+    if (!s) return 0;
+    if (s.includes("/")) {
+      const parts = s.split("/");
+      const n = parseFloat(parts[0]);
+      const d = parseFloat(parts[1]);
+      if (isFinite(n) && isFinite(d) && d > 0) return Math.round((n / d + 1) * 100) / 100;
+    }
+    const v = parseFloat(s);
+    return isFinite(v) ? v : 0;
+  }
+  function pageTeams(pageTitle) {
+    const m = String(pageTitle || "").match(/(.+?)\\s+v\\s+(.+?)(?:\\s|$|-|winner|odds)/i);
+    if (!m) return { pageHome: "", pageAway: "" };
+    return { pageHome: norm(m[1]), pageAway: norm(m[2]) };
+  }
+  const pageTitle = norm((document.querySelector("h1") || {}).textContent || document.title);
+  const teams = pageTeams(pageTitle);
+  const body = (document.body && document.body.innerText) || "";
+  if (/page not found/i.test(body)) return { error: "404", pageTitle, ...teams };
+
+  const prices = { home: 0, draw: 0, away: 0 };
+  const labels = { home: teams.pageHome, draw: "Draw", away: teams.pageAway };
+
+  function setSide(label, odds) {
+    const l = norm(label).toLowerCase();
+    if (!odds || odds <= 1) return;
+    if (l === "draw" || l === "x" || l === "tie") prices.draw = odds;
+    else if (teams.pageHome && l.includes(teams.pageHome.toLowerCase().slice(0, 5))) prices.home = odds;
+    else if (teams.pageAway && l.includes(teams.pageAway.toLowerCase().slice(0, 5))) prices.away = odds;
+  }
+
+  for (const tr of document.querySelectorAll("tbody#t1 tr, table.eventTable tbody tr")) {
+    const label = norm(tr.querySelector("a, .bet-name, td:first-child")?.textContent);
+    let best = 0;
+    for (const td of tr.querySelectorAll("td[data-odig], td[data-o]")) {
+      const o = parseFloat(td.getAttribute("data-odig") || td.getAttribute("data-o"));
+      if (isFinite(o) && o > best) best = o;
+    }
+    setSide(label, best);
+  }
+
+  for (const w of document.querySelectorAll('[class*="MarketExpanderBetWrapper"]')) {
+    const label = norm(w.querySelector('[class*="MarketExpanderBetName"], [class*="BetName"]')?.textContent);
+    const odds = parseFractional(w.querySelector("button")?.textContent);
+    setSide(label, odds);
+  }
+
+  if (prices.home > 1 && prices.away > 1) {
+    return { pageTitle, ...teams, h2h: prices, format: "h2h" };
+  }
+  return { error: "no_h2h", pageTitle, ...teams };
+})()`;
+
 /**
  * @param {unknown} raw
  * @returns {{ rows: object[], pageTitle: string, pageHome?: string, pageAway?: string } | { error: string }}

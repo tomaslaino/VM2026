@@ -4436,3 +4436,18 @@ button.calc-ctrl-grouptitle:hover { color: var(--ink); }
   .calc-vs-nm { font-size: 16px; }
   .cm-nm { font-size: 12px; }
 }
+
+/* Dold sida: motstandare.html (ingen nav, bara simulatorn) */
+.standalone-page .nav,
+.standalone-page .search {
+  display: none !important;
+}
+.standalone-page .topbar-inner {
+  justify-content: space-between;
+}
+.standalone-page .standalone-controls {
+  margin-left: auto;
+}
+.standalone-page .container {
+  max-width: 1200px;
+}

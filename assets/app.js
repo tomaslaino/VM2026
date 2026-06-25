@@ -12,11 +12,14 @@
   var hoverMatch = null;        // matchnummer med öppen infopanel i slutspelet
   var hoverLineage = null;      // matchnummer vars härstamning (in/ut) är highlightad
   // R32-motståndarsimulator (inbäddad i slutspelsvyn)
-  var r32Open = false;          // panelen utfälld
+  var legacyR32Open = false;    // gamla motståndarsimulatorn (motstandare.html)
+  var calcOpen = false;         // Tomas förenklade slutspelskalkylator (nav r32)
   var r32TeamKey = "F:3";       // analyserat lag, "grupp:idx" (default Sverige)
   var r32Fixed = {};            // oddsMatchId -> ["result",r] | ["score",h,a]
   var r32OpenGrids = {};        // oddsMatchId -> true (utfällt resultatrutnät)
   var r32OddsData = null;       // normaliserad odds.json | "loading" | "error"
+  var marketOddsStamp = null;   // data.updated – för att upptäcka nya scrapes
+  var winnerOddsStamp = null;   // winner_odds.json updated
   var r32Result = null;         // senaste simuleringsresultat
   var r32Key = null;            // cache-nyckel för r32Result
   var r32Worker = null;         // Web Worker (eller "none" vid fallback)
@@ -1056,13 +1059,19 @@
     morphChildren(oldNode, newNode);
   }
 
+  function standaloneView() {
+    var CFG = window.VM_CONFIG || {};
+    return CFG.standaloneView || null;
+  }
+
   function render() {
-    var view = ui("view", "home");
+    var view = standaloneView() || ui("view", "home");
     document.documentElement.classList.toggle("view-bracket", view === "bracket");
     document.documentElement.classList.toggle("view-home", view === "home");
     document.documentElement.classList.toggle("view-r32", view === "r32");
-    /* Sextondelskollen är nu en egen vy: panelen är "öppen" bara där. */
-    r32Open = view === "r32";
+    document.documentElement.classList.toggle("view-legacy-r32", view === "legacy-r32");
+    legacyR32Open = view === "legacy-r32";
+    calcOpen = view === "r32";
     document.querySelectorAll("[data-nav]").forEach(function (b) {
       b.classList.toggle("active", b.getAttribute("data-nav") === view);
     });
@@ -1072,6 +1081,7 @@
     else if (view === "bracket") {
       rebuilt = renderBracket();
     }
+    else if (view === "legacy-r32") rebuilt = renderR32View();
     else if (view === "r32") rebuilt = renderCalcView();
     else if (view === "players") rebuilt = renderPlayers();
     else rebuilt = renderCalendar();
@@ -1082,7 +1092,8 @@
        i playerstats.js, och kalendern bygger sin egen toppra (rubrik +
        "Hoppa till idag" på samma rad) i renderCalendar, så de hoppas också
        över här. */
-    if (view !== "home" && view !== "bracket" && view !== "r32" && view !== "players" && view !== "calendar" && rebuilt) renderPageIntro(view);
+    if (view !== "home" && view !== "bracket" && view !== "r32" && view !== "legacy-r32" &&
+        view !== "players" && view !== "calendar" && rebuilt) renderPageIntro(view);
 
     /* Grupp-popupen används i både kalender- och gruppvyn. */
     if (view !== "calendar" && view !== "groups") hideCalGroupPopup();
@@ -1106,6 +1117,7 @@
     if (a && a.id === "teamSearch") { render(); restoreSearchFocus(); return; }
     // Räkna om slutspelssannolikheterna lokalt (dedupar på ställningar/odds/
     // live-läge, så det är gratis när inget ändrats – men fångar nya mål).
+    if (anyLiveOddsPoll()) reloadMarketOdds();
     updateBracketProbs();
     if (!opts.full && ui("view", "groups") === "bracket") {
       updateBracketTimers();
@@ -2021,31 +2033,183 @@
     return all.slice(0, 3).map(function (e) { return e.team; });
   }
 
-  // Ladda + normalisera odds.json (en gång). p = (1/odds) normaliserat per match.
-  function r32EnsureOdds(cb) {
-    if (r32OddsData && r32OddsData !== "loading" && r32OddsData !== "error") return cb(r32OddsData);
-    if (r32OddsData === "loading") return;
+  // Ladda + normalisera odds.json. p = (1/odds) normaliserat per match.
+  function normalizeOddsJson(data) {
+    var matches = (data.matches || []).map(function (m) {
+      var inv = m.scores.map(function (s) { return 1 / s.odds; });
+      var tot = inv.reduce(function (a, b) { return a + b; }, 0);
+      var scores = m.scores.map(function (s, k) { return { h: s.h, a: s.a, p: inv[k] / tot }; });
+      var rp = { "1": 0, "X": 0, "2": 0 };
+      scores.forEach(function (s) { rp[s.h > s.a ? "1" : s.h === s.a ? "X" : "2"] += s.p; });
+      var pair = [m.home_idx, m.away_idx].slice().sort(function (a, b) { return a - b; }).join(",");
+      return {
+        id: m.group + "-" + m.home_idx + "-" + m.away_idx,
+        key: m.key || null,
+        g: m.group, i: m.home_idx, j: m.away_idx,
+        home: m.home, away: m.away, pair: pair, scores: scores, rp: rp,
+        oddsContext: m.oddsContext || "prematch",
+        scrapedAt: m.scrapedAt || null,
+        matchMinute: m.matchMinute != null ? m.matchMinute : null
+      };
+    });
+    return { updated: data.updated || null, matches: matches, knockout: (data.knockout || []).map(normalizeKnockoutEntry) };
+  }
+
+  function r32EnsureOdds(cb, force) {
+    if (!force && r32OddsData && r32OddsData !== "loading" && r32OddsData !== "error") return cb(r32OddsData);
+    if (r32OddsData === "loading" && !force) return;
     r32OddsData = "loading";
     fetch("data/odds.json", { cache: "no-store" }).then(function (r) {
       if (!r.ok) throw new Error("odds " + r.status);
       return r.json();
     }).then(function (data) {
-      var matches = (data.matches || []).map(function (m) {
-        var inv = m.scores.map(function (s) { return 1 / s.odds; });
-        var tot = inv.reduce(function (a, b) { return a + b; }, 0);
-        var scores = m.scores.map(function (s, k) { return { h: s.h, a: s.a, p: inv[k] / tot }; });
-        var rp = { "1": 0, "X": 0, "2": 0 };
-        scores.forEach(function (s) { rp[s.h > s.a ? "1" : s.h === s.a ? "X" : "2"] += s.p; });
-        var pair = [m.home_idx, m.away_idx].slice().sort(function (a, b) { return a - b; }).join(",");
-        return {
-          id: m.group + "-" + m.home_idx + "-" + m.away_idx,
-          g: m.group, i: m.home_idx, j: m.away_idx,
-          home: m.home, away: m.away, pair: pair, scores: scores, rp: rp
-        };
-      });
-      r32OddsData = { matches: matches };
+      marketOddsStamp = data.updated || null;
+      r32OddsData = normalizeOddsJson(data);
       cb(r32OddsData);
-    }).catch(function () { r32OddsData = "error"; if (r32Open) paintR32(); });
+    }).catch(function () { r32OddsData = "error"; if (legacyR32Open) paintR32(); });
+  }
+
+  function normalizeKnockoutEntry(ko) {
+    var h2h = ko.h2h || {};
+    var inv = {
+      "1": h2h["1"] ? 1 / h2h["1"] : 0,
+      "X": h2h.X ? 1 / h2h.X : 0,
+      "2": h2h["2"] ? 1 / h2h["2"] : 0
+    };
+    var tot = inv["1"] + inv["X"] + inv["2"];
+    var rp = tot > 0
+      ? { "1": inv["1"] / tot, "X": inv["X"] / tot, "2": inv["2"] / tot }
+      : { "1": 1 / 3, "X": 1 / 3, "2": 1 / 3 };
+    return {
+      key: ko.key,
+      matchNo: ko.matchNo,
+      home: ko.home,
+      away: ko.away,
+      h2h: h2h,
+      rp: rp,
+      oddsContext: ko.oddsContext || "prematch",
+      scrapedAt: ko.scrapedAt || null,
+      matchMinute: ko.matchMinute != null ? ko.matchMinute : null
+    };
+  }
+
+  // Poisson (pre-match-odds) eller villkorad sampling (inplay-odds) för live-match.
+  function attachLiveOdds(g, m, live) {
+    if (!live) return g;
+    var ctx = m.oddsContext || "prematch";
+    if (ctx === "inplay") {
+      g.live = { h: live.h, a: live.a, mode: "inplay" };
+    } else {
+      var muH = 0, muA = 0;
+      m.scores.forEach(function (s) { muH += s.h * s.p; muA += s.a * s.p; });
+      g.live = { h: live.h, a: live.a, mode: "prematch", lamH: muH * live.frac, lamA: muA * live.frac };
+    }
+    return g;
+  }
+
+  // Hämta nya marknadsodds om GitHub committat uppdatering (math tills dess).
+  function reloadMarketOdds(cb) {
+    var changed = false, pending = 2;
+    function done() {
+      pending--;
+      if (pending > 0) return;
+      if (changed) {
+        r32Key = null;
+        calcKey = null;
+        bracketEngKey = null;
+        updateBracketProbs();
+        if (legacyR32Open) runR32Sim();
+        if (calcOpen) runCalc();
+      }
+      if (cb) cb(changed);
+    }
+    fetch("data/odds.json", { cache: "no-store" }).then(function (r) {
+      return r && r.ok ? r.json() : null;
+    }).then(function (data) {
+      if (data && data.updated && data.updated !== marketOddsStamp) {
+        marketOddsStamp = data.updated;
+        r32OddsData = normalizeOddsJson(data);
+        changed = true;
+      }
+      done();
+    }).catch(done);
+    fetch("data/winner_odds.json", { cache: "no-store" }).then(function (r) {
+      return r && r.ok ? r.json() : null;
+    }).then(function (wo) {
+      if (wo && wo.updated && wo.updated !== winnerOddsStamp && wo.teams && window.BracketEngine) {
+        winnerOddsStamp = wo.updated;
+        bracketStrength = window.BracketEngine.strengthsFromOutrights(wo.teams);
+        changed = true;
+      }
+      done();
+    }).catch(done);
+  }
+
+  function anyGroupMatchLive() {
+    for (var li = 0; li < WC.groupLetters.length; li++) {
+      var L = WC.groupLetters[li];
+      var fxs = groupFixtures(L);
+      for (var fi = 0; fi < fxs.length; fi++) {
+        if (isMatchLive(fxs[fi].key)) return true;
+      }
+    }
+    return false;
+  }
+
+  function anyLiveOddsPoll() {
+    if (anyGroupMatchLive()) return true;
+    for (var ki = 0; ki < WC.knockout.length; ki++) {
+      if (isMatchLive("k:" + WC.knockout[ki].m)) return true;
+    }
+    return false;
+  }
+
+  // Matchnummer per motor-varv (ri=1 → R32, ri=2 → R16, … ri=5 → final).
+  function buildKoPlayOrders(r32Order) {
+    var byNo = {};
+    WC.knockout.forEach(function (m) { byNo[m.m] = m; });
+    function findParent(m1, m2) {
+      for (var no in byNo) {
+        var m = byNo[no];
+        if (m.round === "R32") continue;
+        var hm = m.home.t === "wm" ? m.home.m : null;
+        var am = m.away.t === "wm" ? m.away.m : null;
+        if (hm && am && ((hm === m1 && am === m2) || (hm === m2 && am === m1))) return parseInt(no, 10);
+      }
+      return null;
+    }
+    var orders = [null, r32Order.slice()];
+    var prev = r32Order.slice();
+    for (var r = 0; r < 3; r++) {
+      var next = [];
+      for (var i = 0; i < prev.length; i += 2) {
+        next.push(findParent(prev[i], prev[i + 1]));
+      }
+      orders.push(next);
+      prev = next;
+    }
+    orders.push([104]);
+    return orders;
+  }
+
+  function buildKoOddsMap(knockout) {
+    var koOdds = {};
+    (knockout || []).forEach(function (ko) {
+      var r = getRes(ko.key);
+      var entry = {
+        home: ko.home, away: ko.away, rp: ko.rp,
+        oddsContext: ko.oddsContext || "prematch"
+      };
+      if (isFinishedMatch(ko.key, r) && r && r.h != null && r.a != null) {
+        entry.finished = true;
+        if (r.h !== r.a) entry.winner = r.h > r.a ? ko.home : ko.away;
+        else if (r.pw) entry.winner = r.pw === "h" ? ko.home : ko.away;
+      }
+      var live = liveMatchState(ko.key);
+      if (live) entry.live = live;
+      koOdds[ko.key] = entry;
+    });
+    return koOdds;
   }
 
   // Bygg motorns indata från live-resultat + odds. Returnerar { input, key }.
@@ -2073,13 +2237,23 @@
     // odds-matcher vars fixtur ännu inte spelats = redigerbara, simulerade
     var oddsPairs = {};
     var oddsGames = [];
+    var fxKeyByPair = {};
+    WC.groupLetters.forEach(function (L) {
+      fxKeyByPair[L] = {};
+      groupFixtures(L).forEach(function (fx) {
+        fxKeyByPair[L][[fx.h, fx.a].slice().sort(function (a, b) { return a - b; }).join(",")] = fx.key;
+      });
+    });
     odds.matches.forEach(function (m) {
       oddsPairs[m.g] = oddsPairs[m.g] || {}; oddsPairs[m.g][m.pair] = true;
       if (playedPairs[m.g] && playedPairs[m.g][m.pair]) return; // redan spelad → ligger i baslinjen
-      oddsGames.push({
+      var fxKey = fxKeyByPair[m.g] && fxKeyByPair[m.g][m.pair];
+      var live = fxKey ? liveMatchState(fxKey) : null;
+      var g = {
         id: m.id, g: m.g, i: m.i, j: m.j, home: m.home, away: m.away,
         scores: m.scores, rp: m.rp, fixed: r32Fixed[m.id] || null
-      });
+      };
+      oddsGames.push(attachLiveOdds(g, m, live));
     });
 
     // ospelade matcher utan odds = neutral modell (ovanligt så här sent)
@@ -2105,7 +2279,9 @@
     var key = JSON.stringify({
       t: r32TeamKey, n: R32_N,
       pl: played.map(function (p) { return p.g + p.i + p.j + ":" + p.gi + "-" + p.gj; }).sort(),
-      og: oddsGames.map(function (g) { return g.id; }).sort(),
+      og: oddsGames.map(function (g) {
+        return g.id + (g.live ? ("@" + g.live.h + "-" + g.live.a + (g.live.mode || "")) : "");
+      }).sort(),
       fx: Object.keys(r32Fixed).sort().map(function (k) { return k + "=" + r32Fixed[k].join(","); }),
       ne: neutral.map(function (g) { return g.g + g.i + g.j; }).sort()
     });
@@ -2266,7 +2442,7 @@
     if (r32OddsData === "error") { setR32Status("kunde inte hämta data"); return; }
     if (!r32Result) setR32Status("laddar …");
     r32EnsureOdds(function () {
-      if (!r32Open) return;
+      if (!legacyR32Open) return;
       runR32Sim();
     });
   }
@@ -2570,7 +2746,7 @@
   }
 
   function r32HandleClick(t) {
-    if (!r32Open) return false;
+    if (!legacyR32Open) return false;
     var sortBtn = t.closest && t.closest("[data-r32-sort]");
     if (sortBtn) {
       setUi("r32Sort", sortBtn.getAttribute("data-r32-sort"));
@@ -2725,7 +2901,7 @@
     if (!window.BracketEngine) { setCalcStatus("kunde inte räkna ut just nu"); return; }
     bracketEnsureExtras(function () {
       r32EnsureOdds(function () {
-        if (!r32Open) return;
+        if (!calcOpen) return;
         runCalc();
       });
     });
@@ -2734,7 +2910,7 @@
   function calcEnsureWorker() {
     if (calcWorker) return;
     try {
-      calcWorker = new Worker("assets/bracketworker.js?v=3");
+      calcWorker = new Worker("assets/bracketworker.js?v=5");
       calcWorker.onmessage = function (e) {
         var d = e.data || {};
         if (d.seq !== calcSeq) return;
@@ -3064,7 +3240,7 @@
   }
 
   function calcHandleClick(t) {
-    if (!r32Open) return false;
+    if (!calcOpen) return false;
     var tab = t.closest && t.closest("[data-calc-tab]");
     if (tab) { calcSetTeam(tab.getAttribute("data-calc-tab")); return true; }
     if (t.closest && t.closest("[data-calc-reset]")) {
@@ -3416,6 +3592,7 @@
       var map = res[0], wo = res[1];
       if (!map || !map.order || !wo || !wo.teams || !window.BracketEngine) { bracketMapData = "error"; loadBracketProbs(); return; }
       bracketMapData = map;
+      winnerOddsStamp = wo.updated || null;
       bracketStrength = window.BracketEngine.strengthsFromOutrights(wo.teams);
       cb();
     }).catch(function () { bracketMapData = "error"; loadBracketProbs(); });
@@ -3473,12 +3650,9 @@
       var fxKey = fxKeyByPair[m.g] && fxKeyByPair[m.g][m.pair];
       var live = fxKey ? liveMatchState(fxKey) : null;
       var g = { id: m.id, g: m.g, i: m.i, j: m.j, scores: m.scores, fixed: r32Fixed[m.id] || null };
+      g = attachLiveOdds(g, m, live);
       if (live) {
-        // förväntade mål per lag ur exakt-resultatoddsen → skala mot kvarvarande tid
-        var muH = 0, muA = 0;
-        m.scores.forEach(function (s) { muH += s.h * s.p; muA += s.a * s.p; });
-        g.live = { h: live.h, a: live.a, lamH: muH * live.frac, lamA: muA * live.frac };
-        liveSig.push(m.id + "@" + live.h + "-" + live.a + ":" + live.frac.toFixed(2));
+        liveSig.push(m.id + "@" + live.h + "-" + live.a + ":" + (g.live.mode || "prematch"));
       }
       oddsGames.push(g);
     });
@@ -3508,6 +3682,8 @@
       annexC: bracketMapData.annexC, annexSlots: bracketMapData.annexCSlots,
       order: bracketMapData.order, labels: bracketMapData.labels,
       strength: bracketStrength, K: 0.6, ratingMatches: ratingMatches,
+      koPlayOrders: buildKoPlayOrders(bracketMapData.r32MatchOrder || []),
+      koOdds: buildKoOddsMap(odds.knockout),
       played: played, oddsGames: oddsGames, neutral: neutral
     };
     var key = JSON.stringify({
@@ -3515,7 +3691,12 @@
       pl: played.map(function (p) { return p.g + p.i + p.j + ":" + p.gi + "-" + p.gj; }).sort(),
       og: oddsGames.map(function (g) { return g.id + (g.fixed ? ("=" + g.fixed.join(",")) : ""); }).sort(),
       lv: liveSig.sort(),
-      ne: neutral.map(function (g) { return g.g + g.i + g.j; }).sort()
+      ko: Object.keys(input.koOdds || {}).sort().map(function (k) {
+        var e = input.koOdds[k];
+        return k + (e.finished ? ("=" + e.winner) : "") + (e.live ? ("@" + e.live.h + "-" + e.live.a) : "");
+      }),
+      ne: neutral.map(function (g) { return g.g + g.i + g.j; }).sort(),
+      od: marketOddsStamp || ""
     });
     return { input: input, key: key };
   }
@@ -3523,7 +3704,7 @@
   function bracketEnsureWorker() {
     if (bracketWorker) return;
     try {
-      bracketWorker = new Worker("assets/bracketworker.js?v=3");
+      bracketWorker = new Worker("assets/bracketworker.js?v=5");
       bracketWorker.onmessage = function (e) {
         var d = e.data || {};
         if (d.seq !== bracketSeq) return;       // ett nyare anrop har startats
@@ -5010,6 +5191,7 @@
   function onInput(e) {
     if (e.target.id === "teamSearch") renderSearchResults(e.target.value);
     else if (e.target.id === "calc-team") calcSetTeam(e.target.value);
+    else if (e.target.id === "r32-team") r32SetTeam(e.target.value);
     else if (e.target.classList && e.target.classList.contains("calc-score")) calcScoreInput(e.target);
   }
 
@@ -5026,6 +5208,7 @@
       return;
     }
 
+    if (r32HandleClick(t)) return;
     if (calcHandleClick(t)) return;
     var sr = t.closest && t.closest(".sr-item");
     if (sr) {
@@ -5365,6 +5548,11 @@
 
     setupSpoilerToggle();
 
+    if (standaloneView()) {
+      document.documentElement.classList.add("standalone-page");
+      setUi("view", standaloneView());
+    }
+
     if (ui("view", "groups") === "calendar") calScrollPending = true;
     render();
     updateSyncBadge();
@@ -5372,6 +5560,9 @@
     bracketPosByMatch = buildBracketPosMap();
     updateBracketProbs();                    // lokal motor på din data (med statisk fallback)
     setInterval(updateBracketProbs, 300000); // periodisk omräkning under turneringen
+    setInterval(function () {
+      if (anyLiveOddsPoll()) reloadMarketOdds();
+    }, 45000); // plocka upp nya scrapes under live (math tills dess)
   }
 
   window.VMApp = {

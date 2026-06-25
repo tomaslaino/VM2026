@@ -1,21 +1,13 @@
 #!/usr/bin/env node
 /**
- * HTTP-agent på hemmadatorn – tar emot sync-förfrågningar från GitHub Actions
- * (via Tailscale) eller manuellt:
- *
- *   npm run odds:agent
- *   curl -X POST http://127.0.0.1:9847/sync -H "Authorization: Bearer TOKEN"
- *
- * Miljövariabler:
- *   ODDS_AGENT_TOKEN   – obligatorisk (slumpa ett långt värde)
- *   ODDS_AGENT_PORT    – default 9847
- *   ODDS_AGENT_HOST    – default 127.0.0.1 (sätt 0.0.0.0 bakom Tailscale)
+ * HTTP-agent – POST /sync med valfri body { keys, background }.
  */
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadOpenGroupFixtures } from "./fixtures.mjs";
+import { loadAllOpenFixtures, loadFixturesByKeys } from "./fixtures.mjs";
+import { mergeOddsFile, mergeScrapeResult } from "./merge.mjs";
 import { scrapeAll } from "./scrape.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -29,8 +21,7 @@ let busy = null;
 
 function auth(req) {
   if (!TOKEN) return false;
-  const h = req.headers.authorization || "";
-  return h === `Bearer ${TOKEN}`;
+  return (req.headers.authorization || "") === `Bearer ${TOKEN}`;
 }
 
 function json(res, code, body) {
@@ -38,29 +29,82 @@ function json(res, code, body) {
   res.end(JSON.stringify(body, null, 2));
 }
 
-async function runSync() {
-  const fixtures = loadOpenGroupFixtures();
-  if (!fixtures.length) {
-    return { ok: true, message: "no_open_fixtures", matches: [], failures: [], data: { matches: [] } };
+function readBody(req) {
+  return new Promise((resolve) => {
+    let raw = "";
+    req.on("data", (c) => {
+      raw += c;
+    });
+    req.on("end", () => {
+      if (!raw.trim()) return resolve({});
+      try {
+        resolve(JSON.parse(raw));
+      } catch {
+        resolve({});
+      }
+    });
+    req.on("error", () => resolve({}));
+  });
+}
+
+async function scrapeBatch(fixtures, label) {
+  if (!fixtures.length) return { scraped: null, failures: [] };
+  const scraped = await scrapeAll(fixtures, {
+    onProgress({ i, total, match }) {
+      console.log(`  [${label} ${i}/${total}] ${match.home} – ${match.away}`);
+    },
+  });
+  const payload = mergeScrapeResult(scraped, OUT);
+  fs.writeFileSync(OUT, JSON.stringify(payload, null, 2) + "\n");
+  return { scraped, payload };
+}
+
+/**
+ * @param {{ keys?: string[], background?: boolean }} body
+ */
+async function runSync(body = {}) {
+  const allOpen = loadAllOpenFixtures();
+  if (!allOpen.length) {
+    const data = mergeOddsFile([], [], OUT);
+    return { ok: true, message: "no_open_fixtures", data, failures: [] };
   }
-  const { matches, failures } = await scrapeAll(fixtures);
-  const payload = {
-    updated: new Date().toISOString(),
-    source: "oddschecker.com",
-    market: "correct-score",
-    agent: "scripts/odds-agent",
-    matches,
-  };
-  if (matches.length) {
-    fs.writeFileSync(OUT, JSON.stringify(payload, null, 2) + "\n");
+
+  const wantKeys = Array.isArray(body.keys) ? body.keys.filter(Boolean) : [];
+  const doBackground = body.background !== false;
+
+  let priority = wantKeys.length ? loadFixturesByKeys(wantKeys) : [];
+  let background = doBackground
+    ? allOpen.filter((f) => !priority.some((p) => p.key === f.key))
+    : [];
+
+  if (!priority.length && !background.length) {
+    priority = allOpen;
+    background = [];
   }
+
+  const allFailures = [];
+  if (priority.length) {
+    const { scraped } = await scrapeBatch(priority, "prio");
+    if (scraped) allFailures.push(...scraped.failures);
+  }
+  if (background.length) {
+    const { scraped } = await scrapeBatch(background, "bg");
+    if (scraped) allFailures.push(...scraped.failures);
+  }
+
+  const payload = mergeOddsFile([], [], OUT);
+  const scrapedCount = (payload.matches?.length || 0) + (payload.knockout?.length || 0);
+
   return {
-    ok: matches.length > 0,
-    written: matches.length > 0,
+    ok: scrapedCount > 0 || allFailures.length === 0,
+    written: true,
     path: OUT,
-    matchCount: matches.length,
-    failureCount: failures.length,
-    failures,
+    matchCount: payload.matches?.length || 0,
+    knockoutCount: payload.knockout?.length || 0,
+    failureCount: allFailures.length,
+    failures: allFailures,
+    priority: priority.map((f) => f.key),
+    background: background.map((f) => f.key),
     data: payload,
   };
 }
@@ -75,10 +119,11 @@ const server = http.createServer(async (req, res) => {
     if (!auth(req)) return json(res, 401, { ok: false, error: "unauthorized" });
     if (busy) return json(res, 409, { ok: false, error: "sync_in_progress" });
 
-    busy = runSync()
-      .then((result) => {
+    const body = await readBody(req);
+    busy = runSync(body)
+      .then((r) => {
         busy = null;
-        return result;
+        return r;
       })
       .catch((e) => {
         busy = null;
@@ -97,12 +142,8 @@ const server = http.createServer(async (req, res) => {
   json(res, 404, { ok: false, error: "not_found" });
 });
 
-if (!TOKEN) {
-  console.warn("VARNING: sätt ODDS_AGENT_TOKEN innan du exponerar agenten.");
-}
+if (!TOKEN) console.warn("VARNING: sätt ODDS_AGENT_TOKEN innan du exponerar agenten.");
 
 server.listen(PORT, HOST, () => {
   console.log(`Odds-agent lyssnar på http://${HOST}:${PORT}`);
-  console.log("  GET  /health");
-  console.log("  POST /sync  (Authorization: Bearer …)");
 });

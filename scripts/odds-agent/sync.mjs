@@ -12,6 +12,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadOpenGroupFixtures } from "./fixtures.mjs";
+import { mergeOddsFile } from "./merge.mjs";
 import { scrapeAll } from "./scrape.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -47,7 +48,7 @@ async function main() {
     },
   });
 
-  const payload = {
+  const scrapePayload = {
     updated: new Date().toISOString(),
     source: "oddschecker.com",
     market: "correct-score",
@@ -62,7 +63,7 @@ async function main() {
   }
 
   if (dryRun) {
-    console.log(JSON.stringify(payload, null, 2));
+    console.log(JSON.stringify(scrapePayload, null, 2));
     process.exit(failures.length && !matches.length ? 1 : 0);
   }
 
@@ -71,7 +72,12 @@ async function main() {
     process.exit(1);
   }
 
-  fs.writeFileSync(OUT, JSON.stringify({ ...payload, failures: undefined }, null, 2) + "\n");
+  const merged = mergeOddsFile(
+    matches.filter((m) => m.group || String(m.key || "").startsWith("g:")),
+    matches.filter((m) => String(m.key || "").startsWith("k:")),
+    OUT
+  );
+  fs.writeFileSync(OUT, JSON.stringify(merged, null, 2) + "\n");
   console.log(`Skrev ${OUT}`);
   process.exit(failures.length ? 2 : 0);
 }

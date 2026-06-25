@@ -190,6 +190,38 @@
     (input.oddsGames || []).forEach(function (m) {
       var h = new Int16Array(n), a = new Int16Array(n);
       var scores = m.scores;
+      if (m.live) {
+        if (m.live.mode === "inplay") {
+          var ch = m.live.h, ca = m.live.a;
+          var allow = scores.map(function (s) { return s.h >= ch && s.a >= ca; });
+          var tot = 0, k;
+          for (k = 0; k < scores.length; k++) if (allow[k]) tot += scores[k].p;
+          if (tot <= 0) {
+            allow = scores.map(function () { return true; });
+            tot = 0;
+            for (k = 0; k < scores.length; k++) tot += scores[k].p;
+          }
+          var cum = [], acc = 0;
+          for (k = 0; k < scores.length; k++) {
+            if (!allow[k]) { cum.push(-1); continue; }
+            acc += scores[k].p / tot; cum.push(acc);
+          }
+          for (var lr = 0; lr < n; lr++) {
+            var u = rng(), pick = scores.length - 1;
+            for (var c = 0; c < cum.length; c++) { if (cum[c] >= 0 && u <= cum[c]) { pick = c; break; } }
+            h[lr] = scores[pick].h; a[lr] = scores[pick].a;
+          }
+        } else {
+          for (var lr2 = 0; lr2 < n; lr2++) {
+            h[lr2] = m.live.h + poisson(rng, m.live.lamH);
+            a[lr2] = m.live.a + poisson(rng, m.live.lamA);
+          }
+        }
+        samples[m.id] = { h: h, a: a, i: m.i, j: m.j };
+        byGroup[m.g].push({ kind: "sample", sid: m.id, i: m.i, j: m.j });
+        oddsMeta.push(m);
+        return;
+      }
       // bygg (ev. villkorad) sannolikhetsfördelning
       var allow = scores.map(function () { return true; });
       if (m.fixed) {

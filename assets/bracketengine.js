@@ -192,18 +192,59 @@
     // attack/försvar-modell + förlängning och straffar vid oavgjort. Annars
     // faller den tillbaka på den enkla logistiska styrkemodellen (K).
     var R = input.ratingMatches && input.ratingMatches.length ? fitRatings(input.ratingMatches, strength, input.koStrScale, input.koPaceScale) : null;
-    function matchWinner(x, y) {
-      if (x == null) return [y, x];
-      if (y == null) return [x, y];
+
+    function matchWinnerModel(x, y) {
       if (R) {
         var ax = R.a[x] || 0, dx = R.d[x] || 0, ay = R.a[y] || 0, dy = R.d[y] || 0;
         var lamX = R.mu0 * Math.exp(ax + dy), lamY = R.mu0 * Math.exp(ay + dx);
         var gx = poisson(rng, lamX), gy = poisson(rng, lamY);
-        if (gx === gy) { gx += poisson(rng, lamX / 3); gy += poisson(rng, lamY / 3); } // förlängning
-        if (gx === gy) { var p = 0.5 + 0.10 * Math.tanh((ax - dx) - (ay - dy)); return rng() < p ? [x, y] : [y, x]; } // straffar
+        if (gx === gy) { gx += poisson(rng, lamX / 3); gy += poisson(rng, lamY / 3); }
+        if (gx === gy) { var p = 0.5 + 0.10 * Math.tanh((ax - dx) - (ay - dy)); return rng() < p ? [x, y] : [y, x]; }
         return gx > gy ? [x, y] : [y, x];
       }
       return rng() < winA(x, y) ? [x, y] : [y, x];
+    }
+
+    function tryKoMarket(x, y, engineRi, pairIdx) {
+      var orders = input.koPlayOrders, koOdds = input.koOdds;
+      if (!orders || !koOdds || engineRi == null || pairIdx == null) return null;
+      var row = orders[engineRi];
+      if (!row) return null;
+      var mno = row[pairIdx];
+      if (!mno) return null;
+      var ko = koOdds["k:" + mno];
+      if (!ko || !ko.rp) return null;
+      if (x !== ko.home && x !== ko.away) return null;
+      if (y !== ko.home && y !== ko.away) return null;
+      if (ko.finished && ko.winner) return ko.winner === x ? [x, y] : [y, x];
+      var xHome = ko.home === x;
+      var pX = xHome ? ko.rp["1"] : ko.rp["2"];
+      var pY = xHome ? ko.rp["2"] : ko.rp["1"];
+      var pD = ko.rp["X"] || 0;
+      var tot = pX + pY + pD;
+      if (tot <= 0) return null;
+      pX /= tot; pY /= tot; pD /= tot;
+      if (ko.live && ko.oddsContext === "prematch") {
+        var lead = ko.live.h - ko.live.a;
+        if (xHome && lead > 0) pX = Math.min(0.98, pX + 0.08 * lead);
+        if (xHome && lead < 0) pX = Math.max(0.02, pX + 0.08 * lead);
+        if (!xHome && lead < 0) pX = Math.min(0.98, pX + 0.08 * (-lead));
+        if (!xHome && lead > 0) pX = Math.max(0.02, pX - 0.08 * lead);
+        tot = pX + pY + pD;
+        pX /= tot; pY /= tot; pD /= tot;
+      }
+      var u = rng();
+      if (u < pX) return [x, y];
+      if (u < pX + pD) return matchWinnerModel(x, y);
+      return [y, x];
+    }
+
+    function matchWinner(x, y, engineRi, pairIdx) {
+      if (x == null) return [y, x];
+      if (y == null) return [x, y];
+      var mk = tryKoMarket(x, y, engineRi, pairIdx);
+      if (mk) return mk;
+      return matchWinnerModel(x, y);
     }
 
     // ---- förbered matcher per grupp -------------------------------------
@@ -215,12 +256,34 @@
     var samples = {};
     (input.oddsGames || []).forEach(function (m) {
       var h = new Int16Array(n), a = new Int16Array(n), scores = m.scores;
-      // Pågående match: lås aktuell ställning och sampla bara resterande mål
-      // (Poisson på kvarvarande tid). Slutresultatet = nuvarande + resterande.
+      // Pågående match: lås ställning. Pre-match-odds → Poisson på resterande tid;
+      // inplay-odds → villkorad sampling ur marknadens score-linjer.
       if (m.live) {
-        for (var lr = 0; lr < n; lr++) {
-          h[lr] = m.live.h + poisson(rng, m.live.lamH);
-          a[lr] = m.live.a + poisson(rng, m.live.lamA);
+        if (m.live.mode === "inplay") {
+          var ch = m.live.h, ca = m.live.a;
+          var allow = scores.map(function (s) { return s.h >= ch && s.a >= ca; });
+          var tot = 0, k;
+          for (k = 0; k < scores.length; k++) if (allow[k]) tot += scores[k].p;
+          if (tot <= 0) {
+            allow = scores.map(function () { return true; });
+            tot = 0;
+            for (k = 0; k < scores.length; k++) tot += scores[k].p;
+          }
+          var cum = [], acc = 0;
+          for (k = 0; k < scores.length; k++) {
+            if (!allow[k]) { cum.push(-1); continue; }
+            acc += scores[k].p / tot; cum.push(acc);
+          }
+          for (var lr = 0; lr < n; lr++) {
+            var u = rng(), pick = scores.length - 1;
+            for (var c = 0; c < cum.length; c++) { if (cum[c] >= 0 && u <= cum[c]) { pick = c; break; } }
+            h[lr] = scores[pick].h; a[lr] = scores[pick].a;
+          }
+        } else {
+          for (var lr2 = 0; lr2 < n; lr2++) {
+            h[lr2] = m.live.h + poisson(rng, m.live.lamH);
+            a[lr2] = m.live.a + poisson(rng, m.live.lamA);
+          }
         }
         samples[m.id] = { h: h, a: a };
         byGroup[m.g].push({ kind: "sample", sid: m.id, i: m.i, j: m.j });
@@ -337,7 +400,7 @@
       for (var ri = 1; ri < ROUND_ORDER.length; ri++) {
         var rnd = ROUND_ORDER[ri], nxt = new Array(cur.length / 2), losers = [];
         for (var m = 0; m < cur.length; m += 2) {
-          var wl = matchWinner(cur[m], cur[m + 1]), w = wl[0], l = wl[1];
+          var wl = matchWinner(cur[m], cur[m + 1], ri, m / 2), w = wl[0], l = wl[1];
           nxt[m / 2] = w; losers.push(l);
           bump(posCount[rnd][m / 2], w); if (w != null) reached[w][rnd]++;
         }
@@ -347,7 +410,7 @@
       }
       // brons (förlorarna i de två semifinalerna) + mästare
       if (sfLosers) { bump(bronzeCount[0], sfLosers[0]); bump(bronzeCount[1], sfLosers[1]); }
-      var ch = matchWinner(cur[0], cur[1])[0];
+      var ch = matchWinner(cur[0], cur[1], 5, 0)[0];
       if (ch != null) champ[ch]++;
     }
 

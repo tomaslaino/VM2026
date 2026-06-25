@@ -1,16 +1,24 @@
 name: Synka correct-score-odds
 
-# Hämtar correct-score från oddschecker via hemmagenten (din dator + Chrome).
-# Kräver repo-secrets:
-#   ODDS_AGENT_URL   – t.ex. http://100.x.x.x:9847 (Tailscale)
-#   ODDS_AGENT_TOKEN – samma token som ODDS_AGENT_TOKEN på agenten
+# Hämtar correct-score (oddschecker-agent) + outright (The Odds API).
+# Triggas vid mål (~90 s debounce) eller när alla matcher i samma
+# avsparkstid slutat (~5 min debounce + alla i slot FT).
 #
-# Triggas ~15 min efter nya resultat (debounce så bookmakers hinner uppdatera).
+# Secrets: ODDS_AGENT_URL, ODDS_AGENT_TOKEN, ODDS_API_KEY
 
 on:
   repository_dispatch:
     types: [results-updated]
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      keys:
+        description: "JSON-lista fixtur-nycklar, t.ex. [\"g:B:4\"]"
+        required: false
+        default: ""
+      background:
+        description: "1 = hämta alla öppna matcher efter prioritet"
+        required: false
+        default: "0"
 
 concurrency:
   group: sync-odds
@@ -23,32 +31,80 @@ jobs:
   odds:
     runs-on: ubuntu-latest
     steps:
-      - name: Vänta efter resultat (debounce)
-        if: github.event_name != 'workflow_dispatch'
-        run: sleep 900
-
       - name: Checka ut repo
         uses: actions/checkout@v4
 
-      - name: Hämta odds från hemmagent
+      - name: Planera sync
+        id: plan
+        env:
+          CLIENT_PAYLOAD: ${{ toJson(github.event.client_payload) }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            KEYS='${{ github.event.inputs.keys }}'
+            BG='${{ github.event.inputs.background }}'
+            if [ -z "$KEYS" ] || [ "$KEYS" = "[]" ]; then
+              echo "skip=0" >> "$GITHUB_OUTPUT"
+              echo "debounce_sec=0" >> "$GITHUB_OUTPUT"
+              echo "keys=[]" >> "$GITHUB_OUTPUT"
+              echo "background=${BG:-1}" >> "$GITHUB_OUTPUT"
+              echo "outright=1" >> "$GITHUB_OUTPUT"
+            else
+              echo "skip=0" >> "$GITHUB_OUTPUT"
+              echo "debounce_sec=0" >> "$GITHUB_OUTPUT"
+              echo "keys=$KEYS" >> "$GITHUB_OUTPUT"
+              echo "background=${BG:-0}" >> "$GITHUB_OUTPUT"
+              echo "outright=1" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            node scripts/planOddsSync.mjs
+          fi
+
+      - name: Hoppa över (inget att synka)
+        if: steps.plan.outputs.skip == '1'
+        run: echo "Hoppar över – ${{ steps.plan.outputs.reason }}"
+
+      - name: Debounce
+        if: steps.plan.outputs.skip != '1' && steps.plan.outputs.debounce_sec != '0'
+        run: sleep "${{ steps.plan.outputs.debounce_sec }}"
+
+      - name: Sätt upp Python
+        if: steps.plan.outputs.skip != '1' && steps.plan.outputs.outright == '1'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Hämta outright (prioritet)
+        if: steps.plan.outputs.skip != '1' && steps.plan.outputs.outright == '1'
+        continue-on-error: true
+        run: |
+          pip install requests
+          ODDS_API_KEY=${{ secrets.ODDS_API_KEY }} VM_WINNER_ODDS=data/winner_odds.json \
+            python scripts/prob/vm_vinnarodds.py
+          cp data/winner_odds.json scripts/prob/vinnarodds.json
+
+      - name: Synka odds (agent)
+        if: steps.plan.outputs.skip != '1'
         id: fetch
         env:
           ODDS_AGENT_URL: ${{ secrets.ODDS_AGENT_URL }}
           ODDS_AGENT_TOKEN: ${{ secrets.ODDS_AGENT_TOKEN }}
         run: |
           if [ -z "$ODDS_AGENT_URL" ] || [ -z "$ODDS_AGENT_TOKEN" ]; then
-            echo "ODDS_AGENT_URL/TOKEN saknas – hoppar över."
-            echo "skip=1" >> "$GITHUB_OUTPUT"
+            echo "agent_skip=1" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          echo "skip=0" >> "$GITHUB_OUTPUT"
+          echo "agent_skip=0" >> "$GITHUB_OUTPUT"
+          KEYS='${{ steps.plan.outputs.keys }}'
+          BG='${{ steps.plan.outputs.background }}'
+          BODY=$(node -e "console.log(JSON.stringify({keys:JSON.parse(process.argv[1]||'[]'),background:process.argv[2]==='1'}))" "$KEYS" "$BG")
           code=$(curl -sS -w "%{http_code}" -o /tmp/odds-resp.json \
             -X POST "$ODDS_AGENT_URL/sync" \
             -H "Authorization: Bearer $ODDS_AGENT_TOKEN" \
             -H "Content-Type: application/json" \
+            -d "$BODY" \
             --max-time 1800)
           if [ "$code" != "200" ]; then
-            echo "Agent svarade HTTP $code"
+            echo "Agent HTTP $code"
             cat /tmp/odds-resp.json || true
             exit 1
           fi
@@ -56,22 +112,22 @@ jobs:
             const fs=require('fs');
             const r=JSON.parse(fs.readFileSync('/tmp/odds-resp.json','utf8'));
             const d=r.data||r;
-            if(!d.matches||!d.matches.length) process.exit(2);
+            if(!d.matches) process.exit(2);
             fs.writeFileSync('data/odds.json', JSON.stringify({
-              updated:d.updated, source:d.source, market:d.market, agent:d.agent, matches:d.matches
+              updated:d.updated, source:d.source, market:d.market, agent:d.agent,
+              matches:d.matches || [], knockout:d.knockout || []
             }, null, 2)+'\n');
-            console.log('matches', d.matches.length);
           "
 
       - name: Committa odds
-        if: steps.fetch.outputs.skip != '1'
+        if: steps.plan.outputs.skip != '1' && steps.fetch.outputs.agent_skip != '1'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/odds.json
+          git add data/odds.json data/winner_odds.json scripts/prob/vinnarodds.json
           if git diff --staged --quiet; then
             echo "Inga odds-ändringar."
             exit 0
           fi
-          git commit -m "Auto-synk correct-score-odds $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git commit -m "Auto-synk odds (${{ steps.plan.outputs.phase || 'manual' }}) $(date -u +'%Y-%m-%d %H:%M UTC')"
           git pull --rebase --autostash origin main && git push

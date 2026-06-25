@@ -1,8 +1,9 @@
 import { setTimeout as sleep } from "node:timers/promises";
 import { CdpBrowser } from "./cdp.mjs";
-import { ACTIVATE_CORRECT_SCORE_JS, DISMISS_JS, EXTRACT_JS, normalizeExtract, remapScoresToFixture } from "./parse.mjs";
-import { buildUrls } from "./urls.mjs";
+import { ACTIVATE_CORRECT_SCORE_JS, DISMISS_JS, EXTRACT_H2H_JS, EXTRACT_JS, normalizeExtract, remapScoresToFixture } from "./parse.mjs";
+import { buildH2hUrls, buildUrls } from "./urls.mjs";
 import { validateMatch } from "./validate.mjs";
+import { oddsContextForKey } from "./context.mjs";
 
 const PAGE_WAIT_MS = Number(process.env.ODDS_PAGE_WAIT_MS || 6000);
 const BETWEEN_MS = Number(process.env.ODDS_BETWEEN_MS || 4000);
@@ -71,9 +72,46 @@ export async function scrapeMatch(browser, fx) {
 }
 
 /**
+ * @param {CdpBrowser} browser
+ * @param {object} fx
+ */
+export async function scrapeMatchH2h(browser, fx) {
+  const urls = buildH2hUrls(fx);
+  let lastErr = "no_url";
+
+  for (const url of urls) {
+    try {
+      await browser.goto(url, PAGE_WAIT_MS);
+      await browser.eval(DISMISS_JS);
+      await sleep(800);
+      const raw = await browser.waitFor(EXTRACT_H2H_JS, 25000);
+      const res = normalizeH2hExtract(raw);
+      if (res.error) {
+        lastErr = res.error;
+        continue;
+      }
+      if (!res.h2h || res.h2h.home <= 1 || res.h2h.away <= 1) {
+        lastErr = "invalid_h2h";
+        continue;
+      }
+      return { ok: true, url, pageTitle: res.pageTitle, h2h: res.h2h };
+    } catch (e) {
+      lastErr = e.message || String(e);
+    }
+    await sleep(1500);
+  }
+  return { ok: false, error: lastErr, urls };
+}
+
+function normalizeH2hExtract(raw) {
+  if (!raw || typeof raw !== "object") return { error: "bad_payload" };
+  if (raw.error) return raw;
+  return raw;
+}
+
+/**
  * @param {object[]} fixtures
  * @param {object} [opts]
- * @param {(ev:object)=>void} [opts.onProgress]
  */
 export async function scrapeAll(fixtures, opts = {}) {
   const browser = new CdpBrowser();
@@ -89,9 +127,12 @@ export async function scrapeAll(fixtures, opts = {}) {
       const fx = fixtures[i];
       opts.onProgress?.({ phase: "scrape", i: i + 1, total: fixtures.length, match: fx });
 
-      const res = await scrapeMatch(browser, fx);
+      const res =
+        fx.phase === "knockout"
+          ? await scrapeMatchH2h(browser, fx)
+          : await scrapeMatch(browser, fx);
       if (res.ok) {
-        matches.push(formatMatch(fx, res));
+        matches.push(fx.phase === "knockout" ? formatKnockout(fx, res) : formatMatch(fx, res));
       } else {
         failures.push({
           key: fx.key,
@@ -108,20 +149,47 @@ export async function scrapeAll(fixtures, opts = {}) {
     await browser.close();
   }
 
-  return { matches, failures };
+  return { matches, failures, group: matches.filter((m) => m.group), knockout: matches.filter((m) => m.key && m.key.startsWith("k:")) };
+}
+
+function formatKnockout(fx, res) {
+  const ctx = oddsContextForKey(fx.key);
+  const h2h = res.h2h;
+  return {
+    key: fx.key,
+    phase: "knockout",
+    matchNo: fx.matchNo,
+    match: `${fx.home} - ${fx.away}`,
+    home: fx.home,
+    away: fx.away,
+    date: fx.date,
+    utcDate: fx.utcDate,
+    source_url: res.url,
+    h2h,
+    oddsContext: ctx.oddsContext,
+    matchMinute: ctx.matchMinute,
+    scrapedAt: new Date().toISOString(),
+  };
 }
 
 function formatMatch(fx, res) {
+  const ctx = oddsContextForKey(fx.key);
   return {
+    key: fx.key,
     match: `${fx.home} - ${fx.away}`,
     group: fx.group,
     home: fx.home,
     away: fx.away,
     home_idx: fx.home_idx,
     away_idx: fx.away_idx,
+    date: fx.date,
+    utcDate: fx.utcDate,
     raw_home: titleTeam(res.pageTitle, 0) || fx.home,
     raw_away: titleTeam(res.pageTitle, 1) || fx.away,
     source_url: res.url,
+    oddsContext: ctx.oddsContext,
+    matchMinute: ctx.matchMinute,
+    scrapedAt: new Date().toISOString(),
     scores: res.scores,
   };
 }

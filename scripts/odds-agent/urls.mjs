@@ -32,6 +32,15 @@ function slugVariants(team) {
  * @param {{home:string, away:string}} fx
  */
 export function buildUrls(fx) {
+  return buildUrlsForMarkets(fx, MARKETS);
+}
+
+/** Endast /winner (1X2) – slutspel. */
+export function buildH2hUrls(fx) {
+  return buildUrlsForMarkets(fx, ["winner"]);
+}
+
+function buildUrlsForMarkets(fx, markets) {
   const homeSlugs = slugVariants(fx.home);
   const awaySlugs = slugVariants(fx.away);
   const urls = [];
@@ -40,7 +49,7 @@ export function buildUrls(fx) {
   for (const base of BASES) {
     for (const h of homeSlugs) {
       for (const a of awaySlugs) {
-        for (const market of MARKETS) {
+        for (const market of markets) {
           for (const slug of [`${h}-v-${a}`, `${a}-v-${h}`]) {
             const u = `${base}/${slug}/${market}`;
             if (!seen.has(u)) {

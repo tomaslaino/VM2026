@@ -38,6 +38,9 @@ jobs:
       - name: Installera beroenden
         run: npm ci --no-audit --no-fund
 
+      - name: Spara results före synk
+        run: cp data/results.json /tmp/results-before.json
+
       - name: Hämta resultat från ESPN
         env:
           SYNC_FORCE: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
@@ -66,4 +69,8 @@ jobs:
         if: steps.commit.outputs.changed == '1'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh api --method POST "repos/${{ github.repository }}/dispatches" -f event_type=results-updated
+        run: |
+          PAYLOAD=$(node scripts/detectResultChanges.mjs /tmp/results-before.json data/results.json)
+          gh api --method POST "repos/${{ github.repository }}/dispatches" \
+            -f event_type=results-updated \
+            -f "client_payload=$PAYLOAD"
