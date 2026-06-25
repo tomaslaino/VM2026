@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-24T22:55:06.286Z",
+    "updatedAt": "2026-06-25T00:16:03.032Z",
     "source": "espn",
     "matchCount": 52,
-    "liveCount": 2,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -259,33 +259,16 @@
     },
     "g:C:3": {
       "h": 2,
-      "a": 2,
-      "status": "IN_PLAY"
+      "a": 4,
+      "status": "FINISHED"
     },
     "g:C:2": {
-      "h": 2,
+      "h": 3,
       "a": 0,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:C:3",
-      "status": "IN_PLAY",
-      "minute": 45,
-      "home": "Haiti",
-      "away": "Morocco",
-      "score": "2-2"
-    },
-    {
-      "key": "g:C:2",
-      "status": "IN_PLAY",
-      "minute": 45,
-      "home": "Brazil",
-      "away": "Scotland",
-      "score": "2-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1141,7 +1124,7 @@
       "date": "2026-06-25",
       "time": "00:00",
       "utcDate": "2026-06-24T22:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Haiti",
       "away": "Morocco",
@@ -1158,7 +1141,7 @@
       "date": "2026-06-25",
       "time": "00:00",
       "utcDate": "2026-06-24T22:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Brazil",
       "away": "Scotland",
@@ -1531,9 +1514,12 @@
       "utcDate": "2026-06-29T17:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Group C Winner",
+      "home": "Brazil",
       "away": "Group F 2nd Place",
-      "homeRef": null,
+      "homeRef": {
+        "group": "C",
+        "idx": 0
+      },
       "awayRef": null
     },
     "k:74": {
@@ -1557,9 +1543,12 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Group F Winner",
-      "away": "Group C 2nd Place",
+      "away": "Morocco",
       "homeRef": null,
-      "awayRef": null
+      "awayRef": {
+        "group": "C",
+        "idx": 1
+      }
     },
     "k:78": {
       "date": "2026-06-30",
@@ -1987,49 +1976,49 @@
       {
         "idx": 0,
         "position": 1,
-        "pld": 2,
-        "w": 1,
+        "pld": 3,
+        "w": 2,
         "d": 1,
         "l": 0,
-        "gf": 4,
+        "gf": 7,
         "ga": 1,
-        "gd": 3,
-        "pts": 4
+        "gd": 6,
+        "pts": 7
       },
       {
         "idx": 1,
         "position": 2,
-        "pld": 2,
-        "w": 1,
+        "pld": 3,
+        "w": 2,
         "d": 1,
         "l": 0,
-        "gf": 2,
-        "ga": 1,
-        "gd": 1,
-        "pts": 4
+        "gf": 6,
+        "ga": 3,
+        "gd": 3,
+        "pts": 7
       },
       {
         "idx": 2,
         "position": 3,
-        "pld": 2,
+        "pld": 3,
         "w": 1,
         "d": 0,
-        "l": 1,
+        "l": 2,
         "gf": 1,
-        "ga": 1,
-        "gd": 0,
+        "ga": 4,
+        "gd": -3,
         "pts": 3
       },
       {
         "idx": 3,
         "position": 4,
-        "pld": 2,
+        "pld": 3,
         "w": 0,
         "d": 0,
-        "l": 2,
-        "gf": 0,
-        "ga": 4,
-        "gd": -4,
+        "l": 3,
+        "gf": 2,
+        "ga": 8,
+        "gd": -6,
         "pts": 0
       }
     ],
