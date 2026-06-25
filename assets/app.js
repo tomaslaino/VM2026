@@ -1101,7 +1101,7 @@
   function refresh(opts) {
     opts = opts || {};
     var a = document.activeElement;
-    if (a && a.classList && a.classList.contains("score")) return;
+    if (a && a.classList && (a.classList.contains("score") || a.classList.contains("calc-score"))) return;
     if (a && a.id === "psSearch") return; // stör inte pågående sökning i spelarvyn
     if (a && a.id === "teamSearch") { render(); restoreSearchFocus(); return; }
     // Räkna om slutspelssannolikheterna lokalt (dedupar på ställningar/odds/
@@ -2708,8 +2708,13 @@
           '</div>' +
         '</div>' +
         '<div class="calc-body">' +
+          '<div class="calc-banner" id="calc-banner"></div>' +
+          '<div class="calc-main">' +
+            '<div class="calc-next" id="calc-next"></div>' +
+            '<aside class="calc-controls" id="calc-controls"></aside>' +
+          '</div>' +
+          '<div class="calc-side" id="calc-side"></div>' +
           '<div class="calc-journey" id="calc-journey"></div>' +
-          '<aside class="calc-controls" id="calc-controls"></aside>' +
         '</div>' +
       '</section>';
   }
@@ -2771,35 +2776,120 @@
     setCalcStatus("");
     var sel = r32TeamByKey(r32TeamKey);
     var sub = document.getElementById("calc-sub");
-    if (sub) sub.innerHTML = 'Följ <b>' + esc(sel.team.sv) + '</b> genom slutspelet och se vilka lag de kan möta i varje runda. ' +
+    if (sub) sub.innerHTML = 'Följ <b>' + esc(sel.team.sv) + '</b> mot slutspelet, se vem de kan möta i sextondelsfinalen – och styr själv hur de sista gruppmatcherna slutar. ' +
       '<span class="calc-status" id="calc-status"></span>';
+    renderCalcBanner(sel);
+    renderCalcNext(sel);
+    renderCalcSide(sel);
     renderCalcJourney(sel);
-    renderCalcControls();
+    // Bygg inte om kontrollerna medan ett resultatfält redigeras – då skulle
+    // inmatningen tappa fokus mitt i skrivandet.
+    if (!calcScoreFocused()) renderCalcControls();
   }
 
-  function renderCalcJourney(sel) {
-    var host = document.getElementById("calc-journey");
+  function calcScoreFocused() {
+    var a = document.activeElement;
+    return !!(a && a.classList && a.classList.contains("calc-score"));
+  }
+
+  /* Lagets vinstchans i hela VM – en liten banner överst. */
+  function renderCalcBanner(sel) {
+    var host = document.getElementById("calc-banner");
     if (!host || !calcResult) return;
     var focal = calcResult.focal;
-    if (!focal) { host.innerHTML = '<div class="calc-faint">Ingen data.</div>'; return; }
-
-    var winPct = r32Pct(focal.win);
-    var head = '<div class="calc-start">' +
-      '<div class="calc-teamchip">' + flagImg(sel.team.iso) +
+    var winPct = focal ? r32Pct(focal.win) : "–";
+    host.innerHTML = '<div class="calc-teamchip">' + flagImg(sel.team.iso) +
         '<span class="calc-teamname">' + esc(sel.team.sv) + '</span>' +
-        '<span class="calc-teamwin" title="Sannolikhet att vinna hela VM">🏆 ' + winPct + '</span>' +
-      '</div></div>';
-
-    var steps = '<ol class="calc-steps">' + calcStepGroup(sel, focal) +
-      CALC_ROUNDS.map(function (r) { return calcStepKO(r, focal, sel); }).join("") +
-      '</ol>';
-
-    host.innerHTML = head + steps;
+        '<span class="calc-teamwin" title="Sannolikhet att vinna hela VM">🏆 ' + winPct + ' vinner VM</span>' +
+      '</div>';
   }
 
-  function calcStepGroup(sel, focal) {
-    var advance = focal.r32 ? focal.r32.reachP : 0;
-    var gp = focal.groupPositions || {};
+  // Sorterade motståndarrader { nm, p } (fallande sannolikhet).
+  function calcOppEntries(opps) {
+    return Object.keys(opps || {}).map(function (nm) { return { nm: nm, p: opps[nm] }; })
+      .sort(function (a, b) { return b.p - a.p; });
+  }
+
+  // En motståndarrad (flagga, namn, stapel, sannolikhet + ev. vinstchans).
+  function calcOppRow(e, sel, maxP) {
+    var map = r32EnglishToTeam(), t = map[e.nm];
+    var win = calcWinP(sel.team.name, e.nm);
+    var winTxt = win == null ? "" : '<span class="calc-opp-win">ni vinner ' + Math.round(win * 100) + '%</span>';
+    var tip = r32TipId('<h4>' + esc(r32SvName(e.nm)) + '</h4>' +
+      '<div class="hl"><b>' + r32Pct(e.p) + '</b> chans att mötas här (om ni når rundan)</div>' +
+      (win != null ? '<div>~<b>' + Math.round(win * 100) + '%</b> att ' + esc(sel.team.sv) + ' vinner matchen</div>' : ''));
+    return '<div class="calc-opp" data-r32-tip="' + tip + '">' +
+      '<span class="calc-opp-flag">' + (t ? flagImg(t.iso) : "") + '</span>' +
+      '<span class="calc-opp-name">' + esc(r32SvName(e.nm)) + '</span>' +
+      '<span class="calc-opp-bar"><i style="width:' + (e.p / maxP * 100).toFixed(0) + '%"></i></span>' +
+      '<span class="calc-opp-p">' + r32Pct(e.p) + '</span>' +
+      winTxt +
+      '</div>';
+  }
+
+  // Lista av motståndarrader (topp N + ihopslagen svans).
+  function calcOppList(entries, sel, max) {
+    if (!entries.length) return '<div class="calc-faint">för lite underlag</div>';
+    var maxP = entries[0].p || 0.0001;
+    var show = entries.slice(0, max), tail = entries.slice(max);
+    var rows = show.map(function (e) { return calcOppRow(e, sel, maxP); }).join("");
+    if (tail.length) {
+      var tailP = tail.reduce(function (s, e) { return s + e.p; }, 0);
+      rows += '<div class="calc-opp tail"><span class="calc-opp-name">+ ' + tail.length + ' andra lag</span>' +
+        '<span class="calc-opp-p">' + r32Pct(tailP) + '</span></div>';
+    }
+    return rows;
+  }
+
+  /* ---------- första rutan: nästa motståndare (sextondelsfinal) ---------- */
+  function renderCalcNext(sel) {
+    var host = document.getElementById("calc-next");
+    if (!host || !calcResult) return;
+    var focal = calcResult.focal;
+    if (!focal) { host.innerHTML = ""; return; }
+    var data = focal.r32 || { reachP: 0, opponents: {} };
+    var reach = data.reachP || 0;
+    var entries = calcOppEntries(data.opponents);
+
+    var head = '<div class="calc-cardhead">' +
+        '<span class="calc-round">Sextondelsfinal</span>' +
+        '<span class="calc-reach"><b>' + r32Pct(reach) + '</b> tar sig hit</span>' +
+      '</div>' +
+      '<div class="calc-reachbar"><div class="fill" style="width:' + (reach * 100).toFixed(1) + '%"></div></div>';
+
+    var body;
+    if (!entries.length || reach < 0.005) {
+      body = '<div class="calc-faint">Det är i nuläget osannolikt att ' + esc(sel.team.sv) +
+        ' tar sig till sextondelsfinalen. Ändra resultaten nedan för att se möjliga motståndare.</div>';
+    } else {
+      var top = entries[0];
+      var map = r32EnglishToTeam(), oppT = map[top.nm];
+      var win = calcWinP(sel.team.name, top.nm);
+      var winTxt = win == null ? "" : '<span class="calc-vs-win"><b>' + Math.round(win * 100) + '%</b> att ' + esc(teamSvFixture(sel.team)) + ' vinner</span>';
+      var vs = '<div class="calc-vs">' +
+          '<div class="calc-vs-team me">' + flagImg(sel.team.iso) +
+            '<span class="calc-vs-nm">' + esc(teamSvFixture(sel.team)) + '</span></div>' +
+          '<div class="calc-vs-mid"><span class="calc-vs-x">vs</span>' + winTxt + '</div>' +
+          '<div class="calc-vs-team opp">' + (oppT ? flagImg(oppT.iso) : "") +
+            '<span class="calc-vs-nm">' + esc(r32SvName(top.nm)) + '</span>' +
+            '<span class="calc-vs-sub">trolig motståndare · ' + r32Pct(top.p) + '</span></div>' +
+        '</div>';
+      var rest = entries.slice(1);
+      var listTitle = rest.length ? '<div class="calc-opps-title">Andra möjliga motståndare</div>' : "";
+      var list = rest.length ? '<div class="calc-opps">' + calcOppList(rest, sel, 6) + '</div>' : "";
+      body = vs + listTitle + list;
+    }
+
+    host.innerHTML = '<div class="calc-card calc-nextcard">' + head + body + '</div>';
+  }
+
+  /* ---------- bredvid: grupptabellen ---------- */
+  function renderCalcSide(sel) {
+    var host = document.getElementById("calc-side");
+    if (!host || !calcResult) return;
+    var focal = calcResult.focal;
+    var advance = focal && focal.r32 ? focal.r32.reachP : 0;
+    var gp = (focal && focal.groupPositions) || {};
     var table = computeTable(sel.g);
     var rows = table.map(function (r, pos) {
       var me = r.idx === sel.idx;
@@ -2812,75 +2902,57 @@
       return '<span class="calc-poschip"><b>' + r32Pct(gp[p] || 0) + '</b> ' + CALC_POSLBL[p] + '</span>';
     }).join("") + '<span class="calc-poschip out"><b>' + r32Pct(Math.max(0, 1 - advance)) + '</b> Åker ut</span>';
 
-    return '<li class="calc-step group">' +
-      '<div class="calc-rail"><span class="calc-dot start"></span></div>' +
-      '<div class="calc-card">' +
+    host.innerHTML = '<div class="calc-card calc-groupcard">' +
         '<div class="calc-cardhead">' +
-          '<span class="calc-round">Gruppspelet · Grupp ' + sel.g + '</span>' +
+          '<span class="calc-round">Grupp ' + sel.g + '</span>' +
           '<span class="calc-reach"><b>' + r32Pct(advance) + '</b> går vidare</span>' +
         '</div>' +
         '<div class="calc-reachbar"><div class="fill" style="width:' + (advance * 100).toFixed(1) + '%"></div></div>' +
         '<table class="calc-standings"><tr><th class="nm">Lag</th><th>S</th><th>MV</th><th>GM</th><th>P</th></tr>' + rows + '</table>' +
         '<div class="calc-poschips">' + poschips + '</div>' +
-      '</div></li>';
+      '</div>';
   }
 
-  function calcStepKO(round, focal, sel) {
+  /* ---------- under: vägen vidare (åttondel → final) ---------- */
+  function renderCalcJourney(sel) {
+    var host = document.getElementById("calc-journey");
+    if (!host || !calcResult) return;
+    var focal = calcResult.focal;
+    if (!focal) { host.innerHTML = ""; return; }
+    var rounds = CALC_ROUNDS.filter(function (r) { return r.key !== "r32"; });
+    var cards = rounds.map(function (r) { return calcMiniRound(r, focal, sel); }).join("");
+    host.innerHTML = '<div class="calc-journey-head"><h4>Vägen vidare</h4>' +
+      '<span class="calc-journey-note">Troligaste motståndare om ' + esc(teamSvFixture(sel.team)) + ' tar sig dit</span></div>' +
+      '<div class="calc-journey-track">' + cards + '</div>';
+  }
+
+  function calcMiniRound(round, focal, sel) {
     var data = focal[round.key] || { reachP: 0, opponents: {} };
     var reach = data.reachP || 0;
-    var champ = round.key === "final"; // final-kortet visar även "vinner VM"
+    var champ = round.key === "final";
+    var entries = calcOppEntries(data.opponents);
     var body;
-    if (reach < 0.005) {
-      body = '<div class="calc-faint">Osannolikt att ' + esc(sel.team.sv) + ' når hit.</div>';
+    if (reach < 0.005 || !entries.length) {
+      body = '<div class="calc-mini-faint">Osannolikt att nå hit</div>';
     } else {
-      body = '<div class="calc-opps">' + calcOppRows(data.opponents, sel) + '</div>';
+      body = entries.slice(0, 3).map(function (e) {
+        var map = r32EnglishToTeam(), t = map[e.nm];
+        var tip = r32TipId('<h4>' + esc(r32SvName(e.nm)) + '</h4>' +
+          '<div class="hl"><b>' + r32Pct(e.p) + '</b> chans att mötas här (om ni når rundan)</div>');
+        return '<div class="calc-mini-opp" data-r32-tip="' + tip + '">' +
+          (t ? flagImg(t.iso) : "") +
+          '<span class="calc-mini-nm">' + esc(r32SvName(e.nm)) + '</span>' +
+          '<span class="calc-mini-p">' + r32Pct(e.p) + '</span></div>';
+      }).join("");
     }
-    var sub = champ
-      ? '<span class="calc-reach"><b>' + r32Pct(reach) + '</b> når finalen</span>'
-      : '<span class="calc-reach"><b>' + r32Pct(reach) + '</b> tar sig hit</span>';
-
-    return '<li class="calc-step ko" data-round="' + round.key + '">' +
-      '<div class="calc-rail"><span class="calc-dot"></span></div>' +
-      '<div class="calc-card">' +
-        '<div class="calc-cardhead">' +
-          '<span class="calc-round">' + round.title + '</span>' + sub +
-        '</div>' +
-        '<div class="calc-reachbar"><div class="fill" style="width:' + (reach * 100).toFixed(1) + '%"></div></div>' +
-        body +
-      '</div></li>';
+    return '<div class="calc-mini' + (champ ? " final" : "") + '" data-round="' + round.key + '">' +
+      '<div class="calc-mini-head"><span class="calc-mini-title">' + round.title + '</span>' +
+        '<span class="calc-mini-reach"><b>' + r32Pct(reach) + '</b> ' + (champ ? "når finalen" : "tar sig hit") + '</span></div>' +
+      '<div class="calc-reachbar"><div class="fill" style="width:' + (reach * 100).toFixed(1) + '%"></div></div>' +
+      '<div class="calc-mini-body">' + body + '</div></div>';
   }
 
-  // Motståndarrader (givet att laget når rundan), sorterade efter sannolikhet.
-  function calcOppRows(opps, sel) {
-    var entries = Object.keys(opps || {}).map(function (nm) { return { nm: nm, p: opps[nm] }; })
-      .sort(function (a, b) { return b.p - a.p; });
-    if (!entries.length) return '<div class="calc-faint">för lite underlag</div>';
-    var maxP = entries[0].p || 0.0001;
-    var show = entries.slice(0, 6), tail = entries.slice(6);
-    var rows = show.map(function (e) {
-      var map = r32EnglishToTeam(), t = map[e.nm];
-      var win = calcWinP(sel.team.name, e.nm);
-      var winTxt = win == null ? "" : '<span class="calc-opp-win">ni vinner ' + Math.round(win * 100) + '%</span>';
-      var tip = r32TipId('<h4>' + esc(r32SvName(e.nm)) + '</h4>' +
-        '<div class="hl"><b>' + r32Pct(e.p) + '</b> chans att mötas här (om ni når rundan)</div>' +
-        (win != null ? '<div>~<b>' + Math.round(win * 100) + '%</b> att ' + esc(sel.team.sv) + ' vinner matchen</div>' : ''));
-      return '<div class="calc-opp" data-r32-tip="' + tip + '">' +
-        '<span class="calc-opp-flag">' + (t ? flagImg(t.iso) : "") + '</span>' +
-        '<span class="calc-opp-name">' + esc(r32SvName(e.nm)) + '</span>' +
-        '<span class="calc-opp-bar"><i style="width:' + (e.p / maxP * 100).toFixed(0) + '%"></i></span>' +
-        '<span class="calc-opp-p">' + r32Pct(e.p) + '</span>' +
-        winTxt +
-        '</div>';
-    }).join("");
-    if (tail.length) {
-      var tailP = tail.reduce(function (s, e) { return s + e.p; }, 0);
-      rows += '<div class="calc-opp tail"><span class="calc-opp-name">+ ' + tail.length + ' andra lag</span>' +
-        '<span class="calc-opp-p">' + r32Pct(tailP) + '</span></div>';
-    }
-    return rows;
-  }
-
-  /* ---------- kontrollpanel (vad-händer-om) ---------- */
+  /* ---------- interaktiva kontroller: klicka eller skriv resultat ---------- */
   function renderCalcControls() {
     var host = document.getElementById("calc-controls");
     if (!host || r32OddsData === "loading" || r32OddsData === "error" || !r32OddsData) return;
@@ -2892,8 +2964,8 @@
     var nFixed = Object.keys(r32Fixed).length;
 
     var html = '<div class="calc-controls-head">' +
-      '<h4>Vad händer om?</h4>' +
-      '<p>Klicka i hur matcherna slutar – siffrorna räknas om direkt.' +
+      '<h4>Spela klart matcherna</h4>' +
+      '<p>Klicka på <b>1</b> / <b>X</b> / <b>2</b> eller skriv in ett exakt resultat – tabellen och motståndaren räknas om direkt.' +
       (nFixed ? ' <button type="button" class="calc-clear" data-calc-reset>Nollställ (' + nFixed + ')</button>' : '') +
       '</p></div>';
 
@@ -2907,7 +2979,7 @@
       if (others.length) {
         html += '<div class="calc-ctrl-group">' +
           '<button type="button" class="calc-ctrl-grouptitle toggle" data-calc-allgroups aria-expanded="' + (showAll ? "true" : "false") + '">' +
-            'Övriga matcher (påverkar motståndarna) <span class="chev">' + (showAll ? "▾" : "▸") + '</span></button>' +
+            'Övriga matcher (påverkar motståndaren) <span class="chev">' + (showAll ? "▾" : "▸") + '</span></button>' +
           (showAll ? others.map(calcMatchRow).join("") : "") +
         '</div>';
       }
@@ -2918,19 +2990,66 @@
   function calcMatchRow(m) {
     var map = r32EnglishToTeam();
     var fx = r32Fixed[m.id];
-    var opts = [["1", m.home], ["X", null], ["2", m.away]].map(function (o) {
-      var r = o[0];
-      var on = fx && ((fx[0] === "result" && fx[1] === r) ||
-        (fx[0] === "score" && ((r === "1" && fx[1] > fx[2]) || (r === "X" && fx[1] === fx[2]) || (r === "2" && fx[1] < fx[2]))));
-      var t = o[1] ? map[o[1]] : null;
-      var label = r === "X" ? '<span class="cm-x">Oavgjort</span>'
-        : (t ? flagImg(t.iso) + '<span class="cm-nm">' + esc(teamSvFixture(t)) + '</span>' : esc(r32SvName(r === "1" ? m.home : m.away)));
+    var th = map[m.home], ta = map[m.away];
+    var sh = (fx && fx[0] === "score") ? fx[1] : "";
+    var sa = (fx && fx[0] === "score") ? fx[2] : "";
+    var result = null;
+    if (fx) {
+      if (fx[0] === "result") result = fx[1];
+      else if (fx[0] === "score") result = fx[1] > fx[2] ? "1" : (fx[1] === fx[2] ? "X" : "2");
+    }
+
+    var opts = ["1", "X", "2"].map(function (r) {
+      var on = result === r;
       return '<button type="button" class="calc-opt' + (on ? " on" : "") + '" data-calc-res="' + m.id + '" data-calc-r="' + r + '">' +
-        label + '<span class="cm-p">' + r32Pct(m.rp[r]) + '</span></button>';
+        '<span class="cm-r">' + r + '</span><span class="cm-p">' + r32Pct(m.rp[r]) + '</span></button>';
     }).join("");
-    return '<div class="calc-match' + (fx ? " locked" : "") + '">' +
-      '<span class="calc-match-grp grp-' + m.g + '">' + m.g + '</span>' +
+
+    var p1 = m.rp["1"] || 0, px = m.rp["X"] || 0, p2 = m.rp["2"] || 0;
+    var oddsbar = '<div class="calc-oddsbar" title="Sannolikhet 1 / X / 2">' +
+      '<span class="seg s1" style="width:' + (p1 * 100).toFixed(1) + '%"></span>' +
+      '<span class="seg sx" style="width:' + (px * 100).toFixed(1) + '%"></span>' +
+      '<span class="seg s2" style="width:' + (p2 * 100).toFixed(1) + '%"></span></div>';
+
+    var teams = '<div class="calc-match-teams">' +
+        '<span class="cm-side home">' + (th ? flagImg(th.iso) : "") +
+          '<span class="cm-nm">' + esc(th ? teamSvFixture(th) : r32SvName(m.home)) + '</span></span>' +
+        '<span class="cm-score">' +
+          '<input class="calc-score" type="text" inputmode="numeric" maxlength="2" data-calc-score="' + m.id + '" data-side="h" value="' + sh + '" aria-label="Mål hemmalag">' +
+          '<span class="cm-dash">–</span>' +
+          '<input class="calc-score" type="text" inputmode="numeric" maxlength="2" data-calc-score="' + m.id + '" data-side="a" value="' + sa + '" aria-label="Mål bortalag">' +
+        '</span>' +
+        '<span class="cm-side away"><span class="cm-nm">' + esc(ta ? teamSvFixture(ta) : r32SvName(m.away)) + '</span>' +
+          (ta ? flagImg(ta.iso) : "") + '</span>' +
+      '</div>';
+
+    return '<div class="calc-match' + (fx ? " locked" : "") + '" data-calc-mid="' + m.id + '">' +
+      teams + oddsbar +
       '<div class="calc-match-opts">' + opts + '</div></div>';
+  }
+
+  // Inmatning i ett resultatfält: båda målen krävs för att låsa ett exaktresultat.
+  function calcScoreInput(input) {
+    var v = input.value.replace(/[^0-9]/g, "").slice(0, 2);
+    if (v !== input.value) input.value = v;
+    var id = input.getAttribute("data-calc-score");
+    var row = input.closest && input.closest("[data-calc-mid]");
+    if (!row) return;
+    var hEl = row.querySelector('.calc-score[data-side="h"]');
+    var aEl = row.querySelector('.calc-score[data-side="a"]');
+    var hs = hEl ? hEl.value.trim() : "";
+    var as = aEl ? aEl.value.trim() : "";
+    if (hs === "" && as === "") {
+      if (r32Fixed[id]) { delete r32Fixed[id]; runCalc(); }
+      return;
+    }
+    if (hs === "" || as === "") return; // vänta tills båda fyllts i
+    var h = parseInt(hs, 10), a = parseInt(as, 10);
+    if (isNaN(h) || isNaN(a)) return;
+    var cur = r32Fixed[id];
+    if (cur && cur[0] === "score" && cur[1] === h && cur[2] === a) return;
+    r32Fixed[id] = ["score", h, a];
+    runCalc();
   }
 
   /* ---------- interaktion ---------- */
@@ -4891,6 +5010,7 @@
   function onInput(e) {
     if (e.target.id === "teamSearch") renderSearchResults(e.target.value);
     else if (e.target.id === "calc-team") calcSetTeam(e.target.value);
+    else if (e.target.classList && e.target.classList.contains("calc-score")) calcScoreInput(e.target);
   }
 
   function onClick(e) {
