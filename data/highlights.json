@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-25T20:34:11.409Z",
+    "updatedAt": "2026-06-25T22:07:57.633Z",
     "source": "svt+tv4",
-    "matchCount": 58
+    "matchCount": 60
   },
   "byKey": {
     "g:A:2": {
@@ -1262,6 +1262,26 @@
           "url": "https://www.svtplay.se/video/KZxxWy7/fifa-fotbolls-vm-2026/tunisien-nederlanderna",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-26T23:59:59+02:00"
+        }
+      }
+    },
+    "g:D:5": {
+      "TV4": {
+        "live": {
+          "url": "https://www.tv4play.se/video/da706e7c714b852142ca/paraguay-australien",
+          "title": "Paraguay - Australien",
+          "until": "2026-07-26T01:50:00Z",
+          "from": "2026-06-26T01:50:15Z"
+        }
+      }
+    },
+    "g:D:4": {
+      "TV4": {
+        "live": {
+          "url": "https://www.tv4play.se/video/ca8fb917a4a4e7f9497c/turkiet-usa",
+          "title": "Turkiet - USA",
+          "until": "2026-07-26T01:50:00Z",
+          "from": "2026-06-26T01:50:44Z"
         }
       }
     }
