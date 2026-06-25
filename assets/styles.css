@@ -1773,17 +1773,16 @@ html.view-bracket .bracket-scroll::-webkit-scrollbar-thumb:hover {
 .bracket-lines path { stroke: currentColor; stroke-width: 1.5; opacity: .58; transition: stroke .15s ease, stroke-width .15s ease, opacity .15s ease; }
 
 /* Härstamnings-highlight: när en slutspelsruta hovras/fokuseras tänds de två
-   matcher som leder in i den och matchen den leder till (plus linjerna), medan
-   resten dämpas – så att "två rutor hör ihop med en" blir lätt att följa. */
-.bracket-wrap.lineage-active .bracket-lines path:not(.is-lineage) { opacity: .16; }
+   matcher som leder in i den och matchen den leder till (plus linjerna) – så att
+   "två rutor hör ihop med en" blir lätt att följa. Resten dämpas inte längre,
+   det räcker att härstamningskedjan lyser upp. */
 .bracket-wrap .bracket-lines path.is-lineage {
   stroke: var(--gold);
   stroke-width: 2.4;
   opacity: 1;
   filter: drop-shadow(0 0 4px color-mix(in srgb, var(--gold) 55%, transparent));
 }
-.bracket-wrap.lineage-active .match { transition: opacity .15s ease, border-color .15s ease, box-shadow .15s ease; }
-.bracket-wrap.lineage-active .match:not(.is-lineage) { opacity: .42; }
+.bracket-wrap.lineage-active .match { transition: border-color .15s ease, box-shadow .15s ease; }
 .bracket-wrap.lineage-active .match.is-lineage {
   border-color: color-mix(in srgb, var(--gold) 60%, rgba(255, 255, 255, .14));
   box-shadow:
