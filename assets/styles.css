@@ -2524,7 +2524,7 @@ html.view-bracket .bracket .match-expand-icon { width: 11px; height: 11px; }
 
 .cal-row {
   display: grid;
-  grid-template-columns: 56px 118px 1fr 104px;
+  grid-template-columns: 56px 118px 1fr auto;
   align-items: center;
   gap: 12px;
   background: linear-gradient(180deg, rgba(20, 36, 60, .82), rgba(11, 21, 38, .85));
@@ -2702,18 +2702,15 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
 }
 
 /* ---------- Repriser på matchraden (SVT/TV4) ----------
-   Egen rad längst ner i matchkortet: en kanalfärgad bricka per kanal med
-   klickbara ikoner för hela matchen / längre / kortare sammandrag. */
+   Ligger på samma rad som matchen, i venue-cellen där TV-kanalmärket annars
+   står: en kanalfärgad bricka per kanal med klickbara ikoner för hela
+   matchen / längre / kortare sammandrag. */
 .cal-watch {
-  grid-column: 1 / -1;
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
-  gap: 8px;
-  margin-top: 9px;
-  padding-top: 9px;
-  border-top: 1px solid rgba(255, 255, 255, .07);
+  gap: 6px;
 }
 .cal-watch-ch {
   display: inline-flex;
@@ -3006,6 +3003,16 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
     justify-content: flex-end;
     width: auto;
     gap: 6px;
+  }
+  /* På smala skärmar får repriserna en egen rad längst ner i kortet så att
+     ikonerna inte trängs ihop med tid och gruppbricka. */
+  .cal-venue.has-watch {
+    grid-area: auto;
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    margin-top: 2px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, .07);
   }
   .cal-match {
     grid-area: match;

@@ -3823,12 +3823,12 @@
       '<span class="cal-watch-tag">' + ch + "</span>" + links + "</span>";
   }
 
-  function calWatchHtml(key) {
+  /* Reprisbrickorna (utan ytterhölje) – läggs in i venue-cellen på samma rad
+     som matchen och ersätter där TV-kanalmärket. */
+  function calWatchInner(key) {
     var hl = calHighlights[key];
     if (!hl) return "";
-    var groups = calWatchChannel("SVT", hl.SVT) + calWatchChannel("TV4", hl.TV4);
-    if (!groups) return "";
-    return '<div class="cal-watch">' + groups + "</div>";
+    return calWatchChannel("SVT", hl.SVT) + calWatchChannel("TV4", hl.TV4);
   }
 
   /* Kompakt teckenförklaring för repris-ikonerna – läggs till höger om
@@ -4900,11 +4900,15 @@
     return cls;
   }
 
-  function calVenueCell(channel, isNext) {
-    var tv = channel ? tvChHtml(channel) : "";
-    return '<span class="cal-venue">' +
+  function calVenueCell(channel, isNext, watch) {
+    // Finns repriser tar de TV-kanalmärkets plats på matchraden – kanalen
+    // framgår ändå av reprisbrickans färg (SVT grön, TV4 röd).
+    var slot = watch
+      ? '<span class="cal-watch">' + watch + '</span>'
+      : (channel ? tvChHtml(channel) : '<span class="cal-tv cal-tv-empty" aria-hidden="true"></span>');
+    return '<span class="cal-venue' + (watch ? ' has-watch' : '') + '">' +
       (isNext ? '<span class="cal-next">Nästa</span>' : '<span class="cal-next cal-next-slot" aria-hidden="true">Nästa</span>') +
-      (tv || '<span class="cal-tv cal-tv-empty" aria-hidden="true"></span>') +
+      slot +
       "</span>";
   }
 
@@ -4924,8 +4928,7 @@
       '<span class="cal-match">' + teamOpenBtn(th, '<span title="' + esc(th.sv) + '">' + esc(teamSvFixture(th)) + '</span>' + flagImg(th.iso), "cal-side home") +
         score +
         teamOpenBtn(ta, flagImg(ta.iso) + '<span title="' + esc(ta.sv) + '">' + esc(teamSvFixture(ta)) + '</span>', "cal-side away") + '</span>' +
-      calVenueCell(tvLookupGroup(fx, th, ta), isNext) +
-      calWatchHtml(fx.key) +
+      calVenueCell(tvLookupGroup(fx, th, ta), isNext, calWatchInner(fx.key)) +
       '</div>';
   }
 
@@ -4956,8 +4959,7 @@
       '<span class="cal-time">' + (live ? liveTimeLabel("k:" + m.m, when.time) : when.time) + '</span>' +
       '<span class="cal-badge ' + m.round + '">' + (CAL_ROUND[m.round] || m.round) + ' · M' + m.m + '</span>' +
       '<span class="cal-match">' + hHome + score + hAway + '</span>' +
-      calVenueCell(tvLookupKo(m), isNext) +
-      calWatchHtml("k:" + m.m) +
+      calVenueCell(tvLookupKo(m), isNext, calWatchInner("k:" + m.m)) +
       '</div>';
   }
 
