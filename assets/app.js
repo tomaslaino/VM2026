@@ -4237,10 +4237,12 @@
   }
 
   /** Vilken match hjälten ("Match i fokus") ska visa och i vilket läge.
-      Hjälten avslöjar aldrig ett spelat resultat: den visar antingen den/de
-      pågående matchen/matcherna (med live-länk) eller nästa avspark (nedräkning).
-      Nyss avslutade matcher hamnar i stället i "Nyligen spelat" (utan resultat).
-      Två samtidiga matcher (t.ex. sista gruppomgången) returneras båda. */
+      Hjälten avslöjar aldrig ett resultat direkt: den visar antingen den/de
+      pågående matchen/matcherna (med live-länk men dold ställning) eller nästa
+      avspark (nedräkning). För pågående matcher krävs ett klick + bekräftelse
+      för att se ställningen. Nyss avslutade matcher hamnar i stället i "Nyligen
+      spelat" (också utan resultat). Två samtidiga matcher (t.ex. sista
+      gruppomgången) returneras båda. */
   function findFocusMatch(ctx) {
     var items = buildSchedule();
     var now = Date.now();
@@ -4397,13 +4399,26 @@
   }
 
   /** Säkerställ att live/avslutade matcher alltid är klickbara (modalen fyller
-      på tomma flikar via pollningen även i glappet vid avspark). */
+      på tomma flikar via pollningen även i glappet vid avspark). Pågående och
+      avslutade matcher går via en spoilervarning (data-match-confirm) så att
+      resultatet aldrig avslöjas av misstag; kommande matcher öppnas direkt. */
   function focusOpenAttr(e) {
-    var open = matchOpenAttr(e.key);
-    if (!open.attr && (e.state === "live" || e.state === "ft")) {
-      open = { attr: ' data-match-open="' + e.key + '" role="button" tabindex="0"', cls: " match-openable" };
+    if (e.state === "live" || e.state === "ft") {
+      return {
+        attr: ' data-match-confirm="' + e.key + '" role="button" tabindex="0"',
+        cls: " match-openable"
+      };
     }
-    return open;
+    return matchOpenAttr(e.key);
+  }
+
+  /** Dolt resultat i hjälten – pips i stället för siffror, plus en liten
+      uppmaning om att klicka för att avslöja. */
+  function focusHiddenScore(cls) {
+    return '<span class="fh-score-hidden ' + (cls || "") + '" aria-label="Resultat dolt – klicka för att visa">' +
+      '<span class="fh-hidden-pip" aria-hidden="true"></span>' +
+      '<span class="fh-hidden-pip" aria-hidden="true"></span>' +
+      '</span>';
   }
 
   /** "Se matchen live"-länk för en pågående match – samma kanalfärgade knapp
@@ -4427,17 +4442,15 @@
   function focusBigCard(e, state, kickoff) {
     var open = focusOpenAttr(e);
     var when = whenLabels(e.m);
+    // Resultatet döljs alltid på startsidan – klick öppnar varningsrutan.
     var center, status = "";
     if (state === "next") {
       center = '<span class="fh-vs" aria-hidden="true">vs</span>';
     } else {
-      center = '<span class="fh-score">' +
-        '<span class="fh-sc">' + (e.r.h != null ? e.r.h : 0) + '</span>' +
-        '<span class="fh-dash" aria-hidden="true">–</span>' +
-        '<span class="fh-sc">' + (e.r.a != null ? e.r.a : 0) + '</span></span>';
+      center = focusHiddenScore("fh-score");
     }
     if (state === "live") status = focusLiveBadge(e);
-    else if (state === "ft") status = '<span class="fh-ftbadge">Slutresultat</span>';
+    else if (state === "ft") status = '<span class="fh-ftbadge">Färdigspelad</span>';
 
     var h = '<article class="focus-card fc-' + state + open.cls + '"' + open.attr + '>';
     h += '<div class="fh-top">' +
@@ -4447,7 +4460,9 @@
     h += '<div class="fh-main">' +
       focusTeamSide(e.home, "home") + center + focusTeamSide(e.away, "away") +
       '</div>';
-    if (state === "live" || state === "ft") h += focusScorers(e);
+    if (state === "live" || state === "ft") {
+      h += '<div class="fh-reveal-hint">Klicka för att visa resultatet</div>';
+    }
     h += '<div class="fh-meta">' +
       '<span class="fh-when">' + esc(when.dateLabel + " · " + when.time) + '</span>' +
       (state === "live" ? "" : spotlightTvHtml(e.channel, false)) +
@@ -4466,19 +4481,12 @@
     var status = state === "live" ? focusLiveBadge(e)
       : state === "ft" ? '<span class="fm-ft">Slut</span>'
         : '<span class="fm-time">' + esc(e.time || whenLabels(e.m).time) + '</span>';
-    var hs = e.r.h != null ? e.r.h : 0;
-    var as = e.r.a != null ? e.r.a : 0;
-    var hCls = "", aCls = "";
+    // Resultatet döljs alltid på startsidan – klick öppnar varningsrutan.
     var center;
     if (state === "next") {
       center = '<span class="fm-vs" aria-hidden="true">vs</span>';
     } else {
-      hCls = hs > as ? " is-win" : (hs < as ? " is-loss" : "");
-      aCls = as > hs ? " is-win" : (as < hs ? " is-loss" : "");
-      center = '<span class="fm-score">' +
-        '<span class="fm-sc' + hCls + '">' + hs + '</span>' +
-        '<span class="fm-dash" aria-hidden="true">–</span>' +
-        '<span class="fm-sc' + aCls + '">' + as + '</span></span>';
+      center = focusHiddenScore("fm-score");
     }
     function teamSide(team, side, cls) {
       var flag = '<span class="fm-flag">' + flagImg(team.iso) + '</span>';
@@ -4489,9 +4497,11 @@
     var h = '<article class="focus-mini fm-' + state + open.cls + '"' + open.attr + '>';
     h += '<div class="fm-top">' + focusGroupChip(e, "fm-group") + status + '</div>';
     h += '<div class="fm-teams">' +
-      teamSide(e.home, "home", hCls) + center + teamSide(e.away, "away", aCls) +
+      teamSide(e.home, "home", "") + center + teamSide(e.away, "away", "") +
       '</div>';
-    if (state === "live" || state === "ft") h += focusScorers(e, "fh-scorers-mini");
+    if (state === "live" || state === "ft") {
+      h += '<div class="fh-reveal-hint fm-reveal-hint">Klicka för att visa resultatet</div>';
+    }
     h += '<div class="fm-foot">' +
       (state === "live" ? focusWatchLive(e) : spotlightTvHtml(e.channel, false)) +
       '</div>';
@@ -4547,11 +4557,16 @@
      siffror); man klickar på kortet för att se matchen och repriserna får en
      egen rad i foten – exakt samma SVT/TV4-ordning som i kalendern. */
   function recentMiniCard(e) {
-    var open = matchOpenAttr(e.key);
-    if (!open.attr) {
-      open = { attr: ' data-match-open="' + e.key + '" role="button" tabindex="0"', cls: " match-openable" };
-    }
+    // Klick öppnar inte matchen direkt – i stället visas en varningsruta som
+    // låter användaren välja att avslöja resultatet eller avbryta (spoilerskydd).
+    var open = {
+      attr: ' data-match-confirm="' + e.key + '" role="button" tabindex="0"',
+      cls: " match-openable"
+    };
     var when = whenLabels(e.m);
+    // Visa datum + klockslag (ex "26 juni kl 04:00") så det blir tydligt vilken
+    // dag matchen spelades, inte bara ett klockslag.
+    var whenText = e.m.edt ? when.dateLabel + " kl " + when.time : when.dateLabel + " · " + when.time;
     function teamSide(team, side) {
       var flag = '<span class="fm-flag">' + flagImg(team.iso) + '</span>';
       var name = '<span class="fm-name" title="' + esc(team.sv) + '">' + esc(teamSvFixture(team)) + '</span>';
@@ -4560,7 +4575,7 @@
     }
     var h = '<article class="focus-mini fm-recent' + open.cls + '"' + open.attr + '>';
     h += '<div class="fm-top">' + focusGroupChip(e, "fm-group") +
-      '<span class="fm-time">' + esc(when.time) + '</span></div>';
+      '<span class="fm-time">' + esc(whenText) + '</span></div>';
     h += '<div class="fm-teams">' +
       teamSide(e.home, "home") +
       '<span class="fm-vs" aria-hidden="true">vs</span>' +
@@ -4579,9 +4594,10 @@
     var n = recent.length;
     var rows = Math.ceil(n / 4);          // max 4 per rad
     var cols = Math.ceil(n / rows);       // jämnt fördelat över raderna
-    var h = '<section class="recent-played" aria-label="Nyligen spelade matcher">';
+    var heading = n === 1 ? "Avslutad match" : "Avslutade matcher";
+    var h = '<section class="recent-played" aria-label="Avslutade matcher">';
     h += '<div class="rp-head">' +
-      '<span class="fh-eyebrow">Nyligen spelat</span>' +
+      '<span class="fh-eyebrow">' + heading + '</span>' +
       '<span class="rp-hint">Klicka för resultat &amp; repris</span>' +
       '</div>';
     h += '<div class="rp-grid" style="--rp-cols:' + cols + '">';
@@ -5269,8 +5285,65 @@
     else if (e.target.classList && e.target.classList.contains("calc-score")) calcScoreInput(e.target);
   }
 
+  /* ---------- Spoilervarning på startsidan ----------
+     Klick på ett "Nyligen spelat"-kort öppnar inte matchen direkt. I stället
+     visas en ruta som frågar om man verkligen vill se resultatet, med ett
+     tydligt avbryt-val så att man inte blir spoilad av misstag. */
+  var confirmKey = null;
+  function openMatchConfirm(key) {
+    confirmKey = key;
+    var overlay = document.getElementById("matchConfirm");
+    if (!overlay) {
+      overlay = document.createElement("div");
+      overlay.id = "matchConfirm";
+      overlay.className = "mc-overlay";
+      overlay.innerHTML =
+        '<div class="mc-box" role="dialog" aria-modal="true" aria-labelledby="mcTitle">' +
+          '<div class="mc-ic" aria-hidden="true">' +
+            '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"></path><circle cx="12" cy="12" r="3"></circle>' +
+            '<line x1="3" y1="3" x2="21" y2="21"></line></svg>' +
+          '</div>' +
+          '<h3 id="mcTitle" class="mc-title">Vill du se resultatet?</h3>' +
+          '<p class="mc-msg" id="mcMsg"></p>' +
+          '<div class="mc-actions">' +
+            '<button type="button" class="mc-btn mc-cancel" data-mc-cancel>Avbryt</button>' +
+            '<button type="button" class="mc-btn mc-reveal" data-mc-reveal>Visa resultatet</button>' +
+          '</div>' +
+        '</div>';
+      document.body.appendChild(overlay);
+    }
+    var live = isMatchLive(key);
+    var msg = overlay.querySelector("#mcMsg");
+    if (msg) {
+      msg.textContent = live
+        ? "Matchen pågår just nu. Öppnar du den avslöjas den aktuella ställningen och matchhändelserna."
+        : "Matchen är färdigspelad. Öppnar du den avslöjas resultatet och matchhändelserna.";
+    }
+    overlay.classList.add("show");
+    var btn = overlay.querySelector("[data-mc-cancel]");
+    if (btn) btn.focus();
+  }
+  function closeMatchConfirm() {
+    confirmKey = null;
+    var overlay = document.getElementById("matchConfirm");
+    if (overlay) overlay.classList.remove("show");
+  }
+  function revealMatchConfirm() {
+    var key = confirmKey;
+    closeMatchConfirm();
+    if (key && window.VMMatchInfo && typeof window.VMMatchInfo.open === "function") {
+      window.VMMatchInfo.open(key);
+    }
+  }
+
   function onClick(e) {
     var t = e.target;
+
+    if (t.closest && t.closest("[data-mc-cancel]")) { closeMatchConfirm(); return; }
+    if (t.closest && t.closest("[data-mc-reveal]")) { revealMatchConfirm(); return; }
+    if (t.id === "matchConfirm") { closeMatchConfirm(); return; }
+
     var nav = t.closest && t.closest("[data-nav]");
     if (nav) {
       var v = nav.getAttribute("data-nav");
@@ -5349,6 +5422,13 @@
     // En riktig länk (t.ex. "se live på SVT/TV4") ska bara följa sin href –
     // inte även öppna matchinfo-modalen.
     if (t.closest && t.closest("a[href]")) return;
+
+    // klick på "Nyligen spelat"-kort → fråga först (spoilerskydd)
+    var confirmEl = t.closest && t.closest("[data-match-confirm]");
+    if (confirmEl) {
+      openMatchConfirm(confirmEl.getAttribute("data-match-confirm"));
+      return;
+    }
 
     // klick på matchrad (pågående/spelad) → öppna matchinfo
     var matchEl = t.closest && t.closest("[data-match-open]");
@@ -5577,10 +5657,21 @@
 
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") {
+        var mc = document.getElementById("matchConfirm");
+        if (mc && mc.classList.contains("show")) { closeMatchConfirm(); return; }
         closeTeam(); hideTip();
         hideCalGroupPopup();
         hideProbPopup();
         if (hoverMatch) { hoverMatch = null; hideAside(); syncExpandButtons(); }
+      }
+      // Aktivera "Nyligen spelat"-kort med Enter/Space → visa varningsrutan.
+      if ((e.key === "Enter" || e.key === " ") && document.activeElement) {
+        var cEl = document.activeElement.closest && document.activeElement.closest("[data-match-confirm]");
+        if (cEl) {
+          e.preventDefault();
+          openMatchConfirm(cEl.getAttribute("data-match-confirm"));
+          return;
+        }
       }
       // Aktivera klickbar länk (role=link, t.ex. varumärket) med Enter/Space.
       if ((e.key === "Enter" || e.key === " ") && document.activeElement) {

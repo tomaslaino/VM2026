@@ -20,7 +20,11 @@
   --third-q-bg: #3a2e14;
   --third-o: #5e7085;
   --gold: #e0b23a;
-  --live: #e8264a;
+  --live: #e8264a;        /* röd – behålls för förlust, rött kort, fjärdeplats */
+  /* Matchstatus-färger: grönt = kommande/pågående, rött = avslutad.
+     (--livecol används för pågående matcher i stället för det röda --live.) */
+  --livecol: #2db87a;     /* grön – pågående match */
+  --st-ft: var(--usa-red); /* röd – avslutad/färdigspelad match */
   --shadow: 0 1px 2px rgba(0,0,0,.35), 0 8px 22px rgba(0,0,0,.4);
   --shadow-lg: 0 12px 44px rgba(0,0,0,.55);
   --radius: 16px;
@@ -287,8 +291,8 @@ body {
 @media (max-width: 560px) {
   .spoiler-toggle { padding: 7px 10px; gap: 7px; }
 }
-.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 0 rgba(226,59,59,.5); animation: pulse 2s infinite; }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(226,59,59,.5);} 70% { box-shadow: 0 0 0 6px rgba(226,59,59,0);} 100% { box-shadow: 0 0 0 0 rgba(226,59,59,0);} }
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--livecol); box-shadow: 0 0 0 0 rgba(45,184,122,.5); animation: pulse 2s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(45,184,122,.5);} 70% { box-shadow: 0 0 0 6px rgba(45,184,122,0);} 100% { box-shadow: 0 0 0 0 rgba(45,184,122,0);} }
 .reset {
   border: 1px solid var(--line-strong); background: var(--card); color: var(--ink-soft);
   font: inherit; font-size: 13px; font-weight: 600; padding: 8px 12px; border-radius: 10px; cursor: pointer; transition: .15s;
@@ -466,19 +470,20 @@ html.view-bracket .site-bg {
   box-shadow: 0 30px 70px -28px rgba(0, 0, 0, .9), inset 0 1px 0 rgba(255, 255, 255, .07);
   overflow: hidden;
 }
-/* Smal färgaccent högst upp som signalerar läget. */
+/* Smal färgaccent högst upp som signalerar läget.
+   Grönt = nästa/pågående match, rött = avslutad match. */
 .focus-hero::before {
   content: "";
   position: absolute; inset: 0 0 auto 0; height: 3px;
-  background: linear-gradient(90deg, var(--usa-red), var(--usa-blue));
+  background: linear-gradient(90deg, var(--adv), var(--usa-blue));
   opacity: .9;
 }
-.focus-hero.state-live::before { background: linear-gradient(90deg, var(--live), #ff7a5b); }
-.focus-hero.state-ft::before { background: linear-gradient(90deg, var(--adv), var(--usa-blue)); }
+.focus-hero.state-live::before { background: linear-gradient(90deg, var(--livecol), #5fe39a); }
+.focus-hero.state-ft::before { background: linear-gradient(90deg, var(--st-ft), var(--usa-blue)); }
 .focus-hero.state-live {
-  border-color: color-mix(in srgb, var(--live) 42%, rgba(255, 255, 255, .1));
+  border-color: color-mix(in srgb, var(--livecol) 42%, rgba(255, 255, 255, .1));
   box-shadow: 0 30px 80px -26px rgba(0, 0, 0, .9),
-    0 0 0 1px color-mix(in srgb, var(--live) 30%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--livecol) 30%, transparent),
     inset 0 1px 0 rgba(255, 255, 255, .07);
 }
 
@@ -502,7 +507,7 @@ html.view-bracket .site-bg {
   font-size: clamp(11px, 1.4vw, 13px); font-weight: 800;
   text-transform: uppercase; letter-spacing: 2px; color: #9fb4cd;
 }
-.focus-hero.state-live .fh-eyebrow { color: #ffb9c2; }
+.focus-hero.state-live .fh-eyebrow { color: #a7e6c2; }
 .fh-top-right { display: inline-flex; align-items: center; gap: 10px; min-width: 0; }
 .fh-group {
   font-size: 11.5px; font-weight: 800; letter-spacing: .4px;
@@ -513,15 +518,16 @@ html.view-bracket .site-bg {
 .fh-live {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: clamp(16px, 2vw, 21px); font-weight: 900; letter-spacing: .3px;
-  line-height: 1; color: var(--live);
+  line-height: 1; color: var(--livecol);
   font-variant-numeric: tabular-nums; white-space: nowrap;
   padding: 5px 12px; border-radius: 999px;
-  background: rgba(226, 59, 59, .12); border: 1px solid rgba(226, 59, 59, .28);
+  background: color-mix(in srgb, var(--livecol) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--livecol) 28%, transparent);
 }
 .fh-live .live-dot { width: 9px; height: 9px; }
 .fh-ftbadge {
   font-size: 11px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase;
-  color: var(--adv);
+  color: var(--st-ft);
 }
 
 /* Lag + ställning – flaggorna vända inåt mot ställningen. */
@@ -561,6 +567,31 @@ html.view-bracket .site-bg {
   color: var(--ink-soft); opacity: .6;
 }
 
+/* Dolt resultat i hjälten (spoilerskydd) – pips i stället för siffror. */
+.fh-score-hidden { display: inline-flex; align-items: center; }
+.fh-score.fh-score-hidden { gap: clamp(8px, 1.4vw, 16px); }
+.fm-score.fh-score-hidden { gap: 7px; }
+.fh-hidden-pip {
+  border-radius: 6px;
+  background: repeating-linear-gradient(45deg,
+    color-mix(in srgb, var(--ink-soft) 42%, transparent) 0 4px,
+    transparent 4px 8px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12);
+}
+.fh-score.fh-score-hidden .fh-hidden-pip { width: clamp(26px, 4vw, 44px); height: clamp(30px, 5vw, 54px); }
+.fm-score.fh-score-hidden .fh-hidden-pip { width: 16px; height: 20px; border-radius: 4px; }
+.focus-hero.state-live .fh-hidden-pip {
+  background: repeating-linear-gradient(45deg,
+    color-mix(in srgb, var(--livecol) 42%, transparent) 0 4px,
+    transparent 4px 8px);
+}
+.fh-reveal-hint {
+  margin-top: clamp(10px, 1.6vw, 16px); text-align: center;
+  font-size: 12.5px; font-weight: 700; letter-spacing: .02em;
+  color: var(--ink-soft);
+}
+.fm-reveal-hint { margin-top: 8px; font-size: 11.5px; }
+
 /* Målskyttar – grupperade per lag kring en mittställd boll, hemmalaget vänster
    (högerställt mot mitten) och bortalaget höger (vänsterställt). */
 .fh-scorers {
@@ -581,7 +612,7 @@ html.view-bracket .site-bg {
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0;
 }
 .fh-sc-min { flex: none; font-size: 12.5px; font-weight: 700; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
-.focus-card.fc-live .fh-sc-min { color: var(--live); }
+.focus-card.fc-live .fh-sc-min { color: var(--livecol); }
 @media (max-width: 560px) {
   .fh-scorers { gap: 10px; }
   .fh-sc-name { font-size: 12px; }
@@ -598,7 +629,7 @@ html.view-bracket .site-bg {
 .fh-scorers-mini .fh-sc-ball { font-size: 13px; }
 .fh-scorers-mini .fh-sc-name { font-size: clamp(11.5px, 1.2vw, 13px); }
 .fh-scorers-mini .fh-sc-min { font-size: 11.5px; }
-.focus-mini.fm-live .fh-scorers-mini .fh-sc-min { color: var(--live); }
+.focus-mini.fm-live .fh-scorers-mini .fh-sc-min { color: var(--livecol); }
 
 /* Grupp · datum/tid · TV. */
 .fh-meta {
@@ -613,7 +644,7 @@ html.view-bracket .site-bg {
   font-variant-numeric: tabular-nums; text-transform: capitalize;
 }
 
-/* Nedräkning till nästa avspark (display-font, sista rutan röd). */
+/* Nedräkning till nästa avspark (display-font, sista rutan grön). */
 .fh-countdown {
   display: grid; grid-template-columns: repeat(4, 1fr);
   gap: clamp(8px, 1.4vw, 14px);
@@ -635,7 +666,7 @@ html.view-bracket .site-bg {
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
 .fh-countdown .nm-unit:last-child .nm-val {
-  background: linear-gradient(180deg, #ffd9df 0%, #ff8d9c 100%);
+  background: linear-gradient(180deg, #c7f5dd 0%, #4fd99a 100%);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
 .fh-countdown .nm-lbl {
@@ -658,13 +689,13 @@ html.view-bracket .site-bg {
 .focus-tease::before {
   content: "";
   position: absolute; inset: 0 0 auto 0; height: 3px;
-  background: linear-gradient(90deg, var(--usa-red), var(--usa-blue));
+  background: linear-gradient(90deg, var(--adv), var(--usa-blue));
   opacity: .9;
 }
 .focus-tease.ft-next::before { background: linear-gradient(90deg, var(--adv), var(--usa-blue)); }
-/* Avslutad-variant: grön accent signalerar "färdigspelad" (speglar hjältens
-   slutresultat-läge) – tydlig kontrast mot live (röd) och nästa (blå). */
-.focus-tease.ft-prev::before { background: linear-gradient(90deg, var(--adv), var(--usa-blue)); }
+/* Avslutad-variant: röd accent signalerar "färdigspelad" – tydlig kontrast
+   mot nästa/pågående (grön). */
+.focus-tease.ft-prev::before { background: linear-gradient(90deg, var(--st-ft), var(--usa-blue)); }
 
 /* ---- "Nästa match"-ruta under en nyss avslutad match ---- */
 .fh-next {
@@ -729,15 +760,15 @@ html.view-bracket .site-bg {
   background: #e23b4e; box-shadow: 0 1px 2px rgba(0, 0, 0, .4);
   margin-right: 6px; vertical-align: -1px; flex: none;
 }
-/* "Slutspelad"-markör – motsvarigheten till live-badgen, fast grön och statisk. */
+/* "Slutspelad"-markör – motsvarigheten till live-badgen, fast röd och statisk. */
 .fhn-head-right { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
 .fhn-ft {
   display: inline-flex; align-items: center; gap: 6px;
   font-size: 10.5px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase;
-  color: var(--adv); white-space: nowrap;
+  color: var(--st-ft); white-space: nowrap;
   padding: 4px 10px; border-radius: 999px;
-  background: color-mix(in srgb, var(--adv) 14%, transparent);
-  border: 1px solid color-mix(in srgb, var(--adv) 30%, transparent);
+  background: color-mix(in srgb, var(--st-ft) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--st-ft) 30%, transparent);
 }
 .fhn-ft::before { content: "✓"; font-size: 11px; line-height: 1; }
 /* Vinnaren framhävs, förloraren tonas ned – avgjort resultat läses av direkt. */
@@ -772,10 +803,11 @@ html.view-bracket .site-bg {
   box-shadow: 0 16px 36px -22px rgba(0, 0, 0, .85);
 }
 .focus-mini.match-openable:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-.focus-mini.fm-live { border-color: color-mix(in srgb, var(--live) 38%, rgba(255, 255, 255, .1)); }
+.focus-mini.fm-live { border-color: color-mix(in srgb, var(--livecol) 38%, rgba(255, 255, 255, .1)); }
 .fm-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: clamp(12px, 1.6vw, 16px); }
 .fm-group { font-size: 11px; font-weight: 800; letter-spacing: .4px; color: var(--ink-soft); }
 .fm-time { font-size: 13px; font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums; }
+.fm-recent .fm-time { font-size: 12px; white-space: nowrap; }
 .fm-ft { font-size: 10.5px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--ink-soft); }
 
 /* Lagen horisontellt: hemma | mitten (vs/resultat) | borta */
@@ -863,7 +895,7 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 .recent-played::before {
   content: "";
   position: absolute; inset: 0 0 auto 0; height: 3px;
-  background: linear-gradient(90deg, var(--adv), var(--usa-blue));
+  background: linear-gradient(90deg, var(--st-ft), var(--usa-blue));
   opacity: .9;
 }
 .rp-head {
@@ -879,10 +911,26 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   gap: clamp(12px, 1.6vw, 18px);
 }
 
-/* Kortet återanvänder hjältens mini-kort men i grön "spelad"-ton. */
+/* Kortet återanvänder hjältens mini-kort men i röd "spelad"-ton. */
 .focus-mini.fm-recent { border-color: rgba(255, 255, 255, .1); }
 .focus-mini.fm-recent:hover {
-  border-color: color-mix(in srgb, var(--adv) 34%, rgba(255, 255, 255, .12));
+  border-color: color-mix(in srgb, var(--st-ft) 34%, rgba(255, 255, 255, .12));
+}
+
+/* Korten är smala (upp till 4 per rad) så långa landsnamn ("Nederländerna",
+   "Elfenbenskusten") fick inte plats och klipptes med "…". Här får namnet i
+   stället radbrytas snyggt på upp till två rader och fontstorleken krymper
+   något så att hela namnet alltid syns. align-items:center håller flaggorna
+   centrerade även mot ett tvåradigt namn. */
+.fm-recent .fm-name {
+  white-space: normal;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+  line-height: 1.08;
+  font-size: clamp(13px, 1.5vw, 19px);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 /* Fot: repris-ikonerna ligger till höger – exakt samma SVT/TV4-ordning och
@@ -915,7 +963,7 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   backdrop-filter: blur(14px) saturate(1.1);
   box-shadow: 0 16px 40px -26px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 255, 255, .05);
 }
-.teams-strip.is-live { border-color: color-mix(in srgb, var(--live) 30%, rgba(255, 255, 255, .09)); }
+.teams-strip.is-live { border-color: color-mix(in srgb, var(--livecol) 30%, rgba(255, 255, 255, .09)); }
 .ts-items { display: flex; flex: 1 1 auto; gap: 14px; min-width: 0; flex-wrap: wrap; }
 .ts-item {
   --ts-accent: 130, 170, 220;          /* fallback om laget saknar identitetsfärg */
@@ -945,18 +993,18 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 .ts-item:hover::before { opacity: 1; }
 .ts-item.match-openable:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .ts-item.is-live {
-  border-color: color-mix(in srgb, var(--live) 40%, transparent);
+  border-color: color-mix(in srgb, var(--livecol) 40%, transparent);
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--live) 12%, transparent), transparent),
+    linear-gradient(180deg, color-mix(in srgb, var(--livecol) 12%, transparent), transparent),
     rgba(255, 255, 255, .02);
 }
-.ts-item.is-live::before { background: var(--live); opacity: 1; }
+.ts-item.is-live::before { background: var(--livecol); opacity: 1; }
 .ts-item.is-empty { opacity: .85; }
 
 /* Topprad: gruppchip (vänster) + status/tid (höger) – speglar hjältens .fh-top. */
 .ts-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-width: 0; }
 .ts-when { display: inline-flex; align-items: center; gap: 7px; min-width: 0; font-size: 11.5px; font-weight: 700; letter-spacing: .3px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
-.ts-when.is-live { color: var(--live); font-weight: 800; }
+.ts-when.is-live { color: var(--livecol); font-weight: 800; }
 .ts-when.is-live .live-dot { width: 8px; height: 8px; }
 /* Grupp-pill: kompakt variant av sidans gemensamma group-pill (egen gruppfärg). */
 .group-pill.ts-grp { font-size: 10px; padding: 2px 9px; letter-spacing: .3px; flex: none; }
@@ -1195,11 +1243,11 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 .next-matches-row .nm-unit { min-width: 22px; }
 .next-matches-row .nm-timer { gap: 3px; }
 /* ---------- "Pågår nu"-panelen ---------- */
-.next-matches.live-now { border-top-color: var(--live); }
+.next-matches.live-now { border-top-color: var(--livecol); }
 .next-matches.live-now.is-live {
-  border-color: color-mix(in srgb, var(--live) 45%, var(--line));
+  border-color: color-mix(in srgb, var(--livecol) 45%, var(--line));
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--live) 14%, var(--card)), var(--card) 84px);
+    linear-gradient(180deg, color-mix(in srgb, var(--livecol) 14%, var(--card)), var(--card) 84px);
 }
 .nm-live-list { display: flex; flex-direction: column; gap: 6px; }
 .nm-live-item {
@@ -1210,7 +1258,7 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   border-radius: 8px;
   border: 1px solid transparent;
 }
-.nm-live-item.live { background: color-mix(in srgb, var(--live) 8%, transparent); }
+.nm-live-item.live { background: color-mix(in srgb, var(--livecol) 8%, transparent); }
 .nm-live-item.ft { border-color: var(--line); }
 .nm-live-item.match-openable:hover {
   background: color-mix(in srgb, var(--card) 70%, var(--bg-soft));
@@ -1231,7 +1279,7 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
-.nm-live-status.live { color: var(--live); }
+.nm-live-status.live { color: var(--livecol); }
 .nm-live-status.done { color: var(--ink-soft); text-transform: uppercase; letter-spacing: .4px; }
 .nm-live-status.soon { color: var(--third-q); }
 .nm-live-line {
@@ -1286,7 +1334,7 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   color: var(--ink-soft);
   line-height: 1.3;
 }
-.nm-spot-row.is-live .nm-spot-when { color: var(--live); }
+.nm-spot-row.is-live .nm-spot-when { color: var(--livecol); }
 .nm-spot-teams {
   grid-area: teams;
   font-size: 13px;
@@ -1298,7 +1346,7 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 .next-matches-row .cal-tv { grid-area: tv; justify-self: end; align-self: center; flex: none; }
 .nm-teams.nm-muted { color: var(--ink-soft); font-size: 12px; font-weight: 500; }
 .next-matches.empty { color: var(--ink-soft); }
-.next-matches.is-live { border-color: color-mix(in srgb, var(--live) 45%, var(--line)); }
+.next-matches.is-live { border-color: color-mix(in srgb, var(--livecol) 45%, var(--line)); }
 .nm-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
 .nm-title { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: var(--ink-soft); }
 .nm-title .flag { width: 16px; height: 11px; margin-right: 5px; vertical-align: -1px; }
@@ -1313,7 +1361,7 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 .nm-unit { display: flex; flex-direction: column; align-items: center; min-width: 28px; }
 .nm-val { font-size: 18px; font-weight: 800; line-height: 1.1; color: var(--ink); }
 .nm-lbl { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; color: var(--ink-soft); }
-.nm-live { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 800; color: var(--live); white-space: nowrap; }
+.nm-live { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 800; color: var(--livecol); white-space: nowrap; }
 .nm-list { display: flex; flex-direction: column; gap: 6px; }
 .nm-item { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "meta ch" "teams ch"; gap: 2px 8px; align-items: center; }
 .nm-meta { grid-area: meta; font-size: 10.5px; font-weight: 700; color: var(--ink-soft); line-height: 1.3; }
@@ -2049,11 +2097,11 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;
 }
 .m-rel { flex: none; margin-left: auto; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: var(--bg-soft); }
-.m-rel.live { color: #fff; background: var(--live); }
+.m-rel.live { color: #fff; background: var(--livecol); }
 .m-rel.soon { color: var(--ink); background: var(--bg-soft); border: 1px solid var(--line-strong); }
-.m-rel.done { color: var(--adv); }
+.m-rel.done { color: var(--st-ft); }
 .m-rel.await { color: var(--third-q); }
-.match.live-now { border-color: var(--live); box-shadow: 0 0 0 2px color-mix(in srgb, var(--live) 35%, transparent), var(--shadow); }
+.match.live-now { border-color: var(--livecol); box-shadow: 0 0 0 2px color-mix(in srgb, var(--livecol) 35%, transparent), var(--shadow); }
 
 .side { display: flex; align-items: center; gap: 8px; padding: 5px 4px; border-radius: 7px; font-size: 13.5px; color: var(--ink); }
 .side + .side { margin-top: 2px; }
@@ -2547,8 +2595,8 @@ html.view-bracket .bracket .match-expand-icon { width: 11px; height: 11px; }
 }
 .cal-jump:active { transform: translateY(1px); }
 .cal-jump.is-live {
-  background: color-mix(in srgb, var(--usa-red) 20%, var(--card));
-  border-color: color-mix(in srgb, var(--usa-red) 60%, var(--line));
+  background: color-mix(in srgb, var(--livecol) 20%, var(--card));
+  border-color: color-mix(in srgb, var(--livecol) 60%, var(--line));
 }
 .cal-jump-ico { font-size: 14px; line-height: 1; opacity: .85; }
 
@@ -2630,16 +2678,16 @@ html.view-bracket .bracket .match-expand-icon { width: 11px; height: 11px; }
 }
 .cal-row.ko { cursor: default; }
 .cal-row.is-next {
-  border-color: color-mix(in srgb, var(--usa-red) 55%, var(--line));
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--usa-red) 28%, transparent), 0 6px 18px rgba(196, 30, 58, .18);
+  border-color: color-mix(in srgb, var(--adv) 55%, var(--line));
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--adv) 28%, transparent), 0 6px 18px rgba(45, 184, 122, .18);
 }
 .cal-row.is-recent {
-  border-color: color-mix(in srgb, var(--usa-blue) 45%, var(--line));
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--usa-blue) 22%, transparent), var(--shadow);
+  border-color: color-mix(in srgb, var(--st-ft) 45%, var(--line));
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--st-ft) 22%, transparent), var(--shadow);
 }
 .cal-row.is-live {
-  border-color: color-mix(in srgb, var(--live) 45%, var(--line));
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--live) 22%, transparent), var(--shadow);
+  border-color: color-mix(in srgb, var(--livecol) 45%, var(--line));
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--livecol) 22%, transparent), var(--shadow);
 }
 .cal-time {
   font-variant-numeric: tabular-nums;
@@ -2742,9 +2790,9 @@ html.view-bracket .bracket .match-expand-icon { width: 11px; height: 11px; }
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: .55px;
-  color: #ffd9df;
-  background: color-mix(in srgb, var(--usa-red) 55%, rgba(10, 18, 32, .6));
-  border: 1px solid color-mix(in srgb, var(--usa-red) 70%, transparent);
+  color: #d6f5e4;
+  background: color-mix(in srgb, var(--adv) 55%, rgba(10, 18, 32, .6));
+  border: 1px solid color-mix(in srgb, var(--adv) 70%, transparent);
   border-radius: 999px;
   white-space: nowrap;
   flex: none;
@@ -2872,7 +2920,7 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
 .tm-res { grid-area: res; justify-self: end; font-weight: 800; font-variant-numeric: tabular-nums; }
 .tm-res.v { color: var(--adv); } .tm-res.f { color: var(--live); } .tm-res.o { color: var(--ink-soft); }
 .tm-rel { grid-area: res; justify-self: end; font-size: 11.5px; font-weight: 700; }
-.tm-rel.soon { color: var(--ink); } .tm-rel.live { color: var(--live); } .tm-rel.up { color: var(--ink-soft); } .tm-rel.await { color: var(--third-q); }
+.tm-rel.soon { color: var(--ink); } .tm-rel.live { color: var(--livecol); } .tm-rel.up { color: var(--ink-soft); } .tm-rel.await { color: var(--third-q); }
 
 /* ====================================================================
    TOOLTIP
@@ -2896,7 +2944,7 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
   box-shadow: var(--shadow-lg); padding: 10px 16px; font-size: 14px; transition: transform .3s ease; max-width: 94vw;
 }
 .live-banner.show { transform: translate(-50%, 0); }
-.lb-live { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; color: #fff; background: var(--live); padding: 4px 10px; border-radius: 999px; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.lb-live { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; color: #fff; background: var(--livecol); padding: 4px 10px; border-radius: 999px; font-size: 12.5px; font-variant-numeric: tabular-nums; }
 .lb-live .live-dot { background: #fff; }
 .lb-tag { font-size: 12px; font-weight: 700; color: var(--ink-soft); }
 .lb-match { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
@@ -2904,10 +2952,10 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
 .lb-match .flag { width: 22px; height: 15px; }
 .lb-demo { font-size: 10px; font-weight: 800; letter-spacing: .6px; color: var(--ink-soft); border: 1px solid var(--line-strong); padding: 2px 7px; border-radius: 6px; }
 
-.fixture.live { background: color-mix(in srgb, var(--live) 7%, transparent); border-radius: 8px; }
-.fx-live { display: inline-flex; align-items: center; gap: 4px; color: var(--live); font-weight: 800; font-size: 10px; }
-.cal-row.is-live { border-color: var(--live); box-shadow: 0 0 0 2px color-mix(in srgb, var(--live) 22%, transparent), var(--shadow); }
-.cal-livet { display: inline-flex; align-items: center; gap: 4px; color: var(--live); font-weight: 800; }
+.fixture.live { background: color-mix(in srgb, var(--livecol) 7%, transparent); border-radius: 8px; }
+.fx-live { display: inline-flex; align-items: center; gap: 4px; color: var(--livecol); font-weight: 800; font-size: 10px; }
+.cal-row.is-live { border-color: var(--livecol); box-shadow: 0 0 0 2px color-mix(in srgb, var(--livecol) 22%, transparent), var(--shadow); }
+.cal-livet { display: inline-flex; align-items: center; gap: 4px; color: var(--livecol); font-weight: 800; }
 
 /* ---------- Footer ---------- */
 .foot { max-width: var(--maxw); margin: 10px auto 0; padding: 22px 20px 40px; color: var(--ink-soft); font-size: 12px; border-top: 1px solid var(--line); }
@@ -3395,7 +3443,7 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
 .live-toast {
   display: flex; align-items: center; gap: 12px;
   background: var(--card); border: 1px solid var(--line);
-  border-left: 4px solid var(--live); border-radius: var(--radius-sm);
+  border-left: 4px solid var(--livecol); border-radius: var(--radius-sm);
   box-shadow: var(--shadow-lg); padding: 12px 16px;
   min-width: 240px; max-width: 340px;
   opacity: 0; transform: translateX(20px); transition: opacity .35s ease, transform .35s ease;
@@ -3474,7 +3522,7 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
 .mi-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding-right: 36px; margin-bottom: 14px; }
 .mi-label { font-size: 12px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-soft); }
 .mi-status { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; border-radius: 999px; padding: 3px 10px; }
-.mi-status.live { background: color-mix(in srgb, var(--live) 16%, transparent); color: var(--live); }
+.mi-status.live { background: color-mix(in srgb, var(--livecol) 16%, transparent); color: var(--livecol); }
 .mi-status.done { background: var(--bg-soft); color: var(--ink-soft); }
 .mi-status.upcoming { background: var(--bg-soft); color: var(--ink-soft); }
 
@@ -3533,6 +3581,51 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
 @media (max-width: 480px) {
   .mi-reveal { width: 100%; align-self: stretch; }
 }
+
+/* ---------- Spoilervarning (bekräfta innan resultatet visas) ---------- */
+.mc-overlay {
+  position: fixed; inset: 0; z-index: 90;
+  display: none; align-items: center; justify-content: center;
+  padding: 20px;
+  background: rgba(8, 14, 22, .58);
+  -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+}
+.mc-overlay.show { display: flex; animation: mc-fade .15s ease; }
+@keyframes mc-fade { from { opacity: 0; } to { opacity: 1; } }
+.mc-box {
+  width: min(420px, calc(100vw - 40px));
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow-lg);
+  padding: 26px 24px 22px; text-align: center;
+  animation: mc-pop .18s cubic-bezier(.2, .8, .3, 1.1);
+}
+@keyframes mc-pop { from { transform: translateY(8px) scale(.97); opacity: 0; } to { transform: none; opacity: 1; } }
+.mc-ic {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px; margin-bottom: 14px; border-radius: 50%;
+  color: color-mix(in srgb, var(--usa-red) 82%, #fff);
+  background: color-mix(in srgb, var(--usa-red) 12%, var(--bg-soft));
+  border: 1px solid color-mix(in srgb, var(--usa-red) 28%, var(--line));
+}
+.mc-title { margin: 0 0 8px; font-size: 18px; font-weight: 800; color: var(--ink); }
+.mc-msg { margin: 0 0 20px; font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); }
+.mc-actions { display: flex; gap: 10px; justify-content: center; }
+.mc-btn {
+  flex: 1 1 0; font: inherit; font-weight: 700; font-size: 14px;
+  padding: 11px 16px; border-radius: 11px; cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.mc-cancel {
+  border: 1px solid var(--line); background: var(--bg-soft); color: var(--ink);
+}
+.mc-cancel:hover { background: var(--line); }
+.mc-reveal {
+  border: 1px solid color-mix(in srgb, var(--usa-red) 45%, var(--line));
+  background: color-mix(in srgb, var(--usa-red) 20%, transparent);
+  color: color-mix(in srgb, var(--usa-red) 84%, #fff);
+}
+.mc-reveal:hover { background: color-mix(in srgb, var(--usa-red) 32%, transparent); color: #fff; }
+.mc-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 
 /* Flikar */
 .mi-tabs {
@@ -3806,12 +3899,12 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
 
 /* Livesändning / försnack – samma layout men med live-accent. */
 .mi-watch-link.is-live {
-  border-color: color-mix(in srgb, var(--live) 55%, var(--line));
-  background: color-mix(in srgb, var(--live) 10%, transparent);
+  border-color: color-mix(in srgb, var(--livecol) 55%, var(--line));
+  background: color-mix(in srgb, var(--livecol) 10%, transparent);
 }
-.mi-watch-link.is-live:hover { background: color-mix(in srgb, var(--live) 18%, transparent); border-color: var(--live); }
+.mi-watch-link.is-live:hover { background: color-mix(in srgb, var(--livecol) 18%, transparent); border-color: var(--livecol); }
 .mi-watch-link.is-live .live-dot { margin-right: 1px; }
-.mi-watch-link.is-upcoming .mi-watch-ico { color: var(--live); opacity: 1; }
+.mi-watch-link.is-upcoming .mi-watch-ico { color: var(--livecol); opacity: 1; }
 
 @media (max-width: 560px) {
   .mi-card {
