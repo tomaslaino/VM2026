@@ -2990,6 +2990,9 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
 .cal-watch-link:hover svg rect,
 .cal-watch-link:hover svg circle { stroke: #0a1628; }
 .cal-watch-link:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+/* Livesändningen (hela matchen i efterhand) innan sammandragen finns – en svag
+   ring markerar att det är själva sändningen, inte ett klippt sammandrag. */
+.cal-watch-link.cal-watch-live { box-shadow: inset 0 0 0 1px currentColor; }
 
 /* ====================================================================
    LAG-PANEL (drawer)

@@ -775,14 +775,6 @@
     return channelLinksHtml("SVT", hl.SVT) + channelLinksHtml("TV4", hl.TV4);
   }
 
-  function highlightsHtml(info) {
-    // Bara spelade matcher har repris/sammandrag att länka till.
-    if (!info || !info.played) return "";
-    var groups = recordedWatchGroups(info);
-    if (!groups) return "";
-    return watchWrapHtml("Repriser", groups);
-  }
-
   /* ---------- Spoilerfritt läge ----------
      Matchen spelades det senaste dygnet men resultatet är dolt. Visa highlights/
      repriser (de avslöjar inget i sig) plus en "visa ändå"-knapp – men inte mål,
@@ -837,6 +829,39 @@
     if (!groups) return "";
     var title = info.live ? "Se matchen live" : "Se sändningen live";
     return watchWrapHtml(title, groups, "mi-watch-live");
+  }
+
+  /* Hela matchen i efterhand: när en match precis spelats men inget sammandrag
+     publicerats ännu ligger ofta livesändningen kvar (går att spola till början).
+     Den länken visas tills repriserna kommer eller sändningen tas bort. */
+  function fullMatchChannelHtml(chName, data) {
+    if (!data || !data.live) return "";
+    var entry = data.live;
+    if (entry.until && new Date(entry.until).getTime() <= Date.now()) return "";
+    var link = '<a class="mi-watch-link is-full" href="' + esc(entry.url) + '" target="_blank" rel="noopener noreferrer" ' +
+      'title="' + esc(entry.title || "Hela matchen") + '"><span class="mi-watch-ico" aria-hidden="true">▶</span>Hela matchen</a>';
+    return channelBlockHtml(chName, link);
+  }
+
+  function postMatchLiveHtml(info) {
+    var hl = highlights[info.key];
+    if (!hl) return "";
+    var groups = fullMatchChannelHtml("SVT", hl.SVT) + fullMatchChannelHtml("TV4", hl.TV4);
+    if (!groups) return "";
+    return watchWrapHtml("Se hela matchen", groups, "mi-watch-live");
+  }
+
+  /* Vad som visas i "titta"-delen av modalen: livesändning inför/under matchen,
+     repriser efteråt, hela matchen i efterhand (innan sammandrag finns), eller –
+     när inget av detta finns – en kort notis. */
+  function watchSectionHtml(info) {
+    if (!info) return "";
+    if (!info.played) return liveBroadcastHtml(info);
+    var recorded = recordedWatchGroups(info);
+    if (recorded) return watchWrapHtml("Repriser", recorded);
+    var post = postMatchLiveHtml(info);
+    if (post) return post;
+    return '<div class="mi-empty">Livesändningen är slut och ingen repris har publicerats ännu.</div>';
   }
 
   function renderModal() {
@@ -922,8 +947,7 @@
     if (det && det.score && det.score.pen) subScore.push("Straffar " + det.score.pen.h + "–" + det.score.pen.a);
     if (subScore.length) h += '<div class="mi-subscore">' + esc(subScore.join(" · ")) + '</div>';
 
-    h += liveBroadcastHtml(info);
-    h += highlightsHtml(info);
+    h += watchSectionHtml(info);
     h += tabsHtml(info, det);
     h += factsHtml(info, det);
 

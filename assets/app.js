@@ -3844,6 +3844,27 @@
     return '<span class="cal-watch-ch">' + links + "</span>";
   }
 
+  /* Livesändningslänk (hela matchen, går att spola till början) för en nyss
+     avslutad match där sammandragen ännu inte publicerats. Datat kommer från
+     samma highlights-fil som repriserna men under typen "live". */
+  function calLiveWatchLink(entry, ch) {
+    var chCls = ch === "SVT" ? "svt" : "tv4";
+    var tip = "Hela matchen · " + ch;
+    return '<a class="cal-watch-link cal-watch-live ' + chCls + '" href="' + esc(entry.url) + '" target="_blank" rel="noopener noreferrer" ' +
+      'title="' + esc(tip) + '" aria-label="' + esc("Hela matchen på " + ch) + '">' +
+      CAL_HL_ICONS.full + "</a>";
+  }
+
+  function calLiveWatchInner(key) {
+    var hl = calHighlights[key];
+    if (!hl) return "";
+    var links = "";
+    if (hl.SVT && calWatchAvailable(hl.SVT.live)) links += calLiveWatchLink(hl.SVT.live, "SVT");
+    if (hl.TV4 && calWatchAvailable(hl.TV4.live)) links += calLiveWatchLink(hl.TV4.live, "TV4");
+    if (!links) return "";
+    return '<span class="cal-watch-ch">' + links + "</span>";
+  }
+
   function tvLookupGroup(fx, th, ta) {
     var sched = WC.tvSchedule;
     if (sched && fx.date && fx.edt) {
@@ -4293,10 +4314,11 @@
     return { state: "none", kickoff: null, matches: [] };
   }
 
-  /* "Avslutade matcher": ALLA färdigspelade matcher (ej pågående) som har en
-     publicerad repris/sammandrag att titta på. Vi läser det verkliga resultatet
-     (rawRes) för att veta att matchen är spelad – men visar aldrig siffrorna i
-     korten; man får klicka in sig för resultat och repriser. Sorterad senast
+  /* "Avslutade matcher": ALLA färdigspelade matcher (ej pågående). Vi läser det
+     verkliga resultatet (rawRes) för att veta att matchen är spelad – men visar
+     aldrig siffrorna i korten; man får klicka in sig för resultat och repriser.
+     Matcher utan publicerad repris tas också med (nyss avslutade), och får i
+     stället en livelänk eller en kort notis i repriskolumnen. Sorterad senast
      först (nyast hamnar längst ned i listan via CSS column-reverse). */
   function findRecentMatches(ctx) {
     var items = buildSchedule();
@@ -4310,7 +4332,6 @@
       var raw = rawRes(entry.key);
       if (!isPlayed(raw)) return;                          // måste ha ett resultat
       if (apiLive[entry.key] || isLiveStatus(raw.status) || isMatchLive(entry.key)) return; // pågår → hjälten
-      if (!calWatchInner(entry.key)) return;               // bara matcher med tillgänglig repris
       entry.ko = ko;
       out.push(entry);
     });
@@ -4548,8 +4569,12 @@
   function recentWatchHtml(key) {
     var inner = calWatchInner(key);
     if (inner) return '<span class="cal-watch">' + inner + '</span>';
-    return '<span class="rm-norepris" title="Repriserna brukar dyka upp några timmar efter slutsignal">' +
-      'Repris dröjer</span>';
+    // Ingen repris ännu – erbjud livesändningen (hela matchen från början) om
+    // den fortfarande ligger kvar, annars en kort notis.
+    var live = calLiveWatchInner(key);
+    if (live) return '<span class="cal-watch">' + live + '</span>';
+    return '<span class="rm-norepris" title="Livesändningen är slut och repriser har inte publicerats ännu">' +
+      'Sändning slut · repris dröjer</span>';
   }
 
   /* En rad i "Nyligen spelat" – byggd som kalenderns matchrader (på rad i

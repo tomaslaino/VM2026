@@ -180,11 +180,16 @@ function fixtureTs(fx) {
 }
 
 /**
- * Pågående eller strax kommande matcher (med kända lag) som kan ha en
- * livesändning/försnack att länka till. Avgränsas tidsmässigt så att inte hela
- * spelschemat söks – bara matcher inom ±windowHours från avspark.
+ * Pågående, strax kommande eller nyss avslutade matcher (med kända lag) som kan
+ * ha en livesändning att länka till. Avgränsas tidsmässigt så att inte hela
+ * spelschemat söks: från preHours före avspark till postHours efter.
+ *
+ * Nyss avslutade matcher tas medvetet med: SVT/TV4 låter ofta hela sändningen
+ * ligga kvar en stund efter slutsignal (man kan spola till början), och innan
+ * sammandragen publicerats är det den enda länken till matchen. När sändningen
+ * tas bort eller "tillgänglig till" passerat faller länken bort av sig själv.
  */
-export function loadLiveFixtures(windowHours = 4) {
+export function loadLiveFixtures(preHours = 4, postHours = 6) {
   let json;
   try {
     json = JSON.parse(fs.readFileSync(RESULTS_FILE, "utf8"));
@@ -194,16 +199,23 @@ export function loadLiveFixtures(windowHours = 4) {
   const fixtures = json.fixtures || {};
   const results = json.results || {};
   const now = Date.now();
-  const win = windowHours * 3600 * 1000;
+  const preWin = preHours * 3600 * 1000;
+  const postWin = postHours * 3600 * 1000;
   const out = [];
   for (const [key, fx] of Object.entries(fixtures)) {
     if (!fx.home || !fx.away) continue;
-    if (isFinishedFixture(key, fx, results)) continue;
     const idH = teamId(fx.home);
     const idA = teamId(fx.away);
     if (!isKnownTeam(idH) || !isKnownTeam(idA)) continue;
     const ts = fixtureTs(fx);
-    if (!Number.isNaN(ts) && Math.abs(ts - now) > win) continue;
+    if (Number.isNaN(ts)) {
+      // Utan känd avsparkstid går matchen inte att tidsbegränsa – ta då bara med
+      // den om den ännu inte spelats (annars vet vi inte om sändningen ligger kvar).
+      if (isFinishedFixture(key, fx, results)) continue;
+    } else {
+      if (ts - now > preWin) continue; // för långt fram i tiden
+      if (now - ts > postWin) continue; // avspark för länge sedan
+    }
     out.push({ key, home: fx.home, away: fx.away, date: fx.date, idH, idA });
   }
   return out;
