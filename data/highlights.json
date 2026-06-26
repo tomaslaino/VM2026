@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-26T22:57:33.244Z",
+    "updatedAt": "2026-06-26T23:59:29.123Z",
     "source": "svt+tv4",
-    "matchCount": 64
+    "matchCount": 66
   },
   "byKey": {
     "g:A:2": {
@@ -1379,11 +1379,10 @@
         }
       },
       "TV4": {
-        "live": {
+        "full": {
           "url": "https://www.tv4play.se/video/0ba5bbe956e900023b3f/norge-frankrike",
           "title": "Norge - Frankrike",
-          "until": "2026-07-26T18:00:00Z",
-          "from": "2026-06-26T18:00:36Z"
+          "until": "2026-07-26T18:00:00Z"
         },
         "short": {
           "url": "https://www.tv4play.se/klipp/1b3f1e6d28422c645d59/video-hojdpunkter-norge-frankrike",
@@ -1401,11 +1400,10 @@
         }
       },
       "TV4": {
-        "live": {
+        "full": {
           "url": "https://www.tv4play.se/video/b69400d553de63f026f1/senegal-irak",
           "title": "Senegal - Irak",
-          "until": "2026-07-26T18:50:00Z",
-          "from": "2026-06-26T18:50:04Z"
+          "until": "2026-07-26T18:50:00Z"
         },
         "short": {
           "url": "https://www.tv4play.se/klipp/49f3a948648036365029/video-hojdpunkter-senegal-irak",
@@ -1420,7 +1418,7 @@
           "url": "https://www.tv4play.se/video/49016926db4987bf9e00/uruguay-spanien",
           "title": "Uruguay - Spanien",
           "until": "2026-07-26T23:45:00Z",
-          "from": "2026-06-26T23:45:39Z"
+          "from": "2026-06-26T23:45:44Z"
         }
       }
     },
@@ -1431,6 +1429,26 @@
           "title": "Kap Verde - Saudiarabien",
           "until": "2026-07-26T23:50:00Z",
           "from": "2026-06-26T23:50:21Z"
+        }
+      }
+    },
+    "g:G:5": {
+      "TV4": {
+        "live": {
+          "url": "https://www.tv4play.se/video/6f731bb05b7c20500385/egypten-iran",
+          "title": "Egypten - Iran",
+          "until": "2026-07-27T02:50:00Z",
+          "from": "2026-06-27T02:50:27Z"
+        }
+      }
+    },
+    "g:G:4": {
+      "TV4": {
+        "live": {
+          "url": "https://www.tv4play.se/video/90215ba13114d96e7a18/nya-zeeland-belgien",
+          "title": "Nya Zeeland - Belgien",
+          "until": "2026-07-27T02:50:00Z",
+          "from": "2026-06-27T02:50:19Z"
         }
       }
     }
