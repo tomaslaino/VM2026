@@ -18,7 +18,7 @@ if (gen.status !== 0) {
 const block = gen.stdout.replace(/^\/\* AUTO-GENERERAD.*\n/, "/* TV4/SVT-tabla – genereras med node server/scripts/buildBroadcastMap.js */\n");
 
 let data = fs.readFileSync(dataPath, "utf8");
-const start = data.indexOf("/* TV-sändning");
+const start = data.indexOf("/* TV4/SVT-tabla");
 if (start === -1) {
   console.error("Could not find TV block in data.js");
   process.exit(1);

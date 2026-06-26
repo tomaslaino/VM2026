@@ -41,7 +41,13 @@ export async function syncHighlights({ log = console.log } = {}) {
   // Lagpar → nyckel måste täcka både spelade och pågående/kommande matcher så att
   // TV4:s panelträffar kan mappas oavsett matchstatus.
   const pairIndex = buildPairIndex(played.concat(live));
-  const liveKeys = new Set(live.map((fx) => fx.key));
+  // En nyss avslutad match ligger kvar i live-fönstret (postHours) men är redan
+  // färdigspelad. För TV4:s hela-matchen-sändning ska den då bli en "full"-repris
+  // (visas som "Hela matchen"-knappen i kalendern/Nyligen spelat), inte en
+  // "live"-länk som annars göms bakom det korta sammandraget i frontend. Vi
+  // räknar därför bara matcher som INTE är färdigspelade som "live".
+  const playedKeys = new Set(played.map((fx) => fx.key));
+  const liveKeys = new Set(live.filter((fx) => !playedKeys.has(fx.key)).map((fx) => fx.key));
 
   const [svt, svtLive, tv4] = await Promise.all([
     fetchSvtHighlights(played, { log }).catch((e) => {

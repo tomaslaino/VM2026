@@ -3882,6 +3882,29 @@
     return (WC.tvBroadcast && WC.tvBroadcast["k:" + m.m]) || "";
   }
 
+  /** Sändningsstart enligt SVT/TV4-tabla (kan ligga före avspark). */
+  function tvAirUTC(key, m) {
+    var slot = WC.tvAirTime && WC.tvAirTime[key];
+    if (slot) {
+      var p = slot.split("|");
+      return kickoffUTC({ date: p[0], edt: p[1] }).getTime();
+    }
+    return kickoffUTC(m).getTime();
+  }
+
+  var TV_AIR_WINDOW_MS = 3 * 3600 * 1000;
+
+  /** True när sändningen gått live (tablåtid, SVT/TV4-länk eller matchstatus). */
+  function tvBroadcastOnAir(key, m, live) {
+    if (live) return true;
+    if (key && isMatchLive(key)) return true;
+    if (key && calLiveWatchInner(key)) return true;
+    if (!key || !m) return false;
+    var air = tvAirUTC(key, m);
+    var now = Date.now();
+    return now >= air && now < air + TV_AIR_WINDOW_MS;
+  }
+
   var ROUND_SHORT = { R32: "S16", R16: "Å16", QF: "Kvarts", SF: "Semi", "3RD": "Brons", FINAL: "Final" };
 
   function countdownParts(targetMs) {
@@ -4091,7 +4114,8 @@
         groupLetter: mm.kind === "group" ? info.group : null,
         channel: channel,
         team: info.team,
-        key: key
+        key: key,
+        m: m
       };
     }
     return null;
@@ -4101,18 +4125,28 @@
   // så vi länkar till spelartjänstens startsida där den pågående matchen ligger.
   var TV_LIVE_URL = { SVT: "https://www.svtplay.se/", TV4: "https://www.tv4play.se/" };
 
-  function spotlightTvHtml(ch, live) {
+  /** TV-bricka/livesändningslänk – visas först när sändningen startat enligt tablå. */
+  function matchTvHtml(key, ch, m, live) {
     if (!ch) return '<span class="cal-tv cal-tv-empty" aria-hidden="true"></span>';
-    // På pågående matcher blir TV-brickan en klickbar "se live"-länk till
-    // sändaren. På övriga matcher visas bara kanalmärket.
-    if (live && TV_LIVE_URL[ch]) {
+    var onAir = tvBroadcastOnAir(key, m, live);
+    if (!onAir) {
+      return '<span class="cal-tv cal-tv-empty tv-waiting" data-tv-air-ms="' + tvAirUTC(key, m) +
+        '" aria-hidden="true"></span>';
+    }
+    var liveInner = key ? calLiveWatchInner(key) : "";
+    if (liveInner) return '<span class="cal-watch">' + liveInner + "</span>";
+    if (TV_LIVE_URL[ch]) {
       var lbl = "Se matchen live på " + ch;
       return '<a class="cal-tv tv-live ' + (ch === "SVT" ? "svt" : "tv4") +
         '" href="' + TV_LIVE_URL[ch] + '" target="_blank" rel="noopener"' +
         ' title="' + esc(lbl) + '" aria-label="' + esc(lbl) + '">' +
-        '<span class="tv-live-ico" aria-hidden="true"></span>' + ch + '</a>';
+        '<span class="tv-live-ico" aria-hidden="true"></span>' + ch + "</a>";
     }
     return tvChHtml(ch);
+  }
+
+  function spotlightTvHtml(ch, live, key, m) {
+    return matchTvHtml(key || "", ch, m || { date: "", edt: "" }, !!live);
   }
 
   /** Ett lag i matchraden – fokuslaget (Sverige/Uruguay) lyfts fram. Flaggan
@@ -4160,7 +4194,7 @@
     var inner =
       '<div class="ts-top">' + tsGroupChip(m) + status + '</div>' +
       '<div class="ts-main"' + teamsTitle + '>' + teamsInner + '</div>' +
-      '<div class="ts-foot">' + spotlightTvHtml(m.channel) + '</div>';
+      '<div class="ts-foot">' + matchTvHtml(m.key, m.channel, m.m, m.live) + '</div>';
     // Med matchnyckel öppnar cellen matchinfo-modalen; annars laget (fallback).
     var open = m.key ? matchOpenAttr(m.key) : { attr: "", cls: "" };
     if (open.attr) {
@@ -4206,6 +4240,7 @@
     var anyGrave = teams.some(function (t) { return t.fate; });
     var h = '<section class="teams-strip' + (anyLive ? " is-live" : "") + (anyGrave ? " has-grave" : "") +
       '" id="teamsSpotlight" aria-label="Sverige och Uruguay">';
+    h += '<span class="ts-strip-title">VM-drömmarna</span>';
     h += '<div class="ts-items">';
     teams.forEach(function (tp) { h += tp.fate ? teamGraveItem(tp) : teamStripItem(tp); });
     h += '</div></section>';
@@ -4399,11 +4434,12 @@
       '</div>';
   }
 
-  function focusCountdown(kickoff, id, prefix) {
+  function focusCountdown(kickoff, id, prefix, above) {
     id = id || "focusTimer";
     prefix = prefix || "fh";
     var p = countdownParts(kickoff);
-    return '<div class="fh-countdown" id="' + id + '" data-kickoff="' + (kickoff || "") + '" aria-live="polite">' +
+    return '<div class="fh-countdown' + (above ? " fh-countdown-above" : "") +
+      '" id="' + id + '" data-kickoff="' + (kickoff || "") + '" aria-live="polite">' +
       nextMatchTimerUnit(prefix + "-d", p.d, "dygn") +
       nextMatchTimerUnit(prefix + "-h", pad(p.h), "tim") +
       nextMatchTimerUnit(prefix + "-m", pad(p.m), "min") +
@@ -4478,6 +4514,7 @@
       '<span class="fh-eyebrow">' + esc(FOCUS_HEADINGS[state].one) + '</span>' +
       '<span class="fh-top-right">' + focusGroupChip(e, "fh-group") + status + '</span>' +
       '</div>';
+    if (state === "next") h += focusCountdown(kickoff != null ? kickoff : e.ko, "focusTimer", "fh", true);
     h += '<div class="fh-main">' +
       focusTeamSide(e.home, "home") + center + focusTeamSide(e.away, "away") +
       '</div>';
@@ -4486,10 +4523,9 @@
     }
     h += '<div class="fh-meta">' +
       '<span class="fh-when">' + esc(when.dateLabel + " · " + when.time) + '</span>' +
-      (state === "live" ? "" : spotlightTvHtml(e.channel, false)) +
+      (state === "live" ? "" : matchTvHtml(e.key, e.channel, e.m, false)) +
       '</div>';
     if (state === "live") h += '<div class="fh-watch-row">' + focusWatchLive(e) + '</div>';
-    if (state === "next") h += focusCountdown(kickoff != null ? kickoff : e.ko);
     h += '</article>';
     return h;
   }
@@ -4524,7 +4560,7 @@
       h += '<div class="fh-reveal-hint fm-reveal-hint">Klicka för att visa resultatet</div>';
     }
     h += '<div class="fm-foot">' +
-      (state === "live" ? focusWatchLive(e) : spotlightTvHtml(e.channel, false)) +
+      (state === "live" ? focusWatchLive(e) : matchTvHtml(e.key, e.channel, e.m, false)) +
       '</div>';
     h += '</article>';
     return h;
@@ -4549,10 +4585,10 @@
         '<span class="fh-eyebrow">' + esc(FOCUS_HEADINGS[f.state].many) + '</span>' +
         (f.state === "live" ? '<span class="fh-live"><span class="live-dot"></span>LIVE</span>' : "") +
         '</div>';
+      if (f.state === "next") h += focusCountdown(f.kickoff, "focusTimer", "fh", true);
       h += '<div class="focus-mini-grid">';
       f.matches.forEach(function (e) { h += focusMiniCard(e, f.state); });
       h += '</div>';
-      if (f.state === "next") h += focusCountdown(f.kickoff);
     }
     h += '</section>';
     return h;
@@ -4654,6 +4690,20 @@
   function updateNextCountdown() {
     updatePanelCountdown("focusTimer", "fh");
     updatePanelCountdown("ftNextTimer", "ftn");
+    updateTvOnAirState();
+  }
+
+  /** När sändningen går live enligt tablå – uppdatera startsidan utan att vänta på poll. */
+  function updateTvOnAirState() {
+    if (ui("view", "home") !== "home") return;
+    var waiting = document.querySelectorAll(".tv-waiting[data-tv-air-ms]");
+    for (var i = 0; i < waiting.length; i++) {
+      if (Date.now() >= parseInt(waiting[i].getAttribute("data-tv-air-ms"), 10)) {
+        lastViewSig = null;
+        renderHome();
+        return;
+      }
+    }
   }
 
   /** Nyckel, matchobjekt och spelad-status för kalenderpost. */
@@ -4935,12 +4985,18 @@
     return cls;
   }
 
-  function calVenueCell(channel, isNext, watch) {
+  function calVenueCell(channel, isNext, watch, key, m) {
     // Finns repriser tar de TV-kanalmärkets plats på matchraden – kanalen
     // framgår ändå av reprisbrickans färg (SVT grön, TV4 röd).
-    var slot = watch
-      ? '<span class="cal-watch">' + watch + '</span>'
-      : (channel ? tvChHtml(channel) : '<span class="cal-tv cal-tv-empty" aria-hidden="true"></span>');
+    var slot;
+    if (watch) {
+      slot = '<span class="cal-watch">' + watch + "</span>";
+    } else if (channel && key && m && !tvBroadcastOnAir(key, m, false)) {
+      slot = '<span class="cal-tv cal-tv-empty tv-waiting" data-tv-air-ms="' + tvAirUTC(key, m) +
+        '" aria-hidden="true"></span>';
+    } else {
+      slot = channel ? tvChHtml(channel) : '<span class="cal-tv cal-tv-empty" aria-hidden="true"></span>';
+    }
     // En spelad match med repriser är aldrig "nästa", så då behövs ingen
     // Nästa-platshållare – det ger reprisbrickorna plats att ligga på en rad.
     var nextEl = isNext
@@ -4968,7 +5024,7 @@
       '<span class="cal-match">' + teamOpenBtn(th, '<span title="' + esc(th.sv) + '">' + esc(teamSvFixture(th)) + '</span>' + flagImg(th.iso), "cal-side home") +
         score +
         teamOpenBtn(ta, flagImg(ta.iso) + '<span title="' + esc(ta.sv) + '">' + esc(teamSvFixture(ta)) + '</span>', "cal-side away") + '</span>' +
-      calVenueCell(tvLookupGroup(fx, th, ta), isNext, calWatchInner(fx.key)) +
+      calVenueCell(tvLookupGroup(fx, th, ta), isNext, calWatchInner(fx.key), fx.key, fx) +
       '</div>';
   }
 
@@ -4999,7 +5055,7 @@
       '<span class="cal-time">' + (live ? liveTimeLabel("k:" + m.m, when.time) : when.time) + '</span>' +
       '<span class="cal-badge ' + m.round + '">' + (CAL_ROUND[m.round] || m.round) + ' · M' + m.m + '</span>' +
       '<span class="cal-match">' + hHome + score + hAway + '</span>' +
-      calVenueCell(tvLookupKo(m), isNext, calWatchInner("k:" + m.m)) +
+      calVenueCell(tvLookupKo(m), isNext, calWatchInner("k:" + m.m), "k:" + m.m, m) +
       '</div>';
   }
 

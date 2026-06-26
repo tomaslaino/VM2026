@@ -156,6 +156,7 @@ const KO = [
 
 const tvBroadcast = {};
 const tvSchedule = {};
+const tvAirTime = {}; // sändningsstart enligt SVT/TV4-tabla (kan ligga före avspark)
 const missing = [];
 
 function schedKey(date, time, a, b) {
@@ -171,6 +172,7 @@ for (const line of USER_GROUP.trim().split("\n")) {
   const key = keyByPair.get(pairKey(home, away));
   if (!key) { missing.push(line); continue; }
   tvBroadcast[key] = ch;
+  tvAirTime[key] = `${m[1]}|${m[2]}`;
   const fx = fixtures[key];
   const date = fx?.date || m[1];
   const time = fx?.time || m[2];
@@ -181,6 +183,7 @@ for (const line of USER_GROUP.trim().split("\n")) {
 const tvKoTime = {};
 for (const [date, time, no, ch] of KO) {
   tvBroadcast[`k:${no}`] = ch;
+  tvAirTime[`k:${no}`] = `${date}|${time}`;
 }
 
 // Slutspel: koppla kanal till API:s avsparkstider via kronologisk ordning (TV4-tablå)
@@ -216,4 +219,5 @@ console.log("/* AUTO-GENERERAD – kör node server/scripts/buildBroadcastMap.js
 console.log(emitObj("WC.tvBroadcast", tvBroadcast));
 console.log(emitObj("WC.tvSchedule", tvSchedule));
 console.log(emitObj("WC.tvKoTime", tvKoTime));
-console.error(`OK broadcast=${Object.keys(tvBroadcast).length} schedule=${Object.keys(tvSchedule).length} koTime=${Object.keys(tvKoTime).length}`);
+console.log(emitObj("WC.tvAirTime", tvAirTime));
+console.error(`OK broadcast=${Object.keys(tvBroadcast).length} schedule=${Object.keys(tvSchedule).length} koTime=${Object.keys(tvKoTime).length} airTime=${Object.keys(tvAirTime).length}`);
