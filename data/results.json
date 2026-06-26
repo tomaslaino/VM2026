@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-26T20:21:10.811Z",
+    "updatedAt": "2026-06-26T21:46:17.524Z",
     "source": "espn",
     "matchCount": 62,
-    "liveCount": 2,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -308,34 +308,17 @@
       "status": "FINISHED"
     },
     "g:I:2": {
-      "h": 3,
+      "h": 4,
       "a": 1,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     },
     "g:I:3": {
       "h": 0,
-      "a": 1,
-      "status": "IN_PLAY"
+      "a": 5,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:I:2",
-      "status": "IN_PLAY",
-      "minute": 57,
-      "home": "France",
-      "away": "Norway",
-      "score": "3-1"
-    },
-    {
-      "key": "g:I:3",
-      "status": "IN_PLAY",
-      "minute": 53,
-      "home": "Iraq",
-      "away": "Senegal",
-      "score": "0-1"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1361,7 +1344,7 @@
       "date": "2026-06-26",
       "time": "21:00",
       "utcDate": "2026-06-26T19:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "France",
       "away": "Norway",
@@ -1378,7 +1361,7 @@
       "date": "2026-06-26",
       "time": "21:00",
       "utcDate": "2026-06-26T19:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Iraq",
       "away": "Senegal",
@@ -1633,12 +1616,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Ivory Coast",
-      "away": "Group I 2nd Place",
+      "away": "Norway",
       "homeRef": {
         "group": "E",
         "idx": 2
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "I",
+        "idx": 2
+      }
     },
     "k:77": {
       "date": "2026-06-30",
@@ -1646,9 +1632,12 @@
       "utcDate": "2026-06-30T21:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Group I Winner",
+      "home": "France",
       "away": "Third Place Group C/D/F/G/H",
-      "homeRef": null,
+      "homeRef": {
+        "group": "I",
+        "idx": 0
+      },
       "awayRef": null
     },
     "k:79": {
@@ -2361,49 +2350,49 @@
       {
         "idx": 0,
         "position": 1,
-        "pld": 2,
-        "w": 2,
+        "pld": 3,
+        "w": 3,
         "d": 0,
         "l": 0,
-        "gf": 6,
-        "ga": 1,
-        "gd": 5,
-        "pts": 6
+        "gf": 10,
+        "ga": 2,
+        "gd": 8,
+        "pts": 9
       },
       {
         "idx": 2,
         "position": 2,
-        "pld": 2,
+        "pld": 3,
         "w": 2,
         "d": 0,
-        "l": 0,
-        "gf": 7,
-        "ga": 3,
-        "gd": 4,
+        "l": 1,
+        "gf": 8,
+        "ga": 7,
+        "gd": 1,
         "pts": 6
       },
       {
         "idx": 1,
         "position": 3,
-        "pld": 2,
-        "w": 0,
+        "pld": 3,
+        "w": 1,
         "d": 0,
         "l": 2,
-        "gf": 3,
+        "gf": 8,
         "ga": 6,
-        "gd": -3,
-        "pts": 0
+        "gd": 2,
+        "pts": 3
       },
       {
         "idx": 3,
         "position": 4,
-        "pld": 2,
+        "pld": 3,
         "w": 0,
         "d": 0,
-        "l": 2,
+        "l": 3,
         "gf": 1,
-        "ga": 7,
-        "gd": -6,
+        "ga": 12,
+        "gd": -11,
         "pts": 0
       }
     ],
