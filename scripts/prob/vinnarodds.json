@@ -1,39 +1,39 @@
 {
-  "updated": "2026-06-26T13:58:30.779299+00:00",
+  "updated": "2026-06-26T19:26:44.032342+00:00",
   "source": "the-odds-api.com",
   "market": "VM-vinnare (outright)",
   "teams": [
     {
       "team": "France",
-      "bestOdds": 5.3,
-      "bestBook": "Betfair",
-      "avgOdds": 5.2,
+      "bestOdds": 5.0,
+      "bestBook": "William Hill",
+      "avgOdds": 4.93,
       "books": 3,
-      "impliedPct": 19.2
+      "impliedPct": 20.3
     },
     {
       "team": "Spain",
-      "bestOdds": 7.2,
+      "bestOdds": 7.4,
       "bestBook": "Betfair",
-      "avgOdds": 6.97,
+      "avgOdds": 7.1,
       "books": 3,
-      "impliedPct": 14.3
+      "impliedPct": 14.1
     },
     {
       "team": "Argentina",
-      "bestOdds": 7.4,
+      "bestOdds": 7.6,
       "bestBook": "Betfair",
-      "avgOdds": 7.27,
+      "avgOdds": 7.4,
       "books": 3,
-      "impliedPct": 13.8
+      "impliedPct": 13.5
     },
     {
       "team": "England",
-      "bestOdds": 9.2,
+      "bestOdds": 9.4,
       "bestBook": "Betfair",
-      "avgOdds": 8.47,
+      "avgOdds": 8.53,
       "books": 3,
-      "impliedPct": 11.8
+      "impliedPct": 11.7
     },
     {
       "team": "Portugal",
@@ -61,11 +61,11 @@
     },
     {
       "team": "Germany",
-      "bestOdds": 19.5,
+      "bestOdds": 20.0,
       "bestBook": "Betfair",
-      "avgOdds": 18.67,
+      "avgOdds": 19.0,
       "books": 3,
-      "impliedPct": 5.4
+      "impliedPct": 5.3
     },
     {
       "team": "USA",
@@ -77,22 +77,14 @@
     },
     {
       "team": "Norway",
-      "bestOdds": 38.0,
+      "bestOdds": 44.0,
       "bestBook": "Betfair",
-      "avgOdds": 35.0,
+      "avgOdds": 39.0,
       "books": 3,
-      "impliedPct": 2.9
+      "impliedPct": 2.6
     },
     {
       "team": "Morocco",
-      "bestOdds": 55.0,
-      "bestBook": "Betfair",
-      "avgOdds": 50.33,
-      "books": 3,
-      "impliedPct": 2.0
-    },
-    {
-      "team": "Colombia",
       "bestOdds": 60.0,
       "bestBook": "Betfair",
       "avgOdds": 53.67,
@@ -101,7 +93,23 @@
     },
     {
       "team": "Japan",
-      "bestOdds": 70.0,
+      "bestOdds": 65.0,
+      "bestBook": "Betfair",
+      "avgOdds": 57.0,
+      "books": 3,
+      "impliedPct": 1.8
+    },
+    {
+      "team": "Colombia",
+      "bestOdds": 65.0,
+      "bestBook": "Betfair",
+      "avgOdds": 57.0,
+      "books": 3,
+      "impliedPct": 1.8
+    },
+    {
+      "team": "Belgium",
+      "bestOdds": 65.0,
       "bestBook": "Betfair",
       "avgOdds": 60.33,
       "books": 3,
@@ -116,58 +124,50 @@
       "impliedPct": 1.7
     },
     {
-      "team": "Belgium",
-      "bestOdds": 70.0,
-      "bestBook": "Betfair",
-      "avgOdds": 63.67,
-      "books": 3,
-      "impliedPct": 1.6
-    },
-    {
       "team": "Switzerland",
-      "bestOdds": 90.0,
+      "bestOdds": 85.0,
       "bestBook": "Betfair",
-      "avgOdds": 82.33,
+      "avgOdds": 79.0,
       "books": 3,
-      "impliedPct": 1.2
+      "impliedPct": 1.3
     },
     {
       "team": "Ecuador",
-      "bestOdds": 160.0,
+      "bestOdds": 140.0,
       "bestBook": "Betfair",
-      "avgOdds": 148.67,
+      "avgOdds": 135.33,
       "books": 3,
       "impliedPct": 0.7
     },
     {
       "team": "Senegal",
-      "bestOdds": 190.0,
-      "bestBook": "Betfair",
-      "avgOdds": 170.33,
+      "bestOdds": 151.0,
+      "bestBook": "William Hill",
+      "avgOdds": 150.33,
       "books": 3,
-      "impliedPct": 0.6
+      "impliedPct": 0.7
     },
     {
       "team": "Croatia",
-      "bestOdds": 220.0,
+      "bestOdds": 230.0,
       "bestBook": "Betfair",
-      "avgOdds": 177.0,
+      "avgOdds": 183.67,
       "books": 3,
-      "impliedPct": 0.6
+      "impliedPct": 0.5
     },
     {
       "team": "Ivory Coast",
-      "bestOdds": 290.0,
+      "bestOdds": 270.0,
       "bestBook": "Betfair",
-      "avgOdds": 243.67,
+      "avgOdds": 230.33,
       "books": 3,
       "impliedPct": 0.4
     },
     {
       "team": "Canada",
-      "bestOdds": 320.0,
+      "bestOdds": 310.0,
       "bestBook": "Betfair",
-      "avgOdds": 263.67,
+      "avgOdds": 257.0,
       "books": 3,
       "impliedPct": 0.4
     },
@@ -180,18 +180,26 @@
       "impliedPct": 0.4
     },
     {
-      "team": "Australia",
+      "team": "Uruguay",
       "bestOdds": 350.0,
       "bestBook": "Betfair",
-      "avgOdds": 283.67,
+      "avgOdds": 300.33,
       "books": 3,
-      "impliedPct": 0.4
+      "impliedPct": 0.3
     },
     {
-      "team": "Sweden",
+      "team": "Australia",
       "bestOdds": 360.0,
       "bestBook": "Betfair",
       "avgOdds": 307.0,
+      "books": 3,
+      "impliedPct": 0.3
+    },
+    {
+      "team": "Sweden",
+      "bestOdds": 370.0,
+      "bestBook": "Betfair",
+      "avgOdds": 313.67,
       "books": 3,
       "impliedPct": 0.3
     },
@@ -204,50 +212,42 @@
       "impliedPct": 0.3
     },
     {
-      "team": "Uruguay",
-      "bestOdds": 460.0,
-      "bestBook": "Betfair",
-      "avgOdds": 360.33,
-      "books": 3,
-      "impliedPct": 0.3
-    },
-    {
       "team": "Ghana",
-      "bestOdds": 610.0,
+      "bestOdds": 630.0,
       "bestBook": "Betfair",
-      "avgOdds": 520.33,
+      "avgOdds": 537.0,
       "books": 3,
       "impliedPct": 0.2
     },
     {
       "team": "Paraguay",
-      "bestOdds": 750.0,
+      "bestOdds": 800.0,
       "bestBook": "Betfair",
-      "avgOdds": 583.67,
+      "avgOdds": 600.33,
       "books": 3,
       "impliedPct": 0.2
     },
     {
       "team": "South Korea",
-      "bestOdds": 840.0,
+      "bestOdds": 750.0,
       "bestBook": "Betfair",
-      "avgOdds": 693.67,
+      "avgOdds": 633.67,
       "books": 3,
-      "impliedPct": 0.1
+      "impliedPct": 0.2
     },
     {
       "team": "Bosnia-Herzegovina",
-      "bestOdds": 810.0,
+      "bestOdds": 800.0,
       "bestBook": "Betfair",
-      "avgOdds": 703.67,
+      "avgOdds": 700.33,
       "books": 3,
       "impliedPct": 0.1
     },
     {
       "team": "Algeria",
-      "bestOdds": 950.0,
+      "bestOdds": 960.0,
       "bestBook": "Betfair",
-      "avgOdds": 800.33,
+      "avgOdds": 807.0,
       "books": 3,
       "impliedPct": 0.1
     },
