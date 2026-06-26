@@ -365,6 +365,8 @@
       r.gd = r.gf - r.ga;
       r.gpm = r.played > 0 ? r.gf / r.played : 0;
       r.gapm = r.played > 0 ? r.ga / r.played : 0;
+      r.ypm = r.played > 0 ? r.y / r.played : 0;
+      r.rpm = r.played > 0 ? r.r / r.played : 0;
       r.played0 = r.played === 0;
       return r;
     });
@@ -407,6 +409,8 @@
       r.ppm = r.played > 0 ? r.pts / r.played : 0;   // poäng per match
       r.gpm = r.played > 0 ? r.gf / r.played : 0;    // gjorda mål per match
       r.gapm = r.played > 0 ? r.ga / r.played : 0;   // insläppta mål per match
+      r.ypm = r.played > 0 ? r.y / r.played : 0;     // gula kort per match
+      r.rpm = r.played > 0 ? r.r / r.played : 0;     // röda kort per match
       r.played0 = r.played === 0;
       return r;
     }).filter(function (r) { return r.teams > 0; });
@@ -448,6 +452,8 @@
     gpm:     { type: "num", get: function (r) { return r.gpm; } },
     y:       { type: "num", get: function (r) { return r.y; } },
     r:       { type: "num", get: function (r) { return r.r; } },
+    ypm:     { type: "num", get: function (r) { return r.ypm; } },
+    rpm:     { type: "num", get: function (r) { return r.rpm; } },
     cs:      { type: "num", get: function (r) { return r.cs; } },
     pts:     { type: "num", get: function (r) { return r.pts; } }
   };
@@ -468,6 +474,8 @@
     cs:      { type: "num", get: function (r) { return r.cs; } },
     y:       { type: "num", get: function (r) { return r.y; } },
     r:       { type: "num", get: function (r) { return r.r; } },
+    ypm:     { type: "num", get: function (r) { return r.ypm; } },
+    rpm:     { type: "num", get: function (r) { return r.rpm; } },
     pts:     { type: "num", get: function (r) { return r.pts; } }
   };
 
@@ -615,6 +623,12 @@
   function cardsCell(n, kind) {
     if (!n) return '<span class="ps-zero">–</span>';
     return '<span class="cards-cell"><span class="card-ico ' + kind + '" aria-hidden="true"></span>' + n + "</span>";
+  }
+
+  /* Kort-per-match: visar snittet (två decimaler) med kortikonen. */
+  function cardsRateCell(v, played, kind) {
+    if (!played) return '<span class="ps-zero">–</span>';
+    return '<span class="cards-cell"><span class="card-ico ' + kind + '" aria-hidden="true"></span>' + fmt2(v) + "</span>";
   }
 
   /* Litet förbundsmärke (UEFA m.fl.) – ersätter flaggan i förbundsläget. */
@@ -933,6 +947,8 @@
       '<td class="c-stat ps-rate">' + (r.played ? fmt2(r.gpm) : '<span class="ps-zero">–</span>') + "</td>" +
       '<td class="c-stat">' + cardsCell(r.y, "y") + "</td>" +
       '<td class="c-stat">' + cardsCell(r.r, "r") + "</td>" +
+      '<td class="c-stat ps-rate">' + cardsRateCell(r.ypm, r.played, "y") + "</td>" +
+      '<td class="c-stat ps-rate">' + cardsRateCell(r.rpm, r.played, "r") + "</td>" +
       '<td class="c-stat">' + num(r.cs) + "</td>" +
       '<td class="c-stat ps-num ps-pts">' + (r.played ? r.pts : '<span class="ps-zero">–</span>') + "</td>" +
       "</tr>";
@@ -956,11 +972,13 @@
       thSort("gpm", "Mål/M", "", "Mål per match") +
       thSort("y", "Gul", "", "Gula kort") +
       thSort("r", "Röd", "", "Röda kort") +
+      thSort("ypm", "Gul/M", "", "Gula kort per match") +
+      thSort("rpm", "Röd/M", "", "Röda kort per match") +
       thSort("cs", "Nollor", "", "Matcher utan insläppt mål") +
       thSort("pts", "P", "", "Poäng") +
       "</tr></thead><tbody>";
     if (!shown.length) {
-      h += '<tr><td class="ps-empty" colspan="16">Inga lag matchar filtren.</td></tr>';
+      h += '<tr><td class="ps-empty" colspan="18">Inga lag matchar filtren.</td></tr>';
     } else {
       shown.forEach(function (r, i) { h += teamRowHtml(r, i); });
     }
@@ -995,6 +1013,8 @@
       '<td class="c-stat">' + num(r.cs) + "</td>" +
       '<td class="c-stat">' + cardsCell(r.y, "y") + "</td>" +
       '<td class="c-stat">' + cardsCell(r.r, "r") + "</td>" +
+      '<td class="c-stat ps-rate">' + cardsRateCell(r.ypm, r.played, "y") + "</td>" +
+      '<td class="c-stat ps-rate">' + cardsRateCell(r.rpm, r.played, "r") + "</td>" +
       '<td class="c-stat ps-num ps-pts">' + (p0 ? dash : r.pts) + "</td>" +
       "</tr>";
   }
@@ -1018,10 +1038,12 @@
       thSort("cs", "Nollor", "", "Matcher utan insläppt mål") +
       thSort("y", "Gul", "", "Gula kort") +
       thSort("r", "Röd", "", "Röda kort") +
+      thSort("ypm", "Gul/M", "", "Gula kort per match") +
+      thSort("rpm", "Röd/M", "", "Röda kort per match") +
       thSort("pts", "P", "", "Poäng totalt") +
       "</tr></thead><tbody>";
     if (!rows.length) {
-      h += '<tr><td class="ps-empty" colspan="17">Ingen regionstatistik ännu.</td></tr>';
+      h += '<tr><td class="ps-empty" colspan="19">Ingen regionstatistik ännu.</td></tr>';
     } else {
       rows.forEach(function (r, i) { h += regionRowHtml(r, i); });
     }
