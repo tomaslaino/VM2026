@@ -807,7 +807,6 @@ html.view-bracket .site-bg {
 .fm-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: clamp(12px, 1.6vw, 16px); }
 .fm-group { font-size: 11px; font-weight: 800; letter-spacing: .4px; color: var(--ink-soft); }
 .fm-time { font-size: 13px; font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums; }
-.fm-recent .fm-time { font-size: 12px; white-space: nowrap; }
 .fm-ft { font-size: 10.5px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--ink-soft); }
 
 /* Lagen horisontellt: hemma | mitten (vs/resultat) | borta */
@@ -903,50 +902,128 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   gap: 12px; flex-wrap: wrap; margin-bottom: clamp(14px, 1.8vw, 18px);
 }
 .rp-hint { font-size: 12px; font-weight: 700; color: var(--ink-soft); }
-/* Balanserade kolumner: antalet sätts per rendering (--rp-cols) så raderna
-   blir symmetriska. Smala skärmar faller tillbaka på 2 resp. 1 kolumn. */
-.rp-grid {
+
+/* Matcherna listas på rad (likt kalendern) i stället för i smala kort, så att
+   långa landsnamn ("Nederländerna", "Elfenbenskusten") får plats på en rad. */
+.rp-list { display: flex; flex-direction: column; gap: 10px; }
+
+.rp-row {
   display: grid;
-  grid-template-columns: repeat(var(--rp-cols, 3), minmax(0, 1fr));
+  grid-template-columns: 96px auto minmax(0, 1fr) auto;
+  align-items: center;
   gap: clamp(12px, 1.6vw, 18px);
+  position: relative;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, .09);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .02));
+  padding: 9px 16px 9px 10px;
+  transition: background .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.rp-row.match-openable { cursor: pointer; }
+.rp-row.match-openable:hover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .035));
+  border-color: color-mix(in srgb, var(--st-ft) 34%, rgba(255, 255, 255, .14));
+  transform: translateY(-1px);
+  box-shadow: 0 16px 36px -24px rgba(0, 0, 0, .85);
+}
+.rp-row.match-openable:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* Datum/tid-block längst till vänster – samma navy-ruta med röd "spine" som
+   kalenderns datumruta, men kompakt och med klockslaget under datumet. */
+.rp-when {
+  position: relative;
+  display: flex; flex-direction: column; align-items: flex-start;
+  gap: 1px;
+  padding: 4px 9px 4px 11px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, .07);
+  background: linear-gradient(180deg, rgba(20, 36, 60, .9), rgba(11, 21, 38, .92));
+  overflow: hidden;
+}
+.rp-when::before {
+  content: "";
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, var(--usa-red), color-mix(in srgb, var(--usa-red) 50%, var(--usa-navy)));
+}
+.rp-date {
+  font-size: 9.5px; font-weight: 800; letter-spacing: .5px;
+  color: color-mix(in srgb, var(--usa-red) 42%, var(--ink));
+  white-space: nowrap;
+}
+.rp-time {
+  font-size: 16px; font-weight: 900; line-height: 1.05; letter-spacing: -.3px;
+  color: #f7fafd; font-variant-numeric: tabular-nums;
 }
 
-/* Kortet återanvänder hjältens mini-kort men i röd "spelad"-ton. */
-.focus-mini.fm-recent { border-color: rgba(255, 255, 255, .1); }
-.focus-mini.fm-recent:hover {
-  border-color: color-mix(in srgb, var(--st-ft) 34%, rgba(255, 255, 255, .12));
+/* Gruppill: samma som på förstasidans övriga kort. KO-rundor (utan grupp) får
+   en neutral bricka i samma form. */
+.rp-group { justify-self: start; flex: none; }
+.rp-group:not(.group-pill) {
+  display: inline-flex; align-items: center;
+  font-size: 11px; font-weight: 800; letter-spacing: .3px;
+  padding: 4px 10px; border-radius: 999px; white-space: nowrap;
+  color: var(--ink-soft); background: var(--bg-soft);
+  border: 1px solid var(--line-strong);
 }
 
-/* Korten är smala (upp till 4 per rad) så långa landsnamn ("Nederländerna",
-   "Elfenbenskusten") fick inte plats och klipptes med "…". Här får namnet i
-   stället radbrytas snyggt på upp till två rader och fontstorleken krymper
-   något så att hela namnet alltid syns. align-items:center håller flaggorna
-   centrerade även mot ett tvåradigt namn. */
-.fm-recent .fm-name {
-  white-space: normal;
-  overflow-wrap: break-word;
-  text-wrap: balance;
-  line-height: 1.08;
-  font-size: clamp(13px, 1.5vw, 19px);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+/* Lagen centrerade med "vs" i mitten – flaggorna vända inåt, precis som
+   kalenderns matchcell. Namnen ryms på en rad (radbryts aldrig). */
+.rp-teams {
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(8px, 1.4vw, 14px); min-width: 0;
+}
+.rp-team { display: inline-flex; align-items: center; gap: 9px; min-width: 0; flex: 1; }
+.rp-home { justify-content: flex-end; text-align: right; }
+.rp-away { justify-content: flex-start; text-align: left; }
+.rp-flag { line-height: 0; flex: none; }
+.rp-flag .flag {
+  width: clamp(26px, 2.8vw, 34px); height: auto; aspect-ratio: 3 / 2;
+  border-radius: 4px; box-shadow: 0 3px 10px rgba(0, 0, 0, .5);
+}
+.rp-name {
+  min-width: 0;
+  font-family: var(--display), system-ui, sans-serif; font-weight: 800;
+  font-size: clamp(15px, 1.7vw, 20px); line-height: 1; letter-spacing: .01em;
+  color: var(--bone); padding-block: .12em;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.rp-vs {
+  flex: none;
+  font-family: var(--display); font-weight: 800; text-transform: uppercase;
+  font-size: clamp(12px, 1.3vw, 15px); letter-spacing: .04em;
+  color: var(--ink-soft); opacity: .55;
 }
 
-/* Fot: repris-ikonerna ligger till höger – exakt samma SVT/TV4-ordning och
-   utseende som i kalendern (via .cal-watch). En kort text visas i stället
-   när repriserna ännu inte publicerats. */
-.rm-foot { align-items: center; justify-content: flex-end; gap: 8px; }
+/* Repriser längst till höger – exakt samma SVT/TV4-bricka som i kalendern
+   (via .cal-watch). En kort text visas i stället när repriserna inte
+   publicerats ännu. */
+.rp-watch { justify-self: end; display: inline-flex; align-items: center; }
 .rm-norepris {
   font-size: 11px; font-weight: 700; color: var(--ink-soft);
   padding: 3px 9px; border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, .12); background: rgba(255, 255, 255, .03);
+  white-space: nowrap;
 }
+
+/* Smalare skärmar: datum/tid sida vid sida överst, lagen under, repris sist. */
 @media (max-width: 720px) {
-  .rp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 460px) {
-  .rp-grid { grid-template-columns: 1fr; }
+  .rp-row {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "when group watch" "teams teams teams";
+    gap: 8px 12px;
+    padding: 10px 14px;
+  }
+  .rp-when {
+    grid-area: when;
+    flex-direction: row; align-items: baseline; gap: 7px;
+    padding: 3px 9px 3px 11px;
+  }
+  .rp-time { font-size: 14px; }
+  .rp-group { grid-area: group; }
+  .rp-watch { grid-area: watch; }
+  .rp-teams { grid-area: teams; justify-content: flex-start; }
+  .rp-team { flex: 0 1 auto; }
+  .rp-home { justify-content: flex-start; text-align: left; }
 }
 
 /* ====================================================================
