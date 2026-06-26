@@ -871,9 +871,11 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   gap: 12px; flex-wrap: wrap; margin-bottom: clamp(14px, 1.8vw, 18px);
 }
 .rp-hint { font-size: 12px; font-weight: 700; color: var(--ink-soft); }
+/* Balanserade kolumner: antalet sätts per rendering (--rp-cols) så raderna
+   blir symmetriska. Smala skärmar faller tillbaka på 2 resp. 1 kolumn. */
 .rp-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+  grid-template-columns: repeat(var(--rp-cols, 3), minmax(0, 1fr));
   gap: clamp(12px, 1.6vw, 18px);
 }
 
@@ -882,48 +884,20 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 .focus-mini.fm-recent:hover {
   border-color: color-mix(in srgb, var(--adv) 34%, rgba(255, 255, 255, .12));
 }
-.rm-when { font-size: 12.5px; font-weight: 800; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 
-/* Lagrad: lagen staplade till vänster, dolt-resultat-brickan till höger. */
-.rm-body { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.rm-teams { display: flex; flex-direction: column; gap: clamp(7px, 1vw, 11px); min-width: 0; }
-.rm-team { display: flex; align-items: center; gap: clamp(8px, 1.1vw, 12px); min-width: 0; }
-.rm-team .fm-flag .flag { width: clamp(26px, 3vw, 32px); }
-.rm-name {
-  min-width: 0;
-  font-family: var(--display), system-ui, sans-serif; font-weight: 800;
-  font-size: clamp(15px, 1.9vw, 20px); line-height: 1.05; letter-spacing: .01em;
-  color: var(--bone); padding-block: .12em;
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-
-/* Dolt resultat: en "öga av"-bricka till höger om lagen i stället för siffror. */
-.rm-cover {
-  flex: none; display: inline-flex; flex-direction: column; align-items: center; gap: 3px;
-  padding: 7px 12px; border-radius: 12px;
-  border: 1px dashed rgba(255, 255, 255, .26);
-  background: rgba(255, 255, 255, .04);
-  color: var(--ink-soft);
-  transition: color .16s ease, border-color .16s ease, background .16s ease;
-}
-.rm-cover svg { width: 18px; height: 18px; display: block; }
-.rm-cover-txt { font-size: 10.5px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; }
-.focus-mini.fm-recent:hover .rm-cover {
-  color: var(--adv);
-  border-color: color-mix(in srgb, var(--adv) 50%, transparent);
-  background: color-mix(in srgb, var(--adv) 12%, transparent);
-}
-
-/* Fot: repris-ikonerna får en egen rad och ligger till höger – exakt samma
-   SVT/TV4-ordning och utseende som i kalendern (via .cal-watch). En kort
-   text visas i stället när repriserna ännu inte publicerats. */
+/* Fot: repris-ikonerna ligger till höger – exakt samma SVT/TV4-ordning och
+   utseende som i kalendern (via .cal-watch). En kort text visas i stället
+   när repriserna ännu inte publicerats. */
 .rm-foot { align-items: center; justify-content: flex-end; gap: 8px; }
 .rm-norepris {
   font-size: 11px; font-weight: 700; color: var(--ink-soft);
   padding: 3px 9px; border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, .12); background: rgba(255, 255, 255, .03);
 }
-@media (max-width: 560px) {
+@media (max-width: 720px) {
+  .rp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 460px) {
   .rp-grid { grid-template-columns: 1fr; }
 }
 

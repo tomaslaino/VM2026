@@ -4542,51 +4542,49 @@
       'Repris dröjer</span>';
   }
 
-  /* Ett kort i "Nyligen spelat" – lagen står staplade med fulla namn (så man
-     ser vilka länder det gäller), ett litet "öga av"-märke signalerar att
-     resultatet är dolt tills man klickar, och repriserna får en egen rad i
-     foten – exakt samma SVT/TV4-ordning som i kalendern (via calWatchInner). */
+  /* Ett kort i "Nyligen spelat" – lagen ligger på en rad med "vs" i mitten,
+     precis som korten i "Nästa matcher"-rutan. Resultatet är dolt (inga
+     siffror); man klickar på kortet för att se matchen och repriserna får en
+     egen rad i foten – exakt samma SVT/TV4-ordning som i kalendern. */
   function recentMiniCard(e) {
     var open = matchOpenAttr(e.key);
     if (!open.attr) {
       open = { attr: ' data-match-open="' + e.key + '" role="button" tabindex="0"', cls: " match-openable" };
     }
     var when = whenLabels(e.m);
-    function teamRow(team) {
-      return '<span class="rm-team">' +
-        '<span class="fm-flag">' + flagImg(team.iso) + '</span>' +
-        '<span class="rm-name" title="' + esc(team.sv) + '">' + esc(teamSvFixture(team)) + '</span>' +
-        '</span>';
+    function teamSide(team, side) {
+      var flag = '<span class="fm-flag">' + flagImg(team.iso) + '</span>';
+      var name = '<span class="fm-name" title="' + esc(team.sv) + '">' + esc(teamSvFixture(team)) + '</span>';
+      return '<span class="fm-team fm-' + side + '">' +
+        (side === "home" ? name + flag : flag + name) + '</span>';
     }
-    var cover = '<span class="rm-cover" aria-label="Resultat dolt – klicka för att visa">' +
-      '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
-      '<path d="M2 12s3.5-7 10-7c2 0 3.7.6 5.1 1.5M22 12s-3.5 7-10 7c-2 0-3.7-.6-5.1-1.5" ' +
-      'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>' +
-      '<path d="M9.5 9.5a3.5 3.5 0 0 0 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>' +
-      '<path d="M4 4l16 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>' +
-      '<span class="rm-cover-txt">Visa</span></span>';
     var h = '<article class="focus-mini fm-recent' + open.cls + '"' + open.attr + '>';
     h += '<div class="fm-top">' + focusGroupChip(e, "fm-group") +
-      '<span class="rm-when">' + esc(when.time) + '</span></div>';
-    h += '<div class="rm-body">' +
-      '<div class="rm-teams">' + teamRow(e.home) + teamRow(e.away) + '</div>' +
-      cover + '</div>';
+      '<span class="fm-time">' + esc(when.time) + '</span></div>';
+    h += '<div class="fm-teams">' +
+      teamSide(e.home, "home") +
+      '<span class="fm-vs" aria-hidden="true">vs</span>' +
+      teamSide(e.away, "away") + '</div>';
     h += '<div class="fm-foot rm-foot">' + recentWatchHtml(e.key) + '</div>';
     h += '</article>';
     return h;
   }
 
   /** Sektionen "Nyligen spelat" – tom sträng om inga matcher spelats senaste
-      dygnet (då finns inget att gömma). */
+      dygnet (då finns inget att gömma). Kolumnerna balanseras så raderna blir
+      symmetriska (t.ex. 6 matcher → 3+3 i stället för 4+2). */
   function recentMatchesPanel(ctx) {
     var recent = findRecentMatches(ctx);
     if (!recent.length) return "";
+    var n = recent.length;
+    var rows = Math.ceil(n / 4);          // max 4 per rad
+    var cols = Math.ceil(n / rows);       // jämnt fördelat över raderna
     var h = '<section class="recent-played" aria-label="Nyligen spelade matcher">';
     h += '<div class="rp-head">' +
       '<span class="fh-eyebrow">Nyligen spelat</span>' +
       '<span class="rp-hint">Klicka för resultat &amp; repris</span>' +
       '</div>';
-    h += '<div class="rp-grid">';
+    h += '<div class="rp-grid" style="--rp-cols:' + cols + '">';
     recent.forEach(function (e) { h += recentMiniCard(e); });
     h += '</div></section>';
     return h;
