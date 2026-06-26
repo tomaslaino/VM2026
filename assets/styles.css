@@ -884,25 +884,39 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 }
 .rm-when { font-size: 12.5px; font-weight: 800; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 
-/* Dolt resultat: en "öga av"-bricka i mitten i stället för siffrorna. */
+/* Lagrad: lagen staplade till vänster, dolt-resultat-brickan till höger. */
+.rm-body { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.rm-teams { display: flex; flex-direction: column; gap: clamp(7px, 1vw, 11px); min-width: 0; }
+.rm-team { display: flex; align-items: center; gap: clamp(8px, 1.1vw, 12px); min-width: 0; }
+.rm-team .fm-flag .flag { width: clamp(26px, 3vw, 32px); }
+.rm-name {
+  min-width: 0;
+  font-family: var(--display), system-ui, sans-serif; font-weight: 800;
+  font-size: clamp(15px, 1.9vw, 20px); line-height: 1.05; letter-spacing: .01em;
+  color: var(--bone); padding-block: .12em;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* Dolt resultat: en "öga av"-bricka till höger om lagen i stället för siffror. */
 .rm-cover {
-  flex: none; display: inline-flex; align-items: center; gap: 6px;
-  padding: 5px 11px; border-radius: 999px;
+  flex: none; display: inline-flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 7px 12px; border-radius: 12px;
   border: 1px dashed rgba(255, 255, 255, .26);
   background: rgba(255, 255, 255, .04);
   color: var(--ink-soft);
   transition: color .16s ease, border-color .16s ease, background .16s ease;
 }
-.rm-cover svg { width: 16px; height: 16px; display: block; }
-.rm-cover-txt { font-size: 11px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; }
+.rm-cover svg { width: 18px; height: 18px; display: block; }
+.rm-cover-txt { font-size: 10.5px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; }
 .focus-mini.fm-recent:hover .rm-cover {
   color: var(--adv);
   border-color: color-mix(in srgb, var(--adv) 50%, transparent);
   background: color-mix(in srgb, var(--adv) 12%, transparent);
 }
 
-/* Fot: repris-ikonerna ligger till höger (samma som kalendern via .cal-watch),
-   eller en kort text när repriserna ännu inte publicerats. */
+/* Fot: repris-ikonerna får en egen rad och ligger till höger – exakt samma
+   SVT/TV4-ordning och utseende som i kalendern (via .cal-watch). En kort
+   text visas i stället när repriserna ännu inte publicerats. */
 .rm-foot { align-items: center; justify-content: flex-end; gap: 8px; }
 .rm-norepris {
   font-size: 11px; font-weight: 700; color: var(--ink-soft);

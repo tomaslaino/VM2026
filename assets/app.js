@@ -4546,19 +4546,21 @@
       'Repris dröjer</span>';
   }
 
-  /* Ett kort i "Nyligen spelat" – speglar hjältens mini-kort men med dolt
-     resultat (ett litet "öga av"-märke i mitten) och repris-/klickbarhet. */
+  /* Ett kort i "Nyligen spelat" – lagen står staplade med fulla namn (så man
+     ser vilka länder det gäller), ett litet "öga av"-märke signalerar att
+     resultatet är dolt tills man klickar, och repriserna får en egen rad i
+     foten – exakt samma SVT/TV4-ordning som i kalendern (via calWatchInner). */
   function recentMiniCard(e) {
     var open = matchOpenAttr(e.key);
     if (!open.attr) {
       open = { attr: ' data-match-open="' + e.key + '" role="button" tabindex="0"', cls: " match-openable" };
     }
     var when = whenLabels(e.m);
-    function teamSide(team, side) {
-      var flag = '<span class="fm-flag">' + flagImg(team.iso) + '</span>';
-      var name = '<span class="fm-name" title="' + esc(team.sv) + '">' + esc(teamSvFixture(team)) + '</span>';
-      return '<span class="fm-team fm-' + side + '">' +
-        (side === "home" ? name + flag : flag + name) + '</span>';
+    function teamRow(team) {
+      return '<span class="rm-team">' +
+        '<span class="fm-flag">' + flagImg(team.iso) + '</span>' +
+        '<span class="rm-name" title="' + esc(team.sv) + '">' + esc(teamSvFixture(team)) + '</span>' +
+        '</span>';
     }
     var cover = '<span class="rm-cover" aria-label="Resultat dolt – klicka för att visa">' +
       '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
@@ -4570,8 +4572,9 @@
     var h = '<article class="focus-mini fm-recent' + open.cls + '"' + open.attr + '>';
     h += '<div class="fm-top">' + focusGroupChip(e, "fm-group") +
       '<span class="rm-when">' + esc(when.time) + '</span></div>';
-    h += '<div class="fm-teams">' +
-      teamSide(e.home, "home") + cover + teamSide(e.away, "away") + '</div>';
+    h += '<div class="rm-body">' +
+      '<div class="rm-teams">' + teamRow(e.home) + teamRow(e.away) + '</div>' +
+      cover + '</div>';
     h += '<div class="fm-foot rm-foot">' + recentWatchHtml(e.key) + '</div>';
     h += '</article>';
     return h;
