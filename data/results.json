@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-26T18:29:23.872Z",
+    "updatedAt": "2026-06-26T20:21:10.811Z",
     "source": "espn",
-    "matchCount": 60,
-    "liveCount": 0,
+    "matchCount": 62,
+    "liveCount": 2,
     "apiCalls": 2
   },
   "results": {
@@ -306,9 +306,36 @@
       "h": 3,
       "a": 2,
       "status": "FINISHED"
+    },
+    "g:I:2": {
+      "h": 3,
+      "a": 1,
+      "status": "IN_PLAY"
+    },
+    "g:I:3": {
+      "h": 0,
+      "a": 1,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:I:2",
+      "status": "IN_PLAY",
+      "minute": 57,
+      "home": "France",
+      "away": "Norway",
+      "score": "3-1"
+    },
+    {
+      "key": "g:I:3",
+      "status": "IN_PLAY",
+      "minute": 53,
+      "home": "Iraq",
+      "away": "Senegal",
+      "score": "0-1"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1334,7 +1361,7 @@
       "date": "2026-06-26",
       "time": "21:00",
       "utcDate": "2026-06-26T19:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "France",
       "away": "Norway",
@@ -1351,7 +1378,7 @@
       "date": "2026-06-26",
       "time": "21:00",
       "utcDate": "2026-06-26T19:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Iraq",
       "away": "Senegal",
