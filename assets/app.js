@@ -3815,37 +3815,33 @@
     return !(entry.until && new Date(entry.until).getTime() <= Date.now());
   }
 
+  // En klickbar reprislänk. Färgklassen (svt/tv4) säger vilken kanal klippet
+  // kommer från – det är så man ser SVT (grön) vs TV4 (röd) i en delad modul.
   function calWatchLink(entry, type, ch) {
-    // Saknas reprislängden ritas en tom (avstängd) platshållare i samma storlek,
-    // så varje kanalbricka alltid är lika bred – tre platser – och SVT/TV4
-    // linjerar prydligt utan att hoppa mellan rader.
-    if (!calWatchAvailable(entry)) {
-      return '<span class="cal-watch-link is-empty" aria-hidden="true">' + CAL_HL_ICONS[type] + "</span>";
-    }
+    var chCls = ch === "SVT" ? "svt" : "tv4";
     var tip = CAL_HL_LABELS[type] + " · " + ch;
-    return '<a class="cal-watch-link" href="' + esc(entry.url) + '" target="_blank" rel="noopener noreferrer" ' +
+    return '<a class="cal-watch-link ' + chCls + '" href="' + esc(entry.url) + '" target="_blank" rel="noopener noreferrer" ' +
       'title="' + esc(tip) + '" aria-label="' + esc(CAL_HL_LABELS[type] + " på " + ch) + '">' +
       CAL_HL_ICONS[type] + "</a>";
   }
 
-  function calWatchChannel(ch, data) {
-    if (!data) return "";
-    var links = "", hasReal = false;
-    CAL_HL_TYPES.forEach(function (t) {
-      if (calWatchAvailable(data[t])) hasReal = true;
-      links += calWatchLink(data[t], t, ch);
-    });
-    if (!hasReal) return ""; // ingen riktig repris för kanalen – visa ingen bricka
-    return '<span class="cal-watch-ch ' + (ch === "SVT" ? "svt" : "tv4") + '">' +
-      '<span class="cal-watch-tag">' + ch + "</span>" + links + "</span>";
-  }
-
   /* Reprisbrickorna (utan ytterhölje) – läggs in i venue-cellen på samma rad
-     som matchen och ersätter där TV-kanalmärket. */
+     som matchen och ersätter där TV-kanalmärket.
+
+     EN delad modul för båda kanalerna i stället för en bricka per kanal: för
+     varje reprislängd (kortare/längre/hela) väljs SVT om den finns, annars TV4.
+     SVT trumfar alltså alltid TV4 vid överlapp, så det blir aldrig två länkar
+     för samma längd. Varje länk färgas efter sin kanal (SVT grön, TV4 röd). */
   function calWatchInner(key) {
     var hl = calHighlights[key];
     if (!hl) return "";
-    return calWatchChannel("SVT", hl.SVT) + calWatchChannel("TV4", hl.TV4);
+    var links = "";
+    CAL_HL_TYPES.forEach(function (t) {
+      if (hl.SVT && calWatchAvailable(hl.SVT[t])) links += calWatchLink(hl.SVT[t], t, "SVT");
+      else if (hl.TV4 && calWatchAvailable(hl.TV4[t])) links += calWatchLink(hl.TV4[t], t, "TV4");
+    });
+    if (!links) return ""; // inga tillgängliga repriser ännu
+    return '<span class="cal-watch-ch">' + links + "</span>";
   }
 
   function tvLookupGroup(fx, th, ta) {
