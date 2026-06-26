@@ -3804,10 +3804,19 @@
       .catch(function () { /* tyst – kalendern funkar utan repriser */ });
   }
 
+  // Ett klipp räknas som tillgängligt om det har en url och inte hunnit gå ut.
+  function calWatchAvailable(entry) {
+    if (!entry || !entry.url) return false;
+    return !(entry.until && new Date(entry.until).getTime() <= Date.now());
+  }
+
   function calWatchLink(entry, type, ch) {
-    if (!entry || !entry.url) return "";
-    // Dölj klipp vars "tillgänglig till" redan passerat (mellan synkar).
-    if (entry.until && new Date(entry.until).getTime() <= Date.now()) return "";
+    // Saknas reprislängden ritas en tom (avstängd) platshållare i samma storlek,
+    // så varje kanalbricka alltid är lika bred – tre platser – och SVT/TV4
+    // linjerar prydligt utan att hoppa mellan rader.
+    if (!calWatchAvailable(entry)) {
+      return '<span class="cal-watch-link is-empty" aria-hidden="true">' + CAL_HL_ICONS[type] + "</span>";
+    }
     var tip = CAL_HL_LABELS[type] + " · " + ch;
     return '<a class="cal-watch-link" href="' + esc(entry.url) + '" target="_blank" rel="noopener noreferrer" ' +
       'title="' + esc(tip) + '" aria-label="' + esc(CAL_HL_LABELS[type] + " på " + ch) + '">' +
@@ -3816,9 +3825,12 @@
 
   function calWatchChannel(ch, data) {
     if (!data) return "";
-    var links = "";
-    CAL_HL_TYPES.forEach(function (t) { links += calWatchLink(data[t], t, ch); });
-    if (!links) return "";
+    var links = "", hasReal = false;
+    CAL_HL_TYPES.forEach(function (t) {
+      if (calWatchAvailable(data[t])) hasReal = true;
+      links += calWatchLink(data[t], t, ch);
+    });
+    if (!hasReal) return ""; // ingen riktig repris för kanalen – visa ingen bricka
     return '<span class="cal-watch-ch ' + (ch === "SVT" ? "svt" : "tv4") + '">' +
       '<span class="cal-watch-tag">' + ch + "</span>" + links + "</span>";
   }
@@ -4906,8 +4918,13 @@
     var slot = watch
       ? '<span class="cal-watch">' + watch + '</span>'
       : (channel ? tvChHtml(channel) : '<span class="cal-tv cal-tv-empty" aria-hidden="true"></span>');
+    // En spelad match med repriser är aldrig "nästa", så då behövs ingen
+    // Nästa-platshållare – det ger reprisbrickorna plats att ligga på en rad.
+    var nextEl = isNext
+      ? '<span class="cal-next">Nästa</span>'
+      : (watch ? '' : '<span class="cal-next cal-next-slot" aria-hidden="true">Nästa</span>');
     return '<span class="cal-venue' + (watch ? ' has-watch' : '') + '">' +
-      (isNext ? '<span class="cal-next">Nästa</span>' : '<span class="cal-next cal-next-slot" aria-hidden="true">Nästa</span>') +
+      nextEl +
       slot +
       "</span>";
   }

@@ -721,10 +721,20 @@
   var HL_LABELS = { full: "Hela matchen", long: "Längre sammandrag", short: "Kortare sammandrag" };
   var HL_TYPES = ["full", "long", "short"];
 
+  // Ett klipp räknas som tillgängligt om det har en url och inte hunnit gå ut.
+  function watchAvailable(entry) {
+    if (!entry || !entry.url) return false;
+    return !(entry.until && new Date(entry.until).getTime() <= Date.now());
+  }
+
   function watchLinkHtml(entry, label) {
-    if (!entry || !entry.url) return "";
-    // Skydd mellan synkar: dölj klipp vars "tillgänglig till" redan passerat.
-    if (entry.until && new Date(entry.until).getTime() <= Date.now()) return "";
+    // Saknas reprislängden ritas en svag, ej klickbar platshållare i samma
+    // storlek, så SVT- och TV4-kolumnen alltid har lika många rader och står
+    // symmetriskt även när kanalerna har olika många klipp.
+    if (!watchAvailable(entry)) {
+      return '<span class="mi-watch-link is-empty" aria-hidden="true">' +
+        '<span class="mi-watch-ico">▶</span>' + esc(label) + "</span>";
+    }
     return '<a class="mi-watch-link" href="' + esc(entry.url) + '" target="_blank" rel="noopener noreferrer" ' +
       'title="' + esc(entry.title || label) + '"><span class="mi-watch-ico" aria-hidden="true">▶</span>' +
       esc(label) + "</a>";
@@ -740,8 +750,12 @@
 
   function channelLinksHtml(chName, data) {
     if (!data) return "";
-    var links = "";
-    HL_TYPES.forEach(function (t) { links += watchLinkHtml(data[t], HL_LABELS[t]); });
+    var links = "", hasReal = false;
+    HL_TYPES.forEach(function (t) {
+      if (watchAvailable(data[t])) hasReal = true;
+      links += watchLinkHtml(data[t], HL_LABELS[t]);
+    });
+    if (!hasReal) return ""; // ingen riktig repris för kanalen – visa ingen kolumn
     return channelBlockHtml(chName, links);
   }
 

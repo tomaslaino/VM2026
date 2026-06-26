@@ -2524,7 +2524,7 @@ html.view-bracket .bracket .match-expand-icon { width: 11px; height: 11px; }
 
 .cal-row {
   display: grid;
-  grid-template-columns: 56px 118px 1fr 190px;
+  grid-template-columns: 56px 118px 1fr 216px;
   align-items: center;
   gap: 12px;
   background: linear-gradient(180deg, rgba(20, 36, 60, .82), rgba(11, 21, 38, .85));
@@ -2707,7 +2707,7 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
    matchen / längre / kortare sammandrag. */
 .cal-watch {
   display: inline-flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-end;
   gap: 6px;
@@ -2715,7 +2715,7 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
 .cal-watch-ch {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   padding: 3px 7px 3px 6px;
   border-radius: 8px;
   border: 1px solid transparent;
@@ -2732,20 +2732,23 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
+  width: 20px;
   height: 22px;
   border-radius: 6px;
   color: inherit;
   text-decoration: none;
   transition: background .14s ease, transform .12s ease;
 }
-.cal-watch-link svg { width: 15px; height: 15px; display: block; }
+.cal-watch-link svg { width: 14px; height: 14px; display: block; }
 .cal-watch-link:hover { background: currentColor; transform: translateY(-1px); }
 .cal-watch-link:hover svg { color: #0a1628; }
 .cal-watch-ch.svt .cal-watch-link:hover svg path,
 .cal-watch-ch.svt .cal-watch-link:hover svg rect,
 .cal-watch-ch.svt .cal-watch-link:hover svg circle { stroke: #0a1628; }
 .cal-watch-link:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+/* Tom platshållare för en saknad reprislängd: svag, ej klickbar – bara där för
+   att hålla kanalbrickans bredd konstant (tre platser per kanal). */
+.cal-watch-link.is-empty { opacity: .2; pointer-events: none; }
 
 /* Teckenförklaring till höger om "Dagens matcher" i kalenderns toppra. */
 .cal-watch-legend {
@@ -3731,6 +3734,12 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
 .mi-watch-link:hover {
   background: color-mix(in srgb, var(--usa-blue) 12%, transparent);
   border-color: color-mix(in srgb, var(--usa-blue) 60%, var(--line));
+}
+/* Tom platshållare för en saknad reprislängd: svag, ej klickbar – bara där för
+   att hålla kanalkolumnerna lika höga och symmetriska. */
+.mi-watch-link.is-empty {
+  opacity: .3; cursor: default; pointer-events: none;
+  color: var(--ink-soft); border-style: dashed;
 }
 .mi-watch-ico { font-size: 9px; line-height: 1; opacity: .7; }
 
