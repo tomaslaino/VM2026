@@ -1815,7 +1815,6 @@ html.view-bracket .bracket .round-title.bracket-jump.bronze-title:hover {
   .page-intro.bracket-intro .bracket-modebar { grid-column: 1; }
   .page-intro.cal-intro { grid-template-columns: 1fr; }
   .page-intro.cal-intro .cal-jump { grid-column: 1; justify-self: center; }
-  .cal-watch-legend { grid-column: 1; justify-content: center; }
 }
 @media (max-width: 560px) {
   .bmode-btn { padding: 8px 14px; }
@@ -2845,24 +2844,6 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
 /* Tom platshållare för en saknad reprislängd: svag, ej klickbar – bara där för
    att hålla kanalbrickans bredd konstant (tre platser per kanal). */
 .cal-watch-link.is-empty { opacity: .2; pointer-events: none; }
-
-/* Teckenförklaring till höger om "Dagens matcher" i kalenderns toppra. */
-.cal-watch-legend {
-  grid-column: 3;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 6px 12px;
-  font-size: 11px;
-  color: var(--ink-soft);
-}
-.cal-watch-legend .cwl-lead { font-weight: 800; color: var(--ink); letter-spacing: .2px; }
-.cal-watch-legend .cwl-item { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
-.cal-watch-legend .cwl-ico { display: inline-flex; color: var(--ink); }
-.cal-watch-legend .cwl-ico svg { width: 14px; height: 14px; display: block; }
-.cal-watch-legend .cwl-chips { display: inline-flex; gap: 5px; }
-.cal-watch-legend .cwl-chips .cal-tv { min-width: 0; height: 18px; padding: 0 6px; font-size: 9px; }
 
 /* ====================================================================
    LAG-PANEL (drawer)

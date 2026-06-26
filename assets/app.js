@@ -3778,7 +3778,8 @@
      matchraden: en liten kanalfärgad bricka per kanal med en klickbar ikon
      ("logga") för varje reprislängd som finns – hela matchen, längre och
      kortare sammandrag. Färgen säger vilken kanal (SVT grön, TV4 röd). */
-  var CAL_HL_TYPES = ["full", "long", "short"];
+  // Visningsordning för reprislänkarna, från vänster: kortare → längre → hela.
+  var CAL_HL_TYPES = ["short", "long", "full"];
   var CAL_HL_LABELS = { full: "Hela matchen", long: "Längre sammandrag", short: "Kortare sammandrag" };
   // Distinkta ikoner per längd: spelcirkel (hela), staplar (längre), blixt (kortare).
   var CAL_HL_ICONS = {
@@ -3845,20 +3846,6 @@
     var hl = calHighlights[key];
     if (!hl) return "";
     return calWatchChannel("SVT", hl.SVT) + calWatchChannel("TV4", hl.TV4);
-  }
-
-  /* Kompakt teckenförklaring för repris-ikonerna – läggs till höger om
-     "Dagens matcher" i kalenderns toppra. Förklarar både längd (ikon) och
-     kanal (färg) med så lite text som möjligt. */
-  function calWatchLegendHtml() {
-    var items = CAL_HL_TYPES.map(function (t) {
-      return '<span class="cwl-item"><span class="cwl-ico">' + CAL_HL_ICONS[t] + "</span>" +
-        esc(CAL_HL_LABELS[t].replace(" matchen", "").replace(" sammandrag", "")) + "</span>";
-    }).join("");
-    return '<div class="cal-watch-legend" aria-label="Repriser: klicka på ikonerna i en match för att se den">' +
-      '<span class="cwl-lead">Repriser</span>' + items +
-      '<span class="cwl-chips"><span class="cal-tv svt">SVT</span><span class="cal-tv tv4">TV4</span></span>' +
-      "</div>";
   }
 
   function tvLookupGroup(fx, th, ta) {
@@ -4783,7 +4770,7 @@
         '<span class="cal-jump-ico" aria-hidden="true">↓</span></button>'
       : "";
     var html = '<div class="page-intro cal-intro">' + pageIntroMainHtml("calendar") + jumpBtn +
-      calWatchLegendHtml() + '</div>' +
+      '</div>' +
       '<div class="calendar-layout">' +
       '<div class="cal-shell"><div class="cal">';
     var lastDate = null;
