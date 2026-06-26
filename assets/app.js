@@ -1162,6 +1162,7 @@
         '<p>VM 2026 i realtid och en värdig begravning för de svenska och uruguayanska VM-drömmarna.</p>' +
       '</div>' +
       focusHero(ctx) +
+      recentMatchesPanel(ctx) +
       teamsSpotlightStrip(ctx) +
       '</div>';
     var wrote = setViewHtml(html);
@@ -3798,7 +3799,10 @@
       .then(function (d) {
         if (d && d.byKey) {
           calHighlights = d.byKey;
-          if (ui("view", "groups") === "calendar") renderCalendar();
+          var v = ui("view", "groups");
+          // Repriserna syns både i kalendern och i "Nyligen spelat" på startsidan.
+          if (v === "calendar") renderCalendar();
+          else if (v === "home") renderHome();
         }
       })
       .catch(function () { /* tyst – kalendern funkar utan repriser */ });
@@ -4221,58 +4225,66 @@
      hjälten över. */
   var FOCUS_FT_GRACE_MS = 30 * 60 * 1000;
 
+  /** Grunddata för en kalenderpost (lag, etikett, kanal) – delas av hjälten
+      och "Nyligen spelat". Returnerar null om lagen ännu inte är kända. */
+  function scheduleFocusEntry(it, ctx) {
+    var key, label, home, away, m, channel, groupLetter = null;
+    if (it.kind === "group") {
+      var fx = it.fx;
+      key = fx.key; m = fx;
+      home = WC.groups[it.letter][fx.h];
+      away = WC.groups[it.letter][fx.a];
+      label = "Grupp " + it.letter;
+      groupLetter = it.letter;
+      channel = tvLookupGroup(fx, home, away);
+    } else {
+      var res = ctx.resolved[it.m.m];
+      key = "k:" + it.m.m;
+      m = res.match;
+      home = res.home.team;
+      away = res.away.team;
+      label = (ROUND_SHORT[m.round] || m.round) + " · M" + it.m.m;
+      channel = tvLookupKo(m);
+    }
+    if (!home || !away) return null;
+    return {
+      key: key, label: label, groupLetter: groupLetter,
+      home: home, away: away, m: m, channel: channel
+    };
+  }
+
   /** Vilken match hjälten ("Match i fokus") ska visa och i vilket läge.
-      Prioritet: pågående > nyss avslutad (~2h) > nästa avspark.
+      Hjälten avslöjar aldrig ett spelat resultat: den visar antingen den/de
+      pågående matchen/matcherna (med live-länk) eller nästa avspark (nedräkning).
+      Nyss avslutade matcher hamnar i stället i "Nyligen spelat" (utan resultat).
       Två samtidiga matcher (t.ex. sista gruppomgången) returneras båda. */
   function findFocusMatch(ctx) {
     var items = buildSchedule();
     var now = Date.now();
-    var live = [], finished = [], upcoming = [], playedAll = [];
+    var live = [], upcoming = [];
 
     items.forEach(function (it) {
-      var key, label, home, away, m, channel, groupLetter = null;
-      if (it.kind === "group") {
-        var fx = it.fx;
-        key = fx.key; m = fx;
-        home = WC.groups[it.letter][fx.h];
-        away = WC.groups[it.letter][fx.a];
-        label = "Grupp " + it.letter;
-        groupLetter = it.letter;
-        channel = tvLookupGroup(fx, home, away);
-      } else {
-        var res = ctx.resolved[it.m.m];
-        key = "k:" + it.m.m;
-        m = res.match;
-        home = res.home.team;
-        away = res.away.team;
-        label = (ROUND_SHORT[m.round] || m.round) + " · M" + it.m.m;
-        channel = tvLookupKo(m);
-      }
-      if (!home || !away) return;
+      var entry = scheduleFocusEntry(it, ctx);
+      if (!entry) return;
+      var key = entry.key;
       // Spoilerfritt läge: dölj matcher från det senaste dygnet helt ur hjälten
       // (även de som just nu spelas) så varken resultat eller "LIVE" avslöjas.
       if (isSpoilerHidden(key)) return;
 
       var r = getRes(key);
-      var ko = kickoffUTC(m).getTime();
+      var ko = kickoffUTC(entry.m).getTime();
       var liveNow = isMatchLive(key);
       var played = !liveNow && isPlayed(r) && !isLiveStatus(r && r.status);
       var lv = apiLive[key];
-      var entry = {
-        key: key, ko: ko, label: label, groupLetter: groupLetter,
-        home: home, away: away, m: m,
-        r: r || {}, time: m.edt || "", channel: channel,
-        minute: lv && lv.minute != null ? lv.minute : null
-      };
+      entry.ko = ko;
+      entry.r = r || {};
+      entry.time = entry.m.edt || "";
+      entry.minute = lv && lv.minute != null ? lv.minute : null;
 
       if (liveNow || (!played && now >= ko && now < ko + LIVE_MATCH_MS)) {
         entry.state = "live";
         entry.paused = matchIsPaused(key);
         live.push(entry);
-      } else if (played) {
-        entry.state = "ft";
-        playedAll.push(entry);
-        if (now < ko + LIVE_MATCH_MS + FOCUS_FT_GRACE_MS) finished.push(entry);
       } else if (!played && ko >= now) {
         entry.state = "next";
         upcoming.push(entry);
@@ -4285,30 +4297,40 @@
       live.sort(byKey);
       return { state: "live", kickoff: live[0].ko, matches: live.slice(0, 2) };
     }
-    if (finished.length) {
-      upcoming.sort(byKey);
-      var maxKo = Math.max.apply(null, finished.map(function (e) { return e.ko; }));
-      return {
-        state: "ft", kickoff: maxKo,
-        matches: finished.filter(function (e) { return e.ko === maxKo; }).sort(byKey).slice(0, 2),
-        next: upcoming.length ? upcoming[0] : null
-      };
-    }
     if (upcoming.length) {
       upcoming.sort(byKey);
       var best = upcoming[0].ko;
-      var prev = null;
-      if (playedAll.length) {
-        playedAll.sort(byKey);
-        prev = playedAll[playedAll.length - 1];
-      }
       return {
         state: "next", kickoff: best,
-        matches: upcoming.filter(function (e) { return e.ko === best; }).slice(0, 2),
-        prev: prev
+        matches: upcoming.filter(function (e) { return e.ko === best; }).slice(0, 2)
       };
     }
     return { state: "none", kickoff: null, matches: [] };
+  }
+
+  /* "Nyligen spelat": matcher vars avspark ligger inom det senaste dygnet och
+     som är färdigspelade (ej pågående). Vi läser det verkliga resultatet
+     (rawRes) för att veta att matchen är spelad – men visar aldrig siffrorna i
+     korten; man får klicka in sig för resultat och repriser. Sorterad senast
+     först. */
+  var RECENT_WINDOW_MS = 24 * 3600 * 1000;
+  function findRecentMatches(ctx) {
+    var items = buildSchedule();
+    var now = Date.now();
+    var out = [];
+    items.forEach(function (it) {
+      var entry = scheduleFocusEntry(it, ctx);
+      if (!entry) return;
+      var ko = kickoffUTC(entry.m).getTime();
+      if (ko > now || ko < now - RECENT_WINDOW_MS) return; // bara avsparkat senaste dygnet
+      var raw = rawRes(entry.key);
+      if (!isPlayed(raw)) return;                          // måste ha ett resultat
+      if (apiLive[entry.key] || isLiveStatus(raw.status) || isMatchLive(entry.key)) return; // pågår → hjälten
+      entry.ko = ko;
+      out.push(entry);
+    });
+    out.sort(function (a, b) { return b.ko - a.ko; });
+    return out;
   }
 
   var FOCUS_HEADINGS = {
@@ -4383,114 +4405,6 @@
       "</div>";
   }
 
-  /** "Nästa match"-ruta med nedräkning, visas under en nyss avslutad match
-      tills den sedvanliga nästa-match-hjälten tar över (~30 min efter slut). */
-  function focusNextTease(e) {
-    if (!e) return "";
-    var open = matchOpenAttr(e.key);
-    var when = whenLabels(e.m);
-    var h = '<section class="focus-tease ft-next fh-next' + open.cls + '"' + open.attr + '>';
-    h += '<div class="fh-next-head">' +
-      '<span class="fh-eyebrow">Nästa match</span>' +
-      focusGroupChip(e, "fh-group") +
-      '</div>';
-    h += '<div class="fh-next-teams">' +
-      '<span class="fhn-team fhn-home">' +
-        '<span class="fhn-name" title="' + esc(e.home.sv) + '">' + esc(teamSvDisplay(e.home)) + '</span>' +
-        '<span class="fhn-flag">' + flagImg(e.home.iso) + '</span></span>' +
-      '<span class="fhn-vs" aria-hidden="true">vs</span>' +
-      '<span class="fhn-team fhn-away">' +
-        '<span class="fhn-flag">' + flagImg(e.away.iso) + '</span>' +
-        '<span class="fhn-name" title="' + esc(e.away.sv) + '">' + esc(teamSvDisplay(e.away)) + '</span></span>' +
-      '</div>';
-    h += '<div class="fh-next-meta">' +
-      '<span class="fh-when">' + esc(when.dateLabel + " · " + when.time) + '</span>' +
-      spotlightTvHtml(e.channel) +
-      '</div>';
-    h += focusCountdown(e.ko, "ftNextTimer", "ftn");
-    h += '</section>';
-    return h;
-  }
-
-  /** "Senaste match"-ruta, visas litet under nästa-match-hjälten – spegelvänd
-      variant av focusNextTease men med slutresultat istället för nedräkning. */
-  function focusPrevTease(e) {
-    if (!e) return "";
-    var open = focusOpenAttr(e);
-    var hs = e.r.h != null ? e.r.h : 0;
-    var as = e.r.a != null ? e.r.a : 0;
-    var hCls = hs > as ? " is-win" : (hs < as ? " is-loss" : "");
-    var aCls = as > hs ? " is-win" : (as < hs ? " is-loss" : "");
-    var h = '<section class="focus-tease ft-prev fh-next fh-prev' + open.cls + '"' + open.attr + '>';
-    h += '<div class="fh-next-head">' +
-      '<span class="fh-eyebrow">Senaste matchen</span>' +
-      '<span class="fhn-head-right">' +
-        '<span class="fhn-ft">Avslutad</span>' +
-        focusGroupChip(e, "fh-group") +
-      '</span>' +
-      '</div>';
-    h += '<div class="fh-next-teams">' +
-      '<span class="fhn-team fhn-home' + hCls + '">' +
-        '<span class="fhn-name" title="' + esc(e.home.sv) + '">' + esc(teamSvDisplay(e.home)) + '</span>' +
-        '<span class="fhn-flag">' + flagImg(e.home.iso) + '</span></span>' +
-      '<span class="fhn-score">' +
-        '<span class="fhn-sc' + hCls + '">' + hs + '</span>' +
-        '<span class="fhn-dash" aria-hidden="true">–</span>' +
-        '<span class="fhn-sc' + aCls + '">' + as + '</span></span>' +
-      '<span class="fhn-team fhn-away' + aCls + '">' +
-        '<span class="fhn-flag">' + flagImg(e.away.iso) + '</span>' +
-        '<span class="fhn-name" title="' + esc(e.away.sv) + '">' + esc(teamSvDisplay(e.away)) + '</span></span>' +
-      '</div>';
-    h += focusPrevEvents(e);
-    h += '</section>';
-    return h;
-  }
-
-  /** Mål + röda kort för "Senaste matchen"-rutan – grupperade per lag, en rad
-      per händelse med minut (mål slås ihop per skytt, röda kort visas separat
-      med röd kortmarkör). */
-  function focusPrevEvents(e) {
-    var det = focusDetails[e.key];
-    if (!det) return "";
-    var goals = det.goals || [];
-    var reds = (det.bookings || []).filter(function (b) { return b.card === "RED"; });
-    if (!goals.length && !reds.length) return "";
-    var sides = { h: [], a: [] };
-    var idx = { h: {}, a: {} };
-    goals.forEach(function (g) {
-      var side = g.team === "a" ? "a" : "h";
-      var name = g.scorer || "Mål";
-      if (idx[side][name] == null) {
-        idx[side][name] = sides[side].length;
-        sides[side].push({ kind: "goal", name: name, tokens: [] });
-      }
-      sides[side][idx[side][name]].tokens.push(goalMinuteToken(g));
-    });
-    reds.forEach(function (b) {
-      var side = b.team === "a" ? "a" : "h";
-      var min = (b.minute != null ? b.minute : "") + (b.injuryTime ? "+" + b.injuryTime : "");
-      sides[side].push({
-        kind: "red", name: b.player || "Rött kort",
-        tokens: [min !== "" ? min + "'" : ""]
-      });
-    });
-    function render(side) {
-      return sides[side].map(function (s) {
-        var mark = s.kind === "red"
-          ? '<span class="fh-red-card" aria-hidden="true"></span>' : "";
-        return '<span class="fh-sc-line' + (s.kind === "red" ? " is-red" : "") + '">' +
-          '<span class="fh-sc-name">' + mark + esc(s.name) + '</span>' +
-          '<span class="fh-sc-min">' + esc(s.tokens.filter(Boolean).join(", ")) + '</span>' +
-          '</span>';
-      }).join("");
-    }
-    return '<div class="fh-scorers fh-prev-events" aria-label="Mål och röda kort">' +
-      '<div class="fh-sc-side fh-sc-home">' + render("h") + '</div>' +
-      '<span class="fh-sc-ball" aria-hidden="true">⚽</span>' +
-      '<div class="fh-sc-side fh-sc-away">' + render("a") + '</div>' +
-      '</div>';
-  }
-
   /** Grupp-/rondetikett i hjälten – grupper får sin riktiga färg (group-pill). */
   function focusGroupChip(e, cls) {
     if (e.groupLetter) {
@@ -4507,6 +4421,23 @@
       open = { attr: ' data-match-open="' + e.key + '" role="button" tabindex="0"', cls: " match-openable" };
     }
     return open;
+  }
+
+  /** "Se matchen live"-länk för en pågående match – samma kanalfärgade knapp
+      som i kalendern, fast i hjälteformat. Saknas en sändningslänk (kanalen är
+      inte känd än) visar vi i stället en kort, smart platshållartext. */
+  function focusWatchLive(e) {
+    var ch = e.channel;
+    if (ch && TV_LIVE_URL[ch]) {
+      var lbl = "Se matchen live på " + ch;
+      return '<a class="fh-watch ' + (ch === "SVT" ? "svt" : "tv4") + '" href="' + TV_LIVE_URL[ch] +
+        '" target="_blank" rel="noopener" title="' + esc(lbl) + '" aria-label="' + esc(lbl) + '">' +
+        '<span class="tv-live-ico" aria-hidden="true"></span>' +
+        '<span class="fh-watch-txt">Se matchen live</span>' +
+        '<span class="fh-watch-ch">' + ch + '</span></a>';
+    }
+    return '<span class="fh-watch is-tba" title="Sändaren är inte spikad än">' +
+      '<span class="tv-live-ico" aria-hidden="true"></span>Livesändning meddelas snart</span>';
   }
 
   /** Stort hjältekort – ett huvudnummer per läge (nästa/pågående/avslutad). */
@@ -4536,8 +4467,9 @@
     if (state === "live" || state === "ft") h += focusScorers(e);
     h += '<div class="fh-meta">' +
       '<span class="fh-when">' + esc(when.dateLabel + " · " + when.time) + '</span>' +
-      spotlightTvHtml(e.channel, state === "live") +
+      (state === "live" ? "" : spotlightTvHtml(e.channel, false)) +
       '</div>';
+    if (state === "live") h += '<div class="fh-watch-row">' + focusWatchLive(e) + '</div>';
     if (state === "next") h += focusCountdown(kickoff != null ? kickoff : e.ko);
     h += '</article>';
     return h;
@@ -4577,7 +4509,9 @@
       teamSide(e.home, "home", hCls) + center + teamSide(e.away, "away", aCls) +
       '</div>';
     if (state === "live" || state === "ft") h += focusScorers(e, "fh-scorers-mini");
-    h += '<div class="fm-foot">' + spotlightTvHtml(e.channel, state === "live") + '</div>';
+    h += '<div class="fm-foot">' +
+      (state === "live" ? focusWatchLive(e) : spotlightTvHtml(e.channel, false)) +
+      '</div>';
     h += '</article>';
     return h;
   }
@@ -4607,8 +4541,68 @@
       if (f.state === "next") h += focusCountdown(f.kickoff);
     }
     h += '</section>';
-    if (f.state === "ft" && f.next) h += focusNextTease(f.next);
-    if (f.state === "next" && f.prev) h += focusPrevTease(f.prev);
+    return h;
+  }
+
+  /* ---------- "Nyligen spelat" ----------
+     Spoilerfri lista över matcher från det senaste dygnet: korten visar lagen
+     men aldrig resultatet. Man klickar in på kortet för att se matchen (och
+     välja att avslöja resultatet) och repris-ikonerna leder direkt till
+     SVT/TV4 precis som i kalendern. */
+
+  /* Reprisbrickorna (SVT/TV4) för ett kort – eller en kort, smart text om
+     repriserna ännu inte publicerats. */
+  function recentWatchHtml(key) {
+    var inner = calWatchInner(key);
+    if (inner) return '<span class="cal-watch">' + inner + '</span>';
+    return '<span class="rm-norepris" title="Repriserna brukar dyka upp några timmar efter slutsignal">' +
+      'Repris dröjer</span>';
+  }
+
+  /* Ett kort i "Nyligen spelat" – speglar hjältens mini-kort men med dolt
+     resultat (ett litet "öga av"-märke i mitten) och repris-/klickbarhet. */
+  function recentMiniCard(e) {
+    var open = matchOpenAttr(e.key);
+    if (!open.attr) {
+      open = { attr: ' data-match-open="' + e.key + '" role="button" tabindex="0"', cls: " match-openable" };
+    }
+    var when = whenLabels(e.m);
+    function teamSide(team, side) {
+      var flag = '<span class="fm-flag">' + flagImg(team.iso) + '</span>';
+      var name = '<span class="fm-name" title="' + esc(team.sv) + '">' + esc(teamSvFixture(team)) + '</span>';
+      return '<span class="fm-team fm-' + side + '">' +
+        (side === "home" ? name + flag : flag + name) + '</span>';
+    }
+    var cover = '<span class="rm-cover" aria-label="Resultat dolt – klicka för att visa">' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+      '<path d="M2 12s3.5-7 10-7c2 0 3.7.6 5.1 1.5M22 12s-3.5 7-10 7c-2 0-3.7-.6-5.1-1.5" ' +
+      'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>' +
+      '<path d="M9.5 9.5a3.5 3.5 0 0 0 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>' +
+      '<path d="M4 4l16 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>' +
+      '<span class="rm-cover-txt">Visa</span></span>';
+    var h = '<article class="focus-mini fm-recent' + open.cls + '"' + open.attr + '>';
+    h += '<div class="fm-top">' + focusGroupChip(e, "fm-group") +
+      '<span class="rm-when">' + esc(when.time) + '</span></div>';
+    h += '<div class="fm-teams">' +
+      teamSide(e.home, "home") + cover + teamSide(e.away, "away") + '</div>';
+    h += '<div class="fm-foot rm-foot">' + recentWatchHtml(e.key) + '</div>';
+    h += '</article>';
+    return h;
+  }
+
+  /** Sektionen "Nyligen spelat" – tom sträng om inga matcher spelats senaste
+      dygnet (då finns inget att gömma). */
+  function recentMatchesPanel(ctx) {
+    var recent = findRecentMatches(ctx);
+    if (!recent.length) return "";
+    var h = '<section class="recent-played" aria-label="Nyligen spelade matcher">';
+    h += '<div class="rp-head">' +
+      '<span class="fh-eyebrow">Nyligen spelat</span>' +
+      '<span class="rp-hint">Klicka för resultat &amp; repris</span>' +
+      '</div>';
+    h += '<div class="rp-grid">';
+    recent.forEach(function (e) { h += recentMiniCard(e); });
+    h += '</div></section>';
     return h;
   }
 
