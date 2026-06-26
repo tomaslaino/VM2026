@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-25T23:46:05.710Z",
+    "updatedAt": "2026-06-26T02:00:49.944Z",
     "source": "svt+tv4",
     "matchCount": 60
   },
@@ -1270,7 +1270,7 @@
         "short": {
           "url": "https://www.svtplay.se/klipp/89d3xJy/grupp-e-ecuador-tyskland",
           "title": "Grupp E: Ecuador – Tyskland",
-          "until": "2060-01-01T00:00:00+01:00"
+          "until": "2026-10-19T05:30:00+02:00"
         }
       },
       "TV4": {
@@ -1283,19 +1283,48 @@
     },
     "g:F:3": {
       "SVT": {
-        "live": {
-          "url": "https://www.svtplay.se/video/KPBBWgo/fifa-fotbolls-vm-2026/hela-sverige-kollar-japan-sverige",
+        "full": {
+          "url": "https://www.svtplay.se/video/jqPPE5P/fifa-fotbolls-vm-2026/japan-sverige",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-26T23:59:59+02:00"
+        },
+        "long": {
+          "url": "https://www.svtplay.se/klipp/KVwEzPk/utokade-hojdpunkter-japan-sverige",
+          "title": "Utökade höjdpunkter: Japan – Sverige",
+          "until": "2026-10-19T05:30:00+02:00"
+        },
+        "short": {
+          "url": "https://www.svtplay.se/klipp/jgW5wzA/grupp-f-japan-sverige",
+          "title": "Grupp F: Japan – Sverige",
+          "until": "2060-01-01T00:00:00+01:00"
+        }
+      },
+      "TV4": {
+        "short": {
+          "url": "https://www.tv4play.se/klipp/a382d395896b24745e9e/video-hojdpunkter-japan-sverige",
+          "title": "Höjdpunkter: Japan - Sverige",
+          "until": null
         }
       }
     },
     "g:F:2": {
       "SVT": {
-        "live": {
+        "full": {
           "url": "https://www.svtplay.se/video/KZxxWy7/fifa-fotbolls-vm-2026/tunisien-nederlanderna",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-26T23:59:59+02:00"
+        },
+        "short": {
+          "url": "https://www.svtplay.se/klipp/K1qV7n2/grupp-f-tunisien-nederlanderna",
+          "title": "Grupp F: Tunisien – Nederländerna",
+          "until": "2026-10-19T05:30:00+02:00"
+        }
+      },
+      "TV4": {
+        "short": {
+          "url": "https://www.tv4play.se/klipp/3157d293bc5f1149ac66/video-hojdpunkter-tunisien-nederlanderna",
+          "title": "Höjdpunkter: Tunisien - Nederländerna",
+          "until": null
         }
       }
     },
@@ -1305,7 +1334,7 @@
           "url": "https://www.tv4play.se/video/da706e7c714b852142ca/paraguay-australien",
           "title": "Paraguay - Australien",
           "until": "2026-07-26T01:50:00Z",
-          "from": "2026-06-26T01:50:08Z"
+          "from": "2026-06-26T01:50:27Z"
         }
       }
     },
@@ -1315,7 +1344,7 @@
           "url": "https://www.tv4play.se/video/ca8fb917a4a4e7f9497c/turkiet-usa",
           "title": "Turkiet - USA",
           "until": "2026-07-26T01:50:00Z",
-          "from": "2026-06-26T01:50:44Z"
+          "from": "2026-06-26T01:50:00Z"
         }
       }
     }
