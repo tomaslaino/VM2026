@@ -1719,6 +1719,7 @@ html.view-bracket .bracket .round-title.bracket-jump.bronze-title:hover {
   .page-intro.bracket-intro .bracket-modebar { grid-column: 1; }
   .page-intro.cal-intro { grid-template-columns: 1fr; }
   .page-intro.cal-intro .cal-jump { grid-column: 1; justify-self: center; }
+  .cal-watch-legend { grid-column: 1; justify-content: center; }
 }
 @media (max-width: 560px) {
   .bmode-btn { padding: 8px 14px; }
@@ -2699,6 +2700,73 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
   border-style: solid; border-width: 4px 0 4px 6px;
   border-color: transparent transparent transparent currentColor;
 }
+
+/* ---------- Repriser på matchraden (SVT/TV4) ----------
+   Egen rad längst ner i matchkortet: en kanalfärgad bricka per kanal med
+   klickbara ikoner för hela matchen / längre / kortare sammandrag. */
+.cal-watch {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 9px;
+  padding-top: 9px;
+  border-top: 1px solid rgba(255, 255, 255, .07);
+}
+.cal-watch-ch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 7px 3px 6px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+.cal-watch-ch.svt { color: #8fd6a6; border-color: rgba(143, 214, 166, .42); background: rgba(143, 214, 166, .09); }
+.cal-watch-ch.tv4 { color: #f0a8b0; border-color: rgba(240, 168, 176, .42); background: rgba(240, 168, 176, .09); }
+.cal-watch-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  margin-right: 1px;
+}
+.cal-watch-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 22px;
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+  transition: background .14s ease, transform .12s ease;
+}
+.cal-watch-link svg { width: 15px; height: 15px; display: block; }
+.cal-watch-link:hover { background: currentColor; transform: translateY(-1px); }
+.cal-watch-link:hover svg { color: #0a1628; }
+.cal-watch-ch.svt .cal-watch-link:hover svg path,
+.cal-watch-ch.svt .cal-watch-link:hover svg rect,
+.cal-watch-ch.svt .cal-watch-link:hover svg circle { stroke: #0a1628; }
+.cal-watch-link:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+
+/* Teckenförklaring till höger om "Dagens matcher" i kalenderns toppra. */
+.cal-watch-legend {
+  grid-column: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px 12px;
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+.cal-watch-legend .cwl-lead { font-weight: 800; color: var(--ink); letter-spacing: .2px; }
+.cal-watch-legend .cwl-item { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.cal-watch-legend .cwl-ico { display: inline-flex; color: var(--ink); }
+.cal-watch-legend .cwl-ico svg { width: 14px; height: 14px; display: block; }
+.cal-watch-legend .cwl-chips { display: inline-flex; gap: 5px; }
+.cal-watch-legend .cwl-chips .cal-tv { min-width: 0; height: 18px; padding: 0 6px; font-size: 9px; }
 
 /* ====================================================================
    LAG-PANEL (drawer)
@@ -3835,6 +3903,7 @@ a.cal-tv.tv-live.tv4 { background: rgba(240, 168, 176, .16); }
 .ps-num { font-variant-numeric: tabular-nums; }
 .ps-num.hot { font-weight: 800; }
 .ps-pts { font-weight: 800; }
+.ps-fp { color: color-mix(in srgb, var(--usa-red) 55%, var(--ink)); }
 tr.ps-has-stats td { background: color-mix(in srgb, var(--usa-blue) 7%, transparent); }
 tr.ps-openable { cursor: pointer; }
 tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, transparent); }

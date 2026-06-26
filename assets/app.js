@@ -50,6 +50,7 @@
   var fairPlayMap = {};  // "L:idx" -> { y, r, pts } beräknat från matchdetaljernas kort
   var calScrollPending = false; // scrolla till nästa matchdag vid öppning av kalender
   var calGroupOpen = null;      // grupp-bokstav för öppen tabell-popup i kalendern
+  var calHighlights = {};       // matchnyckel -> { SVT?:{full,long,short}, TV4?:{...} } (repriser i kalendern)
 
   function loadState() {
     try {
@@ -3771,6 +3772,79 @@
     return '<span class="cal-tv ' + (ch === "SVT" ? "svt" : "tv4") + '">' + ch + "</span>";
   }
 
+  /* ---------- Repriser i kalendern (SVT Play + TV4 Play) ----------
+     Samma data som matchmodalen (data/highlights.json), men visad direkt på
+     matchraden: en liten kanalfärgad bricka per kanal med en klickbar ikon
+     ("logga") för varje reprislängd som finns – hela matchen, längre och
+     kortare sammandrag. Färgen säger vilken kanal (SVT grön, TV4 röd). */
+  var CAL_HL_TYPES = ["full", "long", "short"];
+  var CAL_HL_LABELS = { full: "Hela matchen", long: "Längre sammandrag", short: "Kortare sammandrag" };
+  // Distinkta ikoner per längd: spelcirkel (hela), staplar (längre), blixt (kortare).
+  var CAL_HL_ICONS = {
+    full: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 8.5l5.5 3.5-5.5 3.5z" fill="currentColor"/></svg>',
+    long: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="6" width="13" height="2.4" rx="1.2" fill="currentColor"/><rect x="4" y="10.8" width="16" height="2.4" rx="1.2" fill="currentColor"/><rect x="4" y="15.6" width="9" height="2.4" rx="1.2" fill="currentColor"/></svg>',
+    short: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 2L4 14h6l-1 8 9-12h-6z" fill="currentColor"/></svg>'
+  };
+
+  function calHighlightsUrl() {
+    var CFG = window.VM_CONFIG || {};
+    var u = CFG.staticHighlights || "data/highlights.json";
+    return u + (u.indexOf("?") === -1 ? "?" : "&") + "t=" + Date.now();
+  }
+
+  function loadCalHighlights() {
+    return fetch(calHighlightsUrl(), { headers: { Accept: "application/json" }, cache: "no-store" })
+      .then(function (r) { return r && r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (d && d.byKey) {
+          calHighlights = d.byKey;
+          if (ui("view", "groups") === "calendar") renderCalendar();
+        }
+      })
+      .catch(function () { /* tyst – kalendern funkar utan repriser */ });
+  }
+
+  function calWatchLink(entry, type, ch) {
+    if (!entry || !entry.url) return "";
+    // Dölj klipp vars "tillgänglig till" redan passerat (mellan synkar).
+    if (entry.until && new Date(entry.until).getTime() <= Date.now()) return "";
+    var tip = CAL_HL_LABELS[type] + " · " + ch;
+    return '<a class="cal-watch-link" href="' + esc(entry.url) + '" target="_blank" rel="noopener noreferrer" ' +
+      'title="' + esc(tip) + '" aria-label="' + esc(CAL_HL_LABELS[type] + " på " + ch) + '">' +
+      CAL_HL_ICONS[type] + "</a>";
+  }
+
+  function calWatchChannel(ch, data) {
+    if (!data) return "";
+    var links = "";
+    CAL_HL_TYPES.forEach(function (t) { links += calWatchLink(data[t], t, ch); });
+    if (!links) return "";
+    return '<span class="cal-watch-ch ' + (ch === "SVT" ? "svt" : "tv4") + '">' +
+      '<span class="cal-watch-tag">' + ch + "</span>" + links + "</span>";
+  }
+
+  function calWatchHtml(key) {
+    var hl = calHighlights[key];
+    if (!hl) return "";
+    var groups = calWatchChannel("SVT", hl.SVT) + calWatchChannel("TV4", hl.TV4);
+    if (!groups) return "";
+    return '<div class="cal-watch">' + groups + "</div>";
+  }
+
+  /* Kompakt teckenförklaring för repris-ikonerna – läggs till höger om
+     "Dagens matcher" i kalenderns toppra. Förklarar både längd (ikon) och
+     kanal (färg) med så lite text som möjligt. */
+  function calWatchLegendHtml() {
+    var items = CAL_HL_TYPES.map(function (t) {
+      return '<span class="cwl-item"><span class="cwl-ico">' + CAL_HL_ICONS[t] + "</span>" +
+        esc(CAL_HL_LABELS[t].replace(" matchen", "").replace(" sammandrag", "")) + "</span>";
+    }).join("");
+    return '<div class="cal-watch-legend" aria-label="Repriser: klicka på ikonerna i en match för att se den">' +
+      '<span class="cwl-lead">Repriser</span>' + items +
+      '<span class="cwl-chips"><span class="cal-tv svt">SVT</span><span class="cal-tv tv4">TV4</span></span>' +
+      "</div>";
+  }
+
   function tvLookupGroup(fx, th, ta) {
     var sched = WC.tvSchedule;
     if (sched && fx.date && fx.edt) {
@@ -4702,7 +4776,8 @@
         '<span class="cal-jump-txt">' + calView.jumpLabel + "</span>" +
         '<span class="cal-jump-ico" aria-hidden="true">↓</span></button>'
       : "";
-    var html = '<div class="page-intro cal-intro">' + pageIntroMainHtml("calendar") + jumpBtn + '</div>' +
+    var html = '<div class="page-intro cal-intro">' + pageIntroMainHtml("calendar") + jumpBtn +
+      calWatchLegendHtml() + '</div>' +
       '<div class="calendar-layout">' +
       '<div class="cal-shell"><div class="cal">';
     var lastDate = null;
@@ -4850,6 +4925,7 @@
         score +
         teamOpenBtn(ta, flagImg(ta.iso) + '<span title="' + esc(ta.sv) + '">' + esc(teamSvFixture(ta)) + '</span>', "cal-side away") + '</span>' +
       calVenueCell(tvLookupGroup(fx, th, ta), isNext) +
+      calWatchHtml(fx.key) +
       '</div>';
   }
 
@@ -4881,6 +4957,7 @@
       '<span class="cal-badge ' + m.round + '">' + (CAL_ROUND[m.round] || m.round) + ' · M' + m.m + '</span>' +
       '<span class="cal-match">' + hHome + score + hAway + '</span>' +
       calVenueCell(tvLookupKo(m), isNext) +
+      calWatchHtml("k:" + m.m) +
       '</div>';
   }
 
@@ -5558,6 +5635,8 @@
     updateSyncBadge();
 
     bracketPosByMatch = buildBracketPosMap();
+    loadCalHighlights();                      // repriser (SVT/TV4) till kalenderraderna
+    setInterval(loadCalHighlights, 180000);   // plocka upp nya klipp under turneringen
     updateBracketProbs();                    // lokal motor på din data (med statisk fallback)
     setInterval(updateBracketProbs, 300000); // periodisk omräkning under turneringen
     setInterval(function () {
