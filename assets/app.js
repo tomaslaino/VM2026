@@ -4293,12 +4293,11 @@
     return { state: "none", kickoff: null, matches: [] };
   }
 
-  /* "Nyligen spelat": matcher vars avspark ligger inom det senaste dygnet och
-     som är färdigspelade (ej pågående). Vi läser det verkliga resultatet
+  /* "Avslutade matcher": ALLA färdigspelade matcher (ej pågående) som har en
+     publicerad repris/sammandrag att titta på. Vi läser det verkliga resultatet
      (rawRes) för att veta att matchen är spelad – men visar aldrig siffrorna i
      korten; man får klicka in sig för resultat och repriser. Sorterad senast
-     först. */
-  var RECENT_WINDOW_MS = 24 * 3600 * 1000;
+     först (nyast hamnar längst ned i listan via CSS column-reverse). */
   function findRecentMatches(ctx) {
     var items = buildSchedule();
     var now = Date.now();
@@ -4307,10 +4306,11 @@
       var entry = scheduleFocusEntry(it, ctx);
       if (!entry) return;
       var ko = kickoffUTC(entry.m).getTime();
-      if (ko > now || ko < now - RECENT_WINDOW_MS) return; // bara avsparkat senaste dygnet
+      if (ko > now) return;                                // avspark måste ha varit
       var raw = rawRes(entry.key);
       if (!isPlayed(raw)) return;                          // måste ha ett resultat
       if (apiLive[entry.key] || isLiveStatus(raw.status) || isMatchLive(entry.key)) return; // pågår → hjälten
+      if (!calWatchInner(entry.key)) return;               // bara matcher med tillgänglig repris
       entry.ko = ko;
       out.push(entry);
     });
@@ -4603,7 +4603,6 @@
     var h = '<section class="recent-played" aria-label="Avslutade matcher">';
     h += '<div class="rp-head">' +
       '<span class="fh-eyebrow">' + heading + '</span>' +
-      '<span class="rp-hint">Klicka för resultat &amp; repris</span>' +
       '</div>';
     h += '<div class="rp-list">';
     recent.forEach(function (e) { h += recentRow(e); });

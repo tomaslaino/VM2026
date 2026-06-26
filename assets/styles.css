@@ -904,8 +904,35 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 .rp-hint { font-size: 12px; font-weight: 700; color: var(--ink-soft); }
 
 /* Matcherna listas på rad (likt kalendern) i stället för i smala kort, så att
-   långa landsnamn ("Nederländerna", "Elfenbenskusten") får plats på en rad. */
-.rp-list { display: flex; flex-direction: column; gap: 10px; }
+   långa landsnamn ("Nederländerna", "Elfenbenskusten") får plats på en rad.
+
+   Rullista: alla matcher med tillgänglig repris ligger här, men bara ca fyra
+   rader syns åt gången. column-reverse + newest-first i DOM gör att listan
+   automatiskt står pinnad längst ned (senast avslutade matchen synlig) och man
+   rullar uppåt för att se äldre matcher. */
+.rp-list {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  max-height: 256px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, .22) transparent;
+}
+.rp-list::-webkit-scrollbar { width: 8px; }
+.rp-list::-webkit-scrollbar-track { background: transparent; }
+.rp-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, .18);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.rp-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, .32);
+  background-clip: padding-box;
+}
 
 .rp-row {
   display: grid;
@@ -997,7 +1024,15 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 /* Repriser längst till höger – exakt samma SVT/TV4-bricka som i kalendern
    (via .cal-watch). En kort text visas i stället när repriserna inte
    publicerats ännu. */
-.rp-watch { justify-self: end; display: inline-flex; align-items: center; }
+/* Fast bredd så att kolumnen är lika bred oavsett om matchen har två eller tre
+   reprislängder – annars förskjuts lagen olika mycket per rad (asymmetriskt). */
+.rp-watch {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 86px;
+}
 .rm-norepris {
   font-size: 11px; font-weight: 700; color: var(--ink-soft);
   padding: 3px 9px; border-radius: 999px;
@@ -1007,6 +1042,8 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 
 /* Smalare skärmar: datum/tid sida vid sida överst, lagen under, repris sist. */
 @media (max-width: 720px) {
+  /* Två rader per kort ⇒ högre tak så att ~fyra matcher ändå syns i rullistan. */
+  .rp-list { max-height: 344px; }
   .rp-row {
     grid-template-columns: auto 1fr auto;
     grid-template-areas: "when group watch" "teams teams teams";
