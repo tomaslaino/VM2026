@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-26T23:59:29.123Z",
+    "updatedAt": "2026-06-27T02:58:21.315Z",
     "source": "svt+tv4",
     "matchCount": 66
   },
@@ -1412,23 +1412,45 @@
         }
       }
     },
-    "g:H:0": {
+    "g:H:1": {
+      "SVT": {
+        "short": {
+          "url": "https://www.svtplay.se/klipp/84dnR3w/grupp-h-kap-verde-saudiarabien",
+          "title": "Grupp H: Kap Verde – Saudiarabien",
+          "until": "2026-10-19T05:30:00+02:00"
+        }
+      },
       "TV4": {
-        "live": {
-          "url": "https://www.tv4play.se/video/49016926db4987bf9e00/uruguay-spanien",
-          "title": "Uruguay - Spanien",
-          "until": "2026-07-26T23:45:00Z",
-          "from": "2026-06-26T23:45:44Z"
+        "full": {
+          "url": "https://www.tv4play.se/video/d5b113981abbd18a2b0e/kap-verde-saudiarabien",
+          "title": "Kap Verde - Saudiarabien",
+          "until": "2026-07-26T23:50:00Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/cf180855bbfac95412fb/video-hojdpunkter-kap-verde-saudiarabien",
+          "title": "Höjdpunkter: Kap Verde - Saudiarabien",
+          "until": null
         }
       }
     },
-    "g:H:1": {
+    "g:H:0": {
+      "SVT": {
+        "short": {
+          "url": "https://www.svtplay.se/klipp/jp5ERXw/grupp-h-uruguay-spanien",
+          "title": "Grupp H: Uruguay – Spanien",
+          "until": "2026-10-19T05:30:00+02:00"
+        }
+      },
       "TV4": {
-        "live": {
-          "url": "https://www.tv4play.se/video/d5b113981abbd18a2b0e/kap-verde-saudiarabien",
-          "title": "Kap Verde - Saudiarabien",
-          "until": "2026-07-26T23:50:00Z",
-          "from": "2026-06-26T23:50:21Z"
+        "full": {
+          "url": "https://www.tv4play.se/video/49016926db4987bf9e00/uruguay-spanien",
+          "title": "Uruguay - Spanien",
+          "until": "2026-07-26T23:45:00Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/51700b130af9a03bfcc9/video-hojdpunkter-uruguay-spanien",
+          "title": "Höjdpunkter: Uruguay - Spanien",
+          "until": null
         }
       }
     },
@@ -1438,7 +1460,7 @@
           "url": "https://www.tv4play.se/video/6f731bb05b7c20500385/egypten-iran",
           "title": "Egypten - Iran",
           "until": "2026-07-27T02:50:00Z",
-          "from": "2026-06-27T02:50:27Z"
+          "from": "2026-06-27T02:50:11Z"
         }
       }
     },
@@ -1448,7 +1470,7 @@
           "url": "https://www.tv4play.se/video/90215ba13114d96e7a18/nya-zeeland-belgien",
           "title": "Nya Zeeland - Belgien",
           "until": "2026-07-27T02:50:00Z",
-          "from": "2026-06-27T02:50:19Z"
+          "from": "2026-06-27T02:50:38Z"
         }
       }
     }
