@@ -1,10 +1,10 @@
 {
   "meta": {
-    "updatedAt": "2026-06-27T00:45:28.622Z",
+    "updatedAt": "2026-06-27T04:28:44.345Z",
     "source": "espn",
-    "matchCount": 64,
+    "matchCount": 66,
     "liveCount": 2,
-    "apiCalls": 126
+    "apiCalls": 2
   },
   "results": {
     "g:A:2": {
@@ -320,30 +320,40 @@
     "g:H:1": {
       "h": 0,
       "a": 0,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     },
     "g:H:0": {
       "h": 1,
       "a": 0,
+      "status": "FINISHED"
+    },
+    "g:G:5": {
+      "h": 1,
+      "a": 1,
+      "status": "IN_PLAY"
+    },
+    "g:G:4": {
+      "h": 0,
+      "a": 2,
       "status": "IN_PLAY"
     }
   },
   "live": [
     {
-      "key": "g:H:1",
+      "key": "g:G:5",
       "status": "IN_PLAY",
-      "minute": 42,
-      "home": "Saudi Arabia",
-      "away": "Cape Verde",
-      "score": "0-0"
+      "minute": 64,
+      "home": "Iran",
+      "away": "Egypt",
+      "score": "1-1"
     },
     {
-      "key": "g:H:0",
+      "key": "g:G:4",
       "status": "IN_PLAY",
-      "minute": 42,
-      "home": "Spain",
-      "away": "Uruguay",
-      "score": "1-0"
+      "minute": 66,
+      "home": "New Zealand",
+      "away": "Belgium",
+      "score": "0-2"
     }
   ],
   "fixtures": {
@@ -1405,7 +1415,7 @@
       "date": "2026-06-27",
       "time": "02:00",
       "utcDate": "2026-06-27T00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Saudi Arabia",
       "away": "Cape Verde",
@@ -1422,7 +1432,7 @@
       "date": "2026-06-27",
       "time": "02:00",
       "utcDate": "2026-06-27T00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Spain",
       "away": "Uruguay",
@@ -1439,7 +1449,7 @@
       "date": "2026-06-27",
       "time": "05:00",
       "utcDate": "2026-06-27T03:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Iran",
       "away": "Egypt",
@@ -1456,7 +1466,7 @@
       "date": "2026-06-27",
       "time": "05:00",
       "utcDate": "2026-06-27T03:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "New Zealand",
       "away": "Belgium",
@@ -1612,12 +1622,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Germany",
-      "away": "Third Place Group A/B/C/D/F",
+      "away": "Paraguay",
       "homeRef": {
         "group": "E",
         "idx": 0
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "D",
+        "idx": 1
+      }
     },
     "k:75": {
       "date": "2026-06-30",
@@ -1660,12 +1673,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "France",
-      "away": "Third Place Group C/D/F/G/H",
+      "away": "Sweden",
       "homeRef": {
         "group": "I",
         "idx": 0
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "F",
+        "idx": 3
+      }
     },
     "k:79": {
       "date": "2026-07-01",
@@ -1726,9 +1742,12 @@
       "utcDate": "2026-07-02T19:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Group H Winner",
+      "home": "Spain",
       "away": "Group J 2nd Place",
-      "homeRef": null,
+      "homeRef": {
+        "group": "H",
+        "idx": 0
+      },
       "awayRef": null
     },
     "k:83": {
@@ -1777,12 +1796,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Argentina",
-      "away": "Group H 2nd Place",
+      "away": "Cape Verde",
       "homeRef": {
         "group": "J",
         "idx": 0
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "H",
+        "idx": 3
+      }
     },
     "k:87": {
       "date": "2026-07-04",
@@ -2327,50 +2349,50 @@
       {
         "idx": 0,
         "position": 1,
-        "pld": 2,
-        "w": 1,
+        "pld": 3,
+        "w": 2,
         "d": 1,
         "l": 0,
-        "gf": 4,
+        "gf": 5,
         "ga": 0,
-        "gd": 4,
-        "pts": 4
-      },
-      {
-        "idx": 1,
-        "position": 2,
-        "pld": 2,
-        "w": 0,
-        "d": 2,
-        "l": 0,
-        "gf": 3,
-        "ga": 3,
-        "gd": 0,
-        "pts": 2
+        "gd": 5,
+        "pts": 7
       },
       {
         "idx": 3,
-        "position": 3,
-        "pld": 2,
+        "position": 2,
+        "pld": 3,
         "w": 0,
-        "d": 2,
+        "d": 3,
         "l": 0,
         "gf": 2,
         "ga": 2,
         "gd": 0,
+        "pts": 3
+      },
+      {
+        "idx": 1,
+        "position": 3,
+        "pld": 3,
+        "w": 0,
+        "d": 2,
+        "l": 1,
+        "gf": 3,
+        "ga": 4,
+        "gd": -1,
         "pts": 2
       },
       {
         "idx": 2,
         "position": 4,
-        "pld": 2,
+        "pld": 3,
         "w": 0,
-        "d": 1,
+        "d": 2,
         "l": 1,
         "gf": 1,
         "ga": 5,
         "gd": -4,
-        "pts": 1
+        "pts": 2
       }
     ],
     "I": [
