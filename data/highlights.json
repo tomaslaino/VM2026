@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-27T21:19:54.407Z",
+    "updatedAt": "2026-06-27T22:31:36.267Z",
     "source": "svt+tv4",
-    "matchCount": 70
+    "matchCount": 72
   },
   "byKey": {
     "g:A:2": {
@@ -1481,12 +1481,22 @@
           "url": "https://www.svtplay.se/video/8orrq46/fifa-fotbolls-vm-2026/kroatien-ghana",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-27T23:59:59+02:00"
+        },
+        "full": {
+          "url": "https://www.svtplay.se/video/8orrq46/fifa-fotbolls-vm-2026/kroatien-ghana",
+          "title": "FIFA Fotbolls-VM 2026",
+          "until": "2026-07-27T23:59:59+02:00"
         }
       }
     },
     "g:L:2": {
       "SVT": {
         "live": {
+          "url": "https://www.svtplay.se/video/eXvvWza/fifa-fotbolls-vm-2026/panama-england",
+          "title": "FIFA Fotbolls-VM 2026",
+          "until": "2026-07-27T23:59:59+02:00"
+        },
+        "full": {
           "url": "https://www.svtplay.se/video/eXvvWza/fifa-fotbolls-vm-2026/panama-england",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-27T23:59:59+02:00"
@@ -1499,7 +1509,7 @@
           "url": "https://www.tv4play.se/video/3b000f5799c95032f1fb/colombia-portugal",
           "title": "Colombia - Portugal",
           "until": "2026-07-27T23:20:00Z",
-          "from": "2026-06-27T23:20:44Z"
+          "from": "2026-06-27T23:20:11Z"
         }
       }
     },
@@ -1509,7 +1519,27 @@
           "url": "https://www.tv4play.se/video/85423bb600940c5bf981/dr-kongo-uzbekistan",
           "title": "DR Kongo - Uzbekistan",
           "until": "2026-07-27T23:20:00Z",
-          "from": "2026-06-27T23:20:06Z"
+          "from": "2026-06-27T23:20:00Z"
+        }
+      }
+    },
+    "g:J:5": {
+      "TV4": {
+        "live": {
+          "url": "https://www.tv4play.se/video/416267e7172ee68023c1/algeriet-osterrike",
+          "title": "Algeriet - Österrike",
+          "until": "2026-07-28T01:50:00Z",
+          "from": "2026-06-28T01:50:20Z"
+        }
+      }
+    },
+    "g:J:4": {
+      "TV4": {
+        "live": {
+          "url": "https://www.tv4play.se/video/7b218337e39910b4e142/jordanien-argentina",
+          "title": "Jordanien - Argentina",
+          "until": "2026-07-28T01:50:00Z",
+          "from": "2026-06-28T01:50:10Z"
         }
       }
     },
