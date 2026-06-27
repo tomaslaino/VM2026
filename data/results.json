@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-27T20:42:20.075Z",
+    "updatedAt": "2026-06-27T21:46:14.394Z",
     "source": "espn",
-    "matchCount": 66,
-    "liveCount": 0,
+    "matchCount": 68,
+    "liveCount": 2,
     "apiCalls": 2
   },
   "results": {
@@ -336,9 +336,36 @@
       "h": 1,
       "a": 5,
       "status": "FINISHED"
+    },
+    "g:L:3": {
+      "h": 0,
+      "a": 1,
+      "status": "IN_PLAY"
+    },
+    "g:L:2": {
+      "h": 0,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:L:3",
+      "status": "IN_PLAY",
+      "minute": 44,
+      "home": "Ghana",
+      "away": "Croatia",
+      "score": "0-1"
+    },
+    {
+      "key": "g:L:2",
+      "status": "IN_PLAY",
+      "minute": 45,
+      "home": "England",
+      "away": "Panama",
+      "score": "0-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1466,7 +1493,7 @@
       "date": "2026-06-27",
       "time": "23:00",
       "utcDate": "2026-06-27T21:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Ghana",
       "away": "Croatia",
@@ -1483,7 +1510,7 @@
       "date": "2026-06-27",
       "time": "23:00",
       "utcDate": "2026-06-27T21:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "England",
       "away": "Panama",
