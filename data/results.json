@@ -1,10 +1,10 @@
 {
   "meta": {
-    "updatedAt": "2026-06-27T00:13:24.011Z",
+    "updatedAt": "2026-06-27T00:45:28.622Z",
     "source": "espn",
     "matchCount": 64,
     "liveCount": 2,
-    "apiCalls": 2
+    "apiCalls": 126
   },
   "results": {
     "g:A:2": {
@@ -323,7 +323,7 @@
       "status": "IN_PLAY"
     },
     "g:H:0": {
-      "h": 0,
+      "h": 1,
       "a": 0,
       "status": "IN_PLAY"
     }
@@ -332,7 +332,7 @@
     {
       "key": "g:H:1",
       "status": "IN_PLAY",
-      "minute": 11,
+      "minute": 42,
       "home": "Saudi Arabia",
       "away": "Cape Verde",
       "score": "0-0"
@@ -340,10 +340,10 @@
     {
       "key": "g:H:0",
       "status": "IN_PLAY",
-      "minute": 12,
+      "minute": 42,
       "home": "Spain",
       "away": "Uruguay",
-      "score": "0-0"
+      "score": "1-0"
     }
   ],
   "fixtures": {

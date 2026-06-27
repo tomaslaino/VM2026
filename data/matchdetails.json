@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-27T00:13:24.067Z",
+    "updatedAt": "2026-06-27T00:45:28.771Z",
     "source": "espn"
   },
   "details": {
@@ -27802,7 +27802,7 @@
     "g:H:1": {
       "espnId": "760478",
       "status": "IN_PLAY",
-      "minute": 11,
+      "minute": 44,
       "utcDate": "2026-06-27T00:00Z",
       "duration": "REGULAR",
       "winner": null,
@@ -27831,7 +27831,14 @@
           "card": "YELLOW"
         }
       ],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 33,
+          "team": "h",
+          "in": "Ali Lajami",
+          "out": "Hassan Al-Tambakti"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -27912,7 +27919,8 @@
             },
             {
               "name": "Ali Lajami",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true
             },
             {
               "name": "Jehad Thakri",
@@ -28077,28 +28085,28 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "45%",
-          "a": "55%"
+          "h": "43%",
+          "a": "57%"
         },
         {
           "key": "totalShots",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "4"
         },
         {
           "key": "shotsOnTarget",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "wonCorners",
           "h": "0",
-          "a": "0"
+          "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "2",
-          "a": "2"
+          "h": "7",
+          "a": "5"
         },
         {
           "key": "offsides",
@@ -28107,18 +28115,18 @@
         },
         {
           "key": "saves",
-          "h": "0",
+          "h": "1",
           "a": "0"
         },
         {
           "key": "totalPasses",
-          "h": "52",
-          "a": "63"
+          "h": "146",
+          "a": "188"
         },
         {
           "key": "passPct",
-          "h": "79%",
-          "a": "84%"
+          "h": "80%",
+          "a": "85%"
         },
         {
           "key": "yellowCards",
@@ -28131,18 +28139,18 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-27T00:13:24.037Z"
+      "updatedAt": "2026-06-27T00:45:28.653Z"
     },
     "g:H:0": {
       "espnId": "760479",
       "status": "IN_PLAY",
-      "minute": 12,
+      "minute": 44,
       "utcDate": "2026-06-27T00:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
-          "h": 0,
+          "h": 1,
           "a": 0
         },
         "ht": null,
@@ -28150,7 +28158,20 @@
         "et": null,
         "pen": null
       },
-      "goals": [],
+      "goals": [
+        {
+          "minute": 42,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Álex Baena",
+          "assist": "Marcos Llorente",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        }
+      ],
       "bookings": [],
       "subs": [],
       "penalties": [],
@@ -28406,33 +28427,33 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "78%",
-          "a": "22%"
+          "h": "75%",
+          "a": "25%"
         },
         {
           "key": "totalShots",
-          "h": "0",
-          "a": "0"
+          "h": "3",
+          "a": "3"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
+          "h": "1",
           "a": "0"
         },
         {
           "key": "wonCorners",
-          "h": "3",
+          "h": "5",
           "a": "0"
         },
         {
           "key": "foulsCommitted",
-          "h": "2",
-          "a": "0"
+          "h": "5",
+          "a": "1"
         },
         {
           "key": "offsides",
           "h": "1",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "saves",
@@ -28441,13 +28462,13 @@
         },
         {
           "key": "totalPasses",
-          "h": "77",
-          "a": "22"
+          "h": "297",
+          "a": "101"
         },
         {
           "key": "passPct",
-          "h": "91%",
-          "a": "59%"
+          "h": "89%",
+          "a": "67%"
         },
         {
           "key": "yellowCards",
@@ -28460,7 +28481,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-27T00:13:24.067Z"
+      "updatedAt": "2026-06-27T00:45:28.770Z"
     }
   }
 }
