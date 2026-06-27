@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-27T00:07:11.143Z",
+    "updatedAt": "2026-06-27T00:13:24.067Z",
     "source": "espn"
   },
   "details": {
@@ -27802,7 +27802,7 @@
     "g:H:1": {
       "espnId": "760478",
       "status": "IN_PLAY",
-      "minute": 5,
+      "minute": 11,
       "utcDate": "2026-06-27T00:00Z",
       "duration": "REGULAR",
       "winner": null,
@@ -27822,6 +27822,12 @@
           "minute": 4,
           "team": "h",
           "player": "Saud Abdulhamid",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 9,
+          "team": "a",
+          "player": "Wagner Pina",
           "card": "YELLOW"
         }
       ],
@@ -28071,8 +28077,8 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "34%",
-          "a": "66%"
+          "h": "45%",
+          "a": "55%"
         },
         {
           "key": "totalShots",
@@ -28091,8 +28097,8 @@
         },
         {
           "key": "foulsCommitted",
-          "h": "1",
-          "a": "0"
+          "h": "2",
+          "a": "2"
         },
         {
           "key": "offsides",
@@ -28106,18 +28112,18 @@
         },
         {
           "key": "totalPasses",
-          "h": "15",
-          "a": "28"
+          "h": "52",
+          "a": "63"
         },
         {
           "key": "passPct",
-          "h": "87%",
-          "a": "93%"
+          "h": "79%",
+          "a": "84%"
         },
         {
           "key": "yellowCards",
           "h": "1",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -28125,12 +28131,12 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-27T00:07:11.081Z"
+      "updatedAt": "2026-06-27T00:13:24.037Z"
     },
     "g:H:0": {
       "espnId": "760479",
       "status": "IN_PLAY",
-      "minute": 5,
+      "minute": 12,
       "utcDate": "2026-06-27T00:00Z",
       "duration": "REGULAR",
       "winner": null,
@@ -28150,7 +28156,7 @@
       "penalties": [],
       "lineups": {
         "h": {
-          "formation": "4-3-3",
+          "formation": "4-2-3-1",
           "starters": [
             {
               "name": "Unai Simón",
@@ -28170,7 +28176,7 @@
             {
               "name": "Rodri",
               "jersey": "16",
-              "pos": "CM"
+              "pos": "LM"
             },
             {
               "name": "Pau Cubarsí",
@@ -28183,14 +28189,14 @@
               "pos": "CD-L"
             },
             {
-              "name": "Mikel Merino",
-              "jersey": "6",
-              "pos": "RM"
+              "name": "Lamine Yamal",
+              "jersey": "19",
+              "pos": "AM-R"
             },
             {
               "name": "Pedri ",
               "jersey": "20",
-              "pos": "LM"
+              "pos": "RM"
             },
             {
               "name": "Mikel Oyarzabal",
@@ -28198,14 +28204,14 @@
               "pos": "F"
             },
             {
-              "name": "Lamine Yamal",
-              "jersey": "19",
-              "pos": "RF"
+              "name": "Mikel Merino",
+              "jersey": "6",
+              "pos": "AM"
             },
             {
               "name": "Álex Baena",
               "jersey": "15",
-              "pos": "LF"
+              "pos": "AM-L"
             }
           ],
           "bench": [
@@ -28400,8 +28406,8 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "69%",
-          "a": "31%"
+          "h": "78%",
+          "a": "22%"
         },
         {
           "key": "totalShots",
@@ -28415,17 +28421,17 @@
         },
         {
           "key": "wonCorners",
-          "h": "1",
+          "h": "3",
           "a": "0"
         },
         {
           "key": "foulsCommitted",
-          "h": "1",
+          "h": "2",
           "a": "0"
         },
         {
           "key": "offsides",
-          "h": "0",
+          "h": "1",
           "a": "0"
         },
         {
@@ -28435,13 +28441,13 @@
         },
         {
           "key": "totalPasses",
-          "h": "34",
-          "a": "16"
+          "h": "77",
+          "a": "22"
         },
         {
           "key": "passPct",
-          "h": "85%",
-          "a": "56%"
+          "h": "91%",
+          "a": "59%"
         },
         {
           "key": "yellowCards",
@@ -28454,7 +28460,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-27T00:07:11.143Z"
+      "updatedAt": "2026-06-27T00:13:24.067Z"
     }
   }
 }
