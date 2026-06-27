@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-27T02:58:21.315Z",
+    "updatedAt": "2026-06-27T06:27:31.244Z",
     "source": "svt+tv4",
     "matchCount": 66
   },
@@ -1455,22 +1455,37 @@
       }
     },
     "g:G:5": {
+      "SVT": {
+        "short": {
+          "url": "https://www.svtplay.se/klipp/jLJrVw2/grupp-g-egypten-iran",
+          "title": "Grupp G: Egypten – Iran",
+          "until": "2026-10-19T05:30:00+02:00"
+        }
+      },
       "TV4": {
-        "live": {
+        "full": {
           "url": "https://www.tv4play.se/video/6f731bb05b7c20500385/egypten-iran",
           "title": "Egypten - Iran",
-          "until": "2026-07-27T02:50:00Z",
-          "from": "2026-06-27T02:50:11Z"
+          "until": "2026-07-27T02:50:00Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/bca39cffe2680b96e9bc/video-hojdpunkter-egypten-iran",
+          "title": "Höjdpunkter: Egypten - Iran",
+          "until": null
         }
       }
     },
     "g:G:4": {
       "TV4": {
-        "live": {
+        "full": {
           "url": "https://www.tv4play.se/video/90215ba13114d96e7a18/nya-zeeland-belgien",
           "title": "Nya Zeeland - Belgien",
-          "until": "2026-07-27T02:50:00Z",
-          "from": "2026-06-27T02:50:38Z"
+          "until": "2026-07-27T02:50:00Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/916e6d70653286b089d4/video-hojdpunkter-nya-zeeland-belgien",
+          "title": "Höjdpunkter: Nya Zeeland - Belgien",
+          "until": null
         }
       }
     }
