@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-27T22:46:44.836Z",
+    "updatedAt": "2026-06-27T23:46:40.957Z",
     "source": "espn"
   },
   "details": {
@@ -29591,11 +29591,11 @@
     },
     "g:L:3": {
       "espnId": "760480",
-      "status": "IN_PLAY",
-      "minute": 85,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-27T21:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 1,
@@ -29653,6 +29653,12 @@
           "team": "a",
           "player": "Ivan Perisic",
           "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Kojo Peprah Oppong",
+          "card": "YELLOW"
         }
       ],
       "subs": [
@@ -29697,6 +29703,18 @@
           "team": "h",
           "in": "Caleb Yirenkyi",
           "out": "Kwasi Sibo"
+        },
+        {
+          "minute": 88,
+          "team": "a",
+          "in": "Josko Gvardiol",
+          "out": "Nikola Vlasic"
+        },
+        {
+          "minute": 88,
+          "team": "a",
+          "in": "Marco Pasalic",
+          "out": "Martin Baturina"
         }
       ],
       "penalties": [],
@@ -29903,7 +29921,8 @@
             },
             {
               "name": "Marco Pasalic",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Igor Matanovic",
@@ -29932,7 +29951,8 @@
             },
             {
               "name": "Josko Gvardiol",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true
             },
             {
               "name": "Ivor Pandur",
@@ -29955,7 +29975,7 @@
       },
       "referee": "Drew Fischer",
       "venue": "Lincoln Financial Field, Philadelphia, Pennsylvania",
-      "attendance": null,
+      "attendance": 68324,
       "stats": [
         {
           "key": "possessionPct",
@@ -29964,8 +29984,8 @@
         },
         {
           "key": "totalShots",
-          "h": "4",
-          "a": "7"
+          "h": "6",
+          "a": "8"
         },
         {
           "key": "shotsOnTarget",
@@ -29975,17 +29995,17 @@
         {
           "key": "wonCorners",
           "h": "2",
-          "a": "1"
+          "a": "3"
         },
         {
           "key": "foulsCommitted",
-          "h": "9",
-          "a": "8"
+          "h": "13",
+          "a": "9"
         },
         {
           "key": "offsides",
-          "h": "1",
-          "a": "0"
+          "h": "2",
+          "a": "1"
         },
         {
           "key": "saves",
@@ -29994,17 +30014,17 @@
         },
         {
           "key": "totalPasses",
-          "h": "407",
-          "a": "464"
+          "h": "455",
+          "a": "523"
         },
         {
           "key": "passPct",
-          "h": "90%",
-          "a": "92%"
+          "h": "88%",
+          "a": "91%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
+          "h": "1",
           "a": "1"
         },
         {
@@ -30013,15 +30033,15 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-27T22:46:44.814Z"
+      "updatedAt": "2026-06-27T23:46:40.837Z"
     },
     "g:L:2": {
       "espnId": "760485",
-      "status": "IN_PLAY",
-      "minute": 87,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-27T21:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
           "h": 2,
@@ -30129,6 +30149,18 @@
           "team": "h",
           "in": "Ollie Watkins",
           "out": "Harry Kane"
+        },
+        {
+          "minute": 88,
+          "team": "a",
+          "in": "Alberto Quintero",
+          "out": "Carlos Harvey"
+        },
+        {
+          "minute": 88,
+          "team": "a",
+          "in": "Éric Davis",
+          "out": "Jorge Gutiérrez"
         }
       ],
       "penalties": [],
@@ -30331,7 +30363,8 @@
             },
             {
               "name": "Alberto Quintero",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "César Samudio",
@@ -30355,7 +30388,8 @@
             },
             {
               "name": "Éric Davis",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Azarias Londoño",
@@ -30384,7 +30418,7 @@
       },
       "referee": "Abdulrahman Al-Jassim",
       "venue": "MetLife Stadium, East Rutherford, New Jersey",
-      "attendance": null,
+      "attendance": 80663,
       "stats": [
         {
           "key": "possessionPct",
@@ -30393,42 +30427,42 @@
         },
         {
           "key": "totalShots",
-          "h": "14",
-          "a": "10"
+          "h": "17",
+          "a": "13"
         },
         {
           "key": "shotsOnTarget",
-          "h": "5",
-          "a": "2"
-        },
-        {
-          "key": "wonCorners",
           "h": "6",
           "a": "2"
         },
         {
+          "key": "wonCorners",
+          "h": "7",
+          "a": "3"
+        },
+        {
           "key": "foulsCommitted",
-          "h": "10",
-          "a": "14"
+          "h": "13",
+          "a": "16"
         },
         {
           "key": "offsides",
           "h": "4",
-          "a": "2"
+          "a": "4"
         },
         {
           "key": "saves",
           "h": "2",
-          "a": "3"
+          "a": "4"
         },
         {
           "key": "totalPasses",
-          "h": "506",
-          "a": "246"
+          "h": "557",
+          "a": "267"
         },
         {
           "key": "passPct",
-          "h": "89%",
+          "h": "88%",
           "a": "75%"
         },
         {
@@ -30442,7 +30476,678 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-27T22:46:44.836Z"
+      "updatedAt": "2026-06-27T23:46:40.957Z"
+    },
+    "g:K:0": {
+      "espnId": "760481",
+      "status": "IN_PLAY",
+      "minute": 15,
+      "utcDate": "2026-06-27T23:30Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Diogo Costa",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "João Cancelo",
+              "jersey": "20",
+              "pos": "RB"
+            },
+            {
+              "name": "Nuno Mendes",
+              "jersey": "25",
+              "pos": "LB"
+            },
+            {
+              "name": "Vitinha ",
+              "jersey": "23",
+              "pos": "LM"
+            },
+            {
+              "name": "Rúben Dias",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Renato Veiga",
+              "jersey": "13",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Pedro Neto",
+              "jersey": "18",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Rúben Neves",
+              "jersey": "21",
+              "pos": "RM"
+            },
+            {
+              "name": "Cristiano Ronaldo",
+              "jersey": "7",
+              "pos": "F"
+            },
+            {
+              "name": "Bruno Fernandes",
+              "jersey": "8",
+              "pos": "AM"
+            },
+            {
+              "name": "João Félix",
+              "jersey": "11",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Francisco Trincão",
+              "jersey": "16"
+            },
+            {
+              "name": "João Neves",
+              "jersey": "15"
+            },
+            {
+              "name": "Gonçalo Ramos",
+              "jersey": "9"
+            },
+            {
+              "name": "Nélson Semedo",
+              "jersey": "2"
+            },
+            {
+              "name": "Gonçalo Guedes",
+              "jersey": "19"
+            },
+            {
+              "name": "Rafael Leão",
+              "jersey": "17"
+            },
+            {
+              "name": "Rui Silva",
+              "jersey": "22"
+            },
+            {
+              "name": "Samú Costa",
+              "jersey": "24"
+            },
+            {
+              "name": "Diogo Dalot",
+              "jersey": "5"
+            },
+            {
+              "name": "Bernardo Silva",
+              "jersey": "10"
+            },
+            {
+              "name": "Tomás Araújo",
+              "jersey": "4"
+            },
+            {
+              "name": "Gonçalo Inácio",
+              "jersey": "14"
+            },
+            {
+              "name": "Matheus Nunes",
+              "jersey": "6"
+            },
+            {
+              "name": "José Sá",
+              "jersey": "12"
+            },
+            {
+              "name": "Francisco Conceição",
+              "jersey": "26"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Camilo Vargas",
+              "jersey": "12",
+              "pos": "G"
+            },
+            {
+              "name": "Santiago Arias",
+              "jersey": "4",
+              "pos": "D"
+            },
+            {
+              "name": "Deiver Machado",
+              "jersey": "22",
+              "pos": "D"
+            },
+            {
+              "name": "Jefferson Lerma",
+              "jersey": "16",
+              "pos": "M"
+            },
+            {
+              "name": "Davinson Sánchez",
+              "jersey": "23",
+              "pos": "D"
+            },
+            {
+              "name": "Jhon Lucumí",
+              "jersey": "3",
+              "pos": "D"
+            },
+            {
+              "name": "Gustavo Puerta",
+              "jersey": "14",
+              "pos": "M"
+            },
+            {
+              "name": "Jhon Arias",
+              "jersey": "11",
+              "pos": "M"
+            },
+            {
+              "name": "Jhon Córdoba",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "James Rodríguez",
+              "jersey": "10",
+              "pos": "F"
+            },
+            {
+              "name": "Luis Díaz",
+              "jersey": "7",
+              "pos": "F"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Daniel Muñoz",
+              "jersey": "2"
+            },
+            {
+              "name": "Luis Suárez",
+              "jersey": "25"
+            },
+            {
+              "name": "Jáminton Campaz",
+              "jersey": "21"
+            },
+            {
+              "name": "Cucho Hernández",
+              "jersey": "19"
+            },
+            {
+              "name": "David Ospina",
+              "jersey": "1"
+            },
+            {
+              "name": "Kevin Castaño",
+              "jersey": "5"
+            },
+            {
+              "name": "Willer Ditta",
+              "jersey": "18"
+            },
+            {
+              "name": "Andrés Gómez",
+              "jersey": "26"
+            },
+            {
+              "name": "Álvaro Montero",
+              "jersey": "24"
+            },
+            {
+              "name": "Jorge Carrascal",
+              "jersey": "8"
+            },
+            {
+              "name": "Yerry Mina",
+              "jersey": "13"
+            },
+            {
+              "name": "Juan Portilla",
+              "jersey": "15"
+            },
+            {
+              "name": "Johan Mojica",
+              "jersey": "17"
+            },
+            {
+              "name": "Juan Fernando Quintero",
+              "jersey": "20"
+            },
+            {
+              "name": "Richard Ríos",
+              "jersey": "6"
+            }
+          ]
+        }
+      },
+      "referee": "Alireza Faghani",
+      "venue": "Hard Rock Stadium, Miami Gardens, Florida",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "46%",
+          "a": "54%"
+        },
+        {
+          "key": "totalShots",
+          "h": "2",
+          "a": "4"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "68",
+          "a": "78"
+        },
+        {
+          "key": "passPct",
+          "h": "93%",
+          "a": "88%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-27T23:46:40.711Z"
+    },
+    "g:K:1": {
+      "espnId": "760482",
+      "status": "IN_PLAY",
+      "minute": 15,
+      "utcDate": "2026-06-27T23:30Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 10,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Eldor Shomurodov",
+          "assist": "Abbosbek Fayzullaev",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        }
+      ],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "3-4-2-1",
+          "starters": [
+            {
+              "name": "Abduvohid Nematov",
+              "jersey": "12",
+              "pos": "G"
+            },
+            {
+              "name": "Khojiakbar Alijonov",
+              "jersey": "3",
+              "pos": "RM"
+            },
+            {
+              "name": "Sherzod Nasrullaev",
+              "jersey": "13",
+              "pos": "LM"
+            },
+            {
+              "name": "Jakhongir Urozov",
+              "jersey": "26",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Abdukodir Khusanov",
+              "jersey": "2",
+              "pos": "CD"
+            },
+            {
+              "name": "Rustam Ashurmatov",
+              "jersey": "5",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Akmal Mozgovoy",
+              "jersey": "6",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Otabek Shukurov",
+              "jersey": "7",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Eldor Shomurodov",
+              "jersey": "14",
+              "pos": "F"
+            },
+            {
+              "name": "Dostonbek Khamdamov",
+              "jersey": "17",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Abbosbek Fayzullaev",
+              "jersey": "22",
+              "pos": "CF-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Azizjon Ganiev",
+              "jersey": "19"
+            },
+            {
+              "name": "Ruslanbek Jiyanov",
+              "jersey": "10"
+            },
+            {
+              "name": "Abdulla Abdullaev",
+              "jersey": "18"
+            },
+            {
+              "name": "Avazbek Ulmasaliyev",
+              "jersey": "25"
+            },
+            {
+              "name": "Azizbek Amonov",
+              "jersey": "20"
+            },
+            {
+              "name": "Farrukh Sayfiev",
+              "jersey": "4"
+            },
+            {
+              "name": "Oston Urunov",
+              "jersey": "11"
+            },
+            {
+              "name": "Botirali Ergashev",
+              "jersey": "16"
+            },
+            {
+              "name": "Jamshid Iskanderov",
+              "jersey": "8"
+            },
+            {
+              "name": "Igor Sergeev",
+              "jersey": "21"
+            },
+            {
+              "name": "Utkir Yusupov",
+              "jersey": "1"
+            },
+            {
+              "name": "Behruzjon Karimov",
+              "jersey": "24"
+            },
+            {
+              "name": "Odiljon Xamrobekov",
+              "jersey": "9"
+            },
+            {
+              "name": "Sherzod Esanov",
+              "jersey": "23"
+            },
+            {
+              "name": "Umar Eshmurodov",
+              "jersey": "15"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Lionel Mpasi",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Aaron Wan-Bissaka",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Arthur Masuaku",
+              "jersey": "26",
+              "pos": "LB"
+            },
+            {
+              "name": "Samuel Moutoussamy",
+              "jersey": "8",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Chancel Mbemba",
+              "jersey": "22",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Axel Tuanzebe",
+              "jersey": "4",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Nathanaël Mbuku",
+              "jersey": "7",
+              "pos": "RM"
+            },
+            {
+              "name": "Noah Sadiki",
+              "jersey": "14",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Yoane Wissa",
+              "jersey": "20",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Cédric Bakambu",
+              "jersey": "17",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Brian Cipenga",
+              "jersey": "9",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Gaël Kakuta",
+              "jersey": "11"
+            },
+            {
+              "name": "Ngal'ayel Mukau",
+              "jersey": "6"
+            },
+            {
+              "name": "Fiston Mayele",
+              "jersey": "19"
+            },
+            {
+              "name": "Gédéon Kalulu",
+              "jersey": "24"
+            },
+            {
+              "name": "Edo Kayembe",
+              "jersey": "25"
+            },
+            {
+              "name": "Simon Banza",
+              "jersey": "23"
+            },
+            {
+              "name": "Matthieu Epolo",
+              "jersey": "21"
+            },
+            {
+              "name": "Joris Kayembe",
+              "jersey": "12"
+            },
+            {
+              "name": "Meschack Elia",
+              "jersey": "13"
+            },
+            {
+              "name": "Théo Bongonda",
+              "jersey": "10"
+            },
+            {
+              "name": "Steve Kapuadi",
+              "jersey": "3"
+            },
+            {
+              "name": "Timothy Fayulu",
+              "jersey": "16"
+            },
+            {
+              "name": "Dylan Batubinsika",
+              "jersey": "5"
+            },
+            {
+              "name": "Charles Pickel",
+              "jersey": "18"
+            },
+            {
+              "name": "Aaron Tshibola",
+              "jersey": "15"
+            }
+          ]
+        }
+      },
+      "referee": "Felix Zwayer",
+      "venue": "Mercedes-Benz Stadium, Atlanta, Georgia",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "53%",
+          "a": "47%"
+        },
+        {
+          "key": "totalShots",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "3",
+          "a": "1"
+        },
+        {
+          "key": "offsides",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "72",
+          "a": "67"
+        },
+        {
+          "key": "passPct",
+          "h": "82%",
+          "a": "78%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-27T23:46:40.786Z"
     }
   }
 }
