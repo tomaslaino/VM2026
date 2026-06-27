@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-27T21:46:14.445Z",
+    "updatedAt": "2026-06-27T22:46:44.836Z",
     "source": "espn"
   },
   "details": {
@@ -29592,16 +29592,19 @@
     "g:L:3": {
       "espnId": "760480",
       "status": "IN_PLAY",
-      "minute": 45,
+      "minute": 85,
       "utcDate": "2026-06-27T21:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
+          "h": 1,
+          "a": 2
+        },
+        "ht": {
           "h": 0,
           "a": 1
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
@@ -29618,10 +29621,84 @@
             "h": 0,
             "a": 1
           }
+        },
+        {
+          "minute": 73,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Derrick Luckassen",
+          "assist": "Ernest Nuamah",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        },
+        {
+          "minute": 83,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Nikola Vlasic",
+          "assist": "Luka Modric",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 2
+          }
         }
       ],
-      "bookings": [],
-      "subs": [],
+      "bookings": [
+        {
+          "minute": 68,
+          "team": "a",
+          "player": "Ivan Perisic",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Kojo Peprah Oppong",
+          "out": "Jonas Adjetey"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Fatawu Issahaku",
+          "out": "Elisha Owusu"
+        },
+        {
+          "minute": 66,
+          "team": "a",
+          "in": "Igor Matanovic",
+          "out": "Ante Budimir"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Brandon Thomas-Asante",
+          "out": "Jordan Ayew"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Ernest Nuamah",
+          "out": "Kamaldeen Sulemana"
+        },
+        {
+          "minute": 78,
+          "team": "a",
+          "in": "Mario Pasalic",
+          "out": "Mateo Kovacic"
+        },
+        {
+          "minute": 85,
+          "team": "h",
+          "in": "Caleb Yirenkyi",
+          "out": "Kwasi Sibo"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -29698,7 +29775,8 @@
             },
             {
               "name": "Brandon Thomas-Asante",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true
             },
             {
               "name": "Iñaki Williams",
@@ -29706,11 +29784,13 @@
             },
             {
               "name": "Caleb Yirenkyi",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true
             },
             {
               "name": "Fatawu Issahaku",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Alidu Seidu",
@@ -29730,11 +29810,13 @@
             },
             {
               "name": "Kojo Peprah Oppong",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Ernest Nuamah",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Prince Adu",
@@ -29780,8 +29862,8 @@
               "pos": "CD-L"
             },
             {
-              "name": "Petar Sucic",
-              "jersey": "17",
+              "name": "Nikola Vlasic",
+              "jersey": "13",
               "pos": "AM-R"
             },
             {
@@ -29795,8 +29877,8 @@
               "pos": "F"
             },
             {
-              "name": "Nikola Vlasic",
-              "jersey": "13",
+              "name": "Petar Sucic",
+              "jersey": "17",
               "pos": "AM"
             },
             {
@@ -29816,7 +29898,8 @@
             },
             {
               "name": "Mario Pasalic",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Marco Pasalic",
@@ -29824,7 +29907,8 @@
             },
             {
               "name": "Igor Matanovic",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Kristijan Jakic",
@@ -29875,53 +29959,53 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "48%",
-          "a": "52%"
+          "h": "47%",
+          "a": "53%"
         },
         {
           "key": "totalShots",
-          "h": "1",
-          "a": "5"
+          "h": "4",
+          "a": "7"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "2"
+          "h": "1",
+          "a": "4"
         },
         {
           "key": "wonCorners",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "1"
         },
         {
           "key": "foulsCommitted",
-          "h": "6",
-          "a": "2"
+          "h": "9",
+          "a": "8"
         },
         {
           "key": "offsides",
-          "h": "0",
+          "h": "1",
           "a": "0"
         },
         {
           "key": "saves",
-          "h": "1",
+          "h": "2",
           "a": "0"
         },
         {
           "key": "totalPasses",
-          "h": "249",
-          "a": "271"
+          "h": "407",
+          "a": "464"
         },
         {
           "key": "passPct",
-          "h": "92%",
-          "a": "94%"
+          "h": "90%",
+          "a": "92%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -29929,32 +30013,128 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-27T21:46:14.427Z"
+      "updatedAt": "2026-06-27T22:46:44.814Z"
     },
     "g:L:2": {
       "espnId": "760485",
       "status": "IN_PLAY",
-      "minute": 45,
+      "minute": 87,
       "utcDate": "2026-06-27T21:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
+          "h": 2,
+          "a": 0
+        },
+        "ht": {
           "h": 0,
           "a": 0
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
-      "bookings": [],
-      "subs": [],
+      "goals": [
+        {
+          "minute": 62,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Jude Bellingham",
+          "assist": "Bukayo Saka",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        },
+        {
+          "minute": 67,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Harry Kane",
+          "assist": "Jude Bellingham",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 0
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 53,
+          "team": "a",
+          "player": "José Fajardo",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 60,
+          "team": "h",
+          "player": "Jarell Quansah",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 84,
+          "team": "a",
+          "player": "Andrés Andrade",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "José Fajardo",
+          "out": "Tomás Rodríguez"
+        },
+        {
+          "minute": 63,
+          "team": "h",
+          "in": "Djed Spence",
+          "out": "Jarell Quansah"
+        },
+        {
+          "minute": 63,
+          "team": "h",
+          "in": "Noni Madueke",
+          "out": "Bukayo Saka"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Ismael Díaz",
+          "out": "Édgar Yoel Bárcenas"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Eberechi Eze",
+          "out": "Jude Bellingham"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Azarias Londoño",
+          "out": "José Luis Rodríguez"
+        },
+        {
+          "minute": 84,
+          "team": "h",
+          "in": "Jordan Henderson",
+          "out": "Elliot Anderson"
+        },
+        {
+          "minute": 84,
+          "team": "h",
+          "in": "Ollie Watkins",
+          "out": "Harry Kane"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
-          "formation": "4-2-3-1",
+          "formation": "4-1-4-1",
           "starters": [
             {
               "name": "Jordan Pickford",
@@ -29972,9 +30152,9 @@
               "pos": "LB"
             },
             {
-              "name": "Jude Bellingham",
-              "jersey": "10",
-              "pos": "LM"
+              "name": "Elliot Anderson",
+              "jersey": "8",
+              "pos": "DM"
             },
             {
               "name": "Ezri Konsa",
@@ -29989,12 +30169,12 @@
             {
               "name": "Bukayo Saka",
               "jersey": "7",
-              "pos": "AM-R"
+              "pos": "RM"
             },
             {
-              "name": "Elliot Anderson",
-              "jersey": "8",
-              "pos": "RM"
+              "name": "Morgan Rogers",
+              "jersey": "17",
+              "pos": "CM-R"
             },
             {
               "name": "Harry Kane",
@@ -30002,14 +30182,14 @@
               "pos": "F"
             },
             {
-              "name": "Morgan Rogers",
-              "jersey": "17",
-              "pos": "AM"
+              "name": "Jude Bellingham",
+              "jersey": "10",
+              "pos": "CM-L"
             },
             {
               "name": "Marcus Rashford",
               "jersey": "11",
-              "pos": "AM-L"
+              "pos": "LM"
             }
           ],
           "bench": [
@@ -30031,7 +30211,8 @@
             },
             {
               "name": "Noni Madueke",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Anthony Gordon",
@@ -30043,7 +30224,8 @@
             },
             {
               "name": "Djed Spence",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "James Trafford",
@@ -30055,7 +30237,8 @@
             },
             {
               "name": "Eberechi Eze",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Trevoh Chalobah",
@@ -30063,11 +30246,13 @@
             },
             {
               "name": "Ollie Watkins",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Jordan Henderson",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             }
           ]
         },
@@ -30110,8 +30295,8 @@
               "pos": "RM"
             },
             {
-              "name": "Édgar Yoel Bárcenas",
-              "jersey": "11",
+              "name": "Carlos Harvey",
+              "jersey": "14",
               "pos": "CM-R"
             },
             {
@@ -30120,8 +30305,8 @@
               "pos": "F"
             },
             {
-              "name": "Carlos Harvey",
-              "jersey": "14",
+              "name": "Édgar Yoel Bárcenas",
+              "jersey": "11",
               "pos": "CM-L"
             },
             {
@@ -30133,7 +30318,8 @@
           "bench": [
             {
               "name": "Ismael Díaz",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true
             },
             {
               "name": "Aníbal Godoy",
@@ -30173,7 +30359,8 @@
             },
             {
               "name": "Azarias Londoño",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Edgardo Fariña",
@@ -30181,7 +30368,8 @@
             },
             {
               "name": "José Fajardo",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "César Blackman",
@@ -30200,53 +30388,53 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "72%",
-          "a": "28%"
+          "h": "67%",
+          "a": "33%"
         },
         {
           "key": "totalShots",
-          "h": "8",
-          "a": "3"
+          "h": "14",
+          "a": "10"
         },
         {
           "key": "shotsOnTarget",
-          "h": "2",
+          "h": "5",
           "a": "2"
         },
         {
           "key": "wonCorners",
-          "h": "5",
-          "a": "1"
+          "h": "6",
+          "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "3",
-          "a": "8"
+          "h": "10",
+          "a": "14"
         },
         {
           "key": "offsides",
-          "h": "2",
-          "a": "1"
+          "h": "4",
+          "a": "2"
         },
         {
           "key": "saves",
           "h": "2",
-          "a": "2"
+          "a": "3"
         },
         {
           "key": "totalPasses",
-          "h": "304",
-          "a": "115"
+          "h": "506",
+          "a": "246"
         },
         {
           "key": "passPct",
-          "h": "90%",
-          "a": "73%"
+          "h": "89%",
+          "a": "75%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "2"
         },
         {
           "key": "redCards",
@@ -30254,7 +30442,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-27T21:46:14.445Z"
+      "updatedAt": "2026-06-27T22:46:44.836Z"
     }
   }
 }
