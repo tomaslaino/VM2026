@@ -1,10 +1,10 @@
 {
   "meta": {
-    "updatedAt": "2026-06-27T00:02:09.817Z",
+    "updatedAt": "2026-06-27T00:07:10.972Z",
     "source": "espn",
-    "matchCount": 62,
-    "liveCount": 0,
-    "apiCalls": 48
+    "matchCount": 64,
+    "liveCount": 2,
+    "apiCalls": 50
   },
   "results": {
     "g:A:2": {
@@ -316,9 +316,36 @@
       "h": 0,
       "a": 5,
       "status": "FINISHED"
+    },
+    "g:H:1": {
+      "h": 0,
+      "a": 0,
+      "status": "IN_PLAY"
+    },
+    "g:H:0": {
+      "h": 0,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "g:H:1",
+      "status": "IN_PLAY",
+      "minute": 5,
+      "home": "Saudi Arabia",
+      "away": "Cape Verde",
+      "score": "0-0"
+    },
+    {
+      "key": "g:H:0",
+      "status": "IN_PLAY",
+      "minute": 5,
+      "home": "Spain",
+      "away": "Uruguay",
+      "score": "0-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1378,7 +1405,7 @@
       "date": "2026-06-27",
       "time": "02:00",
       "utcDate": "2026-06-27T00:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Saudi Arabia",
       "away": "Cape Verde",
@@ -1395,7 +1422,7 @@
       "date": "2026-06-27",
       "time": "02:00",
       "utcDate": "2026-06-27T00:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Spain",
       "away": "Uruguay",
