@@ -3844,10 +3844,36 @@
     return '<span class="cal-watch-ch">' + links + "</span>";
   }
 
+  /* Sändningspill med text – berättar VAD som sänds just nu i stället för den
+     lilla ikonbrickan. mode "pre" = försnacket/studion rullar (avspark inte
+     passerad ännu), mode "live" = matchen är i gång (direktsändning som går att
+     spola till början). data-tv-ko-ms låter startsidan rendera om exakt vid
+     avspark så att "Försnack" skiftar till "Direktsändning" av sig själv. */
+  function tvBcastPill(url, ch, mode, koMs) {
+    var chCls = ch === "SVT" ? "svt" : "tv4";
+    var pre = mode === "pre";
+    var koAttr = (pre && koMs) ? ' data-tv-ko-ms="' + koMs + '"' : "";
+    var txt = pre ? "Försnack" : "Direktsändning";
+    var tip = pre
+      ? "Försnacket har börjat på " + ch
+      : "Se matchen direkt på " + ch + " – går att spola till början";
+    var dot = pre
+      ? '<span class="tv-bcast-dot" aria-hidden="true"></span>'
+      : '<span class="live-dot" aria-hidden="true"></span>';
+    return '<a class="tv-bcast tv-bcast-' + (pre ? "pre" : "live") + ' ' + chCls + '"' +
+      ' href="' + esc(url) + '" target="_blank" rel="noopener noreferrer"' + koAttr +
+      ' title="' + esc(tip) + '" aria-label="' + esc(tip) + '">' +
+      dot + '<span class="tv-bcast-txt">' + txt + '</span>' +
+      '<span class="tv-bcast-ch">' + ch + '</span></a>';
+  }
+
   /* Livesändningslänk (hela matchen, går att spola till början) för en nyss
      avslutad match där sammandragen ännu inte publicerats. Datat kommer från
-     samma highlights-fil som repriserna men under typen "live". */
-  function calLiveWatchLink(entry, ch) {
+     samma highlights-fil som repriserna men under typen "live". I läge "pre"
+     (försnack) eller "live" (matchen pågår) renderas i stället en tydlig
+     textpill via tvBcastPill. */
+  function calLiveWatchLink(entry, ch, mode, koMs) {
+    if (mode === "pre" || mode === "live") return tvBcastPill(entry.url, ch, mode, koMs);
     var chCls = ch === "SVT" ? "svt" : "tv4";
     var tip = "Hela matchen · " + ch;
     return '<a class="cal-watch-link cal-watch-live ' + chCls + '" href="' + esc(entry.url) + '" target="_blank" rel="noopener noreferrer" ' +
@@ -3855,14 +3881,25 @@
       CAL_HL_ICONS.full + "</a>";
   }
 
-  function calLiveWatchInner(key) {
+  function calLiveWatchInner(key, mode, koMs) {
     var hl = calHighlights[key];
     if (!hl) return "";
     var links = "";
-    if (hl.SVT && calWatchAvailable(hl.SVT.live)) links += calLiveWatchLink(hl.SVT.live, "SVT");
-    if (hl.TV4 && calWatchAvailable(hl.TV4.live)) links += calLiveWatchLink(hl.TV4.live, "TV4");
+    if (hl.SVT && calWatchAvailable(hl.SVT.live)) links += calLiveWatchLink(hl.SVT.live, "SVT", mode, koMs);
+    if (hl.TV4 && calWatchAvailable(hl.TV4.live)) links += calLiveWatchLink(hl.TV4.live, "TV4", mode, koMs);
     if (!links) return "";
+    // Textpillerna (försnack/direkt) står själva; ikonbrickorna samlas i en ruta.
+    if (mode === "pre" || mode === "live") return links;
     return '<span class="cal-watch-ch">' + links + "</span>";
+  }
+
+  /* Djuplänk till själva sändningen för en kanal (om den ligger uppe) – används
+     för "titta från början" på pågående matcher. */
+  function calLiveWatchDeepUrl(key, ch) {
+    var hl = calHighlights[key];
+    var c = hl && ch && hl[ch];
+    if (c && calWatchAvailable(c.live)) return c.live.url;
+    return null;
   }
 
   function tvLookupGroup(fx, th, ta) {
@@ -4125,7 +4162,10 @@
   // så vi länkar till spelartjänstens startsida där den pågående matchen ligger.
   var TV_LIVE_URL = { SVT: "https://www.svtplay.se/", TV4: "https://www.tv4play.se/" };
 
-  /** TV-bricka/livesändningslänk – visas först när sändningen startat enligt tablå. */
+  /** TV-bricka/livesändningslänk – visas först när sändningen startat enligt
+      tablå. Sändningen kan gå live före avspark: då rullar försnacket/studion
+      ("Försnack"), och när avsparken passerats skiftar det till matchen
+      ("Direktsändning", går att spola till början). */
   function matchTvHtml(key, ch, m, live) {
     if (!ch) return '<span class="cal-tv cal-tv-empty" aria-hidden="true"></span>';
     var onAir = tvBroadcastOnAir(key, m, live);
@@ -4133,9 +4173,16 @@
       return '<span class="cal-tv cal-tv-empty tv-waiting" data-tv-air-ms="' + tvAirUTC(key, m) +
         '" aria-hidden="true"></span>';
     }
-    var liveInner = key ? calLiveWatchInner(key) : "";
+    var ko = m ? kickoffUTC(m).getTime() : 0;
+    var inPlay = !!(live || (key && isMatchLive(key)));
+    var pre = !inPlay && ko && Date.now() < ko; // sändning uppe men avspark inte passerad → försnack
+    var mode = pre ? "pre" : (inPlay ? "live" : "full");
+    var liveInner = key ? calLiveWatchInner(key, mode, ko) : "";
     if (liveInner) return '<span class="cal-watch">' + liveInner + "</span>";
     if (TV_LIVE_URL[ch]) {
+      if (mode === "pre" || mode === "live") {
+        return '<span class="cal-watch">' + tvBcastPill(TV_LIVE_URL[ch], ch, mode, ko) + "</span>";
+      }
       var lbl = "Se matchen live på " + ch;
       return '<a class="cal-tv tv-live ' + (ch === "SVT" ? "svt" : "tv4") +
         '" href="' + TV_LIVE_URL[ch] + '" target="_blank" rel="noopener"' +
@@ -4483,12 +4530,16 @@
       inte känd än) visar vi i stället en kort, smart platshållartext. */
   function focusWatchLive(e) {
     var ch = e.channel;
-    if (ch && TV_LIVE_URL[ch]) {
-      var lbl = "Se matchen live på " + ch;
-      return '<a class="fh-watch ' + (ch === "SVT" ? "svt" : "tv4") + '" href="' + TV_LIVE_URL[ch] +
+    // Föredra djuplänken till själva sändningen (går att spola till början);
+    // annars spelartjänstens startsida där den pågående matchen ligger överst.
+    var deep = e.key ? calLiveWatchDeepUrl(e.key, ch) : null;
+    var url = deep || (ch && TV_LIVE_URL[ch] ? TV_LIVE_URL[ch] : null);
+    if (ch && url) {
+      var lbl = "Se direktsändningen på " + ch + (deep ? " – går att spola till början" : "");
+      return '<a class="fh-watch ' + (ch === "SVT" ? "svt" : "tv4") + '" href="' + esc(url) +
         '" target="_blank" rel="noopener" title="' + esc(lbl) + '" aria-label="' + esc(lbl) + '">' +
-        '<span class="tv-live-ico" aria-hidden="true"></span>' +
-        '<span class="fh-watch-txt">Se matchen live</span>' +
+        '<span class="live-dot" aria-hidden="true"></span>' +
+        '<span class="fh-watch-txt">Direktsändning</span>' +
         '<span class="fh-watch-ch">' + ch + '</span></a>';
     }
     return '<span class="fh-watch is-tba" title="Sändaren är inte spikad än">' +
@@ -4583,7 +4634,6 @@
     } else {
       h += '<div class="fh-multi-head">' +
         '<span class="fh-eyebrow">' + esc(FOCUS_HEADINGS[f.state].many) + '</span>' +
-        (f.state === "live" ? '<span class="fh-live"><span class="live-dot"></span>LIVE</span>' : "") +
         '</div>';
       if (f.state === "next") h += focusCountdown(f.kickoff, "focusTimer", "fh", true);
       h += '<div class="focus-mini-grid">';
@@ -4696,9 +4746,19 @@
   /** När sändningen går live enligt tablå – uppdatera startsidan utan att vänta på poll. */
   function updateTvOnAirState() {
     if (ui("view", "home") !== "home") return;
+    var now = Date.now();
     var waiting = document.querySelectorAll(".tv-waiting[data-tv-air-ms]");
     for (var i = 0; i < waiting.length; i++) {
-      if (Date.now() >= parseInt(waiting[i].getAttribute("data-tv-air-ms"), 10)) {
+      if (now >= parseInt(waiting[i].getAttribute("data-tv-air-ms"), 10)) {
+        lastViewSig = null;
+        renderHome();
+        return;
+      }
+    }
+    // Försnack → direktsändning: rendera om exakt vid avspark så att brickan skiftar.
+    var pre = document.querySelectorAll("[data-tv-ko-ms]");
+    for (var j = 0; j < pre.length; j++) {
+      if (now >= parseInt(pre[j].getAttribute("data-tv-ko-ms"), 10)) {
         lastViewSig = null;
         renderHome();
         return;
