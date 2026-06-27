@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-27T04:28:44.553Z",
+    "updatedAt": "2026-06-27T07:36:57.033Z",
     "source": "espn"
   },
   "details": {
@@ -28661,11 +28661,11 @@
     },
     "g:G:5": {
       "espnId": "760476",
-      "status": "IN_PLAY",
-      "minute": 64,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-27T03:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "DRAW",
       "score": {
         "ft": {
           "h": 1,
@@ -28729,6 +28729,24 @@
           "team": "h",
           "player": "Ali Nemati",
           "card": "YELLOW"
+        },
+        {
+          "minute": 79,
+          "team": "h",
+          "player": "Saeid Ezatolahi",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Mohanad Lashin",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Shoja Khalilzadeh",
+          "card": "YELLOW"
         }
       ],
       "subs": [
@@ -28761,6 +28779,24 @@
           "team": "a",
           "in": "Zizo",
           "out": "Mohamed Salah"
+        },
+        {
+          "minute": 67,
+          "team": "h",
+          "in": "Shahriyar Moghanloo",
+          "out": "Saman Ghoddos"
+        },
+        {
+          "minute": 76,
+          "team": "a",
+          "in": "Hamza Abdelkarim",
+          "out": "Mostafa Zico"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Alireza Jahanbakhsh",
+          "out": "Mohammad Mohebbi"
         }
       ],
       "penalties": [],
@@ -28860,7 +28896,8 @@
             },
             {
               "name": "Alireza Jahanbakhsh",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Roozbeh Cheshmi",
@@ -28884,7 +28921,8 @@
             },
             {
               "name": "Shahriyar Moghanloo",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             }
           ]
         },
@@ -28950,7 +28988,8 @@
           "bench": [
             {
               "name": "Hamza Abdelkarim",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Omar Marmoush",
@@ -29009,36 +29048,36 @@
       },
       "referee": "Szymon Marciniak",
       "venue": "Lumen Field, Seattle, Washington",
-      "attendance": null,
+      "attendance": 66925,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "37%",
-          "a": "63%"
+          "h": "39%",
+          "a": "61%"
         },
         {
           "key": "totalShots",
-          "h": "8",
-          "a": "12"
+          "h": "13",
+          "a": "15"
         },
         {
           "key": "shotsOnTarget",
-          "h": "3",
+          "h": "4",
           "a": "3"
         },
         {
           "key": "wonCorners",
-          "h": "1",
-          "a": "6"
-        },
-        {
-          "key": "foulsCommitted",
-          "h": "11",
+          "h": "2",
           "a": "8"
         },
         {
+          "key": "foulsCommitted",
+          "h": "16",
+          "a": "11"
+        },
+        {
           "key": "offsides",
-          "h": "1",
+          "h": "3",
           "a": "0"
         },
         {
@@ -29048,18 +29087,18 @@
         },
         {
           "key": "totalPasses",
-          "h": "246",
-          "a": "420"
+          "h": "367",
+          "a": "587"
         },
         {
           "key": "passPct",
-          "h": "74%",
-          "a": "88%"
+          "h": "77%",
+          "a": "87%"
         },
         {
           "key": "yellowCards",
-          "h": "2",
-          "a": "2"
+          "h": "4",
+          "a": "3"
         },
         {
           "key": "redCards",
@@ -29067,19 +29106,19 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-27T04:28:44.386Z"
+      "updatedAt": "2026-06-27T07:36:56.985Z"
     },
     "g:G:4": {
       "espnId": "760477",
-      "status": "IN_PLAY",
-      "minute": 66,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-27T03:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
-          "h": 0,
-          "a": 2
+          "h": 1,
+          "a": 5
         },
         "ht": {
           "h": 0,
@@ -29112,6 +29151,54 @@
           "score": {
             "h": 0,
             "a": 2
+          }
+        },
+        {
+          "minute": 66,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Kevin De Bruyne",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 3
+          }
+        },
+        {
+          "minute": 84,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Elijah Just",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 3
+          }
+        },
+        {
+          "minute": 86,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Romelu Lukaku",
+          "assist": "Nicolas Raskin",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 4
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "a",
+          "scorer": "Alexis Saelemaekers",
+          "assist": "Romelu Lukaku",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 5
           }
         }
       ],
@@ -29159,6 +29246,36 @@
           "team": "h",
           "in": "Callum McCowatt",
           "out": "Joe Bell"
+        },
+        {
+          "minute": 72,
+          "team": "a",
+          "in": "Alexis Saelemaekers",
+          "out": "Leandro Trossard"
+        },
+        {
+          "minute": 72,
+          "team": "a",
+          "in": "Amadou Onana",
+          "out": "Kevin De Bruyne"
+        },
+        {
+          "minute": 79,
+          "team": "h",
+          "in": "Francis de Vries",
+          "out": "Liberato Cacace"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Romelu Lukaku",
+          "out": "Charles De Ketelaere"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Nicolas Raskin",
+          "out": "Youri Tielemans"
         }
       ],
       "penalties": [],
@@ -29251,7 +29368,8 @@
             },
             {
               "name": "Francis de Vries",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true
             },
             {
               "name": "Kosta Barbarouses",
@@ -29359,7 +29477,8 @@
             },
             {
               "name": "Alexis Saelemaekers",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "Mike Penders",
@@ -29384,7 +29503,8 @@
             },
             {
               "name": "Nicolas Raskin",
-              "jersey": "23"
+              "jersey": "23",
+              "in": true
             },
             {
               "name": "Axel Witsel",
@@ -29392,7 +29512,8 @@
             },
             {
               "name": "Romelu Lukaku",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Joaquin Seys",
@@ -29400,39 +29521,40 @@
             },
             {
               "name": "Amadou Onana",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             }
           ]
         }
       },
       "referee": "Adham Mohammad",
       "venue": "BC Place, Vancouver",
-      "attendance": null,
+      "attendance": 52497,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "42%",
-          "a": "58%"
+          "h": "46%",
+          "a": "55%"
         },
         {
           "key": "totalShots",
-          "h": "3",
-          "a": "24"
+          "h": "6",
+          "a": "35"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
-          "a": "6"
+          "h": "2",
+          "a": "10"
         },
         {
           "key": "wonCorners",
-          "h": "3",
-          "a": "7"
+          "h": "5",
+          "a": "8"
         },
         {
           "key": "foulsCommitted",
-          "h": "6",
-          "a": "5"
+          "h": "10",
+          "a": "7"
         },
         {
           "key": "offsides",
@@ -29441,18 +29563,18 @@
         },
         {
           "key": "saves",
-          "h": "4",
+          "h": "5",
           "a": "1"
         },
         {
           "key": "totalPasses",
-          "h": "286",
-          "a": "401"
+          "h": "436",
+          "a": "525"
         },
         {
           "key": "passPct",
-          "h": "82%",
-          "a": "87%"
+          "h": "85%",
+          "a": "88%"
         },
         {
           "key": "yellowCards",
@@ -29465,7 +29587,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-27T04:28:44.479Z"
+      "updatedAt": "2026-06-27T07:36:57.033Z"
     }
   }
 }
