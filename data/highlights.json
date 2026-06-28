@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-28T01:37:02.556Z",
+    "updatedAt": "2026-06-28T05:59:07.713Z",
     "source": "svt+tv4",
-    "matchCount": 71
+    "matchCount": 72
   },
   "byKey": {
     "g:A:2": {
@@ -1477,11 +1477,6 @@
     },
     "g:L:3": {
       "SVT": {
-        "live": {
-          "url": "https://www.svtplay.se/video/8orrq46/fifa-fotbolls-vm-2026/kroatien-ghana",
-          "title": "FIFA Fotbolls-VM 2026",
-          "until": "2026-07-27T23:59:59+02:00"
-        },
         "full": {
           "url": "https://www.svtplay.se/video/8orrq46/fifa-fotbolls-vm-2026/kroatien-ghana",
           "title": "FIFA Fotbolls-VM 2026",
@@ -1508,11 +1503,6 @@
     },
     "g:L:2": {
       "SVT": {
-        "live": {
-          "url": "https://www.svtplay.se/video/eXvvWza/fifa-fotbolls-vm-2026/panama-england",
-          "title": "FIFA Fotbolls-VM 2026",
-          "until": "2026-07-27T23:59:59+02:00"
-        },
         "full": {
           "url": "https://www.svtplay.se/video/eXvvWza/fifa-fotbolls-vm-2026/panama-england",
           "title": "FIFA Fotbolls-VM 2026",
@@ -1538,11 +1528,44 @@
       }
     },
     "g:K:0": {
+      "SVT": {
+        "short": {
+          "url": "https://www.svtplay.se/klipp/e3db2Wx/grupp-k-colombia-portugal",
+          "title": "Grupp K: Colombia – Portugal",
+          "until": "2026-10-19T05:30:00+02:00"
+        }
+      },
       "TV4": {
         "full": {
           "url": "https://www.tv4play.se/video/3b000f5799c95032f1fb/colombia-portugal",
           "title": "Colombia - Portugal",
           "until": "2026-07-27T23:20:00Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/d99ed461810013b7839b/video-hojdpunkter-colombia-portugal",
+          "title": "Höjdpunkter: Colombia - Portugal",
+          "until": null
+        }
+      }
+    },
+    "g:K:1": {
+      "SVT": {
+        "short": {
+          "url": "https://www.svtplay.se/klipp/eJyJawW/grupp-k-kongo-kinshasa-uzbekistan",
+          "title": "Grupp K: Kongo-Kinshasa – Uzbekistan",
+          "until": "2026-10-19T05:30:00+02:00"
+        }
+      },
+      "TV4": {
+        "full": {
+          "url": "https://www.tv4play.se/video/85423bb600940c5bf981/dr-kongo-uzbekistan",
+          "title": "DR Kongo - Uzbekistan",
+          "until": "2026-07-27T23:20:00Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/1aa8842242983eec94e9/video-hojdpunkter-dr-kongo-uzbekistan",
+          "title": "Höjdpunkter: DR Kongo - Uzbekistan",
+          "until": null
         }
       }
     },
@@ -1552,7 +1575,12 @@
           "url": "https://www.tv4play.se/video/416267e7172ee68023c1/algeriet-osterrike",
           "title": "Algeriet - Österrike",
           "until": "2026-07-28T01:50:00Z",
-          "from": "2026-06-28T01:50:16Z"
+          "from": "2026-06-28T01:50:07Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/81fd7f2a22bdec8d1a10/video-hojdpunkter-algeriet-osterrike",
+          "title": "Höjdpunkter: Algeriet - Österrike",
+          "until": null
         }
       }
     },
@@ -1562,7 +1590,12 @@
           "url": "https://www.tv4play.se/video/7b218337e39910b4e142/jordanien-argentina",
           "title": "Jordanien - Argentina",
           "until": "2026-07-28T01:50:00Z",
-          "from": "2026-06-28T01:50:41Z"
+          "from": "2026-06-28T01:50:34Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/bfb4e069afdb6cca6715/video-hojdpunkter-jordanien-argentina",
+          "title": "Höjdpunkter: Jordanien - Argentina",
+          "until": null
         }
       }
     },
