@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-28T20:03:59.207Z",
+    "updatedAt": "2026-06-28T21:16:49.277Z",
     "source": "espn"
   },
   "details": {
@@ -32316,24 +32316,102 @@
     },
     "k:73": {
       "espnId": "760486",
-      "status": "PAUSED",
-      "minute": 45,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-28T19:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 0,
+          "a": 1
+        },
+        "ht": {
+          "h": 0,
           "a": 0
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
-      "bookings": [],
-      "subs": [],
+      "goals": [
+        {
+          "minute": 90,
+          "injuryTime": 2,
+          "team": "a",
+          "scorer": "Stephen Eustáquio",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 54,
+          "team": "a",
+          "player": "Nathan Saliba",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 67,
+          "team": "a",
+          "player": "Niko Sigur",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Thalente Mbatha",
+          "out": "Relebohile Mofokeng"
+        },
+        {
+          "minute": 59,
+          "team": "a",
+          "in": "Niko Sigur",
+          "out": "Nathan Saliba"
+        },
+        {
+          "minute": 59,
+          "team": "a",
+          "in": "Luc de Fougerolles",
+          "out": "Moïse Bombito"
+        },
+        {
+          "minute": 70,
+          "team": "a",
+          "in": "Promise David",
+          "out": "Tani Oluwaseyi"
+        },
+        {
+          "minute": 70,
+          "team": "a",
+          "in": "Jacob Shaffelburg",
+          "out": "Liam Millar"
+        },
+        {
+          "minute": 75,
+          "team": "a",
+          "in": "Alphonso Davies",
+          "out": "Tajon Buchanan"
+        },
+        {
+          "minute": 86,
+          "team": "h",
+          "in": "Iqraam Rayners",
+          "out": "Evidence Makgopa"
+        },
+        {
+          "minute": 86,
+          "team": "h",
+          "in": "Tshepang Moremi",
+          "out": "Thapelo Maseko"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -32398,7 +32476,8 @@
           "bench": [
             {
               "name": "Iqraam Rayners",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Nkosinathi Sibisi",
@@ -32426,7 +32505,8 @@
             },
             {
               "name": "Tshepang Moremi",
-              "jersey": "8"
+              "jersey": "8",
+              "in": true
             },
             {
               "name": "Bradley Cross",
@@ -32446,7 +32526,8 @@
             },
             {
               "name": "Thalente Mbatha",
-              "jersey": "5"
+              "jersey": "5",
+              "in": true
             },
             {
               "name": "Ricardo Goss",
@@ -32524,7 +32605,8 @@
             },
             {
               "name": "Jacob Shaffelburg",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Owen Goodman",
@@ -32532,7 +32614,8 @@
             },
             {
               "name": "Promise David",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Jayden Nelson",
@@ -32556,15 +32639,18 @@
             },
             {
               "name": "Luc de Fougerolles",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true
             },
             {
               "name": "Niko Sigur",
-              "jersey": "23"
+              "jersey": "23",
+              "in": true
             },
             {
               "name": "Alphonso Davies",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Cyle Larin",
@@ -32575,57 +32661,57 @@
       },
       "referee": "João Pinheiro",
       "venue": "SoFi Stadium, Inglewood, California",
-      "attendance": null,
+      "attendance": 69237,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "55%",
-          "a": "45%"
+          "h": "58%",
+          "a": "42%"
         },
         {
           "key": "totalShots",
-          "h": "3",
-          "a": "7"
+          "h": "6",
+          "a": "12"
         },
         {
           "key": "shotsOnTarget",
           "h": "1",
-          "a": "4"
+          "a": "7"
         },
         {
           "key": "wonCorners",
           "h": "1",
-          "a": "3"
+          "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "5",
-          "a": "6"
+          "h": "10",
+          "a": "16"
         },
         {
           "key": "offsides",
-          "h": "0",
+          "h": "1",
           "a": "0"
         },
         {
           "key": "saves",
-          "h": "3",
+          "h": "5",
           "a": "1"
         },
         {
           "key": "totalPasses",
-          "h": "248",
-          "a": "193"
+          "h": "550",
+          "a": "381"
         },
         {
           "key": "passPct",
-          "h": "82%",
+          "h": "85%",
           "a": "78%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "0"
+          "a": "2"
         },
         {
           "key": "redCards",
@@ -32633,7 +32719,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-28T20:03:59.207Z"
+      "updatedAt": "2026-06-28T21:16:49.277Z"
     }
   }
 }

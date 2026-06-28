@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-28T20:03:59.150Z",
+    "updatedAt": "2026-06-28T21:16:49.209Z",
     "source": "espn",
     "matchCount": 73,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -369,20 +369,11 @@
     },
     "k:73": {
       "h": 0,
-      "a": 0,
-      "status": "PAUSED"
+      "a": 1,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:73",
-      "status": "PAUSED",
-      "minute": 45,
-      "home": "South Africa",
-      "away": "Canada",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1612,7 +1603,7 @@
       "date": "2026-06-28",
       "time": "21:00",
       "utcDate": "2026-06-28T19:00Z",
-      "status": "PAUSED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "South Africa",
       "away": "Canada",
@@ -1886,9 +1877,12 @@
       "utcDate": "2026-07-04T17:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Round of 32 1 Winner",
+      "home": "Canada",
       "away": "Round of 32 3 Winner",
-      "homeRef": null,
+      "homeRef": {
+        "group": "B",
+        "idx": 0
+      },
       "awayRef": null
     },
     "k:89": {
