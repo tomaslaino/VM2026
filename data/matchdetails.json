@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-28T01:57:37.602Z",
+    "updatedAt": "2026-06-28T06:34:21.728Z",
     "source": "espn"
   },
   "details": {
@@ -31370,6 +31370,949 @@
         }
       ],
       "updatedAt": "2026-06-28T01:57:37.602Z"
+    },
+    "g:J:5": {
+      "espnId": "760484",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-28T02:00Z",
+      "duration": "REGULAR",
+      "winner": "DRAW",
+      "score": {
+        "ft": {
+          "h": 3,
+          "a": 3
+        },
+        "ht": {
+          "h": 1,
+          "a": 1
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 28,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Marko Arnautovic",
+          "assist": "David Alaba",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        },
+        {
+          "minute": 45,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Rafik Belghali",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        },
+        {
+          "minute": 55,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Marcel Sabitzer",
+          "assist": "Konrad Laimer",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 1
+          }
+        },
+        {
+          "minute": 60,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Riyad Mahrez",
+          "assist": "Houssem Aouar",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 2
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "a",
+          "scorer": "Riyad Mahrez",
+          "assist": "Houssem Aouar",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 3
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 6,
+          "team": "h",
+          "scorer": "Sasa Kalajdzic",
+          "assist": "Michael Gregoritsch",
+          "type": "REGULAR",
+          "score": {
+            "h": 3,
+            "a": 3
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 11,
+          "team": "h",
+          "player": "Marko Arnautovic",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Michael Gregoritsch",
+          "out": "Marko Arnautovic"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Florian Grillitsch",
+          "out": "Xaver Schlager"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Paul Wanner",
+          "out": "Romano Schmid"
+        },
+        {
+          "minute": 62,
+          "team": "h",
+          "in": "Kevin Danso",
+          "out": "David Alaba"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Rayan Aït-Nouri",
+          "out": "Jaouen Hadjam"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Zineddine Belaïd",
+          "out": "Amine Gouiri"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Samir Chergui",
+          "out": "Rafik Belghali"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Farès Ghedjemis",
+          "out": "Houssem Aouar"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Sasa Kalajdzic",
+          "out": "Phillipp Mwene"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Alexander Schlager",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Stefan Posch",
+              "jersey": "5",
+              "pos": "RB"
+            },
+            {
+              "name": "Phillipp Mwene",
+              "jersey": "16",
+              "pos": "LB"
+            },
+            {
+              "name": "Xaver Schlager",
+              "jersey": "4",
+              "pos": "LM"
+            },
+            {
+              "name": "Philipp Lienhart",
+              "jersey": "15",
+              "pos": "CD-R"
+            },
+            {
+              "name": "David Alaba",
+              "jersey": "8",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Konrad Laimer",
+              "jersey": "20",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Nicolas Seiwald",
+              "jersey": "6",
+              "pos": "RM"
+            },
+            {
+              "name": "Marko Arnautovic",
+              "jersey": "7",
+              "pos": "F"
+            },
+            {
+              "name": "Romano Schmid",
+              "jersey": "18",
+              "pos": "AM"
+            },
+            {
+              "name": "Marcel Sabitzer",
+              "jersey": "9",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Florian Grillitsch",
+              "jersey": "10",
+              "in": true
+            },
+            {
+              "name": "Kevin Danso",
+              "jersey": "3",
+              "in": true
+            },
+            {
+              "name": "Michael Svoboda",
+              "jersey": "25"
+            },
+            {
+              "name": "Alexander Prass",
+              "jersey": "22"
+            },
+            {
+              "name": "Carney Chukwuemeka",
+              "jersey": "17"
+            },
+            {
+              "name": "Patrick Pentz",
+              "jersey": "13"
+            },
+            {
+              "name": "Alessandro Schöpf",
+              "jersey": "26"
+            },
+            {
+              "name": "David Affengruber",
+              "jersey": "2"
+            },
+            {
+              "name": "Patrick Wimmer",
+              "jersey": "21"
+            },
+            {
+              "name": "Sasa Kalajdzic",
+              "jersey": "14",
+              "in": true
+            },
+            {
+              "name": "Florian Wiegele",
+              "jersey": "12"
+            },
+            {
+              "name": "Dejan Ljubicic",
+              "jersey": "19"
+            },
+            {
+              "name": "Michael Gregoritsch",
+              "jersey": "11",
+              "in": true
+            },
+            {
+              "name": "Paul Wanner",
+              "jersey": "24",
+              "in": true
+            },
+            {
+              "name": "Marco Friedl",
+              "jersey": "23"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Oussama Benbot",
+              "jersey": "16",
+              "pos": "G"
+            },
+            {
+              "name": "Rafik Belghali",
+              "jersey": "17",
+              "pos": "RB"
+            },
+            {
+              "name": "Jaouen Hadjam",
+              "jersey": "13",
+              "pos": "LB"
+            },
+            {
+              "name": "Nabil Bentaleb",
+              "jersey": "19",
+              "pos": "LM"
+            },
+            {
+              "name": "Aïssa Mandi",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Ramy Bensebaini",
+              "jersey": "21",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Riyad Mahrez",
+              "jersey": "7",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Farès Chaïbi",
+              "jersey": "10",
+              "pos": "RM"
+            },
+            {
+              "name": "Amine Gouiri",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Ibrahim Maza",
+              "jersey": "22",
+              "pos": "AM"
+            },
+            {
+              "name": "Houssem Aouar",
+              "jersey": "8",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Rayan Aït-Nouri",
+              "jersey": "15",
+              "in": true
+            },
+            {
+              "name": "Samir Chergui",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Ramiz Zerrouki",
+              "jersey": "6"
+            },
+            {
+              "name": "Farès Ghedjemis",
+              "jersey": "25",
+              "in": true
+            },
+            {
+              "name": "Melvin Mastil",
+              "jersey": "1"
+            },
+            {
+              "name": "Hicham Boudaoui",
+              "jersey": "14"
+            },
+            {
+              "name": "Zineddine Belaïd",
+              "jersey": "5",
+              "in": true
+            },
+            {
+              "name": "Luca Zidane",
+              "jersey": "23"
+            },
+            {
+              "name": "Anis Hadj Moussa",
+              "jersey": "11"
+            },
+            {
+              "name": "Adil Boulbina",
+              "jersey": "20"
+            },
+            {
+              "name": "Achraf Abada",
+              "jersey": "3"
+            },
+            {
+              "name": "Nadhir Benbouali",
+              "jersey": "12"
+            },
+            {
+              "name": "Yassine Titraoui",
+              "jersey": "24"
+            },
+            {
+              "name": "Mohamed Amine Tougai",
+              "jersey": "4"
+            }
+          ]
+        }
+      },
+      "referee": "Ilgiz Tantashev",
+      "venue": "GEHA Field at Arrowhead Stadium, Kansas City, Missouri",
+      "attendance": 69045,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "35%",
+          "a": "65%"
+        },
+        {
+          "key": "totalShots",
+          "h": "10",
+          "a": "12"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "3",
+          "a": "5"
+        },
+        {
+          "key": "wonCorners",
+          "h": "3",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "7",
+          "a": "3"
+        },
+        {
+          "key": "offsides",
+          "h": "3",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "396",
+          "a": "754"
+        },
+        {
+          "key": "passPct",
+          "h": "87%",
+          "a": "94%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-28T06:34:21.639Z"
+    },
+    "g:J:4": {
+      "espnId": "760483",
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-06-28T02:00Z",
+      "duration": "REGULAR",
+      "winner": "AWAY_TEAM",
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 3
+        },
+        "ht": {
+          "h": 0,
+          "a": 2
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 19,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Giovani Lo Celso",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        },
+        {
+          "minute": 31,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Lautaro Martínez",
+          "assist": null,
+          "type": "PENALTY",
+          "score": {
+            "h": 0,
+            "a": 2
+          }
+        },
+        {
+          "minute": 55,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Mousa Al-Tamari",
+          "assist": "Ehsan Haddad",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 2
+          }
+        },
+        {
+          "minute": 80,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Lionel Messi",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 3
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 17,
+          "team": "h",
+          "player": "Mohannad Abu Taha",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 64,
+          "team": "h",
+          "player": "Yazan Al-Arab",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Mohammed Abu Zraiq",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Mahmoud Al-Mardi",
+          "out": "Odeh Fakhoury"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Mousa Al-Tamari",
+          "out": "Ali Azaizeh"
+        },
+        {
+          "minute": 60,
+          "team": "a",
+          "in": "Thiago Almada",
+          "out": "Giovani Lo Celso"
+        },
+        {
+          "minute": 60,
+          "team": "a",
+          "in": "Lionel Messi",
+          "out": "Lautaro Martínez"
+        },
+        {
+          "minute": 61,
+          "team": "a",
+          "in": "Alexis Mac Allister",
+          "out": "Nico Paz"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Valentín Barco",
+          "out": "Giuliano Simeone"
+        },
+        {
+          "minute": 76,
+          "team": "h",
+          "in": "Amer Jamous",
+          "out": "Nizar Al-Rashdan"
+        },
+        {
+          "minute": 82,
+          "team": "a",
+          "in": "José Manuel López",
+          "out": "Julián Álvarez"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Mohammed Abu Zraiq",
+          "out": "Ali Olwan"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Saleem Obaid",
+          "out": "Husam Abu Dahab"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "3-4-2-1",
+          "starters": [
+            {
+              "name": "Yazeed Abulaila",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Ehsan Haddad",
+              "jersey": "23",
+              "pos": "RM"
+            },
+            {
+              "name": "Mohannad Abu Taha",
+              "jersey": "20",
+              "pos": "LM"
+            },
+            {
+              "name": "Husam Abu Dahab",
+              "jersey": "4",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Yazan Al-Arab",
+              "jersey": "5",
+              "pos": "CD"
+            },
+            {
+              "name": "Abdallah Nasib",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Nizar Al-Rashdan",
+              "jersey": "21",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Noor Al-Rawabdeh",
+              "jersey": "8",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Odeh Fakhoury",
+              "jersey": "11",
+              "pos": "F"
+            },
+            {
+              "name": "Ali Azaizeh",
+              "jersey": "24",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Ali Olwan",
+              "jersey": "9",
+              "pos": "CF-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Mousa Al-Tamari",
+              "jersey": "10",
+              "in": true
+            },
+            {
+              "name": "Mohammed Abu Zraiq",
+              "jersey": "7",
+              "in": true
+            },
+            {
+              "name": "Rajaei Ayed",
+              "jersey": "14"
+            },
+            {
+              "name": "Mohammad Abu Hasheesh",
+              "jersey": "2"
+            },
+            {
+              "name": "Abdallah Al-Fakhouri",
+              "jersey": "22"
+            },
+            {
+              "name": "Mohammad Al-Daoud",
+              "jersey": "25"
+            },
+            {
+              "name": "Anas Badawi",
+              "jersey": "26"
+            },
+            {
+              "name": "Mohammad Abughoush",
+              "jersey": "18"
+            },
+            {
+              "name": "Saleem Obaid",
+              "jersey": "17",
+              "in": true
+            },
+            {
+              "name": "Mahmoud Al-Mardi",
+              "jersey": "13",
+              "in": true
+            },
+            {
+              "name": "Saed Al-Rosan",
+              "jersey": "19"
+            },
+            {
+              "name": "Nour Bani Ateyah",
+              "jersey": "12"
+            },
+            {
+              "name": "Ibrahim Sadeh",
+              "jersey": "15"
+            },
+            {
+              "name": "Mohammad Abualnadi",
+              "jersey": "16"
+            },
+            {
+              "name": "Amer Jamous",
+              "jersey": "6",
+              "in": true
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Emiliano Martínez",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Exequiel Palacios",
+              "jersey": "14",
+              "pos": "RB"
+            },
+            {
+              "name": "Nicolás Tagliafico",
+              "jersey": "3",
+              "pos": "LB"
+            },
+            {
+              "name": "Nico Paz",
+              "jersey": "18",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Nicolás Otamendi",
+              "jersey": "19",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Marcos Senesi",
+              "jersey": "2",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Giuliano Simeone",
+              "jersey": "17",
+              "pos": "RM"
+            },
+            {
+              "name": "Leandro Paredes",
+              "jersey": "5",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Julián Álvarez",
+              "jersey": "9",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Lautaro Martínez",
+              "jersey": "22",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Giovani Lo Celso",
+              "jersey": "11",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Alexis Mac Allister",
+              "jersey": "20",
+              "in": true
+            },
+            {
+              "name": "Facundo Medina",
+              "jersey": "25"
+            },
+            {
+              "name": "Lisandro Martínez",
+              "jersey": "6"
+            },
+            {
+              "name": "Cristian Romero",
+              "jersey": "13"
+            },
+            {
+              "name": "Gerónimo Rulli",
+              "jersey": "12"
+            },
+            {
+              "name": "Nahuel Molina",
+              "jersey": "26"
+            },
+            {
+              "name": "Enzo Fernández",
+              "jersey": "24"
+            },
+            {
+              "name": "Nico González",
+              "jersey": "15"
+            },
+            {
+              "name": "Juan Musso",
+              "jersey": "1"
+            },
+            {
+              "name": "Rodrigo De Paul",
+              "jersey": "7"
+            },
+            {
+              "name": "Lionel Messi",
+              "jersey": "10",
+              "in": true
+            },
+            {
+              "name": "Gonzalo Montiel",
+              "jersey": "4"
+            },
+            {
+              "name": "Valentín Barco",
+              "jersey": "8",
+              "in": true
+            },
+            {
+              "name": "José Manuel López",
+              "jersey": "21",
+              "in": true
+            },
+            {
+              "name": "Thiago Almada",
+              "jersey": "16",
+              "in": true
+            }
+          ]
+        }
+      },
+      "referee": "Istvan Kovacs",
+      "venue": "AT&T Stadium, Arlington, Texas",
+      "attendance": 70649,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "27%",
+          "a": "73%"
+        },
+        {
+          "key": "totalShots",
+          "h": "5",
+          "a": "12"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "1",
+          "a": "4"
+        },
+        {
+          "key": "wonCorners",
+          "h": "2",
+          "a": "6"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "13",
+          "a": "7"
+        },
+        {
+          "key": "offsides",
+          "h": "1",
+          "a": "3"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "285",
+          "a": "801"
+        },
+        {
+          "key": "passPct",
+          "h": "80%",
+          "a": "92%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "3",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-28T06:34:21.728Z"
     }
   }
 }
