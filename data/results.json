@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-27T23:46:40.667Z",
+    "updatedAt": "2026-06-28T01:57:37.429Z",
     "source": "espn",
     "matchCount": 70,
-    "liveCount": 2,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -350,32 +350,15 @@
     "g:K:0": {
       "h": 0,
       "a": 0,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     },
     "g:K:1": {
       "h": 1,
-      "a": 0,
-      "status": "IN_PLAY"
+      "a": 3,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "g:K:0",
-      "status": "IN_PLAY",
-      "minute": 15,
-      "home": "Portugal",
-      "away": "Colombia",
-      "score": "0-0"
-    },
-    {
-      "key": "g:K:1",
-      "status": "IN_PLAY",
-      "minute": 15,
-      "home": "Uzbekistan",
-      "away": "Congo DR",
-      "score": "1-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1537,7 +1520,7 @@
       "date": "2026-06-28",
       "time": "01:30",
       "utcDate": "2026-06-27T23:30Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Portugal",
       "away": "Colombia",
@@ -1554,7 +1537,7 @@
       "date": "2026-06-28",
       "time": "01:30",
       "utcDate": "2026-06-27T23:30Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Uzbekistan",
       "away": "Congo DR",
@@ -1727,12 +1710,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "England",
-      "away": "Third Place Group E/H/I/J/K",
+      "away": "Congo DR",
       "homeRef": {
         "group": "L",
         "idx": 0
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "K",
+        "idx": 3
+      }
     },
     "k:82": {
       "date": "2026-07-01",
@@ -1741,12 +1727,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Belgium",
-      "away": "Third Place Group A/E/H/I/J",
+      "away": "Senegal",
       "homeRef": {
         "group": "G",
         "idx": 0
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "I",
+        "idx": 1
+      }
     },
     "k:81": {
       "date": "2026-07-02",
@@ -1785,9 +1774,12 @@
       "utcDate": "2026-07-02T23:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Group K 2nd Place",
+      "home": "Portugal",
       "away": "Croatia",
-      "homeRef": null,
+      "homeRef": {
+        "group": "K",
+        "idx": 0
+      },
       "awayRef": {
         "group": "L",
         "idx": 1
@@ -1847,9 +1839,12 @@
       "utcDate": "2026-07-04T01:30Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Group K Winner",
+      "home": "Colombia",
       "away": "Ghana",
-      "homeRef": null,
+      "homeRef": {
+        "group": "K",
+        "idx": 1
+      },
       "awayRef": {
         "group": "L",
         "idx": 3
@@ -2537,49 +2532,49 @@
       {
         "idx": 1,
         "position": 1,
-        "pld": 2,
+        "pld": 3,
         "w": 2,
-        "d": 0,
+        "d": 1,
         "l": 0,
         "gf": 4,
         "ga": 1,
         "gd": 3,
-        "pts": 6
+        "pts": 7
       },
       {
         "idx": 0,
         "position": 2,
-        "pld": 2,
+        "pld": 3,
         "w": 1,
-        "d": 1,
+        "d": 2,
         "l": 0,
         "gf": 6,
         "ga": 1,
         "gd": 5,
-        "pts": 4
+        "pts": 5
       },
       {
         "idx": 3,
         "position": 3,
-        "pld": 2,
-        "w": 0,
+        "pld": 3,
+        "w": 1,
         "d": 1,
         "l": 1,
-        "gf": 1,
-        "ga": 2,
-        "gd": -1,
-        "pts": 1
+        "gf": 4,
+        "ga": 3,
+        "gd": 1,
+        "pts": 4
       },
       {
         "idx": 2,
         "position": 4,
-        "pld": 2,
+        "pld": 3,
         "w": 0,
         "d": 0,
-        "l": 2,
-        "gf": 1,
-        "ga": 8,
-        "gd": -7,
+        "l": 3,
+        "gf": 2,
+        "ga": 11,
+        "gd": -9,
         "pts": 0
       }
     ],

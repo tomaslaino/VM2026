@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-27T23:46:40.957Z",
+    "updatedAt": "2026-06-28T01:57:37.602Z",
     "source": "espn"
   },
   "details": {
@@ -30480,24 +30480,95 @@
     },
     "g:K:0": {
       "espnId": "760481",
-      "status": "IN_PLAY",
-      "minute": 15,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-27T23:30Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "DRAW",
       "score": {
         "ft": {
           "h": 0,
           "a": 0
         },
-        "ht": null,
+        "ht": {
+          "h": 0,
+          "a": 0
+        },
         "rt": null,
         "et": null,
         "pen": null
       },
       "goals": [],
-      "bookings": [],
-      "subs": [],
+      "bookings": [
+        {
+          "minute": 86,
+          "team": "a",
+          "player": "Gustavo Puerta",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Diogo Dalot",
+          "out": "João Cancelo"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "João Neves",
+          "out": "Rúben Neves"
+        },
+        {
+          "minute": 60,
+          "team": "a",
+          "in": "Richard Ríos",
+          "out": "Jefferson Lerma"
+        },
+        {
+          "minute": 60,
+          "team": "a",
+          "in": "Luis Suárez",
+          "out": "Jhon Córdoba"
+        },
+        {
+          "minute": 70,
+          "team": "h",
+          "in": "Rafael Leão",
+          "out": "João Félix"
+        },
+        {
+          "minute": 70,
+          "team": "h",
+          "in": "Samú Costa",
+          "out": "Vitinha "
+        },
+        {
+          "minute": 76,
+          "team": "a",
+          "in": "Kevin Castaño",
+          "out": "Jhon Arias"
+        },
+        {
+          "minute": 76,
+          "team": "a",
+          "in": "Juan Fernando Quintero",
+          "out": "James Rodríguez"
+        },
+        {
+          "minute": 87,
+          "team": "a",
+          "in": "Daniel Muñoz",
+          "out": "Santiago Arias"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Matheus Nunes",
+          "out": "Nuno Mendes"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -30566,7 +30637,8 @@
             },
             {
               "name": "João Neves",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Gonçalo Ramos",
@@ -30582,7 +30654,8 @@
             },
             {
               "name": "Rafael Leão",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Rui Silva",
@@ -30590,11 +30663,13 @@
             },
             {
               "name": "Samú Costa",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Diogo Dalot",
-              "jersey": "5"
+              "jersey": "5",
+              "in": true
             },
             {
               "name": "Bernardo Silva",
@@ -30610,7 +30685,8 @@
             },
             {
               "name": "Matheus Nunes",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true
             },
             {
               "name": "José Sá",
@@ -30633,37 +30709,37 @@
             {
               "name": "Santiago Arias",
               "jersey": "4",
-              "pos": "D"
+              "pos": "RB"
             },
             {
               "name": "Deiver Machado",
               "jersey": "22",
-              "pos": "D"
+              "pos": "LB"
             },
             {
               "name": "Jefferson Lerma",
               "jersey": "16",
-              "pos": "M"
+              "pos": "CM"
             },
             {
               "name": "Davinson Sánchez",
               "jersey": "23",
-              "pos": "D"
+              "pos": "CD-R"
             },
             {
               "name": "Jhon Lucumí",
               "jersey": "3",
-              "pos": "D"
-            },
-            {
-              "name": "Gustavo Puerta",
-              "jersey": "14",
-              "pos": "M"
+              "pos": "CD-L"
             },
             {
               "name": "Jhon Arias",
               "jersey": "11",
-              "pos": "M"
+              "pos": "RM"
+            },
+            {
+              "name": "Gustavo Puerta",
+              "jersey": "14",
+              "pos": "LM"
             },
             {
               "name": "Jhon Córdoba",
@@ -30673,22 +30749,24 @@
             {
               "name": "James Rodríguez",
               "jersey": "10",
-              "pos": "F"
+              "pos": "RF"
             },
             {
               "name": "Luis Díaz",
               "jersey": "7",
-              "pos": "F"
+              "pos": "LF"
             }
           ],
           "bench": [
             {
               "name": "Daniel Muñoz",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Luis Suárez",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Jáminton Campaz",
@@ -30704,7 +30782,8 @@
             },
             {
               "name": "Kevin Castaño",
-              "jersey": "5"
+              "jersey": "5",
+              "in": true
             },
             {
               "name": "Willer Ditta",
@@ -30736,68 +30815,70 @@
             },
             {
               "name": "Juan Fernando Quintero",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Richard Ríos",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true
             }
           ]
         }
       },
       "referee": "Alireza Faghani",
       "venue": "Hard Rock Stadium, Miami Gardens, Florida",
-      "attendance": null,
+      "attendance": 64478,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "46%",
-          "a": "54%"
+          "h": "45%",
+          "a": "55%"
         },
         {
           "key": "totalShots",
-          "h": "2",
-          "a": "4"
+          "h": "13",
+          "a": "24"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "6"
         },
         {
           "key": "wonCorners",
-          "h": "1",
-          "a": "0"
+          "h": "2",
+          "a": "5"
         },
         {
           "key": "foulsCommitted",
-          "h": "1",
-          "a": "1"
+          "h": "6",
+          "a": "12"
         },
         {
           "key": "offsides",
-          "h": "0",
-          "a": "1"
+          "h": "2",
+          "a": "3"
         },
         {
           "key": "saves",
-          "h": "0",
-          "a": "0"
+          "h": "6",
+          "a": "2"
         },
         {
           "key": "totalPasses",
-          "h": "68",
-          "a": "78"
+          "h": "445",
+          "a": "545"
         },
         {
           "key": "passPct",
-          "h": "93%",
-          "a": "88%"
+          "h": "91%",
+          "a": "89%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -30805,21 +30886,24 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-27T23:46:40.711Z"
+      "updatedAt": "2026-06-28T01:57:37.523Z"
     },
     "g:K:1": {
       "espnId": "760482",
-      "status": "IN_PLAY",
-      "minute": 15,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-27T23:30Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 1,
+          "a": 3
+        },
+        "ht": {
+          "h": 1,
           "a": 0
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
@@ -30830,16 +30914,144 @@
           "injuryTime": null,
           "team": "h",
           "scorer": "Eldor Shomurodov",
-          "assist": "Abbosbek Fayzullaev",
+          "assist": "Akmal Mozgovoy",
           "type": "REGULAR",
           "score": {
             "h": 1,
             "a": 0
           }
+        },
+        {
+          "minute": 68,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Yoane Wissa",
+          "assist": null,
+          "type": "PENALTY",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        },
+        {
+          "minute": 78,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Fiston Mayele",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 2
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 1,
+          "team": "a",
+          "scorer": "Yoane Wissa",
+          "assist": "Meschack Elia",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 3
+          }
         }
       ],
-      "bookings": [],
-      "subs": [],
+      "bookings": [
+        {
+          "minute": 21,
+          "team": "a",
+          "player": "Noah Sadiki",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 43,
+          "team": "h",
+          "player": "Abdukodir Khusanov",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "player": "Nathanaël Mbuku",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 48,
+          "team": "h",
+          "player": "Sherzod Nasrullaev",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 62,
+          "team": "a",
+          "player": "Samuel Moutoussamy",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 51,
+          "team": "a",
+          "in": "Fiston Mayele",
+          "out": "Cédric Bakambu"
+        },
+        {
+          "minute": 59,
+          "team": "h",
+          "in": "Odiljon Xamrobekov",
+          "out": "Otabek Shukurov"
+        },
+        {
+          "minute": 59,
+          "team": "h",
+          "in": "Azizjon Ganiev",
+          "out": "Dostonbek Khamdamov"
+        },
+        {
+          "minute": 72,
+          "team": "a",
+          "in": "Meschack Elia",
+          "out": "Nathanaël Mbuku"
+        },
+        {
+          "minute": 72,
+          "team": "a",
+          "in": "Théo Bongonda",
+          "out": "Brian Cipenga"
+        },
+        {
+          "minute": 72,
+          "team": "a",
+          "in": "Ngal'ayel Mukau",
+          "out": "Samuel Moutoussamy"
+        },
+        {
+          "minute": 73,
+          "team": "h",
+          "in": "Oston Urunov",
+          "out": "Abbosbek Fayzullaev"
+        },
+        {
+          "minute": 82,
+          "team": "h",
+          "in": "Jamshid Iskanderov",
+          "out": "Akmal Mozgovoy"
+        },
+        {
+          "minute": 82,
+          "team": "h",
+          "in": "Igor Sergeev",
+          "out": "Jakhongir Urozov"
+        },
+        {
+          "minute": 83,
+          "team": "a",
+          "in": "Joris Kayembe",
+          "out": "Arthur Masuaku"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -30904,7 +31116,8 @@
           "bench": [
             {
               "name": "Azizjon Ganiev",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Ruslanbek Jiyanov",
@@ -30928,7 +31141,8 @@
             },
             {
               "name": "Oston Urunov",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Botirali Ergashev",
@@ -30936,11 +31150,13 @@
             },
             {
               "name": "Jamshid Iskanderov",
-              "jersey": "8"
+              "jersey": "8",
+              "in": true
             },
             {
               "name": "Igor Sergeev",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Utkir Yusupov",
@@ -30952,7 +31168,8 @@
             },
             {
               "name": "Odiljon Xamrobekov",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Sherzod Esanov",
@@ -31030,11 +31247,13 @@
             },
             {
               "name": "Ngal'ayel Mukau",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true
             },
             {
               "name": "Fiston Mayele",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Gédéon Kalulu",
@@ -31054,15 +31273,18 @@
             },
             {
               "name": "Joris Kayembe",
-              "jersey": "12"
+              "jersey": "12",
+              "in": true
             },
             {
               "name": "Meschack Elia",
-              "jersey": "13"
+              "jersey": "13",
+              "in": true
             },
             {
               "name": "Théo Bongonda",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true
             },
             {
               "name": "Steve Kapuadi",
@@ -31089,57 +31311,57 @@
       },
       "referee": "Felix Zwayer",
       "venue": "Mercedes-Benz Stadium, Atlanta, Georgia",
-      "attendance": null,
+      "attendance": 68239,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "53%",
-          "a": "47%"
+          "h": "42%",
+          "a": "58%"
         },
         {
           "key": "totalShots",
-          "h": "1",
-          "a": "1"
+          "h": "3",
+          "a": "19"
         },
         {
           "key": "shotsOnTarget",
           "h": "1",
-          "a": "0"
+          "a": "4"
         },
         {
           "key": "wonCorners",
-          "h": "1",
-          "a": "0"
+          "h": "4",
+          "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "3",
-          "a": "1"
+          "h": "16",
+          "a": "6"
         },
         {
           "key": "offsides",
           "h": "1",
-          "a": "0"
+          "a": "3"
         },
         {
           "key": "saves",
-          "h": "0",
+          "h": "1",
           "a": "1"
         },
         {
           "key": "totalPasses",
-          "h": "72",
-          "a": "67"
+          "h": "355",
+          "a": "487"
         },
         {
           "key": "passPct",
-          "h": "82%",
-          "a": "78%"
+          "h": "76%",
+          "a": "82%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "3"
         },
         {
           "key": "redCards",
@@ -31147,7 +31369,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-27T23:46:40.786Z"
+      "updatedAt": "2026-06-28T01:57:37.602Z"
     }
   }
 }
