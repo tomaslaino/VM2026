@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-29T22:49:01.954Z",
+    "updatedAt": "2026-06-29T23:48:01.772Z",
     "source": "espn",
     "matchCount": 75,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -378,21 +378,13 @@
       "status": "FINISHED"
     },
     "k:74": {
-      "h": 2,
+      "h": 1,
       "a": 1,
-      "status": "IN_PLAY"
+      "status": "FINISHED",
+      "pw": "a"
     }
   },
-  "live": [
-    {
-      "key": "k:74",
-      "status": "IN_PLAY",
-      "minute": 105,
-      "home": "Germany",
-      "away": "Paraguay",
-      "score": "2-1"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1656,7 +1648,7 @@
       "date": "2026-06-29",
       "time": "22:30",
       "utcDate": "2026-06-29T20:30Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Germany",
       "away": "Paraguay",
@@ -1910,9 +1902,12 @@
       "utcDate": "2026-07-04T21:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Round of 32 2 Winner",
+      "home": "Paraguay",
       "away": "Round of 32 5 Winner",
-      "homeRef": null,
+      "homeRef": {
+        "group": "D",
+        "idx": 1
+      },
       "awayRef": null
     },
     "k:91": {

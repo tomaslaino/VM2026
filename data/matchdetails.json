@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-29T22:49:01.995Z",
+    "updatedAt": "2026-06-29T23:48:01.807Z",
     "source": "espn"
   },
   "details": {
@@ -33183,14 +33183,14 @@
     },
     "k:74": {
       "espnId": "760489",
-      "status": "IN_PLAY",
-      "minute": 105,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-29T20:30Z",
-      "duration": "EXTRA_TIME",
-      "winner": null,
+      "duration": "PENALTY_SHOOTOUT",
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
-          "h": 2,
+          "h": 1,
           "a": 1
         },
         "ht": {
@@ -33199,10 +33199,13 @@
         },
         "rt": null,
         "et": {
-          "h": 2,
+          "h": 1,
           "a": 1
         },
-        "pen": null
+        "pen": {
+          "h": 3,
+          "a": 4
+        }
       },
       "goals": [
         {
@@ -33235,6 +33238,24 @@
           "minute": 65,
           "team": "a",
           "player": "Andrés Cubas",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 106,
+          "team": "h",
+          "player": "Kai Havertz",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 115,
+          "team": "h",
+          "player": "Jamal Musiala",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 117,
+          "team": "a",
+          "player": "Matías Galarza",
           "card": "YELLOW"
         }
       ],
@@ -33292,6 +33313,24 @@
           "team": "a",
           "in": "Antonio Sanabria",
           "out": "Damián Bobadilla"
+        },
+        {
+          "minute": 110,
+          "team": "h",
+          "in": "Nadiem Amiri",
+          "out": "Florian Wirtz"
+        },
+        {
+          "minute": 110,
+          "team": "h",
+          "in": "Malick Thiaw",
+          "out": "Antonio Rüdiger"
+        },
+        {
+          "minute": 120,
+          "team": "a",
+          "in": "Fabián Balbuena",
+          "out": "Júnior Alonso"
         }
       ],
       "penalties": [],
@@ -33371,7 +33410,8 @@
             },
             {
               "name": "Nadiem Amiri",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Alexander Nübel",
@@ -33388,7 +33428,8 @@
             },
             {
               "name": "Malick Thiaw",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Nick Woltemade",
@@ -33523,7 +33564,8 @@
             },
             {
               "name": "Fabián Balbuena",
-              "jersey": "5"
+              "jersey": "5",
+              "in": true
             },
             {
               "name": "Alejandro Romero Gamarra",
@@ -33544,32 +33586,32 @@
       },
       "referee": "Jalal Jayed",
       "venue": "Gillette Stadium, Foxborough, Massachusetts",
-      "attendance": null,
+      "attendance": 63945,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "78%",
-          "a": "23%"
+          "h": "75%",
+          "a": "25%"
         },
         {
           "key": "totalShots",
-          "h": "17",
+          "h": "21",
           "a": "7"
         },
         {
           "key": "shotsOnTarget",
-          "h": "3",
+          "h": "6",
           "a": "3"
         },
         {
           "key": "wonCorners",
-          "h": "13",
-          "a": "4"
+          "h": "16",
+          "a": "6"
         },
         {
           "key": "foulsCommitted",
-          "h": "14",
-          "a": "8"
+          "h": "18",
+          "a": "12"
         },
         {
           "key": "offsides",
@@ -33579,22 +33621,22 @@
         {
           "key": "saves",
           "h": "2",
-          "a": "3"
+          "a": "6"
         },
         {
           "key": "totalPasses",
-          "h": "732",
-          "a": "212"
+          "h": "799",
+          "a": "257"
         },
         {
           "key": "passPct",
           "h": "90%",
-          "a": "61%"
+          "a": "63%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
-          "a": "1"
+          "h": "2",
+          "a": "2"
         },
         {
           "key": "redCards",
@@ -33602,7 +33644,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-29T22:49:01.995Z"
+      "updatedAt": "2026-06-29T23:48:01.806Z"
     }
   }
 }
