@@ -91,3 +91,8 @@ export function getFixtureEvents(fixtureId) {
 export function getFixturePlayers(fixtureId) {
   return apiGet("/fixtures/players", { fixture: fixtureId });
 }
+
+/** Skador/avstängningar (injuries) för hela turneringen (liga + säsong). */
+export function getInjuries() {
+  return apiGet("/injuries", { league: config.leagueId, season: config.season });
+}
