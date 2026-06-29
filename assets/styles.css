@@ -3455,6 +3455,138 @@ a.tv-bcast:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   }
 }
 
+/* ---------- Laguppställningsbläddrare i lag-lådan (teamlineups.js) ----------
+   Bläddra mellan lagets spelade matcher (chips) och se startelvan placerad på
+   en grön plan. Spelarna är klickbara och öppnar spelarprofilen. */
+.tl-card { overflow: hidden; }
+
+/* Matchväljare: en vågrät, rullbar rad med flagga + resultat per match. */
+.tl-chips {
+  display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 12px;
+  scrollbar-width: thin; -webkit-overflow-scrolling: touch;
+}
+.tl-chip {
+  flex: none; display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid var(--line); background: var(--bg-soft); color: var(--ink);
+  border-radius: 999px; padding: 4px 10px 4px 6px; cursor: pointer;
+  font: inherit; transition: border-color .12s, background .12s, box-shadow .12s;
+}
+.tl-chip:hover { border-color: var(--line-strong); }
+.tl-chip.active {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, var(--bg-soft));
+}
+.tl-chip .flag { width: 22px; height: 15px; border-radius: 3px; object-fit: cover; box-shadow: 0 0 0 1px var(--line); }
+.tl-chip-res { font-size: 12.5px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.tl-chip-res.v { color: var(--adv); } .tl-chip-res.f { color: var(--live); } .tl-chip-res.o { color: var(--ink-soft); }
+.tl-flag-ph { display: inline-block; width: 22px; height: 15px; border-radius: 3px; background: var(--bg-soft); box-shadow: 0 0 0 1px var(--line); }
+
+/* Vald match: motståndare + resultat + formation. */
+.tl-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+.tl-meta-match { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--ink-soft); }
+.tl-meta-match .flag { width: 20px; height: 14px; border-radius: 2px; object-fit: cover; box-shadow: 0 0 0 1px var(--line); }
+.tl-meta-opp { color: var(--ink); }
+.tl-meta-res { font-weight: 800; font-variant-numeric: tabular-nums; font-size: 14px; }
+.tl-meta-res.v { color: var(--adv); } .tl-meta-res.f { color: var(--live); } .tl-meta-res.o { color: var(--ink-soft); }
+.tl-meta-form {
+  margin-left: auto; flex: none; font-size: 11px; font-weight: 800; font-variant-numeric: tabular-nums;
+  color: var(--ink-soft); background: color-mix(in srgb, var(--bg-soft) 80%, var(--line));
+  border-radius: 999px; padding: 2px 9px;
+}
+
+/* Gräsplanen: lodrät, lagen anfaller uppåt. */
+.tl-pitch {
+  position: relative; width: 100%; aspect-ratio: 68 / 88; border-radius: 12px; overflow: hidden;
+  background:
+    repeating-linear-gradient(0deg,
+      rgba(255,255,255,.05) 0, rgba(255,255,255,.05) 11.11%,
+      rgba(0,0,0,.05) 11.11%, rgba(0,0,0,.05) 22.22%),
+    linear-gradient(180deg, #2f7d4d, #276a41);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
+}
+/* Mittlinje, mittcirkel och straffområden – enkla, ljusa hjälplinjer. */
+.tl-pitch-lines { position: absolute; inset: 0; pointer-events: none; }
+.tl-pitch-lines::before {
+  content: ""; position: absolute; left: 6%; right: 6%; top: 50%;
+  border-top: 2px solid rgba(255,255,255,.22);
+}
+.tl-pitch-lines::after {
+  content: ""; position: absolute; left: 50%; top: 50%;
+  width: 26%; aspect-ratio: 1; transform: translate(-50%, -50%);
+  border: 2px solid rgba(255,255,255,.22); border-radius: 50%;
+}
+
+/* Spelarmarkör: nummerbricka + namnetikett. */
+.tl-marker {
+  position: absolute; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  width: 64px; text-align: center;
+}
+.tl-marker.openable { cursor: pointer; }
+.tl-marker.openable:focus-visible { outline: 2px solid #fff; outline-offset: 2px; border-radius: 8px; }
+.tl-dot {
+  position: relative; width: 30px; height: 30px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12.5px; font-weight: 800; font-variant-numeric: tabular-nums;
+  box-shadow: 0 2px 6px rgba(0,0,0,.4), 0 0 0 2px rgba(255,255,255,.55);
+}
+.tl-marker.openable:hover .tl-dot { box-shadow: 0 2px 9px rgba(0,0,0,.5), 0 0 0 2px #fff; }
+.tl-cap {
+  position: absolute; right: -4px; bottom: -4px; width: 14px; height: 14px;
+  border-radius: 50%; background: var(--gold); color: #0a1628;
+  font-size: 9px; font-weight: 900; display: inline-flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 0 1.5px rgba(0,0,0,.3);
+}
+.tl-pname {
+  max-width: 64px; font-size: 9.5px; font-weight: 700; line-height: 1.15; color: #fff;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  background: color-mix(in srgb, var(--tl-name-bg, #0a1628) 55%, rgba(8,15,26,.78));
+  padding: 1px 5px; border-radius: 5px; text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+
+/* Mål/kort/byten-brickor på markörerna + bänken. */
+.tl-badges { position: absolute; top: -7px; right: -9px; display: inline-flex; gap: 2px; }
+.tl-marker .tl-badges { top: -2px; }
+.tl-ic { line-height: 1; }
+.tl-ic.goal { font-size: 11px; filter: drop-shadow(0 1px 1px rgba(0,0,0,.5)); }
+.tl-ic.card { display: inline-block; width: 8px; height: 11px; border-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,.35); }
+.tl-ic.card.yellow { background: linear-gradient(160deg, #ffd84d, #f0b400); }
+.tl-ic.card.red { background: linear-gradient(160deg, #ff6a5c, #d63425); }
+.tl-ic.card.yellow-red { background: linear-gradient(160deg, #ffd84d, #f0b400); position: relative; margin-right: 3px; }
+.tl-ic.card.yellow-red::after {
+  content: ""; position: absolute; left: 4px; top: -1px; width: 8px; height: 11px;
+  border-radius: 2px; background: linear-gradient(160deg, #ff6a5c, #d63425);
+}
+.tl-ic.sub { font-size: 9px; font-weight: 900; }
+.tl-ic.sub.in { color: var(--adv); } .tl-ic.sub.out { color: var(--live); }
+
+/* Avbytarbänk. */
+.tl-bench { margin-top: 12px; }
+.tl-bench-head {
+  font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-soft); margin-bottom: 7px;
+}
+.tl-bench-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.tl-bench-row {
+  position: relative; display: inline-flex; align-items: center; gap: 6px;
+  background: color-mix(in srgb, var(--bg-soft) 88%, var(--line));
+  border-radius: 999px; padding: 4px 11px 4px 5px; font-size: 12px; max-width: 100%;
+}
+.tl-bench-row.openable { cursor: pointer; transition: background .12s, box-shadow .12s; }
+.tl-bench-row.openable:hover { background: color-mix(in srgb, var(--bg-soft) 60%, var(--line)); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.tl-bench-row.openable:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+.tl-bench-nr {
+  flex: none; width: 20px; height: 20px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10.5px; font-weight: 800; font-variant-numeric: tabular-nums;
+  background: var(--bg); color: var(--ink-soft);
+}
+.tl-bench-name { font-weight: 650; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tl-bench-row .tl-badges { position: static; margin-left: 1px; }
+
+.tl-note { margin-top: 12px; font-size: 11px; color: var(--ink-soft); text-align: center; }
+
 /* ---------- Spelarlista i lag-lådan (live.js) ---------- */
 .players-card .players-status { color: var(--ink-soft); font-size: 13px; padding: 4px 0; }
 .players-empty { color: var(--ink-soft); font-size: 13px; line-height: 1.5; }

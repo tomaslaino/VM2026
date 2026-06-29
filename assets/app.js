@@ -5224,7 +5224,7 @@
       var home = WC.groups[group][fx.h], away = WC.groups[group][fx.a];
       var r = getRes(fx.key) || {};
       list.push({
-        kind: "group", date: fx.date, edt: null, m: fx,
+        kind: "group", key: fx.key, date: fx.date, edt: null, m: fx,
         home: home, away: away, isHome: home === team,
         played: isPlayed(r), r: r, label: "Grupp " + group, venue: null
       });
@@ -5235,7 +5235,7 @@
       if (!isHome && !isAway) return;
       var r = res.result || {};
       list.push({
-        kind: "ko", date: res.match.date, edt: res.match.edt, m: res.match,
+        kind: "ko", key: "k:" + mt.m, date: res.match.date, edt: res.match.edt, m: res.match,
         home: res.home.team, away: res.away.team, isHome: isHome,
         played: res.bothTeams && isPlayed(r), r: r,
         label: WC.roundNames[mt.round] + " · M" + mt.m, venue: WC.venues[mt.venue],
@@ -5355,6 +5355,13 @@
     drawer.innerHTML = h;
     drawer.classList.add("open");
     document.getElementById("drawerBackdrop").classList.add("open");
+
+    // Hook: laguppställningsbläddraren (assets/teamlineups.js) injicerar ett
+    // kort där man kan bläddra mellan lagets spelade matcher och se startelvan
+    // visualiserad på en plan. Läggs före trupplistan nedan.
+    if (window.VMTeamLineups && typeof window.VMTeamLineups.onTeamDrawer === "function") {
+      try { window.VMTeamLineups.onTeamDrawer(team, L, drawer, playedMatches); } catch (e) {}
+    }
 
     // Hook: låter live-modulen (assets/live.js) injicera spelarlista + statistik.
     if (window.VMLive && typeof window.VMLive.onTeamDrawer === "function") {
@@ -5883,6 +5890,9 @@
     autoSync: autoSync,
     describeMatch: describeMatch,
     setMatchDetails: setMatchDetails,
+    // Matchdetaljer (laguppställning/händelser) för en resultatnyckel, om de
+    // hämtats av assets/matchinfo.js. Används av lag-lådans uppställningsbläddrare.
+    getMatchDetail: function (key) { return (focusDetails && focusDetails[key]) || null; },
     groupTableHtml: groupTableHtml,
     // Läsbar för felsökning: var kommer slutspelssiffrorna ifrån + ett stickprov.
     debugBracketProbs: function () {
