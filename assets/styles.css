@@ -2793,7 +2793,7 @@ html.view-bracket .bracket .match-expand-icon { width: 11px; height: 11px; }
 
 .cal-row {
   display: grid;
-  grid-template-columns: 56px 118px 1fr 216px;
+  grid-template-columns: 56px 150px 1fr 216px;
   align-items: center;
   gap: 12px;
   background: linear-gradient(180deg, rgba(20, 36, 60, .82), rgba(11, 21, 38, .85));
