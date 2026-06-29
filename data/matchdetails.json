@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-29T18:22:28.848Z",
+    "updatedAt": "2026-06-29T20:22:34.856Z",
     "source": "espn"
   },
   "details": {
@@ -32723,14 +32723,14 @@
     },
     "k:76": {
       "espnId": "760487",
-      "status": "IN_PLAY",
-      "minute": 60,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-29T17:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
-          "h": 1,
+          "h": 2,
           "a": 1
         },
         "ht": {
@@ -32765,6 +32765,18 @@
             "h": 1,
             "a": 1
           }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 5,
+          "team": "h",
+          "scorer": "Gabriel Martinelli",
+          "assist": "Bruno Guimarães",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 1
+          }
         }
       ],
       "bookings": [
@@ -32791,6 +32803,12 @@
           "team": "h",
           "player": "Danilo",
           "card": "YELLOW"
+        },
+        {
+          "minute": 84,
+          "team": "a",
+          "player": "Junnosuke Suzuki",
+          "card": "YELLOW"
         }
       ],
       "subs": [
@@ -32799,6 +32817,54 @@
           "team": "h",
           "in": "Endrick",
           "out": "Lucas Paquetá"
+        },
+        {
+          "minute": 66,
+          "team": "h",
+          "in": "Gabriel Martinelli",
+          "out": "Matheus Cunha"
+        },
+        {
+          "minute": 66,
+          "team": "a",
+          "in": "Junnosuke Suzuki",
+          "out": "Keito Nakamura"
+        },
+        {
+          "minute": 66,
+          "team": "a",
+          "in": "Yukinari Sugawara",
+          "out": "Ritsu Doan"
+        },
+        {
+          "minute": 78,
+          "team": "a",
+          "in": "Shuto Machino",
+          "out": "Junya Ito"
+        },
+        {
+          "minute": 78,
+          "team": "a",
+          "in": "Ao Tanaka",
+          "out": "Daichi Kamada"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Fabinho",
+          "out": "Casemiro"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Koki Ogawa",
+          "out": "Daizen Maeda"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Danilo Santos",
+          "out": "Bruno Guimarães"
         }
       ],
       "penalties": [],
@@ -32869,7 +32935,8 @@
             },
             {
               "name": "Gabriel Martinelli",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "Léo Pereira",
@@ -32881,7 +32948,8 @@
             },
             {
               "name": "Danilo Santos",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true
             },
             {
               "name": "Éderson",
@@ -32889,7 +32957,8 @@
             },
             {
               "name": "Fabinho",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Endrick",
@@ -32992,7 +33061,8 @@
             },
             {
               "name": "Koki Ogawa",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Yuto Nagatomo",
@@ -33016,7 +33086,8 @@
             },
             {
               "name": "Shuto Machino",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true
             },
             {
               "name": "Ayumu Seko",
@@ -33024,11 +33095,13 @@
             },
             {
               "name": "Yukinari Sugawara",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Junnosuke Suzuki",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Keisuke Goto",
@@ -33040,39 +33113,40 @@
             },
             {
               "name": "Ao Tanaka",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             }
           ]
         }
       },
       "referee": "Maurizio Mariani",
       "venue": "NRG Stadium, Houston, Texas",
-      "attendance": null,
+      "attendance": 68777,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "66%",
-          "a": "34%"
+          "h": "69%",
+          "a": "31%"
         },
         {
           "key": "totalShots",
-          "h": "14",
-          "a": "4"
+          "h": "19",
+          "a": "5"
         },
         {
           "key": "shotsOnTarget",
-          "h": "6",
-          "a": "1"
+          "h": "7",
+          "a": "2"
         },
         {
           "key": "wonCorners",
-          "h": "2",
+          "h": "6",
           "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "3",
-          "a": "7"
+          "h": "4",
+          "a": "13"
         },
         {
           "key": "offsides",
@@ -33081,23 +33155,23 @@
         },
         {
           "key": "saves",
-          "h": "0",
+          "h": "1",
           "a": "4"
         },
         {
           "key": "totalPasses",
-          "h": "434",
-          "a": "226"
+          "h": "682",
+          "a": "315"
         },
         {
           "key": "passPct",
-          "h": "91%",
-          "a": "85%"
+          "h": "92%",
+          "a": "83%"
         },
         {
           "key": "yellowCards",
           "h": "2",
-          "a": "2"
+          "a": "3"
         },
         {
           "key": "redCards",
@@ -33105,7 +33179,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-29T18:22:28.847Z"
+      "updatedAt": "2026-06-29T20:22:34.856Z"
     }
   }
 }

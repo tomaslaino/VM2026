@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-29T18:22:28.822Z",
+    "updatedAt": "2026-06-29T20:22:34.826Z",
     "source": "espn",
     "matchCount": 74,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -373,21 +373,12 @@
       "status": "FINISHED"
     },
     "k:76": {
-      "h": 0,
+      "h": 2,
       "a": 1,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:76",
-      "status": "IN_PLAY",
-      "minute": 55,
-      "home": "Brazil",
-      "away": "Japan",
-      "score": "0-1"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1634,7 +1625,7 @@
       "date": "2026-06-29",
       "time": "19:00",
       "utcDate": "2026-06-29T17:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Brazil",
       "away": "Japan",
@@ -1916,9 +1907,12 @@
       "utcDate": "2026-07-05T20:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Round of 32 4 Winner",
+      "home": "Brazil",
       "away": "Round of 32 6 Winner",
-      "homeRef": null,
+      "homeRef": {
+        "group": "C",
+        "idx": 0
+      },
       "awayRef": null
     },
     "k:92": {
