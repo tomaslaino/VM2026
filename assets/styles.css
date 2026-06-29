@@ -294,8 +294,10 @@ body {
 .spoiler-status {
   margin-top: 12px; padding: 9px 11px; border-radius: 10px;
   background: rgba(10, 22, 40, .5); border: 1px dashed rgba(90, 125, 165, .4);
-  font-size: 12px; line-height: 1.45; color: var(--ink-soft);
+  font-size: 12px; line-height: 1.5; color: var(--ink-soft);
 }
+.spoiler-status strong { color: var(--ink); font-weight: 800; }
+.spoiler-status-hide { color: color-mix(in srgb, var(--usa-red) 55%, var(--ink-soft)); font-weight: 700; }
 
 @media (max-width: 560px) {
   .spoiler-btn { padding: 7px 10px; gap: 6px; }
