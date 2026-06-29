@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-29T21:50:57.262Z",
+    "updatedAt": "2026-06-29T22:49:01.995Z",
     "source": "espn"
   },
   "details": {
@@ -33184,13 +33184,13 @@
     "k:74": {
       "espnId": "760489",
       "status": "IN_PLAY",
-      "minute": 58,
+      "minute": 105,
       "utcDate": "2026-06-29T20:30Z",
-      "duration": "REGULAR",
+      "duration": "EXTRA_TIME",
       "winner": null,
       "score": {
         "ft": {
-          "h": 1,
+          "h": 2,
           "a": 1
         },
         "ht": {
@@ -33198,7 +33198,10 @@
           "a": 1
         },
         "rt": null,
-        "et": null,
+        "et": {
+          "h": 2,
+          "a": 1
+        },
         "pen": null
       },
       "goals": [
@@ -33227,7 +33230,14 @@
           }
         }
       ],
-      "bookings": [],
+      "bookings": [
+        {
+          "minute": 65,
+          "team": "a",
+          "player": "Andrés Cubas",
+          "card": "YELLOW"
+        }
+      ],
       "subs": [
         {
           "minute": 45,
@@ -33246,6 +33256,42 @@
           "team": "a",
           "in": "Maurício",
           "out": "Julio Enciso"
+        },
+        {
+          "minute": 63,
+          "team": "h",
+          "in": "Jamal Musiala",
+          "out": "Deniz Undav"
+        },
+        {
+          "minute": 79,
+          "team": "h",
+          "in": "Waldemar Anton",
+          "out": "Aleksandar Pavlovic"
+        },
+        {
+          "minute": 88,
+          "team": "h",
+          "in": "Nick Woltemade",
+          "out": "Leroy Sané"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Gustavo Velázquez",
+          "out": "Miguel Almirón"
+        },
+        {
+          "minute": 99,
+          "team": "a",
+          "in": "Braian Ojeda",
+          "out": "Juan Jose Cáceres"
+        },
+        {
+          "minute": 99,
+          "team": "a",
+          "in": "Antonio Sanabria",
+          "out": "Damián Bobadilla"
         }
       ],
       "penalties": [],
@@ -33320,7 +33366,8 @@
             },
             {
               "name": "Waldemar Anton",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true
             },
             {
               "name": "Nadiem Amiri",
@@ -33336,7 +33383,8 @@
             },
             {
               "name": "Jamal Musiala",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true
             },
             {
               "name": "Malick Thiaw",
@@ -33344,7 +33392,8 @@
             },
             {
               "name": "Nick Woltemade",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Pascal Gross",
@@ -33447,7 +33496,8 @@
             },
             {
               "name": "Antonio Sanabria",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Alexandro Maidana",
@@ -33459,7 +33509,8 @@
             },
             {
               "name": "Gustavo Velázquez",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Omar Alderete",
@@ -33467,7 +33518,8 @@
             },
             {
               "name": "Braian Ojeda",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Fabián Balbuena",
@@ -33497,52 +33549,52 @@
         {
           "key": "possessionPct",
           "h": "78%",
-          "a": "22%"
+          "a": "23%"
         },
         {
           "key": "totalShots",
-          "h": "8",
-          "a": "4"
+          "h": "17",
+          "a": "7"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
+          "h": "3",
           "a": "3"
         },
         {
           "key": "wonCorners",
-          "h": "6",
-          "a": "2"
+          "h": "13",
+          "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "9",
-          "a": "2"
+          "h": "14",
+          "a": "8"
         },
         {
           "key": "offsides",
-          "h": "3",
-          "a": "0"
+          "h": "4",
+          "a": "1"
         },
         {
           "key": "saves",
           "h": "2",
-          "a": "1"
+          "a": "3"
         },
         {
           "key": "totalPasses",
-          "h": "429",
-          "a": "123"
+          "h": "732",
+          "a": "212"
         },
         {
           "key": "passPct",
-          "h": "89%",
-          "a": "60%"
+          "h": "90%",
+          "a": "61%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -33550,7 +33602,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-29T21:50:57.262Z"
+      "updatedAt": "2026-06-29T22:49:01.995Z"
     }
   }
 }
