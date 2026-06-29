@@ -898,14 +898,24 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 .recent-played::before {
   content: "";
   position: absolute; inset: 0 0 auto 0; height: 3px;
-  background: linear-gradient(90deg, var(--st-ft), var(--usa-blue));
+  /* Grön → blå → röd: speglar segmenten kommande (grön) och avslutad (röd). */
+  background: linear-gradient(90deg, var(--livecol), var(--usa-blue), var(--st-ft));
   opacity: .9;
 }
 .rp-head {
   display: flex; align-items: baseline; justify-content: space-between;
   gap: 12px; flex-wrap: wrap; margin-bottom: clamp(14px, 1.8vw, 18px);
 }
+/* Andra rubriken ("Avslutade matcher") när "Kommande matcher" ligger ovanför:
+   tydlig luft och en hårfin avdelare mellan de två segmenten. */
+.rp-head--ft {
+  margin-top: clamp(18px, 2.4vw, 26px);
+  padding-top: clamp(14px, 1.8vw, 18px);
+  border-top: 1px solid rgba(255, 255, 255, .08);
+}
 .rp-hint { font-size: 12px; font-weight: 700; color: var(--ink-soft); }
+/* "Kommande matcher": grön rubrik (samma gröna som live-läget i hjälten). */
+.fh-eyebrow--next { color: #a7e6c2; }
 
 /* Matcherna listas på rad (likt kalendern) i stället för i smala kort, så att
    långa landsnamn ("Nederländerna", "Elfenbenskusten") får plats på en rad.
@@ -958,11 +968,26 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 }
 .rp-row.match-openable:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 
-/* Vänster- och högerzonen får samma flexvikt så att lagblocket (med "vs")
-   alltid hamnar exakt mitt i raden – oavsett hur breda gruppbrickan eller
-   reprisknapparna är. Tidigare låg lagen i en grid-kolumn vars startpunkt
-   flyttades av den olika breda gruppetiketten ("Grupp K" vs "S16 · M73"),
-   vilket gjorde att raderna inte stod symmetriskt under varandra. */
+/* "Kommande matcher": listan läses tidigast först (uppifrån och ned) i stället
+   för den avslutade listans newest-pinned-bottom. Inget eget rull-tak behövs –
+   ett dygns matcher får plats. */
+.rp-list--next { flex-direction: column; max-height: none; }
+/* Grön hover-kant för kommande matcher (i stället för den röda för avslutade). */
+.rp-row--next.match-openable:hover {
+  border-color: color-mix(in srgb, var(--livecol) 40%, rgba(255, 255, 255, .14));
+}
+/* Grön "spine" och grönt datum i datum/tid-blocket för kommande matcher. */
+.rp-row--next .rp-when::before {
+  background: linear-gradient(180deg, var(--livecol), color-mix(in srgb, var(--livecol) 50%, var(--usa-navy)));
+}
+.rp-row--next .rp-date { color: color-mix(in srgb, var(--livecol) 58%, var(--ink)); }
+
+/* Vänster- och högerzonen får samma flexvikt (1 1 0) som lagblocket, så de tre
+   delar raden i exakt lika tredjedelar och lagblocket alltid hamnar mitt i
+   raden – oavsett hur breda gruppbrickan eller reprisknapparna är. Tidigare låg
+   lagen i en grid-kolumn vars startpunkt flyttades av den olika breda
+   gruppetiketten ("Grupp K" vs "S16 · M73"), vilket gjorde att raderna inte
+   stod symmetriskt under varandra. */
 .rp-side {
   display: flex; align-items: center; min-width: 0;
   flex: 1 1 0; gap: clamp(12px, 1.6vw, 18px);
@@ -1009,19 +1034,21 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   border: 1px solid var(--line-strong);
 }
 
-/* Lagen centrerade med "vs" i mitten – flaggorna vända inåt, precis som
-   kalenderns matchcell. Namnen ryms på en rad (radbryts aldrig). */
+/* Lagen i ett 1fr-auto-1fr-rutnät: "vs" i den fasta mittkolumnen, hemma- och
+   bortalag i lika breda sidokolumner (flaggorna vända inåt). Lagblocket får
+   samma flexvikt (1 1 0) som de två sidozonerna, så det blir exakt en tredjedel
+   av raden och lika brett i varje rad. Då hamnar "vs", flaggor och namn på
+   identiska x-positioner rad för rad – symmetriskt – utan att namnen klipps
+   (sidokolumnerna är gott och väl breda nog för hela landsnamn). */
 .rp-teams {
-  display: flex; align-items: center; justify-content: center;
+  display: grid; align-items: center;
+  grid-template-columns: 1fr auto 1fr;
   gap: clamp(8px, 1.4vw, 14px); min-width: 0;
+  flex: 1 1 0;
 }
-/* Varje lag tar exakt bredden av sitt namn (flag + namn) – tidigare tvingade
-   flex:1 båda lagen till exakt halva lagblocket, vilket klippte det längre
-   namnet ("Sydafr…" trots gott om plats). Nu visas hela namn och blocket
-   centreras ändå via de symmetriska sidozonerna. */
-.rp-team { display: inline-flex; align-items: center; gap: 9px; min-width: 0; flex: 0 1 auto; }
-.rp-home { justify-content: flex-end; text-align: right; }
-.rp-away { justify-content: flex-start; text-align: left; }
+.rp-team { display: inline-flex; align-items: center; gap: 9px; min-width: 0; }
+.rp-home { justify-self: end; justify-content: flex-end; text-align: right; }
+.rp-away { justify-self: start; justify-content: flex-start; text-align: left; }
 .rp-flag { line-height: 0; flex: none; }
 .rp-flag .flag {
   width: clamp(26px, 2.8vw, 34px); height: auto; aspect-ratio: 3 / 2;
@@ -1081,9 +1108,11 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   .rp-time { font-size: 14px; }
   .rp-group { grid-area: group; }
   .rp-watch { grid-area: watch; }
-  .rp-teams { grid-area: teams; justify-content: flex-start; }
+  /* På mobil spänner lagen över hela bredden på egen rad: tillbaka till flex,
+     vänsterställt (rutnätet 1fr-auto-1fr behövs bara för symmetrin på bredd). */
+  .rp-teams { grid-area: teams; display: flex; justify-content: flex-start; }
   .rp-team { flex: 0 1 auto; }
-  .rp-home { justify-content: flex-start; text-align: left; }
+  .rp-home { justify-self: start; justify-content: flex-start; text-align: left; }
 }
 
 /* ====================================================================
@@ -4910,28 +4939,100 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 }
 .calc-reset:hover { color: var(--ink); border-color: var(--accent); }
 
-.calc-body {
-  display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
-  gap: 16px 22px; margin-top: 18px; align-items: start;
+.calc-body { margin-top: 18px; display: flex; flex-direction: column; gap: 18px; }
+.calc-lower {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  gap: 16px 22px; align-items: start;
 }
-.calc-banner { grid-column: 1 / -1; }
-.calc-main { grid-column: 1; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
-.calc-side { grid-column: 2; min-width: 0; }
-.calc-journey { grid-column: 1 / -1; margin-top: 4px; }
+.calc-lower .calc-side { min-width: 0; }
 
-/* ---- banner med lagets VM-chans ---- */
-.calc-teamchip {
-  display: inline-flex; align-items: center; gap: 11px; padding: 9px 16px;
-  border-radius: 12px; border: 1px solid color-mix(in srgb, var(--focus) 45%, var(--line-strong));
-  background: linear-gradient(135deg, color-mix(in srgb, var(--usa-blue) 24%, var(--bg-soft)), var(--bg-soft));
+/* ==== Motståndartavlan: en kolumn per slutspelsrunda + Vinn VM-ruta ==== */
+.cb-wrap {
+  display: grid; grid-template-columns: minmax(0, 1fr) clamp(126px, 15%, 184px);
+  border: 1px solid var(--line-strong); border-radius: 16px; overflow: hidden;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card) 92%, transparent), var(--bg-soft));
+  box-shadow: var(--shadow);
 }
-.calc-teamchip .flag { width: 32px; height: 22px; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,.4); }
-.calc-teamname { font-family: var(--display); font-weight: 800; font-size: 22px; color: var(--ink); letter-spacing: .3px; }
-.calc-teamwin { margin-left: 4px; font-size: 12.5px; font-weight: 800; color: var(--gold); white-space: nowrap; }
+.cb-main { padding: 18px 20px 16px; min-width: 0; }
+.cb-title {
+  margin: 0 0 16px; text-align: center; font-family: var(--display); font-weight: 800;
+  font-size: 22px; letter-spacing: .4px; text-transform: uppercase; color: var(--bone);
+}
+.cb-cols { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; align-items: start; }
+.cb-col { min-width: 0; }
+.cb-col.faint { opacity: .72; }
+.cb-colhead { margin: 0 2px 9px; }
+.cb-round {
+  display: block; font-family: var(--display); font-weight: 800; font-size: 13px; letter-spacing: .3px;
+  text-transform: uppercase; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.cb-reach { display: block; font-size: 10.5px; font-weight: 700; color: var(--ink-soft); margin-top: 1px; }
+.cb-cells { display: flex; flex-direction: column; gap: 8px; }
+.cb-cell {
+  position: relative; display: grid; grid-template-columns: 22px minmax(0, 1fr) auto;
+  align-items: center; gap: 7px; padding: 8px 9px 8px 13px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--bg-soft); overflow: hidden;
+}
+.cb-cell.top {
+  border-color: color-mix(in srgb, var(--usa-blue) 50%, var(--line));
+  background: color-mix(in srgb, var(--usa-blue) 13%, var(--card));
+}
+.cb-cell.dim { opacity: .4; }
+.cb-cell.ghost { background: transparent; border-color: transparent; pointer-events: none; }
+.cb-bar {
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px;
+  border-radius: 0 3px 3px 0; background: linear-gradient(180deg, var(--usa-blue), var(--adv));
+}
+.cb-cell.dim .cb-bar { display: none; }
+.cb-flag { display: flex; }
+.cb-flag .flag { width: 22px; height: 15px; border-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,.4); }
+.cb-nm { font-weight: 700; font-size: 12.5px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cb-pct { white-space: nowrap; text-align: right; font-variant-numeric: tabular-nums; }
+.cb-pct b { font-size: 13.5px; font-weight: 900; color: var(--ink); }
+.cb-pct i { font-size: 10px; font-style: normal; color: var(--ink-soft); margin-left: 1px; }
+.cb-more {
+  display: block; width: 100%; margin-top: 12px; padding: 11px;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--bg-soft);
+  color: var(--ink-soft); font: inherit; font-weight: 800; font-size: 12.5px; letter-spacing: .3px;
+  text-transform: uppercase; cursor: pointer;
+}
+.cb-more:hover { color: var(--ink); border-color: var(--focus); }
+
+/* Vinn VM-rutan (gyllene) längst till höger */
+.cb-win {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  padding: 18px 12px; text-align: center; cursor: default;
+  border-left: 1px solid color-mix(in srgb, var(--gold) 42%, var(--line-strong));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--gold) 30%, var(--card)), color-mix(in srgb, var(--gold) 12%, var(--bg-soft)));
+}
+.cb-win-title {
+  font-family: var(--display); font-weight: 900; font-size: 18px; line-height: 1.05;
+  text-transform: uppercase; letter-spacing: .5px; color: var(--gold);
+}
+.cb-win-trophy { font-size: 44px; line-height: 1; margin: 2px 0; filter: drop-shadow(0 4px 8px rgba(0,0,0,.45)); }
+.cb-win-pct {
+  font-family: var(--display); font-weight: 900; font-size: 32px; color: var(--bone);
+  font-variant-numeric: tabular-nums; line-height: 1;
+}
+.cb-win-pct span { font-size: 19px; color: color-mix(in srgb, var(--bone) 75%, transparent); }
+
+/* fotnot + utfällbar förklaring */
+.calc-boardfoot { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+.cb-note { margin: 0; font-size: 12px; color: var(--ink-soft); line-height: 1.5; max-width: 660px; }
+.cb-note b { color: var(--ink); }
+.cb-about {
+  border: 1px solid var(--line-strong); background: var(--bg-soft); color: var(--ink-soft);
+  border-radius: 999px; padding: 7px 15px; font: inherit; font-weight: 700; font-size: 12px; cursor: pointer; white-space: nowrap;
+}
+.cb-about:hover { color: var(--ink); border-color: var(--accent); }
+.cb-about-panel {
+  flex-basis: 100%; margin-top: 2px; padding: 13px 16px; border: 1px solid var(--line);
+  border-radius: 12px; background: var(--bg-soft); font-size: 12.5px; color: var(--ink-soft); line-height: 1.6;
+}
+.cb-about-panel b { color: var(--ink); }
 
 /* ---- gemensamma kort ---- */
 .calc-card { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 13px; padding: 14px 16px 15px; }
-.calc-nextcard { border-color: color-mix(in srgb, var(--focus) 34%, var(--line)); }
 .calc-cardhead { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
 .calc-round { font-family: var(--display); font-weight: 800; font-size: 16px; letter-spacing: .4px; color: var(--ink); text-transform: uppercase; }
 .calc-reach { font-size: 12px; color: var(--ink-soft); font-weight: 600; white-space: nowrap; }
@@ -4940,39 +5041,6 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 .calc-reachbar { height: 6px; border-radius: 4px; background: rgba(255,255,255,.07); overflow: hidden; margin: 9px 0 12px; }
 .calc-reachbar .fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--usa-blue), var(--adv)); transition: width .25s ease; }
 
-/* ---- första rutan: nästa motståndare ---- */
-.calc-vs {
-  display: grid; grid-template-columns: 1fr auto 1fr; align-items: start; gap: 10px;
-  padding: 8px 4px 14px; border-bottom: 1px solid var(--line); margin-bottom: 12px;
-}
-.calc-vs-team { display: flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; min-width: 0; }
-.calc-vs-team .flag { width: 50px; height: 34px; border-radius: 4px; box-shadow: 0 2px 7px rgba(0,0,0,.45); }
-.calc-vs-nm { font-family: var(--display); font-weight: 800; font-size: 18px; color: var(--ink); letter-spacing: .2px; line-height: 1.1; }
-.calc-vs-team.me .calc-vs-nm { color: var(--focus); }
-.calc-vs-sub { font-size: 11px; color: var(--ink-soft); font-weight: 700; }
-.calc-vs-mid { display: flex; flex-direction: column; align-items: center; gap: 8px; padding-top: 8px; }
-.calc-vs-x {
-  font-family: var(--display); font-weight: 900; font-size: 12px; color: var(--ink-soft); letter-spacing: 1.5px;
-  text-transform: uppercase; padding: 4px 11px; border: 1px solid var(--line-strong); border-radius: 999px;
-}
-.calc-vs-win { font-size: 11px; color: var(--ink-soft); font-weight: 700; text-align: center; line-height: 1.3; max-width: 120px; }
-.calc-vs-win b { color: var(--ink); font-weight: 900; }
-
-.calc-opps-title { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-soft); margin: 2px 0 8px; }
-.calc-opps { display: flex; flex-direction: column; gap: 6px; }
-.calc-opp {
-  display: grid; grid-template-columns: 24px 1fr 64px auto auto; align-items: center; gap: 9px;
-  padding: 4px 6px; border-radius: 8px;
-}
-.calc-opp:hover { background: rgba(255,255,255,.04); }
-.calc-opp .flag { width: 22px; height: 15px; border-radius: 2px; }
-.calc-opp-name { font-weight: 700; font-size: 13px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.calc-opp-bar { height: 7px; border-radius: 4px; background: rgba(255,255,255,.07); overflow: hidden; }
-.calc-opp-bar i { display: block; height: 100%; border-radius: 4px; background: var(--usa-blue); }
-.calc-opp-p { font-size: 12.5px; font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums; text-align: right; }
-.calc-opp-win { font-size: 11px; color: var(--ink-soft); font-weight: 600; white-space: nowrap; }
-.calc-opp.tail { grid-template-columns: 1fr auto; color: var(--ink-soft); font-size: 12px; padding-top: 6px; }
-.calc-opp.tail .calc-opp-name { color: var(--ink-soft); font-weight: 600; font-style: italic; }
 .calc-faint { color: var(--ink-soft); font-size: 12.5px; padding: 4px 2px; line-height: 1.5; }
 
 /* ---- bredvid: grupptabell ---- */
@@ -4991,26 +5059,6 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 }
 .calc-poschip b { color: var(--ink); font-weight: 900; font-variant-numeric: tabular-nums; }
 .calc-poschip.out b { color: #ff8898; }
-
-/* ---- under: vägen vidare ---- */
-.calc-journey-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 4px 0 11px; flex-wrap: wrap; }
-.calc-journey-head h4 { margin: 0; font-family: var(--display); font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: .4px; color: var(--bone); }
-.calc-journey-note { font-size: 11.5px; color: var(--ink-soft); }
-.calc-journey-track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-.calc-mini { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 12px; padding: 11px 12px 12px; }
-.calc-mini.final { border-color: color-mix(in srgb, var(--gold) 30%, var(--line)); }
-.calc-mini.final .calc-reachbar .fill { background: linear-gradient(90deg, var(--usa-blue), var(--gold)); }
-.calc-mini-head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; }
-.calc-mini-title { font-family: var(--display); font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: .3px; color: var(--ink); }
-.calc-mini-reach { font-size: 10px; color: var(--ink-soft); font-weight: 600; white-space: nowrap; }
-.calc-mini-reach b { color: var(--ink); font-weight: 900; font-size: 12px; }
-.calc-mini .calc-reachbar { margin: 8px 0 9px; }
-.calc-mini-body { display: flex; flex-direction: column; gap: 5px; }
-.calc-mini-opp { display: grid; grid-template-columns: 18px 1fr auto; align-items: center; gap: 6px; font-size: 12px; }
-.calc-mini-opp .flag { width: 18px; height: 12px; border-radius: 2px; }
-.calc-mini-nm { color: var(--ink); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.calc-mini-p { color: var(--ink-soft); font-weight: 800; font-variant-numeric: tabular-nums; }
-.calc-mini-faint { font-size: 11.5px; color: var(--ink-soft); }
 
 /* ---- interaktiva kontroller ---- */
 .calc-controls { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 13px; padding: 14px 15px 15px; }
@@ -5072,19 +5120,32 @@ button.calc-ctrl-grouptitle:hover { color: var(--ink); }
 .calc-opt.on .cm-p { color: #dfeaf7; opacity: .9; }
 
 @media (max-width: 900px) {
-  .calc-body { grid-template-columns: 1fr; }
-  .calc-banner, .calc-main, .calc-side, .calc-journey { grid-column: 1; }
-  .calc-journey-track { grid-template-columns: repeat(2, 1fr); }
+  .calc-lower { grid-template-columns: 1fr; }
   .calc-pick { align-items: stretch; }
   .calc-quicktabs { justify-content: flex-start; }
 }
+@media (max-width: 760px) {
+  .cb-wrap { grid-template-columns: 1fr; }
+  .cb-main { padding: 16px 14px 14px; }
+  /* Vinn VM blir en liggande remsa under kolumnerna */
+  .cb-win {
+    flex-direction: row; flex-wrap: wrap; gap: 12px; padding: 12px; border-left: none;
+    border-top: 1px solid color-mix(in srgb, var(--gold) 42%, var(--line-strong));
+  }
+  .cb-win-title { font-size: 15px; }
+  .cb-win-trophy { font-size: 30px; margin: 0; }
+  .cb-win-pct { font-size: 26px; }
+  /* kolumnerna scrollar i sidled så de inte kläms ihop */
+  .cb-cols {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(152px, 1fr);
+    overflow-x: auto; gap: 12px; padding-bottom: 6px;
+    scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+  }
+  .cb-col { scroll-snap-align: start; }
+}
 @media (max-width: 560px) {
   .calc-head h3 { font-size: 22px; }
-  .calc-journey-track { grid-template-columns: 1fr; }
-  .calc-opp { grid-template-columns: 22px 1fr auto; }
-  .calc-opp-bar, .calc-opp-win { display: none; }
-  .calc-vs-nm { font-size: 16px; }
-  .cm-nm { font-size: 12px; }
+  .cb-title { font-size: 19px; }
 }
 
 /* Dold sida: motstandare.html (ingen nav, bara simulatorn) */
