@@ -348,7 +348,7 @@
       var res = ctx.resolved[no];
       if (!res) return null;
       info = {
-        key: key, label: WC.roundNames[res.match.round] + " · M" + no, kind: "ko",
+        key: key, label: koRoundLabel(res.match), kind: "ko",
         home: res.home.team || null, away: res.away.team || null, m: res.match,
         channel: tvLookupKo(res.match), venue: WC.venues[res.match.venue] || null,
         homeLabel: res.home.label, awayLabel: res.away.label
@@ -3942,8 +3942,6 @@
     return now >= air && now < air + TV_AIR_WINDOW_MS;
   }
 
-  var ROUND_SHORT = { R32: "S16", R16: "Å16", QF: "Kvarts", SF: "Semi", "3RD": "Brons", FINAL: "Final" };
-
   function countdownParts(targetMs) {
     var diff = Math.max(0, targetMs - Date.now());
     var sec = Math.floor(diff / 1000);
@@ -4017,8 +4015,9 @@
   /** Kort dödsorsak till gravstenen. */
   function graveCause(f) {
     if (f.stage === "ko") {
-      var round = f.lastMatch && f.lastMatch.label ? f.lastMatch.label.split(" · ")[0] : "";
-      return round ? "Slogs ut i " + round.toLowerCase() : "Utslagen i slutspelet";
+      var rk = f.lastMatch && f.lastMatch.m ? f.lastMatch.m.round : null;
+      var round = rk && WC.roundNames[rk] ? WC.roundNames[rk].toLowerCase() : "";
+      return round ? "Slogs ut i " + round + "en" : "Utslagen i slutspelet";
     }
     if (f.pos === 4) return "Sist i grupp " + f.group;
     if (f.pos === 3) return "Trea i grupp " + f.group + " – räckte inte hela vägen";
@@ -4329,7 +4328,7 @@
       m = res.match;
       home = res.home.team;
       away = res.away.team;
-      label = (ROUND_SHORT[m.round] || m.round) + " · M" + it.m.m;
+      label = koRoundLabel(m);
       channel = tvLookupKo(m);
     }
     if (!home || !away) return null;
@@ -5088,8 +5087,6 @@
       '</div>';
   }
 
-  var CAL_ROUND = { R32: "S16", R16: "Å16", QF: "Kvarts", SF: "Semi", "3RD": "Brons", FINAL: "Final" };
-
   function calKoRow(res, isNext, isRecent) {
     var m = res.match;
     var when = whenLabels(m);
@@ -5113,7 +5110,7 @@
     var open = matchOpenAttr("k:" + m.m, !!(res.home.team && res.away.team));
     return '<div class="' + calRowClass(isNext, isRecent, "ko" + (live ? " is-live" : "") + open.cls) + '" data-m="' + m.m + '"' + open.attr + '>' +
       '<span class="cal-time">' + (live ? liveTimeLabel("k:" + m.m, when.time) : when.time) + '</span>' +
-      '<span class="cal-badge ' + m.round + '">' + (CAL_ROUND[m.round] || m.round) + ' · M' + m.m + '</span>' +
+      '<span class="cal-badge ' + m.round + '">' + koRoundLabel(m) + '</span>' +
       '<span class="cal-match">' + hHome + score + hAway + '</span>' +
       calVenueCell(tvLookupKo(m), isNext, calWatchInner("k:" + m.m), "k:" + m.m, m) +
       '</div>';
@@ -5238,7 +5235,7 @@
         kind: "ko", date: res.match.date, edt: res.match.edt, m: res.match,
         home: res.home.team, away: res.away.team, isHome: isHome,
         played: res.bothTeams && isPlayed(r), r: r,
-        label: WC.roundNames[mt.round] + " · M" + mt.m, venue: WC.venues[mt.venue],
+        label: koRoundLabel(mt), venue: WC.venues[mt.venue],
         decided: (isHome ? res.home.decided : res.away.decided)
       });
     });
@@ -5398,7 +5395,7 @@
     var m = res.match, v = WC.venues[m.venue];
 
     // Hovern äger enbart "var spelas matchen" – tid och lag visas redan i rutan.
-    var h = '<div class="tip-head"><b>' + WC.roundNames[m.round] + '</b> · Match ' + m.m + '</div>';
+    var h = '<div class="tip-head"><b>' + koRoundLabel(m) + '</b></div>';
     h += '<div class="tip-row"><span>📍</span>' + esc(v.stadium) + ', ' + esc(v.city) + ' (' + esc(v.country) + ')</div>';
     h += '<div class="tip-row tip-dim"><span>🏟️</span>' + esc(v.real) + '</div>';
 
