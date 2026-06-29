@@ -57,7 +57,10 @@
       var raw = localStorage.getItem(STORE_KEY);
       if (raw) {
         var p = JSON.parse(raw);
-        return { results: p.results || {}, ui: p.ui || {} };
+        var ui = p.ui || {};
+        // Migrering: gamla på/av-switchen "spoilerFree" → nya "spoilerOn".
+        if (ui.spoilerOn === undefined && ui.spoilerFree !== undefined) ui.spoilerOn = !!ui.spoilerFree;
+        return { results: p.results || {}, ui: ui };
       }
     } catch (e) {}
     return { results: {}, ui: {} };
@@ -225,7 +228,17 @@
      avspark passerats. Det innebär att gårdagens/nattens matcher hålls dolda hela
      dagen och kvällen, och avslöjas först kl. 18:00 dygnet därpå. */
   var SPOILER_RESET_UTC_HOUR = 16; // 18:00 svensk sommartid (CEST = UTC+2)
-  function spoilerFreeOn() { return !!ui("spoilerFree", false); }
+  /* Spoilerskyddet har tre lägen (sätts från headerpanelen):
+       off    – spoilerOn=false: inget döljs.
+       auto   – spoilerOn=true, spoilerCutoff=null: rullande dygnsskydd (standard,
+                oförändrat beteende – döljer matcher från det senaste dygnet).
+       custom – spoilerOn=true, spoilerCutoff=<ms>: egen brytpunkt – döljer alla
+                matcher vars avspark ligger EFTER den valda matchen/dagen. */
+  function spoilerFreeOn() { return !!ui("spoilerOn", false); }
+  function spoilerCutoffMs() {
+    var v = ui("spoilerCutoff", null);
+    return typeof v === "number" ? v : null;
+  }
 
   /* Tidpunkt (ms, UTC) då en match med given avspark avslöjas: den andra
      18:00-gränsen (svensk tid) strikt efter avspark. */
@@ -261,13 +274,21 @@
     return null;
   }
 
+  /* Ska en match med given avspark (ms, UTC) döljas just nu? Gemensam grind för
+     både auto- och custom-läget. Framtida matcher döljs aldrig (de har inget
+     resultat att spoila och deras nedräkning/"Nästa match" ska fungera). */
+  function spoilerHidesKo(ko) {
+    if (!spoilerFreeOn()) return false;
+    if (ko == null) return false;
+    if (ko > Date.now()) return false;          // inte avspakad än
+    var cutoff = spoilerCutoffMs();
+    if (cutoff != null) return ko > cutoff;     // custom: dölj allt efter brytpunkten
+    return Date.now() < spoilerUnlockMs(ko);    // auto: senaste dygnet (oförändrat)
+  }
+
   function isSpoilerHidden(key) {
     if (!spoilerFreeOn()) return false;
-    var ko = kickoffMsForKey(key);
-    if (ko == null) return false;
-    var now = Date.now();
-    if (ko > now) return false; // inte avspakad än
-    return now < spoilerUnlockMs(ko);
+    return spoilerHidesKo(kickoffMsForKey(key));
   }
 
   /* Matchdetaljer filtrerade efter spoilerläget – döljer mål/kort/byten för
@@ -5548,6 +5569,7 @@
 
     var nav = t.closest && t.closest("[data-nav]");
     if (nav) {
+      if (spoilerPanelOpen()) closeSpoilerPanel();
       var v = nav.getAttribute("data-nav");
       if (v === "calendar") calScrollPending = true;
       if (v !== "calendar") hideCalGroupPopup();
@@ -5760,6 +5782,11 @@
       var box = document.getElementById("searchResults");
       if (box) { box.hidden = true; }
     }
+    // Spoilerskydd-panelen: stäng vid klick utanför panel/knapp.
+    if (spoilerPanelOpen() && e.target.closest &&
+        !e.target.closest("#spoilerPanel") && !e.target.closest("#spoilerBtn")) {
+      closeSpoilerPanel();
+    }
     if (hoverMatch && ui("view", "groups") === "bracket") {
       var inside = e.target.closest && (e.target.closest("#bracketAside") || e.target.closest("[data-expand-match]"));
       if (!inside) {
@@ -5770,32 +5797,271 @@
     }
   }
 
-  /* ---------- Spoilerfri-knapp i headern ---------- */
-  function syncSpoilerToggle(btn) {
-    btn = btn || document.getElementById("spoilerToggle");
-    if (!btn) return;
-    var on = spoilerFreeOn();
-    btn.classList.toggle("is-on", on);
-    btn.setAttribute("aria-checked", on ? "true" : "false");
-    document.documentElement.classList.toggle("spoiler-free", on);
+  /* ====================================================================
+     SPOILERSKYDD (header) – ersätter gamla på/av-switchen "Dölj resultat".
+     En knapp i headern öppnar en panel där man väljer hur mycket som visas:
+       • Av – allt live & aktuellt.
+       • Senaste dygnet (standard) – rullande dygnsskydd.
+       • Välj datum & match – egen brytpunkt: visa resultat/tabeller/statistik
+         t.o.m. ett valt datum, ända ner till en specifik match.
+     Allt skydd går via isSpoilerHidden → spoilerHidesKo, så panelen behöver bara
+     sätta state (spoilerOn/spoilerCutoff) och rita om vyn.
+  ==================================================================== */
+  function spoilerMode() {
+    if (!spoilerFreeOn()) return "off";
+    return spoilerCutoffMs() != null ? "custom" : "auto";
   }
-  function setupSpoilerToggle() {
-    var btn = document.getElementById("spoilerToggle");
-    if (!btn) return;
-    syncSpoilerToggle(btn);
-    btn.addEventListener("click", function () {
-      setUi("spoilerFree", !spoilerFreeOn());
-      syncSpoilerToggle(btn);
-      // Fair play (kort) och spelar-/lag-/regionstatistik beror på vilka matcher
-      // som är dolda – räkna om och skicka in det filtrerade underlaget igen.
-      recomputeFairPlay();
-      pushVisibleDetailsToStats();
-      lastViewSig = null; // tvinga full omritning trots oförändrad HTML-signatur
-      refresh({ full: true });
-      if (window.VMMatchInfo && typeof window.VMMatchInfo.onSpoilerChange === "function") {
-        try { window.VMMatchInfo.onSpoilerChange(); } catch (e) {}
+
+  /* Alla matcher i kronologisk ordning med avspark (ms) + läsbar etikett. Bas
+     för datum-/match-väljarna och för att räkna hur många matcher som döljs. */
+  function spoilerScheduleList() {
+    var ctx = getCtx();
+    return buildSchedule().map(function (it) {
+      var ko = kickoffUTC(scheduleItemMatch(it, ctx)).getTime();
+      var label, sub;
+      if (it.kind === "ko") {
+        var res = ctx.resolved[it.m.m];
+        var hn = res.home.team ? teamSvFixture(res.home.team) : res.home.label;
+        var an = res.away.team ? teamSvFixture(res.away.team) : res.away.label;
+        label = hn + " – " + an;
+        sub = koRoundLabel(it.m);
+      } else {
+        var th = WC.groups[it.letter][it.fx.h], ta = WC.groups[it.letter][it.fx.a];
+        label = teamSvFixture(th) + " – " + teamSvFixture(ta);
+        sub = "Grupp " + it.letter;
       }
+      return { date: it.date, edt: it.edt, ko: ko, label: label, sub: sub };
     });
+  }
+  function spoilerDayMaxKo(list, date) {
+    var mx = -Infinity;
+    list.forEach(function (r) { if (r.date === date && r.ko > mx) mx = r.ko; });
+    return mx === -Infinity ? null : mx;
+  }
+  function spoilerDefaultDate(list) {
+    // Senaste matchdagen som redan börjat (annars turneringens första dag).
+    var now = Date.now(), date = null;
+    list.forEach(function (r) { if (r.ko <= now) date = r.date; });
+    return date || (list.length ? list[0].date : null);
+  }
+  function spoilerCutoffDate(list, cutoff) {
+    var date = null;
+    list.forEach(function (r) { if (r.ko <= cutoff) date = r.date; });
+    return date;
+  }
+  function spoilerHiddenCount(list) {
+    var n = 0;
+    list.forEach(function (r) { if (spoilerHidesKo(r.ko)) n++; });
+    return n;
+  }
+  function spoilerShortDate(dateStr) {
+    var d = parseDateUTC(dateStr);
+    return d.getUTCDate() + "/" + (d.getUTCMonth() + 1);
+  }
+
+  /* ----- Headerknappens text/klass ----- */
+  function syncSpoilerBtnLabel() {
+    var btn = document.getElementById("spoilerBtn");
+    var stateEl = document.getElementById("spoilerBtnState");
+    if (!btn) return;
+    var mode = spoilerMode();
+    var on = mode !== "off";
+    btn.classList.toggle("is-on", on);
+    btn.classList.toggle("is-custom", mode === "custom");
+    document.documentElement.classList.toggle("spoiler-free", on);
+    if (!stateEl) return;
+    if (mode === "off") { stateEl.textContent = "Av"; return; }
+    if (mode === "auto") { stateEl.textContent = "Senaste dygnet"; return; }
+    var date = spoilerCutoffDate(spoilerScheduleList(), spoilerCutoffMs());
+    stateEl.textContent = date ? "t.o.m. " + spoilerShortDate(date) : "Eget val";
+  }
+
+  /* ----- Gemensam omräkning när skyddet ändras ----- */
+  function applySpoilerChange() {
+    // Fair play (kort) och spelar-/lag-/regionstatistik beror på vilka matcher
+    // som är dolda – räkna om och skicka in det filtrerade underlaget igen.
+    recomputeFairPlay();
+    pushVisibleDetailsToStats();
+    lastViewSig = null; // tvinga full omritning trots oförändrad HTML-signatur
+    refresh({ full: true });
+    if (window.VMMatchInfo && typeof window.VMMatchInfo.onSpoilerChange === "function") {
+      try { window.VMMatchInfo.onSpoilerChange(); } catch (e) {}
+    }
+    syncSpoilerBtnLabel();
+  }
+
+  function setSpoilerMode(mode) {
+    if (mode === "off") {
+      setUi("spoilerOn", false);
+    } else if (mode === "auto") {
+      setUi("spoilerOn", true);
+      setUi("spoilerCutoff", null);
+    } else { // custom
+      setUi("spoilerOn", true);
+      if (spoilerCutoffMs() == null) {
+        var list = spoilerScheduleList();
+        var date = spoilerDefaultDate(list);
+        setUi("spoilerCutoff", date != null ? spoilerDayMaxKo(list, date) : Date.now());
+      }
+    }
+    applySpoilerChange();
+    renderSpoilerPanel(); // lägesbyte → bygg om hela panelen (visa/dölj väljarna)
+    if (spoilerPanelOpen()) positionSpoilerPanel(); // höjden ändras → flytta vid behov
+  }
+
+  /* ----- Panelinnehåll ----- */
+  function spoilerOptionRow(val, active, title, desc) {
+    return '<button type="button" class="spoiler-opt' + (active ? " is-active" : "") +
+      '" data-spoiler-mode="' + val + '" role="radio" aria-checked="' + (active ? "true" : "false") + '">' +
+      '<span class="spoiler-opt-radio" aria-hidden="true"></span>' +
+      '<span class="spoiler-opt-txt"><strong>' + esc(title) + '</strong><small>' + esc(desc) + '</small></span>' +
+      '</button>';
+  }
+  function spoilerDateOptions(list, selDate) {
+    var counts = {}, order = [];
+    list.forEach(function (r) {
+      if (counts[r.date] === undefined) { counts[r.date] = 0; order.push(r.date); }
+      counts[r.date]++;
+    });
+    return order.map(function (date) {
+      var d = parseDateUTC(date), cnt = counts[date];
+      var lbl = WEEKDAYS_LONG[d.getUTCDay()] + " " + d.getUTCDate() + " " + MONTHS_LONG[d.getUTCMonth()];
+      return '<option value="' + date + '"' + (date === selDate ? " selected" : "") + '>' +
+        esc(lbl) + " · " + cnt + (cnt === 1 ? " match" : " matcher") + "</option>";
+    }).join("");
+  }
+  function spoilerMatchOptions(list, date, cutoff) {
+    var dayMax = spoilerDayMaxKo(list, date);
+    var wholeSel = cutoff == null || (dayMax != null && cutoff >= dayMax);
+    var out = '<option value="all"' + (wholeSel ? " selected" : "") + '>Hela dagen (visa alla)</option>';
+    list.forEach(function (r) {
+      if (r.date !== date) return;
+      var t = r.edt || "tid TBC";
+      var sel = !wholeSel && cutoff === r.ko;
+      out += '<option value="' + r.ko + '"' + (sel ? " selected" : "") + '>' +
+        esc(t + " · " + r.label) + "</option>";
+    });
+    return out;
+  }
+  function spoilerStatusText(list) {
+    list = list || spoilerScheduleList();
+    if (!spoilerFreeOn()) return "Allt visas live och aktuellt – inget döljs.";
+    var n = spoilerHiddenCount(list);
+    if (n === 0) return "Inget döljs just nu – allt fram till din brytpunkt är redan visat.";
+    return "Döljer " + n + (n === 1 ? " match" : " matcher") + " efter din brytpunkt.";
+  }
+  function updateSpoilerStatus(list) {
+    var el = document.getElementById("spoilerStatus");
+    if (el) el.textContent = spoilerStatusText(list);
+  }
+  function renderSpoilerPanel() {
+    var panel = document.getElementById("spoilerPanel");
+    if (!panel) return;
+    var mode = spoilerMode();
+    var list = spoilerScheduleList();
+    var cutoff = spoilerCutoffMs();
+    var selDate = (mode === "custom" && cutoff != null) ? spoilerCutoffDate(list, cutoff) : null;
+    if (!selDate) selDate = spoilerDefaultDate(list);
+
+    var html = '<div class="spoiler-panel-head">' +
+        '<h3 id="spoilerPanelTitle">Spoilerskydd</h3>' +
+        '<button type="button" class="spoiler-panel-close" data-spoiler-close title="Stäng" aria-label="Stäng">×</button>' +
+      '</div>' +
+      '<p class="spoiler-panel-intro">Välj hur mycket som ska visas. Allt efter din brytpunkt – resultat, tabeller, ' +
+        'slutspelsträd, statistik, lag och spelare – hålls dolt tills du själv väljer att se det.</p>' +
+      '<div class="spoiler-opts" role="radiogroup" aria-labelledby="spoilerPanelTitle">' +
+        spoilerOptionRow("off", mode === "off", "Allt – live & aktuellt", "Inget döljs.") +
+        spoilerOptionRow("auto", mode === "auto", "Senaste dygnet", "Standard. Döljer automatiskt matcher från det senaste dygnet.") +
+        spoilerOptionRow("custom", mode === "custom", "Välj datum & match", "Visa t.o.m. ett valt datum – ända ner till en viss match.") +
+      '</div>' +
+      '<div class="spoiler-pick"' + (mode === "custom" ? "" : " hidden") + '>' +
+        '<label class="spoiler-field"><span>Datum</span>' +
+          '<select class="spoiler-select" data-spoiler-date>' + spoilerDateOptions(list, selDate) + '</select>' +
+        '</label>' +
+        '<label class="spoiler-field"><span>Match</span>' +
+          '<select class="spoiler-select" data-spoiler-match>' + spoilerMatchOptions(list, selDate, cutoff) + '</select>' +
+        '</label>' +
+      '</div>' +
+      '<div class="spoiler-status" id="spoilerStatus">' + esc(spoilerStatusText(list)) + '</div>';
+    panel.innerHTML = html;
+  }
+
+  /* ----- Öppna/stäng + positionering (dropp-panel under knappen) ----- */
+  function spoilerPanelOpen() {
+    var panel = document.getElementById("spoilerPanel");
+    return !!(panel && panel.classList.contains("open"));
+  }
+  function positionSpoilerPanel() {
+    var panel = document.getElementById("spoilerPanel");
+    var btn = document.getElementById("spoilerBtn");
+    if (!panel || !btn) return;
+    var r = btn.getBoundingClientRect();
+    var margin = 10, gap = 8;
+    var pw = panel.offsetWidth || 320, ph = panel.offsetHeight || 320;
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var left = Math.max(margin, Math.min(r.right - pw, vw - pw - margin));
+    var top = r.bottom + gap;
+    if (top + ph > vh - margin) top = Math.max(margin, vh - ph - margin);
+    panel.style.left = left + "px";
+    panel.style.top = top + "px";
+  }
+  function openSpoilerPanel() {
+    var panel = document.getElementById("spoilerPanel");
+    var btn = document.getElementById("spoilerBtn");
+    if (!panel || !btn) return;
+    renderSpoilerPanel();
+    panel.classList.add("open");
+    btn.setAttribute("aria-expanded", "true");
+    positionSpoilerPanel();
+  }
+  function closeSpoilerPanel() {
+    var panel = document.getElementById("spoilerPanel");
+    var btn = document.getElementById("spoilerBtn");
+    if (panel) panel.classList.remove("open");
+    if (btn) btn.setAttribute("aria-expanded", "false");
+  }
+  function onSpoilerPanelClick(e) {
+    // Klick inuti panelen ska aldrig nå dokumentets "stäng vid utanförklick".
+    // (Viktigt: setSpoilerMode bygger om panelens innehåll, vilket lösgör
+    //  e.target – då skulle onDocClick annars tro att klicket skedde utanför.)
+    e.stopPropagation();
+    if (e.target.closest("[data-spoiler-close]")) { closeSpoilerPanel(); return; }
+    var opt = e.target.closest("[data-spoiler-mode]");
+    if (opt) setSpoilerMode(opt.getAttribute("data-spoiler-mode"));
+  }
+  function onSpoilerPanelChange(e) {
+    var t = e.target, list = spoilerScheduleList();
+    if (t.matches("[data-spoiler-date]")) {
+      var date = t.value;
+      setUi("spoilerCutoff", spoilerDayMaxKo(list, date)); // nytt datum → hela dagen
+      var matchSel = document.querySelector("#spoilerPanel [data-spoiler-match]");
+      if (matchSel) matchSel.innerHTML = spoilerMatchOptions(list, date, spoilerCutoffMs());
+      applySpoilerChange();
+      updateSpoilerStatus(list);
+    } else if (t.matches("[data-spoiler-match]")) {
+      var dateSel = document.querySelector("#spoilerPanel [data-spoiler-date]");
+      var date2 = dateSel ? dateSel.value : spoilerCutoffDate(list, spoilerCutoffMs());
+      if (t.value === "all") setUi("spoilerCutoff", spoilerDayMaxKo(list, date2));
+      else setUi("spoilerCutoff", parseInt(t.value, 10));
+      applySpoilerChange();
+      updateSpoilerStatus(list);
+    }
+  }
+  function setupSpoilerControl() {
+    var btn = document.getElementById("spoilerBtn");
+    if (!btn) return;
+    syncSpoilerBtnLabel();
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation(); // egen toggle – låt inte onDocClick stänga direkt
+      if (spoilerPanelOpen()) closeSpoilerPanel();
+      else openSpoilerPanel();
+    });
+    var panel = document.getElementById("spoilerPanel");
+    if (panel) {
+      panel.addEventListener("click", onSpoilerPanelClick);
+      panel.addEventListener("change", onSpoilerPanelChange);
+    }
+    window.addEventListener("resize", function () { if (spoilerPanelOpen()) positionSpoilerPanel(); });
   }
 
   /* ---------- Init ---------- */
@@ -5809,6 +6075,15 @@
     // dynamiska element
     tipEl = document.createElement("div"); tipEl.id = "tooltip"; tipEl.className = "tooltip";
     document.body.appendChild(tipEl);
+
+    // Spoilerskydd-panel (öppnas från headerknappen)
+    var spoilerPanel = document.createElement("div");
+    spoilerPanel.id = "spoilerPanel";
+    spoilerPanel.className = "spoiler-panel";
+    spoilerPanel.setAttribute("role", "dialog");
+    spoilerPanel.setAttribute("aria-modal", "false");
+    spoilerPanel.setAttribute("aria-labelledby", "spoilerPanelTitle");
+    document.body.appendChild(spoilerPanel);
 
     var backdrop = document.createElement("div"); backdrop.id = "drawerBackdrop"; backdrop.className = "drawer-backdrop";
     document.body.appendChild(backdrop);
@@ -5859,6 +6134,7 @@
 
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") {
+        if (spoilerPanelOpen()) { closeSpoilerPanel(); return; }
         var mc = document.getElementById("matchConfirm");
         if (mc && mc.classList.contains("show")) { closeMatchConfirm(); return; }
         closeTeam(); hideTip();
@@ -5912,8 +6188,9 @@
     });
     window.addEventListener("load", updateHeroSticky);
     window.addEventListener("scroll", syncHeaderCompact, { passive: true });
+    window.addEventListener("scroll", function () { if (spoilerPanelOpen()) closeSpoilerPanel(); }, { passive: true });
 
-    setupSpoilerToggle();
+    setupSpoilerControl();
 
     if (standaloneView()) {
       document.documentElement.classList.add("standalone-page");

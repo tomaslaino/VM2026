@@ -790,8 +790,8 @@
         '<path d="M9.9 5.1A10.4 10.4 0 0 1 12 5c6.4 0 10 7 10 7a18.6 18.6 0 0 1-3 3.9M6.2 6.3A18.5 18.5 0 0 0 2 12s3.6 7 10 7a10.4 10.4 0 0 0 4-.8"/>' +
         '<path d="M9.5 9.6A3 3 0 0 0 14.4 13.8"/><path d="M3 3l18 18"/></svg>' +
       '</span>' +
-      '<div class="mi-spoiler-msg"><strong>Spoilerfritt läge är på</strong>' +
-        '<span>Resultat, mål, statistik och laguppställning för matcher från det senaste dygnet är dolda – så att du kan se sammandrag eller hela matchen utan att veta hur det gick.</span></div>' +
+      '<div class="mi-spoiler-msg"><strong>Spoilerskyddet är på</strong>' +
+        '<span>Resultat, mål, statistik och laguppställning är dolda för den här matchen – så att du kan se sammandrag eller hela matchen utan att veta hur det gick.</span></div>' +
       '<button type="button" class="mi-reveal" data-mi-reveal="' + esc(info.key) + '">Visa resultatet ändå</button>' +
       '</div>';
     var groups = recordedWatchGroups(info);
@@ -902,7 +902,7 @@
           '<span class="mi-team-name">' + esc(aName0) + '</span></span>' +
         '</div>';
       sh += spoilerBodyHtml(info);
-      sh += '<div class="mi-note">Matchdata: ESPN · dold i spoilerfritt läge</div>';
+      sh += '<div class="mi-note">Matchdata: ESPN · dold av spoilerskyddet</div>';
       card.innerHTML = sh;
       card.querySelector(".mi-close").addEventListener("click", close);
       var revealBtn = card.querySelector("[data-mi-reveal]");

@@ -190,106 +190,116 @@ body {
 
 .controls { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 
-/* ---------- "Dölj resultat"-switch (header) ----------
-   Pill i samma stil som nav/sök, med en av/på-switch och fast etikett. Eftersom
-   texten aldrig ändras vid klick förblir bredden konstant – inget layout-skift
-   av sökfältet. Bredvid sitter en info-ikon med tooltip. Hör hemma högst upp på
-   sidan; vid hopfälld header (max-width: 780px) döljs hela .controls. */
-.spoiler-control { display: inline-flex; align-items: center; gap: 3px; flex-shrink: 0; }
+/* ---------- Spoilerskydd (header) ----------
+   Pill i samma stil som nav/sök som öppnar en panel där man väljer hur mycket
+   som visas (allt / senaste dygnet / egen brytpunkt med datum + match). Hör
+   hemma högst upp; vid hopfälld header (max-width: 780px) döljs hela .controls. */
+.spoiler-control { display: inline-flex; align-items: center; flex-shrink: 0; }
 
-.spoiler-toggle {
-  display: inline-flex; align-items: center; gap: 9px;
+.spoiler-btn {
+  display: inline-flex; align-items: center; gap: 8px;
   border: 1px solid rgba(50, 85, 120, .38);
   background: rgba(10, 22, 40, .42);
   -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
   color: #b9c9dd; font: inherit; font-weight: 600; font-size: 13px;
   padding: 7px 12px; border-radius: 11px; cursor: pointer; white-space: nowrap;
-  transition: color .15s, background .2s ease, border-color .2s ease,
-    box-shadow .2s ease, opacity .2s ease, transform .2s ease;
+  transition: color .15s, background .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
-.spoiler-toggle:hover { color: #fff; border-color: rgba(85, 125, 165, .58); }
-.spoiler-toggle:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-
-/* Själva av/på-vredet */
-.spoiler-switch {
-  position: relative; flex: 0 0 auto;
-  width: 52px; height: 20px; border-radius: 999px;
-  background: rgba(120, 145, 175, .3);
-  border: 1px solid rgba(120, 150, 180, .32);
-  transition: background .2s ease, border-color .2s ease;
+.spoiler-btn:hover { color: #fff; border-color: rgba(85, 125, 165, .58); }
+.spoiler-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.spoiler-btn-ic { display: inline-flex; flex: 0 0 auto; }
+.spoiler-btn-ic svg { width: 17px; height: 17px; display: block; }
+.spoiler-btn-txt { flex: 0 0 auto; }
+.spoiler-btn-state {
+  flex: 0 1 auto; max-width: 130px; overflow: hidden; text-overflow: ellipsis;
+  padding: 2px 8px; border-radius: 999px;
+  background: rgba(120, 145, 175, .2);
+  border: 1px solid rgba(120, 150, 180, .26);
+  font-size: 11px; font-weight: 800; letter-spacing: .01em; color: #cdd9ea;
 }
-/* "Av"/"På"-text inuti vredet, på motsatt sida om knoppen */
-.spoiler-state {
-  position: absolute; top: 0; bottom: 0; right: 7px;
-  display: flex; align-items: center;
-  font-size: 10px; font-weight: 800; letter-spacing: .04em;
-  color: rgba(225, 232, 245, .82);
-  transition: color .2s ease;
-}
-.spoiler-state::after { content: "Av"; }
-.spoiler-knob {
-  position: absolute; top: 1.5px; left: 2px;
-  width: 15px; height: 15px; border-radius: 50%;
-  background: #e7eefb;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .45);
-  transition: transform .2s ease, background .2s ease;
-}
-.spoiler-toggle.is-on {
+/* Aktivt skydd: röd accent som matchar resten av temat. */
+.spoiler-btn.is-on {
   color: #fff;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--usa-red) 32%, #122238), #122238);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--usa-red) 30%, #122238), #122238);
   border-color: color-mix(in srgb, var(--usa-red) 55%, rgba(50, 85, 120, .4));
-  box-shadow: inset 0 -2px 0 var(--usa-red), 0 4px 14px rgba(196, 30, 58, .26);
+  box-shadow: inset 0 -2px 0 var(--usa-red), 0 4px 14px rgba(196, 30, 58, .24);
 }
-.spoiler-toggle.is-on .spoiler-switch {
+.spoiler-btn.is-on .spoiler-btn-ic { color: #ffd7dd; }
+.spoiler-btn.is-on .spoiler-btn-state {
   background: var(--usa-red);
   border-color: color-mix(in srgb, var(--usa-red) 70%, #fff);
-}
-.spoiler-toggle.is-on .spoiler-state {
-  right: auto; left: 8px;
   color: #fff;
 }
-.spoiler-toggle.is-on .spoiler-state::after { content: "På"; }
-.spoiler-toggle.is-on .spoiler-knob { transform: translateX(32px); }
 
-/* Info-ikon + tooltip */
-.spoiler-info {
-  position: relative; display: inline-flex; align-items: center; justify-content: center;
-  width: 20px; height: 20px; border-radius: 50%;
-  color: #8295ad; cursor: help; transition: color .15s ease;
-}
-.spoiler-info:hover, .spoiler-info:focus-visible { color: #fff; outline: none; }
-.spoiler-info:focus-visible { box-shadow: 0 0 0 2px var(--focus); }
-.spoiler-info svg { width: 16px; height: 16px; display: block; }
-.spoiler-tip {
-  position: absolute; top: calc(100% + 10px); right: -4px;
-  width: 232px; padding: 10px 12px;
-  background: linear-gradient(180deg, #16263d, #101d30);
-  border: 1px solid rgba(90, 125, 165, .4);
-  border-radius: 11px;
-  color: #cbd8ea; font-weight: 500; font-size: 12.5px; line-height: 1.5; white-space: normal;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, .45);
-  opacity: 0; visibility: hidden; transform: translateY(-5px);
+/* Panelen (fast positionerad under knappen via JS) */
+.spoiler-panel {
+  position: fixed; top: 0; left: 0; z-index: 62;
+  width: min(94vw, 340px); padding: 14px;
+  background: linear-gradient(180deg, #16263d, #101d2f);
+  border: 1px solid rgba(90, 125, 165, .42);
+  border-radius: 14px;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .55);
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
   transition: opacity .16s ease, transform .16s ease, visibility .16s;
-  z-index: 80; pointer-events: none;
+  max-height: calc(100vh - 20px); overflow-y: auto;
 }
-.spoiler-tip::before {
-  content: ""; position: absolute; bottom: 100%; right: 10px;
-  border: 6px solid transparent; border-bottom-color: rgba(90, 125, 165, .4);
+.spoiler-panel.open { opacity: 1; visibility: visible; transform: translateY(0); }
+.spoiler-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.spoiler-panel-head h3 { margin: 0; font-size: 15px; font-weight: 800; color: var(--ink); letter-spacing: .01em; }
+.spoiler-panel-close {
+  border: none; background: transparent; color: #8a9bb4; cursor: pointer;
+  font-size: 22px; line-height: 1; width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; transition: .15s;
 }
-.spoiler-tip::after {
-  content: ""; position: absolute; bottom: 100%; right: 11px;
-  border: 5px solid transparent; border-bottom-color: #16263d;
+.spoiler-panel-close:hover { color: #fff; background: rgba(120, 150, 180, .16); }
+.spoiler-panel-intro { margin: 7px 0 12px; font-size: 12px; line-height: 1.5; color: var(--ink-soft); }
+
+.spoiler-opts { display: flex; flex-direction: column; gap: 7px; }
+.spoiler-opt {
+  display: flex; align-items: flex-start; gap: 10px; width: 100%; text-align: left;
+  border: 1px solid rgba(70, 105, 145, .34); background: rgba(10, 22, 40, .4);
+  color: var(--ink); font: inherit; padding: 9px 11px; border-radius: 11px; cursor: pointer;
+  transition: border-color .15s ease, background .15s ease;
 }
-.spoiler-info:hover .spoiler-tip,
-.spoiler-info:focus-visible .spoiler-tip,
-.spoiler-info:focus-within .spoiler-tip {
-  opacity: 1; visibility: visible; transform: translateY(0);
+.spoiler-opt:hover { border-color: rgba(95, 135, 175, .6); background: rgba(16, 30, 50, .55); }
+.spoiler-opt:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+.spoiler-opt-radio {
+  flex: 0 0 auto; width: 16px; height: 16px; margin-top: 1px; border-radius: 50%;
+  border: 2px solid rgba(130, 155, 185, .55); transition: border-color .15s ease;
+}
+.spoiler-opt-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.spoiler-opt-txt strong { font-size: 13px; font-weight: 700; }
+.spoiler-opt-txt small { font-size: 11.5px; color: var(--ink-soft); line-height: 1.4; }
+.spoiler-opt.is-active {
+  border-color: color-mix(in srgb, var(--usa-red) 60%, rgba(70, 105, 145, .34));
+  background: color-mix(in srgb, var(--usa-red) 12%, rgba(10, 22, 40, .4));
+}
+.spoiler-opt.is-active .spoiler-opt-radio { border-color: var(--usa-red); box-shadow: inset 0 0 0 3px var(--usa-red); }
+
+.spoiler-pick { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+.spoiler-pick[hidden] { display: none; }
+.spoiler-field { display: flex; flex-direction: column; gap: 4px; }
+.spoiler-field > span { font-size: 11px; font-weight: 700; color: var(--ink-soft); letter-spacing: .03em; text-transform: uppercase; }
+.spoiler-select {
+  width: 100%; appearance: none; -webkit-appearance: none;
+  border: 1px solid rgba(90, 125, 165, .42); border-radius: 10px;
+  background: #0e1a2c; color: var(--ink); font: inherit; font-size: 13px; font-weight: 600;
+  padding: 9px 32px 9px 11px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238aa0bd' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 9px center; background-size: 15px;
+}
+.spoiler-select:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+.spoiler-select option { background: #0e1a2c; color: var(--ink); }
+
+.spoiler-status {
+  margin-top: 12px; padding: 9px 11px; border-radius: 10px;
+  background: rgba(10, 22, 40, .5); border: 1px dashed rgba(90, 125, 165, .4);
+  font-size: 12px; line-height: 1.45; color: var(--ink-soft);
 }
 
-/* Knappen följer med vid scroll på breda fönster. Den döljs bara i det smala,
-   hopfällda läget – då döljs hela .controls (se max-width: 780px). */
 @media (max-width: 560px) {
-  .spoiler-toggle { padding: 7px 10px; gap: 7px; }
+  .spoiler-btn { padding: 7px 10px; gap: 6px; }
+  .spoiler-btn-txt { display: none; } /* smal skärm: bara ikon + lägeschip */
 }
 .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--livecol); box-shadow: 0 0 0 0 rgba(45,184,122,.5); animation: pulse 2s infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(45,184,122,.5);} 70% { box-shadow: 0 0 0 6px rgba(45,184,122,0);} 100% { box-shadow: 0 0 0 0 rgba(45,184,122,0);} }

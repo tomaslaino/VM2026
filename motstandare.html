@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=153">
+  <link rel="stylesheet" href="assets/styles.css?v=164">
 </head>
 <body>
   <div class="site-bg" aria-hidden="true"></div>
@@ -30,9 +30,12 @@
 
         <div class="controls standalone-controls">
           <div class="spoiler-control">
-            <button id="spoilerToggle" class="spoiler-toggle" type="button" role="switch" aria-checked="false">
-              <span class="spoiler-txt">Dölj resultat</span>
-              <span class="spoiler-switch" aria-hidden="true"><span class="spoiler-state"></span><span class="spoiler-knob"></span></span>
+            <button id="spoilerBtn" class="spoiler-btn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Spoilerskydd – välj hur mycket som visas">
+              <span class="spoiler-btn-ic" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3l7 3v5c0 4.5-3 8.4-7 9.6C8 19.4 5 15.5 5 11V6z"/><path d="M9.2 12.1l1.9 1.9 3.8-4"/></svg>
+              </span>
+              <span class="spoiler-btn-txt">Spoilerskydd</span>
+              <span class="spoiler-btn-state" id="spoilerBtnState">Av</span>
             </button>
           </div>
           <span id="syncBadge" class="sync-badge pending" title="Resultat hämtas automatiskt från ESPN">Hämtar…</span>
@@ -61,7 +64,7 @@
   <script src="assets/r32engine.js?v=1"></script>
   <script src="assets/bracketengine.js?v=3"></script>
   <script src="assets/data.js?v=4"></script>
-  <script src="assets/app.js?v=100"></script>
+  <script src="assets/app.js?v=107"></script>
   <script src="assets/syncSchedule.js"></script>
   <script src="assets/sync.js?v=3"></script>
   <script src="assets/live.js?v=8"></script>
