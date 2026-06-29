@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-29T16:08:31.855Z",
+    "updatedAt": "2026-06-29T18:22:28.848Z",
     "source": "espn"
   },
   "details": {
@@ -32720,6 +32720,392 @@
         }
       ],
       "updatedAt": "2026-06-28T21:16:49.277Z"
+    },
+    "k:76": {
+      "espnId": "760487",
+      "status": "IN_PLAY",
+      "minute": 60,
+      "utcDate": "2026-06-29T17:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 1
+        },
+        "ht": {
+          "h": 0,
+          "a": 1
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 29,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Kaishu Sano",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        },
+        {
+          "minute": 56,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Casemiro",
+          "assist": "Gabriel Magalhães",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 12,
+          "team": "a",
+          "player": "Kaishu Sano",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 14,
+          "team": "h",
+          "player": "Casemiro",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "player": "Daichi Kamada",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 48,
+          "team": "h",
+          "player": "Danilo",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Endrick",
+          "out": "Lucas Paquetá"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Alisson Becker",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Danilo",
+              "jersey": "13",
+              "pos": "RB"
+            },
+            {
+              "name": "Douglas Santos",
+              "jersey": "16",
+              "pos": "LB"
+            },
+            {
+              "name": "Casemiro",
+              "jersey": "5",
+              "pos": "CM"
+            },
+            {
+              "name": "Marquinhos",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Gabriel Magalhães",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Bruno Guimarães",
+              "jersey": "8",
+              "pos": "RM"
+            },
+            {
+              "name": "Lucas Paquetá",
+              "jersey": "20",
+              "pos": "LM"
+            },
+            {
+              "name": "Matheus Cunha",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Rayan",
+              "jersey": "26",
+              "pos": "RF"
+            },
+            {
+              "name": "Vinícius Júnior",
+              "jersey": "7",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Neymar",
+              "jersey": "10"
+            },
+            {
+              "name": "Gabriel Martinelli",
+              "jersey": "22"
+            },
+            {
+              "name": "Léo Pereira",
+              "jersey": "15"
+            },
+            {
+              "name": "Igor Thiago",
+              "jersey": "25"
+            },
+            {
+              "name": "Danilo Santos",
+              "jersey": "18"
+            },
+            {
+              "name": "Éderson",
+              "jersey": "2"
+            },
+            {
+              "name": "Fabinho",
+              "jersey": "17"
+            },
+            {
+              "name": "Endrick",
+              "jersey": "19",
+              "in": true
+            },
+            {
+              "name": "Roger Ibañez",
+              "jersey": "24"
+            },
+            {
+              "name": "Bremer",
+              "jersey": "14"
+            },
+            {
+              "name": "Luiz Henrique",
+              "jersey": "21"
+            },
+            {
+              "name": "Alex Sandro",
+              "jersey": "6"
+            },
+            {
+              "name": "Ederson",
+              "jersey": "23"
+            },
+            {
+              "name": "Weverton",
+              "jersey": "12"
+            }
+          ]
+        },
+        "a": {
+          "formation": "3-4-2-1",
+          "starters": [
+            {
+              "name": "Zion Suzuki",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Ritsu Doan",
+              "jersey": "10",
+              "pos": "RM"
+            },
+            {
+              "name": "Keito Nakamura",
+              "jersey": "13",
+              "pos": "LM"
+            },
+            {
+              "name": "Hiroki Ito",
+              "jersey": "21",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Shogo Taniguchi",
+              "jersey": "3",
+              "pos": "CD"
+            },
+            {
+              "name": "Takehiro Tomiyasu",
+              "jersey": "22",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Kaishu Sano",
+              "jersey": "24",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Daichi Kamada",
+              "jersey": "15",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Ayase Ueda",
+              "jersey": "18",
+              "pos": "F"
+            },
+            {
+              "name": "Junya Ito",
+              "jersey": "14",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Daizen Maeda",
+              "jersey": "11",
+              "pos": "CF-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Keisuke Osako",
+              "jersey": "12"
+            },
+            {
+              "name": "Kou Itakura",
+              "jersey": "4"
+            },
+            {
+              "name": "Koki Ogawa",
+              "jersey": "19"
+            },
+            {
+              "name": "Yuto Nagatomo",
+              "jersey": "5"
+            },
+            {
+              "name": "Yuito Suzuki",
+              "jersey": "17"
+            },
+            {
+              "name": "Tsuyoshi Watanabe",
+              "jersey": "16"
+            },
+            {
+              "name": "Kento Shiogai",
+              "jersey": "26"
+            },
+            {
+              "name": "Tomoki Hayakawa",
+              "jersey": "23"
+            },
+            {
+              "name": "Shuto Machino",
+              "jersey": "6"
+            },
+            {
+              "name": "Ayumu Seko",
+              "jersey": "20"
+            },
+            {
+              "name": "Yukinari Sugawara",
+              "jersey": "2"
+            },
+            {
+              "name": "Junnosuke Suzuki",
+              "jersey": "25"
+            },
+            {
+              "name": "Keisuke Goto",
+              "jersey": "9"
+            },
+            {
+              "name": "Takefusa Kubo",
+              "jersey": "8"
+            },
+            {
+              "name": "Ao Tanaka",
+              "jersey": "7"
+            }
+          ]
+        }
+      },
+      "referee": "Maurizio Mariani",
+      "venue": "NRG Stadium, Houston, Texas",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "66%",
+          "a": "34%"
+        },
+        {
+          "key": "totalShots",
+          "h": "14",
+          "a": "4"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "6",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "2",
+          "a": "2"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "3",
+          "a": "7"
+        },
+        {
+          "key": "offsides",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "4"
+        },
+        {
+          "key": "totalPasses",
+          "h": "434",
+          "a": "226"
+        },
+        {
+          "key": "passPct",
+          "h": "91%",
+          "a": "85%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "2",
+          "a": "2"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-29T18:22:28.847Z"
     }
   }
 }
