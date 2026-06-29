@@ -42,6 +42,10 @@
   "use strict";
 
   var DATA_URL = (window.VM_CONFIG && window.VM_CONFIG.players) || "data/wc2026_players.json";
+  var STATUS_URL = (window.VM_CONFIG && window.VM_CONFIG.playerStatus) || "data/wc2026_player_status.json";
+
+  var SV_MONTHS_SHORT = ["jan", "feb", "mar", "apr", "maj", "jun",
+    "jul", "aug", "sep", "okt", "nov", "dec"];
 
   // Pluraletiketter för rubriker i truppvyn (singularvarianten finns i position_sv).
   var POS_LABEL = { GK: "Målvakter", DF: "Försvarare", MF: "Mittfältare", FW: "Anfallare" };
@@ -69,6 +73,9 @@
   var byPlayerId = {};             // player.id -> { player, team }
   var loadPromise = null;          // singel-laddning (cachas)
 
+  var statusMap = {};              // player.id -> rå statuspost (skade-/avstängningsstatus)
+  var statusUpdated = null;        // när statusdatan senast uppdaterades (ISO)
+
   function index(payload) {
     data = payload;
     byCode = {};
@@ -81,18 +88,30 @@
     });
   }
 
+  /* Laddar spelarstatus (skador/avstängningar). Valfri datakälla – får aldrig
+     stjälpa truppladdningen, så fel sväljs och ger en tom statuskarta. */
+  function loadStatus() {
+    return fetch(STATUS_URL, { headers: { Accept: "application/json" } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (payload) {
+        statusMap = (payload && payload.statuses) || {};
+        statusUpdated = (payload && payload.updated) || null;
+      })
+      .catch(function () { statusMap = {}; statusUpdated = null; });
+  }
+
   /** Laddar datafilen en gång och cachar resultatet. Returnerar ett Promise. */
   function load() {
     if (loadPromise) return loadPromise;
-    loadPromise = fetch(DATA_URL, { headers: { Accept: "application/json" } })
+    var playersP = fetch(DATA_URL, { headers: { Accept: "application/json" } })
       .then(function (r) {
         if (!r.ok) throw new Error("HTTP " + r.status);
         return r.json();
       })
-      .then(function (payload) {
-        index(payload);
-        return data;
-      })
+      .then(function (payload) { index(payload); });
+    // Truppdatan är obligatorisk; statusdatan är valfri och blockerar inte.
+    loadPromise = Promise.all([playersP, loadStatus()])
+      .then(function () { return data; })
       .catch(function (err) {
         loadPromise = null; // tillåt nytt försök senare
         throw err;
@@ -159,6 +178,81 @@
     return data ? (data.fetched || null) : null;
   }
 
+  /* ---------- Spelarstatus (skador / avstängningar / osäkra) ---------- */
+
+  // "2026-06-28" -> "28 jun" (kort svensk form för pill/banner).
+  function fmtShortDate(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso || ""));
+    if (!m) return null;
+    return parseInt(m[3], 10) + " " + SV_MONTHS_SHORT[parseInt(m[2], 10) - 1];
+  }
+
+  // Engelska API-orsaker -> svensk text (de vanligaste; okända visas i original).
+  var REASON_SV = {
+    "injury": "Skada", "knock": "Känning", "suspended": "Avstängd",
+    "red card": "Rött kort", "yellow cards": "Gula kort", "illness": "Sjukdom",
+    "ill": "Sjuk", "muscle injury": "Muskelskada", "hamstring": "Hamstringskada",
+    "knee injury": "Knäskada", "ankle injury": "Fotledsskada",
+    "calf injury": "Vadskada", "thigh injury": "Lårskada",
+    "groin injury": "Ljumskskada", "back injury": "Ryggskada",
+    "fitness": "Träningsbrist", "rest": "Vila", "national selection": "Ej uttagen"
+  };
+  function reasonSv(reason) {
+    if (!reason) return null;
+    var key = String(reason).trim().toLowerCase();
+    return REASON_SV[key] || reason;
+  }
+
+  // Kort svensk etikett (pill-text) utifrån typ + tillgänglighet.
+  function statusLabel(kind, avail) {
+    if (kind === "suspension") return avail === "out" ? "Avstängd" : "Avstängningshot";
+    if (kind === "illness") return avail === "out" ? "Sjuk" : "Sjukdomsoro";
+    if (kind === "injury") return avail === "out" ? "Skadad" : "Skadeoro";
+    return avail === "out" ? "Missar matchen" : "Osäker";
+  }
+
+  // CSS-variant: avstängning egen färg, annars styr tillgängligheten.
+  function statusCls(kind, avail) {
+    if (kind === "suspension") return "susp";
+    return avail === "out" ? "out" : "doubtful";
+  }
+
+  /**
+   * Presentationsklart statusobjekt för en spelare, eller null om ingen status.
+   * @returns {{cls:string,label:string,text:string,availability:string,kind:string,updated:?string}|null}
+   */
+  function describeStatus(s) {
+    if (!s || typeof s !== "object") return null;
+    var avail = s.availability === "doubtful" ? "doubtful" : "out";
+    var kind = ({ injury: 1, suspension: 1, illness: 1, other: 1 })[s.kind] ? s.kind : "other";
+    var label = s.label || statusLabel(kind, avail);
+    var detail = s.detail || reasonSv(s.reason);
+    var upd = fmtShortDate(s.updated);
+    var text = label;
+    if (detail && detail.toLowerCase() !== label.toLowerCase()) text += " – " + detail;
+    if (upd) text += " · uppdaterad " + upd;
+    return {
+      cls: statusCls(kind, avail), label: label, text: text,
+      availability: avail, kind: kind, updated: s.updated || null
+    };
+  }
+
+  /** Presentationsklar status för ett spelar-id, eller null. */
+  function getPlayerStatus(id) {
+    if (id == null) return null;
+    return describeStatus(statusMap[id]);
+  }
+
+  /** Antal spelare med registrerad status (skada/avstängning/osäker). */
+  function statusCount() {
+    return Object.keys(statusMap).length;
+  }
+
+  /** ISO-datum då statusdatan senast uppdaterades, eller null. */
+  function getStatusUpdated() {
+    return statusUpdated;
+  }
+
   /**
    * Fritextsök bland spelare och förbundskaptener.
    * @returns {{players: {player: Player, team: Team}[], coaches: {name: string, team: Team}[]}}
@@ -205,6 +299,9 @@
     getTeamOfPlayer: getTeamOfPlayer,
     getPlayersByTeam: getPlayersByTeam,
     getFetchedDate: getFetchedDate,
+    getPlayerStatus: getPlayerStatus,
+    getStatusUpdated: getStatusUpdated,
+    statusCount: statusCount,
     search: search,
     isoToCode: function (iso) { return ISO_TO_CODE[String(iso || "").toLowerCase()] || null; },
   };

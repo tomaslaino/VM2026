@@ -90,12 +90,26 @@
     return "–";
   }
 
+  /** Presentationsklar status för ett spelar-id (skada/avstängning/osäker), eller null. */
+  function statusOf(id) {
+    return (window.VMPlayers && VMPlayers.getPlayerStatus) ? VMPlayers.getPlayerStatus(id) : null;
+  }
+
+  /** Liten statuspill (prick + etikett) för trupplistan. */
+  function statusPill(st) {
+    if (!st) return "";
+    return '<span class="pstat pstat--' + st.cls + '" title="' + esc(st.text) + '">' +
+      '<span class="pstat-dot"></span>' + esc(st.label) + '</span>';
+  }
+
   function squadRow(p) {
     var meta = squadMeta(p);
     var metaTitle = p.club && p.age == null ? ' title="' + esc(p.club) + '"' : "";
-    return '<button class="player-row" data-pid="' + esc(p.id) + '">' +
+    var st = statusOf(p.id);
+    return '<button class="player-row' + (st ? " has-pstat" : "") + '" data-pid="' + esc(p.id) + '">' +
       '<span class="pr-name">' + esc(p.name) +
         (p.captain ? '<span class="pr-cap" title="Lagkapten">C</span>' : "") +
+        statusPill(st) +
       '</span>' +
       '<span class="pr-meta"' + metaTitle + '>' + meta + '</span>' +
       '</button>';
@@ -243,6 +257,7 @@
 
     var wc = wcStatsFor(player.id);
     var hasWc = !!(wc && wc.played);
+    var st = statusOf(player.id);
 
     var avatar = '<div class="pm-photo placeholder">' +
       esc((player.name || "?").charAt(0)) + '</div>';
@@ -257,6 +272,11 @@
           '<span class="pm-sub">' + esc(team.sv || team.name) + ' · ' +
             esc(sub.filter(Boolean).join(" · ")) + '</span>' +
         '</div></div>' +
+      (st ? '<div class="pm-status pm-status--' + st.cls + '">' +
+          '<span class="pm-status-dot"></span>' +
+          '<span class="pm-status-txt"><strong>' + esc(st.label) + '</strong>' +
+          (st.text !== st.label ? '<span class="pm-status-sub">' + esc(st.text) + '</span>' : "") +
+          '</span></div>' : "") +
       '<div class="pm-tabs" role="tablist">' +
         '<button type="button" class="pm-tab active" data-pm-tab="profil">Profil</button>' +
         '<button type="button" class="pm-tab" data-pm-tab="vm">VM 2026' +
