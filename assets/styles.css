@@ -1182,56 +1182,53 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 .ts-item .cal-tv { flex: none; }
 
 /* ---- Gravsten-memorial (laget har åkt ur VM) ----
-   Värdig, dämpad sten i mörk granit med guldtext – ersätter lagets matchkort. */
+   Minimalistiskt: en fritt stående sten (transparent PNG) bredvid en stillsam,
+   dämpad epitaf. Inga gradienter eller ramar konkurrerar med stenen. */
 .ts-item.ts-grave {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   text-align: left;
-  gap: 15px;
-  padding: 12px 16px 12px 13px;
+  gap: 18px;
+  padding: 14px 18px;
   flex: 1 1 290px;
-  border-color: rgba(201, 168, 90, .26);
-  background:
-    radial-gradient(120% 140% at 12% 0%, rgba(var(--ts-accent), .10), transparent 60%),
-    linear-gradient(180deg, rgba(10, 14, 24, .55), rgba(6, 9, 16, .68));
+  border-color: rgba(255, 255, 255, .07);
+  background: rgba(255, 255, 255, .02);
 }
 .ts-item.ts-grave::before { display: none; }   /* ingen färgstapel – stenen talar för sig själv */
 .ts-item.ts-grave:hover {
-  border-color: rgba(201, 168, 90, .5);
-  background:
-    radial-gradient(120% 140% at 12% 0%, rgba(var(--ts-accent), .14), transparent 60%),
-    linear-gradient(180deg, rgba(14, 19, 31, .6), rgba(8, 11, 19, .72));
+  border-color: rgba(255, 255, 255, .12);
+  background: rgba(255, 255, 255, .04);
 }
 .grave-stone {
-  flex: none; width: auto; height: 96px; display: block;
-  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, .6));
+  flex: none; width: auto; height: 104px; display: block;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .45));
 }
-.grave-epitaph { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.grave-epitaph { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .grave-rip {
   display: inline-flex; align-items: center; gap: 7px;
-  font-size: 10.5px; font-weight: 800; letter-spacing: 2.6px; text-transform: uppercase;
-  color: #d3b367;
+  font-size: 10px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase;
+  color: rgba(201, 168, 90, .85);
 }
-.grave-rip::before, .grave-rip::after {
-  content: "\271D"; font-size: 11px; color: rgba(211, 179, 103, .8); letter-spacing: 0;
+.grave-rip::before {
+  content: "\271D"; font-size: 11px; color: rgba(201, 168, 90, .7); letter-spacing: 0;
 }
 .grave-team {
   font-family: var(--display), system-ui, sans-serif; font-weight: 800;
-  font-size: 23px; line-height: 1; letter-spacing: .01em;
-  color: var(--bone); margin-top: 1px;
+  font-size: 22px; line-height: 1.05; letter-spacing: .01em;
+  color: var(--bone); margin-top: 2px;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .grave-cause {
-  font-size: 11px; font-weight: 600; color: #93a6bd;
+  font-size: 11px; font-weight: 500; color: var(--ink-soft);
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .grave-range {
-  font-size: 12.5px; font-weight: 700; color: #d3dcea; margin-top: 3px;
+  font-size: 12px; font-weight: 600; color: #c4cedd; margin-top: 4px;
   font-variant-numeric: tabular-nums; letter-spacing: .2px;
 }
-.grave-days { font-size: 11.5px; color: #8ea2bb; }
-.grave-days strong { color: #d3b367; font-weight: 800; }
+.grave-days { font-size: 11px; color: var(--ink-soft); }
+.grave-days strong { color: rgba(201, 168, 90, .9); font-weight: 700; }
 
 @media (max-width: 760px) {
   .fh-main { gap: 8px; }
