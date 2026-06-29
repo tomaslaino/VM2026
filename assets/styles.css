@@ -1002,7 +1002,12 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   display: flex; align-items: center; min-width: 0;
   flex: 1 1 0; gap: clamp(12px, 1.6vw, 18px);
 }
-.rp-side-left { justify-content: flex-start; }
+/* Vänsterzonen får aldrig krympas under sitt innehåll (datum/tid + rundbricka):
+   en lång KO-etikett ("1/16-final 1", "Åttondelsfinal 1") skulle annars spilla
+   ut över sin tredjedel och krocka med lagnamnet bredvid. Zonen växer i stället
+   förbi tredjedelen vid behov; lagblocket (min-width:0) ger plats genom att
+   ellipsa namnet i nödfall i stället för att överlappas. */
+.rp-side-left { justify-content: flex-start; min-width: auto; }
 .rp-side-right { justify-content: flex-end; }
 
 /* Datum/tid-block längst till vänster – samma navy-ruta med röd "spine" som
@@ -2174,7 +2179,7 @@ html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
   border-color: rgba(224, 178, 58, .24);
 }
 
-/* Kolumnrubrikerna ("Sextondelsfinal", "Åttondelsfinal" … samt "Final") är
+/* Kolumnrubrikerna ("1/16-final", "Åttondelsfinal" … samt "Final") är
    borttagna så matcherna går hela vägen upp. Själva bakgrundspanelen per
    omgång (.round-cell) behålls som subtil kolumnindelning. Bronsmatchens och
    VM-finalens egna etiketter ligger utanför .round-cell och påverkas inte. */
@@ -2330,7 +2335,7 @@ html.view-bracket .bracket-bronze-block .round-title.bronze-title {
   border: none;
   border-radius: 0;
   padding: 0;
-  /* Upp till två rader (längre etiketter som "Vinnare sextondelsfinal 3" får
+  /* Upp till två rader (längre etiketter som "Vinnare åttondelsfinal 3" får
      plats utan att kapas). Höjden reserveras för två rader i .side nedan så att
      rutorna behåller exakt samma storlek när man växlar mellan Platser och
      Oddsfavoriter – annars hoppar hela trädet. */
@@ -2357,7 +2362,7 @@ html.view-bracket .bracket .match .m-meta { display: none; }
 html.view-bracket .bracket .side {
   /* Reservera höjd för två rader så att rutorna är exakt lika höga oavsett om de
      visar ett kort lagnamn (en rad) eller en lång platsetikett ("Vinnare
-     sextondelsfinal 3", två rader) – trädet hoppar då inte när man växlar
+     åttondelsfinal 3", två rader) – trädet hoppar då inte när man växlar
      Platser/Oddsfavoriter och anslutningslinjerna möter alltid mitten av rutan. */
   min-height: 30px;
   padding: 1px 4px;
@@ -2365,7 +2370,7 @@ html.view-bracket .bracket .side {
 }
 html.view-bracket .bracket .side + .side { margin-top: 0; }
 html.view-bracket .bracket .match.bronze .side { min-height: 30px; }
-/* Platshållaren ("Vinnare sextondelsfinal 3") bryts till två rader och fyller
+/* Platshållaren ("Vinnare åttondelsfinal 3") bryts till två rader och fyller
    rutbredden. Lite mindre stil än lagnamnen så även de längsta rundorden får
    plats på en bruten rad utan att kapas. */
 html.view-bracket .bracket .side .s-name.placeholder.seed-chip {

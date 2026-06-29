@@ -328,7 +328,7 @@ WC.knockout = [
 ];
 
 WC.roundNames = {
-  R32:   "Sextondelsfinal",
+  R32:   "1/16-final",
   R16:   "Åttondelsfinal",
   QF:    "Kvartsfinal",
   SF:    "Semifinal",

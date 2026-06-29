@@ -1368,7 +1368,7 @@
 
   var BR_HALF = {
     left: [
-      { title: "Sextondelsfinal", nums: BR.leftR32, round: 0 },
+      { title: "1/16-final", nums: BR.leftR32, round: 0 },
       { title: "Åttondelsfinal",  nums: BR.leftR16, round: 1 },
       { title: "Kvartsfinal",     nums: BR.leftQF,  round: 2 },
       { title: "Semifinal",       nums: BR.leftSF,  round: 3 }
@@ -1377,11 +1377,11 @@
       { title: "Semifinal",       nums: BR.rightSF,  round: 3 },
       { title: "Kvartsfinal",     nums: BR.rightQF,  round: 2 },
       { title: "Åttondelsfinal",  nums: BR.rightR16, round: 1 },
-      { title: "Sextondelsfinal", nums: BR.rightR32, round: 0 }
+      { title: "1/16-final", nums: BR.rightR32, round: 0 }
     ]
   };
 
-  /* Kronologisk etikett per match, t.ex. "Sextondelsfinal 3" – matcherna i en
+  /* Kronologisk etikett per match, t.ex. "1/16-final 3" – matcherna i en
      runda numreras 1..N i spelordning (datum + avsparkstid), inte efter det
      kryptiska matchnumret. Final/Brons är enskilda matcher och får ingen siffra. */
   var KO_CHRONO = null;
@@ -1406,7 +1406,7 @@
     if (m.round === "FINAL" || m.round === "3RD") return name;
     return name + " " + koChronoIndex()[m.m];
   }
-  /* Gemen referensform för "Vinnare …"-platshållare, t.ex. "sextondelsfinal 3",
+  /* Gemen referensform för "Vinnare …"-platshållare, t.ex. "1/16-final 3",
      så att en kommande match pekar tydligt tillbaka på rätt rutas etikett. */
   function koRefLabel(matchNo) {
     var m = MATCH_BY_NO[matchNo];
@@ -1782,7 +1782,7 @@
 
   /* Seed-etikett som HTML där gruppbokstäverna är färgkodade, t.ex.
      "Etta grupp E" eller "3:a grupp A/B/C/D/F". Match-platshållare
-     ("Vinnare sextondelsfinal 3") saknar grupp och visas som ren text. */
+     ("Vinnare 1/16-final 3") saknar grupp och visas som ren text. */
   function slotSeedHtml(slot) {
     if (!slot) return "";
     if (slot.t === "w") return "Etta grupp " + grpLetter(slot.g);
@@ -2430,7 +2430,7 @@
           '<div class="r32-titlewrap">' +
             '<h3 id="r32-title">' + esc(r32TitleText(sel.team.sv)) + '</h3>' +
             '<p class="r32-sub">Klicka i hur gruppmatcherna slutar – så ser du vilka lag ' +
-              esc(sel.team.sv) + ' kan möta i sextondelsfinalen. ' +
+              esc(sel.team.sv) + ' kan möta i 1/16-finalen. ' +
               '<span class="r32-status" id="r32-status"></span></p>' +
           '</div>' +
           '<div class="r32-pick">' +
@@ -5812,12 +5812,15 @@
     return spoilerCutoffMs() != null ? "custom" : "auto";
   }
 
-  /* Alla matcher i kronologisk ordning med avspark (ms) + läsbar etikett. Bas
-     för datum-/match-väljarna och för att räkna hur många matcher som döljs. */
+  /* Matcher som redan sparkat igång (avspark <= nu), i kronologisk ordning med
+     avspark (ms) + läsbar etikett. Bara en startad match kan vara brytpunkt:
+     framtida matcher har inget resultat att spoila (spoilerHidesKo släpper alltid
+     igenom ko > nu), så de ska aldrig gå att välja i väljarna. */
   function spoilerScheduleList() {
-    var ctx = getCtx();
-    return buildSchedule().map(function (it) {
+    var ctx = getCtx(), now = Date.now(), out = [];
+    buildSchedule().forEach(function (it) {
       var ko = kickoffUTC(scheduleItemMatch(it, ctx)).getTime();
+      if (ko > now) return; // inte påbörjad än – kan inte vara brytpunkt
       var label, sub;
       if (it.kind === "ko") {
         var res = ctx.resolved[it.m.m];
@@ -5830,8 +5833,9 @@
         label = teamSvFixture(th) + " – " + teamSvFixture(ta);
         sub = "Grupp " + it.letter;
       }
-      return { date: it.date, edt: it.edt, ko: ko, label: label, sub: sub };
+      out.push({ date: it.date, edt: it.edt, ko: ko, label: label, sub: sub });
     });
+    return out;
   }
   function spoilerDayMaxKo(list, date) {
     var mx = -Infinity;
@@ -5933,26 +5937,44 @@
   function spoilerMatchOptions(list, date, cutoff) {
     var dayMax = spoilerDayMaxKo(list, date);
     var wholeSel = cutoff == null || (dayMax != null && cutoff >= dayMax);
-    var out = '<option value="all"' + (wholeSel ? " selected" : "") + '>Hela dagen (visa alla)</option>';
+    var out = '<option value="all"' + (wholeSel ? " selected" : "") + '>Hela dagen</option>';
     list.forEach(function (r) {
       if (r.date !== date) return;
       var t = r.edt || "tid TBC";
       var sel = !wholeSel && cutoff === r.ko;
       out += '<option value="' + r.ko + '"' + (sel ? " selected" : "") + '>' +
-        esc(t + " · " + r.label) + "</option>";
+        esc(t + "  " + r.label) + "</option>";
     });
     return out;
   }
-  function spoilerStatusText(list) {
+  /* Etikett för den senast visade matchen (brytpunkten) i custom-läget. */
+  function spoilerCutoffMatch(list, cutoff) {
+    if (cutoff == null) return null;
+    for (var i = 0; i < list.length; i++) if (list[i].ko === cutoff) return list[i];
+    return null;
+  }
+  /* Statusrad längst ner – kort och tydlig om vad som visas/döljs. Returnerar
+     HTML (lyfter fram den senast visade matchen) så innerHTML används. */
+  function spoilerStatusHtml(list) {
     list = list || spoilerScheduleList();
-    if (!spoilerFreeOn()) return "Allt visas live och aktuellt – inget döljs.";
+    if (!spoilerFreeOn()) return "Allt visas – inget döljs.";
     var n = spoilerHiddenCount(list);
-    if (n === 0) return "Inget döljs just nu – allt fram till din brytpunkt är redan visat.";
-    return "Döljer " + n + (n === 1 ? " match" : " matcher") + " efter din brytpunkt.";
+    var hidden = n === 0 ? "" :
+      ' <span class="spoiler-status-hide">Döljer ' + n + (n === 1 ? " senare match." : " senare matcher.") + "</span>";
+    if (spoilerMode() === "auto") {
+      return n === 0 ? "Inget från det senaste dygnet att dölja just nu."
+        : "Döljer " + n + (n === 1 ? " match" : " matcher") + " från det senaste dygnet.";
+    }
+    var m = spoilerCutoffMatch(list, spoilerCutoffMs());
+    if (m) {
+      var lbl = (m.edt ? m.edt + "  " : "") + m.label;
+      return 'Visar t.o.m. <strong>' + esc(lbl) + "</strong> – den matchen syns." + hidden;
+    }
+    return "Allt fram till din brytpunkt visas." + hidden;
   }
   function updateSpoilerStatus(list) {
     var el = document.getElementById("spoilerStatus");
-    if (el) el.textContent = spoilerStatusText(list);
+    if (el) el.innerHTML = spoilerStatusHtml(list);
   }
   function renderSpoilerPanel() {
     var panel = document.getElementById("spoilerPanel");
@@ -5967,22 +5989,21 @@
         '<h3 id="spoilerPanelTitle">Spoilerskydd</h3>' +
         '<button type="button" class="spoiler-panel-close" data-spoiler-close title="Stäng" aria-label="Stäng">×</button>' +
       '</div>' +
-      '<p class="spoiler-panel-intro">Välj hur mycket som ska visas. Allt efter din brytpunkt – resultat, tabeller, ' +
-        'slutspelsträd, statistik, lag och spelare – hålls dolt tills du själv väljer att se det.</p>' +
+      '<p class="spoiler-panel-intro">Allt efter din brytpunkt döljs tills du själv väljer att visa det.</p>' +
       '<div class="spoiler-opts" role="radiogroup" aria-labelledby="spoilerPanelTitle">' +
-        spoilerOptionRow("off", mode === "off", "Allt – live & aktuellt", "Inget döljs.") +
-        spoilerOptionRow("auto", mode === "auto", "Senaste dygnet", "Standard. Döljer automatiskt matcher från det senaste dygnet.") +
-        spoilerOptionRow("custom", mode === "custom", "Välj datum & match", "Visa t.o.m. ett valt datum – ända ner till en viss match.") +
+        spoilerOptionRow("off", mode === "off", "Visa allt", "Inget döljs.") +
+        spoilerOptionRow("auto", mode === "auto", "Senaste dygnet", "Standard – döljer det senaste dygnets matcher.") +
+        spoilerOptionRow("custom", mode === "custom", "Välj brytpunkt", "Dölj allt efter en match du väljer.") +
       '</div>' +
       '<div class="spoiler-pick"' + (mode === "custom" ? "" : " hidden") + '>' +
         '<label class="spoiler-field"><span>Datum</span>' +
           '<select class="spoiler-select" data-spoiler-date>' + spoilerDateOptions(list, selDate) + '</select>' +
         '</label>' +
-        '<label class="spoiler-field"><span>Match</span>' +
+        '<label class="spoiler-field"><span>Sista match som visas</span>' +
           '<select class="spoiler-select" data-spoiler-match>' + spoilerMatchOptions(list, selDate, cutoff) + '</select>' +
         '</label>' +
       '</div>' +
-      '<div class="spoiler-status" id="spoilerStatus">' + esc(spoilerStatusText(list)) + '</div>';
+      '<div class="spoiler-status" id="spoilerStatus">' + spoilerStatusHtml(list) + '</div>';
     panel.innerHTML = html;
   }
 
