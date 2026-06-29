@@ -5878,7 +5878,7 @@
     document.documentElement.classList.toggle("spoiler-free", on);
     if (!stateEl) return;
     if (mode === "off") { stateEl.textContent = "Av"; return; }
-    if (mode === "auto") { stateEl.textContent = "Senaste dygnet"; return; }
+    if (mode === "auto") { stateEl.textContent = "Senaste"; return; }
     var date = spoilerCutoffDate(spoilerScheduleList(), spoilerCutoffMs());
     stateEl.textContent = date ? "t.o.m. " + spoilerShortDate(date) : "Eget val";
   }
