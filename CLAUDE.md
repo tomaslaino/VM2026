@@ -11,7 +11,8 @@ Webbapp för att följa fotbolls-VM 2026 (USA, Mexiko, Kanada). Visar grupptabel
 
 ### Datakällor
 - **ESPN öppet API** – resultat, livehändelser (mål/kort/byten), matchstatistik. Ingen API-nyckel.
-- **API-Football** (valfritt, betald) – spelarstatistik via `API_FOOTBALL_KEY` i `.env`.
+- **Wikipedia** – truppdata (position, ålder, klubb, landskamper) via `scripts/fetch_player_details.py`.
+- **API-Football** (valfritt, betald) – spelarstatistik samt **spelartillgänglighet** (skador/avstängningar/osäkra, `/injuries`) via `API_FOOTBALL_KEY` i `.env`.
 
 ### Nyckelkommandon
 ```bash
@@ -19,6 +20,7 @@ npm start          # starta server (http://localhost:3000)
 npm run dev        # starta med --watch (auto-restart)
 npm run sync       # synka resultat till server/data/results.json
 npm run sync:static # synka till data/results.json + data/matchdetails.json (GitHub Pages)
+npm run sync:status # synka spelarstatus (skador/avstängningar) → data/wc2026_player_status.json (kräver API_FOOTBALL_KEY)
 ```
 
 ## Viktiga filer
@@ -30,6 +32,10 @@ npm run sync:static # synka till data/results.json + data/matchdetails.json (Git
 | `assets/r32engine.js` | Monte Carlo-motor: simulerar vem man möter i R32 utifrån odds (delas av huvudtråd + worker) |
 | `assets/r32worker.js` | Web Worker som kör `r32engine.js` utanför huvudtråden |
 | `data/odds.json` | Exakta resultat-odds för de återstående gruppmatcherna (indata till R32-motorn) |
+| `assets/players.js` | Statiskt datalager för truppdata + spelarstatus (`window.VMPlayers`) |
+| `assets/live.js` | Trupp i lag-lådan + spelarprofil-modal (visar skade-/avstängningsstatus) |
+| `data/wc2026_player_status.json` | Spelartillgänglighet (skador/avstängningar/osäkra) per spelar-id |
+| `server/scripts/syncPlayerStatus.js` | Synkar spelarstatus från API-Football `/injuries` |
 | `assets/playerstats.js` | Spelarstatistik |
 | `assets/styles.css` | All CSS |
 | `server/index.js` | Express-server + WebSocket |
