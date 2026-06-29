@@ -922,7 +922,7 @@
 
     // Gruppmatcher: visa den färgade grupp-pillen (samma "grupplogga" som i
     // grupp-/kalendervyn) i stället för en grå textetikett. KO-matcher behåller
-    // textetiketten ("Åttondelsfinal · M50" osv).
+    // textetiketten ("Åttondelsfinal 3" osv – kronologisk ordning).
     var gmHead = /^g:([A-L]):/.exec(info.key || "");
     var labelHtml = gmHead
       ? '<span class="group-pill grp-' + gmHead[1] + ' is-lg">' + esc(info.label) + '</span>'

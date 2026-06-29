@@ -939,8 +939,7 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 }
 
 .rp-row {
-  display: grid;
-  grid-template-columns: 96px auto minmax(0, 1fr) auto;
+  display: flex;
   align-items: center;
   gap: clamp(12px, 1.6vw, 18px);
   position: relative;
@@ -959,11 +958,24 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 }
 .rp-row.match-openable:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 
+/* Vänster- och högerzonen får samma flexvikt så att lagblocket (med "vs")
+   alltid hamnar exakt mitt i raden – oavsett hur breda gruppbrickan eller
+   reprisknapparna är. Tidigare låg lagen i en grid-kolumn vars startpunkt
+   flyttades av den olika breda gruppetiketten ("Grupp K" vs "S16 · M73"),
+   vilket gjorde att raderna inte stod symmetriskt under varandra. */
+.rp-side {
+  display: flex; align-items: center; min-width: 0;
+  flex: 1 1 0; gap: clamp(12px, 1.6vw, 18px);
+}
+.rp-side-left { justify-content: flex-start; }
+.rp-side-right { justify-content: flex-end; }
+
 /* Datum/tid-block längst till vänster – samma navy-ruta med röd "spine" som
    kalenderns datumruta, men kompakt och med klockslaget under datumet. */
 .rp-when {
   position: relative;
   display: flex; flex-direction: column; align-items: flex-start;
+  flex: none;
   gap: 1px;
   padding: 4px 9px 4px 11px;
   border-radius: 9px;
@@ -1049,11 +1061,14 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   /* Två rader per kort ⇒ högre tak så att ~fyra matcher ändå syns i rullistan. */
   .rp-list { max-height: 344px; }
   .rp-row {
+    display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-areas: "when group watch" "teams teams teams";
     gap: 8px 12px;
     padding: 10px 14px;
   }
+  /* Wrapparna upplöses så att datum/grupp/repris åter blir egna grid-celler. */
+  .rp-side { display: contents; }
   .rp-when {
     grid-area: when;
     flex-direction: row; align-items: baseline; gap: 7px;
@@ -1182,56 +1197,53 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 .ts-item .cal-tv { flex: none; }
 
 /* ---- Gravsten-memorial (laget har åkt ur VM) ----
-   Värdig, dämpad sten i mörk granit med guldtext – ersätter lagets matchkort. */
+   Minimalistiskt: en fritt stående sten (transparent PNG) bredvid en stillsam,
+   dämpad epitaf. Inga gradienter eller ramar konkurrerar med stenen. */
 .ts-item.ts-grave {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   text-align: left;
-  gap: 15px;
-  padding: 12px 16px 12px 13px;
+  gap: 18px;
+  padding: 14px 18px;
   flex: 1 1 290px;
-  border-color: rgba(201, 168, 90, .26);
-  background:
-    radial-gradient(120% 140% at 12% 0%, rgba(var(--ts-accent), .10), transparent 60%),
-    linear-gradient(180deg, rgba(10, 14, 24, .55), rgba(6, 9, 16, .68));
+  border-color: rgba(255, 255, 255, .07);
+  background: rgba(255, 255, 255, .02);
 }
 .ts-item.ts-grave::before { display: none; }   /* ingen färgstapel – stenen talar för sig själv */
 .ts-item.ts-grave:hover {
-  border-color: rgba(201, 168, 90, .5);
-  background:
-    radial-gradient(120% 140% at 12% 0%, rgba(var(--ts-accent), .14), transparent 60%),
-    linear-gradient(180deg, rgba(14, 19, 31, .6), rgba(8, 11, 19, .72));
+  border-color: rgba(255, 255, 255, .12);
+  background: rgba(255, 255, 255, .04);
 }
 .grave-stone {
-  flex: none; width: auto; height: 96px; display: block;
-  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, .6));
+  flex: none; width: auto; height: 104px; display: block;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .45));
 }
-.grave-epitaph { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.grave-epitaph { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .grave-rip {
   display: inline-flex; align-items: center; gap: 7px;
-  font-size: 10.5px; font-weight: 800; letter-spacing: 2.6px; text-transform: uppercase;
-  color: #d3b367;
+  font-size: 10px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase;
+  color: rgba(201, 168, 90, .85);
 }
-.grave-rip::before, .grave-rip::after {
-  content: "\271D"; font-size: 11px; color: rgba(211, 179, 103, .8); letter-spacing: 0;
+.grave-rip::before {
+  content: "\271D"; font-size: 11px; color: rgba(201, 168, 90, .7); letter-spacing: 0;
 }
 .grave-team {
   font-family: var(--display), system-ui, sans-serif; font-weight: 800;
-  font-size: 23px; line-height: 1; letter-spacing: .01em;
-  color: var(--bone); margin-top: 1px;
+  font-size: 22px; line-height: 1.05; letter-spacing: .01em;
+  color: var(--bone); margin-top: 2px;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .grave-cause {
-  font-size: 11px; font-weight: 600; color: #93a6bd;
+  font-size: 11px; font-weight: 500; color: var(--ink-soft);
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .grave-range {
-  font-size: 12.5px; font-weight: 700; color: #d3dcea; margin-top: 3px;
+  font-size: 12px; font-weight: 600; color: #c4cedd; margin-top: 4px;
   font-variant-numeric: tabular-nums; letter-spacing: .2px;
 }
-.grave-days { font-size: 11.5px; color: #8ea2bb; }
-.grave-days strong { color: #d3b367; font-weight: 800; }
+.grave-days { font-size: 11px; color: var(--ink-soft); }
+.grave-days strong { color: rgba(201, 168, 90, .9); font-weight: 700; }
 
 @media (max-width: 760px) {
   .fh-main { gap: 8px; }
@@ -2793,7 +2805,7 @@ html.view-bracket .bracket .match-expand-icon { width: 11px; height: 11px; }
 
 .cal-row {
   display: grid;
-  grid-template-columns: 56px 118px 1fr 216px;
+  grid-template-columns: 56px 150px 1fr 216px;
   align-items: center;
   gap: 12px;
   background: linear-gradient(180deg, rgba(20, 36, 60, .82), rgba(11, 21, 38, .85));
@@ -3455,6 +3467,138 @@ a.tv-bcast:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   }
 }
 
+/* ---------- Laguppställningsbläddrare i lag-lådan (teamlineups.js) ----------
+   Bläddra mellan lagets spelade matcher (chips) och se startelvan placerad på
+   en grön plan. Spelarna är klickbara och öppnar spelarprofilen. */
+.tl-card { overflow: hidden; }
+
+/* Matchväljare: en vågrät, rullbar rad med flagga + resultat per match. */
+.tl-chips {
+  display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 12px;
+  scrollbar-width: thin; -webkit-overflow-scrolling: touch;
+}
+.tl-chip {
+  flex: none; display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid var(--line); background: var(--bg-soft); color: var(--ink);
+  border-radius: 999px; padding: 4px 10px 4px 6px; cursor: pointer;
+  font: inherit; transition: border-color .12s, background .12s, box-shadow .12s;
+}
+.tl-chip:hover { border-color: var(--line-strong); }
+.tl-chip.active {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, var(--bg-soft));
+}
+.tl-chip .flag { width: 22px; height: 15px; border-radius: 3px; object-fit: cover; box-shadow: 0 0 0 1px var(--line); }
+.tl-chip-res { font-size: 12.5px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.tl-chip-res.v { color: var(--adv); } .tl-chip-res.f { color: var(--live); } .tl-chip-res.o { color: var(--ink-soft); }
+.tl-flag-ph { display: inline-block; width: 22px; height: 15px; border-radius: 3px; background: var(--bg-soft); box-shadow: 0 0 0 1px var(--line); }
+
+/* Vald match: motståndare + resultat + formation. */
+.tl-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+.tl-meta-match { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--ink-soft); }
+.tl-meta-match .flag { width: 20px; height: 14px; border-radius: 2px; object-fit: cover; box-shadow: 0 0 0 1px var(--line); }
+.tl-meta-opp { color: var(--ink); }
+.tl-meta-res { font-weight: 800; font-variant-numeric: tabular-nums; font-size: 14px; }
+.tl-meta-res.v { color: var(--adv); } .tl-meta-res.f { color: var(--live); } .tl-meta-res.o { color: var(--ink-soft); }
+.tl-meta-form {
+  margin-left: auto; flex: none; font-size: 11px; font-weight: 800; font-variant-numeric: tabular-nums;
+  color: var(--ink-soft); background: color-mix(in srgb, var(--bg-soft) 80%, var(--line));
+  border-radius: 999px; padding: 2px 9px;
+}
+
+/* Gräsplanen: lodrät, lagen anfaller uppåt. */
+.tl-pitch {
+  position: relative; width: 100%; aspect-ratio: 68 / 88; border-radius: 12px; overflow: hidden;
+  background:
+    repeating-linear-gradient(0deg,
+      rgba(255,255,255,.05) 0, rgba(255,255,255,.05) 11.11%,
+      rgba(0,0,0,.05) 11.11%, rgba(0,0,0,.05) 22.22%),
+    linear-gradient(180deg, #2f7d4d, #276a41);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
+}
+/* Mittlinje, mittcirkel och straffområden – enkla, ljusa hjälplinjer. */
+.tl-pitch-lines { position: absolute; inset: 0; pointer-events: none; }
+.tl-pitch-lines::before {
+  content: ""; position: absolute; left: 6%; right: 6%; top: 50%;
+  border-top: 2px solid rgba(255,255,255,.22);
+}
+.tl-pitch-lines::after {
+  content: ""; position: absolute; left: 50%; top: 50%;
+  width: 26%; aspect-ratio: 1; transform: translate(-50%, -50%);
+  border: 2px solid rgba(255,255,255,.22); border-radius: 50%;
+}
+
+/* Spelarmarkör: nummerbricka + namnetikett. */
+.tl-marker {
+  position: absolute; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  width: 64px; text-align: center;
+}
+.tl-marker.openable { cursor: pointer; }
+.tl-marker.openable:focus-visible { outline: 2px solid #fff; outline-offset: 2px; border-radius: 8px; }
+.tl-dot {
+  position: relative; width: 30px; height: 30px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12.5px; font-weight: 800; font-variant-numeric: tabular-nums;
+  box-shadow: 0 2px 6px rgba(0,0,0,.4), 0 0 0 2px rgba(255,255,255,.55);
+}
+.tl-marker.openable:hover .tl-dot { box-shadow: 0 2px 9px rgba(0,0,0,.5), 0 0 0 2px #fff; }
+.tl-cap {
+  position: absolute; right: -4px; bottom: -4px; width: 14px; height: 14px;
+  border-radius: 50%; background: var(--gold); color: #0a1628;
+  font-size: 9px; font-weight: 900; display: inline-flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 0 1.5px rgba(0,0,0,.3);
+}
+.tl-pname {
+  max-width: 64px; font-size: 9.5px; font-weight: 700; line-height: 1.15; color: #fff;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  background: color-mix(in srgb, var(--tl-name-bg, #0a1628) 55%, rgba(8,15,26,.78));
+  padding: 1px 5px; border-radius: 5px; text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+
+/* Mål/kort/byten-brickor på markörerna + bänken. */
+.tl-badges { position: absolute; top: -7px; right: -9px; display: inline-flex; gap: 2px; }
+.tl-marker .tl-badges { top: -2px; }
+.tl-ic { line-height: 1; }
+.tl-ic.goal { font-size: 11px; filter: drop-shadow(0 1px 1px rgba(0,0,0,.5)); }
+.tl-ic.card { display: inline-block; width: 8px; height: 11px; border-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,.35); }
+.tl-ic.card.yellow { background: linear-gradient(160deg, #ffd84d, #f0b400); }
+.tl-ic.card.red { background: linear-gradient(160deg, #ff6a5c, #d63425); }
+.tl-ic.card.yellow-red { background: linear-gradient(160deg, #ffd84d, #f0b400); position: relative; margin-right: 3px; }
+.tl-ic.card.yellow-red::after {
+  content: ""; position: absolute; left: 4px; top: -1px; width: 8px; height: 11px;
+  border-radius: 2px; background: linear-gradient(160deg, #ff6a5c, #d63425);
+}
+.tl-ic.sub { font-size: 9px; font-weight: 900; }
+.tl-ic.sub.in { color: var(--adv); } .tl-ic.sub.out { color: var(--live); }
+
+/* Avbytarbänk. */
+.tl-bench { margin-top: 12px; }
+.tl-bench-head {
+  font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-soft); margin-bottom: 7px;
+}
+.tl-bench-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.tl-bench-row {
+  position: relative; display: inline-flex; align-items: center; gap: 6px;
+  background: color-mix(in srgb, var(--bg-soft) 88%, var(--line));
+  border-radius: 999px; padding: 4px 11px 4px 5px; font-size: 12px; max-width: 100%;
+}
+.tl-bench-row.openable { cursor: pointer; transition: background .12s, box-shadow .12s; }
+.tl-bench-row.openable:hover { background: color-mix(in srgb, var(--bg-soft) 60%, var(--line)); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.tl-bench-row.openable:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+.tl-bench-nr {
+  flex: none; width: 20px; height: 20px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10.5px; font-weight: 800; font-variant-numeric: tabular-nums;
+  background: var(--bg); color: var(--ink-soft);
+}
+.tl-bench-name { font-weight: 650; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tl-bench-row .tl-badges { position: static; margin-left: 1px; }
+
+.tl-note { margin-top: 12px; font-size: 11px; color: var(--ink-soft); text-align: center; }
+
 /* ---------- Spelarlista i lag-lådan (live.js) ---------- */
 .players-card .players-status { color: var(--ink-soft); font-size: 13px; padding: 4px 0; }
 .players-empty { color: var(--ink-soft); font-size: 13px; line-height: 1.5; }
@@ -3487,8 +3631,8 @@ a.tv-bcast:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 }
 .player-list { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
 .player-row {
-  display: grid; align-items: center; gap: 12px;
-  grid-template-columns: minmax(0, 1fr) 7.5rem;
+  display: grid; align-items: center; gap: 10px;
+  grid-template-columns: minmax(0, 1fr) auto 5.5rem;
   width: 100%; text-align: left; cursor: pointer;
   background: transparent; border: 0; border-radius: var(--radius-sm);
   padding: 8px 6px; color: var(--ink); font: inherit;
@@ -3498,12 +3642,63 @@ a.tv-bcast:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 .pr-name {
   display: flex; align-items: center; gap: 6px;
   font-size: 14px; font-weight: 500; min-width: 0;
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
+.pr-name-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .pr-meta {
   font-size: 12.5px; color: var(--ink-soft); text-align: right;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   font-variant-numeric: tabular-nums;
+}
+
+/* Landskampsmärke i trupplistan: antal landskamper med färgton efter rutin.
+   Bollikonen + siffran ger en snabb visuell läsning av spelarens erfarenhet. */
+.pr-caps {
+  display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+  flex: none; min-width: 38px; height: 21px; padding: 0 8px;
+  border-radius: 999px; font-size: 12px; font-weight: 700; line-height: 1;
+  font-variant-numeric: tabular-nums;
+  border: 1px solid var(--line); background: var(--bg-soft); color: var(--ink-soft);
+}
+.pr-caps-ico {
+  width: 8px; height: 8px; border-radius: 50%; flex: none;
+  background: currentColor; opacity: .8;
+}
+.pr-caps-num { line-height: 1; }
+/* Erfarenhetsskala: ju fler landskamper desto starkare ton (grått → guld). */
+.pr-caps.tier-1 { color: #c7d6ea; }
+.pr-caps.tier-2 {
+  color: #e7d39a; border-color: color-mix(in srgb, var(--gold) 35%, var(--line));
+  background: color-mix(in srgb, var(--gold) 8%, var(--bg-soft));
+}
+.pr-caps.tier-3 {
+  color: #f0d77e; border-color: color-mix(in srgb, var(--gold) 55%, var(--line));
+  background: color-mix(in srgb, var(--gold) 14%, var(--bg-soft));
+}
+.pr-caps.tier-4 {
+  color: #1a1407; border-color: var(--gold);
+  background: var(--gold); font-weight: 800;
+}
+.pr-caps-debut {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  height: 21px; padding: 0 9px; border-radius: 999px;
+  font-size: 11px; font-weight: 700; letter-spacing: .02em; line-height: 1;
+  color: var(--usa-blue);
+  border: 1px dashed color-mix(in srgb, var(--usa-blue) 60%, var(--line));
+  background: color-mix(in srgb, var(--usa-blue) 12%, transparent);
+}
+.pr-caps-unknown {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  min-width: 38px; height: 21px; color: var(--ink-soft); opacity: .5;
+  font-size: 13px;
+}
+/* Liten inline-legend i trupprubriken. */
+.pr-caps-legend {
+  display: inline-flex; align-items: center; gap: 4px;
+  vertical-align: middle; white-space: nowrap;
+}
+.pr-caps-legend .pr-caps-ico { color: var(--gold); }
+span.pr-caps-debut.pr-caps-legend {
+  height: auto; padding: 1px 7px; font-size: 10.5px;
 }
 .pr-cap, .pm-cap {
   display: inline-flex; align-items: center; justify-content: center;

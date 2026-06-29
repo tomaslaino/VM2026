@@ -61,7 +61,10 @@
     var card = document.createElement("div");
     card.className = "drawer-card players-card";
     card.innerHTML = '<div class="dc-title">Trupp</div>' +
-      '<p class="squad-source">Landslagsstatistik från Wikipedia, inhämtad före VM-slutspelet.</p>' +
+      '<p class="squad-source">Landslagsstatistik från Wikipedia, inhämtad före VM-slutspelet.' +
+        ' Siffran vid varje spelare är antalet landskamper – ' +
+        '<span class="pr-caps-legend"><span class="pr-caps-ico" aria-hidden="true"></span>fler kamper = mer rutin</span>, ' +
+        '<span class="pr-caps-debut pr-caps-legend">Debut</span> = ännu ingen landskamp.</p>' +
       '<div class="players-status">Laddar trupp …</div>';
     body.appendChild(card);
 
@@ -102,15 +105,45 @@
       '<span class="pstat-dot"></span>' + esc(st.label) + '</span>';
   }
 
+  /** Erfarenhetsnivå (0–4) utifrån antal landskamper – styr färgtonen på
+      landskampsmärket så att man snabbt ser vilka som är rutinerade. */
+  function capsTier(caps) {
+    if (caps >= 100) return 4;
+    if (caps >= 50) return 3;
+    if (caps >= 25) return 2;
+    if (caps >= 1) return 1;
+    return 0;
+  }
+
+  /** Landskampsmärke i trupplistan: visar hur många landskamper spelaren har
+      (före VM-slutspelet), markerar landslagsdebutanter (0 kamper) och visar
+      ett dämpat streck när antalet är okänt. */
+  function squadCaps(p) {
+    if (p.caps == null) {
+      return '<span class="pr-caps pr-caps-unknown" title="Antal landskamper okänt">–</span>';
+    }
+    if (p.caps === 0) {
+      return '<span class="pr-caps pr-caps-debut" ' +
+        'title="Har inte spelat någon landskamp ännu – landslagsdebutant">Debut</span>';
+    }
+    var label = p.caps === 1 ? "1 landskamp" : p.caps + " landskamper";
+    return '<span class="pr-caps tier-' + capsTier(p.caps) +
+      '" title="' + esc(label) + ' för landslaget (före VM-slutspelet)">' +
+      '<span class="pr-caps-ico" aria-hidden="true"></span>' +
+      '<span class="pr-caps-num">' + esc(p.caps) + '</span></span>';
+  }
+
   function squadRow(p) {
     var meta = squadMeta(p);
     var metaTitle = p.club && p.age == null ? ' title="' + esc(p.club) + '"' : "";
     var st = statusOf(p.id);
     return '<button class="player-row' + (st ? " has-pstat" : "") + '" data-pid="' + esc(p.id) + '">' +
-      '<span class="pr-name">' + esc(p.name) +
+      '<span class="pr-name">' +
+        '<span class="pr-name-text">' + esc(p.name) + '</span>' +
         (p.captain ? '<span class="pr-cap" title="Lagkapten">C</span>' : "") +
         statusPill(st) +
       '</span>' +
+      squadCaps(p) +
       '<span class="pr-meta"' + metaTitle + '>' + meta + '</span>' +
       '</button>';
   }
