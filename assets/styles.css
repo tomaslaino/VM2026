@@ -1015,7 +1015,11 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   display: flex; align-items: center; justify-content: center;
   gap: clamp(8px, 1.4vw, 14px); min-width: 0;
 }
-.rp-team { display: inline-flex; align-items: center; gap: 9px; min-width: 0; flex: 1; }
+/* Varje lag tar exakt bredden av sitt namn (flag + namn) – tidigare tvingade
+   flex:1 båda lagen till exakt halva lagblocket, vilket klippte det längre
+   namnet ("Sydafr…" trots gott om plats). Nu visas hela namn och blocket
+   centreras ändå via de symmetriska sidozonerna. */
+.rp-team { display: inline-flex; align-items: center; gap: 9px; min-width: 0; flex: 0 1 auto; }
 .rp-home { justify-content: flex-end; text-align: right; }
 .rp-away { justify-content: flex-start; text-align: left; }
 .rp-flag { line-height: 0; flex: none; }
