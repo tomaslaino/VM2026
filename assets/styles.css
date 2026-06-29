@@ -3801,6 +3801,50 @@ span.pr-caps-debut.pr-caps-legend {
 .pm-card-pill.y { background: color-mix(in srgb, #e6b800 22%, transparent); color: color-mix(in srgb, #e6b800 60%, var(--ink)); }
 .pm-card-pill.r { background: color-mix(in srgb, #c0392b 20%, transparent); color: color-mix(in srgb, #c0392b 70%, var(--ink)); }
 
+/* ---------- Spelarstatus (skada / avstängning / osäker) ----------
+   --pstat-susp: avstängning får en egen lila ton för att skiljas från det
+   röda "ej tillgänglig" (skada/sjuk) och det gula "osäker". */
+:root { --pstat-susp: #a472d6; }
+
+.pstat {
+  display: inline-flex; align-items: center; gap: 5px; flex: none;
+  padding: 1px 7px 1px 6px; border-radius: 999px;
+  font-size: 11px; font-weight: 700; line-height: 1.55; white-space: nowrap;
+}
+.pstat-dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.pstat--out { background: color-mix(in srgb, var(--live) 18%, transparent); color: color-mix(in srgb, var(--live) 58%, var(--ink)); }
+.pstat--out .pstat-dot { background: var(--live); }
+.pstat--doubtful { background: color-mix(in srgb, var(--third-q) 20%, transparent); color: color-mix(in srgb, var(--third-q) 64%, var(--ink)); }
+.pstat--doubtful .pstat-dot { background: var(--third-q); }
+.pstat--susp { background: color-mix(in srgb, var(--pstat-susp) 22%, transparent); color: color-mix(in srgb, var(--pstat-susp) 64%, var(--ink)); }
+.pstat--susp .pstat-dot { background: var(--pstat-susp); }
+
+/* Kompakt prick i statistik-tabellens namnkolumn (tooltip via title). */
+.pstat-mini {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  margin-left: 6px; vertical-align: middle; flex: none; cursor: help;
+}
+.pstat-mini.pstat--out { background: var(--live); }
+.pstat-mini.pstat--doubtful { background: var(--third-q); }
+.pstat-mini.pstat--susp { background: var(--pstat-susp); }
+
+/* Statusbanner överst i spelarprofilen (modal). */
+.pm-status {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin: 0 0 4px; padding: 10px 12px;
+  border-radius: var(--radius-sm); border: 1px solid var(--line);
+}
+.pm-status-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 4px; flex: none; }
+.pm-status-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; font-size: 13.5px; }
+.pm-status-txt strong { font-size: 14px; }
+.pm-status-sub { color: var(--ink-soft); font-size: 12.5px; }
+.pm-status--out { background: color-mix(in srgb, var(--live) 12%, var(--bg-soft)); border-color: color-mix(in srgb, var(--live) 40%, var(--line)); }
+.pm-status--out .pm-status-dot { background: var(--live); }
+.pm-status--doubtful { background: color-mix(in srgb, var(--third-q) 12%, var(--bg-soft)); border-color: color-mix(in srgb, var(--third-q) 40%, var(--line)); }
+.pm-status--doubtful .pm-status-dot { background: var(--third-q); }
+.pm-status--susp { background: color-mix(in srgb, var(--pstat-susp) 12%, var(--bg-soft)); border-color: color-mix(in srgb, var(--pstat-susp) 40%, var(--line)); }
+.pm-status--susp .pm-status-dot { background: var(--pstat-susp); }
+
 /* ---------- Mål-notiser (WebSocket) ---------- */
 #liveToasts { position: fixed; right: 16px; bottom: 16px; z-index: 90; display: flex; flex-direction: column; gap: 10px; }
 .live-toast {

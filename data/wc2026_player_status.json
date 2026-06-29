@@ -1,0 +1,7 @@
+{
+  "tournament": "FIFA World Cup 2026",
+  "source": "API-Football (injuries) + manuell redigering",
+  "updated": null,
+  "note": "Spelartillgänglighet per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (missar matchen) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. reason/detail är fritext. Fylls automatiskt av server/scripts/syncPlayerStatus.js (kräver API_FOOTBALL_KEY) men kan även redigeras för hand.",
+  "statuses": {}
+}

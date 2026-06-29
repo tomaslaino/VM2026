@@ -44,6 +44,7 @@
     q: "",
     team: "",            // iso eller "" = alla
     pos: "",             // GK/DF/MF/FW eller "" = alla
+    status: "",          // ""=alla · "issue"=någon status · "out"=ej tillgänglig · "doubtful"=osäker
     conf: "",            // regionnamn (Europa m.fl.) eller "" = alla (lag-läget)
     limit: 50,
     sort: {
@@ -320,11 +321,13 @@
   function makePlayerRow(te, p, st, fallbackName) {
     st = st || { goals: 0, pens: 0, og: 0, assists: 0, y: 0, r: 0, min: 0, apps: 0 };
     var goals = st.goals, assists = st.assists, min = st.min || 0;
+    var avail = (p && window.VMPlayers && VMPlayers.getPlayerStatus) ? VMPlayers.getPlayerStatus(p.id) : null;
     return {
       name: p ? p.name : (fallbackName || "?"),
       nameN: norm(p ? p.name : fallbackName),
       pid: p ? p.id : null,
       captain: !!(p && p.captain),
+      avail: avail,
       shirt: p && p.shirt_number != null ? p.shirt_number : null,
       teamIso: te.iso, teamSv: te.sv, teamShort: teamShort(te), teamN: norm(te.sv + " " + te.name),
       letter: te.letter, teamObj: te.team,
@@ -630,6 +633,10 @@
     return buildPlayerRows().filter(function (r) {
       if (stateUi.team && r.teamIso !== stateUi.team) return false;
       if (stateUi.pos && r.pos !== stateUi.pos) return false;
+      if (stateUi.status) {
+        if (!r.avail) return false;
+        if (stateUi.status !== "issue" && r.avail.availability !== stateUi.status) return false;
+      }
       if (q && r.nameN.indexOf(q) === -1 && r.teamN.indexOf(q) === -1 &&
           r.clubN.indexOf(q) === -1) return false;
       return true;
@@ -912,6 +919,7 @@
       '<td class="ps-c-name"><span class="team">' + flagImg(r.teamIso) +
         '<span class="t-name" title="' + esc(r.name) + '">' + esc(r.name) +
         (r.captain ? '<span class="ps-cap" title="Lagkapten">C</span>' : "") +
+        (r.avail ? '<span class="pstat-mini pstat--' + r.avail.cls + '" title="' + esc(r.avail.text) + '"></span>' : "") +
         "</span></span></td>" +
       '<td class="ps-c-team"><span class="t-name" title="' + esc(r.teamSv) + '">' + esc(r.teamShort) + "</span></td>" +
       '<td class="ps-c-pos" title="' + esc(posTitle) + '">' + (r.pos ? esc(r.pos) : "–") + "</td>" +
@@ -1150,11 +1158,21 @@
       ["MF", "Mittfältare"], ["FW", "Anfallare"]].map(function (o) {
         return '<option value="' + o[0] + '"' + (stateUi.pos === o[0] ? " selected" : "") + ">" + o[1] + "</option>";
       }).join("");
+    var hasStatus = window.VMPlayers && VMPlayers.statusCount && VMPlayers.statusCount() > 0;
+    var statusSel = "";
+    if (hasStatus) {
+      var statusOpts = [["", "Alla statusar"], ["issue", "Skadade/avstängda/osäkra"],
+        ["out", "Ej tillgängliga"], ["doubtful", "Osäkra"]].map(function (o) {
+          return '<option value="' + o[0] + '"' + (stateUi.status === o[0] ? " selected" : "") + ">" + o[1] + "</option>";
+        }).join("");
+      statusSel = '<select id="psStatus" aria-label="Filtrera på spelarstatus">' + statusOpts + "</select>";
+    }
     return '<div class="ps-toolbar">' +
       '<input id="psSearch" type="search" autocomplete="off" placeholder="Sök spelare, lag eller klubb…" ' +
         'aria-label="Sök spelare" value="' + esc(stateUi.q) + '">' +
       '<select id="psTeam" aria-label="Filtrera på lag">' + teamOpts + "</select>" +
       '<select id="psPos" aria-label="Filtrera på position">' + posOpts + "</select>" +
+      statusSel +
       '<span class="ps-count" id="psCount"></span>' +
       "</div>";
   }
@@ -1264,6 +1282,7 @@
     if (!e.target) return;
     if (e.target.id === "psTeam") { stateUi.team = e.target.value; stateUi.limit = 50; renderTable(); }
     else if (e.target.id === "psPos") { stateUi.pos = e.target.value; stateUi.limit = 50; renderTable(); }
+    else if (e.target.id === "psStatus") { stateUi.status = e.target.value; stateUi.limit = 50; renderTable(); }
     else if (e.target.id === "psConf") { stateUi.conf = e.target.value; stateUi.limit = 50; renderTable(); }
   }
 

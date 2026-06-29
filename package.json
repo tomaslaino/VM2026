@@ -11,6 +11,7 @@
     "dev": "node --watch server/index.js",
     "sync": "node server/jobs/syncResults.js",
     "sync:static": "node server/scripts/syncStatic.js",
+    "sync:status": "node server/scripts/syncPlayerStatus.js",
     "squads": "node server/jobs/fetchSquads.js",
     "live": "node server/jobs/livePoll.js",
     "finalize": "node server/jobs/finalize.js",
