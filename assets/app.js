@@ -3026,7 +3026,7 @@
     if (!host || !calcResult) return;
     var focal = calcResult.focal;
     if (!focal) { host.innerHTML = ""; return; }
-    var showN = parseInt(ui("calcBoardN", "3"), 10) || 3;
+    var showN = parseInt(ui("calcBoardN", "8"), 10) || 8;
 
     var perCol = BOARD_ROUNDS.map(function (r) {
       var data = focal[r.key] || { reachP: 0, opponents: {} };
@@ -3047,12 +3047,12 @@
       }
       return '<div class="cb-col' + (faint ? " faint" : "") + '">' +
           '<div class="cb-colhead"><span class="cb-round">' + c.r.title + '</span>' +
-            '<span class="cb-reach">' + (faint ? "osannolikt" : r32Pct(c.reach) + " hit") + '</span></div>' +
+            '<span class="cb-reach">' + (faint ? "osannolikt" : r32Pct(c.reach) + " når hit") + '</span></div>' +
           '<div class="cb-cells">' + cells + '</div>' +
         '</div>';
     }).join("");
 
-    var expanded = showN > 3;
+    var expanded = showN > 8;
     var moreBtn = (anyMore || expanded)
       ? '<button type="button" class="cb-more" data-calc-boardmore>' + (expanded ? "Visa färre ▴" : "Visa fler ▾") + '</button>'
       : '';
@@ -3066,7 +3066,7 @@
 
     host.innerHTML = '<div class="cb-wrap">' +
         '<div class="cb-main">' +
-          '<h3 class="cb-title">Motståndare i slutspelet</h3>' +
+          '<h3 class="cb-title">Möjliga motståndare i slutspelet</h3>' +
           '<div class="cb-cols">' + cols + '</div>' +
           moreBtn +
         '</div>' + winBox +
@@ -3078,8 +3078,9 @@
     var host = document.getElementById("calc-boardfoot");
     if (!host) return;
     host.innerHTML =
-      '<p class="cb-note">Motståndar-sannolikheten i en viss slutspelsrunda förutsätter att <b>' +
-        esc(teamSvFixture(sel.team)) + '</b> tar sig dit. Siffran för att <b>vinna VM</b> är den totala chansen.</p>' +
+      '<p class="cb-note">Procenten vid varje lag visar hur ofta <b>' + esc(teamSvFixture(sel.team)) +
+        '</b> möter just det laget i rundan – räknat bara på de simuleringar där laget faktiskt tar sig dit, ' +
+        'inte chansen att laget når dit. Rutan <b>Vinn VM</b> visar den totala chansen att gå hela vägen.</p>' +
       '<button type="button" class="cb-about" data-calc-about aria-expanded="false">Om beräkningarna</button>' +
       '<div class="cb-about-panel" id="calc-about" hidden>' + calcAboutHtml(sel) + '</div>';
   }
@@ -3089,7 +3090,9 @@
     return 'Siffrorna kommer från en <b>Monte Carlo-simulering</b>: vi spelar VM tusentals gånger utifrån ' +
       'marknadens vinnarodds och exakt-resultatodds för de kvarvarande gruppmatcherna, med FIFA:s officiella ' +
       'särskiljningsregler och det officiella slutspelsträdet. I varje simulering där ' + nm + ' fortfarande är ' +
-      'kvar noteras vilket lag de möter – andelen ger sannolikheten per runda. <b>Vinn VM</b> är hur ofta ' + nm +
+      'kvar noteras vilket lag de möter – andelen ger sannolikheten per runda. Når ' + nm + ' bara en runda i ' +
+      'ett fåtal av simuleringarna (rundor märkta <b>osannolikt</b>) bygger fördelningen på få utfall och ' +
+      'ordningen mellan lagen är då osäker. <b>Vinn VM</b> är hur ofta ' + nm +
       ' vinner hela turneringen. Ändra resultaten under tabellen så räknas allt om direkt.';
   }
 
@@ -3252,7 +3255,7 @@
       renderCalcControls(); return true;
     }
     if (t.closest && t.closest("[data-calc-boardmore]")) {
-      setUi("calcBoardN", ui("calcBoardN", "3") === "3" ? "8" : "3");
+      setUi("calcBoardN", ui("calcBoardN", "8") === "8" ? "16" : "8");
       renderCalcBoard(r32TeamByKey(r32TeamKey)); return true;
     }
     var about = t.closest && t.closest("[data-calc-about]");
