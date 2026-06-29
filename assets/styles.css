@@ -939,8 +939,7 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 }
 
 .rp-row {
-  display: grid;
-  grid-template-columns: 96px auto minmax(0, 1fr) auto;
+  display: flex;
   align-items: center;
   gap: clamp(12px, 1.6vw, 18px);
   position: relative;
@@ -959,11 +958,24 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 }
 .rp-row.match-openable:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 
+/* Vänster- och högerzonen får samma flexvikt så att lagblocket (med "vs")
+   alltid hamnar exakt mitt i raden – oavsett hur breda gruppbrickan eller
+   reprisknapparna är. Tidigare låg lagen i en grid-kolumn vars startpunkt
+   flyttades av den olika breda gruppetiketten ("Grupp K" vs "S16 · M73"),
+   vilket gjorde att raderna inte stod symmetriskt under varandra. */
+.rp-side {
+  display: flex; align-items: center; min-width: 0;
+  flex: 1 1 0; gap: clamp(12px, 1.6vw, 18px);
+}
+.rp-side-left { justify-content: flex-start; }
+.rp-side-right { justify-content: flex-end; }
+
 /* Datum/tid-block längst till vänster – samma navy-ruta med röd "spine" som
    kalenderns datumruta, men kompakt och med klockslaget under datumet. */
 .rp-when {
   position: relative;
   display: flex; flex-direction: column; align-items: flex-start;
+  flex: none;
   gap: 1px;
   padding: 4px 9px 4px 11px;
   border-radius: 9px;
@@ -1049,11 +1061,14 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   /* Två rader per kort ⇒ högre tak så att ~fyra matcher ändå syns i rullistan. */
   .rp-list { max-height: 344px; }
   .rp-row {
+    display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-areas: "when group watch" "teams teams teams";
     gap: 8px 12px;
     padding: 10px 14px;
   }
+  /* Wrapparna upplöses så att datum/grupp/repris åter blir egna grid-celler. */
+  .rp-side { display: contents; }
   .rp-when {
     grid-area: when;
     flex-direction: row; align-items: baseline; gap: 7px;

@@ -4689,15 +4689,20 @@
         (side === "home" ? name + flag : flag + name) + '</span>';
     }
     var h = '<div class="rp-row' + open.cls + '"' + open.attr + '>';
-    h += '<span class="rp-when">' +
-      '<span class="rp-date">' + esc(dateTxt) + '</span>' +
-      '<span class="rp-time">' + esc(when.time) + '</span></span>';
-    h += focusGroupChip(e, "rp-group");
+    // Vänster zon: kompakt datum/tid + gruppbricka. Wrappas så att zonen får
+    // samma flexvikt som högerzonen och lagblocket alltid centreras i raden.
+    h += '<span class="rp-side rp-side-left">' +
+      '<span class="rp-when">' +
+        '<span class="rp-date">' + esc(dateTxt) + '</span>' +
+        '<span class="rp-time">' + esc(when.time) + '</span></span>' +
+      focusGroupChip(e, "rp-group") +
+      '</span>';
     h += '<span class="rp-teams">' +
       teamSide(e.home, "home") +
       '<span class="rp-vs" aria-hidden="true">vs</span>' +
       teamSide(e.away, "away") + '</span>';
-    h += '<span class="rp-watch">' + recentWatchHtml(e.key) + '</span>';
+    h += '<span class="rp-side rp-side-right">' +
+      '<span class="rp-watch">' + recentWatchHtml(e.key) + '</span></span>';
     h += '</div>';
     return h;
   }
