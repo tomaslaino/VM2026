@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T01:53:51.944Z",
+    "updatedAt": "2026-06-30T06:12:49.885Z",
     "source": "espn"
   },
   "details": {
@@ -33648,24 +33648,132 @@
     },
     "k:75": {
       "espnId": "760488",
-      "status": "PAUSED",
-      "minute": 45,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-30T01:00Z",
-      "duration": "REGULAR",
-      "winner": null,
+      "duration": "PENALTY_SHOOTOUT",
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
+          "h": 1,
+          "a": 1
+        },
+        "ht": {
           "h": 0,
           "a": 0
         },
-        "ht": null,
         "rt": null,
-        "et": null,
-        "pen": null
+        "et": {
+          "h": 1,
+          "a": 1
+        },
+        "pen": {
+          "h": 2,
+          "a": 3
+        }
       },
-      "goals": [],
-      "bookings": [],
-      "subs": [],
+      "goals": [
+        {
+          "minute": 72,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Cody Gakpo",
+          "assist": "Crysencio Summerville",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 1,
+          "team": "a",
+          "scorer": "Issa Diop",
+          "assist": "Chemsdine Talbi",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 47,
+          "team": "a",
+          "player": "Issa Diop",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Teun Koopmeiners",
+          "out": "Nathan Aké"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Wout Weghorst",
+          "out": "Brian Brobbey"
+        },
+        {
+          "minute": 75,
+          "team": "a",
+          "in": "Anass Salah-Eddine",
+          "out": "Chadi Riad"
+        },
+        {
+          "minute": 79,
+          "team": "a",
+          "in": "Gessime Yassine",
+          "out": "Brahim Díaz"
+        },
+        {
+          "minute": 79,
+          "team": "a",
+          "in": "Samir El Mourabet",
+          "out": "Ayyoub Bouaddi"
+        },
+        {
+          "minute": 86,
+          "team": "a",
+          "in": "Soufiane Rahimi",
+          "out": "Azzedine Ounahi"
+        },
+        {
+          "minute": 86,
+          "team": "h",
+          "in": "Jorrel Hato",
+          "out": "Micky van de Ven"
+        },
+        {
+          "minute": 86,
+          "team": "h",
+          "in": "Quinten Timber",
+          "out": "Ryan Gravenberch"
+        },
+        {
+          "minute": 87,
+          "team": "a",
+          "in": "Chemsdine Talbi",
+          "out": "Bilal El Khannouss"
+        },
+        {
+          "minute": 110,
+          "team": "h",
+          "in": "Marten de Roon",
+          "out": "Frenkie de Jong"
+        },
+        {
+          "minute": 113,
+          "team": "h",
+          "in": "Justin Kluivert",
+          "out": "Cody Gakpo"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -33730,11 +33838,13 @@
           "bench": [
             {
               "name": "Marten de Roon",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true
             },
             {
               "name": "Jorrel Hato",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Mats Wieffer",
@@ -33750,7 +33860,8 @@
             },
             {
               "name": "Justin Kluivert",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Mark Flekken",
@@ -33758,7 +33869,8 @@
             },
             {
               "name": "Wout Weghorst",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Guus Til",
@@ -33766,7 +33878,8 @@
             },
             {
               "name": "Quinten Timber",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Lutsharel Geertruida",
@@ -33786,7 +33899,8 @@
             },
             {
               "name": "Teun Koopmeiners",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             }
           ]
         },
@@ -33852,7 +33966,8 @@
           "bench": [
             {
               "name": "Anass Salah-Eddine",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Amine Sbaï",
@@ -33868,7 +33983,8 @@
             },
             {
               "name": "Samir El Mourabet",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Sofyan Amrabat",
@@ -33876,7 +33992,8 @@
             },
             {
               "name": "Gessime Yassine",
-              "jersey": "16"
+              "jersey": "16",
+              "in": true
             },
             {
               "name": "Munir El Kajoui",
@@ -33888,7 +34005,8 @@
             },
             {
               "name": "Chemsdine Talbi",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Zakaria El Ouahdi",
@@ -33896,7 +34014,8 @@
             },
             {
               "name": "Soufiane Rahimi",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Ayoub El Kaabi",
@@ -33915,57 +34034,57 @@
       },
       "referee": "Wilton Pereira Sampaio",
       "venue": "Estadio BBVA, Guadalupe",
-      "attendance": null,
+      "attendance": 51243,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "50%",
-          "a": "50%"
+          "h": "30%",
+          "a": "70%"
         },
         {
           "key": "totalShots",
-          "h": "3",
-          "a": "4"
+          "h": "6",
+          "a": "11"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
-          "a": "2"
-        },
-        {
-          "key": "wonCorners",
-          "h": "4",
-          "a": "2"
-        },
-        {
-          "key": "foulsCommitted",
-          "h": "6",
+          "h": "2",
           "a": "5"
         },
         {
+          "key": "wonCorners",
+          "h": "5",
+          "a": "8"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "18",
+          "a": "15"
+        },
+        {
           "key": "offsides",
-          "h": "2",
+          "h": "3",
           "a": "0"
         },
         {
           "key": "saves",
-          "h": "2",
+          "h": "5",
           "a": "1"
         },
         {
           "key": "totalPasses",
-          "h": "215",
-          "a": "219"
+          "h": "373",
+          "a": "878"
         },
         {
           "key": "passPct",
-          "h": "86%",
-          "a": "89%"
+          "h": "79%",
+          "a": "91%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -33973,7 +34092,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-30T01:53:51.944Z"
+      "updatedAt": "2026-06-30T06:12:49.885Z"
     }
   }
 }

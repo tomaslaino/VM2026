@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T01:53:51.916Z",
+    "updatedAt": "2026-06-30T06:12:49.859Z",
     "source": "espn",
     "matchCount": 76,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -384,21 +384,13 @@
       "pw": "a"
     },
     "k:75": {
-      "h": 0,
-      "a": 0,
-      "status": "PAUSED"
+      "h": 1,
+      "a": 1,
+      "status": "FINISHED",
+      "pw": "a"
     }
   },
-  "live": [
-    {
-      "key": "k:75",
-      "status": "PAUSED",
-      "minute": 45,
-      "home": "Netherlands",
-      "away": "Morocco",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1679,7 +1671,7 @@
       "date": "2026-06-30",
       "time": "03:00",
       "utcDate": "2026-06-30T01:00Z",
-      "status": "PAUSED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Netherlands",
       "away": "Morocco",
@@ -1903,12 +1895,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Canada",
-      "away": "Round of 32 3 Winner",
+      "away": "Morocco",
       "homeRef": {
         "group": "B",
         "idx": 0
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "C",
+        "idx": 1
+      }
     },
     "k:89": {
       "date": "2026-07-04",
