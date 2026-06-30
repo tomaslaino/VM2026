@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T22:41:43.119Z",
+    "updatedAt": "2026-06-30T23:52:34.397Z",
     "source": "espn"
   },
   "details": {
@@ -34520,11 +34520,11 @@
     },
     "k:77": {
       "espnId": "760492",
-      "status": "IN_PLAY",
-      "minute": 83,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-30T21:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
           "h": 3,
@@ -34619,6 +34619,24 @@
           "team": "a",
           "in": "Benjamin Nygren",
           "out": "Yasin Ayari"
+        },
+        {
+          "minute": 85,
+          "team": "h",
+          "in": "Jean-Philippe Mateta",
+          "out": "Kylian Mbappé"
+        },
+        {
+          "minute": 85,
+          "team": "h",
+          "in": "Rayan Cherki",
+          "out": "Michael Olise"
+        },
+        {
+          "minute": 89,
+          "team": "a",
+          "in": "Gustaf Nilsson",
+          "out": "Alexander Isak"
         }
       ],
       "penalties": [],
@@ -34693,7 +34711,8 @@
             },
             {
               "name": "Jean-Philippe Mateta",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "Malo Gusto",
@@ -34702,7 +34721,8 @@
             },
             {
               "name": "Rayan Cherki",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Ibrahima Konaté",
@@ -34861,7 +34881,8 @@
             },
             {
               "name": "Gustaf Nilsson",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Mattias Svanberg",
@@ -34873,22 +34894,22 @@
       },
       "referee": "Danny Makkelie",
       "venue": "MetLife Stadium, East Rutherford, New Jersey",
-      "attendance": null,
+      "attendance": 80663,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "64%",
-          "a": "36%"
+          "h": "61%",
+          "a": "39%"
         },
         {
           "key": "totalShots",
-          "h": "23",
-          "a": "4"
+          "h": "25",
+          "a": "8"
         },
         {
           "key": "shotsOnTarget",
-          "h": "11",
-          "a": "1"
+          "h": "12",
+          "a": "3"
         },
         {
           "key": "wonCorners",
@@ -34897,28 +34918,28 @@
         },
         {
           "key": "foulsCommitted",
-          "h": "10",
+          "h": "14",
           "a": "10"
         },
         {
           "key": "offsides",
-          "h": "2",
+          "h": "3",
           "a": "1"
         },
         {
           "key": "saves",
-          "h": "1",
-          "a": "8"
+          "h": "3",
+          "a": "9"
         },
         {
           "key": "totalPasses",
-          "h": "500",
-          "a": "278"
+          "h": "551",
+          "a": "351"
         },
         {
           "key": "passPct",
           "h": "88%",
-          "a": "77%"
+          "a": "79%"
         },
         {
           "key": "yellowCards",
@@ -34931,7 +34952,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-30T22:41:43.118Z"
+      "updatedAt": "2026-06-30T23:52:34.397Z"
     }
   }
 }

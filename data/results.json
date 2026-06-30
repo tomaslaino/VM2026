@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T22:41:43.030Z",
+    "updatedAt": "2026-06-30T23:52:34.353Z",
     "source": "espn",
     "matchCount": 78,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -397,19 +397,10 @@
     "k:77": {
       "h": 3,
       "a": 0,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:77",
-      "status": "IN_PLAY",
-      "minute": 82,
-      "home": "France",
-      "away": "Sweden",
-      "score": "3-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1724,7 +1715,7 @@
       "date": "2026-06-30",
       "time": "23:00",
       "utcDate": "2026-06-30T21:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "France",
       "away": "Sweden",
@@ -1931,12 +1922,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Paraguay",
-      "away": "Round of 32 5 Winner",
+      "away": "France",
       "homeRef": {
         "group": "D",
         "idx": 1
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "I",
+        "idx": 0
+      }
     },
     "k:91": {
       "date": "2026-07-05",
