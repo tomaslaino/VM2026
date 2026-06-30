@@ -590,6 +590,15 @@
     return sideFromApiRef(ref);
   }
 
+  /* API-fixturer placerar ut det lag som avancerat ut ur en tidigare
+     slutspelsmatch (homeRef/awayRef pekar direkt på laget). Om DEN matchen är
+     spoilergömd får vi inte avslöja laget – vinnaren/förloraren spoilar ju
+     resultatet. Då faller vi tillbaka på platshållaren ("Vinnare 1/16-final X")
+     precis som resolveSlot gör för en ännu oavgjord match. */
+  function apiSideSpoiled(slot) {
+    return (slot.t === "wm" || slot.t === "lm") && isSpoilerHidden("k:" + slot.m);
+  }
+
   function groupFixtures(letter) {
     var out = [], idx = 0;
     for (var md = 0; md < RR.length; md++) {
@@ -838,8 +847,8 @@
       if (mt.home.t === "3") mt.home._m = mt.m;
       if (mt.away.t === "3") mt.away._m = mt.m;
       var fx = getApiFixture("k:" + mt.m);
-      var home = apiKnockoutSide(fx, "home") || resolveSlot(mt.home, ctx);
-      var away = apiKnockoutSide(fx, "away") || resolveSlot(mt.away, ctx);
+      var home = (!apiSideSpoiled(mt.home) && apiKnockoutSide(fx, "home")) || resolveSlot(mt.home, ctx);
+      var away = (!apiSideSpoiled(mt.away) && apiKnockoutSide(fx, "away")) || resolveSlot(mt.away, ctx);
       var r = getRes("k:" + mt.m);
       var winner = null, loser = null;
       var bothTeams = home.team && away.team;
