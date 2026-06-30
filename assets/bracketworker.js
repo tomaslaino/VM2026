@@ -1,7 +1,7 @@
 /* Web Worker: kör hela slutspelssimuleringen (assets/bracketengine.js) utanför
  * huvudtråden. Svarar på { seq, key, input } med { seq, key, result }. */
 /* global importScripts, BracketEngine */
-importScripts("bracketengine.js?v=3");
+importScripts("bracketengine.js?v=4");
 
 self.onmessage = function (e) {
   var msg = e.data || {};

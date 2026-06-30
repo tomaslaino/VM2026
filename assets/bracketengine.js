@@ -213,10 +213,11 @@
       var mno = row[pairIdx];
       if (!mno) return null;
       var ko = koOdds["k:" + mno];
-      if (!ko || !ko.rp) return null;
+      if (!ko) return null;
       if (x !== ko.home && x !== ko.away) return null;
       if (y !== ko.home && y !== ko.away) return null;
       if (ko.finished && ko.winner) return ko.winner === x ? [x, y] : [y, x];
+      if (!ko.rp) return null;
       var xHome = ko.home === x;
       var pX = xHome ? ko.rp["1"] : ko.rp["2"];
       var pY = xHome ? ko.rp["2"] : ko.rp["1"];

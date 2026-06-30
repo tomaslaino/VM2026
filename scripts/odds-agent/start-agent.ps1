@@ -41,7 +41,7 @@ for ($i = 0; $i -lt 40; $i++) {
 }
 
 if (-not $env:ODDS_AGENT_TOKEN) {
-  Write-Warning "ODDS_AGENT_TOKEN saknas i .env – satt ett langt slumpvarde for GitHub-automation."
+  Write-Warning "ODDS_AGENT_TOKEN saknas i .env - satt ett langt slumpvarde for GitHub-automation."
 }
 
 Set-Location $RepoRoot

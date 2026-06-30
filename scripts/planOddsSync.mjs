@@ -5,6 +5,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { downstreamKeysFromFinished } from "./odds-agent/koDownstream.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RESULTS = path.join(ROOT, "data", "results.json");
@@ -91,6 +92,19 @@ function main() {
     }
     if (koFt && !timeslotReady(ftKeys.filter((k) => k.startsWith("k:")), data, "knockout")) {
       writeOutput({ skip: "1", reason: "ko_slot_not_ready" });
+      return;
+    }
+
+    if (koFt) {
+      const keys = downstreamKeysFromFinished(ftKeys.filter((k) => k.startsWith("k:")));
+      writeOutput({
+        skip: "0",
+        phase: "ft",
+        debounce_sec: "300",
+        keys: JSON.stringify(keys),
+        background: "0",
+        outright: "1",
+      });
       return;
     }
 

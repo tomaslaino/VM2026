@@ -2215,22 +2215,43 @@
     return orders;
   }
 
+  var KO_PLACEHOLDER = /group|third place|winner|loser|\bplace\b/i;
+  function koTeamKnown(name) { return !!name && !KO_PLACEHOLDER.test(name); }
+
+  function koRpFallback(home, away) {
+    if (!bracketStrength || bracketStrength[home] == null || bracketStrength[away] == null) return null;
+    var p1 = 1 / (1 + Math.exp(-0.6 * (bracketStrength[home] - bracketStrength[away])));
+    var px = 0.22;
+    var p2 = 1 - p1 - px;
+    if (p2 < 0) { px = 0.1; p2 = Math.max(0.02, 1 - p1 - px); }
+    return { "1": p1, "X": px, "2": p2 };
+  }
+
   function buildKoOddsMap(knockout) {
+    var scraped = {};
+    (knockout || []).forEach(function (ko) { if (ko.key) scraped[ko.key] = ko; });
     var koOdds = {};
-    (knockout || []).forEach(function (ko) {
-      var r = getRes(ko.key);
+    WC.knockout.forEach(function (mt) {
+      var key = "k:" + mt.m;
+      var fx = getApiFixture(key);
+      var home = fx && koTeamKnown(fx.home) ? fx.home : null;
+      var away = fx && koTeamKnown(fx.away) ? fx.away : null;
+      if (!home || !away) return;
+      var s = scraped[key];
       var entry = {
-        home: ko.home, away: ko.away, rp: ko.rp,
-        oddsContext: ko.oddsContext || "prematch"
+        home: home, away: away,
+        rp: (s && s.rp) || koRpFallback(home, away),
+        oddsContext: (s && s.oddsContext) || "prematch"
       };
-      if (isFinishedMatch(ko.key, r) && r && r.h != null && r.a != null) {
+      var r = getRes(key);
+      if (isFinishedMatch(key, r) && r && r.h != null && r.a != null) {
         entry.finished = true;
-        if (r.h !== r.a) entry.winner = r.h > r.a ? ko.home : ko.away;
-        else if (r.pw) entry.winner = r.pw === "h" ? ko.home : ko.away;
+        if (r.h !== r.a) entry.winner = r.h > r.a ? home : away;
+        else if (r.pw) entry.winner = r.pw === "h" ? home : away;
       }
-      var live = liveMatchState(ko.key);
+      var live = liveMatchState(key);
       if (live) entry.live = live;
-      koOdds[ko.key] = entry;
+      koOdds[key] = entry;
     });
     return koOdds;
   }
@@ -2925,7 +2946,7 @@
   function calcEnsureWorker() {
     if (calcWorker) return;
     try {
-      calcWorker = new Worker("assets/bracketworker.js?v=5");
+      calcWorker = new Worker("assets/bracketworker.js?v=6");
       calcWorker.onmessage = function (e) {
         var d = e.data || {};
         if (d.seq !== calcSeq) return;
@@ -3722,7 +3743,7 @@
   function bracketEnsureWorker() {
     if (bracketWorker) return;
     try {
-      bracketWorker = new Worker("assets/bracketworker.js?v=5");
+      bracketWorker = new Worker("assets/bracketworker.js?v=6");
       bracketWorker.onmessage = function (e) {
         var d = e.data || {};
         if (d.seq !== bracketSeq) return;       // ett nyare anrop har startats

@@ -11,7 +11,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadOpenGroupFixtures } from "./fixtures.mjs";
+import { loadAllOpenFixtures } from "./fixtures.mjs";
 import { mergeOddsFile } from "./merge.mjs";
 import { scrapeAll } from "./scrape.mjs";
 
@@ -25,7 +25,7 @@ const matchFilter = (() => {
 })();
 
 async function main() {
-  let fixtures = loadOpenGroupFixtures();
+  let fixtures = loadAllOpenFixtures();
   if (matchFilter) {
     const q = matchFilter.toLowerCase();
     fixtures = fixtures.filter(
@@ -36,11 +36,12 @@ async function main() {
   }
 
   if (!fixtures.length) {
-    console.log("Inga ospelade gruppmatcher att hämta odds för.");
+    console.log("Inga ospelade matcher att hämta odds för.");
     process.exit(0);
   }
 
-  console.log(`Hämtar correct score för ${fixtures.length} matcher…`);
+  const koN = fixtures.filter((f) => f.phase === "knockout").length;
+  console.log(`Hämtar odds för ${fixtures.length} matcher (${koN} slutspel)…`);
   const started = Date.now();
   const { matches, failures } = await scrapeAll(fixtures, {
     onProgress({ i, total, match }) {
@@ -51,7 +52,7 @@ async function main() {
   const scrapePayload = {
     updated: new Date().toISOString(),
     source: "oddschecker.com",
-    market: "correct-score",
+    market: "correct-score + knockout-h2h",
     agent: "scripts/odds-agent",
     matches,
     failures,
