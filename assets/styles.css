@@ -1277,7 +1277,7 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   flex: none; width: auto; height: 104px; display: block;
   filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .45));
 }
-.grave-epitaph { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.grave-epitaph { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .grave-rip {
   display: inline-flex; align-items: center; gap: 7px;
   font-size: 10px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase;
@@ -1292,12 +1292,8 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   color: var(--bone); margin-top: 2px;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
-.grave-cause {
-  font-size: 11px; font-weight: 500; color: var(--ink-soft);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
 .grave-range {
-  font-size: 12px; font-weight: 600; color: #c4cedd; margin-top: 4px;
+  font-size: 12px; font-weight: 600; color: #c4cedd; margin-top: 6px;
   font-variant-numeric: tabular-nums; letter-spacing: .2px;
 }
 .grave-days { font-size: 11px; color: var(--ink-soft); }

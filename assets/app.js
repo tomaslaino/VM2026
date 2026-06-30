@@ -4112,18 +4112,6 @@
     return fmtGraveDay(startStr) + " – " + fmtGraveDay(endStr) + " " + year;
   }
 
-  /** Kort dödsorsak till gravstenen. */
-  function graveCause(f) {
-    if (f.stage === "ko") {
-      var rk = f.lastMatch && f.lastMatch.m ? f.lastMatch.m.round : null;
-      var round = rk && WC.roundNames[rk] ? WC.roundNames[rk].toLowerCase() : "";
-      return round ? "Slogs ut i " + round + "en" : "Utslagen i slutspelet";
-    }
-    if (f.pos === 4) return "Sist i grupp " + f.group;
-    if (f.pos === 3) return "Trea i grupp " + f.group + " – räckte inte hela vägen";
-    return "Utslagen i gruppspelet";
-  }
-
   /** Lagets öde: null om laget fortfarande lever, annars gravdata.
       Drömmen "föds" vid första matchen och "dör" den dag laget åker ur. */
   function spotlightFate(iso, ctx) {
@@ -4356,13 +4344,11 @@
     var accent = tp.accent ? ' style="--ts-accent: ' + tp.accent + '"' : "";
     var img = GRAVE_IMG[tp.iso] || "";
     var dayWord = f.days === 1 ? "dag" : "dagar";
-    var cause = graveCause(f);
     var inner =
       '<img class="grave-stone" src="' + img + '" alt="Gravsten för ' + esc(tp.title) + 's VM-dröm 2026" loading="lazy">' +
       '<span class="grave-epitaph">' +
         '<span class="grave-rip">Vila i frid</span>' +
         '<span class="grave-team">' + esc(tp.title) + '</span>' +
-        (cause ? '<span class="grave-cause">' + esc(cause) + '</span>' : "") +
         '<span class="grave-range">' + esc(f.range) + '</span>' +
         '<span class="grave-days">Drömmen varade i <strong>' + f.days + ' ' + dayWord + '</strong></span>' +
       '</span>';
