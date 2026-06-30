@@ -163,8 +163,12 @@
   function open(key) {
     if (!window.VMApp || typeof window.VMApp.describeMatch !== "function") return;
     openKey = key;
-    // Ej påbörjade matcher saknar händelser – landa på laguppställningen.
     var info = window.VMApp.describeMatch(key);
+    if (window.VMAnalytics && info && info.home && info.away) {
+      VMAnalytics.trackEvent("match",
+        (info.home.sv || info.home.name) + "–" + (info.away.sv || info.away.name));
+    }
+    // Ej påbörjade matcher saknar händelser – landa på laguppställningen.
     activeTab = (info && !info.live && !info.played) ? "lineups" : "events";
     var m = ensureModal();
     m.classList.add("open");

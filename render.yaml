@@ -19,6 +19,9 @@ services:
         value: "30"
       - key: DATABASE_URL
         sync: false
+      # Skyddar statistikpanelen /admin/stats?key=… (Render genererar värdet vid deploy).
+      - key: STATS_TOKEN
+        generateValue: true
       - key: API_FOOTBALL_KEY
         sync: false
       - key: NODE_VERSION

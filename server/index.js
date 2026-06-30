@@ -156,6 +156,10 @@ app.post("/api/track", express.text({ type: "*/*", limit: "2kb" }), (req, res) =
     visitor: body.visitor,
     referrer: body.ref,
     ua: req.headers["user-agent"] || "",
+    session: body.session,
+    duration: body.duration,
+    kind: body.kind,
+    detail: body.detail,
   });
 });
 

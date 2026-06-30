@@ -1115,42 +1115,11 @@
     return CFG.standaloneView || null;
   }
 
-  /* ---------- Besöksmätning (skickas till backend, ingen tredjepart) ---------- */
-  var lastTrackedView = null;
-  function getVisitorId() {
-    try {
-      var k = "vm2026:vid";
-      var v = localStorage.getItem(k);
-      if (!v) {
-        v = Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
-        localStorage.setItem(k, v);
-      }
-      return v;
-    } catch (e) {
-      return null;
-    }
-  }
-  function trackView(view) {
-    if (!view || view === lastTrackedView) return; // räkna bara faktiska vy-byten
-    lastTrackedView = view;
-    try {
-      var cfg = window.VM_CONFIG || {};
-      var base = cfg.backend ? cfg.backend.replace(/\/$/, "") : "";
-      var url = base + "/api/track";
-      var body = JSON.stringify({ view: view, visitor: getVisitorId(), ref: document.referrer || "" });
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon(url, body); // text/plain → ingen CORS-preflight
-      } else {
-        fetch(url, { method: "POST", body: body, keepalive: true, headers: { "Content-Type": "text/plain" } }).catch(function () {});
-      }
-    } catch (e) {
-      /* mätning får aldrig störa sidan */
-    }
-  }
+  /* ---------- Besöksmätning (assets/analytics.js → backend) ---------- */
 
   function render() {
     var view = standaloneView() || ui("view", "home");
-    trackView(view);
+    if (window.VMAnalytics) VMAnalytics.trackView(view);
     document.documentElement.classList.toggle("view-bracket", view === "bracket");
     document.documentElement.classList.toggle("view-home", view === "home");
     document.documentElement.classList.toggle("view-r32", view === "r32");
@@ -5437,6 +5406,7 @@
     var p = VMPlayers.getPlayerById(id);
     var team = VMPlayers.getTeamOfPlayer(id);
     if (!p || !team) return;
+    if (window.VMAnalytics) VMAnalytics.trackEvent("search", p.name);
     var s = document.getElementById("teamSearch");
     if (s) s.value = "";
     var box = document.getElementById("searchResults");
@@ -5446,6 +5416,8 @@
 
   function openTeam(group, idx) {
     selectedTeam = { group: group, idx: idx };
+    var t = WC.groups[group] && WC.groups[group][idx];
+    if (t && window.VMAnalytics) VMAnalytics.trackEvent("team", t.sv || t.name);
     var s = document.getElementById("teamSearch");
     if (s) s.value = "";
     var box = document.getElementById("searchResults");
