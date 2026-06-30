@@ -3933,9 +3933,9 @@ span.pr-caps-debut.pr-caps-legend {
 
 /* Auto-sync badge (football-data) */
 .sync-badge {
-  font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  font-size: 9px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase;
   color: #fff;
-  border-radius: 999px; padding: 4px 10px; white-space: nowrap;
+  border-radius: 999px; padding: 3px 7px; white-space: nowrap;
 }
 .sync-badge.ok {
   background: linear-gradient(90deg, var(--adv), color-mix(in srgb, var(--adv) 80%, #0a3d2a));

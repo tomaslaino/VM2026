@@ -539,21 +539,29 @@
   function updateSyncBadge() {
     var el = document.getElementById("syncBadge");
     if (!el) return;
-    el.hidden = false;
-    el.classList.remove("pending", "ok", "error");
+    var cls, text, title;
     if (autoSync.status === "ok" && autoSync.updatedAt) {
-      el.classList.add("ok");
-      el.textContent = "Auto · ESPN";
-      el.title = "Senast uppdaterad: " + new Date(autoSync.updatedAt).toLocaleString("sv-SE");
+      cls = "ok";
+      text = "Auto · ESPN";
+      title = "Senast uppdaterad: " + new Date(autoSync.updatedAt).toLocaleString("sv-SE");
     } else if (autoSync.status === "error") {
-      el.classList.add("error");
-      el.textContent = "Ingen backend";
-      el.title = "Kunde inte hämta resultat. Kontrollera att servern körs och att VM_CONFIG.backend pekar rätt.";
+      cls = "error";
+      text = "Ingen backend";
+      title = "Kunde inte hämta resultat. Kontrollera att servern körs och att VM_CONFIG.backend pekar rätt.";
     } else {
-      el.classList.add("pending");
-      el.textContent = "Hämtar…";
-      el.title = "Resultat hämtas automatiskt från ESPN";
+      cls = "pending";
+      text = "Hämtar…";
+      title = "Resultat hämtas automatiskt från ESPN";
     }
+    // Rör bara DOM:en när något faktiskt ändrats – annars blinkar badgen
+    // till vid varje bakgrundspoll (remove/add av klassen nollar gradienten).
+    if (el.hidden) el.hidden = false;
+    if (!el.classList.contains(cls)) {
+      el.classList.remove("pending", "ok", "error");
+      el.classList.add(cls);
+    }
+    if (el.textContent !== text) el.textContent = text;
+    if (el.title !== title) el.title = title;
   }
 
   /* ---------- Gruppspelets matcher (round-robin, 4 lag) ---------- */
@@ -3865,17 +3873,22 @@
   /* Reprisbrickorna (utan ytterhölje) – läggs in i venue-cellen på samma rad
      som matchen och ersätter där TV-kanalmärket.
 
-     EN delad modul för båda kanalerna i stället för en bricka per kanal: för
-     varje reprislängd (kortare/längre/hela) väljs SVT om den finns, annars TV4.
-     SVT trumfar alltså alltid TV4 vid överlapp, så det blir aldrig två länkar
-     för samma längd. Varje länk färgas efter sin kanal (SVT grön, TV4 röd). */
+     SVT vinner per match: har SVT minst en tillgänglig repris/sammandrag för
+     matchen visas BARA SVT:s länkar – aldrig TV4:s. Det gäller även när SVT
+     saknar just den längd TV4 har (t.ex. SVT har längre sammandrag + hela
+     matchen men inget kort sammandrag; då visas ändå inte TV4:s korta klipp).
+     Först när SVT helt saknar repriser faller vi tillbaka på TV4. Varje länk
+     färgas efter sin kanal (SVT grön, TV4 röd). */
   function calWatchInner(key) {
     var hl = calHighlights[key];
     if (!hl) return "";
+    var svtHasAny = hl.SVT && CAL_HL_TYPES.some(function (t) { return calWatchAvailable(hl.SVT[t]); });
+    var ch = svtHasAny ? "SVT" : "TV4";
+    var src = hl[ch];
+    if (!src) return "";
     var links = "";
     CAL_HL_TYPES.forEach(function (t) {
-      if (hl.SVT && calWatchAvailable(hl.SVT[t])) links += calWatchLink(hl.SVT[t], t, "SVT");
-      else if (hl.TV4 && calWatchAvailable(hl.TV4[t])) links += calWatchLink(hl.TV4[t], t, "TV4");
+      if (calWatchAvailable(src[t])) links += calWatchLink(src[t], t, ch);
     });
     if (!links) return ""; // inga tillgängliga repriser ännu
     return '<span class="cal-watch-ch">' + links + "</span>";
