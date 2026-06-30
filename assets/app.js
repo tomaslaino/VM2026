@@ -3055,11 +3055,21 @@
     r32TipN = 0; r32TipMap = {};
     setCalcStatus("");
     var sel = r32TeamByKey(r32TeamKey);
+    // Är laget redan utslaget ur VM? Avgörs på riktiga resultat (spoilerstyrt
+    // via getRes/teamMatches) – inte på de inklickade what-if-resultaten. Då
+    // ersätts motståndartavlan av en nekrolog för laget.
+    var fate = spotlightFate(sel.team.iso, getCtx());
     var sub = document.getElementById("calc-sub");
-    if (sub) sub.innerHTML = 'Följ <b>' + esc(sel.team.sv) + '</b> genom slutspelet och se vilka lag de kan möta i varje runda – styr själv hur de sista gruppmatcherna slutar. ' +
+    if (sub) sub.innerHTML = (fate
+        ? '<b>' + esc(sel.team.sv) + '</b> är utslaget ur VM 2026 – inga fler motståndare att möta.'
+        : 'Följ <b>' + esc(sel.team.sv) + '</b> genom slutspelet och se vilka lag de kan möta i varje runda – styr själv hur de sista gruppmatcherna slutar. ') +
       '<span class="calc-status" id="calc-status"></span>';
-    renderCalcBoard(sel);
-    renderCalcBoardFoot(sel);
+    if (fate) {
+      renderCalcGrave(sel, fate);
+    } else {
+      renderCalcBoard(sel);
+      renderCalcBoardFoot(sel);
+    }
     renderCalcSide(sel);
     // Bygg inte om kontrollerna medan ett resultatfält redigeras – då skulle
     // inmatningen tappa fokus mitt i skrivandet.
@@ -3069,6 +3079,62 @@
   function calcScoreFocused() {
     var a = document.activeElement;
     return !!(a && a.classList && a.classList.contains("calc-score"));
+  }
+
+  /* ---------- Nekrolog: valt lag är utslaget ur VM ----------
+     Stor motsvarighet till startsidans gravsten. Får sin egen bild: laget med
+     färdig gravstens-PNG (Sverige/Uruguay) visas i stort, övriga lag får en
+     CSS-byggd gravsten med lagets flagga. Allt styrs av spoilerläget eftersom
+     dödsfallet (det avgörande resultatet) plockas via spoilergrindade data. */
+  function renderCalcGrave(sel, f) {
+    var board = document.getElementById("calc-board");
+    if (board) board.innerHTML = calcGraveHtml(sel, f);
+    var foot = document.getElementById("calc-boardfoot");
+    if (foot) foot.innerHTML = "";
+  }
+
+  /** Kort dödsorsak: var resan tog slut. */
+  function calcGraveCause(f) {
+    if (f.stage === "ko") {
+      // lastMatch.label, t.ex. "1/16-final 3" → släng index, gemena.
+      var lbl = (f.lastMatch && f.lastMatch.label) ? f.lastMatch.label.replace(/\s+\d+$/, "") : "slutspelet";
+      return "Slogs ut i " + lbl.toLocaleLowerCase("sv-SE") + ".";
+    }
+    if (f.pos === 4) return "Sist i grupp " + f.group + " – hemresa direkt efter gruppspelet.";
+    if (f.pos === 3) return "Trea i grupp " + f.group + " – kom inte med bland de bästa treorna.";
+    return "Utslagna redan i gruppspelet.";
+  }
+
+  /** Bilden: färdig gravstens-PNG om laget har en, annars CSS-sten med flaggan. */
+  function calcGraveStone(sel) {
+    var img = GRAVE_IMG[sel.team.iso];
+    if (img) {
+      return '<img class="cg-stone-img" src="' + img + '" alt="Gravsten för ' + esc(sel.team.sv) +
+        's VM-dröm 2026" loading="lazy">';
+    }
+    return '<span class="cg-stone" aria-hidden="true">' +
+        '<span class="cg-stone-rip">Vila i frid</span>' +
+        '<span class="cg-stone-name">' + esc(teamSvDisplay(sel.team)) + '</span>' +
+        '<span class="cg-stone-vm">VM<br>2026</span>' +
+        '<span class="cg-stone-flag">' + flagImg(sel.team.iso) + '</span>' +
+      '</span>';
+  }
+
+  function calcGraveHtml(sel, f) {
+    var dayWord = f.days === 1 ? "dag" : "dagar";
+    return '<section class="calc-grave" aria-label="Nekrolog – ' + esc(sel.team.sv) + ' är utslaget ur VM 2026">' +
+        '<div class="cg-stone-wrap">' + calcGraveStone(sel) + '</div>' +
+        '<div class="cg-epitaph">' +
+          '<span class="cg-eyebrow">In memoriam</span>' +
+          '<h3 class="cg-name">' + esc(teamSvDisplay(sel.team)) + '</h3>' +
+          '<p class="cg-headline">VM-drömmen är begravd.</p>' +
+          '<p class="cg-cause">' + esc(calcGraveCause(f)) + '</p>' +
+          '<div class="cg-meta">' +
+            '<span class="cg-range">' + esc(f.range) + '</span>' +
+            '<span class="cg-days">Drömmen varade i <strong>' + f.days + ' ' + dayWord + '</strong></span>' +
+          '</div>' +
+        '</div>' +
+      '</section>';
   }
 
   /* ====================================================================
