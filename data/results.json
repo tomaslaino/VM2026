@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T17:16:18.418Z",
+    "updatedAt": "2026-06-30T19:12:36.485Z",
     "source": "espn",
     "matchCount": 77,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -390,21 +390,12 @@
       "pw": "a"
     },
     "k:78": {
-      "h": 0,
-      "a": 0,
-      "status": "IN_PLAY"
+      "h": 1,
+      "a": 2,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:78",
-      "status": "IN_PLAY",
-      "minute": 15,
-      "home": "Ivory Coast",
-      "away": "Norway",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1702,7 +1693,7 @@
       "date": "2026-06-30",
       "time": "19:00",
       "utcDate": "2026-06-30T17:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Ivory Coast",
       "away": "Norway",
@@ -1940,12 +1931,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Brazil",
-      "away": "Round of 32 6 Winner",
+      "away": "Norway",
       "homeRef": {
         "group": "C",
         "idx": 0
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "I",
+        "idx": 2
+      }
     },
     "k:92": {
       "date": "2026-07-06",

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T17:16:18.482Z",
+    "updatedAt": "2026-06-30T19:12:36.523Z",
     "source": "espn"
   },
   "details": {
@@ -34096,24 +34096,111 @@
     },
     "k:78": {
       "espnId": "760490",
-      "status": "IN_PLAY",
-      "minute": 16,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-06-30T17:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
-          "h": 0,
-          "a": 0
+          "h": 1,
+          "a": 2
         },
-        "ht": null,
+        "ht": {
+          "h": 0,
+          "a": 1
+        },
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
-      "bookings": [],
-      "subs": [],
+      "goals": [
+        {
+          "minute": 39,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Antonio Nusa",
+          "assist": "Martin Ødegaard",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 74,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Amad Diallo",
+          "assist": "Nicolas Pépé",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 86,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Erling Haaland",
+          "assist": "Patrick Berg",
+          "type": "REGULAR",
+          "score": null
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 45,
+          "team": "a",
+          "player": "Antonio Nusa",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 60,
+          "team": "h",
+          "in": "Amad Diallo",
+          "out": "Christ Inao Oulaï"
+        },
+        {
+          "minute": 60,
+          "team": "h",
+          "in": "Elye Wahi",
+          "out": "Ange-Yoan Bonny"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Andreas Schjelderup",
+          "out": "Antonio Nusa"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Oscar Bobb",
+          "out": "Alexander Sørloth"
+        },
+        {
+          "minute": 83,
+          "team": "a",
+          "in": "Fredrik Aursnes",
+          "out": "Marcus Holmgren Pedersen"
+        },
+        {
+          "minute": 87,
+          "team": "h",
+          "in": "Oumar Diakité",
+          "out": "Nicolas Pépé"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Evann Guessand",
+          "out": "Yan Diomande"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Bazoumana Touré",
+          "out": "Ghislain Konan"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -34194,7 +34281,8 @@
             },
             {
               "name": "Evann Guessand",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "Christopher Operi",
@@ -34206,7 +34294,8 @@
             },
             {
               "name": "Bazoumana Touré",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Ousmane Diomande",
@@ -34214,11 +34303,13 @@
             },
             {
               "name": "Elye Wahi",
-              "jersey": "12"
+              "jersey": "12",
+              "in": true
             },
             {
               "name": "Oumar Diakité",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Wilfried Singo",
@@ -34234,7 +34325,8 @@
             },
             {
               "name": "Amad Diallo",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             }
           ]
         },
@@ -34312,11 +34404,13 @@
             },
             {
               "name": "Oscar Bobb",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "Fredrik Aursnes",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Leo Østigard",
@@ -34336,7 +34430,8 @@
             },
             {
               "name": "Andreas Schjelderup",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Jørgen Strand Larsen",
@@ -34363,57 +34458,57 @@
       },
       "referee": "Jesús Valenzuela",
       "venue": "AT&T Stadium, Arlington, Texas",
-      "attendance": null,
+      "attendance": 69665,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "50%",
-          "a": "51%"
+          "h": "47%",
+          "a": "53%"
         },
         {
           "key": "totalShots",
-          "h": "1",
-          "a": "1"
+          "h": "14",
+          "a": "9"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "0"
+          "h": "5",
+          "a": "4"
         },
         {
           "key": "wonCorners",
-          "h": "2",
-          "a": "0"
+          "h": "14",
+          "a": "3"
         },
         {
           "key": "foulsCommitted",
-          "h": "1",
-          "a": "1"
+          "h": "6",
+          "a": "7"
         },
         {
           "key": "offsides",
-          "h": "0",
-          "a": "1"
+          "h": "2",
+          "a": "2"
         },
         {
           "key": "saves",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "4"
         },
         {
           "key": "totalPasses",
-          "h": "88",
-          "a": "92"
+          "h": "401",
+          "a": "473"
         },
         {
           "key": "passPct",
-          "h": "83%",
-          "a": "83%"
+          "h": "85%",
+          "a": "88%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -34421,7 +34516,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-30T17:16:18.482Z"
+      "updatedAt": "2026-06-30T19:12:36.522Z"
     }
   }
 }
