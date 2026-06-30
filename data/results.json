@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-29T23:48:01.772Z",
+    "updatedAt": "2026-06-30T01:53:51.916Z",
     "source": "espn",
-    "matchCount": 75,
-    "liveCount": 0,
+    "matchCount": 76,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -382,9 +382,23 @@
       "a": 1,
       "status": "FINISHED",
       "pw": "a"
+    },
+    "k:75": {
+      "h": 0,
+      "a": 0,
+      "status": "PAUSED"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:75",
+      "status": "PAUSED",
+      "minute": 45,
+      "home": "Netherlands",
+      "away": "Morocco",
+      "score": "0-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1665,7 +1679,7 @@
       "date": "2026-06-30",
       "time": "03:00",
       "utcDate": "2026-06-30T01:00Z",
-      "status": "TIMED",
+      "status": "PAUSED",
       "matchday": null,
       "home": "Netherlands",
       "away": "Morocco",

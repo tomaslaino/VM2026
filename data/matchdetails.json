@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-29T23:48:01.807Z",
+    "updatedAt": "2026-06-30T01:53:51.944Z",
     "source": "espn"
   },
   "details": {
@@ -33645,6 +33645,335 @@
         }
       ],
       "updatedAt": "2026-06-29T23:48:01.806Z"
+    },
+    "k:75": {
+      "espnId": "760488",
+      "status": "PAUSED",
+      "minute": 45,
+      "utcDate": "2026-06-30T01:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "3-4-2-1",
+          "starters": [
+            {
+              "name": "Bart Verbruggen",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Denzel Dumfries",
+              "jersey": "22",
+              "pos": "RM"
+            },
+            {
+              "name": "Micky van de Ven",
+              "jersey": "15",
+              "pos": "LM"
+            },
+            {
+              "name": "Nathan Aké",
+              "jersey": "5",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Virgil van Dijk",
+              "jersey": "4",
+              "pos": "CD"
+            },
+            {
+              "name": "Jan Paul van Hecke",
+              "jersey": "6",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Ryan Gravenberch",
+              "jersey": "8",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Frenkie de Jong",
+              "jersey": "21",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Brian Brobbey",
+              "jersey": "19",
+              "pos": "F"
+            },
+            {
+              "name": "Crysencio Summerville",
+              "jersey": "24",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Cody Gakpo",
+              "jersey": "11",
+              "pos": "CF-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Marten de Roon",
+              "jersey": "3"
+            },
+            {
+              "name": "Jorrel Hato",
+              "jersey": "25"
+            },
+            {
+              "name": "Mats Wieffer",
+              "jersey": "12"
+            },
+            {
+              "name": "Donyell Malen",
+              "jersey": "18"
+            },
+            {
+              "name": "Memphis Depay",
+              "jersey": "10"
+            },
+            {
+              "name": "Justin Kluivert",
+              "jersey": "7"
+            },
+            {
+              "name": "Mark Flekken",
+              "jersey": "23"
+            },
+            {
+              "name": "Wout Weghorst",
+              "jersey": "9"
+            },
+            {
+              "name": "Guus Til",
+              "jersey": "16"
+            },
+            {
+              "name": "Quinten Timber",
+              "jersey": "26"
+            },
+            {
+              "name": "Lutsharel Geertruida",
+              "jersey": "2"
+            },
+            {
+              "name": "Noa Lang",
+              "jersey": "17"
+            },
+            {
+              "name": "Robin Roefs",
+              "jersey": "13"
+            },
+            {
+              "name": "Tijjani Reijnders",
+              "jersey": "14"
+            },
+            {
+              "name": "Teun Koopmeiners",
+              "jersey": "20"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Yassine Bounou",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Achraf Hakimi",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Noussair Mazraoui",
+              "jersey": "3",
+              "pos": "LB"
+            },
+            {
+              "name": "Neil El Aynaoui",
+              "jersey": "24",
+              "pos": "LM"
+            },
+            {
+              "name": "Issa Diop",
+              "jersey": "14",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Chadi Riad",
+              "jersey": "18",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Brahim Díaz",
+              "jersey": "10",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Ayyoub Bouaddi",
+              "jersey": "6",
+              "pos": "RM"
+            },
+            {
+              "name": "Ismael Saibari",
+              "jersey": "11",
+              "pos": "F"
+            },
+            {
+              "name": "Azzedine Ounahi",
+              "jersey": "8",
+              "pos": "AM"
+            },
+            {
+              "name": "Bilal El Khannouss",
+              "jersey": "23",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Anass Salah-Eddine",
+              "jersey": "26"
+            },
+            {
+              "name": "Amine Sbaï",
+              "jersey": "17"
+            },
+            {
+              "name": "Ahmed Reda Tagnaouti",
+              "jersey": "22"
+            },
+            {
+              "name": "Ayoube Amaimouni",
+              "jersey": "21"
+            },
+            {
+              "name": "Samir El Mourabet",
+              "jersey": "15"
+            },
+            {
+              "name": "Sofyan Amrabat",
+              "jersey": "4"
+            },
+            {
+              "name": "Gessime Yassine",
+              "jersey": "16"
+            },
+            {
+              "name": "Munir El Kajoui",
+              "jersey": "12"
+            },
+            {
+              "name": "Youssef Belammari",
+              "jersey": "19"
+            },
+            {
+              "name": "Chemsdine Talbi",
+              "jersey": "7"
+            },
+            {
+              "name": "Zakaria El Ouahdi",
+              "jersey": "13"
+            },
+            {
+              "name": "Soufiane Rahimi",
+              "jersey": "9"
+            },
+            {
+              "name": "Ayoub El Kaabi",
+              "jersey": "20"
+            },
+            {
+              "name": "Marwane Saadane",
+              "jersey": "5"
+            },
+            {
+              "name": "Redouane Halhal",
+              "jersey": "25"
+            }
+          ]
+        }
+      },
+      "referee": "Wilton Pereira Sampaio",
+      "venue": "Estadio BBVA, Guadalupe",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "50%",
+          "a": "50%"
+        },
+        {
+          "key": "totalShots",
+          "h": "3",
+          "a": "4"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "1",
+          "a": "2"
+        },
+        {
+          "key": "wonCorners",
+          "h": "4",
+          "a": "2"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "6",
+          "a": "5"
+        },
+        {
+          "key": "offsides",
+          "h": "2",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "215",
+          "a": "219"
+        },
+        {
+          "key": "passPct",
+          "h": "86%",
+          "a": "89%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-30T01:53:51.944Z"
     }
   }
 }
