@@ -1,11 +1,14 @@
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import express from "express";
 import { WebSocketServer } from "ws";
 import { config, ROOT } from "./config.js";
 import * as store from "./store.js";
 import * as resultsStore from "./resultsStore.js";
+import * as analytics from "./analytics.js";
+import { renderStatsPage } from "./statsPage.js";
 import { bus } from "./bus.js";
 import { getCallCount as getApiFootballCalls } from "./apiFootball.js";
 import { getCallCount as getEspnCalls } from "./espn.js";
@@ -18,7 +21,8 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   if (req.method === "OPTIONS") return res.sendStatus(204);
   next();
 });
@@ -137,6 +141,46 @@ app.get("/api/bracketprobs", (req, res) => {
     /* fall igenom till tomt svar */
   }
   res.json({ nodes: {}, rounds: {}, slotLabels: {}, groupPositions: {} });
+});
+
+/* ---------- Besöksmätning ---------- */
+
+/** Beacon från frontenden vid varje vy-byte. sendBeacon skickar text/plain,
+ *  så vi tar emot rå text och tolkar JSON själva. Svarar alltid 204. */
+app.post("/api/track", express.text({ type: "*/*", limit: "2kb" }), (req, res) => {
+  res.sendStatus(204);
+  let body = {};
+  try { body = JSON.parse(req.body || "{}"); } catch { /* ignorera trasig body */ }
+  analytics.record({
+    view: body.view,
+    visitor: body.visitor,
+    referrer: body.ref,
+    ua: req.headers["user-agent"] || "",
+  });
+});
+
+/** Skyddad statistikpanel: /admin/stats?key=<STATS_TOKEN> */
+app.get("/admin/stats", async (req, res) => {
+  const token = process.env.STATS_TOKEN || "";
+  if (!token) {
+    return res
+      .status(503)
+      .type("text/plain; charset=utf-8")
+      .send("Sätt miljövariabeln STATS_TOKEN för att aktivera statistikpanelen.");
+  }
+  const given = String(req.query.key || "");
+  const a = Buffer.from(given);
+  const b = Buffer.from(token);
+  if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) {
+    return res.status(401).type("text/plain; charset=utf-8").send("Fel eller saknad nyckel.");
+  }
+  try {
+    const s = await analytics.stats();
+    res.type("text/html; charset=utf-8").send(renderStatsPage(s));
+  } catch (e) {
+    console.error("[analytics] kunde inte bygga statistik:", e);
+    res.status(500).type("text/plain; charset=utf-8").send("Kunde inte hämta statistik.");
+  }
 });
 
 app.use(express.static(ROOT));
