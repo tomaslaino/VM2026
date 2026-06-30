@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T19:12:36.523Z",
+    "updatedAt": "2026-06-30T21:10:57.354Z",
     "source": "espn"
   },
   "details": {
@@ -34517,6 +34517,331 @@
         }
       ],
       "updatedAt": "2026-06-30T19:12:36.522Z"
+    },
+    "k:77": {
+      "espnId": "760492",
+      "status": "IN_PLAY",
+      "minute": 10,
+      "utcDate": "2026-06-30T21:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Mike Maignan",
+              "jersey": "16",
+              "pos": "G"
+            },
+            {
+              "name": "Jules Koundé",
+              "jersey": "5",
+              "pos": "RB"
+            },
+            {
+              "name": "Lucas Digne",
+              "jersey": "3",
+              "pos": "LB"
+            },
+            {
+              "name": "Adrien Rabiot",
+              "jersey": "14",
+              "pos": "LM"
+            },
+            {
+              "name": "Dayot Upamecano",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "William Saliba",
+              "jersey": "17",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Ousmane Dembélé",
+              "jersey": "7",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Aurélien Tchouaméni",
+              "jersey": "8",
+              "pos": "RM"
+            },
+            {
+              "name": "Kylian Mbappé",
+              "jersey": "10",
+              "pos": "F"
+            },
+            {
+              "name": "Michael Olise",
+              "jersey": "11",
+              "pos": "AM"
+            },
+            {
+              "name": "Bradley Barcola",
+              "jersey": "12",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Warren Zaïre-Emery",
+              "jersey": "18"
+            },
+            {
+              "name": "Robin Risser",
+              "jersey": "23"
+            },
+            {
+              "name": "Jean-Philippe Mateta",
+              "jersey": "22"
+            },
+            {
+              "name": "Malo Gusto",
+              "jersey": "2"
+            },
+            {
+              "name": "Rayan Cherki",
+              "jersey": "24"
+            },
+            {
+              "name": "Ibrahima Konaté",
+              "jersey": "15"
+            },
+            {
+              "name": "Désiré Doué",
+              "jersey": "20"
+            },
+            {
+              "name": "Maghnes Akliouche",
+              "jersey": "25"
+            },
+            {
+              "name": "Maxence Lacroix",
+              "jersey": "26"
+            },
+            {
+              "name": "Theo Hernández",
+              "jersey": "19"
+            },
+            {
+              "name": "Manu Koné",
+              "jersey": "6"
+            },
+            {
+              "name": "Marcus Thuram",
+              "jersey": "9"
+            },
+            {
+              "name": "Brice Samba",
+              "jersey": "1"
+            },
+            {
+              "name": "Lucas Hernández",
+              "jersey": "21"
+            },
+            {
+              "name": "N'Golo Kanté",
+              "jersey": "13"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Jacob Widell Zetterström",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Daniel Svensson",
+              "jersey": "8",
+              "pos": "RB"
+            },
+            {
+              "name": "Gabriel Gudmundsson",
+              "jersey": "5",
+              "pos": "LB"
+            },
+            {
+              "name": "Lucas Bergvall",
+              "jersey": "7",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Gustaf Lagerbielke",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Victor Lindelöf",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Anthony Elanga",
+              "jersey": "11",
+              "pos": "RM"
+            },
+            {
+              "name": "Yasin Ayari",
+              "jersey": "18",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Alexander Isak",
+              "jersey": "9",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Viktor Gyökeres",
+              "jersey": "17",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Elliot Stroud",
+              "jersey": "24",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Kristoffer Nordfeldt",
+              "jersey": "23"
+            },
+            {
+              "name": "Besfort Zeneli",
+              "jersey": "22"
+            },
+            {
+              "name": "Taha Ali",
+              "jersey": "26"
+            },
+            {
+              "name": "Eric Smith",
+              "jersey": "20"
+            },
+            {
+              "name": "Carl Starfelt",
+              "jersey": "15"
+            },
+            {
+              "name": "Jesper Karlström",
+              "jersey": "16"
+            },
+            {
+              "name": "Alexander Bernhardsson",
+              "jersey": "21"
+            },
+            {
+              "name": "Viktor Johansson",
+              "jersey": "12"
+            },
+            {
+              "name": "Ken Sema",
+              "jersey": "13"
+            },
+            {
+              "name": "Hjalmar Ekdal",
+              "jersey": "14"
+            },
+            {
+              "name": "Benjamin Nygren",
+              "jersey": "10"
+            },
+            {
+              "name": "Herman Johansson",
+              "jersey": "6"
+            },
+            {
+              "name": "Gustaf Nilsson",
+              "jersey": "25"
+            },
+            {
+              "name": "Mattias Svanberg",
+              "jersey": "19"
+            }
+          ]
+        }
+      },
+      "referee": "Danny Makkelie",
+      "venue": "MetLife Stadium, East Rutherford, New Jersey",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "72%",
+          "a": "28%"
+        },
+        {
+          "key": "totalShots",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "2",
+          "a": "4"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "62",
+          "a": "25"
+        },
+        {
+          "key": "passPct",
+          "h": "89%",
+          "a": "76%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-30T21:10:57.354Z"
     }
   }
 }

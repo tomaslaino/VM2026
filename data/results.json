@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T19:12:36.485Z",
+    "updatedAt": "2026-06-30T21:10:57.306Z",
     "source": "espn",
-    "matchCount": 77,
-    "liveCount": 0,
+    "matchCount": 78,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -393,9 +393,23 @@
       "h": 1,
       "a": 2,
       "status": "FINISHED"
+    },
+    "k:77": {
+      "h": 0,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:77",
+      "status": "IN_PLAY",
+      "minute": 10,
+      "home": "France",
+      "away": "Sweden",
+      "score": "0-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1710,7 +1724,7 @@
       "date": "2026-06-30",
       "time": "23:00",
       "utcDate": "2026-06-30T21:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "France",
       "away": "Sweden",
