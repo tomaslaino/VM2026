@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T01:59:49.827Z",
+    "updatedAt": "2026-06-30T06:13:00.443Z",
     "source": "svt+tv4",
     "matchCount": 76
   },
@@ -1613,18 +1613,13 @@
     },
     "k:74": {
       "SVT": {
-        "live": {
-          "url": "https://www.svtplay.se/video/j1qqxvE/fifa-fotbolls-vm-2026/tyskland-paraguay",
-          "title": "FIFA Fotbolls-VM 2026",
-          "until": "2026-07-29T23:59:59+02:00"
-        },
         "full": {
           "url": "https://www.svtplay.se/video/j1qqxvE/fifa-fotbolls-vm-2026/tyskland-paraguay",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-29T23:59:59+02:00"
         },
         "long": {
-          "url": "https://www.svtplay.se/klipp/KqPz3x4/utokade-hojdpunkter-tyskland-paraguay",
+          "url": "https://www.svtplay.se/klipp/eorL2xB/utokade-hojdpunkter-tyskland-paraguay",
           "title": "Utökade höjdpunkter: Tyskland - Paraguay",
           "until": "2026-10-19T23:59:00+02:00"
         }
@@ -1641,6 +1636,18 @@
           "url": "https://www.svtplay.se/video/jGVVGgy/fifa-fotbolls-vm-2026/nederlanderna-marocko",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-30T23:59:59+02:00"
+        },
+        "long": {
+          "url": "https://www.svtplay.se/klipp/e2dbnwN/utokade-hojdpunkter-nederlanderna-marocko",
+          "title": "Utökade höjdpunkter: Nederländerna - Marocko",
+          "until": "2026-10-19T23:59:00+02:00"
+        }
+      },
+      "TV4": {
+        "short": {
+          "url": "https://www.tv4play.se/klipp/90181faea88b7b64c9cf/video-hojdpunkter-nederlanderna-marocko",
+          "title": "Höjdpunkter: Nederländerna - Marocko",
+          "until": null
         }
       }
     },
