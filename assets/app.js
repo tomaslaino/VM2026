@@ -4033,6 +4033,15 @@
     return now >= air && now < air + TV_AIR_WINDOW_MS;
   }
 
+  /** Kanalbricka för en kommande match vars sändning inte gått live ännu –
+      samma statiska SVT/TV4-logga som spelade matcher, men märkt med tablå-
+      tiden (data-tv-air-ms) så att startsidan/kalendern automatiskt byter ut
+      den mot live-länken när sändningen drar i gång. */
+  function tvWaitingHtml(ch, key, m) {
+    return '<span class="cal-tv ' + (ch === "SVT" ? "svt" : "tv4") + ' tv-waiting"' +
+      ' data-tv-air-ms="' + tvAirUTC(key, m) + '">' + ch + "</span>";
+  }
+
   function countdownParts(targetMs) {
     var diff = Math.max(0, targetMs - Date.now());
     var sec = Math.floor(diff / 1000);
@@ -4260,8 +4269,8 @@
     if (!ch) return '<span class="cal-tv cal-tv-empty" aria-hidden="true"></span>';
     var onAir = tvBroadcastOnAir(key, m, live);
     if (!onAir) {
-      return '<span class="cal-tv cal-tv-empty tv-waiting" data-tv-air-ms="' + tvAirUTC(key, m) +
-        '" aria-hidden="true"></span>';
+      // Sändningen har inte börjat: visa den statiska kanalloggan (SVT/TV4).
+      return tvWaitingHtml(ch, key, m);
     }
     var ko = m ? kickoffUTC(m).getTime() : 0;
     var inPlay = !!(live || (key && isMatchLive(key)));
@@ -5214,8 +5223,8 @@
     if (watch) {
       slot = '<span class="cal-watch">' + watch + "</span>";
     } else if (channel && key && m && !tvBroadcastOnAir(key, m, false)) {
-      slot = '<span class="cal-tv cal-tv-empty tv-waiting" data-tv-air-ms="' + tvAirUTC(key, m) +
-        '" aria-hidden="true"></span>';
+      // Sändningen har inte börjat: visa den statiska kanalloggan (SVT/TV4).
+      slot = tvWaitingHtml(channel, key, m);
     } else {
       slot = channel ? tvChHtml(channel) : '<span class="cal-tv cal-tv-empty" aria-hidden="true"></span>';
     }
