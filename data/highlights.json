@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-29T23:50:17.010Z",
+    "updatedAt": "2026-06-30T01:59:49.827Z",
     "source": "svt+tv4",
     "matchCount": 76
   },
@@ -1622,19 +1622,22 @@
           "url": "https://www.svtplay.se/video/j1qqxvE/fifa-fotbolls-vm-2026/tyskland-paraguay",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-29T23:59:59+02:00"
-        }
-      },
-      "TV4": {
-        "short": {
-          "url": "https://www.tv4play.se/klipp/f9fe17594c083451ab51/video-hojdpunkter-tyskland-paraguay",
-          "title": "Höjdpunkter: Tyskland - Paraguay",
-          "until": null
+        },
+        "long": {
+          "url": "https://www.svtplay.se/klipp/KqPz3x4/utokade-hojdpunkter-tyskland-paraguay",
+          "title": "Utökade höjdpunkter: Tyskland - Paraguay",
+          "until": "2026-10-19T23:59:00+02:00"
         }
       }
     },
     "k:75": {
       "SVT": {
         "live": {
+          "url": "https://www.svtplay.se/video/jGVVGgy/fifa-fotbolls-vm-2026/nederlanderna-marocko",
+          "title": "FIFA Fotbolls-VM 2026",
+          "until": "2026-07-30T23:59:59+02:00"
+        },
+        "full": {
           "url": "https://www.svtplay.se/video/jGVVGgy/fifa-fotbolls-vm-2026/nederlanderna-marocko",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-30T23:59:59+02:00"
