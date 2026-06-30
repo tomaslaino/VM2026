@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T19:06:29.583Z",
+    "updatedAt": "2026-06-30T21:04:58.720Z",
     "source": "svt+tv4",
-    "matchCount": 78
+    "matchCount": 79
   },
   "byKey": {
     "g:A:2": {
@@ -1691,11 +1691,23 @@
       }
     },
     "k:78": {
+      "SVT": {
+        "short": {
+          "url": "https://www.svtplay.se/klipp/jp5ERrR/sextondelsfinal-elfenbenskusten-norge",
+          "title": "Sextondelsfinal: Elfenbenskusten - Norge",
+          "until": "2060-01-01T00:00:00+01:00"
+        }
+      },
       "TV4": {
         "full": {
           "url": "https://www.tv4play.se/video/f6ef585d27343f3050d7/elfenbenskusten-norge",
           "title": "Elfenbenskusten - Norge",
           "until": "2026-07-30T16:00:00Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/523c090bbb59d18912aa/video-hojdpunkter-elfenbenskusten-norge",
+          "title": "Höjdpunkter: Elfenbenskusten - Norge",
+          "until": null
         }
       }
     },
@@ -1705,7 +1717,17 @@
           "url": "https://www.tv4play.se/video/e0595f33d7a2c0fc7c3a/frankrike-sverige",
           "title": "Frankrike - Sverige",
           "until": "2026-07-30T19:30:00Z",
-          "from": "2026-06-30T19:30:25Z"
+          "from": "2026-06-30T19:30:19Z"
+        }
+      }
+    },
+    "k:79": {
+      "TV4": {
+        "live": {
+          "url": "https://www.tv4play.se/video/99c2629da5040d107a7c/mexiko-ecuador",
+          "title": "Mexiko - Ecuador",
+          "until": "2026-07-31T00:50:00Z",
+          "from": "2026-07-01T00:50:29Z"
         }
       }
     },
