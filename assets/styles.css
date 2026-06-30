@@ -912,20 +912,20 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 .recent-played::before {
   content: "";
   position: absolute; inset: 0 0 auto 0; height: 3px;
-  /* Grön → blå → röd: speglar segmenten kommande (grön) och avslutad (röd). */
   background: linear-gradient(90deg, var(--livecol), var(--usa-blue), var(--st-ft));
   opacity: .9;
+}
+/* Egen ruta för varje segment ⇒ egen färg i topplisten: grön för nattens
+   (kommande) matcher, röd för de avslutade. */
+.recent-played--next::before {
+  background: linear-gradient(90deg, var(--livecol), color-mix(in srgb, var(--livecol) 45%, var(--usa-blue)));
+}
+.recent-played--ft::before {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--st-ft) 55%, var(--usa-blue)), var(--st-ft));
 }
 .rp-head {
   display: flex; align-items: baseline; justify-content: space-between;
   gap: 12px; flex-wrap: wrap; margin-bottom: clamp(14px, 1.8vw, 18px);
-}
-/* Andra rubriken ("Avslutade matcher") när "Kommande matcher" ligger ovanför:
-   tydlig luft och en hårfin avdelare mellan de två segmenten. */
-.rp-head--ft {
-  margin-top: clamp(18px, 2.4vw, 26px);
-  padding-top: clamp(14px, 1.8vw, 18px);
-  border-top: 1px solid rgba(255, 255, 255, .08);
 }
 .rp-hint { font-size: 12px; font-weight: 700; color: var(--ink-soft); }
 /* "Kommande matcher": grön rubrik (samma gröna som live-läget i hjälten). */
@@ -1020,6 +1020,10 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   position: relative;
   display: flex; flex-direction: column; align-items: flex-start;
   flex: none;
+  /* Fast minsta bredd så att ett kort datum ("ONS 1 JUL") tar lika stor plats
+     som ett långt ("TORS 30 JUN"). Då startar rundbrickan på samma x-led i
+     varje rad och vänsterzonen står prydligt i linje. */
+  min-width: 94px;
   gap: 1px;
   padding: 4px 9px 4px 11px;
   border-radius: 9px;
@@ -1044,7 +1048,10 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 
 /* Gruppill: samma som på förstasidans övriga kort. KO-rundor (utan grupp) får
    en neutral bricka i samma form. */
-.rp-group { justify-self: start; flex: none; }
+/* Rundbrickan ("1/16-final 6", "Grupp K" …) ges en fast minsta bredd och
+   centrerad text, så att alla brickor bildar en jämn, symmetrisk kolumn –
+   oavsett om etiketten är en kort gruppbokstav eller en längre slutspelsrunda. */
+.rp-group { justify-self: start; flex: none; min-width: 106px; justify-content: center; text-align: center; }
 .rp-group:not(.group-pill) {
   display: inline-flex; align-items: center;
   font-size: 11px; font-weight: 800; letter-spacing: .3px;

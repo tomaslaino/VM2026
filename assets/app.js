@@ -4487,8 +4487,15 @@
     });
     out.sort(function (a, b) { return a.ko - b.ko; });
     if (out.length && isFinite(nextKo)) {
-      var WINDOW = 24 * 60 * 60 * 1000;                    // samma dag/natt som nästa avspark
-      out = out.filter(function (e) { return e.ko < nextKo + WINDOW; });
+      // Bara kvällens/nattens matcher: allt fram till nästa förmiddag (svensk
+      // tid 12:00). En sen nattmatch (t.ex. 03:00) hör hit, men nästa kvälls
+      // matcher (t.ex. 18:00 dagen efter) faller utanför fönstret. VM-matcher
+      // spelas aldrig på svensk förmiddag, så middagsgränsen skiljer rent.
+      var SWE = 2 * 60 * 60 * 1000;                        // tider lagras som CEST (UTC+2)
+      var swed = new Date(nextKo + SWE);                   // svensk väggklocka via UTC-fälten
+      var cutoff = Date.UTC(swed.getUTCFullYear(), swed.getUTCMonth(), swed.getUTCDate(), 12) - SWE;
+      if (nextKo >= cutoff) cutoff += 24 * 60 * 60 * 1000; // nästa avspark är på kvällen → nästa dags 12:00
+      out = out.filter(function (e) { return e.ko < cutoff; });
     }
     return out;
   }
@@ -4785,36 +4792,40 @@
     return h;
   }
 
-  /** Sektionen med kommande + avslutade matcher. Överst ligger "Kommande
-      matcher" (grön) med de närmaste matcherna samma dag/natt, under dem
-      "Avslutade matcher" (röd) – samma radgrafik för båda. Tom sträng om det
-      varken finns kommande eller avslutade matcher att visa. */
+  /** Sektionerna med nattens (kommande) + avslutade matcher. "Nattens matcher"
+      (grön) ligger i en egen ruta direkt under nästa-match-hjälten, och
+      "Avslutade matcher" (röd) i en helt egen ruta under den – samma radgrafik
+      för båda. Tom sträng om det varken finns kommande eller avslutade matcher
+      att visa. */
   function recentMatchesPanel(ctx) {
     var recent = findRecentMatches(ctx);
     var upcoming = findUpcomingMatches(ctx);
     if (!recent.length && !upcoming.length) return "";
-    var h = '<section class="recent-played" aria-label="Kommande och avslutade matcher">';
+    var h = "";
     if (upcoming.length) {
       var un = upcoming.length;
-      var uHeading = un === 1 ? "Kommande match" : "Kommande matcher";
+      var uHeading = un === 1 ? "Nattens match" : "Nattens matcher";
+      h += '<section class="recent-played recent-played--next" aria-label="Nattens matcher">';
       h += '<div class="rp-head rp-head--next">' +
         '<span class="fh-eyebrow fh-eyebrow--next">' + uHeading + '</span>' +
         '</div>';
       h += '<div class="rp-list rp-list--next">';
       upcoming.forEach(function (e) { h += recentRow(e, "next"); });
       h += '</div>';
+      h += '</section>';
     }
     if (recent.length) {
       var n = recent.length;
       var heading = n === 1 ? "Avslutad match" : "Avslutade matcher";
-      h += '<div class="rp-head' + (upcoming.length ? " rp-head--ft" : "") + '">' +
+      h += '<section class="recent-played recent-played--ft" aria-label="Avslutade matcher">';
+      h += '<div class="rp-head">' +
         '<span class="fh-eyebrow">' + heading + '</span>' +
         '</div>';
       h += '<div class="rp-list">';
       recent.forEach(function (e) { h += recentRow(e); });
       h += '</div>';
+      h += '</section>';
     }
-    h += '</section>';
     return h;
   }
 
