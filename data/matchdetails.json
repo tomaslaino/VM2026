@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T21:10:57.354Z",
+    "updatedAt": "2026-06-30T22:41:43.119Z",
     "source": "espn"
   },
   "details": {
@@ -34521,23 +34521,106 @@
     "k:77": {
       "espnId": "760492",
       "status": "IN_PLAY",
-      "minute": 10,
+      "minute": 83,
       "utcDate": "2026-06-30T21:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
-          "h": 0,
+          "h": 3,
           "a": 0
         },
-        "ht": null,
+        "ht": {
+          "h": 1,
+          "a": 0
+        },
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
+      "goals": [
+        {
+          "minute": 45,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Kylian Mbappé",
+          "assist": "Ousmane Dembélé",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        },
+        {
+          "minute": 53,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Bradley Barcola",
+          "assist": "Michael Olise",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 0
+          }
+        },
+        {
+          "minute": 74,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Kylian Mbappé",
+          "assist": "Michael Olise",
+          "type": "REGULAR",
+          "score": {
+            "h": 3,
+            "a": 0
+          }
+        }
+      ],
       "bookings": [],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 66,
+          "team": "a",
+          "in": "Taha Ali",
+          "out": "Elliot Stroud"
+        },
+        {
+          "minute": 66,
+          "team": "a",
+          "in": "Besfort Zeneli",
+          "out": "Lucas Bergvall"
+        },
+        {
+          "minute": 75,
+          "team": "h",
+          "in": "Malo Gusto",
+          "out": "Jules Koundé"
+        },
+        {
+          "minute": 75,
+          "team": "h",
+          "in": "Désiré Doué",
+          "out": "Ousmane Dembélé"
+        },
+        {
+          "minute": 78,
+          "team": "h",
+          "in": "Theo Hernández",
+          "out": "Lucas Digne"
+        },
+        {
+          "minute": 82,
+          "team": "a",
+          "in": "Mattias Svanberg",
+          "out": "Daniel Svensson"
+        },
+        {
+          "minute": 82,
+          "team": "a",
+          "in": "Benjamin Nygren",
+          "out": "Yasin Ayari"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -34614,7 +34697,8 @@
             },
             {
               "name": "Malo Gusto",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Rayan Cherki",
@@ -34626,7 +34710,8 @@
             },
             {
               "name": "Désiré Doué",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Maghnes Akliouche",
@@ -34638,7 +34723,8 @@
             },
             {
               "name": "Theo Hernández",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Manu Koné",
@@ -34728,11 +34814,13 @@
             },
             {
               "name": "Besfort Zeneli",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "Taha Ali",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Eric Smith",
@@ -34764,7 +34852,8 @@
             },
             {
               "name": "Benjamin Nygren",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true
             },
             {
               "name": "Herman Johansson",
@@ -34776,7 +34865,8 @@
             },
             {
               "name": "Mattias Svanberg",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             }
           ]
         }
@@ -34787,48 +34877,48 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "72%",
-          "a": "28%"
+          "h": "64%",
+          "a": "36%"
         },
         {
           "key": "totalShots",
-          "h": "0",
-          "a": "1"
+          "h": "23",
+          "a": "4"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
+          "h": "11",
           "a": "1"
         },
         {
           "key": "wonCorners",
-          "h": "0",
-          "a": "0"
+          "h": "9",
+          "a": "1"
         },
         {
           "key": "foulsCommitted",
-          "h": "2",
-          "a": "4"
+          "h": "10",
+          "a": "10"
         },
         {
           "key": "offsides",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "1"
         },
         {
           "key": "saves",
           "h": "1",
-          "a": "0"
+          "a": "8"
         },
         {
           "key": "totalPasses",
-          "h": "62",
-          "a": "25"
+          "h": "500",
+          "a": "278"
         },
         {
           "key": "passPct",
-          "h": "89%",
-          "a": "76%"
+          "h": "88%",
+          "a": "77%"
         },
         {
           "key": "yellowCards",
@@ -34841,7 +34931,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-06-30T21:10:57.354Z"
+      "updatedAt": "2026-06-30T22:41:43.118Z"
     }
   }
 }
