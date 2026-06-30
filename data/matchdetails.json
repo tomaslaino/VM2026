@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T15:08:45.118Z",
+    "updatedAt": "2026-06-30T17:16:18.482Z",
     "source": "espn"
   },
   "details": {
@@ -34093,6 +34093,335 @@
         }
       ],
       "updatedAt": "2026-06-30T06:12:49.885Z"
+    },
+    "k:78": {
+      "espnId": "760490",
+      "status": "IN_PLAY",
+      "minute": 16,
+      "utcDate": "2026-06-30T17:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-1-4-1",
+          "starters": [
+            {
+              "name": "Yahia Fofana",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Guela Doué",
+              "jersey": "17",
+              "pos": "RB"
+            },
+            {
+              "name": "Ghislain Konan",
+              "jersey": "3",
+              "pos": "LB"
+            },
+            {
+              "name": "Ibrahim Sangaré",
+              "jersey": "18",
+              "pos": "DM"
+            },
+            {
+              "name": "Odilon Kossounou",
+              "jersey": "7",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Emmanuel Agbadou",
+              "jersey": "20",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Nicolas Pépé",
+              "jersey": "19",
+              "pos": "RM"
+            },
+            {
+              "name": "Franck Kessié",
+              "jersey": "8",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Ange-Yoan Bonny",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Christ Inao Oulaï",
+              "jersey": "26",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Yan Diomande",
+              "jersey": "11",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Jean Michaël Seri",
+              "jersey": "4"
+            },
+            {
+              "name": "Alban Lafont",
+              "jersey": "23"
+            },
+            {
+              "name": "Seko Fofana",
+              "jersey": "6"
+            },
+            {
+              "name": "Mohamed Koné",
+              "jersey": "16"
+            },
+            {
+              "name": "Evann Guessand",
+              "jersey": "22"
+            },
+            {
+              "name": "Christopher Operi",
+              "jersey": "13"
+            },
+            {
+              "name": "Evan Ndicka",
+              "jersey": "21"
+            },
+            {
+              "name": "Bazoumana Touré",
+              "jersey": "24"
+            },
+            {
+              "name": "Ousmane Diomande",
+              "jersey": "2"
+            },
+            {
+              "name": "Elye Wahi",
+              "jersey": "12"
+            },
+            {
+              "name": "Oumar Diakité",
+              "jersey": "14"
+            },
+            {
+              "name": "Wilfried Singo",
+              "jersey": "5"
+            },
+            {
+              "name": "Parfait Guiagon",
+              "jersey": "25"
+            },
+            {
+              "name": "Simon Adingra",
+              "jersey": "10"
+            },
+            {
+              "name": "Amad Diallo",
+              "jersey": "15"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Ørjan Nyland",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Marcus Holmgren Pedersen",
+              "jersey": "16",
+              "pos": "RB"
+            },
+            {
+              "name": "David Møller Wolfe",
+              "jersey": "5",
+              "pos": "LB"
+            },
+            {
+              "name": "Sander Berge",
+              "jersey": "8",
+              "pos": "CM"
+            },
+            {
+              "name": "Kristoffer Ajer",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Torbjørn Heggem",
+              "jersey": "17",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Martin Ødegaard",
+              "jersey": "10",
+              "pos": "RM"
+            },
+            {
+              "name": "Patrick Berg",
+              "jersey": "6",
+              "pos": "LM"
+            },
+            {
+              "name": "Erling Haaland",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Alexander Sørloth",
+              "jersey": "7",
+              "pos": "RF"
+            },
+            {
+              "name": "Antonio Nusa",
+              "jersey": "20",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Sondre Langas",
+              "jersey": "24"
+            },
+            {
+              "name": "Sander Tangvik",
+              "jersey": "12"
+            },
+            {
+              "name": "Jens Petter Hauge",
+              "jersey": "23"
+            },
+            {
+              "name": "Oscar Bobb",
+              "jersey": "22"
+            },
+            {
+              "name": "Fredrik Aursnes",
+              "jersey": "14"
+            },
+            {
+              "name": "Leo Østigard",
+              "jersey": "4"
+            },
+            {
+              "name": "Egil Selvik",
+              "jersey": "13"
+            },
+            {
+              "name": "Fredrik André Bjørkan",
+              "jersey": "15"
+            },
+            {
+              "name": "Morten Thorsby",
+              "jersey": "2"
+            },
+            {
+              "name": "Andreas Schjelderup",
+              "jersey": "21"
+            },
+            {
+              "name": "Jørgen Strand Larsen",
+              "jersey": "11"
+            },
+            {
+              "name": "Julian Ryerson",
+              "jersey": "26"
+            },
+            {
+              "name": "Thelo Aasgaard",
+              "jersey": "19"
+            },
+            {
+              "name": "Henrik Falchener",
+              "jersey": "25"
+            },
+            {
+              "name": "Kristian Thorstvedt",
+              "jersey": "18"
+            }
+          ]
+        }
+      },
+      "referee": "Jesús Valenzuela",
+      "venue": "AT&T Stadium, Arlington, Texas",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "50%",
+          "a": "51%"
+        },
+        {
+          "key": "totalShots",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "2",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "88",
+          "a": "92"
+        },
+        {
+          "key": "passPct",
+          "h": "83%",
+          "a": "83%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-06-30T17:16:18.482Z"
     }
   }
 }

@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T15:08:45.111Z",
+    "updatedAt": "2026-06-30T17:16:18.418Z",
     "source": "espn",
-    "matchCount": 76,
-    "liveCount": 0,
+    "matchCount": 77,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -388,9 +388,23 @@
       "a": 1,
       "status": "FINISHED",
       "pw": "a"
+    },
+    "k:78": {
+      "h": 0,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:78",
+      "status": "IN_PLAY",
+      "minute": 15,
+      "home": "Ivory Coast",
+      "away": "Norway",
+      "score": "0-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1688,7 +1702,7 @@
       "date": "2026-06-30",
       "time": "19:00",
       "utcDate": "2026-06-30T17:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Ivory Coast",
       "away": "Norway",
