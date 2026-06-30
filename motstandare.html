@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=169">
+  <link rel="stylesheet" href="assets/styles.css?v=172">
 </head>
 <body>
   <div class="site-bg" aria-hidden="true"></div>
@@ -38,7 +38,6 @@
               <span class="spoiler-btn-state" id="spoilerBtnState">Av</span>
             </button>
           </div>
-          <span id="syncBadge" class="sync-badge pending" title="Resultat hämtas automatiskt från ESPN">Hämtar…</span>
         </div>
       </div>
     </div>
@@ -47,7 +46,10 @@
   <main id="view" class="container"></main>
 
   <footer class="foot">
-    <p>Data: FIFA & Wikipedia · Resultat & statistik: <a href="https://www.espn.com/soccer/">ESPN</a> · Tider kan ändras – <a href="https://www.fifa.com/">FIFA.com</a></p>
+    <div class="foot-row">
+      <span id="syncBadge" class="sync-badge pending" title="Resultat hämtas automatiskt från ESPN">Hämtar…</span>
+      <p>Data: FIFA & Wikipedia · Resultat & statistik: <a href="https://www.espn.com/soccer/">ESPN</a> · Tider kan ändras – <a href="https://www.fifa.com/">FIFA.com</a></p>
+    </div>
   </footer>
 
   <script>
@@ -64,7 +66,7 @@
   <script src="assets/r32engine.js?v=1"></script>
   <script src="assets/bracketengine.js?v=4"></script>
   <script src="assets/data.js?v=5"></script>
-  <script src="assets/app.js?v=112"></script>
+  <script src="assets/app.js?v=118"></script>
   <script src="assets/syncSchedule.js"></script>
   <script src="assets/sync.js?v=3"></script>
   <script src="assets/live.js?v=8"></script>

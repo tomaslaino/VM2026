@@ -536,32 +536,44 @@
     updateSyncBadge();
   }
 
-  function updateSyncBadge() {
-    var el = document.getElementById("syncBadge");
-    if (!el) return;
-    var cls, text, title;
+  // Auto-ESPN-brickans innehåll (klass/text/titel) utifrån synkstatusen.
+  // Delas av footer-badgen (#syncBadge) och slutspelets footer-kapsel.
+  function syncBadgeState() {
     if (autoSync.status === "ok" && autoSync.updatedAt) {
-      cls = "ok";
-      text = "Auto · ESPN";
-      title = "Senast uppdaterad: " + new Date(autoSync.updatedAt).toLocaleString("sv-SE");
-    } else if (autoSync.status === "error") {
-      cls = "error";
-      text = "Ingen backend";
-      title = "Kunde inte hämta resultat. Kontrollera att servern körs och att VM_CONFIG.backend pekar rätt.";
-    } else {
-      cls = "pending";
-      text = "Hämtar…";
-      title = "Resultat hämtas automatiskt från ESPN";
+      return {
+        cls: "ok", text: "Auto · ESPN",
+        title: "Senast uppdaterad: " + new Date(autoSync.updatedAt).toLocaleString("sv-SE")
+      };
     }
-    // Rör bara DOM:en när något faktiskt ändrats – annars blinkar badgen
-    // till vid varje bakgrundspoll (remove/add av klassen nollar gradienten).
-    if (el.hidden) el.hidden = false;
-    if (!el.classList.contains(cls)) {
-      el.classList.remove("pending", "ok", "error");
-      el.classList.add(cls);
+    if (autoSync.status === "error") {
+      return {
+        cls: "error", text: "Ingen backend",
+        title: "Kunde inte hämta resultat. Kontrollera att servern körs och att VM_CONFIG.backend pekar rätt."
+      };
     }
-    if (el.textContent !== text) el.textContent = text;
-    if (el.title !== title) el.title = title;
+    return {
+      cls: "pending", text: "Hämtar…",
+      title: "Resultat hämtas automatiskt från ESPN"
+    };
+  }
+
+  function updateSyncBadge() {
+    var st = syncBadgeState();
+    // Flera badgar kan finnas samtidigt: footern (#syncBadge) samt
+    // slutspelsvyns egen footer-kapsel (där den globala footern är dold).
+    var els = document.querySelectorAll(".sync-badge");
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      // Rör bara DOM:en när något faktiskt ändrats – annars blinkar badgen
+      // till vid varje bakgrundspoll (remove/add av klassen nollar gradienten).
+      if (el.hidden) el.hidden = false;
+      if (!el.classList.contains(st.cls)) {
+        el.classList.remove("pending", "ok", "error");
+        el.classList.add(st.cls);
+      }
+      if (el.textContent !== st.text) el.textContent = st.text;
+      if (el.title !== st.title) el.title = st.title;
+    }
   }
 
   /* ---------- Gruppspelets matcher (round-robin, 4 lag) ---------- */
@@ -1564,8 +1576,13 @@
       });
     });
 
+    // Den globala footern är dold i slutspelsvyn, så Auto-ESPN-brickan får
+    // följa med ned i kapseln här. Rendera med aktuell status direkt (kapseln
+    // byggs om vid varje render); updateSyncBadge() håller den sedan i synk.
+    var sb = syncBadgeState();
     html += '<div class="bracket-foot" style="grid-column:3 / 8;grid-row:8">' +
       '<span class="bracket-foot-cap">' +
+      '<span class="sync-badge ' + sb.cls + '" title="' + esc(sb.title) + '">' + esc(sb.text) + '</span>' +
       'Data: FIFA &amp; Wikipedia · Resultat &amp; statistik: ' +
       '<a href="https://www.espn.com/soccer/" target="_blank" rel="noopener">ESPN</a>' +
       ' · Tider kan ändras – <a href="https://www.fifa.com/" target="_blank" rel="noopener">FIFA.com</a>' +

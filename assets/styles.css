@@ -2433,6 +2433,9 @@ html.view-bracket .bracket .match-expand-icon { width: 11px; height: 11px; }
 }
 .bracket-foot-cap a { color: color-mix(in srgb, var(--ink) 70%, var(--gold)); text-decoration: none; }
 .bracket-foot-cap a:hover { text-decoration: underline; }
+/* Auto-ESPN-brickan följer med ned i slutspelskapseln (den globala footern är
+   dold i slutspelsvyn). Lite luft till källtexten och vertikal mittlinjering. */
+.bracket-foot-cap .sync-badge { margin-right: 8px; vertical-align: middle; }
 .match.bronze {
   border-color: color-mix(in srgb, #b07a3a 45%, var(--line));
   box-shadow: none;
