@@ -769,15 +769,27 @@
     return '<div class="' + cls + '">' + head + groups + "</div>";
   }
 
-  // SVT vinner per match: finns minst en riktig SVT-repris för matchen visas bara
-  // SVT-kolumnen, aldrig TV4:s (även när SVT saknar just den längd TV4 har). Först
-  // när SVT helt saknar repriser faller vi tillbaka på TV4.
+  // SVT prioriteras per längd, inte per match: för varje reprislängd väljs SVT om
+  // den finns, annars TV4. Då försvinner aldrig TV4:s "Hela matchen" bara för att
+  // SVT lagt upp ett kort sammandrag, samtidigt som det aldrig blir dubbletter av
+  // samma längd. Saknar SVT helt repriser visas TV4:s kolumn ensam.
   function recordedWatchGroups(info) {
     var hl = info && highlights[info.key];
     if (!hl) return "";
-    var svt = channelLinksHtml("SVT", hl.SVT);
-    if (svt) return svt;
-    return channelLinksHtml("TV4", hl.TV4);
+    var merged = {};
+    HL_TYPES.forEach(function (t) {
+      if (hl.SVT && watchAvailable(hl.SVT[t])) merged[t] = { ch: "SVT", entry: hl.SVT[t] };
+      else if (hl.TV4 && watchAvailable(hl.TV4[t])) merged[t] = { ch: "TV4", entry: hl.TV4[t] };
+    });
+    var svtLinks = "", tv4Links = "";
+    HL_TYPES.forEach(function (t) {
+      var pick = merged[t];
+      if (!pick) return;
+      var link = watchLinkHtml(pick.entry, HL_LABELS[t]);
+      if (pick.ch === "SVT") svtLinks += link;
+      else tv4Links += link;
+    });
+    return channelBlockHtml("SVT", svtLinks) + channelBlockHtml("TV4", tv4Links);
   }
 
   /* ---------- Spoilerfritt läge ----------

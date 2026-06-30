@@ -3916,22 +3916,20 @@
   /* Reprisbrickorna (utan ytterhölje) – läggs in i venue-cellen på samma rad
      som matchen och ersätter där TV-kanalmärket.
 
-     SVT vinner per match: har SVT minst en tillgänglig repris/sammandrag för
-     matchen visas BARA SVT:s länkar – aldrig TV4:s. Det gäller även när SVT
-     saknar just den längd TV4 har (t.ex. SVT har längre sammandrag + hela
-     matchen men inget kort sammandrag; då visas ändå inte TV4:s korta klipp).
-     Först när SVT helt saknar repriser faller vi tillbaka på TV4. Varje länk
-     färgas efter sin kanal (SVT grön, TV4 röd). */
+     SVT prioriteras PER LÄNGD, inte per match: för varje reprislängd
+     (kortare/längre/hela) väljs SVT om den finns, annars TV4. SVT trumfar alltså
+     alltid TV4 vid överlapp så det aldrig blir två länkar för samma längd, men
+     TV4 fyller luckorna SVT saknar. Det är viktigt eftersom SVT i gruppspelet
+     ofta bara lägger upp ett kort sammandrag medan TV4 har hela matchen – med en
+     ren "SVT vinner allt"-regel försvann då TV4:s "Hela matchen" helt. Varje
+     länk färgas efter sin kanal (SVT grön, TV4 röd). */
   function calWatchInner(key) {
     var hl = calHighlights[key];
     if (!hl) return "";
-    var svtHasAny = hl.SVT && CAL_HL_TYPES.some(function (t) { return calWatchAvailable(hl.SVT[t]); });
-    var ch = svtHasAny ? "SVT" : "TV4";
-    var src = hl[ch];
-    if (!src) return "";
     var links = "";
     CAL_HL_TYPES.forEach(function (t) {
-      if (calWatchAvailable(src[t])) links += calWatchLink(src[t], t, ch);
+      if (hl.SVT && calWatchAvailable(hl.SVT[t])) links += calWatchLink(hl.SVT[t], t, "SVT");
+      else if (hl.TV4 && calWatchAvailable(hl.TV4[t])) links += calWatchLink(hl.TV4[t], t, "TV4");
     });
     if (!links) return ""; // inga tillgängliga repriser ännu
     return '<span class="cal-watch-ch">' + links + "</span>";
