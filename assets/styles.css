@@ -197,24 +197,27 @@ body {
 .spoiler-control { display: inline-flex; align-items: center; flex-shrink: 0; }
 
 .spoiler-btn {
-  display: inline-flex; align-items: center; gap: 7px;
+  display: inline-flex; align-items: center; gap: 6px;
   border: 1px solid rgba(50, 85, 120, .38);
   background: rgba(10, 22, 40, .42);
   -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
   color: #b9c9dd; font: inherit; font-weight: 600; font-size: 12px;
-  padding: 6px 10px; border-radius: 10px; cursor: pointer; white-space: nowrap;
+  padding: 5px 8px; border-radius: 9px; cursor: pointer; white-space: nowrap;
   transition: color .15s, background .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 .spoiler-btn:hover { color: #fff; border-color: rgba(85, 125, 165, .58); }
 .spoiler-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .spoiler-btn-ic { display: inline-flex; flex: 0 0 auto; }
 .spoiler-btn-ic svg { width: 15px; height: 15px; display: block; }
-.spoiler-btn-txt { flex: 0 0 auto; }
+/* Minimalistiskt: själva ordet "Spoilerskydd" visas inte – det syns vid hover
+   (knappens title). I header behåller vi bara ikon + lägeschip. */
+.spoiler-btn-txt { display: none; }
 .spoiler-btn-state {
-  /* Fast bredd så hela knappen behåller samma storlek oavsett läge. */
-  flex: 0 0 auto; width: 52px; text-align: center;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  padding: 2px 8px; border-radius: 999px;
+  /* Inget tak på bredden så ett valt datum (t.ex. "≤ 2/7") aldrig kapas till
+     en rad punkter. min-width håller "Av"-läget snyggt centrerat. */
+  flex: 0 0 auto; min-width: 22px; text-align: center;
+  white-space: nowrap;
+  padding: 2px 7px; border-radius: 999px;
   background: rgba(120, 145, 175, .2);
   border: 1px solid rgba(120, 150, 180, .26);
   font-size: 10.5px; font-weight: 800; letter-spacing: .01em; color: #cdd9ea;
@@ -301,10 +304,6 @@ body {
 .spoiler-status strong { color: var(--ink); font-weight: 800; }
 .spoiler-status-hide { color: color-mix(in srgb, var(--usa-red) 55%, var(--ink-soft)); font-weight: 700; }
 
-@media (max-width: 560px) {
-  .spoiler-btn { padding: 7px 10px; gap: 6px; }
-  .spoiler-btn-txt { display: none; } /* smal skärm: bara ikon + lägeschip */
-}
 .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--livecol); box-shadow: 0 0 0 0 rgba(45,184,122,.5); animation: pulse 2s infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(45,184,122,.5);} 70% { box-shadow: 0 0 0 6px rgba(45,184,122,0);} 100% { box-shadow: 0 0 0 0 rgba(45,184,122,0);} }
 .reset {
@@ -3198,8 +3197,11 @@ a.tv-bcast:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 
 /* ---------- Footer ---------- */
 .foot { max-width: var(--maxw); margin: 10px auto 0; padding: 22px 20px 40px; color: var(--ink-soft); font-size: 12px; border-top: 1px solid var(--line); }
-.foot p { margin: 0 0 6px; max-width: 100ch; }
+.foot p { margin: 0; max-width: 100ch; }
 .foot .todo { color: var(--third-q); }
+/* Auto-ESPN-brickan bor numera här nere intill källraden. */
+.foot-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.foot-row .sync-badge { flex: 0 0 auto; }
 
 /* ---------- Responsivt / mobil ---------- */
 @media (max-width: 900px) {
