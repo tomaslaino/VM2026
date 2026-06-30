@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T06:13:00.443Z",
+    "updatedAt": "2026-06-30T10:01:42.708Z",
     "source": "svt+tv4",
     "matchCount": 76
   },
@@ -121,11 +121,6 @@
           "url": "https://www.svtplay.se/video/jkAAM1A/fifa-fotbolls-vm-2026/brasilien-marocko",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-13T23:59:59+02:00"
-        },
-        "long": {
-          "url": "https://www.svtplay.se/klipp/j1qV4gQ/utokade-hojdpunkter-brasilien-marocko",
-          "title": "Utökade höjdpunkter: Brasilien – Marocko",
-          "until": "2060-01-01T00:00:00+01:00"
         },
         "short": {
           "url": "https://www.svtplay.se/klipp/eJyJ1Bd/grupp-c-brasilien-marocko",
@@ -258,11 +253,6 @@
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-15T23:59:59+02:00"
         },
-        "long": {
-          "url": "https://www.svtplay.se/klipp/e4dnPbD/utokade-hojdpunkter-sverige-tunisien",
-          "title": "Utökade höjdpunkter: Sverige – Tunisien",
-          "until": "2026-10-19T05:30:00+02:00"
-        },
         "short": {
           "url": "https://www.svtplay.se/klipp/egW57LP/grupp-f-sverige-tunisien",
           "title": "Grupp F: Sverige – Tunisien",
@@ -309,11 +299,6 @@
           "url": "https://www.svtplay.se/video/jQrrWN1/fifa-fotbolls-vm-2026/belgien-egypten",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-07-15T23:59:59+02:00"
-        },
-        "long": {
-          "url": "https://www.svtplay.se/klipp/eYqoQME/utokade-hojdpunkter-belgien-egypten",
-          "title": "Utökade höjdpunkter: Belgien – Egypten",
-          "until": "2026-10-19T05:30:00+02:00"
         },
         "short": {
           "url": "https://www.svtplay.se/klipp/KVwEr5x/grupp-h-belgien-egypten",
@@ -1611,47 +1596,35 @@
         }
       }
     },
-    "k:74": {
+    "k:73": {
       "SVT": {
-        "full": {
-          "url": "https://www.svtplay.se/video/j1qqxvE/fifa-fotbolls-vm-2026/tyskland-paraguay",
-          "title": "FIFA Fotbolls-VM 2026",
-          "until": "2026-07-29T23:59:59+02:00"
-        },
-        "long": {
-          "url": "https://www.svtplay.se/klipp/eorL2xB/utokade-hojdpunkter-tyskland-paraguay",
-          "title": "Utökade höjdpunkter: Tyskland - Paraguay",
-          "until": "2026-10-19T23:59:00+02:00"
-        }
-      }
-    },
-    "k:75": {
-      "SVT": {
-        "live": {
-          "url": "https://www.svtplay.se/video/jGVVGgy/fifa-fotbolls-vm-2026/nederlanderna-marocko",
-          "title": "FIFA Fotbolls-VM 2026",
-          "until": "2026-07-30T23:59:59+02:00"
-        },
-        "full": {
-          "url": "https://www.svtplay.se/video/jGVVGgy/fifa-fotbolls-vm-2026/nederlanderna-marocko",
-          "title": "FIFA Fotbolls-VM 2026",
-          "until": "2026-07-30T23:59:59+02:00"
-        },
-        "long": {
-          "url": "https://www.svtplay.se/klipp/e2dbnwN/utokade-hojdpunkter-nederlanderna-marocko",
-          "title": "Utökade höjdpunkter: Nederländerna - Marocko",
-          "until": "2026-10-19T23:59:00+02:00"
+        "short": {
+          "url": "https://www.svtplay.se/klipp/8y2m561/sextondelsfinal-sydafrika-kanada",
+          "title": "Sextondelsfinal: Sydafrika – Kanada",
+          "until": "2026-10-19T00:15:00+02:00"
         }
       },
       "TV4": {
+        "full": {
+          "url": "https://www.tv4play.se/video/9595b28065e89e19d265/sydafrika-kanada",
+          "title": "Sydafrika - Kanada",
+          "until": "2026-07-28T18:00:00Z"
+        },
         "short": {
-          "url": "https://www.tv4play.se/klipp/90181faea88b7b64c9cf/video-hojdpunkter-nederlanderna-marocko",
-          "title": "Höjdpunkter: Nederländerna - Marocko",
+          "url": "https://www.tv4play.se/klipp/cfb595073d403b01c06d/video-hojdpunkter-sydafrika-kanada",
+          "title": "Höjdpunkter: Sydafrika - Kanada",
           "until": null
         }
       }
     },
     "k:76": {
+      "SVT": {
+        "short": {
+          "url": "https://www.svtplay.se/klipp/egW5wxQ/sextondelsfinal-brasilien-japan",
+          "title": "Sextondelsfinal: Brasilien – Japan",
+          "until": "2026-10-19T05:30:00+02:00"
+        }
+      },
       "TV4": {
         "full": {
           "url": "https://www.tv4play.se/video/ba299b4802ec0935f771/brasilien-japan",
@@ -1665,16 +1638,54 @@
         }
       }
     },
-    "k:73": {
-      "TV4": {
+    "k:74": {
+      "SVT": {
         "full": {
-          "url": "https://www.tv4play.se/video/9595b28065e89e19d265/sydafrika-kanada",
-          "title": "Sydafrika - Kanada",
-          "until": "2026-07-28T18:00:00Z"
+          "url": "https://www.svtplay.se/video/j1qqxvE/fifa-fotbolls-vm-2026/tyskland-paraguay",
+          "title": "FIFA Fotbolls-VM 2026",
+          "until": "2026-07-29T23:59:59+02:00"
+        },
+        "long": {
+          "url": "https://www.svtplay.se/klipp/eorL2xB/utokade-hojdpunkter-tyskland-paraguay",
+          "title": "Utökade höjdpunkter: Tyskland - Paraguay",
+          "until": "2026-10-19T23:59:00+02:00"
         },
         "short": {
-          "url": "https://www.tv4play.se/klipp/cfb595073d403b01c06d/video-hojdpunkter-sydafrika-kanada",
-          "title": "Höjdpunkter: Sydafrika - Kanada",
+          "url": "https://www.svtplay.se/klipp/KvvQNxz/sextondelsfinal-tyskland-paraguay",
+          "title": "Sextondelsfinal: Tyskland - Paraguay",
+          "until": "2026-10-19T05:30:00+02:00"
+        }
+      },
+      "TV4": {
+        "short": {
+          "url": "https://www.tv4play.se/klipp/f90312400e0d43c6bfd0/video-hojdpunkter-tyskland-paraguay",
+          "title": "Höjdpunkter: Tyskland - Paraguay",
+          "until": null
+        }
+      }
+    },
+    "k:75": {
+      "SVT": {
+        "full": {
+          "url": "https://www.svtplay.se/video/jGVVGgy/fifa-fotbolls-vm-2026/nederlanderna-marocko",
+          "title": "FIFA Fotbolls-VM 2026",
+          "until": "2026-07-30T23:59:59+02:00"
+        },
+        "long": {
+          "url": "https://www.svtplay.se/klipp/e2dbnwN/utokade-hojdpunkter-nederlanderna-marocko",
+          "title": "Utökade höjdpunkter: Nederländerna - Marocko",
+          "until": "2026-10-19T23:59:00+02:00"
+        },
+        "short": {
+          "url": "https://www.svtplay.se/klipp/ep5ERxx/sextondelsfinal-nederlanderna-marocko",
+          "title": "Sextondelsfinal: Nederländerna - Marocko",
+          "until": "2026-10-19T05:30:00+02:00"
+        }
+      },
+      "TV4": {
+        "short": {
+          "url": "https://www.tv4play.se/klipp/9e456cf12ec79b8b9cac/video-hojdpunkter-nederlanderna-marocko",
+          "title": "Höjdpunkter: Nederländerna - Marocko",
           "until": null
         }
       }
