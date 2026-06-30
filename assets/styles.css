@@ -212,7 +212,7 @@ body {
 .spoiler-btn-txt { flex: 0 0 auto; }
 .spoiler-btn-state {
   /* Fast bredd så hela knappen behåller samma storlek oavsett läge. */
-  flex: 0 0 auto; width: 84px; text-align: center;
+  flex: 0 0 auto; width: 52px; text-align: center;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   padding: 2px 8px; border-radius: 999px;
   background: rgba(120, 145, 175, .2);
@@ -258,7 +258,7 @@ body {
 
 .spoiler-opts { display: flex; flex-direction: column; gap: 7px; }
 .spoiler-opt {
-  display: flex; align-items: flex-start; gap: 10px; width: 100%; text-align: left;
+  display: flex; align-items: center; gap: 10px; width: 100%; text-align: left;
   border: 1px solid rgba(70, 105, 145, .34); background: rgba(10, 22, 40, .4);
   color: var(--ink); font: inherit; padding: 9px 11px; border-radius: 11px; cursor: pointer;
   transition: border-color .15s ease, background .15s ease;

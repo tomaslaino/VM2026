@@ -5910,9 +5910,9 @@
     document.documentElement.classList.toggle("spoiler-free", on);
     if (!stateEl) return;
     if (mode === "off") { stateEl.textContent = "Av"; return; }
-    if (mode === "auto") { stateEl.textContent = "Senaste"; return; }
+    if (mode === "auto") { stateEl.textContent = "24 h"; return; }
     var date = spoilerCutoffDate(spoilerScheduleList(), spoilerCutoffMs());
-    stateEl.textContent = date ? "t.o.m. " + spoilerShortDate(date) : "Eget val";
+    stateEl.textContent = date ? "≤ " + spoilerShortDate(date) : "Eget val";
   }
 
   /* ----- Gemensam omräkning när skyddet ändras ----- */
@@ -5949,11 +5949,11 @@
   }
 
   /* ----- Panelinnehåll ----- */
-  function spoilerOptionRow(val, active, title, desc) {
+  function spoilerOptionRow(val, active, title) {
     return '<button type="button" class="spoiler-opt' + (active ? " is-active" : "") +
       '" data-spoiler-mode="' + val + '" role="radio" aria-checked="' + (active ? "true" : "false") + '">' +
       '<span class="spoiler-opt-radio" aria-hidden="true"></span>' +
-      '<span class="spoiler-opt-txt"><strong>' + esc(title) + '</strong><small>' + esc(desc) + '</small></span>' +
+      '<span class="spoiler-opt-txt"><strong>' + esc(title) + '</strong></span>' +
       '</button>';
   }
   function spoilerDateOptions(list, selDate) {
@@ -6024,11 +6024,10 @@
         '<h3 id="spoilerPanelTitle">Spoilerskydd</h3>' +
         '<button type="button" class="spoiler-panel-close" data-spoiler-close title="Stäng" aria-label="Stäng">×</button>' +
       '</div>' +
-      '<p class="spoiler-panel-intro">Allt efter din brytpunkt döljs tills du själv väljer att visa det.</p>' +
       '<div class="spoiler-opts" role="radiogroup" aria-labelledby="spoilerPanelTitle">' +
-        spoilerOptionRow("off", mode === "off", "Visa allt", "Inget döljs.") +
-        spoilerOptionRow("auto", mode === "auto", "Senaste dygnet", "Standard – döljer det senaste dygnets matcher.") +
-        spoilerOptionRow("custom", mode === "custom", "Välj brytpunkt", "Dölj allt efter en match du väljer.") +
+        spoilerOptionRow("off", mode === "off", "Visa allt") +
+        spoilerOptionRow("auto", mode === "auto", "Senaste dygnet") +
+        spoilerOptionRow("custom", mode === "custom", "Välj brytpunkt") +
       '</div>' +
       '<div class="spoiler-pick"' + (mode === "custom" ? "" : " hidden") + '>' +
         '<label class="spoiler-field"><span>Datum</span>' +
