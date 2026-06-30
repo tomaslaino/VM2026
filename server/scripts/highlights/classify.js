@@ -33,7 +33,10 @@ export function cleanTitle(s) {
 }
 
 const RE_LONG = /(ut(ö|o)kade\s+h(ö|o)jdpunkter|l(ä|a)ngre\s+sammandrag|f(ö|o)rl(ä|a)ngt\s+sammandrag|extended)/i;
-const RE_SHORT = /(h(ö|o)jdpunkter|sammandrag|^grupp\s+[a-l]\b|(å|a)ttondelsfinal|kvartsfinal|semifinal|bronsmatch|\bfinal\b)/i;
+// Slutspelsklippen prefixas med rundans namn i stället för "Höjdpunkter".
+// 48-lagsformatet (2026) inleder slutspelet med sextondelsfinal (1/16-final) –
+// utan den fångas inte korta sammandrag för R32 utan teamnamn räcker inte.
+const RE_SHORT = /(h(ö|o)jdpunkter|sammandrag|^grupp\s+[a-l]\b|sextondelsfinal|(å|a)ttondelsfinal|kvartsfinal|semifinal|bronsmatch|\bfinal\b)/i;
 
 // TV4-klippen är prefixade ("Höjdpunkter: A - B", "Extended: A - B"), så här
 // ankras mönstren i början för att inte fånga nyhetsklipp som råkar nämna ordet.

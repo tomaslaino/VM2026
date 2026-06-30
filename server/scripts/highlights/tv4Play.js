@@ -159,5 +159,54 @@ export async function fetchTv4Highlights(matchKeyForTitle, liveKeys = new Set(),
   }
 
   log(`[tv4] hittade höjdpunkter/repriser för ${Object.keys(out).length} matcher`);
+  if (process.env.TV4_VERIFY_LINKS !== "0") await dropUnreachable(out, { log });
   return out;
+}
+
+/* Verifiera att TV4-länkarna faktiskt går att öppna innan de skrivs. TV4:s
+   GraphQL kan lista klipp som inte längre går att spela (borttagna eller
+   ompekade slugs), och de skulle annars bli döda länkar i kalendern/modalen.
+
+   Konservativt med flit: vi droppar BARA på definitiva "finns inte"-svar
+   (404/410), aldrig på timeout, nätfel eller geo-/inloggningsspärr (403). Synken
+   körs i GitHub Actions (utanför Sverige), där giltiga klipp kan svara 403 –
+   sådana ska behållas, inte felaktigt tas bort. Stäng av helt med
+   TV4_VERIFY_LINKS=0. */
+async function urlIsGone(url) {
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 8000);
+    try {
+      const res = await fetch(url, { method: "GET", redirect: "follow", signal: ctrl.signal });
+      return res.status === 404 || res.status === 410;
+    } finally {
+      clearTimeout(timer);
+    }
+  } catch {
+    return false; // timeout/nätfel → behåll länken (hellre kvar än felaktigt borttagen)
+  }
+}
+
+async function dropUnreachable(out, { log }) {
+  const tasks = [];
+  for (const key of Object.keys(out)) {
+    for (const type of Object.keys(out[key])) {
+      const entry = out[key][type];
+      if (entry && entry.url) tasks.push({ key, type, url: entry.url });
+    }
+  }
+  let removed = 0;
+  const CONCURRENCY = 6; // begränsad parallellitet – spamma inte TV4 med alla länkar på en gång
+  for (let i = 0; i < tasks.length; i += CONCURRENCY) {
+    const batch = tasks.slice(i, i + CONCURRENCY);
+    const gone = await Promise.all(batch.map((t) => urlIsGone(t.url)));
+    batch.forEach((t, j) => {
+      if (!gone[j] || !out[t.key]) return;
+      delete out[t.key][t.type];
+      if (!Object.keys(out[t.key]).length) delete out[t.key];
+      removed++;
+      log(`[tv4] hoppar över död länk (${t.type}): ${t.url}`);
+    });
+  }
+  if (removed) log(`[tv4] tog bort ${removed} död(a) länk(ar)`);
 }

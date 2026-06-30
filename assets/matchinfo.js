@@ -769,10 +769,15 @@
     return '<div class="' + cls + '">' + head + groups + "</div>";
   }
 
+  // SVT vinner per match: finns minst en riktig SVT-repris för matchen visas bara
+  // SVT-kolumnen, aldrig TV4:s (även när SVT saknar just den längd TV4 har). Först
+  // när SVT helt saknar repriser faller vi tillbaka på TV4.
   function recordedWatchGroups(info) {
     var hl = info && highlights[info.key];
     if (!hl) return "";
-    return channelLinksHtml("SVT", hl.SVT) + channelLinksHtml("TV4", hl.TV4);
+    var svt = channelLinksHtml("SVT", hl.SVT);
+    if (svt) return svt;
+    return channelLinksHtml("TV4", hl.TV4);
   }
 
   /* ---------- Spoilerfritt läge ----------
