@@ -3317,7 +3317,7 @@
   // Oddsfavoriten i en trädposition – KONSEKVENT uppåt i trädet: en plats kan
   // bara visa ett lag som också är favorit i en av de två matande platserna
   // (annars dök t.ex. Portugal upp i en kvartsfinal utan att synas i någon av
-  // åttondelsfinalerna som leder dit). Leder (r32/brons) använder marginalen.
+  // åttondelsfinalerna som leder dit). Löv (r32) använder marginalen.
   function bracketFavName(round, pos) {
     if (!bracketProbs || !bracketProbs.nodes) return null;
     if (!bracketFavCache) bracketFavCache = {};
@@ -3326,8 +3326,20 @@
     var dist = bracketProbs.nodes[round] && bracketProbs.nodes[round][pos];
     var prev = BRACKET_PREV_ROUND[round];
     var result;
-    if (!prev) {
-      result = topNameOf(dist);                       // löv (r32) eller brons
+    if (round === "bronze") {
+      // Bronsmatchens sidor är FÖRLORARNA i motsvarande semifinal (bronsposition
+      // p delar sf-positionerna 2p/2p+1 med final-position p). Måste härledas
+      // som "den av sf-favoriterna som INTE valdes till final" – annars kan
+      // samma lag visas som både finalist och bronsdeltagare (oberoende
+      // marginaler känner inte till varandra).
+      var finalWinner = bracketFavName("final", pos);
+      var sfA = bracketFavName("sf", pos * 2);
+      var sfB = bracketFavName("sf", pos * 2 + 1);
+      if (finalWinner && sfA === finalWinner) result = sfB;
+      else if (finalWinner && sfB === finalWinner) result = sfA;
+      else result = topNameOf(dist);
+    } else if (!prev) {
+      result = topNameOf(dist);                       // löv (r32)
     } else {
       var a = bracketFavName(prev, pos * 2);
       var b = bracketFavName(prev, pos * 2 + 1);
