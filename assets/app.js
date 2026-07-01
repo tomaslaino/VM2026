@@ -219,15 +219,10 @@
   }
 
   /* ---------- Spoilerfritt läge ----------
-     Döljer resultat (och tabell-/statistikpåverkan) för spelade matcher tills de
-     "låses upp" vid en daglig återställning. Tanken: matcher spelas under
-     amerikanska kvällen/natten (svensk kväll/natt), och man vill kunna gå in i
-     kalendern dagen efter och se highlights/hela matchen utan att veta hur det
-     gick. Återställningen sker kl. 18:00 svensk tid (just före kvällens första
-     match ~19:00), och en match förblir dold tills den ANDRA 18:00-gränsen efter
-     avspark passerats. Det innebär att gårdagens/nattens matcher hålls dolda hela
-     dagen och kvällen, och avslöjas först kl. 18:00 dygnet därpå. */
-  var SPOILER_RESET_UTC_HOUR = 16; // 18:00 svensk sommartid (CEST = UTC+2)
+     Döljer resultat (och tabell-/statistikpåverkan) för matcher vars avspark
+     ligger inom de senaste 24 timmarna – ett rullande dygnsskydd. En match
+     låses upp exakt 24 timmar efter avspark. */
+  var SPOILER_WINDOW_MS = 24 * 3600 * 1000;
   /* Spoilerskyddet har tre lägen (sätts från headerpanelen):
        off    – spoilerOn=false: inget döljs.
        auto   – spoilerOn=true, spoilerCutoff=null: rullande dygnsskydd (standard,
@@ -240,14 +235,10 @@
     return typeof v === "number" ? v : null;
   }
 
-  /* Tidpunkt (ms, UTC) då en match med given avspark avslöjas: den andra
-     18:00-gränsen (svensk tid) strikt efter avspark. */
+  /* Tidpunkt (ms, UTC) då en match med given avspark avslöjas: exakt 24 timmar
+     efter avspark. */
   function spoilerUnlockMs(ko) {
-    var d = new Date(ko);
-    var boundary = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), SPOILER_RESET_UTC_HOUR, 0, 0);
-    var DAY = 24 * 3600 * 1000;
-    if (boundary <= ko) boundary += DAY; // första 18:00-gränsen strikt efter avspark
-    return boundary + DAY;                // andra gränsen (ett dygn till)
+    return ko + SPOILER_WINDOW_MS;
   }
 
   /* Avsparkstid (ms, UTC) för en resultatnyckel utan att läsa resultat
@@ -283,7 +274,7 @@
     if (ko > Date.now()) return false;          // inte avspakad än
     var cutoff = spoilerCutoffMs();
     if (cutoff != null) return ko > cutoff;     // custom: dölj allt efter brytpunkten
-    return Date.now() < spoilerUnlockMs(ko);    // auto: senaste dygnet (oförändrat)
+    return Date.now() < spoilerUnlockMs(ko);    // auto: rullande 24 timmar
   }
 
   function isSpoilerHidden(key) {
