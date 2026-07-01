@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python -c \"import json;d=json.load\\(open\\('data/bracket_probs.json',encoding='utf-8'\\)\\);print\\('rounds Sweden:',d['rounds']['Sweden']\\)\")"
+      "Bash(python -c \"import json;d=json.load\\(open\\('data/bracket_probs.json',encoding='utf-8'\\)\\);print\\('rounds Sweden:',d['rounds']['Sweden']\\)\")",
+      "Bash(node --check assets/app.js)",
+      "Bash(node -e \"console.log\\(require\\('puppeteer-core/package.json'\\)?.version || 'core?'\\)\")",
+      "Bash(ls node_modules/@puppeteer)",
+      "Bash(ls node_modules/puppeteer* -d)",
+      "Bash(claude update *)",
+      "Bash(git log *)"
     ]
   }
 }

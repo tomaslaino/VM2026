@@ -4408,6 +4408,15 @@ span.pr-caps-debut.pr-caps-legend {
   letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft);
   pointer-events: none;
 }
+/* "Repriser"-raden: rubriken ligger bredvid (inte ovanför) de kompakta
+   ikonbrickorna, i samma stil och ordning (kortare/längre/hela) som
+   reprislänkarna på framsidan/kalendern – i stället för stora textknappar
+   under rubriken i två kolumner. */
+.mi-watch.mi-watch-repris {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+}
+.mi-watch-repris .mi-watch-title { position: static; height: auto; }
+.mi-watch-repris .cal-watch { flex-wrap: wrap; }
 .mi-watch-ch {
   display: flex; flex-direction: column; gap: 9px; min-width: 0;
 }
@@ -5223,13 +5232,8 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 
 /* ---- gemensamma kort ---- */
 .calc-card { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 13px; padding: 14px 16px 15px; }
-.calc-cardhead { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.calc-cardhead { margin-bottom: 12px; }
 .calc-round { font-family: var(--display); font-weight: 800; font-size: 16px; letter-spacing: .4px; color: var(--ink); text-transform: uppercase; }
-.calc-reach { font-size: 12px; color: var(--ink-soft); font-weight: 600; white-space: nowrap; }
-.calc-reach b { font-size: 15px; color: var(--ink); font-weight: 900; font-variant-numeric: tabular-nums; }
-
-.calc-reachbar { height: 6px; border-radius: 4px; background: rgba(255,255,255,.07); overflow: hidden; margin: 9px 0 12px; }
-.calc-reachbar .fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--usa-blue), var(--adv)); transition: width .25s ease; }
 
 .calc-faint { color: var(--ink-soft); font-size: 12.5px; padding: 4px 2px; line-height: 1.5; }
 
@@ -5242,18 +5246,9 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 .calc-standings tr.me td { background: color-mix(in srgb, var(--focus) 16%, transparent); font-weight: 800; }
 .calc-standings tr.me td.nm { box-shadow: inset 3px 0 0 var(--focus); }
 
-.calc-poschips { display: flex; flex-wrap: wrap; gap: 6px; }
-.calc-poschip {
-  font-size: 11px; color: var(--ink-soft); font-weight: 600; padding: 3px 9px;
-  border: 1px solid var(--line); border-radius: 999px; background: var(--card);
-}
-.calc-poschip b { color: var(--ink); font-weight: 900; font-variant-numeric: tabular-nums; }
-.calc-poschip.out b { color: #ff8898; }
-
 /* ---- lagets VM-resa: spelade matcher (klickbara) ---- */
 .calc-journey { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 13px; padding: 14px 15px 15px; }
-.calc-journey-head h4 { margin: 0 0 3px; font-family: var(--display); font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: .4px; color: var(--ink); }
-.calc-journey-head p { margin: 0 0 13px; font-size: 11.5px; color: var(--ink-soft); line-height: 1.5; }
+.calc-journey-head h4 { margin: 0 0 12px; font-family: var(--display); font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: .4px; color: var(--ink); }
 
 .cj-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
 .cj-row {

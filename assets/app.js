@@ -2866,8 +2866,6 @@
      motståndare (givet att man når dit) + din uppskattade vinstchans. En ren
      kontrollpanel låter dig klicka i hur kvarvarande gruppmatcher slutar.
   ==================================================================== */
-  var CALC_POSLBL = { 1: "Vinner gruppen", 2: "Tvåa", 3: "Trea" };
-
   function setCalcStatus(txt) {
     var el = document.getElementById("calc-status");
     if (el) el.textContent = txt || "";
@@ -2997,10 +2995,15 @@
     // ersätts motståndartavlan av en nekrolog för laget.
     var fate = spotlightFate(sel.team.iso, getCtx());
     var sub = document.getElementById("calc-sub");
-    if (sub) sub.innerHTML = (fate
-        ? '<b>' + esc(sel.team.sv) + '</b> är utslaget ur VM 2026 – inga fler motståndare att möta.'
-        : 'Följ <b>' + esc(sel.team.sv) + '</b> genom slutspelet och se vilka lag de kan möta i varje runda – styr själv hur de sista gruppmatcherna slutar. ') +
-      '<span class="calc-status" id="calc-status"></span>';
+    // Utslaget lag: nekrologen nedanför säger redan allt som behövs, så
+    // ingressen döljs helt i stället för att upprepa det med en mening.
+    if (sub) {
+      sub.style.display = fate ? "none" : "";
+      if (!fate) {
+        sub.innerHTML = 'Följ <b>' + esc(sel.team.sv) + '</b> genom slutspelet och se vilka lag de kan möta i varje runda – styr själv hur de sista gruppmatcherna slutar. ' +
+          '<span class="calc-status" id="calc-status"></span>';
+      }
+    }
     if (fate) {
       renderCalcGrave(sel, fate);
     } else {
@@ -3191,9 +3194,6 @@
   function renderCalcSide(sel) {
     var host = document.getElementById("calc-side");
     if (!host || !calcResult) return;
-    var focal = calcResult.focal;
-    var advance = focal && focal.r32 ? focal.r32.reachP : 0;
-    var gp = (focal && focal.groupPositions) || {};
     var table = computeTable(sel.g);
     var rows = table.map(function (r, pos) {
       var me = r.idx === sel.idx;
@@ -3202,18 +3202,10 @@
         '<td>' + r.pld + '</td><td>' + (r.gd >= 0 ? "+" : "") + r.gd + '</td>' +
         '<td>' + r.gf + '</td><td>' + r.pts + '</td></tr>';
     }).join("");
-    var poschips = [1, 2, 3].map(function (p) {
-      return '<span class="calc-poschip"><b>' + r32Pct(gp[p] || 0) + '</b> ' + CALC_POSLBL[p] + '</span>';
-    }).join("") + '<span class="calc-poschip out"><b>' + r32Pct(Math.max(0, 1 - advance)) + '</b> Åker ut</span>';
 
     host.innerHTML = '<div class="calc-card calc-groupcard">' +
-        '<div class="calc-cardhead">' +
-          '<span class="calc-round">Grupp ' + sel.g + '</span>' +
-          '<span class="calc-reach"><b>' + r32Pct(advance) + '</b> går vidare</span>' +
-        '</div>' +
-        '<div class="calc-reachbar"><div class="fill" style="width:' + (advance * 100).toFixed(1) + '%"></div></div>' +
+        '<div class="calc-cardhead"><span class="calc-round">Grupp ' + sel.g + '</span></div>' +
         '<table class="calc-standings"><tr><th class="nm">Lag</th><th>S</th><th>MV</th><th>GM</th><th>P</th></tr>' + rows + '</table>' +
-        '<div class="calc-poschips">' + poschips + '</div>' +
       '</div>';
   }
 
@@ -3229,8 +3221,7 @@
     var played = matches.filter(function (mm) { return mm.played && mm.home && mm.away; });
 
     var head = '<div class="calc-journey-head">' +
-      '<h4>' + esc(teamSvFixture(sel.team)) + 's VM</h4>' +
-      '<p>Lagets spelade matcher i kronologisk ordning – klicka för matchfakta och statistik.</p></div>';
+      '<h4>' + esc(teamSvFixture(sel.team)) + 's VM</h4></div>';
 
     if (!played.length) {
       host.innerHTML = head + '<div class="calc-faint">Inga matcher spelade ännu.</div>';

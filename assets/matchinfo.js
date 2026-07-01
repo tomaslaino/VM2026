@@ -870,27 +870,40 @@
     return '<div class="' + cls + '">' + head + groups + "</div>";
   }
 
+  // Samma reprisikoner och ordning (kortare → längre → hela) som brickorna på
+  // framsidan/kalendern, så igenkänningen är omedelbar även i modalen.
+  var REPRIS_TYPES = ["short", "long", "full"];
+  var REPRIS_ICONS = {
+    full: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 8.5l5.5 3.5-5.5 3.5z" fill="currentColor"/></svg>',
+    long: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="6" width="13" height="2.4" rx="1.2" fill="currentColor"/><rect x="4" y="10.8" width="16" height="2.4" rx="1.2" fill="currentColor"/><rect x="4" y="15.6" width="9" height="2.4" rx="1.2" fill="currentColor"/></svg>',
+    short: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 2L4 14h6l-1 8 9-12h-6z" fill="currentColor"/></svg>'
+  };
+
+  function reprisLinkHtml(entry, type, ch) {
+    var chCls = ch === "SVT" ? "svt" : "tv4";
+    var tip = HL_LABELS[type] + " · " + ch;
+    return '<a class="cal-watch-link ' + chCls + '" href="' + esc(entry.url) + '" target="_blank" rel="noopener noreferrer" ' +
+      'title="' + esc(tip) + '" aria-label="' + esc(HL_LABELS[type] + " på " + ch) + '">' + REPRIS_ICONS[type] + "</a>";
+  }
+
   // SVT prioriteras per längd, inte per match: för varje reprislängd väljs SVT om
   // den finns, annars TV4. Då försvinner aldrig TV4:s "Hela matchen" bara för att
   // SVT lagt upp ett kort sammandrag, samtidigt som det aldrig blir dubbletter av
-  // samma längd. Saknar SVT helt repriser visas TV4:s kolumn ensam.
-  function recordedWatchGroups(info) {
+  // samma längd. Saknar SVT helt repriser visas TV4:s ikoner ensamma. Rubriken
+  // ("Repriser") ligger på samma rad som ikonbrickorna, precis som på framsidan.
+  function recordedWatchHtml(info) {
     var hl = info && highlights[info.key];
     if (!hl) return "";
-    var merged = {};
-    HL_TYPES.forEach(function (t) {
-      if (hl.SVT && watchAvailable(hl.SVT[t])) merged[t] = { ch: "SVT", entry: hl.SVT[t] };
-      else if (hl.TV4 && watchAvailable(hl.TV4[t])) merged[t] = { ch: "TV4", entry: hl.TV4[t] };
-    });
     var svtLinks = "", tv4Links = "";
-    HL_TYPES.forEach(function (t) {
-      var pick = merged[t];
-      if (!pick) return;
-      var link = watchLinkHtml(pick.entry, HL_LABELS[t]);
-      if (pick.ch === "SVT") svtLinks += link;
-      else tv4Links += link;
+    REPRIS_TYPES.forEach(function (t) {
+      if (hl.SVT && watchAvailable(hl.SVT[t])) svtLinks += reprisLinkHtml(hl.SVT[t], t, "SVT");
+      else if (hl.TV4 && watchAvailable(hl.TV4[t])) tv4Links += reprisLinkHtml(hl.TV4[t], t, "TV4");
     });
-    return channelBlockHtml("SVT", svtLinks) + channelBlockHtml("TV4", tv4Links);
+    var groups = (svtLinks ? '<span class="cal-watch-ch">' + svtLinks + "</span>" : "") +
+      (tv4Links ? '<span class="cal-watch-ch">' + tv4Links + "</span>" : "");
+    if (!groups) return "";
+    return '<div class="mi-watch mi-watch-repris"><div class="mi-watch-title">Repriser</div>' +
+      '<span class="cal-watch">' + groups + "</span></div>";
   }
 
   /* ---------- Spoilerfritt läge ----------
@@ -912,9 +925,9 @@
         '<span>Resultat, mål, statistik och laguppställning är dolda för den här matchen – så att du kan se sammandrag eller hela matchen utan att veta hur det gick.</span></div>' +
       '<button type="button" class="mi-reveal" data-mi-reveal="' + esc(info.key) + '">Visa resultatet ändå</button>' +
       '</div>';
-    var groups = recordedWatchGroups(info);
-    if (groups) {
-      h += watchWrapHtml("Repriser", groups);
+    var repris = recordedWatchHtml(info);
+    if (repris) {
+      h += repris;
     } else {
       h += '<div class="mi-empty">Sammandrag och repriser dyker upp här när de publicerats.</div>';
     }
@@ -975,8 +988,8 @@
   function watchSectionHtml(info) {
     if (!info) return "";
     if (!info.played) return liveBroadcastHtml(info);
-    var recorded = recordedWatchGroups(info);
-    if (recorded) return watchWrapHtml("Repriser", recorded);
+    var recorded = recordedWatchHtml(info);
+    if (recorded) return recorded;
     var post = postMatchLiveHtml(info);
     if (post) return post;
     return '<div class="mi-empty">Livesändningen är slut och ingen repris har publicerats ännu.</div>';
