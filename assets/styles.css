@@ -4630,11 +4630,7 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
   box-shadow: inset 3px 0 0 transparent;
 }
 .ps-more:hover { color: var(--ink); background: var(--bg-soft); box-shadow: inset 3px 0 0 var(--usa-red); }
-.ps-note {
-  margin: 0; padding: 10px 16px 14px;
-  border-top: 1px solid var(--line);
-  color: var(--ink-soft); font-size: 12.5px; line-height: 1.45;
-}
+#psTableBox { padding-bottom: 14px; }
 
 /* ---------- Topp-20-modal ---------- */
 .ps-modal { position: fixed; inset: 0; z-index: 90; display: none; }

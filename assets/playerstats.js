@@ -413,7 +413,7 @@
      Summerar lagraderna per förbund. En match räknas en gång per deltagande
      lag, så en intern match (t.ex. UEFA–UEFA) bidrar med två lagmatcher till
      förbundet och poängen/målen delas inom samma förbund. Per-match-värdena
-     är därför snitt över förbundets samtliga lagmatcher – se noteHtml(). */
+     är därför snitt över förbundets samtliga lagmatcher. */
 
   function buildRegionRows() {
     if (regionRowsCache) return regionRowsCache;
@@ -1177,22 +1177,6 @@
       "</div>";
   }
 
-  function noteHtml() {
-    if (stateUi.mode === "regions") {
-      return '<p class="note ps-note">Regionstatistiken summerar lagstatistiken per konfederation (världsdel). ' +
-        "En match räknas en gång per deltagande lag, så interna matcher (t.ex. UEFA–UEFA) ingår och poängen delas inom förbundet – " +
-        "totalsiffrorna gynnar därför förbund med många lag. Per-match-värdena (P/M, Mål/M, IM/M) är snitt över förbundets samtliga lagmatcher " +
-        "och är mest jämförbara mellan förbund av olika storlek.</p>";
-    }
-    if (stateUi.mode === "teams") {
-      return '<p class="note ps-note">Lagstatistiken räknas fram automatiskt ur matchresultaten (ESPN) under VM 2026: ' +
-        "matcher, vinster/oavgjort/förlust, mål, målskillnad, kort och hållna nollor.</p>";
-    }
-    return '<p class="note ps-note">Statistik (matcher, minuter, mål, assist, kort) samlas in automatiskt från ' +
-      "matchrapporterna (ESPN) under VM 2026. Mål/90 och assist/90 visas för spelare med minst " + QUAL_MIN + " spelade minuter. " +
-      "Truppdata – position, ålder, klubb – kommer från Wikipedia. Klicka på en spelare för full profil.</p>";
-  }
-
   function render() {
     if (!rootEl || !document.body.contains(rootEl)) return;
     rootEl.innerHTML =
@@ -1201,7 +1185,6 @@
       '<section class="card ps-card">' +
       toolbarHtml() +
       '<div id="psTableBox">' + tableHtml() + "</div>" +
-      noteHtml() +
       "</section>";
     updateCount();
   }
