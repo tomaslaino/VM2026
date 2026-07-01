@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T20:26:02.910Z",
+    "updatedAt": "2026-07-01T22:05:01.707Z",
     "source": "espn"
   },
   "details": {
@@ -35856,16 +35856,19 @@
     "k:82": {
       "espnId": "760493",
       "status": "IN_PLAY",
-      "minute": 25,
+      "minute": 90,
       "utcDate": "2026-07-01T20:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
+          "h": 2,
+          "a": 2
+        },
+        "ht": {
           "h": 0,
           "a": 1
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
@@ -35882,10 +35885,108 @@
             "h": 0,
             "a": 1
           }
+        },
+        {
+          "minute": 51,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Ismaïla Sarr",
+          "assist": "Moussa Niakhaté",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 2
+          }
+        },
+        {
+          "minute": 86,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Romelu Lukaku",
+          "assist": "Thomas Meunier",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 2
+          }
+        },
+        {
+          "minute": 89,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Youri Tielemans",
+          "assist": "Leandro Trossard",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 2
+          }
         }
       ],
-      "bookings": [],
-      "subs": [],
+      "bookings": [
+        {
+          "minute": 64,
+          "team": "h",
+          "player": "Brandon Mechele",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 67,
+          "team": "a",
+          "player": "Lamine Camara",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Romelu Lukaku",
+          "out": "Charles De Ketelaere"
+        },
+        {
+          "minute": 56,
+          "team": "h",
+          "in": "Dodi Lukébakio",
+          "out": "Jérémy Doku"
+        },
+        {
+          "minute": 56,
+          "team": "h",
+          "in": "Nicolas Raskin",
+          "out": "Kevin De Bruyne"
+        },
+        {
+          "minute": 63,
+          "team": "h",
+          "in": "Diego Moreira",
+          "out": "Hans Vanaken"
+        },
+        {
+          "minute": 66,
+          "team": "a",
+          "in": "Lamine Camara",
+          "out": "Pape Gueye"
+        },
+        {
+          "minute": 73,
+          "team": "a",
+          "in": "Ibrahim Mbaye",
+          "out": "Iliman Ndiaye"
+        },
+        {
+          "minute": 73,
+          "team": "a",
+          "in": "Pape Matar Sarr",
+          "out": "Habib Diarra"
+        },
+        {
+          "minute": 78,
+          "team": "h",
+          "in": "Thomas Meunier",
+          "out": "Maxim De Cuyper"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -35907,8 +36008,8 @@
               "pos": "LB"
             },
             {
-              "name": "Youri Tielemans",
-              "jersey": "8",
+              "name": "Hans Vanaken",
+              "jersey": "20",
               "pos": "LM"
             },
             {
@@ -35927,8 +36028,8 @@
               "pos": "AM-R"
             },
             {
-              "name": "Hans Vanaken",
-              "jersey": "20",
+              "name": "Youri Tielemans",
+              "jersey": "8",
               "pos": "RM"
             },
             {
@@ -35962,15 +36063,18 @@
             },
             {
               "name": "Dodi Lukébakio",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Thomas Meunier",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Romelu Lukaku",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Matias Fernandez-Pardo",
@@ -35982,7 +36086,8 @@
             },
             {
               "name": "Diego Moreira",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Alexis Saelemaekers",
@@ -35994,7 +36099,8 @@
             },
             {
               "name": "Nicolas Raskin",
-              "jersey": "23"
+              "jersey": "23",
+              "in": true
             },
             {
               "name": "Mike Penders",
@@ -36080,7 +36186,8 @@
             },
             {
               "name": "Pape Matar Sarr",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Abdoulaye Seck",
@@ -36096,11 +36203,13 @@
             },
             {
               "name": "Ibrahim Mbaye",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Lamine Camara",
-              "jersey": "8"
+              "jersey": "8",
+              "in": true
             },
             {
               "name": "Cherif Ndiaye",
@@ -36131,53 +36240,53 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "35%",
-          "a": "65%"
+          "h": "53%",
+          "a": "47%"
         },
         {
           "key": "totalShots",
-          "h": "2",
-          "a": "5"
+          "h": "16",
+          "a": "13"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
-          "a": "2"
+          "h": "4",
+          "a": "4"
         },
         {
           "key": "wonCorners",
-          "h": "0",
+          "h": "4",
           "a": "1"
         },
         {
           "key": "foulsCommitted",
-          "h": "4",
-          "a": "0"
+          "h": "14",
+          "a": "10"
         },
         {
           "key": "offsides",
-          "h": "0",
-          "a": "1"
+          "h": "2",
+          "a": "2"
         },
         {
           "key": "saves",
-          "h": "1",
-          "a": "1"
+          "h": "2",
+          "a": "3"
         },
         {
           "key": "totalPasses",
-          "h": "111",
-          "a": "200"
+          "h": "523",
+          "a": "469"
         },
         {
           "key": "passPct",
-          "h": "86%",
-          "a": "90%"
+          "h": "87%",
+          "a": "86%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -36185,7 +36294,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-01T20:26:02.910Z"
+      "updatedAt": "2026-07-01T22:05:01.707Z"
     }
   }
 }
