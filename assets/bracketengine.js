@@ -157,13 +157,17 @@
   }
 
   // ---- aggregerings-helpers ------------------------------------------------
-  function dist(counter, n) {
+  // minP: undre gräns för att tas med (default 0.1%). Kalkylatorns
+  // motståndarlistor vill visa VARJE lag som förekom i simuleringen, hur
+  // sällsynt det än är – där skickas 0 in så inget filtreras bort.
+  function dist(counter, n, minP) {
+    var thresh = minP == null ? 0.001 : minP;
     var arr = Object.keys(counter).map(function (t) { return [t, counter[t]]; });
     arr.sort(function (a, b) { return b[1] - a[1]; });
     var o = {};
     for (var i = 0; i < arr.length; i++) {
       var p = arr[i][1] / n;
-      if (p >= 0.001) o[arr[i][0]] = Math.round(p * 1e4) / 1e4;
+      if (p >= thresh) o[arr[i][0]] = Math.round(p * 1e4) / 1e4;
     }
     return o;
   }
@@ -446,7 +450,8 @@
           // sannolikhet att laget alls spelar den här matchen (= tar sig hit)
           reachP: Math.round(cnt / n * 1e4) / 1e4,
           // motståndarfördelning GIVET att laget tar sig hit (mest intuitivt i UI)
-          opponents: cnt ? dist(focalOpp[st], cnt) : {},
+          // – minP 0 så ALLA motståndare som förekom i simuleringen räknas med.
+          opponents: cnt ? dist(focalOpp[st], cnt, 0) : {},
           // motståndarfördelning över ALLA simuleringar (oförändrad bas)
           opponentsAbs: dist(focalOpp[st], n)
         };

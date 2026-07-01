@@ -2914,8 +2914,7 @@
         '<div class="calc-head">' +
           '<div class="calc-titlewrap">' +
             '<h3 id="calc-title">Slutspelskalkylator</h3>' +
-            '<p class="calc-sub" id="calc-sub">Följ <b>' + esc(sel.team.sv) + '</b> genom slutspelet och se vilka lag de kan möta i varje runda. ' +
-              '<span class="calc-status" id="calc-status"></span></p>' +
+            '<p class="calc-sub" id="calc-sub"><span class="calc-status" id="calc-status"></span></p>' +
           '</div>' +
           '<div class="calc-pick">' +
             '<div class="calc-quicktabs">' + calcQuickTab("F:3") + calcQuickTab("H:1") + '</div>' +
@@ -2949,7 +2948,7 @@
   function calcEnsureWorker() {
     if (calcWorker) return;
     try {
-      calcWorker = new Worker("assets/bracketworker.js?v=6");
+      calcWorker = new Worker("assets/bracketworker.js?v=7");
       calcWorker.onmessage = function (e) {
         var d = e.data || {};
         if (d.seq !== calcSeq) return;
@@ -3000,8 +2999,7 @@
     if (sub) {
       sub.style.display = fate ? "none" : "";
       if (!fate) {
-        sub.innerHTML = 'Följ <b>' + esc(sel.team.sv) + '</b> genom slutspelet och se vilka lag de kan möta i varje runda – styr själv hur de sista gruppmatcherna slutar. ' +
-          '<span class="calc-status" id="calc-status"></span>';
+        sub.innerHTML = '<span class="calc-status" id="calc-status"></span>';
       }
     }
     if (fate) {
@@ -3114,15 +3112,18 @@
     if (!host || !calcResult) return;
     var focal = calcResult.focal;
     if (!focal) { host.innerHTML = ""; return; }
-    var showN = parseInt(ui("calcBoardN", "8"), 10) || 8;
+    var COLLAPSED_N = 8;
+    var expanded = ui("calcBoardN", "8") === "all";
 
     var perCol = BOARD_ROUNDS.map(function (r) {
       var data = focal[r.key] || { reachP: 0, opponents: {} };
       return { r: r, reach: data.reachP || 0, entries: calcOppEntries(data.opponents) };
     });
     var maxEntries = perCol.reduce(function (m, c) { return Math.max(m, c.entries.length); }, 0);
-    var rowsToShow = Math.min(showN, Math.max(1, maxEntries));
-    var anyMore = perCol.some(function (c) { return c.entries.length > rowsToShow; });
+    // Ihopfälld: max 8 rader. Utfälld: ALLA motståndare som förekom i simuleringen,
+    // hur liten chansen än är – inget hårt tak på 16 eller liknande.
+    var rowsToShow = expanded ? Math.max(1, maxEntries) : Math.min(COLLAPSED_N, Math.max(1, maxEntries));
+    var anyMore = maxEntries > rowsToShow;
 
     var cols = perCol.map(function (c) {
       var faint = (c.reach < 0.005 || !c.entries.length);
@@ -3140,9 +3141,8 @@
         '</div>';
     }).join("");
 
-    var expanded = showN > 8;
     var moreBtn = (anyMore || expanded)
-      ? '<button type="button" class="cb-more" data-calc-boardmore>' + (expanded ? "Visa färre ▴" : "Visa fler ▾") + '</button>'
+      ? '<button type="button" class="cb-more" data-calc-boardmore>' + (expanded ? "Visa färre ▴" : "Visa alla motståndare ▾") + '</button>'
       : '';
 
     var winTip = r32TipId('<h4>' + esc(sel.team.sv) + '</h4><div class="hl"><b>' + r32Pct(focal.win || 0) + '</b> chans att vinna hela VM</div>');
@@ -3271,7 +3271,7 @@
     var tab = t.closest && t.closest("[data-calc-tab]");
     if (tab) { calcSetTeam(tab.getAttribute("data-calc-tab")); return true; }
     if (t.closest && t.closest("[data-calc-boardmore]")) {
-      setUi("calcBoardN", ui("calcBoardN", "8") === "8" ? "16" : "8");
+      setUi("calcBoardN", ui("calcBoardN", "8") === "all" ? "8" : "all");
       renderCalcBoard(r32TeamByKey(r32TeamKey)); return true;
     }
     var about = t.closest && t.closest("[data-calc-about]");
@@ -3742,7 +3742,7 @@
   function bracketEnsureWorker() {
     if (bracketWorker) return;
     try {
-      bracketWorker = new Worker("assets/bracketworker.js?v=6");
+      bracketWorker = new Worker("assets/bracketworker.js?v=7");
       bracketWorker.onmessage = function (e) {
         var d = e.data || {};
         if (d.seq !== bracketSeq) return;       // ett nyare anrop har startats
