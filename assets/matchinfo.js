@@ -145,7 +145,11 @@
 
   function onCardClick(e) {
     var row = e.target.closest && e.target.closest("[data-mi-player]");
-    if (row) openLineupPlayer(row.getAttribute("data-mi-player"), row.getAttribute("data-mi-side"));
+    if (row) { openLineupPlayer(row.getAttribute("data-mi-player"), row.getAttribute("data-mi-side")); return; }
+    // Klick på ett lag i modalhuvudet → stäng matchinfo och låt klicket bubbla
+    // vidare till appens globala klickhanterare, som öppnar lag-lådan (samma
+    // som klick på ett lag ute på sajten).
+    if (e.target.closest && e.target.closest("[data-team-open]")) close();
   }
 
   /* Öppnar samma spelarmodal som statistiksidan (assets/live.js) för en spelare
@@ -234,6 +238,18 @@
   function teamName(team, fallback) {
     if (team && team.sv) return team.sv;
     return fallback || "?";
+  }
+
+  /* Lag i modalens huvud – klickbart (öppnar samma lag-låda som på sajten)
+     om laget är känt (har iso). Platshållare ("Vinnare Grupp A" etc) förblir
+     oklickbara span:ar. */
+  function miTeamBox(team, name, side) {
+    var body = flagImg(team && team.iso) + '<span class="mi-team-name">' + esc(name) + '</span>';
+    if (team && team.iso) {
+      return '<button type="button" class="mi-team team-open ' + side + '" data-team-open="' +
+        team.iso + '">' + body + '</button>';
+    }
+    return '<span class="mi-team ' + side + '">' + body + '</span>';
   }
 
   function scoreOf(info, det) {
@@ -996,12 +1012,10 @@
       var sh = '<button class="mi-close" title="Stäng">×</button>';
       sh += '<div class="mi-head">' + labelHtmlEarly + spoilerStatusChip() + '</div>';
       sh += '<div class="mi-score-row">' +
-        '<span class="mi-team home">' + flagImg(info.home && info.home.iso) +
-          '<span class="mi-team-name">' + esc(hName0) + '</span></span>' +
+        miTeamBox(info.home, hName0, "home") +
         '<span class="mi-score mi-score-hidden" title="Resultatet är dolt">' +
           '<span class="mi-hidden-pip"></span><span class="mi-dash">–</span><span class="mi-hidden-pip"></span></span>' +
-        '<span class="mi-team away">' + flagImg(info.away && info.away.iso) +
-          '<span class="mi-team-name">' + esc(aName0) + '</span></span>' +
+        miTeamBox(info.away, aName0, "away") +
         '</div>';
       sh += spoilerBodyHtml(info);
       sh += '<div class="mi-note">Matchdata: ESPN · dold av spoilerskyddet</div>';
@@ -1034,13 +1048,11 @@
     h += '<div class="mi-head">' + labelHtml + statusChip(info, det) + '</div>';
 
     h += '<div class="mi-score-row">' +
-      '<span class="mi-team home">' + flagImg(info.home && info.home.iso) +
-        '<span class="mi-team-name">' + esc(hName) + '</span></span>' +
+      miTeamBox(info.home, hName, "home") +
       '<span class="mi-score">' +
         (score ? score.h + '<span class="mi-dash">–</span>' + score.a : '<span class="mi-dash">–</span>') +
       '</span>' +
-      '<span class="mi-team away">' + flagImg(info.away && info.away.iso) +
-        '<span class="mi-team-name">' + esc(aName) + '</span></span>' +
+      miTeamBox(info.away, aName, "away") +
       '</div>';
 
     var subScore = [];
