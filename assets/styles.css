@@ -2466,7 +2466,7 @@ html.view-bracket .bracket .match-expand-icon { width: 11px; height: 11px; }
 .match.bronze .k-score { width: 28px; height: 28px; flex-shrink: 0; }
 .k-score { width: 32px; height: 30px; }
 
-.pen-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--line); font-size: 11px; color: var(--ink-soft); }
+.pen-star { flex: none; color: var(--gold); font-weight: 800; margin-left: -2px; cursor: help; }
 .pen-btn { border: 1px solid var(--line-strong); background: var(--bg-soft); color: var(--ink-soft); font: inherit; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 999px; cursor: pointer; }
 .pen-btn.on { background: var(--usa-red); color: #fff; border-color: var(--usa-red); }
 .m-footer {

@@ -1882,16 +1882,11 @@
            (showRel ? '<span class="m-rel ' + rel.cls + '">' + rel.txt + '</span>' : '') +
            '</div>';
     }
-    h += sideRow(homeSide, res, "h", hWin);
-    h += sideRow(awaySide, res, "a", aWin);
-
     var r = res.result;
-    if (played && r.h === r.a && r.pw) {
-      var penWinner = r.pw === "h"
-        ? (res.home.team ? teamSvFixture(res.home.team) : "Hemma")
-        : (res.away.team ? teamSvFixture(res.away.team) : "Borta");
-      h += '<div class="pen-row"><span>Straffar: ' + esc(penWinner) + " vann</span></div>";
-    }
+    var penWinSide = played && r.h === r.a && r.pw ? r.pw : null;
+    h += sideRow(homeSide, res, "h", hWin, penWinSide === "h");
+    h += sideRow(awaySide, res, "a", aWin, penWinSide === "a");
+
     h += '<div class="m-footer">' +
          '<span class="m-when">' + bracketDateShort(m) + ' · ' + when.time + '</span>' +
          matchExpandBtn(m.m, expanded) + '</div>';
@@ -1899,13 +1894,14 @@
     return h;
   }
 
-  function sideRow(side, res, ha, isWin) {
+  function sideRow(side, res, ha, isWin, penWin) {
     var prov = side.team && !side.decided;
     var cls = "side" + (isWin ? " win" : "") + (prov ? " prov" : "") +
       (side.predicted ? " predicted" : "") + (side.team ? "" : " tbd");
     var slot = ha === "h" ? res.match.home : res.match.away;
+    var penStar = penWin ? '<span class="pen-star" title="Vann på straffar">*</span>' : "";
     var inner = side.team
-      ? teamOpenBtn(side.team, flagImg(side.team.iso) + '<span class="s-name" title="' + esc(side.team.sv) + '">' + esc(bracketTeamName(side)) + '</span>', "side-team")
+      ? teamOpenBtn(side.team, flagImg(side.team.iso) + '<span class="s-name" title="' + esc(side.team.sv) + '">' + esc(bracketTeamName(side)) + '</span>' + penStar, "side-team")
       : '<span class="s-name placeholder seed-chip ' + seedTypeClass(slot) + '" title="' + esc(slotSeedLong(slot)) + '">' + slotSeedHtml(slot) + '</span>';
     var r = res.result || {};
     var scoreCell = scoreDisplay(r[ha]);
