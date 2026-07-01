@@ -9,6 +9,7 @@
   var state = loadState();
   var expandedGroups = {};      // letter -> bool (visa matcher)
   var selectedTeam = null;      // { group, idx } för lag-panelen (ej persistent)
+  var teamDrawerTab = "stats";  // aktiv flik i lag-panelen: stats | matches | squad
   var hoverMatch = null;        // matchnummer med öppen infopanel i slutspelet
   var hoverLineage = null;      // matchnummer vars härstamning (in/ut) är highlightad
   // R32-motståndarsimulator (inbäddad i slutspelsvyn)
@@ -5312,6 +5313,7 @@
 
   function openTeam(group, idx) {
     selectedTeam = { group: group, idx: idx };
+    teamDrawerTab = "stats";
     var t = WC.groups[group] && WC.groups[group][idx];
     if (t && window.VMAnalytics) VMAnalytics.trackEvent("team", t.sv || t.name);
     var s = document.getElementById("teamSearch");
@@ -5407,8 +5409,8 @@
     h += '<div class="drawer-body">';
     h += '<div class="status-pill ' + statusCls + '">' + statusTxt + '</div>';
 
-    // Nästa match
-    h += '<div class="drawer-card"><div class="dc-title">Nästa match</div>';
+    // Nästa match – visas alltid överst, oavsett vilken flik som är vald.
+    h += '<div class="drawer-card drawer-card--next"><div class="dc-title">Nästa match</div>';
     if (next && next.home && next.away) {
       h += teamMatchRow(team, next, true);
     } else {
@@ -5416,7 +5418,23 @@
     }
     h += '</div>';
 
-    // Statistik
+    // Flikar – delar upp statistik/matchhistorik/trupp så lådan inte blir en
+    // enda lång scroll (samma flikmönster som matchinfo-modalen).
+    var tdTabs = [
+      { id: "stats", label: "Statistik" },
+      { id: "matches", label: "Matcher" },
+      { id: "squad", label: "Trupp" }
+    ];
+    h += '<div class="td-tabs" role="tablist">' + tdTabs.map(function (t) {
+      return '<button type="button" class="td-tab' + (teamDrawerTab === t.id ? " active" : "") +
+        '" role="tab" aria-selected="' + (teamDrawerTab === t.id) + '" data-td-tab="' + t.id + '">' +
+        t.label + '</button>';
+    }).join("") + '</div>';
+
+    h += '<div class="td-tab-panels">';
+
+    // Statistik: nyckeltal + tabell
+    h += '<div class="td-tab-panel' + (teamDrawerTab === "stats" ? " active" : "") + '" data-td-panel="stats">';
     h += '<div class="drawer-card"><div class="dc-title">Statistik (gruppspel)</div>' +
       '<div class="stat-grid">' +
         statBox("Plac.", pos + " / 4") + statBox("Poäng", st.pts) + statBox("Spelade", st.pld) +
@@ -5425,8 +5443,6 @@
         statBox("Gula kort", st.fpY) + statBox("Röda kort", st.fpR) +
         statBox("Fair play", st.fp) +
       '</div></div>';
-
-    // Tabell
     h += '<div class="drawer-card"><div class="dc-title">Tabell – Grupp ' + L + '</div>' +
       '<table class="standings mini"><thead><tr><th class="c-pos">#</th><th class="c-team">Lag</th>' +
       '<th>S</th><th>P</th><th>+/-</th></tr></thead><tbody>' +
@@ -5438,8 +5454,10 @@
           '<td>' + s.pld + '</td><td class="c-pts">' + s.pts + '</td>' +
           '<td>' + (s.gd > 0 ? "+" + s.gd : s.gd) + '</td></tr>';
       }).join("") + '</tbody></table></div>';
+    h += '</div>';
 
-    // Spelade matcher (hela mästerskapet, senaste först)
+    // Matcher: spelade (senast överst) + kommande
+    h += '<div class="td-tab-panel' + (teamDrawerTab === "matches" ? " active" : "") + '" data-td-panel="matches">';
     h += '<div class="drawer-card"><div class="dc-title">Spelade matcher</div>';
     if (playedMatches.length) {
       playedMatches.forEach(function (mm) { h += teamMatchRow(team, mm, false); });
@@ -5447,8 +5465,6 @@
       h += '<div class="dc-empty">Inga matcher spelade ännu.</div>';
     }
     h += '</div>';
-
-    // Kommande matcher
     h += '<div class="drawer-card"><div class="dc-title">Spelschema</div>';
     if (upcomingMatches.length) {
       upcomingMatches.forEach(function (mm) { h += teamMatchRow(team, mm, false); });
@@ -5456,22 +5472,30 @@
       h += '<div class="dc-empty">Inga kommande matcher kvar.</div>';
     }
     h += '</div>';
-
     h += '</div>';
+
+    // Trupp: tom behållare – laguppställningsbläddraren och spelarlistan
+    // (hooken nedan) injicerar sina kort direkt i den här panelen.
+    h += '<div class="td-tab-panel' + (teamDrawerTab === "squad" ? " active" : "") + '" data-td-panel="squad"></div>';
+
+    h += '</div>'; // td-tab-panels
+    h += '</div>'; // drawer-body
     drawer.innerHTML = h;
     drawer.classList.add("open");
     document.getElementById("drawerBackdrop").classList.add("open");
 
+    var squadPanel = drawer.querySelector('[data-td-panel="squad"]');
+
     // Hook: laguppställningsbläddraren (assets/teamlineups.js) injicerar ett
     // kort där man kan bläddra mellan lagets spelade matcher och se startelvan
     // visualiserad på en plan. Läggs före trupplistan nedan.
-    if (window.VMTeamLineups && typeof window.VMTeamLineups.onTeamDrawer === "function") {
-      try { window.VMTeamLineups.onTeamDrawer(team, L, drawer, playedMatches); } catch (e) {}
+    if (squadPanel && window.VMTeamLineups && typeof window.VMTeamLineups.onTeamDrawer === "function") {
+      try { window.VMTeamLineups.onTeamDrawer(team, L, squadPanel, playedMatches); } catch (e) {}
     }
 
     // Hook: låter live-modulen (assets/live.js) injicera spelarlista + statistik.
-    if (window.VMLive && typeof window.VMLive.onTeamDrawer === "function") {
-      try { window.VMLive.onTeamDrawer(team, L, drawer); } catch (e) {}
+    if (squadPanel && window.VMLive && typeof window.VMLive.onTeamDrawer === "function") {
+      try { window.VMLive.onTeamDrawer(team, L, squadPanel); } catch (e) {}
     }
   }
 
@@ -5643,6 +5667,8 @@
     }
 
     if (t.id === "drawerClose" || t.id === "drawerBackdrop") { closeTeam(); return; }
+    var tdTab = t.closest && t.closest("[data-td-tab]");
+    if (tdTab) { teamDrawerTab = tdTab.getAttribute("data-td-tab"); renderTeamDrawer(); return; }
     if (t.id === "calGroupClose" || t.id === "calGroupBackdrop") { hideCalGroupPopup(); return; }
     if (t.id === "asideClose") { hoverMatch = null; hideAside(); syncExpandButtons(); return; }
 

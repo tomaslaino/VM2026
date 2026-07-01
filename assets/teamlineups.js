@@ -346,15 +346,15 @@
     if (p) window.VMLive.openPlayer(p, st.team);
   }
 
-  /* Hook från app.js. playedMatches = lagets spelade matcher (senaste först),
-     försedda med .key så vi kan slå upp matchdetaljerna. */
-  function onTeamDrawer(team, group, drawer, playedMatches) {
-    var body = drawer.querySelector(".drawer-body");
-    if (!body) return;
+  /* Hook från app.js. panel = "Trupp"-flikens tomma behållare i lag-lådan.
+     playedMatches = lagets spelade matcher (senaste först), försedda med
+     .key så vi kan slå upp matchdetaljerna. */
+  function onTeamDrawer(team, group, panel, playedMatches) {
+    if (!panel) return;
 
     var card = document.createElement("div");
     card.className = "drawer-card tl-card";
-    body.appendChild(card);
+    panel.appendChild(card);
 
     var st = {
       team: team, group: group,

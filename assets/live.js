@@ -53,10 +53,9 @@
 
   /* ---------- Trupp i lag-lådan (statisk data) ---------- */
 
-  function onTeamDrawer(team, group, drawer) {
-    lastTeam = { team: team, group: group, drawer: drawer };
-    var body = drawer.querySelector(".drawer-body");
-    if (!body) return;
+  function onTeamDrawer(team, group, panel) {
+    lastTeam = { team: team, group: group, panel: panel };
+    if (!panel) return;
 
     var card = document.createElement("div");
     card.className = "drawer-card players-card";
@@ -66,7 +65,7 @@
         '<span class="pr-caps-legend"><span class="pr-caps-ico" aria-hidden="true"></span>fler kamper = mer rutin</span>, ' +
         '<span class="pr-caps-debut pr-caps-legend">Debut</span> = ännu ingen landskamp.</p>' +
       '<div class="players-status">Laddar trupp …</div>';
-    body.appendChild(card);
+    panel.appendChild(card);
 
     if (!window.VMPlayers) {
       card.querySelector(".players-status").innerHTML = errHint();
