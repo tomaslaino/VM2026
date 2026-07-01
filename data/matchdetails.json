@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T22:05:01.707Z",
+    "updatedAt": "2026-07-01T23:40:45.410Z",
     "source": "espn"
   },
   "details": {
@@ -35855,14 +35855,14 @@
     },
     "k:82": {
       "espnId": "760493",
-      "status": "IN_PLAY",
-      "minute": 90,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-01T20:00Z",
-      "duration": "REGULAR",
-      "winner": null,
+      "duration": "EXTRA_TIME",
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
-          "h": 2,
+          "h": 3,
           "a": 2
         },
         "ht": {
@@ -35870,7 +35870,10 @@
           "a": 1
         },
         "rt": null,
-        "et": null,
+        "et": {
+          "h": 3,
+          "a": 2
+        },
         "pen": null
       },
       "goals": [
@@ -35919,6 +35922,18 @@
           "type": "REGULAR",
           "score": {
             "h": 2,
+            "a": 2
+          }
+        },
+        {
+          "minute": 120,
+          "injuryTime": 5,
+          "team": "h",
+          "scorer": "Youri Tielemans",
+          "assist": null,
+          "type": "PENALTY",
+          "score": {
+            "h": 3,
             "a": 2
           }
         }
@@ -35985,6 +36000,30 @@
           "team": "h",
           "in": "Thomas Meunier",
           "out": "Maxim De Cuyper"
+        },
+        {
+          "minute": 93,
+          "team": "a",
+          "in": "Nicolas Jackson",
+          "out": "Sadio Mané"
+        },
+        {
+          "minute": 93,
+          "team": "a",
+          "in": "El Hadji Malick Diouf",
+          "out": "Ismail Jakobs"
+        },
+        {
+          "minute": 96,
+          "team": "a",
+          "in": "Bara Sapoko Ndiaye",
+          "out": "Idrissa Gueye"
+        },
+        {
+          "minute": 109,
+          "team": "h",
+          "in": "Amadou Onana",
+          "out": "Leandro Trossard"
         }
       ],
       "penalties": [],
@@ -36082,7 +36121,8 @@
             },
             {
               "name": "Amadou Onana",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Diego Moreira",
@@ -36195,11 +36235,13 @@
             },
             {
               "name": "El Hadji Malick Diouf",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Nicolas Jackson",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Ibrahim Mbaye",
@@ -36221,7 +36263,8 @@
             },
             {
               "name": "Bara Sapoko Ndiaye",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "Antoine Mendy",
@@ -36236,32 +36279,32 @@
       },
       "referee": "Martínez, Héctor",
       "venue": "Lumen Field, Seattle, Washington",
-      "attendance": null,
+      "attendance": 66925,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "53%",
-          "a": "47%"
+          "h": "52%",
+          "a": "48%"
         },
         {
           "key": "totalShots",
-          "h": "16",
-          "a": "13"
+          "h": "19",
+          "a": "19"
         },
         {
           "key": "shotsOnTarget",
-          "h": "4",
-          "a": "4"
+          "h": "5",
+          "a": "5"
         },
         {
           "key": "wonCorners",
           "h": "4",
-          "a": "1"
+          "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "14",
-          "a": "10"
+          "h": "22",
+          "a": "12"
         },
         {
           "key": "offsides",
@@ -36270,18 +36313,18 @@
         },
         {
           "key": "saves",
-          "h": "2",
+          "h": "3",
           "a": "3"
         },
         {
           "key": "totalPasses",
-          "h": "523",
-          "a": "469"
+          "h": "699",
+          "a": "639"
         },
         {
           "key": "passPct",
-          "h": "87%",
-          "a": "86%"
+          "h": "86%",
+          "a": "84%"
         },
         {
           "key": "yellowCards",
@@ -36294,7 +36337,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-01T22:05:01.707Z"
+      "updatedAt": "2026-07-01T23:40:45.410Z"
     }
   }
 }

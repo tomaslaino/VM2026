@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T22:05:01.616Z",
+    "updatedAt": "2026-07-01T23:40:45.347Z",
     "source": "espn",
     "matchCount": 81,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -410,21 +410,12 @@
       "status": "FINISHED"
     },
     "k:82": {
-      "h": 2,
+      "h": 3,
       "a": 2,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:82",
-      "status": "IN_PLAY",
-      "minute": 90,
-      "home": "Belgium",
-      "away": "Senegal",
-      "score": "2-2"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1790,7 +1781,7 @@
       "date": "2026-07-01",
       "time": "22:00",
       "utcDate": "2026-07-01T20:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Belgium",
       "away": "Senegal",
@@ -2008,9 +1999,12 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Round of 32 9 Winner",
-      "away": "Round of 32 10 Winner",
+      "away": "Belgium",
       "homeRef": null,
-      "awayRef": null
+      "awayRef": {
+        "group": "G",
+        "idx": 0
+      }
     },
     "k:95": {
       "date": "2026-07-07",
