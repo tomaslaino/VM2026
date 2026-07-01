@@ -2889,24 +2889,6 @@
     return 1 / (1 + Math.pow(10, (f(fifaRankOf(tb)) - f(fifaRankOf(ta))) / 400));
   }
 
-  // Kvarvarande (ej färdigspelade) gruppmatcher med odds, för kontrollpanelen.
-  function calcRemainingMatches(odds) {
-    var playedPairs = {};
-    WC.groupLetters.forEach(function (L) {
-      playedPairs[L] = {};
-      groupFixtures(L).forEach(function (fx) {
-        if (!isFinishedMatch(fx.key, getRes(fx.key))) return;
-        playedPairs[L][[fx.h, fx.a].slice().sort(function (a, b) { return a - b; }).join(",")] = true;
-      });
-    });
-    var out = [];
-    (odds.matches || []).forEach(function (m) {
-      if (playedPairs[m.g] && playedPairs[m.g][m.pair]) return;
-      out.push({ id: m.id, g: m.g, i: m.i, j: m.j, home: m.home, away: m.away, rp: m.rp });
-    });
-    return out;
-  }
-
   /* ---------- vy-skelett ---------- */
   function renderCalcView() {
     lastViewSig = null;
@@ -2945,7 +2927,6 @@
             '<div class="calc-quicktabs">' + calcQuickTab("F:3") + calcQuickTab("H:1") + '</div>' +
             '<label class="calc-select"><span>Lag</span>' +
               '<select id="calc-team">' + optgroups + '</select></label>' +
-            '<button type="button" class="calc-reset" data-calc-reset>Återställ</button>' +
           '</div>' +
         '</div>' +
         '<div class="calc-body">' +
@@ -2953,7 +2934,7 @@
           '<div class="calc-boardfoot" id="calc-boardfoot"></div>' +
           '<div class="calc-lower">' +
             '<div class="calc-side" id="calc-side"></div>' +
-            '<aside class="calc-controls" id="calc-controls"></aside>' +
+            '<aside class="calc-journey" id="calc-journey"></aside>' +
           '</div>' +
         '</div>' +
       '</section>';
@@ -3031,14 +3012,7 @@
       renderCalcBoardFoot(sel);
     }
     renderCalcSide(sel);
-    // Bygg inte om kontrollerna medan ett resultatfält redigeras – då skulle
-    // inmatningen tappa fokus mitt i skrivandet.
-    if (!calcScoreFocused()) renderCalcControls();
-  }
-
-  function calcScoreFocused() {
-    var a = document.activeElement;
-    return !!(a && a.classList && a.classList.contains("calc-score"));
+    renderCalcJourney(sel);
   }
 
   /* ---------- Nekrolog: valt lag är utslaget ur VM ----------
@@ -3247,104 +3221,51 @@
       '</div>';
   }
 
-  /* ---------- interaktiva kontroller: klicka eller skriv resultat ---------- */
-  function renderCalcControls() {
-    var host = document.getElementById("calc-controls");
-    if (!host || r32OddsData === "loading" || r32OddsData === "error" || !r32OddsData) return;
-    var sel = r32TeamByKey(r32TeamKey);
-    var all = calcRemainingMatches(r32OddsData);
-    var mine = all.filter(function (m) { return m.g === sel.g; });
-    var others = all.filter(function (m) { return m.g !== sel.g; });
-    var showAll = ui("calcAllGroups", "0") === "1";
-    var nFixed = Object.keys(r32Fixed).length;
+  /* ---------- lagets VM-resa: spelade matcher i kronologisk ordning ----------
+     Ersätter den gamla what-if-panelen. Visar det valda lagets färdigspelade
+     matcher (äldst först) som klickbara rader – klick öppnar samma matchmodal
+     som i kalendern via data-match-open. Spoilerstyrt: teamMatches bygger på
+     getRes, så en spoilerdold match räknas inte som spelad och döljs här. */
+  function renderCalcJourney(sel) {
+    var host = document.getElementById("calc-journey");
+    if (!host) return;
+    var matches = teamMatches(sel.team, sel.g, getCtx());
+    var played = matches.filter(function (mm) { return mm.played && mm.home && mm.away; });
 
-    var html = '<div class="calc-controls-head">' +
-      '<h4>Spela klart matcherna</h4>' +
-      '<p>Klicka på <b>1</b> / <b>X</b> / <b>2</b> eller skriv in ett exakt resultat – tabellen och motståndaren räknas om direkt.' +
-      (nFixed ? ' <button type="button" class="calc-clear" data-calc-reset>Nollställ (' + nFixed + ')</button>' : '') +
-      '</p></div>';
+    var head = '<div class="calc-journey-head">' +
+      '<h4>' + esc(teamSvFixture(sel.team)) + 's VM</h4>' +
+      '<p>Lagets spelade matcher i kronologisk ordning – klicka för matchfakta och statistik.</p></div>';
 
-    if (!all.length) {
-      html += '<div class="calc-faint">Alla gruppmatcher är spelade.</div>';
-    } else {
-      if (mine.length) {
-        html += '<div class="calc-ctrl-group"><div class="calc-ctrl-grouptitle">' + esc(sel.team.sv) + 's grupp (' + sel.g + ')</div>' +
-          mine.map(calcMatchRow).join("") + '</div>';
-      }
-      if (others.length) {
-        html += '<div class="calc-ctrl-group">' +
-          '<button type="button" class="calc-ctrl-grouptitle toggle" data-calc-allgroups aria-expanded="' + (showAll ? "true" : "false") + '">' +
-            'Övriga matcher (påverkar motståndaren) <span class="chev">' + (showAll ? "▾" : "▸") + '</span></button>' +
-          (showAll ? others.map(calcMatchRow).join("") : "") +
-        '</div>';
-      }
-    }
-    host.innerHTML = html;
-  }
-
-  function calcMatchRow(m) {
-    var map = r32EnglishToTeam();
-    var fx = r32Fixed[m.id];
-    var th = map[m.home], ta = map[m.away];
-    var sh = (fx && fx[0] === "score") ? fx[1] : "";
-    var sa = (fx && fx[0] === "score") ? fx[2] : "";
-    var result = null;
-    if (fx) {
-      if (fx[0] === "result") result = fx[1];
-      else if (fx[0] === "score") result = fx[1] > fx[2] ? "1" : (fx[1] === fx[2] ? "X" : "2");
-    }
-
-    var opts = ["1", "X", "2"].map(function (r) {
-      var on = result === r;
-      return '<button type="button" class="calc-opt' + (on ? " on" : "") + '" data-calc-res="' + m.id + '" data-calc-r="' + r + '">' +
-        '<span class="cm-r">' + r + '</span><span class="cm-p">' + r32Pct(m.rp[r]) + '</span></button>';
-    }).join("");
-
-    var p1 = m.rp["1"] || 0, px = m.rp["X"] || 0, p2 = m.rp["2"] || 0;
-    var oddsbar = '<div class="calc-oddsbar" title="Sannolikhet 1 / X / 2">' +
-      '<span class="seg s1" style="width:' + (p1 * 100).toFixed(1) + '%"></span>' +
-      '<span class="seg sx" style="width:' + (px * 100).toFixed(1) + '%"></span>' +
-      '<span class="seg s2" style="width:' + (p2 * 100).toFixed(1) + '%"></span></div>';
-
-    var teams = '<div class="calc-match-teams">' +
-        '<span class="cm-side home">' + (th ? flagImg(th.iso) : "") +
-          '<span class="cm-nm">' + esc(th ? teamSvFixture(th) : r32SvName(m.home)) + '</span></span>' +
-        '<span class="cm-score">' +
-          '<input class="calc-score" type="text" inputmode="numeric" maxlength="2" data-calc-score="' + m.id + '" data-side="h" value="' + sh + '" aria-label="Mål hemmalag">' +
-          '<span class="cm-dash">–</span>' +
-          '<input class="calc-score" type="text" inputmode="numeric" maxlength="2" data-calc-score="' + m.id + '" data-side="a" value="' + sa + '" aria-label="Mål bortalag">' +
-        '</span>' +
-        '<span class="cm-side away"><span class="cm-nm">' + esc(ta ? teamSvFixture(ta) : r32SvName(m.away)) + '</span>' +
-          (ta ? flagImg(ta.iso) : "") + '</span>' +
-      '</div>';
-
-    return '<div class="calc-match' + (fx ? " locked" : "") + '" data-calc-mid="' + m.id + '">' +
-      teams + oddsbar +
-      '<div class="calc-match-opts">' + opts + '</div></div>';
-  }
-
-  // Inmatning i ett resultatfält: båda målen krävs för att låsa ett exaktresultat.
-  function calcScoreInput(input) {
-    var v = input.value.replace(/[^0-9]/g, "").slice(0, 2);
-    if (v !== input.value) input.value = v;
-    var id = input.getAttribute("data-calc-score");
-    var row = input.closest && input.closest("[data-calc-mid]");
-    if (!row) return;
-    var hEl = row.querySelector('.calc-score[data-side="h"]');
-    var aEl = row.querySelector('.calc-score[data-side="a"]');
-    var hs = hEl ? hEl.value.trim() : "";
-    var as = aEl ? aEl.value.trim() : "";
-    if (hs === "" && as === "") {
-      if (r32Fixed[id]) { delete r32Fixed[id]; runCalc(); }
+    if (!played.length) {
+      host.innerHTML = head + '<div class="calc-faint">Inga matcher spelade ännu.</div>';
       return;
     }
-    if (hs === "" || as === "") return; // vänta tills båda fyllts i
-    var h = parseInt(hs, 10), a = parseInt(as, 10);
-    if (isNaN(h) || isNaN(a)) return;
-    var cur = r32Fixed[id];
-    if (cur && cur[0] === "score" && cur[1] === h && cur[2] === a) return;
-    r32Fixed[id] = ["score", h, a];
-    runCalc();
+    host.innerHTML = head + '<ol class="cj-list">' +
+      played.map(function (mm) { return calcJourneyRow(sel.team, mm); }).join("") + '</ol>';
+  }
+
+  function calcJourneyRow(team, mm) {
+    var opp = mm.isHome ? mm.away : mm.home;
+    var myG = mm.isHome ? mm.r.h : mm.r.a, opG = mm.isHome ? mm.r.a : mm.r.h;
+    var outcome = myG > opG ? "v" : (myG < opG ? "f" : "o");
+    if (myG === opG && mm.r.pw) outcome = (mm.r.pw === (mm.isHome ? "h" : "a")) ? "v" : "f";
+    var pen = (myG === opG && mm.r.pw) ? '<sup>S</sup>' : '';
+    var outLbl = outcome === "v" ? "V" : (outcome === "f" ? "F" : "O");
+    var d = parseDateUTC(mm.m.date);
+    var dateShort = d.getUTCDate() + " " + MONTHS[d.getUTCMonth()];
+    // Rundetikett utan löpnummer ("1/16-final 3" → "1/16-final").
+    var tag = mm.label.replace(/\s+\d+$/, "");
+    var open = matchOpenAttr(mm.key);
+    return '<li class="cj-row ' + outcome + open.cls + '"' + open.attr + '>' +
+      '<span class="cj-date">' + dateShort + '</span>' +
+      '<span class="cj-match">' +
+        '<span class="cj-team"><span class="cj-abbr" title="' + esc(team.sv) + '">' + esc(teamSvFixture(team)) + '</span>' + flagImg(team.iso) + '</span>' +
+        '<span class="cj-score">' + myG + '–' + opG + pen + '</span>' +
+        '<span class="cj-team opp">' + flagImg(opp.iso) + '<span class="cj-abbr" title="' + esc(opp.sv) + '">' + esc(teamSvFixture(opp)) + '</span></span>' +
+      '</span>' +
+      '<span class="cj-tag">' + esc(tag) + '</span>' +
+      '<span class="cj-out ' + outcome + '" title="' + (outcome === "v" ? "Vinst" : outcome === "f" ? "Förlust" : "Oavgjort") + '">' + outLbl + '</span>' +
+    '</li>';
   }
 
   /* ---------- interaktion ---------- */
@@ -3362,13 +3283,6 @@
     if (!calcOpen) return false;
     var tab = t.closest && t.closest("[data-calc-tab]");
     if (tab) { calcSetTeam(tab.getAttribute("data-calc-tab")); return true; }
-    if (t.closest && t.closest("[data-calc-reset]")) {
-      r32Fixed = {}; renderCalcControls(); runCalc(); return true;
-    }
-    if (t.closest && t.closest("[data-calc-allgroups]")) {
-      setUi("calcAllGroups", ui("calcAllGroups", "0") === "1" ? "0" : "1");
-      renderCalcControls(); return true;
-    }
     if (t.closest && t.closest("[data-calc-boardmore]")) {
       setUi("calcBoardN", ui("calcBoardN", "8") === "8" ? "16" : "8");
       renderCalcBoard(r32TeamByKey(r32TeamKey)); return true;
@@ -3382,14 +3296,6 @@
         about.setAttribute("aria-expanded", open ? "true" : "false");
       }
       return true;
-    }
-    var res = t.closest && t.closest("[data-calc-res]");
-    if (res) {
-      var id = res.getAttribute("data-calc-res"), r = res.getAttribute("data-calc-r");
-      var cur = r32Fixed[id];
-      if (cur && cur[0] === "result" && cur[1] === r) delete r32Fixed[id];
-      else r32Fixed[id] = ["result", r];
-      renderCalcControls(); runCalc(); return true;
     }
     return false;
   }
@@ -5635,7 +5541,6 @@
     if (e.target.id === "teamSearch") renderSearchResults(e.target.value);
     else if (e.target.id === "calc-team") calcSetTeam(e.target.value);
     else if (e.target.id === "r32-team") r32SetTeam(e.target.value);
-    else if (e.target.classList && e.target.classList.contains("calc-score")) calcScoreInput(e.target);
   }
 
   /* ---------- Spoilervarning på startsidan ----------
