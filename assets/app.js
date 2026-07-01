@@ -227,8 +227,8 @@
        off    – spoilerOn=false: inget döljs.
        auto   – spoilerOn=true, spoilerCutoff=null: rullande dygnsskydd (standard,
                 oförändrat beteende – döljer matcher från det senaste dygnet).
-       custom – spoilerOn=true, spoilerCutoff=<ms>: egen brytpunkt – döljer alla
-                matcher vars avspark ligger EFTER den valda matchen/dagen. */
+       custom – spoilerOn=true, spoilerCutoff=<ms>: egen brytpunkt – döljer den
+                valda matchen/dagen och alla matcher vars avspark ligger EFTER den. */
   function spoilerFreeOn() { return !!ui("spoilerOn", false); }
   function spoilerCutoffMs() {
     var v = ui("spoilerCutoff", null);
@@ -273,7 +273,7 @@
     if (ko == null) return false;
     if (ko > Date.now()) return false;          // inte avspakad än
     var cutoff = spoilerCutoffMs();
-    if (cutoff != null) return ko > cutoff;     // custom: dölj allt efter brytpunkten
+    if (cutoff != null) return ko >= cutoff;    // custom: dölj brytpunkten och allt efter den
     return Date.now() < spoilerUnlockMs(ko);    // auto: rullande 24 timmar
   }
 
@@ -5493,7 +5493,10 @@
     } else {
       resultTxt = '<span class="tm-rel ' + rel.cls + '">' + rel.txt + '</span>';
     }
-    return '<div class="tm-row' + (big ? " big" : "") + '">' +
+    // Klickbar precis som övriga matchrader i appen (kalender, förstasida,
+    // gruppspel, slutspel) – öppnar samma matchinfo-modal (assets/matchinfo.js).
+    var open = matchOpenAttr(mm.key, !!(mm.home && mm.away));
+    return '<div class="tm-row' + (big ? " big" : "") + open.cls + '"' + open.attr + '>' +
       '<span class="tm-when">' + when.dateLabel + ' · ' + when.time + '</span>' +
       '<span class="tm-opp">' + (mm.isHome ? "mot " : "borta mot ") +
         (opp ? flagImg(opp.iso) + esc(opp.sv) : "?") + '</span>' +
@@ -5837,8 +5840,8 @@
      En knapp i headern öppnar en panel där man väljer hur mycket som visas:
        • Av – allt live & aktuellt.
        • Senaste dygnet (standard) – rullande dygnsskydd.
-       • Välj datum & match – egen brytpunkt: visa resultat/tabeller/statistik
-         t.o.m. ett valt datum, ända ner till en specifik match.
+       • Välj datum & match – egen brytpunkt: döljer resultat/tabeller/statistik
+         fr.o.m. ett valt datum, ner till en specifik match.
      Allt skydd går via isSpoilerHidden → spoilerHidesKo, så panelen behöver bara
      sätta state (spoilerOn/spoilerCutoff) och rita om vyn.
   ==================================================================== */
@@ -5872,10 +5875,10 @@
     });
     return out;
   }
-  function spoilerDayMaxKo(list, date) {
-    var mx = -Infinity;
-    list.forEach(function (r) { if (r.date === date && r.ko > mx) mx = r.ko; });
-    return mx === -Infinity ? null : mx;
+  function spoilerDayMinKo(list, date) {
+    var mn = Infinity;
+    list.forEach(function (r) { if (r.date === date && r.ko < mn) mn = r.ko; });
+    return mn === Infinity ? null : mn;
   }
   function spoilerDefaultDate(list) {
     // Senaste matchdagen som redan börjat (annars turneringens första dag).
@@ -5883,9 +5886,11 @@
     list.forEach(function (r) { if (r.ko <= now) date = r.date; });
     return date || (list.length ? list[0].date : null);
   }
+  /* Dagen som innehåller brytpunkten (spoilerCutoff pekar alltid på avsparken
+     för den först dolda matchen, så det räcker att matcha exakt). */
   function spoilerCutoffDate(list, cutoff) {
     var date = null;
-    list.forEach(function (r) { if (r.ko <= cutoff) date = r.date; });
+    list.forEach(function (r) { if (r.ko === cutoff) date = r.date; });
     return date;
   }
   function spoilerHiddenCount(list) {
@@ -5912,7 +5917,7 @@
     if (mode === "off") { stateEl.textContent = "Av"; return; }
     if (mode === "auto") { stateEl.textContent = "24 h"; return; }
     var date = spoilerCutoffDate(spoilerScheduleList(), spoilerCutoffMs());
-    stateEl.textContent = date ? "≤ " + spoilerShortDate(date) : "Eget val";
+    stateEl.textContent = date ? "≥ " + spoilerShortDate(date) : "Eget val";
   }
 
   /* ----- Gemensam omräkning när skyddet ändras ----- */
@@ -5940,7 +5945,7 @@
       if (spoilerCutoffMs() == null) {
         var list = spoilerScheduleList();
         var date = spoilerDefaultDate(list);
-        setUi("spoilerCutoff", date != null ? spoilerDayMaxKo(list, date) : Date.now());
+        setUi("spoilerCutoff", date != null ? spoilerDayMinKo(list, date) : Date.now());
       }
     }
     applySpoilerChange();
@@ -5970,8 +5975,8 @@
     }).join("");
   }
   function spoilerMatchOptions(list, date, cutoff) {
-    var dayMax = spoilerDayMaxKo(list, date);
-    var wholeSel = cutoff == null || (dayMax != null && cutoff >= dayMax);
+    var dayMin = spoilerDayMinKo(list, date);
+    var wholeSel = cutoff == null || (dayMin != null && cutoff <= dayMin);
     var out = '<option value="all"' + (wholeSel ? " selected" : "") + '>Hela dagen</option>';
     list.forEach(function (r) {
       if (r.date !== date) return;
@@ -5982,30 +5987,30 @@
     });
     return out;
   }
-  /* Etikett för den senast visade matchen (brytpunkten) i custom-läget. */
+  /* Etikett för den först dolda matchen (brytpunkten) i custom-läget. */
   function spoilerCutoffMatch(list, cutoff) {
     if (cutoff == null) return null;
     for (var i = 0; i < list.length; i++) if (list[i].ko === cutoff) return list[i];
     return null;
   }
   /* Statusrad längst ner – kort och tydlig om vad som visas/döljs. Returnerar
-     HTML (lyfter fram den senast visade matchen) så innerHTML används. */
+     HTML (lyfter fram den först dolda matchen) så innerHTML används. */
   function spoilerStatusHtml(list) {
     list = list || spoilerScheduleList();
     if (!spoilerFreeOn()) return "Allt visas – inget döljs.";
     var n = spoilerHiddenCount(list);
-    var hidden = n === 0 ? "" :
-      ' <span class="spoiler-status-hide">Döljer ' + n + (n === 1 ? " senare match." : " senare matcher.") + "</span>";
     if (spoilerMode() === "auto") {
       return n === 0 ? "Inget från det senaste dygnet att dölja just nu."
         : "Döljer " + n + (n === 1 ? " match" : " matcher") + " från det senaste dygnet.";
     }
     var m = spoilerCutoffMatch(list, spoilerCutoffMs());
+    var count = n === 0 ? "" :
+      ' <span class="spoiler-status-hide">Döljer ' + n + (n === 1 ? " match." : " matcher.") + "</span>";
     if (m) {
       var lbl = (m.edt ? m.edt + "  " : "") + m.label;
-      return 'Visar t.o.m. <strong>' + esc(lbl) + "</strong> – den matchen syns." + hidden;
+      return 'Döljer fr.o.m. <strong>' + esc(lbl) + "</strong> – den matchen och senare döljs." + count;
     }
-    return "Allt fram till din brytpunkt visas." + hidden;
+    return n === 0 ? "Inget döljs just nu." : ("Döljer allt från din brytpunkt." + count);
   }
   function updateSpoilerStatus(list) {
     var el = document.getElementById("spoilerStatus");
@@ -6033,7 +6038,7 @@
         '<label class="spoiler-field"><span>Datum</span>' +
           '<select class="spoiler-select" data-spoiler-date>' + spoilerDateOptions(list, selDate) + '</select>' +
         '</label>' +
-        '<label class="spoiler-field"><span>Sista match som visas</span>' +
+        '<label class="spoiler-field"><span>Sista match som döljs</span>' +
           '<select class="spoiler-select" data-spoiler-match>' + spoilerMatchOptions(list, selDate, cutoff) + '</select>' +
         '</label>' +
       '</div>' +
@@ -6088,7 +6093,7 @@
     var t = e.target, list = spoilerScheduleList();
     if (t.matches("[data-spoiler-date]")) {
       var date = t.value;
-      setUi("spoilerCutoff", spoilerDayMaxKo(list, date)); // nytt datum → hela dagen
+      setUi("spoilerCutoff", spoilerDayMinKo(list, date)); // nytt datum → hela dagen döljs
       var matchSel = document.querySelector("#spoilerPanel [data-spoiler-match]");
       if (matchSel) matchSel.innerHTML = spoilerMatchOptions(list, date, spoilerCutoffMs());
       applySpoilerChange();
@@ -6096,7 +6101,7 @@
     } else if (t.matches("[data-spoiler-match]")) {
       var dateSel = document.querySelector("#spoilerPanel [data-spoiler-date]");
       var date2 = dateSel ? dateSel.value : spoilerCutoffDate(list, spoilerCutoffMs());
-      if (t.value === "all") setUi("spoilerCutoff", spoilerDayMaxKo(list, date2));
+      if (t.value === "all") setUi("spoilerCutoff", spoilerDayMinKo(list, date2));
       else setUi("spoilerCutoff", parseInt(t.value, 10));
       applySpoilerChange();
       updateSpoilerStatus(list);

@@ -457,6 +457,88 @@
     return map;
   }
 
+  /* ---------- Gräsplanen (samma placeringslogik som assets/teamlineups.js) ----------
+     Hemmalaget upptar planens nedre halva och anfaller uppåt mot mitten;
+     bortalaget speglas i den övre halvan och anfaller nedåt – lagen möts vid
+     mittlinjen precis som i vanlig laguppställningsgrafik. */
+
+  var PITCH_BAND_Y = { 0: 90, 1: 72, 2: 59, 3: 45, 4: 31, 5: 14 };
+
+  function pitchBandOf(pos) {
+    var p = String(pos || "").toUpperCase();
+    if (p === "G" || p === "GK") return 0;
+    if (p === "F" || p === "ST" || p.indexOf("CF") >= 0 || p === "LF" || p === "RF") return 5;
+    if (p.indexOf("AM") >= 0) return 4;
+    if (p.indexOf("DM") >= 0) return 2;
+    if (p === "M" || p === "LM" || p === "RM" || p.indexOf("CM") >= 0) return 3;
+    if (p === "SW" || p === "LB" || p === "RB" || p.indexOf("CD") >= 0 || p.indexOf("CB") >= 0 || p === "D") return 1;
+    return 3;
+  }
+
+  function pitchSideOf(pos) {
+    var p = String(pos || "").toUpperCase();
+    if (p.indexOf("-L") >= 0) return -1;
+    if (p.indexOf("-R") >= 0) return 1;
+    var c = p.charAt(0);
+    if (c === "L") return -2;
+    if (c === "R") return 2;
+    return 0;
+  }
+
+  /* Startelvan → [{p, x, y}] i procent av planens bredd/höjd. mirror=true för
+     bortalaget speglar planhalvan så lagen möts vid mittlinjen. */
+  function pitchLayout(starters, mirror) {
+    var bands = {};
+    starters.forEach(function (p, i) {
+      var b = pitchBandOf(p.pos);
+      (bands[b] = bands[b] || []).push({ p: p, i: i });
+    });
+    var out = [];
+    Object.keys(bands).forEach(function (b) {
+      var row = bands[b];
+      row.sort(function (a, c) {
+        var sa = pitchSideOf(a.p.pos), sc = pitchSideOf(c.p.pos);
+        return sa - sc || a.i - c.i;
+      });
+      var n = row.length;
+      var y0 = PITCH_BAND_Y[b] / 100 * 48;
+      var y = mirror ? (50 - y0) : (50 + y0);
+      row.forEach(function (item, idx) {
+        out.push({ p: item.p, x: ((idx + 1) / (n + 1)) * 100, y: y });
+      });
+    });
+    return out;
+  }
+
+  function pitchShortName(name) {
+    var parts = String(name || "").trim().split(/\s+/);
+    return parts.length > 1 ? parts[parts.length - 1] : (parts[0] || "");
+  }
+
+  function pitchMarkersHtml(starters, mirror, ctx, evMap) {
+    var spots = pitchLayout(starters || [], mirror);
+    return spots.map(function (s) {
+      var p = s.p;
+      var sp = resolveSquadPlayer(ctx.idx, p.name, p.jersey);
+      var openAttr = sp ? ' data-mi-player="' + esc(sp.id) + '" data-mi-side="' + ctx.sideCode +
+        '" role="button" tabindex="0" title="Visa spelarprofil"' : ' title="' + esc(p.name) + '"';
+      var cls = "mi-pitch-marker" + (sp ? " mi-pitch-openable" : "");
+      return '<div class="' + cls + '" style="left:' + s.x.toFixed(1) + '%;top:' + s.y.toFixed(1) + '%"' + openAttr + '>' +
+        '<span class="mi-pitch-dot" style="background:' + ctx.color + ';color:' + textOn(ctx.color) + '">' +
+          esc(p.jersey || "") +
+        '</span>' +
+        playerBadgesHtml(evMap[normName(p.name)]) +
+        '<span class="mi-pitch-name">' + esc(pitchShortName(p.name)) + '</span>' +
+      '</div>';
+    }).join("");
+  }
+
+  function pitchHtml(lu, evMap, hCtx, aCtx) {
+    var markers = pitchMarkersHtml(lu.h.starters, false, hCtx, evMap) +
+      pitchMarkersHtml(lu.a.starters, true, aCtx, evMap);
+    return '<div class="mi-pitch"><div class="mi-pitch-lines" aria-hidden="true"></div>' + markers + '</div>';
+  }
+
   function playerBadgesHtml(events) {
     if (!events) return "";
     var parts = [];
@@ -538,8 +620,7 @@
         "<span>" + esc(teamName(info.away, info.awayLabel)) + "</span>" +
         flagImg(info.away && info.away.iso) +
       "</span></div>";
-    h += '<div class="mi-pl-section-label">Startelva</div>';
-    h += lineupPairRows(lu.h.starters || [], lu.a.starters || [], evMap, hCtx, aCtx);
+    h += pitchHtml(lu, evMap, hCtx, aCtx);
     h += '<div class="mi-pl-pair coaches">' +
       '<div class="mi-pl-coach home">' +
         '<span class="mi-pl-coach-tag">FK</span>' +
