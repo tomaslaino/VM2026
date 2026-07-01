@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T19:26:40.666Z",
+    "updatedAt": "2026-07-01T21:10:29.856Z",
     "source": "svt+tv4",
-    "matchCount": 81
+    "matchCount": 82
   },
   "byKey": {
     "g:A:2": {
@@ -1786,11 +1786,20 @@
     },
     "k:82": {
       "TV4": {
-        "live": {
+        "full": {
           "url": "https://www.tv4play.se/video/e0c5dd3c615d2dcd698d/belgien-senegal",
           "title": "Belgien - Senegal",
-          "until": "2026-07-31T19:00:00Z",
-          "from": "2026-07-01T19:00:14Z"
+          "until": "2026-07-31T19:00:00Z"
+        }
+      }
+    },
+    "k:81": {
+      "TV4": {
+        "live": {
+          "url": "https://www.tv4play.se/video/ccc70071b5d0abcd26af/usa-bosnien",
+          "title": "USA - Bosnien",
+          "until": "2026-07-31T23:50:00Z",
+          "from": "2026-07-01T23:50:12Z"
         }
       }
     },
