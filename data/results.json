@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T18:26:17.459Z",
+    "updatedAt": "2026-07-01T20:26:02.881Z",
     "source": "espn",
-    "matchCount": 80,
-    "liveCount": 0,
+    "matchCount": 81,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -408,9 +408,23 @@
       "h": 2,
       "a": 1,
       "status": "FINISHED"
+    },
+    "k:82": {
+      "h": 0,
+      "a": 1,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:82",
+      "status": "IN_PLAY",
+      "minute": 25,
+      "home": "Belgium",
+      "away": "Senegal",
+      "score": "0-1"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1776,7 +1790,7 @@
       "date": "2026-07-01",
       "time": "22:00",
       "utcDate": "2026-07-01T20:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Belgium",
       "away": "Senegal",

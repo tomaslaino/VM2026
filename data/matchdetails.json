@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T18:26:17.501Z",
+    "updatedAt": "2026-07-01T20:26:02.910Z",
     "source": "espn"
   },
   "details": {
@@ -35852,6 +35852,340 @@
         }
       ],
       "updatedAt": "2026-07-01T18:26:17.501Z"
+    },
+    "k:82": {
+      "espnId": "760493",
+      "status": "IN_PLAY",
+      "minute": 25,
+      "utcDate": "2026-07-01T20:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 1
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 25,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Habib Diarra",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Thibaut Courtois",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Timothy Castagne",
+              "jersey": "21",
+              "pos": "RB"
+            },
+            {
+              "name": "Maxim De Cuyper",
+              "jersey": "5",
+              "pos": "LB"
+            },
+            {
+              "name": "Youri Tielemans",
+              "jersey": "8",
+              "pos": "LM"
+            },
+            {
+              "name": "Brandon Mechele",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Arthur Theate",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Leandro Trossard",
+              "jersey": "10",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Hans Vanaken",
+              "jersey": "20",
+              "pos": "RM"
+            },
+            {
+              "name": "Charles De Ketelaere",
+              "jersey": "17",
+              "pos": "F"
+            },
+            {
+              "name": "Kevin De Bruyne",
+              "jersey": "7",
+              "pos": "AM"
+            },
+            {
+              "name": "Jérémy Doku",
+              "jersey": "11",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Joaquin Seys",
+              "jersey": "18"
+            },
+            {
+              "name": "Koni De Winter",
+              "jersey": "16"
+            },
+            {
+              "name": "Senne Lammens",
+              "jersey": "12"
+            },
+            {
+              "name": "Dodi Lukébakio",
+              "jersey": "14"
+            },
+            {
+              "name": "Thomas Meunier",
+              "jersey": "15"
+            },
+            {
+              "name": "Romelu Lukaku",
+              "jersey": "9"
+            },
+            {
+              "name": "Matias Fernandez-Pardo",
+              "jersey": "26"
+            },
+            {
+              "name": "Amadou Onana",
+              "jersey": "24"
+            },
+            {
+              "name": "Diego Moreira",
+              "jersey": "19"
+            },
+            {
+              "name": "Alexis Saelemaekers",
+              "jersey": "22"
+            },
+            {
+              "name": "Axel Witsel",
+              "jersey": "6"
+            },
+            {
+              "name": "Nicolas Raskin",
+              "jersey": "23"
+            },
+            {
+              "name": "Mike Penders",
+              "jersey": "13"
+            },
+            {
+              "name": "Nathan Ngoy",
+              "jersey": "25"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Mory Diaw",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Krépin Diatta",
+              "jersey": "15",
+              "pos": "RB"
+            },
+            {
+              "name": "Ismail Jakobs",
+              "jersey": "14",
+              "pos": "LB"
+            },
+            {
+              "name": "Idrissa Gueye",
+              "jersey": "5",
+              "pos": "CM"
+            },
+            {
+              "name": "Pathé Ciss",
+              "jersey": "6",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Moussa Niakhaté",
+              "jersey": "19",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Habib Diarra",
+              "jersey": "21",
+              "pos": "RM"
+            },
+            {
+              "name": "Pape Gueye",
+              "jersey": "26",
+              "pos": "LM"
+            },
+            {
+              "name": "Ismaïla Sarr",
+              "jersey": "18",
+              "pos": "F"
+            },
+            {
+              "name": "Iliman Ndiaye",
+              "jersey": "13",
+              "pos": "RF"
+            },
+            {
+              "name": "Sadio Mané",
+              "jersey": "10",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Mamadou Sarr",
+              "jersey": "2"
+            },
+            {
+              "name": "Assane Diao",
+              "jersey": "7"
+            },
+            {
+              "name": "Bamba Dieng",
+              "jersey": "9"
+            },
+            {
+              "name": "Pape Matar Sarr",
+              "jersey": "17"
+            },
+            {
+              "name": "Abdoulaye Seck",
+              "jersey": "4"
+            },
+            {
+              "name": "El Hadji Malick Diouf",
+              "jersey": "25"
+            },
+            {
+              "name": "Nicolas Jackson",
+              "jersey": "11"
+            },
+            {
+              "name": "Ibrahim Mbaye",
+              "jersey": "20"
+            },
+            {
+              "name": "Lamine Camara",
+              "jersey": "8"
+            },
+            {
+              "name": "Cherif Ndiaye",
+              "jersey": "12"
+            },
+            {
+              "name": "Kalidou Koulibaly",
+              "jersey": "3"
+            },
+            {
+              "name": "Bara Sapoko Ndiaye",
+              "jersey": "22"
+            },
+            {
+              "name": "Antoine Mendy",
+              "jersey": "24"
+            },
+            {
+              "name": "Yehvann Diouf",
+              "jersey": "1"
+            }
+          ]
+        }
+      },
+      "referee": "Martínez, Héctor",
+      "venue": "Lumen Field, Seattle, Washington",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "35%",
+          "a": "65%"
+        },
+        {
+          "key": "totalShots",
+          "h": "2",
+          "a": "5"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "1",
+          "a": "2"
+        },
+        {
+          "key": "wonCorners",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "4",
+          "a": "0"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "111",
+          "a": "200"
+        },
+        {
+          "key": "passPct",
+          "h": "86%",
+          "a": "90%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-01T20:26:02.910Z"
     }
   }
 }
