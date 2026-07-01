@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T23:52:34.397Z",
+    "updatedAt": "2026-07-01T03:29:36.153Z",
     "source": "espn"
   },
   "details": {
@@ -34953,6 +34953,399 @@
         }
       ],
       "updatedAt": "2026-06-30T23:52:34.397Z"
+    },
+    "k:79": {
+      "espnId": "760491",
+      "status": "IN_PLAY",
+      "minute": 67,
+      "utcDate": "2026-07-01T02:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 2,
+          "a": 0
+        },
+        "ht": {
+          "h": 2,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 22,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Julián Quiñones",
+          "assist": "Roberto Alvarado",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        },
+        {
+          "minute": 31,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Raúl Jiménez",
+          "assist": "Julián Quiñones",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 0
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 45,
+          "team": "a",
+          "player": "Alan Franco",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Ángelo Preciado",
+          "out": "Joel Ordóñez"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Yaimar Medina",
+          "out": "Alan Franco"
+        },
+        {
+          "minute": 58,
+          "team": "h",
+          "in": "Brian Gutiérrez",
+          "out": "Gilberto Mora"
+        },
+        {
+          "minute": 59,
+          "team": "a",
+          "in": "Kevin Rodríguez",
+          "out": "Enner Valencia"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Raúl Rangel",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Jorge Sánchez",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Jesús Gallardo",
+              "jersey": "23",
+              "pos": "LB"
+            },
+            {
+              "name": "Érik Lira",
+              "jersey": "6",
+              "pos": "CM"
+            },
+            {
+              "name": "César Montes",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Johan Vásquez",
+              "jersey": "5",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Gilberto Mora",
+              "jersey": "19",
+              "pos": "RM"
+            },
+            {
+              "name": "Luis Romo",
+              "jersey": "7",
+              "pos": "LM"
+            },
+            {
+              "name": "Raúl Jiménez",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Roberto Alvarado",
+              "jersey": "25",
+              "pos": "RF"
+            },
+            {
+              "name": "Julián Quiñones",
+              "jersey": "16",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Guillermo Ochoa",
+              "jersey": "13"
+            },
+            {
+              "name": "Israel Reyes",
+              "jersey": "15"
+            },
+            {
+              "name": "Alexis Vega",
+              "jersey": "10"
+            },
+            {
+              "name": "Guillermo Martínez",
+              "jersey": "22"
+            },
+            {
+              "name": "Luis Chávez",
+              "jersey": "24"
+            },
+            {
+              "name": "Álvaro Fidalgo",
+              "jersey": "8"
+            },
+            {
+              "name": "Santiago Gimenez",
+              "jersey": "11"
+            },
+            {
+              "name": "Edson Álvarez",
+              "jersey": "4"
+            },
+            {
+              "name": "Mateo Chávez",
+              "jersey": "20"
+            },
+            {
+              "name": "Carlos Acevedo",
+              "jersey": "12"
+            },
+            {
+              "name": "Brian Gutiérrez",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Orbelín Pineda",
+              "jersey": "17"
+            },
+            {
+              "name": "Armando González",
+              "jersey": "14"
+            },
+            {
+              "name": "Obed Vargas",
+              "jersey": "18"
+            },
+            {
+              "name": "César Huerta",
+              "jersey": "21"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Hernán Galíndez",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Alan Franco",
+              "jersey": "21",
+              "pos": "RB"
+            },
+            {
+              "name": "Piero Hincapié",
+              "jersey": "3",
+              "pos": "LB"
+            },
+            {
+              "name": "Moisés Caicedo",
+              "jersey": "23",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Joel Ordóñez",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Willian Pacho",
+              "jersey": "6",
+              "pos": "CD-L"
+            },
+            {
+              "name": "John Yeboah",
+              "jersey": "9",
+              "pos": "RM"
+            },
+            {
+              "name": "Pedro Vite",
+              "jersey": "15",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Enner Valencia",
+              "jersey": "13",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Gonzalo Plata",
+              "jersey": "19",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Nilson Angulo",
+              "jersey": "20",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Gonzalo Valle",
+              "jersey": "22"
+            },
+            {
+              "name": "Yaimar Medina",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Anthony Valencia",
+              "jersey": "8"
+            },
+            {
+              "name": "Jordy Alcívar",
+              "jersey": "5"
+            },
+            {
+              "name": "Moisés Ramírez",
+              "jersey": "12"
+            },
+            {
+              "name": "Ángelo Preciado",
+              "jersey": "17",
+              "in": true
+            },
+            {
+              "name": "Kendry Páez",
+              "jersey": "10"
+            },
+            {
+              "name": "Denil Castillo",
+              "jersey": "18"
+            },
+            {
+              "name": "Pervis Estupiñán",
+              "jersey": "7"
+            },
+            {
+              "name": "Jeremy Arévalo",
+              "jersey": "24"
+            },
+            {
+              "name": "Kevin Rodríguez",
+              "jersey": "11",
+              "in": true
+            },
+            {
+              "name": "Félix Torres",
+              "jersey": "2"
+            },
+            {
+              "name": "Jordy Caicedo",
+              "jersey": "16"
+            },
+            {
+              "name": "Jackson Porozo",
+              "jersey": "25"
+            },
+            {
+              "name": "Alan Minda",
+              "jersey": "14"
+            }
+          ]
+        }
+      },
+      "referee": "Slavko Vincici",
+      "venue": "Estadio Banorte, Mexico City",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "46%",
+          "a": "54%"
+        },
+        {
+          "key": "totalShots",
+          "h": "12",
+          "a": "3"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "3",
+          "a": "6"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "8",
+          "a": "7"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "261",
+          "a": "304"
+        },
+        {
+          "key": "passPct",
+          "h": "83%",
+          "a": "85%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-01T03:29:36.152Z"
     }
   }
 }

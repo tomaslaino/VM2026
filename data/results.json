@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-06-30T23:52:34.353Z",
+    "updatedAt": "2026-07-01T03:29:36.105Z",
     "source": "espn",
-    "matchCount": 78,
-    "liveCount": 0,
+    "matchCount": 79,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -398,9 +398,23 @@
       "h": 3,
       "a": 0,
       "status": "FINISHED"
+    },
+    "k:79": {
+      "h": 2,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:79",
+      "status": "IN_PLAY",
+      "minute": 66,
+      "home": "Mexico",
+      "away": "Ecuador",
+      "score": "2-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1730,9 +1744,9 @@
     },
     "k:79": {
       "date": "2026-07-01",
-      "time": "03:00",
-      "utcDate": "2026-07-01T01:00Z",
-      "status": "TIMED",
+      "time": "04:00",
+      "utcDate": "2026-07-01T02:00Z",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Mexico",
       "away": "Ecuador",
