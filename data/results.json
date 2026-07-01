@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T03:29:36.105Z",
+    "updatedAt": "2026-07-01T07:55:52.521Z",
     "source": "espn",
     "matchCount": 79,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -402,19 +402,10 @@
     "k:79": {
       "h": 2,
       "a": 0,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:79",
-      "status": "IN_PLAY",
-      "minute": 66,
-      "home": "Mexico",
-      "away": "Ecuador",
-      "score": "2-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1746,7 +1737,7 @@
       "date": "2026-07-01",
       "time": "04:00",
       "utcDate": "2026-07-01T02:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Mexico",
       "away": "Ecuador",
@@ -1969,9 +1960,12 @@
       "utcDate": "2026-07-06T00:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Round of 32 7 Winner",
+      "home": "Mexico",
       "away": "Round of 32 8 Winner",
-      "homeRef": null,
+      "homeRef": {
+        "group": "A",
+        "idx": 0
+      },
       "awayRef": null
     },
     "k:93": {

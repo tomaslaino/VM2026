@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T03:29:36.153Z",
+    "updatedAt": "2026-07-01T07:55:52.548Z",
     "source": "espn"
   },
   "details": {
@@ -34956,11 +34956,11 @@
     },
     "k:79": {
       "espnId": "760491",
-      "status": "IN_PLAY",
-      "minute": 67,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-01T02:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
           "h": 2,
@@ -35006,6 +35006,24 @@
           "team": "a",
           "player": "Alan Franco",
           "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Kendry Páez",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Piero Hincapié",
+          "card": "RED"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Moisés Caicedo",
+          "card": "YELLOW"
         }
       ],
       "subs": [
@@ -35032,6 +35050,42 @@
           "team": "a",
           "in": "Kevin Rodríguez",
           "out": "Enner Valencia"
+        },
+        {
+          "minute": 73,
+          "team": "h",
+          "in": "Obed Vargas",
+          "out": "Luis Romo"
+        },
+        {
+          "minute": 74,
+          "team": "h",
+          "in": "Santiago Gimenez",
+          "out": "Raúl Jiménez"
+        },
+        {
+          "minute": 79,
+          "team": "a",
+          "in": "Jordy Caicedo",
+          "out": "John Yeboah"
+        },
+        {
+          "minute": 79,
+          "team": "a",
+          "in": "Kendry Páez",
+          "out": "Nilson Angulo"
+        },
+        {
+          "minute": 80,
+          "team": "h",
+          "in": "Orbelín Pineda",
+          "out": "Julián Quiñones"
+        },
+        {
+          "minute": 80,
+          "team": "h",
+          "in": "Israel Reyes",
+          "out": "Roberto Alvarado"
         }
       ],
       "penalties": [],
@@ -35102,7 +35156,8 @@
             },
             {
               "name": "Israel Reyes",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Alexis Vega",
@@ -35122,7 +35177,8 @@
             },
             {
               "name": "Santiago Gimenez",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Edson Álvarez",
@@ -35143,7 +35199,8 @@
             },
             {
               "name": "Orbelín Pineda",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Armando González",
@@ -35151,7 +35208,8 @@
             },
             {
               "name": "Obed Vargas",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true
             },
             {
               "name": "César Huerta",
@@ -35247,7 +35305,8 @@
             },
             {
               "name": "Kendry Páez",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true
             },
             {
               "name": "Denil Castillo",
@@ -35272,7 +35331,8 @@
             },
             {
               "name": "Jordy Caicedo",
-              "jersey": "16"
+              "jersey": "16",
+              "in": true
             },
             {
               "name": "Jackson Porozo",
@@ -35287,32 +35347,32 @@
       },
       "referee": "Slavko Vincici",
       "venue": "Estadio Banorte, Mexico City",
-      "attendance": null,
+      "attendance": 80824,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "46%",
-          "a": "54%"
+          "h": "43%",
+          "a": "57%"
         },
         {
           "key": "totalShots",
-          "h": "12",
-          "a": "3"
+          "h": "15",
+          "a": "7"
         },
         {
           "key": "shotsOnTarget",
-          "h": "2",
+          "h": "3",
           "a": "1"
         },
         {
           "key": "wonCorners",
           "h": "3",
-          "a": "6"
+          "a": "8"
         },
         {
           "key": "foulsCommitted",
-          "h": "8",
-          "a": "7"
+          "h": "10",
+          "a": "14"
         },
         {
           "key": "offsides",
@@ -35326,26 +35386,26 @@
         },
         {
           "key": "totalPasses",
-          "h": "261",
-          "a": "304"
+          "h": "316",
+          "a": "410"
         },
         {
           "key": "passPct",
-          "h": "83%",
-          "a": "85%"
+          "h": "78%",
+          "a": "83%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "1"
+          "a": "3"
         },
         {
           "key": "redCards",
           "h": "0",
-          "a": "0"
+          "a": "1"
         }
       ],
-      "updatedAt": "2026-07-01T03:29:36.152Z"
+      "updatedAt": "2026-07-01T07:55:52.548Z"
     }
   }
 }
