@@ -1,10 +1,10 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T15:10:21.231Z",
+    "updatedAt": "2026-07-01T16:25:51.863Z",
     "source": "espn",
-    "matchCount": 79,
-    "liveCount": 0,
-    "apiCalls": 19
+    "matchCount": 80,
+    "liveCount": 1,
+    "apiCalls": 2
   },
   "results": {
     "g:A:2": {
@@ -403,9 +403,23 @@
       "h": 2,
       "a": 0,
       "status": "FINISHED"
+    },
+    "k:80": {
+      "h": 0,
+      "a": 1,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:80",
+      "status": "IN_PLAY",
+      "minute": 20,
+      "home": "England",
+      "away": "Congo DR",
+      "score": "0-1"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1754,7 +1768,7 @@
       "date": "2026-07-01",
       "time": "18:00",
       "utcDate": "2026-07-01T16:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "England",
       "away": "Congo DR",

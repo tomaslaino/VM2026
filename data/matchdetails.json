@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T15:10:21.247Z",
+    "updatedAt": "2026-07-01T16:25:51.895Z",
     "source": "espn"
   },
   "details": {
@@ -35406,6 +35406,355 @@
         }
       ],
       "updatedAt": "2026-07-01T07:55:52.548Z"
+    },
+    "k:80": {
+      "espnId": "760495",
+      "status": "IN_PLAY",
+      "minute": 26,
+      "utcDate": "2026-07-01T16:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 1
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 7,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Brian Cipenga",
+          "assist": "Chancel Mbemba",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 19,
+          "team": "h",
+          "player": "Jude Bellingham",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Jordan Pickford",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Djed Spence",
+              "jersey": "25",
+              "pos": "RB"
+            },
+            {
+              "name": "Nico O'Reilly",
+              "jersey": "3",
+              "pos": "LB"
+            },
+            {
+              "name": "Declan Rice",
+              "jersey": "4",
+              "pos": "LM"
+            },
+            {
+              "name": "Ezri Konsa",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Marc Guéhi",
+              "jersey": "6",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Noni Madueke",
+              "jersey": "20",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Elliot Anderson",
+              "jersey": "8",
+              "pos": "RM"
+            },
+            {
+              "name": "Harry Kane",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Jude Bellingham",
+              "jersey": "10",
+              "pos": "AM"
+            },
+            {
+              "name": "Marcus Rashford",
+              "jersey": "11",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Trevoh Chalobah",
+              "jersey": "12"
+            },
+            {
+              "name": "Dan Burn",
+              "jersey": "15"
+            },
+            {
+              "name": "Kobbie Mainoo",
+              "jersey": "16"
+            },
+            {
+              "name": "Bukayo Saka",
+              "jersey": "7"
+            },
+            {
+              "name": "Morgan Rogers",
+              "jersey": "17"
+            },
+            {
+              "name": "Dean Henderson",
+              "jersey": "13"
+            },
+            {
+              "name": "Ollie Watkins",
+              "jersey": "19"
+            },
+            {
+              "name": "Ivan Toney",
+              "jersey": "22"
+            },
+            {
+              "name": "John Stones",
+              "jersey": "5"
+            },
+            {
+              "name": "Jordan Henderson",
+              "jersey": "14"
+            },
+            {
+              "name": "Anthony Gordon",
+              "jersey": "18"
+            },
+            {
+              "name": "James Trafford",
+              "jersey": "23"
+            },
+            {
+              "name": "Reece James",
+              "jersey": "24"
+            },
+            {
+              "name": "Eberechi Eze",
+              "jersey": "21"
+            },
+            {
+              "name": "Jarell Quansah",
+              "jersey": "26"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Lionel Mpasi",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Aaron Wan-Bissaka",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Arthur Masuaku",
+              "jersey": "26",
+              "pos": "LB"
+            },
+            {
+              "name": "Samuel Moutoussamy",
+              "jersey": "8",
+              "pos": "CM"
+            },
+            {
+              "name": "Chancel Mbemba",
+              "jersey": "22",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Axel Tuanzebe",
+              "jersey": "4",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Ngal'ayel Mukau",
+              "jersey": "6",
+              "pos": "RM"
+            },
+            {
+              "name": "Noah Sadiki",
+              "jersey": "14",
+              "pos": "LM"
+            },
+            {
+              "name": "Yoane Wissa",
+              "jersey": "20",
+              "pos": "F"
+            },
+            {
+              "name": "Nathanaël Mbuku",
+              "jersey": "7",
+              "pos": "RF"
+            },
+            {
+              "name": "Brian Cipenga",
+              "jersey": "9",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Cédric Bakambu",
+              "jersey": "17"
+            },
+            {
+              "name": "Matthieu Epolo",
+              "jersey": "21"
+            },
+            {
+              "name": "Timothy Fayulu",
+              "jersey": "16"
+            },
+            {
+              "name": "Fiston Mayele",
+              "jersey": "19"
+            },
+            {
+              "name": "Charles Pickel",
+              "jersey": "18"
+            },
+            {
+              "name": "Théo Bongonda",
+              "jersey": "10"
+            },
+            {
+              "name": "Gédéon Kalulu",
+              "jersey": "24"
+            },
+            {
+              "name": "Edo Kayembe",
+              "jersey": "25"
+            },
+            {
+              "name": "Dylan Batubinsika",
+              "jersey": "5"
+            },
+            {
+              "name": "Gaël Kakuta",
+              "jersey": "11"
+            },
+            {
+              "name": "Meschack Elia",
+              "jersey": "13"
+            },
+            {
+              "name": "Simon Banza",
+              "jersey": "23"
+            },
+            {
+              "name": "Aaron Tshibola",
+              "jersey": "15"
+            },
+            {
+              "name": "Steve Kapuadi",
+              "jersey": "3"
+            },
+            {
+              "name": "Joris Kayembe",
+              "jersey": "12"
+            }
+          ]
+        }
+      },
+      "referee": "Adham Mohammad",
+      "venue": "Mercedes-Benz Stadium, Atlanta, Georgia",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "55%",
+          "a": "45%"
+        },
+        {
+          "key": "totalShots",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "5",
+          "a": "1"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "118",
+          "a": "99"
+        },
+        {
+          "key": "passPct",
+          "h": "88%",
+          "a": "88%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-01T16:25:51.895Z"
     }
   }
 }
