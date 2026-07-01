@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T16:25:51.863Z",
+    "updatedAt": "2026-07-01T18:26:17.459Z",
     "source": "espn",
     "matchCount": 80,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -405,21 +405,12 @@
       "status": "FINISHED"
     },
     "k:80": {
-      "h": 0,
+      "h": 2,
       "a": 1,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:80",
-      "status": "IN_PLAY",
-      "minute": 20,
-      "home": "England",
-      "away": "Congo DR",
-      "score": "0-1"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1768,7 +1759,7 @@
       "date": "2026-07-01",
       "time": "18:00",
       "utcDate": "2026-07-01T16:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "England",
       "away": "Congo DR",
@@ -1975,12 +1966,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Mexico",
-      "away": "Round of 32 8 Winner",
+      "away": "England",
       "homeRef": {
         "group": "A",
         "idx": 0
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "L",
+        "idx": 0
+      }
     },
     "k:93": {
       "date": "2026-07-06",

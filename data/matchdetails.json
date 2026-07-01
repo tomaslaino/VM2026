@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T16:25:51.895Z",
+    "updatedAt": "2026-07-01T18:26:17.501Z",
     "source": "espn"
   },
   "details": {
@@ -35409,17 +35409,20 @@
     },
     "k:80": {
       "espnId": "760495",
-      "status": "IN_PLAY",
-      "minute": 26,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-01T16:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
+          "h": 2,
+          "a": 1
+        },
+        "ht": {
           "h": 0,
           "a": 1
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
@@ -35436,6 +35439,30 @@
             "h": 0,
             "a": 1
           }
+        },
+        {
+          "minute": 75,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Harry Kane",
+          "assist": "Anthony Gordon",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        },
+        {
+          "minute": 86,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Harry Kane",
+          "assist": "Anthony Gordon",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 1
+          }
         }
       ],
       "bookings": [
@@ -35444,9 +35471,70 @@
           "team": "h",
           "player": "Jude Bellingham",
           "card": "YELLOW"
+        },
+        {
+          "minute": 28,
+          "team": "a",
+          "player": "Noah Sadiki",
+          "card": "YELLOW"
         }
       ],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 61,
+          "team": "h",
+          "in": "Bukayo Saka",
+          "out": "Noni Madueke"
+        },
+        {
+          "minute": 61,
+          "team": "h",
+          "in": "Anthony Gordon",
+          "out": "Marcus Rashford"
+        },
+        {
+          "minute": 64,
+          "team": "a",
+          "in": "Meschack Elia",
+          "out": "Nathanaël Mbuku"
+        },
+        {
+          "minute": 70,
+          "team": "h",
+          "in": "Eberechi Eze",
+          "out": "Djed Spence"
+        },
+        {
+          "minute": 76,
+          "team": "a",
+          "in": "Théo Bongonda",
+          "out": "Brian Cipenga"
+        },
+        {
+          "minute": 76,
+          "team": "a",
+          "in": "Edo Kayembe",
+          "out": "Ngal'ayel Mukau"
+        },
+        {
+          "minute": 89,
+          "team": "a",
+          "in": "Joris Kayembe",
+          "out": "Arthur Masuaku"
+        },
+        {
+          "minute": 89,
+          "team": "a",
+          "in": "Fiston Mayele",
+          "out": "Samuel Moutoussamy"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "John Stones",
+          "out": "Declan Rice"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -35523,7 +35611,8 @@
             },
             {
               "name": "Bukayo Saka",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Morgan Rogers",
@@ -35543,7 +35632,8 @@
             },
             {
               "name": "John Stones",
-              "jersey": "5"
+              "jersey": "5",
+              "in": true
             },
             {
               "name": "Jordan Henderson",
@@ -35551,7 +35641,8 @@
             },
             {
               "name": "Anthony Gordon",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true
             },
             {
               "name": "James Trafford",
@@ -35563,7 +35654,8 @@
             },
             {
               "name": "Eberechi Eze",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Jarell Quansah",
@@ -35645,7 +35737,8 @@
             },
             {
               "name": "Fiston Mayele",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Charles Pickel",
@@ -35653,7 +35746,8 @@
             },
             {
               "name": "Théo Bongonda",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true
             },
             {
               "name": "Gédéon Kalulu",
@@ -35661,7 +35755,8 @@
             },
             {
               "name": "Edo Kayembe",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Dylan Batubinsika",
@@ -35673,7 +35768,8 @@
             },
             {
               "name": "Meschack Elia",
-              "jersey": "13"
+              "jersey": "13",
+              "in": true
             },
             {
               "name": "Simon Banza",
@@ -35689,64 +35785,65 @@
             },
             {
               "name": "Joris Kayembe",
-              "jersey": "12"
+              "jersey": "12",
+              "in": true
             }
           ]
         }
       },
       "referee": "Adham Mohammad",
       "venue": "Mercedes-Benz Stadium, Atlanta, Georgia",
-      "attendance": null,
+      "attendance": 68239,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "55%",
-          "a": "45%"
+          "h": "60%",
+          "a": "40%"
         },
         {
           "key": "totalShots",
-          "h": "0",
-          "a": "1"
+          "h": "16",
+          "a": "7"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "1"
+          "h": "7",
+          "a": "2"
         },
         {
           "key": "wonCorners",
-          "h": "1",
-          "a": "0"
+          "h": "5",
+          "a": "3"
         },
         {
           "key": "foulsCommitted",
-          "h": "5",
-          "a": "1"
+          "h": "10",
+          "a": "12"
         },
         {
           "key": "offsides",
           "h": "0",
-          "a": "1"
+          "a": "4"
         },
         {
           "key": "saves",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "5"
         },
         {
           "key": "totalPasses",
-          "h": "118",
-          "a": "99"
+          "h": "517",
+          "a": "365"
         },
         {
           "key": "passPct",
-          "h": "88%",
-          "a": "88%"
+          "h": "91%",
+          "a": "82%"
         },
         {
           "key": "yellowCards",
           "h": "1",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -35754,7 +35851,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-01T16:25:51.895Z"
+      "updatedAt": "2026-07-01T18:26:17.501Z"
     }
   }
 }
