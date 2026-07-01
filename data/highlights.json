@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T02:15:02.973Z",
+    "updatedAt": "2026-07-01T06:45:09.885Z",
     "source": "svt+tv4",
     "matchCount": 79
   },
@@ -1733,12 +1733,23 @@
       }
     },
     "k:79": {
+      "SVT": {
+        "short": {
+          "url": "https://www.svtplay.se/klipp/jakYxLb/sextondelsfinal-mexiko-ecuador",
+          "title": "Sextondelsfinal: Mexiko - Ecuador",
+          "until": "2060-01-01T00:00:00+01:00"
+        }
+      },
       "TV4": {
-        "live": {
+        "full": {
           "url": "https://www.tv4play.se/video/99c2629da5040d107a7c/mexiko-ecuador",
           "title": "Mexiko - Ecuador",
-          "until": "2026-07-31T00:50:00Z",
-          "from": "2026-07-01T00:50:09Z"
+          "until": "2026-07-31T00:50:00Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/fc98e1d2c49145c5bb9e/video-hojdpunkter-mexiko-ecuador",
+          "title": "Höjdpunkter: Mexiko - Ecuador",
+          "until": null
         }
       }
     },
