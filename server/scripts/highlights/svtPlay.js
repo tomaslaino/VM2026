@@ -7,7 +7,7 @@
   (sökningen returnerar även närliggande matcher och nyhetsklipp).
 */
 import { classifySvt, cleanTitle } from "./classify.js";
-import { extractTeamIds, swedishNameFor } from "./match.js";
+import { extractTeamIds, swedishNamesFor } from "./match.js";
 
 const SVT_GQL = "https://contento.svt.se/graphql";
 const SVT_BASE = "https://www.svtplay.se";
@@ -64,8 +64,24 @@ function sameId2(ids, idH, idA) {
 
 /** Höjdpunkter/repris för en enskild match, eller null om inget hittas. */
 async function fetchForFixture(fx, { live = false } = {}) {
-  const q = `${swedishNameFor(fx.home)} ${swedishNameFor(fx.away)}`;
-  const hits = await searchSvt(q);
+  // Prova alla kända svenska stavningskombinationer (t.ex. "Kongo-Kinshasa" och
+  // "DR Kongo") och slå ihop träffarna – SVT använder olika stavningar för
+  // klipp respektive sändningssidor, och en enda sökning kan missa matchen.
+  const queries = new Set();
+  for (const h of swedishNamesFor(fx.home)) {
+    for (const a of swedishNamesFor(fx.away)) queries.add(`${h} ${a}`);
+  }
+  const seen = new Set();
+  const hits = [];
+  for (const q of queries) {
+    for (const hit of await searchSvt(q)) {
+      const url = hit?.teaser?.item?.urls?.svtplay;
+      const dedupeKey = url || JSON.stringify(hit);
+      if (seen.has(dedupeKey)) continue;
+      seen.add(dedupeKey);
+      hits.push(hit);
+    }
+  }
   const now = Date.now();
   const byType = {};
   for (const hit of hits) {

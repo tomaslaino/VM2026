@@ -69,8 +69,8 @@ const SV_TO_EN = [
   ["Portugal", "Portugal"],
   ["Colombia", "Colombia"],
   ["Uzbekistan", "Uzbekistan"],
-  ["Kongo-Kinshasa", "DR Congo"],
   ["DR Kongo", "DR Congo"],
+  ["Kongo-Kinshasa", "DR Congo"],
   ["Kongo", "DR Congo"],
   ["England", "England"],
   ["Kroatien", "Croatia"],
@@ -88,19 +88,23 @@ function teamId(enName) {
 const SV_LOOKUP = SV_TO_EN.map(([sv, en]) => ({ norm: normName(sv), id: teamId(en) }))
   .sort((a, b) => b.norm.length - a.norm.length);
 
-/* Engelskt lag-id -> primärt svenskt visningsnamn (för SVT-sökfrågor). */
-const EN_TO_SV_PRIMARY = (() => {
+/* Engelskt lag-id -> alla kända svenska visningsnamn (för SVT-sökfrågor). Vissa
+   lag har flera stavningar i omlopp hos SVT beroende på innehållstyp – t.ex.
+   skriver SVT "Kongo-Kinshasa" i sammandragsklipp men "DR Kongo" på
+   sändningssidan för hela matchen. En sökfråga som bara provar en stavning
+   missar då träffar som faktiskt finns. */
+const EN_TO_SV_ALL = (() => {
   const m = {};
   for (const [sv, en] of SV_TO_EN) {
     const id = teamId(en);
-    if (!m[id]) m[id] = sv;
+    (m[id] || (m[id] = [])).push(sv);
   }
   return m;
 })();
 
-/** Svenskt sökvänligt namn för ett (engelskt) lag, för SVT-sökfrågan. */
-export function swedishNameFor(enName) {
-  return EN_TO_SV_PRIMARY[teamId(enName)] || enName;
+/** Alla kända svenska sökvänliga namn för ett (engelskt) lag, för SVT-sökfrågan. */
+export function swedishNamesFor(enName) {
+  return EN_TO_SV_ALL[teamId(enName)] || [enName];
 }
 
 /**
