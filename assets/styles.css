@@ -5284,10 +5284,14 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 .cj-date { font-size: 11.5px; font-weight: 700; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 
 .cj-match { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 8px; min-width: 0; }
-.cj-team { display: flex; align-items: center; gap: 7px; min-width: 0; }
+/* Precis som .fx-team.home/.away på förstasidan: båda lagen packas mot
+   poängen i mitten (flaggan närmast siffrorna) i stället för mot ytterkanten.
+   Annars packas eget lag mot vänsterkanten och motståndaren mot högerkanten
+   var för sig – då varierar avståndet till poängen med lagnamnets längd och
+   det ser ut som att lagen "hoppar" mellan kolumner rad för rad. */
+.cj-team { display: flex; align-items: center; gap: 7px; min-width: 0; justify-content: flex-end; text-align: right; }
 .cj-team .flag { width: 22px; height: 15px; border-radius: 2px; flex: none; box-shadow: 0 1px 2px rgba(0,0,0,.35); }
-.cj-team.opp { justify-content: flex-end; }
-.cj-team.opp .cj-abbr { text-align: right; }
+.cj-team.opp { justify-content: flex-start; text-align: left; }
 .cj-abbr { font-weight: 700; font-size: 13px; line-height: 1.15; color: var(--ink); white-space: normal; overflow-wrap: break-word; }
 .cj-score {
   flex: none; font-family: var(--display); font-weight: 900; font-size: 16px; color: var(--bone);
