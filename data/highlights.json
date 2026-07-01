@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T22:40:23.889Z",
+    "updatedAt": "2026-07-01T23:59:39.228Z",
     "source": "svt+tv4",
     "matchCount": 82
   },
@@ -1780,11 +1780,23 @@
       }
     },
     "k:82": {
+      "SVT": {
+        "short": {
+          "url": "https://www.svtplay.se/klipp/eXv7nkq/sextondelsfinal-belgien-senegal",
+          "title": "Sextondelsfinal: Belgien - Senegal",
+          "until": "2026-10-19T05:30:00+02:00"
+        }
+      },
       "TV4": {
         "full": {
           "url": "https://www.tv4play.se/video/e0c5dd3c615d2dcd698d/belgien-senegal",
           "title": "Belgien - Senegal",
           "until": "2026-07-31T19:00:00Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/c8f5db9506eb8fe64a58/video-hojdpunkter-belgien-senegal",
+          "title": "Höjdpunkter: Belgien - Senegal",
+          "until": null
         }
       }
     },
@@ -1794,7 +1806,7 @@
           "url": "https://www.tv4play.se/video/ccc70071b5d0abcd26af/usa-bosnien",
           "title": "USA - Bosnien",
           "until": "2026-07-31T23:50:00Z",
-          "from": "2026-07-01T23:50:42Z"
+          "from": "2026-07-01T23:50:00Z"
         }
       }
     },
