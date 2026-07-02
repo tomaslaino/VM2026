@@ -1257,7 +1257,10 @@
   function renderPlayers() {
     lastViewSig = null; // statistikvyn äger #view själv – ogiltigförklara cachen
     if (window.VMPlayerStats && typeof window.VMPlayerStats.mount === "function") {
-      window.VMPlayerStats.mount(viewEl);
+      /* Redan monterad → låt vyn sitta kvar. Den ritar om sig själv via
+         setDetails när nytt underlag kommer; att montera om här river annars
+         hela statistikvyn (och tappar scroll/fokus) vid varje datasynk. */
+      if (!viewEl.querySelector(".ps-view")) window.VMPlayerStats.mount(viewEl);
     } else {
       viewEl.innerHTML = '<p class="note">Statistiken kunde inte laddas.</p>';
     }
@@ -2548,7 +2551,7 @@
             '<button type="button" class="r32-reset" data-r32-reset>Återställ val</button>' +
           '</div>' +
         '</div>' +
-        '<div class="r32-summary" id="r32-summary"></div>' +
+        '<div class="r32-summary" id="r32-summary" data-morph-keep></div>' +
         '<div class="r32-body">' +
           '<div class="r32-col r32-games-col">' +
             '<div class="r32-colhead"><h4>Matcher kvar att spela</h4>' +
@@ -2556,14 +2559,14 @@
             '</div>' +
             '<div class="r32-legend">Färgen visar läget för ' + esc(sel.team.sv) + ': ' +
               '<i class="sw good"></i>bättre <i class="sw neu"></i>oförändrat <i class="sw bad"></i>sämre</div>' +
-            '<div id="r32-games" class="r32-games"></div>' +
+            '<div id="r32-games" class="r32-games" data-morph-keep></div>' +
           '</div>' +
           '<div class="r32-col r32-side-col">' +
             '<div class="r32-card"><h4>Möjliga motståndare</h4>' +
-              '<p class="r32-cardsub" id="r32-outcome-sub"></p>' +
-              '<div id="r32-outcomes" class="r32-outcomes"></div></div>' +
+              '<p class="r32-cardsub" id="r32-outcome-sub" data-morph-keep></p>' +
+              '<div id="r32-outcomes" class="r32-outcomes" data-morph-keep></div></div>' +
             '<div class="r32-card"><h4 id="r32-standings-title">Gruppen just nu</h4>' +
-              '<div id="r32-standings"></div></div>' +
+              '<div id="r32-standings" data-morph-keep></div></div>' +
           '</div>' +
         '</div>' +
       '</section>';
@@ -2599,10 +2602,10 @@
     var el = document.getElementById("r32-summary");
     if (!el) return;
     var good = r32GoodLabel();
-    el.innerHTML =
+    morphInto(el,
       '<div class="r32-stat good"><div class="v">' + r32Pct(s.good) + '</div><div class="l">Möter ett lag de bör klara' + (good ? ' (' + esc(good) + ')' : '') + '</div></div>' +
       '<div class="r32-stat bad"><div class="v">' + r32Pct(s.bad) + '</div><div class="l">Möter ett topplag (' + esc(avoid) + ')</div></div>' +
-      '<div class="r32-stat out"><div class="v">' + r32Pct(s.eliminated) + '</div><div class="l">Åker ut i gruppspelet</div></div>';
+      '<div class="r32-stat out"><div class="v">' + r32Pct(s.eliminated) + '</div><div class="l">Åker ut i gruppspelet</div></div>');
   }
 
   function r32TipId(html) {
@@ -2651,7 +2654,7 @@
     if (!host) return;
     var outs = r32Result.outcomes.filter(function (o) { return o.prob > 0; });
     var maxP = Math.max.apply(null, outs.map(function (o) { return o.prob; }).concat([0.0001]));
-    host.innerHTML = outs.map(function (o) {
+    morphInto(host, outs.map(function (o) {
       var klass = o.good == null ? "out" : (o.good ? "good" : "bad");
       var od = o.label === "Eliminated" || o.win == null ? "" : ("ni vinner " + Math.round(o.win * 100) + "%");
       var tip = r32TipId(r32OutcomeTip(o));
@@ -2659,10 +2662,10 @@
         '<div class="top"><span class="nm">' + esc(r32SvName(o.label)) + '</span>' +
           '<span class="od">' + r32Pct(o.prob) + (od ? " · " + od : "") + '</span></div>' +
         '<div class="bar"><div style="width:' + (o.prob / maxP * 100).toFixed(1) + '%"></div></div></div>';
-    }).join("");
+    }).join(""));
     var sub = document.getElementById("r32-outcome-sub");
-    if (sub) sub.innerHTML = outs.length + ' lag kan bli motståndare. Stapeln visar hur troligt det är. ' +
-      '<i class="dot good"></i> lag de bör klara · <i class="dot bad"></i> topplag.';
+    if (sub) morphInto(sub, outs.length + ' lag kan bli motståndare. Stapeln visar hur troligt det är. ' +
+      '<i class="dot good"></i> lag de bör klara · <i class="dot bad"></i> topplag.');
   }
 
   function r32OutcomeTip(o) {
@@ -2695,14 +2698,14 @@
     var title = document.getElementById("r32-standings-title");
     if (title) title.textContent = "Grupp " + sel.g + " just nu";
     var table = computeTable(sel.g);
-    host.innerHTML = '<table class="r32-standings"><tr><th class="nm">Lag</th><th>S</th><th>MV</th><th>GM</th><th>P</th></tr>' +
+    morphInto(host, '<table class="r32-standings"><tr><th class="nm">Lag</th><th>S</th><th>MV</th><th>GM</th><th>P</th></tr>' +
       table.map(function (r, pos) {
         var isTeam = r.idx === sel.idx;
         return '<tr' + (isTeam ? ' class="me"' : '') + '>' +
           '<td class="nm">' + (pos + 1) + '. ' + flagImg(r.team.iso) + esc(r.team.sv) + '</td>' +
           '<td>' + r.pld + '</td><td>' + (r.gd >= 0 ? "+" : "") + r.gd + '</td>' +
           '<td>' + r.gf + '</td><td>' + r.pts + '</td></tr>';
-      }).join("") + '</table>';
+      }).join("") + '</table>');
   }
 
   // tint för påverkan (mörkt tema): negativ=röd, neutral=grå, positiv=grön
@@ -2750,7 +2753,7 @@
     r32Result.games.slice()
       .sort(function (a, b) { return b.importance - a.importance; })
       .slice(0, 2).forEach(function (g) { if (g.importance > 0.04) top2[g.id] = true; });
-    host.innerHTML = games.map(function (g) { return r32GameRow(g, top2[g.id]); }).join("");
+    morphInto(host, games.map(function (g) { return r32GameRow(g, top2[g.id]); }).join(""));
   }
 
   function r32GameRow(g, star) {
@@ -2989,11 +2992,11 @@
           '</div>' +
         '</div>' +
         '<div class="calc-body">' +
-          '<div class="calc-board" id="calc-board"></div>' +
-          '<div class="calc-boardfoot" id="calc-boardfoot"></div>' +
+          '<div class="calc-board" id="calc-board" data-morph-keep></div>' +
+          '<div class="calc-boardfoot" id="calc-boardfoot" data-morph-keep></div>' +
           '<div class="calc-lower">' +
-            '<div class="calc-side" id="calc-side"></div>' +
-            '<aside class="calc-journey" id="calc-journey"></aside>' +
+            '<div class="calc-side" id="calc-side" data-morph-keep></div>' +
+            '<aside class="calc-journey" id="calc-journey" data-morph-keep></aside>' +
           '</div>' +
         '</div>' +
       '</section>';
@@ -3065,7 +3068,7 @@
     if (sub) {
       sub.style.display = fate ? "none" : "";
       if (!fate) {
-        sub.innerHTML = '<span class="calc-status" id="calc-status"></span>';
+        morphInto(sub, '<span class="calc-status" id="calc-status"></span>');
       }
     }
     if (fate) {
@@ -3084,10 +3087,8 @@
      CSS-byggd gravsten med lagets flagga. Allt styrs av spoilerläget eftersom
      dödsfallet (det avgörande resultatet) plockas via spoilergrindade data. */
   function renderCalcGrave(sel, f) {
-    var board = document.getElementById("calc-board");
-    if (board) board.innerHTML = calcGraveHtml(sel, f);
-    var foot = document.getElementById("calc-boardfoot");
-    if (foot) foot.innerHTML = "";
+    morphInto(document.getElementById("calc-board"), calcGraveHtml(sel, f));
+    morphInto(document.getElementById("calc-boardfoot"), "");
   }
 
   /** Kort dödsorsak: var resan tog slut. */
@@ -3176,7 +3177,7 @@
     var host = document.getElementById("calc-board");
     if (!host || !calcResult) return;
     var focal = calcResult.focal;
-    if (!focal) { host.innerHTML = ""; return; }
+    if (!focal) { morphInto(host, ""); return; }
     var COLLAPSED_N = 8;
     var expanded = ui("calcBoardN", "8") === "all";
 
@@ -3217,25 +3218,25 @@
         '<div class="cb-win-pct">' + calcBoardNum(focal.win || 0) + ' <span>%</span></div>' +
       '</div>';
 
-    host.innerHTML = '<div class="cb-wrap">' +
+    morphInto(host, '<div class="cb-wrap">' +
         '<div class="cb-main">' +
           '<h3 class="cb-title">Möjliga motståndare i slutspelet</h3>' +
           '<div class="cb-cols">' + cols + '</div>' +
           moreBtn +
         '</div>' + winBox +
-      '</div>';
+      '</div>');
   }
 
   // Fotnot + utfällbar förklaring av modellen ("Om beräkningarna").
   function renderCalcBoardFoot(sel) {
     var host = document.getElementById("calc-boardfoot");
     if (!host) return;
-    host.innerHTML =
+    morphInto(host,
       '<p class="cb-note">Procenten vid varje lag visar hur ofta <b>' + esc(teamSvFixture(sel.team)) +
         '</b> möter just det laget i rundan – räknat bara på de simuleringar där laget faktiskt tar sig dit, ' +
         'inte chansen att laget når dit. Rutan <b>Vinn VM</b> visar den totala chansen att gå hela vägen.</p>' +
       '<button type="button" class="cb-about" data-calc-about aria-expanded="false">Om beräkningarna</button>' +
-      '<div class="cb-about-panel" id="calc-about" hidden>' + calcAboutHtml(sel) + '</div>';
+      '<div class="cb-about-panel" id="calc-about" hidden>' + calcAboutHtml(sel) + '</div>');
   }
 
   function calcAboutHtml(sel) {
@@ -3268,10 +3269,10 @@
         '<td>' + r.gf + '</td><td>' + r.pts + '</td></tr>';
     }).join("");
 
-    host.innerHTML = '<div class="calc-card calc-groupcard">' +
+    morphInto(host, '<div class="calc-card calc-groupcard">' +
         '<div class="calc-cardhead"><span class="calc-round">Grupp ' + sel.g + '</span></div>' +
         '<table class="calc-standings"><tr><th class="nm">Lag</th><th>S</th><th>MV</th><th>GM</th><th>P</th></tr>' + rows + '</table>' +
-      '</div>';
+      '</div>');
   }
 
   /* ---------- lagets VM-resa: spelade matcher i kronologisk ordning ----------
@@ -3289,11 +3290,11 @@
       '<h4>' + esc(teamSvFixture(sel.team)) + 's VM</h4></div>';
 
     if (!played.length) {
-      host.innerHTML = head + '<div class="calc-faint">Inga matcher spelade ännu.</div>';
+      morphInto(host, head + '<div class="calc-faint">Inga matcher spelade ännu.</div>');
       return;
     }
-    host.innerHTML = head + '<ol class="cj-list">' +
-      played.map(function (mm) { return calcJourneyRow(sel.team, mm); }).join("") + '</ol>';
+    morphInto(host, head + '<ol class="cj-list">' +
+      played.map(function (mm) { return calcJourneyRow(sel.team, mm); }).join("") + '</ol>');
   }
 
   function calcJourneyRow(team, mm) {
@@ -5428,7 +5429,8 @@
     if (!selectedTeam) {
       drawer.classList.remove("open");
       backdrop.classList.remove("open");
-      drawer.innerHTML = "";
+      morphInto(drawer, "");
+      drawer.__vmSquadKey = null;
       return;
     }
     var ctx = getCtx();
@@ -5539,27 +5541,39 @@
     h += '</div>';
 
     // Trupp: tom behållare – laguppställningsbläddraren och spelarlistan
-    // (hooken nedan) injicerar sina kort direkt i den här panelen.
-    h += '<div class="td-tab-panel' + (teamDrawerTab === "squad" ? " active" : "") + '" data-td-panel="squad"></div>';
+    // (hooken nedan) injicerar sina kort direkt i den här panelen. Märkt
+    // data-morph-keep så att morfen nedan inte river de injicerade korten
+    // när något annat i lådan (t.ex. en ställning) uppdateras.
+    h += '<div class="td-tab-panel' + (teamDrawerTab === "squad" ? " active" : "") + '" data-td-panel="squad" data-morph-keep></div>';
 
     h += '</div>'; // td-tab-panels
     h += '</div>'; // drawer-body
-    drawer.innerHTML = h;
+    /* Morfa i stället för att riva: en öppen låda blinkar annars till (och
+       truppfliken byggs om) varje gång en datasynk triggar en omritning. */
+    morphInto(drawer, h);
     drawer.classList.add("open");
     document.getElementById("drawerBackdrop").classList.add("open");
 
+    /* Hookarna nedan LÄGGER TILL kort i truppanelen, så de får bara köras när
+       underlaget faktiskt bytts (annat lag / ny spelad match / spoilerläge) –
+       annars dubbleras korten. Panelen töms först av samma skäl. */
     var squadPanel = drawer.querySelector('[data-td-panel="squad"]');
+    var squadKey = L + ":" + selectedTeam.idx + "|" + playedMatches.map(function (mm) { return mm.key; }).join(",");
+    if (squadPanel && drawer.__vmSquadKey !== squadKey) {
+      drawer.__vmSquadKey = squadKey;
+      squadPanel.innerHTML = "";
 
-    // Hook: laguppställningsbläddraren (assets/teamlineups.js) injicerar ett
-    // kort där man kan bläddra mellan lagets spelade matcher och se startelvan
-    // visualiserad på en plan. Läggs före trupplistan nedan.
-    if (squadPanel && window.VMTeamLineups && typeof window.VMTeamLineups.onTeamDrawer === "function") {
-      try { window.VMTeamLineups.onTeamDrawer(team, L, squadPanel, playedMatches); } catch (e) {}
-    }
+      // Hook: laguppställningsbläddraren (assets/teamlineups.js) injicerar ett
+      // kort där man kan bläddra mellan lagets spelade matcher och se startelvan
+      // visualiserad på en plan. Läggs före trupplistan nedan.
+      if (window.VMTeamLineups && typeof window.VMTeamLineups.onTeamDrawer === "function") {
+        try { window.VMTeamLineups.onTeamDrawer(team, L, squadPanel, playedMatches); } catch (e) {}
+      }
 
-    // Hook: låter live-modulen (assets/live.js) injicera spelarlista + statistik.
-    if (squadPanel && window.VMLive && typeof window.VMLive.onTeamDrawer === "function") {
-      try { window.VMLive.onTeamDrawer(team, L, squadPanel); } catch (e) {}
+      // Hook: låter live-modulen (assets/live.js) injicera spelarlista + statistik.
+      if (window.VMLive && typeof window.VMLive.onTeamDrawer === "function") {
+        try { window.VMLive.onTeamDrawer(team, L, squadPanel); } catch (e) {}
+      }
     }
   }
 
