@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T23:59:39.228Z",
+    "updatedAt": "2026-07-02T03:31:47.703Z",
     "source": "svt+tv4",
     "matchCount": 82
   },
@@ -1801,12 +1801,23 @@
       }
     },
     "k:81": {
+      "SVT": {
+        "short": {
+          "url": "https://www.svtplay.se/klipp/jR5GPL2/sextondelsfinal-usa-bosnien-hercegovina",
+          "title": "Sextondelsfinal: USA – Bosnien-Hercegovina",
+          "until": "2026-10-19T05:30:00+02:00"
+        }
+      },
       "TV4": {
-        "live": {
+        "full": {
           "url": "https://www.tv4play.se/video/ccc70071b5d0abcd26af/usa-bosnien",
           "title": "USA - Bosnien",
-          "until": "2026-07-31T23:50:00Z",
-          "from": "2026-07-01T23:50:00Z"
+          "until": "2026-07-31T23:50:00Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/4120002da4c6ade2c9a1/video-hojdpunkter-usa-bosnien",
+          "title": "Höjdpunkter: USA - Bosnien",
+          "until": null
         }
       }
     },
