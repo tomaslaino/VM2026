@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-02T20:16:48.415Z",
+    "updatedAt": "2026-07-02T21:37:50.726Z",
     "source": "espn",
     "matchCount": 83,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -420,21 +420,12 @@
       "status": "FINISHED"
     },
     "k:84": {
-      "h": 1,
+      "h": 3,
       "a": 0,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:84",
-      "status": "IN_PLAY",
-      "minute": 53,
-      "home": "Spain",
-      "away": "Austria",
-      "score": "1-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1834,7 +1825,7 @@
       "date": "2026-07-02",
       "time": "21:00",
       "utcDate": "2026-07-02T19:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Spain",
       "away": "Austria",
@@ -2007,9 +1998,12 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Round of 32 11 Winner",
-      "away": "Round of 32 12 Winner",
+      "away": "Spain",
       "homeRef": null,
-      "awayRef": null
+      "awayRef": {
+        "group": "H",
+        "idx": 0
+      }
     },
     "k:94": {
       "date": "2026-07-07",

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-02T20:16:48.538Z",
+    "updatedAt": "2026-07-02T21:37:50.771Z",
     "source": "espn"
   },
   "details": {
@@ -47452,14 +47452,14 @@
     "k:84": {
       "espnId": "760497",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 54,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-02T19:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
-          "h": 1,
+          "h": 3,
           "a": 0
         },
         "ht": {
@@ -47482,9 +47482,40 @@
             "h": 1,
             "a": 0
           }
+        },
+        {
+          "minute": 66,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Pedro Porro",
+          "assist": "Álex Baena",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 0
+          }
+        },
+        {
+          "minute": 89,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Mikel Oyarzabal",
+          "assist": "Marc Cucurella",
+          "type": "REGULAR",
+          "score": {
+            "h": 3,
+            "a": 0
+          }
         }
       ],
-      "bookings": [],
+      "bookings": [
+        {
+          "minute": 83,
+          "team": "a",
+          "player": "Stefan Posch",
+          "card": "YELLOW"
+        }
+      ],
       "subs": [
         {
           "minute": 45,
@@ -47497,6 +47528,54 @@
           "team": "a",
           "in": "Carney Chukwuemeka",
           "out": "Nicolas Seiwald"
+        },
+        {
+          "minute": 60,
+          "team": "a",
+          "in": "Sasa Kalajdzic",
+          "out": "Romano Schmid"
+        },
+        {
+          "minute": 60,
+          "team": "a",
+          "in": "Marko Arnautovic",
+          "out": "Michael Gregoritsch"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Ferran Torres",
+          "out": "Álex Baena"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Mikel Merino",
+          "out": "Dani Olmo"
+        },
+        {
+          "minute": 85,
+          "team": "h",
+          "in": "Gavi",
+          "out": "Lamine Yamal"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Alexander Prass",
+          "out": "Stefan Posch"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Fabián Ruiz",
+          "out": "Pedri"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Marc Pubill",
+          "out": "Aymeric Laporte"
         }
       ],
       "penalties": [],
@@ -47507,7 +47586,10 @@
             {
               "name": "Unai Simón",
               "jersey": "23",
-              "pos": "G"
+              "pos": "G",
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Pedro Porro",
@@ -47515,7 +47597,10 @@
               "pos": "RB",
               "st": {
                 "fc": 1,
-                "fs": 2
+                "fs": 2,
+                "sg": 1,
+                "g": 1,
+                "sh": 1
               }
             },
             {
@@ -47523,15 +47608,18 @@
               "jersey": "24",
               "pos": "LB",
               "st": {
-                "fc": 1,
-                "fs": 1,
-                "a": 1
+                "fc": 2,
+                "fs": 2,
+                "a": 2
               }
             },
             {
               "name": "Pedri",
               "jersey": "20",
-              "pos": "LM"
+              "pos": "LM",
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Pau Cubarsí",
@@ -47546,6 +47634,7 @@
               "jersey": "14",
               "pos": "CD-L",
               "st": {
+                "fs": 1,
                 "sh": 2
               }
             },
@@ -47555,8 +47644,8 @@
               "pos": "AM-R",
               "st": {
                 "fc": 1,
-                "sg": 3,
-                "sh": 4
+                "sg": 4,
+                "sh": 6
               }
             },
             {
@@ -47564,6 +47653,7 @@
               "jersey": "16",
               "pos": "RM",
               "st": {
+                "fs": 1,
                 "sh": 1
               }
             },
@@ -47572,10 +47662,11 @@
               "jersey": "21",
               "pos": "F",
               "st": {
+                "fc": 1,
                 "fs": 2,
-                "sg": 3,
-                "g": 1,
-                "sh": 5
+                "sg": 4,
+                "g": 2,
+                "sh": 6
               }
             },
             {
@@ -47585,7 +47676,7 @@
               "st": {
                 "fc": 1,
                 "fs": 1,
-                "sh": 1
+                "sh": 3
               }
             },
             {
@@ -47593,20 +47684,27 @@
               "jersey": "15",
               "pos": "AM-L",
               "st": {
-                "fs": 1,
+                "fs": 2,
+                "a": 1,
                 "sg": 1,
-                "sh": 1
+                "sh": 2
               }
             }
           ],
           "bench": [
             {
               "name": "Mikel Merino",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
             },
             {
               "name": "Marc Pubill",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Nico Williams",
@@ -47618,7 +47716,11 @@
             },
             {
               "name": "Ferran Torres",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true,
+              "st": {
+                "sh": 2
+              }
             },
             {
               "name": "Borja Iglesias",
@@ -47630,7 +47732,8 @@
             },
             {
               "name": "Fabián Ruiz",
-              "jersey": "8"
+              "jersey": "8",
+              "in": true
             },
             {
               "name": "Alejandro Grimaldo",
@@ -47638,7 +47741,11 @@
             },
             {
               "name": "Gavi",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true,
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Joan García",
@@ -47671,7 +47778,7 @@
               "pos": "G",
               "st": {
                 "fs": 1,
-                "gc": 1,
+                "gc": 3,
                 "sv": 6
               }
             },
@@ -47680,9 +47787,10 @@
               "jersey": "5",
               "pos": "RB",
               "st": {
-                "fc": 1,
+                "fc": 3,
                 "fs": 1,
-                "gc": 1
+                "gc": 2,
+                "sh": 1
               }
             },
             {
@@ -47690,7 +47798,8 @@
               "jersey": "20",
               "pos": "LB",
               "st": {
-                "gc": 1
+                "fc": 2,
+                "gc": 3
               }
             },
             {
@@ -47706,7 +47815,8 @@
               "jersey": "3",
               "pos": "CD-R",
               "st": {
-                "gc": 1
+                "fs": 1,
+                "gc": 3
               }
             },
             {
@@ -47715,7 +47825,7 @@
               "pos": "CD-L",
               "st": {
                 "fc": 2,
-                "gc": 1,
+                "gc": 3,
                 "sh": 1
               }
             },
@@ -47750,7 +47860,7 @@
               "pos": "AM",
               "st": {
                 "fc": 2,
-                "gc": 1
+                "gc": 3
               }
             },
             {
@@ -47760,7 +47870,7 @@
               "st": {
                 "fc": 1,
                 "fs": 2,
-                "gc": 1
+                "gc": 3
               }
             }
           ],
@@ -47768,7 +47878,12 @@
             {
               "name": "Florian Grillitsch",
               "jersey": "10",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "gc": 2
+              }
             },
             {
               "name": "Florian Wiegele",
@@ -47796,7 +47911,12 @@
             },
             {
               "name": "Marko Arnautovic",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true,
+              "st": {
+                "fc": 2,
+                "gc": 2
+              }
             },
             {
               "name": "Michael Svoboda",
@@ -47808,14 +47928,21 @@
             },
             {
               "name": "Alexander Prass",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Carney Chukwuemeka",
               "jersey": "17",
               "in": true,
               "st": {
-                "fc": 1
+                "fc": 1,
+                "fs": 1,
+                "gc": 2,
+                "sh": 1
               }
             },
             {
@@ -47824,7 +47951,13 @@
             },
             {
               "name": "Sasa Kalajdzic",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "gc": 2,
+                "sh": 1
+              }
             },
             {
               "name": "Philipp Lienhart",
@@ -47835,37 +47968,37 @@
       },
       "referee": "Glenn Nyberg",
       "venue": "SoFi Stadium, Inglewood, California",
-      "attendance": null,
+      "attendance": 70492,
       "stats": [
         {
           "key": "possessionPct",
           "h": "65%",
-          "a": "35%"
+          "a": "36%"
         },
         {
           "key": "totalShots",
-          "h": "14",
-          "a": "2"
+          "h": "23",
+          "a": "5"
         },
         {
           "key": "shotsOnTarget",
-          "h": "7",
+          "h": "10",
           "a": "0"
         },
         {
           "key": "wonCorners",
-          "h": "8",
+          "h": "9",
           "a": "0"
         },
         {
           "key": "foulsCommitted",
-          "h": "5",
-          "a": "7"
+          "h": "8",
+          "a": "15"
         },
         {
           "key": "offsides",
-          "h": "1",
-          "a": "2"
+          "h": "2",
+          "a": "5"
         },
         {
           "key": "saves",
@@ -47874,18 +48007,18 @@
         },
         {
           "key": "totalPasses",
-          "h": "375",
-          "a": "206"
+          "h": "629",
+          "a": "346"
         },
         {
           "key": "passPct",
           "h": "91%",
-          "a": "79%"
+          "a": "82%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -47893,7 +48026,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-02T20:16:48.538Z"
+      "updatedAt": "2026-07-02T21:37:50.771Z"
     }
   }
 }
