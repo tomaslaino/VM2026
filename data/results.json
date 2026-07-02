@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T23:40:45.347Z",
+    "updatedAt": "2026-07-02T01:50:21.274Z",
     "source": "espn",
-    "matchCount": 81,
-    "liveCount": 0,
+    "matchCount": 82,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -413,9 +413,23 @@
       "h": 3,
       "a": 2,
       "status": "FINISHED"
+    },
+    "k:81": {
+      "h": 2,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:81",
+      "status": "IN_PLAY",
+      "minute": 84,
+      "home": "United States",
+      "away": "Bosnia-Herzegovina",
+      "score": "2-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1798,7 +1812,7 @@
       "date": "2026-07-02",
       "time": "02:00",
       "utcDate": "2026-07-02T00:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "United States",
       "away": "Bosnia-Herzegovina",

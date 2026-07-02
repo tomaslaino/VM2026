@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-01T23:40:45.410Z",
+    "updatedAt": "2026-07-02T01:50:21.304Z",
     "source": "espn"
   },
   "details": {
@@ -36338,6 +36338,398 @@
         }
       ],
       "updatedAt": "2026-07-01T23:40:45.410Z"
+    },
+    "k:81": {
+      "espnId": "760494",
+      "status": "IN_PLAY",
+      "minute": 84,
+      "utcDate": "2026-07-02T00:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 2,
+          "a": 0
+        },
+        "ht": {
+          "h": 1,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 45,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Folarin Balogun",
+          "assist": null,
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 82,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Malik Tillman",
+          "assist": null,
+          "type": "REGULAR",
+          "score": null
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 64,
+          "team": "h",
+          "player": "Folarin Balogun",
+          "card": "RED"
+        },
+        {
+          "minute": 80,
+          "team": "a",
+          "player": "Stjepan Radeljic",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 51,
+          "team": "a",
+          "in": "Esmir Bajraktarevic",
+          "out": "Armin Gigovic"
+        },
+        {
+          "minute": 51,
+          "team": "a",
+          "in": "Benjamin Tahirovic",
+          "out": "Ivan Sunjic"
+        },
+        {
+          "minute": 51,
+          "team": "a",
+          "in": "Ermin Mahmic",
+          "out": "Edin Dzeko"
+        },
+        {
+          "minute": 75,
+          "team": "a",
+          "in": "Haris Tabakovic",
+          "out": "Sead Kolasinac"
+        },
+        {
+          "minute": 75,
+          "team": "a",
+          "in": "Amar Memic",
+          "out": "Nikola Katic"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Matt Freese",
+              "jersey": "24",
+              "pos": "G"
+            },
+            {
+              "name": "Alex Freeman",
+              "jersey": "16",
+              "pos": "RB"
+            },
+            {
+              "name": "Antonee Robinson",
+              "jersey": "5",
+              "pos": "LB"
+            },
+            {
+              "name": "Tyler Adams",
+              "jersey": "4",
+              "pos": "CM"
+            },
+            {
+              "name": "Chris Richards",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Tim Ream",
+              "jersey": "13",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Weston McKennie",
+              "jersey": "8",
+              "pos": "RM"
+            },
+            {
+              "name": "Malik Tillman",
+              "jersey": "17",
+              "pos": "LM"
+            },
+            {
+              "name": "Folarin Balogun",
+              "jersey": "20",
+              "pos": "F"
+            },
+            {
+              "name": "Sergiño Dest",
+              "jersey": "2",
+              "pos": "RF"
+            },
+            {
+              "name": "Christian Pulisic",
+              "jersey": "10",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Giovanni Reyna",
+              "jersey": "7"
+            },
+            {
+              "name": "Chris Brady",
+              "jersey": "25"
+            },
+            {
+              "name": "Brenden Aaronson",
+              "jersey": "11"
+            },
+            {
+              "name": "Auston Trusty",
+              "jersey": "6"
+            },
+            {
+              "name": "Max Arfsten",
+              "jersey": "18"
+            },
+            {
+              "name": "Joe Scally",
+              "jersey": "23"
+            },
+            {
+              "name": "Haji Wright",
+              "jersey": "19"
+            },
+            {
+              "name": "Sebastian Berhalter",
+              "jersey": "14"
+            },
+            {
+              "name": "Alejandro Zendejas",
+              "jersey": "26"
+            },
+            {
+              "name": "Miles Robinson",
+              "jersey": "12"
+            },
+            {
+              "name": "Matt Turner",
+              "jersey": "1"
+            },
+            {
+              "name": "Timothy Weah",
+              "jersey": "21"
+            },
+            {
+              "name": "Ricardo Pepi",
+              "jersey": "9"
+            }
+          ]
+        },
+        "a": {
+          "formation": "5-3-2",
+          "starters": [
+            {
+              "name": "Nikola Vasilj",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Amar Dedic",
+              "jersey": "7",
+              "pos": "RB"
+            },
+            {
+              "name": "Sead Kolasinac",
+              "jersey": "5",
+              "pos": "LB"
+            },
+            {
+              "name": "Stjepan Radeljic",
+              "jersey": "21",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Tarik Muharemovic",
+              "jersey": "4",
+              "pos": "CD"
+            },
+            {
+              "name": "Nikola Katic",
+              "jersey": "18",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Armin Gigovic",
+              "jersey": "8",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Ivan Sunjic",
+              "jersey": "14",
+              "pos": "CM"
+            },
+            {
+              "name": "Ermedin Demirovic",
+              "jersey": "10",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Edin Dzeko",
+              "jersey": "11",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Kerim Alajbegovic",
+              "jersey": "19",
+              "pos": "CM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Haris Tabakovic",
+              "jersey": "23",
+              "in": true
+            },
+            {
+              "name": "Esmir Bajraktarevic",
+              "jersey": "20",
+              "in": true
+            },
+            {
+              "name": "Samed Bazdar",
+              "jersey": "9"
+            },
+            {
+              "name": "Benjamin Tahirovic",
+              "jersey": "6",
+              "in": true
+            },
+            {
+              "name": "Dzenis Burnic",
+              "jersey": "17"
+            },
+            {
+              "name": "Arjan Malic",
+              "jersey": "24"
+            },
+            {
+              "name": "Jovo Lukic",
+              "jersey": "25"
+            },
+            {
+              "name": "Dennis Hadzikadunic",
+              "jersey": "3"
+            },
+            {
+              "name": "Amir Hadziahmetovic",
+              "jersey": "16"
+            },
+            {
+              "name": "Mladen Jurkas",
+              "jersey": "12"
+            },
+            {
+              "name": "Amar Memic",
+              "jersey": "15",
+              "in": true
+            },
+            {
+              "name": "Martin Zlomislic",
+              "jersey": "22"
+            },
+            {
+              "name": "Ermin Mahmic",
+              "jersey": "26",
+              "in": true
+            },
+            {
+              "name": "Ivan Basic",
+              "jersey": "13"
+            },
+            {
+              "name": "Nihad Mujakic",
+              "jersey": "2"
+            }
+          ]
+        }
+      },
+      "referee": "Raphael Claus",
+      "venue": "Levi's Stadium, Santa Clara, California",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "51%",
+          "a": "49%"
+        },
+        {
+          "key": "totalShots",
+          "h": "7",
+          "a": "6"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "2",
+          "a": "3"
+        },
+        {
+          "key": "wonCorners",
+          "h": "4",
+          "a": "3"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "5",
+          "a": "10"
+        },
+        {
+          "key": "offsides",
+          "h": "2",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "3",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "362",
+          "a": "351"
+        },
+        {
+          "key": "passPct",
+          "h": "85%",
+          "a": "81%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "1",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-02T01:50:21.304Z"
     }
   }
 }
