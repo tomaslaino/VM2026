@@ -1,23 +1,24 @@
 name: Synka slutspelssannolikheter
 
-# Bygger data/bracket_probs.json: hämtar odds (The Odds API), kör Monte Carlo-
-# motorn (scripts/prob/) mot FIFA:s slutspelsträd + Annex C och committar
-# resultatet som GitHub Pages serverar.
+# Bygger data/bracket_probs.json med SAMMA motor som frontend:
+# scripts/prob/gen_bracket_probs.mjs kör assets/bracketengine.js på
+# data/results.json + data/odds.json + data/winner_odds.json med samma antal
+# simuleringar och seed som webbläsaren. Den statiska filen (fallbacken och
+# Renders /api/bracketprobs) kan därmed aldrig visa andra siffror än sidan
+# själv räknar fram lokalt. (Ersätter den gamla Python-motorn
+# vm_sannolikheter.py, som byggde på en annan modell och gav andra siffror.)
 #
 # Tre triggers, två lägen (sparar månadskvoten på odds-API:t):
-#   * schedule "0 */6 * * *"        -> FÄRSKA odds (outright + 1X2), var 6:e timme.
+#   * schedule "0 */6 * * *"        -> FÄRSKA vinnarodds (outright), var 6:e timme.
 #   * repository_dispatch            -> resultat-synken (sync-results.yml) skickar
 #     (results-updated)                "results-updated" direkt när nya resultat
 #                                      committats. Räknar bara OM simuleringen på
 #                                      de nya resultaten – ingen odds-API, gratis.
-#                                      Ersätter den gamla "*/30"-cronen, som
-#                                      GitHub ofta hoppade över så att probs kunde
-#                                      släpa flera timmar efter ett resultat.
 #   * workflow_dispatch              -> manuell körning, hämtar alltid färska odds.
 #
-# Kräver repo-secret ODDS_API_KEY för marknadsodds. Saknas den faller pipan
-# tillbaka på FIFA-rankingen (scripts/prob/gen_fallback_outrights.mjs) – sidan
-# fungerar ändå, men med modellerade i stället för marknadens odds.
+# Kräver repo-secret ODDS_API_KEY för marknadsodds. Saknas den behålls senaste
+# data/winner_odds.json (eller FIFA-ranking-fallbacken om filen saknas helt) –
+# sidan fungerar ändå, men med äldre/modellerade i stället för färska odds.
 
 on:
   schedule:
@@ -34,11 +35,10 @@ permissions:
   contents: write
 
 env:
-  VM_WINNER_ODDS: scripts/prob/vinnarodds.json
-  VM_GROUP_FIXTURES: scripts/prob/group_fixtures.json
-  VM_ODDS_CACHE: scripts/prob/odds_cache.json
+  # Vinnarodds läses/skrivs på SAMMA fil som frontend hämtar – en enda sanning.
+  VM_WINNER_ODDS: data/winner_odds.json
   VM_BRACKET_OUTPUT: data/bracket_probs.json
-  VM_N_SIMS: "40000"
+  VM_N_SIMS: "40000"        # = SIM_N i assets/app.js – ändra inte ena utan andra
 
 jobs:
   probs:
@@ -52,14 +52,6 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Sätt upp Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Installera Python-beroenden
-        run: pip install requests
-
       - name: Avgör om färska odds ska hämtas
         id: gate
         run: |
@@ -70,33 +62,44 @@ jobs:
           fi
 
       - name: Generera FIFA-karta + lagtabell (ur data.js/annexc.js)
-        run: node scripts/prob/gen_bracket_map.mjs
+        run: |
+          node scripts/prob/gen_bracket_map.mjs
+          # Frontend + generator läser data/bracket_map.json – håll kopian i synk.
+          cp scripts/prob/bracket_map.json data/bracket_map.json
 
-      - name: Bootstrap-vinnarodds (fallback om marknad saknas)
-        run: node scripts/prob/gen_fallback_outrights.mjs
+      - name: Bootstrap-vinnarodds (endast om data/winner_odds.json saknas)
+        run: |
+          if [ ! -f data/winner_odds.json ]; then
+            node scripts/prob/gen_fallback_outrights.mjs
+            cp scripts/prob/vinnarodds.json data/winner_odds.json
+          fi
+
+      - name: Sätt upp Python (för odds-hämtning)
+        if: steps.gate.outputs.fetch == '1'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Hämta vinnarodds (outright) – endast vid odds-hämtning
         if: steps.gate.outputs.fetch == '1'
         continue-on-error: true
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-        run: python scripts/prob/vm_vinnarodds.py
+        run: |
+          pip install requests
+          python scripts/prob/vm_vinnarodds.py
+          # Spegla till scripts/prob för verktyg som läser den gamla platsen.
+          cp data/winner_odds.json scripts/prob/vinnarodds.json
 
-      - name: Bygg group_fixtures (1X2 + resultat)
-        env:
-          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-          FETCH_MARKET_ODDS: ${{ steps.gate.outputs.fetch }}
-        run: python scripts/prob/vm_odds.py
-
-      - name: Kör sannolikhetsmotorn
-        run: python scripts/prob/vm_sannolikheter.py
+      - name: Kör sannolikhetsmotorn (samma motor som frontend)
+        run: node scripts/prob/gen_bracket_probs.mjs
 
       - name: Committa om något ändrats
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # Add på katalog (inte enskilda filer) – tål att t.ex. odds_cache.json saknas.
-          git add data/bracket_probs.json scripts/prob
+          # Add på katalog (inte enskilda filer) – tål att t.ex. genererade filer saknas.
+          git add data/bracket_probs.json data/winner_odds.json data/bracket_map.json scripts/prob
           if git diff --staged --quiet; then
             echo "Inga förändringar – hoppar över commit."
             exit 0

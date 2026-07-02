@@ -43,10 +43,18 @@ npm run sync:status # synka spelarstatus (skador/avstängningar) → data/wc2026
 | `server/mapResults.js` | Mappar ESPN-data till interna nycklar |
 | `data/results.json` | Statisk resultatfil (uppdateras av Actions) |
 | `data/matchdetails.json` | Statisk matchdetaljer (uppdateras av Actions) |
-| `data/bracket_probs.json` | Sannolikheter för slutspelet |
-| `scripts/prob/` | Sannolikhetsberäkningar (odds, bracket) |
+| `data/bracket_probs.json` | Sannolikheter för slutspelet (statisk fallback, byggd av `gen_bracket_probs.mjs`) |
+| `scripts/prob/gen_bracket_probs.mjs` | Bygger `bracket_probs.json` med SAMMA motor/data/seed som frontend |
+| `scripts/prob/` | Odds-hämtning + karta (bracket_map). `vm_sannolikheter.py` är pensionerad referens |
 | `.github/workflows/` | GitHub Actions-workflows |
 | `render.yaml` | Deploy-config för Render |
+
+## Sannolikheter – EN motor överallt
+All sannolikhet/odds på sidan kommer från **en** motor: `assets/bracketengine.js`.
+- Slutspelsträdet, slutspelskalkylatorn och sextondelskollen kör alla med **n = 40000** (`SIM_N` i `app.js`) och **seed 0x9e3779b9** → identisk slumptalsström → exakt samma siffror i alla vyer. Ändra aldrig n/seed på ett ställe utan de andra (inkl. `VM_N_SIMS` i `sync-bracket-probs.yml`).
+- Kalkylatorns körning matar även trädets `bracketProbs` (fokuslaget påverkar inte siffrorna eftersom fokus-spårningen inte drar slumptal).
+- Visade vinstchanser ("ni vinner X %") går genom `matchWinP()` i `app.js`: marknadsodds/facit för riktiga slutspelsmatcher → motorns analytiska Poisson-modell (`BracketEngine.buildMatchModel`) → logistisk på vinnarodds → FIFA-ranking. Samma prioritetsordning som simuleringen själv.
+- Statiska `data/bracket_probs.json` byggs av `scripts/prob/gen_bracket_probs.mjs` (GitHub Actions) med samma motor, data och seed – fallbacken kan inte avvika från lokal beräkning. Indata-bygget är en 1:1-portering av `bracketBuildInput()` i `app.js`; ändras den ena ska den andra ändras.
 
 ## Miljövariabler (.env)
 ```

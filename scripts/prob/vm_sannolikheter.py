@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 """
-VM 2026 - sannolikhetsmotor for slutspelstradet
+VM 2026 - sannolikhetsmotor for slutspelstradet  [PENSIONERAD]
+=================================================
+OBS: Anvands inte langre av det schemalagda jobbet. data/bracket_probs.json
+byggs numera av scripts/prob/gen_bracket_probs.mjs, som kor SAMMA motor som
+frontend (assets/bracketengine.js) pa samma data och seed - sa att statiska
+och lokalt beraknade siffror ar identiska. Det har scriptet byggde pa en
+annan modell (1X2-devig grupper + logistisk slutspelsmodell) och gav darfor
+andra siffror an sidan. Behalls som referens.
 =================================================
 En Monte Carlo-simulering av hela turneringen. For varje slot/nod i tradet
 raknar den ut sannolikheten att ett visst lag hamnar dar - baserat pa odds.
