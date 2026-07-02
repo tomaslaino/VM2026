@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-02T18:52:22.115Z",
+    "updatedAt": "2026-07-02T20:16:48.415Z",
     "source": "espn",
-    "matchCount": 82,
-    "liveCount": 0,
+    "matchCount": 83,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -418,9 +418,23 @@
       "h": 2,
       "a": 0,
       "status": "FINISHED"
+    },
+    "k:84": {
+      "h": 1,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:84",
+      "status": "IN_PLAY",
+      "minute": 53,
+      "home": "Spain",
+      "away": "Austria",
+      "score": "1-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1820,7 +1834,7 @@
       "date": "2026-07-02",
       "time": "21:00",
       "utcDate": "2026-07-02T19:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Spain",
       "away": "Austria",

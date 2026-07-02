@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-02T18:54:42.575Z",
+    "updatedAt": "2026-07-02T20:16:48.538Z",
     "source": "espn"
   },
   "details": {
@@ -47448,6 +47448,452 @@
         }
       ],
       "updatedAt": "2026-07-02T18:34:10.642Z"
+    },
+    "k:84": {
+      "espnId": "760497",
+      "fmt": 2,
+      "status": "IN_PLAY",
+      "minute": 54,
+      "utcDate": "2026-07-02T19:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 0
+        },
+        "ht": {
+          "h": 1,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 36,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Mikel Oyarzabal",
+          "assist": "Marc Cucurella",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        }
+      ],
+      "bookings": [],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Florian Grillitsch",
+          "out": "Xaver Schlager"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Carney Chukwuemeka",
+          "out": "Nicolas Seiwald"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Unai Simón",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Pedro Porro",
+              "jersey": "12",
+              "pos": "RB",
+              "st": {
+                "fc": 1,
+                "fs": 2
+              }
+            },
+            {
+              "name": "Marc Cucurella",
+              "jersey": "24",
+              "pos": "LB",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "a": 1
+              }
+            },
+            {
+              "name": "Pedri",
+              "jersey": "20",
+              "pos": "LM"
+            },
+            {
+              "name": "Pau Cubarsí",
+              "jersey": "22",
+              "pos": "CD-R",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Aymeric Laporte",
+              "jersey": "14",
+              "pos": "CD-L",
+              "st": {
+                "sh": 2
+              }
+            },
+            {
+              "name": "Lamine Yamal",
+              "jersey": "19",
+              "pos": "AM-R",
+              "st": {
+                "fc": 1,
+                "sg": 3,
+                "sh": 4
+              }
+            },
+            {
+              "name": "Rodri",
+              "jersey": "16",
+              "pos": "RM",
+              "st": {
+                "sh": 1
+              }
+            },
+            {
+              "name": "Mikel Oyarzabal",
+              "jersey": "21",
+              "pos": "F",
+              "st": {
+                "fs": 2,
+                "sg": 3,
+                "g": 1,
+                "sh": 5
+              }
+            },
+            {
+              "name": "Dani Olmo",
+              "jersey": "10",
+              "pos": "AM",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Álex Baena",
+              "jersey": "15",
+              "pos": "AM-L",
+              "st": {
+                "fs": 1,
+                "sg": 1,
+                "sh": 1
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Mikel Merino",
+              "jersey": "6"
+            },
+            {
+              "name": "Marc Pubill",
+              "jersey": "2"
+            },
+            {
+              "name": "Nico Williams",
+              "jersey": "17"
+            },
+            {
+              "name": "Martín Zubimendi",
+              "jersey": "18"
+            },
+            {
+              "name": "Ferran Torres",
+              "jersey": "7"
+            },
+            {
+              "name": "Borja Iglesias",
+              "jersey": "26"
+            },
+            {
+              "name": "Yéremy Pino",
+              "jersey": "11"
+            },
+            {
+              "name": "Fabián Ruiz",
+              "jersey": "8"
+            },
+            {
+              "name": "Alejandro Grimaldo",
+              "jersey": "3"
+            },
+            {
+              "name": "Gavi",
+              "jersey": "9"
+            },
+            {
+              "name": "Joan García",
+              "jersey": "13"
+            },
+            {
+              "name": "Marcos Llorente",
+              "jersey": "5"
+            },
+            {
+              "name": "Eric García",
+              "jersey": "4"
+            },
+            {
+              "name": "David Raya",
+              "jersey": "1"
+            },
+            {
+              "name": "Víctor Muñoz",
+              "jersey": "25"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Alexander Schlager",
+              "jersey": "1",
+              "pos": "G",
+              "st": {
+                "fs": 1,
+                "gc": 1,
+                "sv": 6
+              }
+            },
+            {
+              "name": "Stefan Posch",
+              "jersey": "5",
+              "pos": "RB",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Konrad Laimer",
+              "jersey": "20",
+              "pos": "LB",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Xaver Schlager",
+              "jersey": "4",
+              "pos": "LM",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Kevin Danso",
+              "jersey": "3",
+              "pos": "CD-R",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "David Alaba",
+              "jersey": "8",
+              "pos": "CD-L",
+              "st": {
+                "fc": 2,
+                "gc": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Romano Schmid",
+              "jersey": "18",
+              "pos": "AM-R",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Nicolas Seiwald",
+              "jersey": "6",
+              "pos": "RM",
+              "st": {
+                "gc": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Michael Gregoritsch",
+              "jersey": "11",
+              "pos": "F",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Paul Wanner",
+              "jersey": "24",
+              "pos": "AM",
+              "st": {
+                "fc": 2,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Marcel Sabitzer",
+              "jersey": "9",
+              "pos": "AM-L",
+              "st": {
+                "fc": 1,
+                "fs": 2,
+                "gc": 1
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Florian Grillitsch",
+              "jersey": "10",
+              "in": true
+            },
+            {
+              "name": "Florian Wiegele",
+              "jersey": "12"
+            },
+            {
+              "name": "David Affengruber",
+              "jersey": "2"
+            },
+            {
+              "name": "Phillipp Mwene",
+              "jersey": "16"
+            },
+            {
+              "name": "Patrick Pentz",
+              "jersey": "13"
+            },
+            {
+              "name": "Patrick Wimmer",
+              "jersey": "21"
+            },
+            {
+              "name": "Alessandro Schöpf",
+              "jersey": "26"
+            },
+            {
+              "name": "Marko Arnautovic",
+              "jersey": "7"
+            },
+            {
+              "name": "Michael Svoboda",
+              "jersey": "25"
+            },
+            {
+              "name": "Dejan Ljubicic",
+              "jersey": "19"
+            },
+            {
+              "name": "Alexander Prass",
+              "jersey": "22"
+            },
+            {
+              "name": "Carney Chukwuemeka",
+              "jersey": "17",
+              "in": true,
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Marco Friedl",
+              "jersey": "23"
+            },
+            {
+              "name": "Sasa Kalajdzic",
+              "jersey": "14"
+            },
+            {
+              "name": "Philipp Lienhart",
+              "jersey": "15"
+            }
+          ]
+        }
+      },
+      "referee": "Glenn Nyberg",
+      "venue": "SoFi Stadium, Inglewood, California",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "65%",
+          "a": "35%"
+        },
+        {
+          "key": "totalShots",
+          "h": "14",
+          "a": "2"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "7",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "8",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "5",
+          "a": "7"
+        },
+        {
+          "key": "offsides",
+          "h": "1",
+          "a": "2"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "6"
+        },
+        {
+          "key": "totalPasses",
+          "h": "375",
+          "a": "206"
+        },
+        {
+          "key": "passPct",
+          "h": "91%",
+          "a": "79%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-02T20:16:48.538Z"
     }
   }
 }
