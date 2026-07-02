@@ -1055,6 +1055,19 @@
     return true;
   }
 
+  /* Samma på-plats-morf för godtyckliga containrar (kalkylatorns tavlor,
+     lag-lådan m.fl.): hoppa över allt när HTML-strängen är oförändrad sedan
+     senast, annars patcha. Så slipper flaggbilder och annat rivas och byggas
+     om vid varje datauppdatering. Cachen bor på elementet självt, så en
+     utbytt/nyskapad container målas alltid. */
+  function morphInto(el, html) {
+    if (!el) return false;
+    if (el.__vmHtml === html) return false;
+    el.__vmHtml = html;
+    morphView(el, html);
+    return true;
+  }
+
   /* Patcha #view PÅ PLATS mot ny HTML i stället för att slänga och bygga om
      hela DOM:en (viewEl.innerHTML = html). Oförändrade noder – särskilt
      flaggbilder – lämnas orörda, så 30-sekunderstimerns kosmetiska
@@ -1091,15 +1104,24 @@
       return;
     }
     if (oldNode.nodeType !== 1) return;
-    var oldA = oldNode.attributes;
-    for (var i = oldA.length - 1; i >= 0; i--) {
-      if (!newNode.hasAttribute(oldA[i].name)) oldNode.removeAttribute(oldA[i].name);
+    /* Element märkta data-morph-keep fylls av JS efter renderingen (trädets
+       SVG-linjer, kalkylatorns tavlor, lag-lådans truppanel) men ligger som
+       TOMMA skal i mall-HTML:en. Behåll då både barnen och de attribut som
+       målaren satt (t.ex. SVG:ns viewBox) – annars blinkar innehållet bort
+       tills målaren hunnit köra igen. */
+    var keep = !newNode.firstChild && oldNode.firstChild &&
+      newNode.hasAttribute("data-morph-keep");
+    if (!keep) {
+      var oldA = oldNode.attributes;
+      for (var i = oldA.length - 1; i >= 0; i--) {
+        if (!newNode.hasAttribute(oldA[i].name)) oldNode.removeAttribute(oldA[i].name);
+      }
     }
     var newA = newNode.attributes;
     for (var j = 0; j < newA.length; j++) {
       if (oldNode.getAttribute(newA[j].name) !== newA[j].value) oldNode.setAttribute(newA[j].name, newA[j].value);
     }
-    morphChildren(oldNode, newNode);
+    if (!keep) morphChildren(oldNode, newNode);
   }
 
   function standaloneView() {
@@ -1496,7 +1518,7 @@
 
     var html = '<div class="bracket-shell">' +
       '<div class="bracket-scroll"><div class="bracket-wrap">';
-    html += '<svg class="bracket-lines" aria-hidden="true"></svg>';
+    html += '<svg class="bracket-lines" data-morph-keep aria-hidden="true"></svg>';
     html += '<div class="bracket two-sided">';
 
     BR_HALF.left.forEach(function (col) {
@@ -1550,26 +1572,17 @@
       '</span></div>';
     html += '</div></div></div></div>';
 
-    var sc = viewEl.querySelector(".bracket-scroll");
-    var preserveScroll = !!sc;
-    var prevScrollLeft = sc ? sc.scrollLeft : 0;
-    var prevScrollTop = sc ? sc.scrollTop : 0;
-
-    lastViewSig = null; // slutspelsvyn äger #view själv (scroll/anslutningslinjer)
-    viewEl.innerHTML = html;
-
-    var newSc = viewEl.querySelector(".bracket-scroll");
-    function restoreBracketScroll() {
-      if (!newSc || !preserveScroll) return;
-      newSc.scrollLeft = Math.max(0, Math.min(prevScrollLeft, newSc.scrollWidth - newSc.clientWidth));
-      newSc.scrollTop = Math.max(0, Math.min(prevScrollTop, newSc.scrollHeight - newSc.clientHeight));
-    }
-
-    if (preserveScroll) {
-      restoreBracketScroll();
-      drawBracketConnectors(restoreBracketScroll);
-    } else {
-      centerBracketScroll(drawBracketConnectors);
+    /* Morfa trädet på plats i stället för att riva hela DOM:en: oförändrade
+       noder (flaggbilder!) och scroll-läget lämnas orörda, så vyn inte
+       blinkar till varje gång nya sannolikheter eller resultat kommer in.
+       Första bygget (vyn visade nyss något annat) centreras som tidigare. */
+    var firstBuild = !viewEl.querySelector(".bracket-scroll");
+    if (setViewHtml(html)) {
+      /* Morfen tar bort radhöjderna som layoutBracketRows lagt i .bracket:s
+         style-attribut – sätt tillbaka dem synkront före nästa målning. */
+      layoutBracketRows();
+      if (firstBuild) centerBracketScroll(drawBracketConnectors);
+      else drawBracketConnectors();
     }
 
     if (hoverMatch && ctx.resolved[hoverMatch]) updateAside(hoverMatch, ctx);
@@ -1788,6 +1801,52 @@
     return side.decided ? name : name + "?";
   }
 
+  /* Mjuka bindestreck (U+00AD) vid naturliga stavelsegränser för lagnamn i
+     trädets smala rutor. Utan dem radbryter webbläsaren mitt i ordet på en
+     godtycklig bokstav ("Nederländ erna", "Paragu ay") när hyphens: auto inte
+     hittar någon brytpunkt. Syns bara när namnet faktiskt behöver brytas. */
+  var TEAM_SOFT_BREAKS = {
+    "Sydafrika": "Syd\u00ADafrika",
+    "Sydkorea": "Syd\u00ADkorea",
+    "Tjeckien": "Tjeck\u00ADien",
+    "Bosnien": "Bos\u00ADnien",
+    "Brasilien": "Brasi\u00ADlien",
+    "Marocko": "Maroc\u00ADko",
+    "Skottland": "Skott\u00ADland",
+    "Australien": "Austra\u00ADlien",
+    "Paraguay": "Para\u00ADguay",
+    "Turkiet": "Tur\u00ADkiet",
+    "Tyskland": "Tysk\u00ADland",
+    "Elfenbenskusten": "Elfenbens\u00ADkusten",
+    "Ecuador": "Ecua\u00ADdor",
+    "Curaçao": "Cura\u00ADçao",
+    "Nederländerna": "Neder\u00ADländerna",
+    "Tunisien": "Tuni\u00ADsien",
+    "Belgien": "Bel\u00ADgien",
+    "Egypten": "Egyp\u00ADten",
+    "Spanien": "Spa\u00ADnien",
+    "Saudiarabien": "Saudi\u00ADarabien",
+    "Uruguay": "Uru\u00ADguay",
+    "Frankrike": "Frank\u00ADrike",
+    "Senegal": "Sene\u00ADgal",
+    "Argentina": "Argen\u00ADtina",
+    "Österrike": "Öster\u00ADrike",
+    "Algeriet": "Alge\u00ADriet",
+    "Jordanien": "Jorda\u00ADnien",
+    "Colombia": "Colom\u00ADbia",
+    "Portugal": "Portu\u00ADgal",
+    "Uzbekistan": "Uzbeki\u00ADstan",
+    "England": "Eng\u00ADland",
+    "Kroatien": "Kroa\u00ADtien"
+  };
+  function shyTeamName(name) {
+    // Oavgjord plats har "?" på slutet ("Frankrike?") – matcha utan suffixet.
+    var base = name.slice(-1) === "?" ? name.slice(0, -1) : name;
+    var shy = TEAM_SOFT_BREAKS[base];
+    if (!shy) return name;
+    return base === name ? shy : shy + "?";
+  }
+
   /* Längre, mer läsbar seed-etikett för "vem möter vem"-grafiken. */
   function slotSeedLong(slot) {
     if (slot.t === "w") return "Etta grupp " + slot.g;
@@ -1837,7 +1896,7 @@
     if (side.team) {
       var prov = !side.decided;
       inner = teamOpenBtn(side.team,
-        flagImg(side.team.iso) + '<span class="mu-name">' + esc(bracketTeamName(side)) + '</span>',
+        flagImg(side.team.iso) + '<span class="mu-name">' + shyTeamName(esc(bracketTeamName(side))) + '</span>',
         "mu-team" + (prov ? " prov" : ""));
     } else {
       inner = '<span class="mu-team tbd"><span class="mu-flag-ph"></span>' +
@@ -1902,7 +1961,7 @@
     var slot = ha === "h" ? res.match.home : res.match.away;
     var penStar = penWin ? '<span class="pen-star" title="Vann på straffar">*</span>' : "";
     var inner = side.team
-      ? teamOpenBtn(side.team, flagImg(side.team.iso) + '<span class="s-name" title="' + esc(side.team.sv) + '">' + esc(bracketTeamName(side)) + '</span>' + penStar, "side-team")
+      ? teamOpenBtn(side.team, flagImg(side.team.iso) + '<span class="s-name" title="' + esc(side.team.sv) + '">' + shyTeamName(esc(bracketTeamName(side))) + '</span>' + penStar, "side-team")
       : '<span class="s-name placeholder seed-chip ' + seedTypeClass(slot) + '" title="' + esc(slotSeedLong(slot)) + '">' + slotSeedHtml(slot) + '</span>';
     var r = res.result || {};
     var scoreCell = scoreDisplay(r[ha]);
@@ -2431,10 +2490,13 @@
      slutspelsträdet). Panelen äger #view själv – på samma sätt som
      slutspelsvyn – så vi nollställer signaturcachen och målar dynamiken. */
   function renderR32View() {
-    lastViewSig = null;
-    viewEl.innerHTML = '<div class="r32-view">' + r32PanelHtml() + '</div>';
-    var sl = document.getElementById("r32-team");
-    if (sl) sl.value = r32TeamKey;
+    /* Morf i stället för innerHTML-rivning: de dynamiska ytorna är märkta
+       data-morph-keep och behåller sitt målade innehåll tills paintR32 ritar
+       om dem – så blinkar inte vyn vid varje datauppdatering. */
+    if (setViewHtml('<div class="r32-view">' + r32PanelHtml() + '</div>')) {
+      var sl = document.getElementById("r32-team");
+      if (sl) sl.value = r32TeamKey;
+    }
     paintR32();
     return true;
   }
@@ -2886,10 +2948,13 @@
 
   /* ---------- vy-skelett ---------- */
   function renderCalcView() {
-    lastViewSig = null;
-    viewEl.innerHTML = '<div class="calc-view">' + calcPanelHtml() + '</div>';
-    var sl = document.getElementById("calc-team");
-    if (sl) sl.value = r32TeamKey;
+    /* Morf i stället för innerHTML-rivning: de dynamiska ytorna är märkta
+       data-morph-keep och behåller sitt målade innehåll tills paintCalc ritar
+       om dem – så blinkar inte vyn vid varje datauppdatering. */
+    if (setViewHtml('<div class="calc-view">' + calcPanelHtml() + '</div>')) {
+      var sl = document.getElementById("calc-team");
+      if (sl) sl.value = r32TeamKey;
+    }
     paintCalc();
     return true;
   }
@@ -3094,13 +3159,12 @@
   // En motståndarcell: vertikal styrkemätare + flagga + namn + sannolikhet.
   function calcBoardCell(e, sel, maxP, isTop) {
     var map = r32EnglishToTeam(), t = map[e.nm];
-    var dim = e.p < 0.005;
     var barH = Math.max(10, Math.min(100, e.p / maxP * 100)).toFixed(0);
     var win = calcWinP(sel.team.name, e.nm);
     var tip = r32TipId('<h4>' + esc(r32SvName(e.nm)) + '</h4>' +
       '<div class="hl"><b>' + r32Pct(e.p) + '</b> chans att mötas här (om ' + esc(teamSvFixture(sel.team)) + ' når rundan)</div>' +
       (win != null ? '<div>~<b>' + Math.round(win * 100) + '%</b> att ' + esc(teamSvFixture(sel.team)) + ' vinner matchen</div>' : ''));
-    return '<div class="cb-cell' + (isTop && !dim ? " top" : "") + (dim ? " dim" : "") + '" data-r32-tip="' + tip + '">' +
+    return '<div class="cb-cell' + (isTop ? " top" : "") + '" data-r32-tip="' + tip + '">' +
         '<span class="cb-bar" style="height:' + barH + '%"></span>' +
         '<span class="cb-flag">' + (t ? flagImg(t.iso) : "") + '</span>' +
         '<span class="cb-nm">' + esc(r32SvName(e.nm)) + '</span>' +

@@ -332,8 +332,25 @@ body {
   min-height: 42px;
 }
 .page-intro-main { flex: 1 1 260px; min-width: 0; max-width: 72ch; }
+/* Gemensam vytitel för ALLA vyer: samma displayfont i versaler som
+   hjälterubriken/varumärket. Gäller Gruppspel/Kalender (page-intro),
+   Statistik (ps-intro), kalkylatorns paneltitel (.calc-head h3) och
+   motståndarsidans titel (.r32-head h3) – så att varje sida öppnar med
+   exakt samma rubrikgrafik. */
 .page-intro h2,
-.groups-layout > .page-intro-main h2 { margin: 0; font-size: 24px; letter-spacing: -.4px; }
+.groups-layout > .page-intro-main h2,
+.calc-head h3,
+.r32-head h3 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 30px;
+  line-height: .95;
+  padding-top: .05em; /* rymmer Ä/Ö-prickar (t.ex. "VEM MÖTER SVERIGE?") */
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--bone);
+}
 .page-intro p,
 .groups-layout > .page-intro-main p { margin: 0; color: var(--ink-soft); max-width: 78ch; }
 .page-intro .hint { margin-top: 8px; color: var(--third-q); font-weight: 600; }
@@ -2239,14 +2256,28 @@ html.view-bracket .bracket-lines { color: rgba(120, 152, 185, .88); }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
   align-self: center;
   width: 100%;
   min-width: 0;
+  /* Positioneringskontext för VM-FINAL-brickan (se nedan) – den ligger utanför
+     flödet så bara matchkortet räknas in när blocket centreras i sin rad-yta.
+     Det gör att finalkortet hamnar på exakt samma höjd som semifinalrutorna
+     (vilkas kort centreras över hela trädhöjden), i stället för att tryckas ner
+     av brickans egen höjd. */
+  position: relative;
 }
 .bracket-finals-block .match.final {
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--gold) 42%, transparent),
     0 6px 28px rgba(0,0,0,.5);
+}
+.bracket-finals-block > .champ-slot {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 10px;
+  white-space: nowrap;
+  z-index: 5;
 }
 /* Final- och bronskorten sitter i mittstacken (kolumn 5) som inte är en fast
    trädkolumn – utan min-width:0 växer de till sitt innehålls min-content och
@@ -3376,7 +3407,9 @@ a.tv-bcast:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
     margin-bottom: 18px;
   }
   .page-intro h2,
-  .groups-layout > .page-intro-main h2 { font-size: 21px; }
+  .groups-layout > .page-intro-main h2,
+  .calc-head h3,
+  .r32-head h3 { font-size: 24px; }
   .groups-layout > .next-matches-row,
   .calendar-layout > .next-matches-row,
   .next-matches-row { grid-template-columns: 1fr; width: 100%; }
@@ -4542,8 +4575,8 @@ span.pr-caps-debut.pr-caps-legend {
   opacity: .85;
 }
 .ps-leader-title {
-  font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .6px;
-  color: var(--ink-soft); margin-bottom: 8px;
+  font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .09em;
+  color: #9fb4cd; margin-bottom: 8px;
 }
 .ps-leader-row {
   display: flex; align-items: center; gap: 9px;
@@ -4834,10 +4867,7 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 
 .r32-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; flex-wrap: wrap; }
 .r32-titlewrap { min-width: 240px; flex: 1; }
-.r32-head h3 {
-  margin: 0; font-family: var(--display); font-weight: 800; letter-spacing: .3px;
-  font-size: 26px; color: var(--bone); text-transform: uppercase;
-}
+/* .r32-head h3 stylas av den gemensamma vytitelregeln (se .page-intro h2). */
 .r32-sub { margin: 4px 0 0; color: var(--ink-soft); font-size: 13px; max-width: 620px; }
 .r32-status { color: var(--focus); font-weight: 700; white-space: nowrap; }
 
@@ -4881,7 +4911,12 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 .r32-body { display: grid; grid-template-columns: 1fr 340px; gap: 18px; margin-top: 14px; align-items: start; }
 .r32-col { min-width: 0; }
 .r32-colhead { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
-.r32-colhead h4, .r32-card h4 { margin: 0; font-size: 15px; color: var(--ink); }
+/* Kortrubriker – samma små versaletiketter som startsidans "NÄSTA MATCH" och
+   statistikens "SKYTTELIGA", så att alla vyers kort talar samma grafiska språk. */
+.r32-colhead h4, .r32-card h4 {
+  margin: 0; font-size: 12px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .09em; color: #9fb4cd;
+}
 /* Sorteringsväljare för matchlistan (spelordning/viktigast). */
 .r32-sort { display: inline-flex; align-items: center; gap: 4px; }
 .r32-sort-lbl { font-size: 11px; font-weight: 700; color: var(--ink-soft); margin-right: 3px; }
@@ -5034,7 +5069,7 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
   .r32-quicktabs { justify-content: flex-start; }
 }
 @media (max-width: 560px) {
-  .r32-head h3 { font-size: 22px; }
+  .r32-head h3 { font-size: 24px; }
   .r32-gtop { grid-template-columns: 26px 1fr; }
   .r32-chips { grid-column: 1 / -1; margin-top: 6px; justify-content: flex-start; }
 }
@@ -5050,10 +5085,7 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 }
 .calc-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; flex-wrap: wrap; }
 .calc-titlewrap { min-width: 240px; flex: 1; }
-.calc-head h3 {
-  margin: 0; font-family: var(--display); font-weight: 800; letter-spacing: .3px;
-  font-size: 26px; color: var(--bone); text-transform: uppercase;
-}
+/* .calc-head h3 stylas av den gemensamma vytitelregeln (se .page-intro h2). */
 .calc-sub { margin: 5px 0 0; color: var(--ink-soft); font-size: 13px; max-width: 640px; }
 .calc-sub b { color: var(--ink); }
 .calc-status { color: var(--focus); font-weight: 700; white-space: nowrap; }
@@ -5117,13 +5149,11 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
   border-color: color-mix(in srgb, var(--usa-blue) 50%, var(--line));
   background: color-mix(in srgb, var(--usa-blue) 13%, var(--card));
 }
-.cb-cell.dim { opacity: .4; }
 .cb-cell.ghost { background: transparent; border-color: transparent; pointer-events: none; }
 .cb-bar {
   position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px;
   border-radius: 0 3px 3px 0; background: linear-gradient(180deg, var(--usa-blue), var(--adv));
 }
-.cb-cell.dim .cb-bar { display: none; }
 .cb-flag { display: flex; }
 .cb-flag .flag { width: 22px; height: 15px; border-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,.4); }
 .cb-nm { font-weight: 700; font-size: 12.5px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -5272,7 +5302,8 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 /* ---- gemensamma kort ---- */
 .calc-card { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 13px; padding: 14px 16px 15px; }
 .calc-cardhead { margin-bottom: 12px; }
-.calc-round { font-family: var(--display); font-weight: 800; font-size: 16px; letter-spacing: .4px; color: var(--ink); text-transform: uppercase; }
+/* Samma kortrubriksstil som startsidan/statistiken (se .r32-card h4). */
+.calc-round { font-size: 12px; font-weight: 800; letter-spacing: .09em; color: #9fb4cd; text-transform: uppercase; }
 
 .calc-faint { color: var(--ink-soft); font-size: 12.5px; padding: 4px 2px; line-height: 1.5; }
 
@@ -5287,7 +5318,7 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 
 /* ---- lagets VM-resa: spelade matcher (klickbara) ---- */
 .calc-journey { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 13px; padding: 14px 15px 15px; }
-.calc-journey-head h4 { margin: 0 0 12px; font-family: var(--display); font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: .4px; color: var(--ink); }
+.calc-journey-head h4 { margin: 0 0 12px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .09em; color: #9fb4cd; }
 
 .cj-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
 .cj-row {
@@ -5369,7 +5400,7 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
   .cb-col { scroll-snap-align: start; }
 }
 @media (max-width: 560px) {
-  .calc-head h3 { font-size: 22px; }
+  .calc-head h3 { font-size: 24px; }
   .cb-title { font-size: 19px; }
 }
 
