@@ -1,14 +1,27 @@
 /*
   VM 2026 – statistik (window.VMPlayerStats).
 
-  Två lägen i samma vy ("Statistik"):
+  Fyra lägen i samma vy ("Statistik"):
     • Spelare – sorterbar/filtrerbar tabell över alla spelare i trupperna,
       berikad med VM-statistik som samlas in från matchhändelserna
       (data/matchdetails.json via app.js): matcher, spelade minuter, mål,
-      assist, poäng, mål/90, assist/90, straffmål, självmål, gula/röda kort.
+      assist, poäng, mål/90, assist/90, straffmål, självmål, gula/röda kort
+      samt ett eget VM-betyg (se nedan).
     • Lag – aggregerad tabell per lag: matcher, vinster/oavgjort/förlust,
       poäng, gjorda/insläppta mål, målskillnad, mål per match, hållna
       nollor och kort.
+    • Region – samma aggregat per konfederation/världsdel.
+    • Ligor – klubbligornas VM: spelarna grupperas på vilken liga (land +
+      division, data/club_leagues.json) deras klubb spelar i, med minut-
+      viktat VM-betyg, produktion och två överprestationsmått (betyg mot
+      turneringssnittet samt landslagens utveckling mot turneringsstartens
+      slutspelsförväntan, data/bracket_probs_pre.json vs bracket_probs.json).
+
+  VM-betyget är en transparent 10-gradig skala (bas 6.0) per match som väger
+  mål/assist, lagets målskillnad medan spelaren var på planen, resultat,
+  hållen nolla (MV/försvar), räddningar, skott, fouls och kort – byggt på
+  händelserna + ESPN:s spelar-boxscore (st i lineups). Turneringsbetyget är
+  minutviktat över spelarens matcher.
 
   Spelade minuter beräknas ur startelvor + inbyten (lineups/subs) och
   justeras för röda kort. Per-90-värden använder en minutkvalificering så
@@ -30,17 +43,27 @@
 
   /* Minuter en spelare måste ha spelat för att kvalificera till per-90-toppar. */
   var QUAL_MIN = 2;
+  /* Minuter för kvalificerat VM-betyg (spelare) resp. liga-rankning (Ligor). */
+  var RATING_QUAL_MIN = 90;
+  var LEAGUE_QUAL_MIN = 450;
 
   var details = {};        // resultatnyckel -> matchdetaljer
   var playerRowsCache = null;
   var teamRowsCache = null;
   var regionRowsCache = null;
+  var leagueRowsCache = null;
   var pidIndex = null;     // pid -> spelarrad (för uppslag utifrån, t.ex. spelarmodalen)
   var rootEl = null;       // monteringspunkt (sätts av mount)
 
+  /* Ligadata (laddas först när Ligor-fliken öppnas). */
+  var leagueData = null;   // data/club_leagues.json ({ leagues, clubs })
+  var preRounds = null;    // data/bracket_probs_pre.json rounds (förväntan vid start)
+  var curRounds = null;    // data/bracket_probs.json rounds (nuläget)
+  var leagueLoad = 0;      // 0 = ej startad · 1 = laddar · 2 = klar (även vid fel)
+
   /* UI-läge (ej persistent) */
   var stateUi = {
-    mode: "players",     // "players" | "teams" | "regions"
+    mode: "players",     // "players" | "teams" | "regions" | "leagues"
     q: "",
     team: "",            // iso eller "" = alla
     pos: "",             // GK/DF/MF/FW eller "" = alla
@@ -50,7 +73,8 @@
     sort: {
       players: { key: "points", dir: -1 },
       teams:   { key: "points", dir: -1 },
-      regions: { key: "ppm",    dir: -1 }
+      regions: { key: "ppm",    dir: -1 },
+      leagues: { key: "rating", dir: -1 }
     }
   };
 
@@ -168,15 +192,34 @@
     return map[k] || (map[k] = {
       name: name, team: team,
       goals: 0, pens: 0, og: 0, assists: 0, y: 0, r: 0,
-      min: 0, apps: 0
+      min: 0, apps: 0,
+      sh: 0, sg: 0, sv: 0, fc: 0, fs: 0,   // boxscore: skott/på mål/räddningar/fouls
+      rSum: 0, rMin: 0                      // VM-betyg: Σ(betyg × min) och Σ(min)
     });
   }
 
-  /* Beräkna spelade minuter för ett lag i en match och addera till map. */
-  function addSideMinutes(map, det, side, team) {
+  /*
+    VM-betyget per match: 10-gradig skala med bas 6.0, i stil med de
+    matchbetyg statistiksajter sätter, men helt transparent:
+
+      +1.0 per mål (straffmål +0.75, självmål −0.7) · +0.5 per assist
+      ± lagets målskillnad medan spelaren var inne × 0.3 (max ±0.9)
+      ± 0.2 för vinst/förlust (skalat med andel spelad tid)
+      +0.5 (MV) / +0.3 (försvarare) för hållen nolla (minst 60 min)
+      +0.12 per räddning (MV, max +0.72)
+      +0.12 per skott på mål utöver målen · +0.02 per övrigt skott
+      −0.05 per begången foul · +0.03 per utsatt för foul
+      −0.3 gult kort · −1.0 andra gula · −1.2 direkt rött
+
+    Klipps till [3, 10]. Boxscore-termerna kräver st-fältet i lineups
+    (ESPN); saknas det bidrar de med 0. Turneringsbetyget är minutviktat:
+    Σ(matchbetyg × minuter) / Σ(minuter).
+  */
+  function addSideMatch(map, det, side, team) {
     var lu = det.lineups && det.lineups[side];
     if (!lu) return;
     var full = matchFull(det);
+    var opp = side === "h" ? "a" : "h";
     var play = {}; // norm namn -> { name, in, out }
 
     (lu.starters || []).forEach(function (s) {
@@ -204,12 +247,106 @@
       }
     });
 
+    /* Boxscore + lineup-position per spelare (bara startelvan har position). */
+    var box = {}, luPos = {};
+    (lu.starters || []).forEach(function (s) {
+      if (!s || !s.name) return;
+      if (s.st) box[norm(s.name)] = s.st;
+      if (s.pos) luPos[norm(s.name)] = s.pos;
+    });
+    (lu.bench || []).forEach(function (s) {
+      if (s && s.name && s.st) box[norm(s.name)] = s.st;
+    });
+
+    /* Den här matchens individuella händelser för sidans spelare. */
+    var ind = {};
+    function indOf(n) {
+      return ind[n] || (ind[n] = { g: 0, pen: 0, og: 0, a: 0, y: 0, yr: 0, rd: 0 });
+    }
+    (det.goals || []).forEach(function (gl) {
+      if (!gl.scorer) return;
+      if (gl.type === "OWN") {
+        if (gl.team === opp) indOf(norm(gl.scorer)).og++; // självmålsskytten hör till oss
+        return;
+      }
+      if (gl.team !== side) return;
+      var o = indOf(norm(gl.scorer));
+      o.g++;
+      if (gl.type === "PENALTY") o.pen++;
+      if (gl.assist) indOf(norm(gl.assist)).a++;
+    });
+    (det.bookings || []).forEach(function (bk) {
+      if (bk.team !== side || !bk.player) return;
+      var o = indOf(norm(bk.player));
+      if (bk.card === "YELLOW") o.y++;
+      else if (bk.card === "YELLOW_RED") o.yr++;
+      else if (bk.card === "RED") o.rd++;
+    });
+
+    /* Målminuter (per gynnad sida) för plus/minus i spelarens fönster. */
+    var gFor = [], gAg = [];
+    (det.goals || []).forEach(function (gl) {
+      if (gl.minute == null) return;
+      (gl.team === side ? gFor : gAg).push(gl.minute);
+    });
+
+    var ft = det.score && det.score.ft;
+    var res = ft && ft.h != null && ft.a != null
+      ? (ft[side] > ft[opp] ? 1 : ft[side] < ft[opp] ? -1 : 0)
+      : 0;
+
+    var idx = squadIndex(team.iso); // positionsfallback för inhoppare
+
     Object.keys(play).forEach(function (k) {
       var pl = play[k];
-      var mins = Math.max(0, (pl.out == null ? full : pl.out) - (pl.in == null ? 0 : pl.in));
+      var pin = pl.in == null ? 0 : pl.in;
+      var pout = pl.out == null ? full : pl.out;
+      var mins = Math.max(0, pout - pin);
       var b = statBucket(map, team, pl.name);
       b.min += mins;
       b.apps += 1;
+
+      var st = box[k];
+      if (st) {
+        b.sh += st.sh || 0; b.sg += st.sg || 0; b.sv += st.sv || 0;
+        b.fc += st.fc || 0; b.fs += st.fs || 0;
+      }
+      if (mins <= 0) return;
+
+      /* Roll: MV/försvarare/övrig – lineup-position, annars truppens. */
+      var role = "mfw";
+      var lp = luPos[k];
+      if (lp === "G") role = "gk";
+      else if (lp && /B|CD/.test(lp)) role = "df";
+      else if (!lp) {
+        var sp = findSquadPlayer(idx, pl.name);
+        if (sp) role = sp.pos_code === "GK" ? "gk" : sp.pos_code === "DF" ? "df" : "mfw";
+      }
+
+      var pf = 0, pa = 0;
+      gFor.forEach(function (m) { if (m >= pin && m <= pout) pf++; });
+      gAg.forEach(function (m) { if (m >= pin && m <= pout) pa++; });
+
+      var o = ind[k] || { g: 0, pen: 0, og: 0, a: 0, y: 0, yr: 0, rd: 0 };
+      var r = 6
+        + (o.g - o.pen) * 1.0 + o.pen * 0.75 - o.og * 0.7
+        + o.a * 0.5
+        + Math.max(-0.9, Math.min(0.9, (pf - pa) * 0.3))
+        + res * 0.2 * (mins / full);
+      if ((role === "gk" || role === "df") && mins >= 60 && pa === 0) {
+        r += role === "gk" ? 0.5 : 0.3;
+      }
+      if (st) {
+        if (role === "gk") r += Math.min((st.sv || 0) * 0.12, 0.72);
+        r += Math.max(0, (st.sg || 0) - (st.g || 0)) * 0.12;
+        r += Math.max(0, (st.sh || 0) - (st.sg || 0)) * 0.02;
+        r += -(st.fc || 0) * 0.05 + (st.fs || 0) * 0.03;
+      }
+      r += -(o.y * 0.3) - (o.yr * 1.0) - (o.rd * 1.2);
+      r = Math.max(3, Math.min(10, r));
+
+      b.rSum += r * mins;
+      b.rMin += mins;
     });
   }
 
@@ -244,8 +381,8 @@
         else if (bk.card === "YELLOW_RED" || bk.card === "RED") b.r++;
       });
 
-      addSideMinutes(map, det, "h", sides.h);
-      addSideMinutes(map, det, "a", sides.a);
+      addSideMatch(map, det, "h", sides.h);
+      addSideMatch(map, det, "a", sides.a);
     });
     return map;
   }
@@ -319,7 +456,8 @@
   }
 
   function makePlayerRow(te, p, st, fallbackName) {
-    st = st || { goals: 0, pens: 0, og: 0, assists: 0, y: 0, r: 0, min: 0, apps: 0 };
+    st = st || { goals: 0, pens: 0, og: 0, assists: 0, y: 0, r: 0, min: 0, apps: 0,
+                 sh: 0, sg: 0, sv: 0, fc: 0, fs: 0, rSum: 0, rMin: 0 };
     var goals = st.goals, assists = st.assists, min = st.min || 0;
     var avail = (p && window.VMPlayers && VMPlayers.getPlayerStatus) ? VMPlayers.getPlayerStatus(p.id) : null;
     return {
@@ -342,6 +480,10 @@
       g90: per90(goals, min),
       a90: per90(assists, min),
       gi90: per90(goals + assists, min),
+      sh: st.sh || 0, sg: st.sg || 0, sv: st.sv || 0, fc: st.fc || 0, fs: st.fs || 0,
+      rSum: st.rSum || 0, rMin: st.rMin || 0,
+      rating: (st.rMin || 0) > 0 ? st.rSum / st.rMin : null,
+      ratingQ: (st.rMin || 0) >= RATING_QUAL_MIN,
       qualified: min >= QUAL_MIN,
       hasStats: !!(goals || assists || st.og || st.y || st.r),
       played: (st.apps || 0) > 0 || min > 0
@@ -455,7 +597,123 @@
     return rows;
   }
 
-  /* ---------- Sorteringsdefinitioner ---------- */
+  /* ---------- Bygg ligarader (aggregerat per klubbliga) ----------
+
+     Varje truppspelare hör till en klubb, varje klubb till en liga (land +
+     division, data/club_leagues.json). Utöver produktion och minutviktat
+     VM-betyg beräknas två överprestationsmått:
+
+       • ±Snitt – ligans minutviktade betyg minus hela turneringens
+         minutviktade snittbetyg. Positivt = ligans spelare har presterat
+         bättre än VM-snittet på planen.
+       • Δ Förväntan – hur landslagen som ligans spelare spelar i har
+         utvecklats mot turneringsstartens slutspelsförväntan. För varje
+         landslag: (förväntade avancemang nu) − (förväntade avancemang vid
+         starten), där förväntade avancemang = P(sextondel) + P(åttondel) +
+         P(kvart) + P(semi) + P(final) + P(titel). Lagets delta fördelas på
+         ligor viktat med ligans andel av lagets totala spelarminuter och
+         summeras per liga. Enhet: avancemang ("rundor"). */
+
+  function loadLeagueData() {
+    if (leagueLoad) return;
+    leagueLoad = 1;
+    function get(url) {
+      return fetch(url, { headers: { Accept: "application/json" }, cache: "no-store" })
+        .then(function (r) { return r && r.ok ? r.json() : null; })
+        .catch(function () { return null; });
+    }
+    Promise.all([
+      get("data/club_leagues.json"),
+      get("data/bracket_probs_pre.json"),
+      get("data/bracket_probs.json")
+    ]).then(function (res) {
+      leagueData = res[0];
+      preRounds = res[1] && res[1].rounds ? res[1].rounds : null;
+      curRounds = res[2] && res[2].rounds ? res[2].rounds : null;
+      leagueLoad = 2;
+      leagueRowsCache = null;
+      if (rootEl && document.body.contains(rootEl) && stateUi.mode === "leagues") render();
+    });
+  }
+
+  /* Förväntat antal avancemang för ett lag ur rundsannolikheterna. */
+  function expRounds(r) {
+    if (!r) return null;
+    return (r.r32 || 0) + (r.r16 || 0) + (r.qf || 0) + (r.sf || 0) + (r.final || 0) + (r.win || 0);
+  }
+
+  function buildLeagueRows() {
+    if (leagueRowsCache) return leagueRowsCache;
+    if (!leagueData || !leagueData.leagues || !leagueData.clubs) return [];
+
+    var prows = buildPlayerRows();
+
+    /* Turneringens minutviktade snittbetyg (alla spelare, även omappade). */
+    var gSum = 0, gMin = 0;
+    prows.forEach(function (r) { gSum += r.rSum; gMin += r.rMin; });
+    var globalRating = gMin > 0 ? gSum / gMin : null;
+
+    /* Lagens totala spelarminuter + landslagens förväntansdelta. */
+    var teamMin = {}, teamDelta = {};
+    prows.forEach(function (r) {
+      teamMin[r.teamIso] = (teamMin[r.teamIso] || 0) + r.min;
+    });
+    allTeams().forEach(function (te) {
+      var pre = preRounds && expRounds(preRounds[te.name]);
+      var cur = curRounds && expRounds(curRounds[te.name]);
+      teamDelta[te.iso] = pre != null && cur != null ? cur - pre : null;
+    });
+
+    var by = {};
+    prows.forEach(function (r) {
+      if (!r.pid || !r.club) return; // bara truppspelare med klubb
+      var lid = leagueData.clubs[r.club];
+      var lg = lid && leagueData.leagues[lid];
+      if (!lg) return; // klubb utan mappning (t.ex. efter truppuppdatering)
+      var b = by[lid] || (by[lid] = {
+        id: lid, country: lg.country, name: lg.name, tier: lg.tier || 1,
+        iso: lg.iso || null, flag: lg.flag || "",
+        label: lg.country + " – " + lg.name,
+        labelN: norm(lg.country + " " + lg.name),
+        players: 0, active: 0, teamIsos: {}, min: 0,
+        goals: 0, assists: 0, y: 0, r: 0,
+        rSum: 0, rMin: 0, tMin: {}
+      });
+      b.players++;
+      if (r.min > 0) b.active++;
+      b.teamIsos[r.teamIso] = true;
+      b.min += r.min;
+      b.goals += r.goals; b.assists += r.assists;
+      b.y += r.y; b.r += r.r;
+      b.rSum += r.rSum; b.rMin += r.rMin;
+      b.tMin[r.teamIso] = (b.tMin[r.teamIso] || 0) + r.min;
+    });
+
+    var rows = Object.keys(by).map(function (lid) {
+      var b = by[lid];
+      b.teams = Object.keys(b.teamIsos).length;
+      b.points = b.goals + b.assists;
+      b.gi90 = per90(b.points, b.min);
+      b.rating = b.rMin > 0 ? b.rSum / b.rMin : null;
+      b.ratingQ = b.rMin >= LEAGUE_QUAL_MIN;
+      b.op = b.rating != null && globalRating != null ? b.rating - globalRating : null;
+
+      /* Δ Förväntan: fördela lagens delta på ligans minutandel per lag. */
+      var d = 0, dOk = false;
+      Object.keys(b.tMin).forEach(function (iso) {
+        var td = teamDelta[iso];
+        if (td == null || !teamMin[iso]) return;
+        d += td * (b.tMin[iso] / teamMin[iso]);
+        dOk = true;
+      });
+      b.dexp = dOk ? d : null;
+      return b;
+    });
+
+    rows.globalRating = globalRating;
+    leagueRowsCache = rows;
+    return rows;
+  }
 
   var PLAYER_SORTS = {
     name:    { type: "str", get: function (r) { return r.name; } },
@@ -470,6 +728,7 @@
     points:  { type: "num", get: function (r) { return r.points; } },
     g90:     { type: "num", qual: true, get: function (r) { return r.g90; } },
     a90:     { type: "num", qual: true, get: function (r) { return r.a90; } },
+    rating:  { type: "num", qual: "rating", get: function (r) { return r.rating; } },
     y:       { type: "num", get: function (r) { return r.y; } },
     r:       { type: "num", get: function (r) { return r.r; } }
   };
@@ -519,10 +778,27 @@
     pts:     { type: "num", get: function (r) { return r.pts; } }
   };
 
+  var LEAGUE_SORTS = {
+    league:  { type: "str", get: function (r) { return r.label; } },
+    tier:    { type: "num", get: function (r) { return -r.tier; } },
+    players: { type: "num", get: function (r) { return r.players; } },
+    active:  { type: "num", get: function (r) { return r.active; } },
+    teams:   { type: "num", get: function (r) { return r.teams; } },
+    min:     { type: "num", get: function (r) { return r.min; } },
+    goals:   { type: "num", get: function (r) { return r.goals; } },
+    assists: { type: "num", get: function (r) { return r.assists; } },
+    points:  { type: "num", get: function (r) { return r.points; } },
+    gi90:    { type: "num", qual: true, get: function (r) { return r.gi90; } },
+    rating:  { type: "num", qual: true, get: function (r) { return r.rating; } },
+    op:      { type: "num", qual: true, get: function (r) { return r.op; } },
+    dexp:    { type: "num", get: function (r) { return r.dexp; } }
+  };
+
   /* Aktuell sorteringsuppsättning för rådande läge. */
   function sortDefs() {
     return stateUi.mode === "teams" ? TEAM_SORTS
       : stateUi.mode === "regions" ? REGION_SORTS
+      : stateUi.mode === "leagues" ? LEAGUE_SORTS
       : PLAYER_SORTS;
   }
 
@@ -592,8 +868,9 @@
       var an = av == null ? -Infinity : av;
       var bn = bv == null ? -Infinity : bv;
       if (s.qual) {
-        if (!a.qualified) an = -Infinity;
-        if (!b.qualified) bn = -Infinity;
+        /* "rating" kräver minst RATING_QUAL_MIN minuter, övriga QUAL_MIN. */
+        if (!(s.qual === "rating" ? a.ratingQ : a.qualified)) an = -Infinity;
+        if (!(s.qual === "rating" ? b.ratingQ : b.qualified)) bn = -Infinity;
       }
       d = an - bn;
     } else {
@@ -626,6 +903,29 @@
     return (b.ppm - a.ppm) || (b.gd - a.gd) || (b.gf - a.gf) || a.region.localeCompare(b.region, "sv");
   }
 
+  function cmpLeagues(a, b) {
+    var st = stateUi.sort.leagues;
+    var s = LEAGUE_SORTS[st.key] || LEAGUE_SORTS.rating;
+    var av = s.get(a), bv = s.get(b), d = 0;
+    if (s.type === "num") {
+      var an = av == null ? -Infinity : av;
+      var bn = bv == null ? -Infinity : bv;
+      /* Betygsbaserade kolumner kräver LEAGUE_QUAL_MIN spelade minuter. */
+      if (s.qual) {
+        if (!a.ratingQ) an = -Infinity;
+        if (!b.ratingQ) bn = -Infinity;
+      }
+      d = an - bn;
+    } else {
+      d = String(av).localeCompare(String(bv), "sv");
+    }
+    d *= st.dir;
+    if (d) return d;
+    var ar = a.ratingQ && a.rating != null ? a.rating : -Infinity;
+    var br = b.ratingQ && b.rating != null ? b.rating : -Infinity;
+    return (br - ar) || (b.min - a.min) || a.label.localeCompare(b.label, "sv");
+  }
+
   /* ---------- Filtrering ---------- */
 
   function filteredPlayerRows() {
@@ -656,6 +956,14 @@
     return buildRegionRows().slice().sort(cmpRegions);
   }
 
+  function filteredLeagueRows() {
+    var q = norm(stateUi.q);
+    return buildLeagueRows().filter(function (r) {
+      if (q && r.labelN.indexOf(q) === -1) return false;
+      return true;
+    }).sort(cmpLeagues);
+  }
+
   /* Regioner som faktiskt har lag i turneringen, i WC.confeds visningsordning. */
   function teamRegions() {
     var present = {};
@@ -679,14 +987,54 @@
   function confBadge(code) {
     return '<span class="ps-conf-badge">' + esc(code) + "</span>";
   }
+  /* Ligans flagga (klubblandets, inte landslagets). Flaggbild via samma
+     flagcdn som lagen; emoji som reserv (Windows saknar flagg-emoji). */
+  function leagueFlag(r) {
+    if (r.iso) return flagImg(r.iso);
+    return '<span class="ps-league-flag">' + (r.flag || "🏳️") + "</span>";
+  }
   /* Ledarkortets vänsterikon: flagga för spelare/lag, förbundsmärke för förbund. */
   function leaderFlag(cfg, r) {
     if (cfg.kind === "regions") return confBadge(r.code);
+    if (cfg.kind === "leagues") return leagueFlag(r);
     return flagImg(r.iso || r.teamIso);
+  }
+
+  /* Formatera betyg (10-gradigt, en decimal) och signerade ±-värden. */
+  function fmtRating(v) {
+    return isFinite(v) ? (Math.round(v * 10) / 10).toFixed(1) : "–";
+  }
+  function fmtSigned(v, dec) {
+    if (v == null || !isFinite(v)) return "–";
+    var s = v.toFixed(dec == null ? 2 : dec);
+    return (v > 0 ? "+" : "") + s;
   }
 
   /* Returnerar konfig för de tre topplistorna i aktuellt läge. */
   function leaderConfigs() {
+    if (stateUi.mode === "leagues") {
+      var lrows = buildLeagueRows();
+      return [
+        {
+          id: "lrating", kind: "leagues", title: "Högst VM-betyg", icon: "⭐", rows: lrows,
+          valFn: function (r) { return r.ratingQ && r.rating != null ? r.rating : 0; },
+          mainFn: function (r) { return fmtRating(r.rating); },
+          rateFn: function (r) { return r.active + " spelare · " + r.min + " min"; }
+        },
+        {
+          id: "ldexp", kind: "leagues", title: "Störst lyft mot förväntan", icon: "🚀", rows: lrows,
+          valFn: function (r) { return r.dexp != null && r.min > 0 ? r.dexp : 0; },
+          mainFn: function (r) { return fmtSigned(r.dexp); },
+          rateFn: function (r) { return r.teams + " landslag · " + r.min + " min"; }
+        },
+        {
+          id: "lmin", kind: "leagues", title: "Mest speltid", icon: "⏱️", rows: lrows,
+          valFn: function (r) { return r.min; },
+          mainFn: function (r) { return r.min + "'"; },
+          rateFn: function (r) { return r.players + " spelare i trupperna"; }
+        }
+      ];
+    }
     if (stateUi.mode === "regions") {
       var rrows = buildRegionRows();
       return [
@@ -754,10 +1102,10 @@
         rateFn: function (r) { return fmt2(r.a90) + " ass/90 min"; }
       },
       {
-        id: "cards", kind: "players", title: "Flest kort", icon: "🟥", rows: prows,
-        valFn: function (r) { return r.y + 3 * r.r; },
-        mainFn: function (r) { return cardsLine(r.y, r.r); },
-        rateFn: function (r) { return r.apps + (r.apps === 1 ? " match" : " matcher"); }
+        id: "rating", kind: "players", title: "Högst VM-betyg", icon: "⭐", rows: prows,
+        valFn: function (r) { return r.ratingQ && r.rating != null ? r.rating : 0; },
+        mainFn: function (r) { return fmtRating(r.rating); },
+        rateFn: function (r) { return r.min + " min · " + r.apps + (r.apps === 1 ? " match" : " matcher"); }
       }
     ];
   }
@@ -790,11 +1138,13 @@
   function leaderName(cfg, r) {
     if (cfg.kind === "teams") return r.sv;
     if (cfg.kind === "regions") return r.region;
+    if (cfg.kind === "leagues") return r.label;
     return r.name;
   }
   function leaderTitle(cfg, r) {
     if (cfg.kind === "teams") return r.sv;
     if (cfg.kind === "regions") return r.region;
+    if (cfg.kind === "leagues") return r.label + " (nivå " + r.tier + ")";
     return r.name + " · " + r.teamSv;
   }
 
@@ -853,7 +1203,8 @@
     if (!cfg) return;
     var top = leaderRanked(cfg, 20);
     var isPlayers = cfg.kind === "players";
-    var kindLabel = cfg.kind === "teams" ? "lag" : cfg.kind === "regions" ? "regioner" : "spelare";
+    var kindLabel = cfg.kind === "teams" ? "lag" : cfg.kind === "regions" ? "regioner"
+      : cfg.kind === "leagues" ? "ligor" : "spelare";
     var isRegions = cfg.kind === "regions";
     var rows = top.map(function (r, i) {
       var clickable = isPlayers && r.pid;
@@ -871,6 +1222,7 @@
 
     var note = cfg.kind === "teams" ? "Värdena bredvid visar lagets snitt per match."
       : cfg.kind === "regions" ? "Värdena bredvid visar förbundets totaler. Per-match-värdet räknas över förbundets samtliga lagmatcher."
+      : cfg.kind === "leagues" ? "Ligorna avser spelarnas klubbtillhörighet (division enligt säsongen 2025/26). Betyg kräver minst " + LEAGUE_QUAL_MIN + " spelade minuter totalt för ligan."
       : "Värdet till höger visar antalet per 90 spelade minuter (för mål/assist) respektive antal matcher. Klicka på en spelare för full profil.";
 
     var m = ensureModal();
@@ -930,6 +1282,9 @@
         (r.goals || (r.og ? '<span class="ps-og" title="' + r.og + ' självmål">sj</span>' : '<span class="ps-zero">–</span>')) + "</td>" +
       '<td class="c-stat ps-num' + (r.assists ? " hot" : "") + '">' + (r.assists || '<span class="ps-zero">–</span>') + "</td>" +
       '<td class="c-stat ps-num ps-pts">' + (r.points || '<span class="ps-zero">–</span>') + "</td>" +
+      '<td class="c-stat ps-rating">' + (r.rating == null ? '<span class="ps-zero">–</span>'
+        : r.ratingQ ? '<span class="ps-num">' + fmtRating(r.rating) + "</span>"
+        : '<span class="ps-zero" title="Under ' + RATING_QUAL_MIN + ' spelade minuter – osäkert betyg">' + fmtRating(r.rating) + "</span>") + "</td>" +
       '<td class="c-stat ps-rate">' + g90 + "</td>" +
       '<td class="c-stat ps-rate">' + a90 + "</td>" +
       '<td class="c-stat">' + cardsCell(r.y, "y") + "</td>" +
@@ -952,6 +1307,7 @@
       thSort("goals", "Mål", "", "Mål i VM 2026") +
       thSort("assists", "Ass", "", "Assist i VM 2026") +
       thSort("points", "P", "", "Poäng = mål + assist") +
+      thSort("rating", "Betyg", "", "VM-betyg (10-gradigt, minutviktat över matcherna): bas 6.0 ± mål, assist, lagets målskillnad på planen, resultat, hållen nolla, räddningar, skott, fouls och kort. Kräver " + RATING_QUAL_MIN + " min för rankning.") +
       thSort("g90", "Mål/90", "", "Mål per 90 spelade minuter (kräver minst " + QUAL_MIN + " min)") +
       thSort("a90", "Ass/90", "", "Assist per 90 spelade minuter (kräver minst " + QUAL_MIN + " min)") +
       thSort("y", "Gul", "", "Gula kort") +
@@ -960,7 +1316,7 @@
       thSort("min", "Min", "", "Spelade minuter i VM 2026") +
       "</tr></thead><tbody>";
     if (!shown.length) {
-      h += '<tr><td class="ps-empty" colspan="15">Inga spelare matchar filtren.</td></tr>';
+      h += '<tr><td class="ps-empty" colspan="16">Inga spelare matchar filtren.</td></tr>';
     } else {
       shown.forEach(function (r, i) { h += playerRowHtml(r, i); });
     }
@@ -1104,9 +1460,79 @@
     return h;
   }
 
+  /* ---------- Ligatabell ---------- */
+
+  function leagueRowHtml(r, i) {
+    var dash = '<span class="ps-zero">–</span>';
+    var unq = !r.ratingQ;
+    var ratingCell = r.rating == null ? dash
+      : unq ? '<span class="ps-zero" title="Under ' + LEAGUE_QUAL_MIN + ' spelade minuter – osäkert snitt">' + fmtRating(r.rating) + "</span>"
+      : '<span class="ps-num">' + fmtRating(r.rating) + "</span>";
+    var opCell = r.op == null ? dash
+      : '<span class="' + (unq ? "ps-zero" : r.op >= 0 ? "ps-up" : "ps-down") + '">' + fmtSigned(r.op) + "</span>";
+    var dexpCell = r.dexp == null || r.min <= 0 ? dash
+      : '<span class="' + (r.dexp >= 0 ? "ps-up" : "ps-down") + '">' + fmtSigned(r.dexp) + "</span>";
+    return '<tr class="' + (unq ? "ps-league-unq" : "") + '">' +
+      '<td class="c-pos">' + (i + 1) + "</td>" +
+      '<td class="ps-c-name"><span class="team">' + leagueFlag(r) +
+        '<span class="t-name" title="' + esc(r.label) + '">' + esc(r.country) +
+        '<span class="ps-league-name">' + esc(r.name) + "</span></span></span></td>" +
+      '<td class="c-stat"><span class="ps-tier t' + r.tier + '" title="Divisionsnivå i ligasystemet">' + r.tier + "</span></td>" +
+      '<td class="c-stat">' + r.players + "</td>" +
+      '<td class="c-stat">' + num(r.active) + "</td>" +
+      '<td class="c-stat">' + num(r.teams) + "</td>" +
+      '<td class="c-stat">' + (r.min ? '<span class="ps-num">' + r.min + "'</span>" : dash) + "</td>" +
+      '<td class="c-stat ps-num' + (r.goals ? " hot" : "") + '">' + (r.goals || dash) + "</td>" +
+      '<td class="c-stat ps-num' + (r.assists ? " hot" : "") + '">' + (r.assists || dash) + "</td>" +
+      '<td class="c-stat ps-rate">' + (r.min >= LEAGUE_QUAL_MIN ? fmt2(r.gi90)
+        : r.min > 0 ? '<span class="ps-zero" title="För få minuter för rättvist snitt">' + fmt2(r.gi90) + "</span>" : dash) + "</td>" +
+      '<td class="c-stat ps-rating">' + ratingCell + "</td>" +
+      '<td class="c-stat">' + opCell + "</td>" +
+      '<td class="c-stat">' + dexpCell + "</td>" +
+      "</tr>";
+  }
+
+  function leagueTableHtml() {
+    if (leagueLoad < 2) {
+      return '<div class="ps-empty">Laddar ligadata …</div>';
+    }
+    if (!leagueData) {
+      return '<div class="ps-empty">Kunde inte ladda data/club_leagues.json.</div>';
+    }
+    var rows = filteredLeagueRows();
+    var shown = rows.slice(0, stateUi.limit);
+    var h = '<div class="ps-table-wrap"><table class="standings ps-table"><thead><tr>' +
+      '<th class="c-pos">#</th>' +
+      thSort("league", "Liga", "ps-c-name", "Klubbliga: land och division") +
+      thSort("tier", "Nivå", "", "Divisionsnivå (1 = högsta serien)") +
+      thSort("players", "Spelare", "", "Antal spelare i VM-trupperna från ligan") +
+      thSort("active", "I spel", "", "Spelare med spelade minuter") +
+      thSort("teams", "Landslag", "", "Antal landslag med spelare från ligan") +
+      thSort("min", "Min", "", "Spelade minuter totalt") +
+      thSort("goals", "Mål", "", "Mål av ligans spelare") +
+      thSort("assists", "Ass", "", "Assist av ligans spelare") +
+      thSort("gi90", "M+A/90", "", "Mål + assist per 90 spelade minuter") +
+      thSort("rating", "Betyg", "", "Minutviktat VM-betyg för ligans spelare (kräver " + LEAGUE_QUAL_MIN + " min)") +
+      thSort("op", "±Snitt", "", "Ligans betyg minus turneringens minutviktade snittbetyg. Positivt = ligans spelare överpresterar mot VM-snittet.") +
+      thSort("dexp", "Δ Förv.", "", "Landslagens utveckling mot turneringsstartens slutspelsförväntan (13 juni), i förväntade avancemang, fördelat på ligan efter dess andel av lagens speltid. Positivt = ligans spelares landslag har gått bättre än väntat.") +
+      "</tr></thead><tbody>";
+    if (!shown.length) {
+      h += '<tr><td class="ps-empty" colspan="13">Inga ligor matchar filtren.</td></tr>';
+    } else {
+      shown.forEach(function (r, i) { h += leagueRowHtml(r, i); });
+    }
+    h += "</tbody></table></div>";
+    if (rows.length > shown.length) {
+      h += '<button type="button" class="ps-more" data-ps-more>Visa fler (' +
+        shown.length + " av " + rows.length + ")</button>";
+    }
+    return h;
+  }
+
   function tableHtml() {
     if (stateUi.mode === "teams") return teamTableHtml();
     if (stateUi.mode === "regions") return regionTableHtml();
+    if (stateUi.mode === "leagues") return leagueTableHtml();
     return playerTableHtml();
   }
   /* ---------- Lägesväljare + verktygsrad ---------- */
@@ -1117,7 +1543,8 @@
         '" data-ps-mode="' + mode + '">' + label + "</button>";
     }
     return '<div class="ps-modes" role="tablist" aria-label="Statistiktyp">' +
-      seg("players", "Spelare") + seg("teams", "Lag") + seg("regions", "Region") + "</div>";
+      seg("players", "Spelare") + seg("teams", "Lag") + seg("regions", "Region") +
+      seg("leagues", "Ligor") + "</div>";
   }
 
   /* Toppra: vytitel till vänster, lägesväxlaren centrerad – på samma rad.
@@ -1133,6 +1560,18 @@
     if (stateUi.mode === "regions") {
       return '<div class="ps-toolbar ps-toolbar-region">' +
         '<span class="ps-toolbar-hint">Sammanställning per region (världsdel) – klicka på en kolumn för att sortera.</span>' +
+        '<span class="ps-count" id="psCount"></span>' +
+        "</div>";
+    }
+    if (stateUi.mode === "leagues") {
+      var lrows = buildLeagueRows();
+      var gAvg = lrows.globalRating;
+      return '<div class="ps-toolbar">' +
+        '<input id="psSearch" type="search" autocomplete="off" placeholder="Sök liga eller land…" ' +
+          'aria-label="Sök liga" value="' + esc(stateUi.q) + '">' +
+        '<span class="ps-toolbar-hint">Spelarnas klubbligor (division 2025/26). ' +
+          (gAvg != null ? "Turneringens snittbetyg: <strong>" + fmtRating(gAvg) + "</strong>. " : "") +
+          "Gråade rader har under " + LEAGUE_QUAL_MIN + " spelade minuter.</span>" +
         '<span class="ps-count" id="psCount"></span>' +
         "</div>";
     }
@@ -1199,6 +1638,11 @@
   function updateCount() {
     var el = document.getElementById("psCount");
     if (!el) return;
+    if (stateUi.mode === "leagues") {
+      var ln = filteredLeagueRows().length;
+      el.textContent = ln + (ln === 1 ? " liga" : " ligor");
+      return;
+    }
     if (stateUi.mode === "regions") {
       var rn = filteredRegionRows().length;
       el.textContent = rn + (rn === 1 ? " region" : " regioner");
@@ -1221,6 +1665,7 @@
     stateUi.mode = mode;
     stateUi.q = "";
     stateUi.limit = 50;
+    if (mode === "leagues") loadLeagueData();
     render();
   }
 
@@ -1317,8 +1762,13 @@
     rootEl.addEventListener("change", onChange);
     rootEl.addEventListener("keydown", onKeydown);
     if (window.VMPlayers && !VMPlayers.isLoaded()) {
-      VMPlayers.load().then(function () { playerRowsCache = null; render(); }).catch(function () {});
+      VMPlayers.load().then(function () {
+        playerRowsCache = null;
+        leagueRowsCache = null;
+        render();
+      }).catch(function () {});
     }
+    if (stateUi.mode === "leagues") loadLeagueData();
     render();
   }
 
@@ -1327,6 +1777,7 @@
     playerRowsCache = null;
     teamRowsCache = null;
     regionRowsCache = null;
+    leagueRowsCache = null;
     if (rootEl && document.body.contains(rootEl)) render();
   }
 

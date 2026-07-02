@@ -9,6 +9,7 @@
 */
 
 import { findAppTeamIndex } from "./mapResults.js";
+import { DETAIL_FMT } from "./matchDetails.js";
 
 /* ---------- Status & klocka ---------- */
 
@@ -161,22 +162,53 @@ function extractStats(boxscore) {
 
 /* ---------- Laguppställningar ---------- */
 
+/* ESPN:s spelarstatistik per match → kompakta nycklar (bara nollskilda
+   värden sparas). Kort och mål/assist finns redan som händelser men mål
+   och assist sparas ändå – lineupen är enda platsen med per-spelare-summor
+   som frontend kan läsa utan namnmatchning mot händelselistan. */
+const PLAYER_STAT_KEYS = {
+  totalShots: "sh",
+  shotsOnTarget: "sg",
+  totalGoals: "g",
+  goalAssists: "a",
+  saves: "sv",
+  goalsConceded: "gc",
+  foulsCommitted: "fc",
+  foulsSuffered: "fs",
+  ownGoals: "og",
+};
+
+function mapPlayerStats(stats) {
+  const out = {};
+  for (const s of stats || []) {
+    const key = PLAYER_STAT_KEYS[s.name];
+    if (!key) continue;
+    const v = intOrNull(s.displayValue ?? s.value);
+    if (v) out[key] = v;
+  }
+  return Object.keys(out).length ? out : null;
+}
+
 function mapRosterSide(r) {
   const starters = [];
   const bench = [];
   for (const p of r.roster || []) {
     const name = p.athlete?.displayName || null;
     if (!name) continue;
+    const st = mapPlayerStats(p.stats);
     if (p.starter) {
-      starters.push({
+      const row = {
         name,
         jersey: p.jersey || null,
         pos: p.position?.abbreviation || null,
         place: intOrNull(p.formationPlace),
-      });
+      };
+      if (st) row.st = st;
+      starters.push(row);
     } else {
       const sub = { name, jersey: p.jersey || null };
       if (p.subbedIn) sub.in = true;
+      if (st) sub.st = st;
       bench.push(sub);
     }
   }
@@ -312,6 +344,7 @@ export function mapEspnDetail(summary) {
 
   return {
     espnId: summary?.header?.id || comp.id || null,
+    fmt: DETAIL_FMT,
     status,
     minute: status === "IN_PLAY" || status === "PAUSED" ? minuteNow : null,
     utcDate: comp.date || null,

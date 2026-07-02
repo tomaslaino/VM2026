@@ -15,6 +15,14 @@ const FINAL_STATUSES = new Set(["FINISHED", "AWARDED"]);
 /** Max antal detalj-anrop per synk – håller oss under rate limit (10/min). */
 export const MAX_DETAIL_CALLS = 6;
 
+/**
+ * Formatversion för lagrade matchdetaljer. Höj när mapEspnDetail börjar
+ * spara nya fält som gamla, permanent lagrade matcher saknar – då hämtas
+ * de om (några per synk) tills alla har det nya formatet.
+ *   v2: per-spelare-statistik (st) i lineups från ESPN:s boxscore.
+ */
+export const DETAIL_FMT = 2;
+
 export function isLive(status) {
   return LIVE_STATUSES.has(status);
 }
@@ -183,8 +191,9 @@ export function pickDetailTargets(fdMatches, keyMap, stored, max = MAX_DETAIL_CA
     if (isFinal(m.status)) {
       const have = stored[key];
       // Hämta om vi saknar detaljer, om det vi har inte är slutgiltigt,
-      // eller om laguppställningar saknas (äldre format / sen publicering).
-      if (!have || !isFinal(have.status) || have.lineups == null) {
+      // om laguppställningar saknas (äldre format / sen publicering)
+      // eller om detaljerna sparades med en äldre formatversion.
+      if (!have || !isFinal(have.status) || have.lineups == null || (have.fmt || 1) < DETAIL_FMT) {
         finishedTargets.push({ id: m.id, key, reversed, utcDate: m.utcDate || "" });
       }
     }

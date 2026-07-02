@@ -36,7 +36,7 @@ npm run sync:status # synka spelarstatus (skador/avstängningar) → data/wc2026
 | `assets/live.js` | Trupp i lag-lådan + spelarprofil-modal (visar skade-/avstängningsstatus) |
 | `data/wc2026_player_status.json` | Spelartillgänglighet (skador/avstängningar/osäkra) per spelar-id |
 | `server/scripts/syncPlayerStatus.js` | Synkar spelarstatus från API-Football `/injuries` |
-| `assets/playerstats.js` | Spelarstatistik |
+| `assets/playerstats.js` | Spelarstatistik: Spelare/Lag/Region/Ligor + eget VM-betyg (10-gradigt, ur events + ESPN-boxscore `st` i lineups, `fmt: 2` i matchdetails) |
 | `assets/styles.css` | All CSS |
 | `server/index.js` | Express-server + WebSocket |
 | `server/espnSync.js` | ESPN API-synk |
@@ -44,6 +44,8 @@ npm run sync:status # synka spelarstatus (skador/avstängningar) → data/wc2026
 | `data/results.json` | Statisk resultatfil (uppdateras av Actions) |
 | `data/matchdetails.json` | Statisk matchdetaljer (uppdateras av Actions) |
 | `data/bracket_probs.json` | Sannolikheter för slutspelet (statisk fallback, byggd av `gen_bracket_probs.mjs`) |
+| `data/bracket_probs_pre.json` | Fryst förväntansbaslinje (turneringsstartens rundsannolikheter) för Ligor-flikens Δ Förväntan – ändra ej |
+| `data/club_leagues.json` | Klubb → liga (land + division 2025/26) för alla klubbar i trupperna; driver Ligor-fliken i statistiken |
 | `scripts/prob/gen_bracket_probs.mjs` | Bygger `bracket_probs.json` med SAMMA motor/data/seed som frontend |
 | `scripts/prob/` | Odds-hämtning + karta (bracket_map). `vm_sannolikheter.py` är pensionerad referens |
 | `.github/workflows/` | GitHub Actions-workflows |
