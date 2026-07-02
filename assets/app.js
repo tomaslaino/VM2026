@@ -27,14 +27,20 @@
   var r32Seq = 0;               // sekvensnummer för att ignorera gamla svar
   var r32Busy = false;          // pågående simulering
   var r32TipMap = {};           // id -> tooltip-HTML
-  var R32_N = 12000;            // antal simuleringar per körning
+  // ETT gemensamt antal simuleringar för alla Monte Carlo-vyer. Motorerna är
+  // seedade och samplar gruppmatcherna i samma ordning, så med SAMMA n och seed
+  // blir slumptalsströmmen – och därmed siffrorna – identiska i slutspelsträdet,
+  // slutspelskalkylatorn och sextondelskollen. Olika n här = olika siffror för
+  // samma sak på olika sidor.
+  var SIM_N = 40000;
+  var R32_N = SIM_N;            // antal simuleringar per körning
   // Slutspelskalkylatorn: kör hela trädet (assets/bracketengine.js) med ett valt
   // fokuslag och visar dess troliga motståndare i varje runda.
   var calcWorker = null;        // Web Worker (eller "none" vid fallback)
   var calcSeq = 0;              // sekvensnummer för att ignorera gamla svar
   var calcResult = null;        // senaste focal-resultat
   var calcKey = null;           // cache-nyckel för calcResult
-  var CALC_N = 20000;           // simuleringar per körning (snabb men stabil)
+  var CALC_N = SIM_N;           // = SIM_N så kalkylatorn visar samma siffror som trädet
   // Hela slutspelsträdet beräknas lokalt (assets/bracketengine.js) på samma data
   // som sextondelskollen, i stället för den servergenererade bracket_probs.json.
   var bracketWorker = null;     // Web Worker för hela trädet (eller "none")
@@ -42,7 +48,7 @@
   var bracketEngKey = null;     // cache-nyckel för senaste lokala beräkning
   var bracketMapData = null;    // data/bracket_map.json | "loading" | "error"
   var bracketStrength = null;   // styrka per lag ur data/winner_odds.json
-  var BRACKET_N = 40000;        // simuleringar för hela trädet
+  var BRACKET_N = SIM_N;        // = SIM_N (identisk RNG-ström ⇒ samma siffror överallt)
   var autoSync = { active: false, source: null, updatedAt: null, status: "pending" };
   var apiFixtures = {}; // nyckel -> { date, time, home, away, homeRef, awayRef, status } från API
   var apiStandings = {}; // grupp-bokstav -> [{ idx, position, pld, w, d, l, gf, ga, gd, pts }] från API
@@ -2305,7 +2311,14 @@
   var KO_PLACEHOLDER = /group|third place|winner|loser|\bplace\b/i;
   function koTeamKnown(name) { return !!name && !KO_PLACEHOLDER.test(name); }
 
+  // 1X2 efter 90 min för en slutspelsmatch utan skrapade odds. Kommer ur SAMMA
+  // Poisson-modell som motorn spelar matcherna med (buildMatchModel), så att
+  // fallbacken inte drar åt ett annat håll än modellen. Den gamla logistiska
+  // approximationen (fast oavgjort-sannolikhet) finns kvar som sista nödfall.
   function koRpFallback(home, away) {
+    var model = ensureMatchModel();
+    var rp = model && model.rp90 ? model.rp90(home, away) : null;
+    if (rp) return rp;
     if (!bracketStrength || bracketStrength[home] == null || bracketStrength[away] == null) return null;
     var p1 = 1 / (1 + Math.exp(-0.6 * (bracketStrength[home] - bracketStrength[away])));
     var px = 0.22;
@@ -2490,8 +2503,8 @@
 
   /* ---------- panel-skelett ---------- */
   /* Sextondelskollen som egen vy (nås via top-navet, inte längre från
-     slutspelsträdet). Panelen äger #view själv – på samma sätt som
-     slutspelsvyn – så vi nollställer signaturcachen och målar dynamiken. */
+     slutspelsträdet). Skelettet morfas via setViewHtml och dynamiken målas
+     efteråt av paintR32. */
   function renderR32View() {
     /* Morf i stället för innerHTML-rivning: de dynamiska ytorna är märkta
        data-morph-keep och behåller sitt målade innehåll tills paintR32 ritar
@@ -2649,6 +2662,15 @@
     return t ? t.sv : englishName;
   }
 
+  // Vinstchans som visas för ett R32-utfall: den enhetliga modellen (samma som
+  // kalkylatorn och simuleringen). Motorns gamla FIFA-ranking-siffra (o.win)
+  // används bara som nödfall om modellen saknar data.
+  function r32WinP(o) {
+    if (o.label === "Eliminated") return null;
+    var p = matchWinP(r32Result.teamName, o.label);
+    return p != null ? p : o.win;
+  }
+
   function renderR32Outcomes(avoid) {
     var host = document.getElementById("r32-outcomes");
     if (!host) return;
@@ -2656,7 +2678,8 @@
     var maxP = Math.max.apply(null, outs.map(function (o) { return o.prob; }).concat([0.0001]));
     morphInto(host, outs.map(function (o) {
       var klass = o.good == null ? "out" : (o.good ? "good" : "bad");
-      var od = o.label === "Eliminated" || o.win == null ? "" : ("ni vinner " + Math.round(o.win * 100) + "%");
+      var win = r32WinP(o);
+      var od = win == null ? "" : ("ni vinner " + Math.round(win * 100) + "%");
       var tip = r32TipId(r32OutcomeTip(o));
       return '<div class="r32-outcome ' + klass + '" data-r32-tip="' + tip + '">' +
         '<div class="top"><span class="nm">' + esc(r32SvName(o.label)) + '</span>' +
@@ -2670,7 +2693,8 @@
 
   function r32OutcomeTip(o) {
     var s = '<h4>' + esc(r32SvName(o.label)) + '</h4>';
-    if (o.win != null) s += '<div class="hl">~<b>' + Math.round(o.win * 100) + '%</b> att ' + esc(r32Result.teamName === "Sweden" ? "Sverige" : r32SvName(r32Result.teamName)) + ' vinner matchen</div>';
+    var win = r32WinP(o);
+    if (win != null) s += '<div class="hl">~<b>' + Math.round(win * 100) + '%</b> att ' + esc(r32Result.teamName === "Sweden" ? "Sverige" : r32SvName(r32Result.teamName)) + ' vinner matchen</div>';
     if (o.sweden_pos) s += '<div>Slutar som: <b>' + esc(o.sweden_pos) + '</b></div>';
     if (o.key_games && o.key_games.length) {
       s += '<div class="ci" style="margin-top:6px">Påverkas mest av:</div>';
@@ -2926,23 +2950,94 @@
 
   /* ====================================================================
      SLUTSPELSKALKYLATORN  (egen vy via top-navet, route "r32")
-     Kör HELA slutspelsträdet (assets/bracketengine.js) med ett valt fokuslag
-     och ritar en vertikal "resa": Gruppspel → Sextondel → Åttondel → Kvart →
-     Semi → Final. Per steg visas chansen att ta sig dit + troligaste
-     motståndare (givet att man når dit) + din uppskattade vinstchans. En ren
-     kontrollpanel låter dig klicka i hur kvarvarande gruppmatcher slutar.
+     Kör HELA slutspelsträdet (assets/bracketengine.js) med ett valt fokuslag.
+     Vyn består av: (1) lag-hjälten – flagga, namn och nyckeltal (Vinn VM,
+     Nå finalen, nästa match med vinstchans), (2) motståndartavlan – en kolumn
+     per slutspelsrunda där avklarade rundor visar facit, en bestämd nästa
+     match får ett framhävt kort och framtida rundor listar de troligaste
+     motståndarna, samt (3) grupptabellen + lagets VM-resa.
   ==================================================================== */
   function setCalcStatus(txt) {
     var el = document.getElementById("calc-status");
     if (el) el.textContent = txt || "";
   }
 
-  // Uppskattad vinstchans i en match: logistisk på styrkan ur vinnarodds (samma
-  // modell + K som motorn). Saknas styrka faller den tillbaka på FIFA-ranking.
-  function calcWinP(aName, bName) {
+  // ---------- EN matchvinst-modell för allt som visas i UI:t ----------
+  // Samma prioritetsordning som simuleringen (tryKoMarket + matchWinnerModel i
+  // assets/bracketengine.js), så att visade "ni vinner X %" alltid är samma
+  // siffra som motorn faktiskt räknar med:
+  //   1) Riktig slutspelsmatch (koOdds): facit om spelad, annars marknadens
+  //      1X2 där oavgjort efter 90 löses av motorns modell (förlängning/straffar).
+  //   2) Motorns analytiska Poisson-modell (BracketEngine.buildMatchModel) –
+  //      identisk matematik som matchWinnerModel, men i väntevärde.
+  //   3) Logistisk på vinnarodds-styrkan (K=0.6), 4) FIFA-ranking som nödfall.
+  // Förväntade mål per lag i varje gruppmatch (ur exakt-resultatoddsen) –
+  // underlag för lagens anfall/försvar i slutspelsmodellen. Delas av
+  // simuleringens indata (bracketBuildInput) och visnings-modellen ovan.
+  function buildRatingMatches(odds) {
+    return odds.matches.map(function (m) {
+      var muH = 0, muA = 0;
+      m.scores.forEach(function (s) { muH += s.h * s.p; muA += s.a * s.p; });
+      return { home: m.home, away: m.away, g: m.g, muH: muH, muA: muA };
+    });
+  }
+
+  var matchModelCache = null, matchModelStamp = null;
+  function ensureMatchModel() {
+    if (!window.BracketEngine || !window.BracketEngine.buildMatchModel || !bracketStrength) return null;
+    if (!r32OddsData || r32OddsData === "loading" || r32OddsData === "error") return null;
+    var stamp = (marketOddsStamp || "") + "|" + (winnerOddsStamp || "");
+    if (matchModelCache && matchModelStamp === stamp) return matchModelCache;
+    matchModelCache = window.BracketEngine.buildMatchModel({
+      ratingMatches: buildRatingMatches(r32OddsData),
+      strength: bracketStrength, K: 0.6
+    });
+    matchModelStamp = stamp;
+    return matchModelCache;
+  }
+
+  function matchWinP(aName, bName) {
+    if (aName == null || bName == null || aName === bName) return null;
+    var model = ensureMatchModel();
+    var modelWin = model ? model.winP(aName, bName) : null;
+
+    // 1) riktig slutspelsmatch mellan just de här lagen → marknad/facit styr
+    if (r32OddsData && r32OddsData !== "loading" && r32OddsData !== "error") {
+      var koMap = buildKoOddsMap(r32OddsData.knockout);
+      for (var k in koMap) {
+        var e = koMap[k];
+        var aHome = e.home === aName && e.away === bName;
+        var aAway = e.home === bName && e.away === aName;
+        if (!aHome && !aAway) continue;
+        if (e.finished && e.winner) return e.winner === aName ? 1 : 0;
+        if (!e.rp) break;
+        var pA = (aHome ? e.rp["1"] : e.rp["2"]) || 0;
+        var pB = (aHome ? e.rp["2"] : e.rp["1"]) || 0;
+        var pD = e.rp["X"] || 0;
+        var tot = pA + pB + pD;
+        if (tot <= 0) break;
+        pA /= tot; pB /= tot; pD /= tot;
+        // Pågående match med pre-match-odds: samma ledningsjustering som motorn.
+        if (e.live && e.oddsContext === "prematch") {
+          var lead = e.live.h - e.live.a;
+          var myLead = aHome ? lead : -lead;
+          if (myLead > 0) pA = Math.min(0.98, pA + 0.08 * myLead);
+          else if (myLead < 0) pA = Math.max(0.02, pA + 0.08 * myLead);
+          tot = pA + pB + pD;
+          pA /= tot; pD /= tot;
+        }
+        // Oavgjort efter 90 → förlängning/straffar enligt modellen (som motorn).
+        return pA + pD * (modelWin != null ? modelWin : 0.5);
+      }
+    }
+
+    // 2) motorns matchmodell
+    if (modelWin != null) return modelWin;
+    // 3) logistisk på vinnarodds-styrkan
     if (bracketStrength && bracketStrength[aName] != null && bracketStrength[bName] != null) {
       return 1 / (1 + Math.exp(-0.6 * (bracketStrength[aName] - bracketStrength[bName])));
     }
+    // 4) FIFA-ranking (samma formel som r32engine:s gamla nödfall)
     var map = r32EnglishToTeam(), ta = map[aName], tb = map[bName];
     if (!ta || !tb) return null;
     var f = function (x) { return 1500 - 130 * Math.log(x); };
@@ -2992,6 +3087,7 @@
           '</div>' +
         '</div>' +
         '<div class="calc-body">' +
+          '<div class="calc-hero" id="calc-hero" data-morph-keep></div>' +
           '<div class="calc-board" id="calc-board" data-morph-keep></div>' +
           '<div class="calc-boardfoot" id="calc-boardfoot" data-morph-keep></div>' +
           '<div class="calc-lower">' +
@@ -3017,12 +3113,17 @@
   function calcEnsureWorker() {
     if (calcWorker) return;
     try {
-      calcWorker = new Worker("assets/bracketworker.js?v=7");
+      calcWorker = new Worker("assets/bracketworker.js?v=8");
       calcWorker.onmessage = function (e) {
         var d = e.data || {};
         if (d.seq !== calcSeq) return;
         if (d.error || !d.result) { setCalcStatus("kunde inte räkna ut just nu"); return; }
         calcResult = d.result; calcKey = d.key;
+        // Samma körning bär hela trädets siffror (nodes/rounds/groupPositions är
+        // oberoende av fokuslaget eftersom fokus-spårningen inte drar slumptal).
+        // Dela resultatet med slutspelsträdet så båda vyerna garanterat visar
+        // exakt samma siffror – och trädet slipper en egen identisk körning.
+        if (d.bkey) applyBracketProbs(d.result, d.bkey);
         renderCalcDynamic();
       };
       calcWorker.onerror = function () { calcWorker = "none"; };
@@ -3043,11 +3144,16 @@
     var seq = calcSeq;
     calcEnsureWorker();
     if (calcWorker && calcWorker !== "none") {
-      calcWorker.postMessage({ seq: seq, key: key, input: built.input });
+      // bkey = trädets cache-nyckel (utan fokuslag): svaret matar även bracketProbs.
+      calcWorker.postMessage({ seq: seq, key: key, bkey: built.key, input: built.input });
     } else {
       setTimeout(function () {
         if (seq !== calcSeq) return;
-        try { calcResult = window.BracketEngine.compute(built.input); calcKey = key; renderCalcDynamic(); }
+        try {
+          calcResult = window.BracketEngine.compute(built.input); calcKey = key;
+          applyBracketProbs(calcResult, built.key);   // dela med slutspelsträdet
+          renderCalcDynamic();
+        }
         catch (err) { setCalcStatus("kunde inte räkna ut just nu"); }
       }, 16);
     }
@@ -3071,6 +3177,7 @@
         morphInto(sub, '<span class="calc-status" id="calc-status"></span>');
       }
     }
+    renderCalcHero(sel, fate);
     if (fate) {
       renderCalcGrave(sel, fate);
     } else {
@@ -3136,14 +3243,118 @@
   }
 
   /* ====================================================================
-     HUVUDVY: motståndartavlan – en kolumn per slutspelsrunda (1/16 → final)
-     med de troligaste motståndarna, plus en "Vinn VM"-ruta. Bygger helt på
-     calcResult.focal: per runda dess reachP (chans att nå dit) och opponents
-     (motståndarfördelning GIVET att laget når rundan), samt focal.win.
+     LAG-HJÄLTEN: flagga + lagnamn + nyckeltal på en rad (Vinn VM, Nå
+     finalen, nästa match med uppskattad vinstchans). Sammanfattar kalkylen
+     så att tavlan nedanför kan ägna sig åt detaljerna per runda.
+  ==================================================================== */
+  // Lagets nyckel "G:idx" (samma format som lagväljaren) – för klickbara celler.
+  function calcTeamKeyOf(team) {
+    for (var gi = 0; gi < WC.groupLetters.length; gi++) {
+      var L = WC.groupLetters[gi], arr = WC.groups[L];
+      for (var i = 0; i < arr.length; i++) if (arr[i] === team) return L + ":" + i;
+    }
+    return null;
+  }
+
+  // Fokuslagets slutspelsmatcher per rundetikett ("1/16-final" → matchrad).
+  // Spoilerstyrt via teamMatches: en spoilerdold match räknas inte som spelad.
+  function calcKoByRound(sel) {
+    var map = {};
+    teamMatches(sel.team, sel.g, getCtx()).forEach(function (mm) {
+      if (mm.kind === "ko") map[mm.label.replace(/\s+\d+$/, "")] = mm;
+    });
+    return map;
+  }
+
+  // Nästa ospelade match (grupp eller slutspel) i kronologisk ordning.
+  function calcNextMatch(sel) {
+    var ms = teamMatches(sel.team, sel.g, getCtx());
+    for (var i = 0; i < ms.length; i++) if (!ms[i].played) return ms[i];
+    return null;
+  }
+
+  // Svensk ordningsetikett: 1:a, 2:a, 3:e, 4:e.
+  function calcPosLabel(pos) { return pos + (pos <= 2 ? ":a" : ":e"); }
+
+  function renderCalcHero(sel, fate) {
+    var host = document.getElementById("calc-hero");
+    if (!host) return;
+    // Utslaget lag: nekrologen är hjälten – ingen dubbel sammanfattning.
+    if (fate || !calcResult || !calcResult.focal) { morphInto(host, ""); return; }
+    var focal = calcResult.focal;
+
+    var pos = 0;
+    computeTable(sel.g).forEach(function (r, i) { if (r.idx === sel.idx) pos = i + 1; });
+    var meta = (pos ? calcPosLabel(pos) + " i grupp " + sel.g : "Grupp " + sel.g) +
+      " · FIFA-ranking " + fifaRankOf(sel.team);
+
+    var winTip = r32TipId('<h4>' + esc(sel.team.sv) + '</h4><div class="hl"><b>' +
+      r32Pct(focal.win || 0) + '</b> chans att vinna hela VM</div>');
+    var finalTip = r32TipId('<h4>' + esc(sel.team.sv) + '</h4><div class="hl"><b>' +
+      r32Pct((focal.final || {}).reachP || 0) + '</b> chans att nå finalen</div>');
+    var tiles =
+      '<div class="ch-tile gold" data-r32-tip="' + winTip + '">' +
+        '<span class="ch-lbl">Vinn VM</span>' +
+        '<span class="ch-big"><span class="ch-trophy" aria-hidden="true">🏆</span>' +
+          calcBoardNum(focal.win || 0) + '<i>%</i></span>' +
+      '</div>' +
+      '<div class="ch-tile" data-r32-tip="' + finalTip + '">' +
+        '<span class="ch-lbl">Nå finalen</span>' +
+        '<span class="ch-big">' + calcBoardNum((focal.final || {}).reachP || 0) + '<i>%</i></span>' +
+      '</div>' +
+      calcHeroNextTile(sel);
+
+    morphInto(host,
+      '<div class="ch-id">' +
+        '<span class="ch-flag">' + flagImg(sel.team.iso) + '</span>' +
+        '<div class="ch-idtext">' +
+          '<div class="ch-name">' + esc(teamSvDisplay(sel.team)) + '</div>' +
+          '<div class="ch-meta">' + esc(meta) + '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="ch-tiles">' + tiles + '</div>');
+  }
+
+  // "Nästa match"-plattan: motståndare + vinstchans när motståndaren är klar,
+  // annars bara runda + datum. Klickbar – öppnar samma matchmodal som kalendern.
+  function calcHeroNextTile(sel) {
+    var mm = calcNextMatch(sel);
+    if (!mm) return "";
+    var tag = mm.label.replace(/\s+\d+$/, "");
+    var d = parseDateUTC(mm.date);
+    var when = tag + " · " + d.getUTCDate() + " " + MONTHS[d.getUTCMonth()];
+    var opp = mm.isHome ? mm.away : mm.home;
+    if (!opp) {
+      return '<div class="ch-tile next">' +
+          '<span class="ch-lbl">Nästa match</span>' +
+          '<span class="ch-nextteam"><b>Motståndare ej klar</b></span>' +
+          '<span class="ch-sub">' + esc(when) + '</span>' +
+        '</div>';
+    }
+    var win = matchWinP(sel.team.name, opp.name);
+    var open = matchOpenAttr(mm.key);
+    return '<div class="ch-tile next' + open.cls + '"' + open.attr + '>' +
+        '<span class="ch-lbl">Nästa match</span>' +
+        '<span class="ch-nextteam">' + flagImg(opp.iso) + '<b>' + esc(teamSvFixture(opp)) + '</b></span>' +
+        '<span class="ch-sub">' + esc(when) + '</span>' +
+        (win != null
+          ? '<span class="ch-gauge"><i style="width:' + Math.round(win * 100) + '%"></i></span>' +
+            '<span class="ch-winlbl">~' + Math.round(win * 100) + ' % vinstchans</span>'
+          : '') +
+      '</div>';
+  }
+
+  /* ====================================================================
+     HUVUDVY: motståndartavlan – en kolumn per slutspelsrunda (1/16 → final).
+     En avklarad runda visar den spelade matchen som facit, en bestämd nästa
+     match får ett framhävt kort med vinstchans, och framtida rundor listar
+     de troligaste motståndarna. Bygger på calcResult.focal: per runda dess
+     reachP (chans att nå dit) och opponents (fördelning GIVET att laget når
+     rundan), samt focal.win.
   ==================================================================== */
   var BOARD_ROUNDS = [
     { key: "r32", title: "1/16-final" },
-    { key: "r16", title: "1/8-final" },
+    { key: "r16", title: "Åttondelsfinal" },
     { key: "qf", title: "Kvartsfinal" },
     { key: "sf", title: "Semifinal" },
     { key: "final", title: "Final" }
@@ -3157,19 +3368,56 @@
     return (Math.round(v * 10) / 10).toFixed(1).replace(".", ",");
   }
 
-  // En motståndarcell: vertikal styrkemätare + flagga + namn + sannolikhet.
+  // En motståndarcell: flagga + namn + sannolikhet + styrkemätare i botten.
+  // Klickbar: byter fokuslag till motståndaren ("hur ser deras väg ut?").
   function calcBoardCell(e, sel, maxP, isTop) {
     var map = r32EnglishToTeam(), t = map[e.nm];
-    var barH = Math.max(10, Math.min(100, e.p / maxP * 100)).toFixed(0);
-    var win = calcWinP(sel.team.name, e.nm);
+    var barW = Math.max(4, Math.min(100, e.p / maxP * 100)).toFixed(0);
+    var win = matchWinP(sel.team.name, e.nm);
+    var goKey = t ? calcTeamKeyOf(t) : null;
     var tip = r32TipId('<h4>' + esc(r32SvName(e.nm)) + '</h4>' +
       '<div class="hl"><b>' + r32Pct(e.p) + '</b> chans att mötas här (om ' + esc(teamSvFixture(sel.team)) + ' når rundan)</div>' +
-      (win != null ? '<div>~<b>' + Math.round(win * 100) + '%</b> att ' + esc(teamSvFixture(sel.team)) + ' vinner matchen</div>' : ''));
-    return '<div class="cb-cell' + (isTop ? " top" : "") + '" data-r32-tip="' + tip + '">' +
-        '<span class="cb-bar" style="height:' + barH + '%"></span>' +
+      (win != null ? '<div>~<b>' + Math.round(win * 100) + '%</b> att ' + esc(teamSvFixture(sel.team)) + ' vinner matchen</div>' : '') +
+      (goKey ? '<div class="tip-more">Klicka för att se lagets egen väg</div>' : ''));
+    return '<div class="cb-cell' + (isTop ? " top" : "") + (goKey ? " go" : "") +
+        '" data-r32-tip="' + tip + '"' +
+        (goKey ? ' data-calc-goto="' + goKey + '" role="button" tabindex="0"' : '') + '>' +
+        '<span class="cb-bar" style="width:' + barW + '%"></span>' +
         '<span class="cb-flag">' + (t ? flagImg(t.iso) : "") + '</span>' +
         '<span class="cb-nm">' + esc(r32SvName(e.nm)) + '</span>' +
         '<span class="cb-pct"><b>' + calcBoardNum(e.p) + '</b><i>%</i></span>' +
+      '</div>';
+  }
+
+  // Avklarad runda: den spelade matchen som facit i stället för sannolikheter.
+  function calcDoneCell(sel, mm) {
+    var opp = mm.isHome ? mm.away : mm.home;
+    var myG = mm.isHome ? mm.r.h : mm.r.a, opG = mm.isHome ? mm.r.a : mm.r.h;
+    var outcome = myG > opG ? "v" : (myG < opG ? "f" : "o");
+    if (myG === opG && mm.r.pw) outcome = (mm.r.pw === (mm.isHome ? "h" : "a")) ? "v" : "f";
+    var pen = (myG === opG && mm.r.pw) ? '<sup>S</sup>' : '';
+    var open = matchOpenAttr(mm.key);
+    return '<div class="cb-cell donecell ' + outcome + open.cls + '"' + open.attr + '>' +
+        '<span class="cb-flag">' + (opp ? flagImg(opp.iso) : "") + '</span>' +
+        '<span class="cb-nm">' + (opp ? esc(teamSvFixture(opp)) : "?") + '</span>' +
+        '<span class="cb-res">' + myG + '–' + opG + pen + '</span>' +
+      '</div>';
+  }
+
+  // Nästa match är helt bestämd: eget framhävt kort med datum + vinstchans.
+  function calcNextCell(sel, mm) {
+    var opp = mm.isHome ? mm.away : mm.home;
+    var win = matchWinP(sel.team.name, opp.name);
+    var when = whenLabels(mm.m);
+    var open = matchOpenAttr(mm.key);
+    return '<div class="cb-cell nextcell' + open.cls + '"' + open.attr + '>' +
+        '<span class="cb-nextbadge">Nästa match</span>' +
+        '<span class="cb-nextteam">' + flagImg(opp.iso) + '<b>' + esc(teamSvFixture(opp)) + '</b></span>' +
+        '<span class="cb-nextwhen">' + esc(when.dateLabel + " · " + when.time) + '</span>' +
+        (win != null
+          ? '<span class="ch-gauge"><i style="width:' + Math.round(win * 100) + '%"></i></span>' +
+            '<span class="ch-winlbl">~' + Math.round(win * 100) + ' % vinstchans</span>'
+          : '') +
       '</div>';
   }
 
@@ -3181,28 +3429,45 @@
     var COLLAPSED_N = 8;
     var expanded = ui("calcBoardN", "8") === "all";
 
+    var koByRound = calcKoByRound(sel);
+    // Kolumnens tillstånd: "done" = rundan är spelad (visa facit), "next" =
+    // matchen är bestämd men inte spelad (framhävt kort), annars "prob".
     var perCol = BOARD_ROUNDS.map(function (r) {
       var data = focal[r.key] || { reachP: 0, opponents: {} };
-      return { r: r, reach: data.reachP || 0, entries: calcOppEntries(data.opponents) };
+      var mm = koByRound[r.title] || null;
+      var state = mm && mm.played ? "done" : (mm && mm.home && mm.away ? "next" : "prob");
+      return { r: r, reach: data.reachP || 0, entries: calcOppEntries(data.opponents), mm: mm, state: state };
     });
-    var maxEntries = perCol.reduce(function (m, c) { return Math.max(m, c.entries.length); }, 0);
     // Ihopfälld: max 8 rader. Utfälld: ALLA motståndare som förekom i simuleringen,
-    // hur liten chansen än är – inget hårt tak på 16 eller liknande.
+    // hur liten chansen än är. Bara sannolikhetskolumnerna räknas – facit/nästa
+    // match är alltid en enda cell.
+    var maxEntries = perCol.reduce(function (m, c) {
+      return c.state === "prob" ? Math.max(m, c.entries.length) : m;
+    }, 0);
     var rowsToShow = expanded ? Math.max(1, maxEntries) : Math.min(COLLAPSED_N, Math.max(1, maxEntries));
     var anyMore = maxEntries > rowsToShow;
 
     var cols = perCol.map(function (c) {
-      var faint = (c.reach < 0.005 || !c.entries.length);
-      var maxP = c.entries.length ? (c.entries[0].p || 0.0001) : 0.0001;
+      var faint = c.state === "prob" && (c.reach < 0.005 || !c.entries.length);
       var cells = "";
-      for (var i = 0; i < rowsToShow; i++) {
-        cells += i < c.entries.length
-          ? calcBoardCell(c.entries[i], sel, maxP, i === 0)
-          : '<div class="cb-cell ghost" aria-hidden="true"></div>';
+      if (c.state === "done") cells = calcDoneCell(sel, c.mm);
+      else if (c.state === "next") cells = calcNextCell(sel, c.mm);
+      else {
+        var maxP = c.entries.length ? (c.entries[0].p || 0.0001) : 0.0001;
+        var n = Math.min(rowsToShow, c.entries.length);
+        for (var i = 0; i < n; i++) cells += calcBoardCell(c.entries[i], sel, maxP, i === 0);
+        if (!n) cells = '<div class="cb-empty">–</div>';
       }
-      return '<div class="cb-col' + (faint ? " faint" : "") + '">' +
+      var reachTxt = c.state === "done" ? "Avklarad ✓"
+        : c.state === "next" ? "Motståndaren är klar"
+        : faint ? "osannolikt" : r32Pct(c.reach) + " chans att nå hit";
+      // Mätaren i rundhuvudet visualiserar chansen att nå rundan (fylld när
+      // rundan är avklarad eller nästa match är bestämd).
+      var meterW = c.state === "prob" ? Math.max(c.reach > 0 ? 3 : 0, Math.round(c.reach * 100)) : 100;
+      return '<div class="cb-col ' + c.state + (faint ? " faint" : "") + '">' +
           '<div class="cb-colhead"><span class="cb-round">' + c.r.title + '</span>' +
-            '<span class="cb-reach">' + (faint ? "osannolikt" : r32Pct(c.reach) + " når hit") + '</span></div>' +
+            '<span class="cb-reach">' + reachTxt + '</span>' +
+            '<span class="cb-meter"><i style="width:' + meterW + '%"></i></span></div>' +
           '<div class="cb-cells">' + cells + '</div>' +
         '</div>';
     }).join("");
@@ -3211,19 +3476,10 @@
       ? '<button type="button" class="cb-more" data-calc-boardmore>' + (expanded ? "Visa färre ▴" : "Visa alla motståndare ▾") + '</button>'
       : '';
 
-    var winTip = r32TipId('<h4>' + esc(sel.team.sv) + '</h4><div class="hl"><b>' + r32Pct(focal.win || 0) + '</b> chans att vinna hela VM</div>');
-    var winBox = '<div class="cb-win" data-r32-tip="' + winTip + '">' +
-        '<div class="cb-win-title">Vinn<br>VM</div>' +
-        '<div class="cb-win-trophy" aria-hidden="true">🏆</div>' +
-        '<div class="cb-win-pct">' + calcBoardNum(focal.win || 0) + ' <span>%</span></div>' +
-      '</div>';
-
     morphInto(host, '<div class="cb-wrap">' +
-        '<div class="cb-main">' +
-          '<h3 class="cb-title">Möjliga motståndare i slutspelet</h3>' +
-          '<div class="cb-cols">' + cols + '</div>' +
-          moreBtn +
-        '</div>' + winBox +
+        '<h3 class="cb-title">Möjliga motståndare i slutspelet</h3>' +
+        '<div class="cb-cols">' + cols + '</div>' +
+        moreBtn +
       '</div>');
   }
 
@@ -3234,7 +3490,8 @@
     morphInto(host,
       '<p class="cb-note">Procenten vid varje lag visar hur ofta <b>' + esc(teamSvFixture(sel.team)) +
         '</b> möter just det laget i rundan – räknat bara på de simuleringar där laget faktiskt tar sig dit, ' +
-        'inte chansen att laget når dit. Rutan <b>Vinn VM</b> visar den totala chansen att gå hela vägen.</p>' +
+        'inte chansen att laget når dit. Plattan <b>Vinn VM</b> högst upp visar den totala chansen att gå hela vägen. ' +
+        'Klicka på ett lag för att se dess egen väg.</p>' +
       '<button type="button" class="cb-about" data-calc-about aria-expanded="false">Om beräkningarna</button>' +
       '<div class="cb-about-panel" id="calc-about" hidden>' + calcAboutHtml(sel) + '</div>');
   }
@@ -3278,23 +3535,48 @@
   /* ---------- lagets VM-resa: spelade matcher i kronologisk ordning ----------
      Ersätter den gamla what-if-panelen. Visar det valda lagets färdigspelade
      matcher (äldst först) som klickbara rader – klick öppnar samma matchmodal
-     som i kalendern via data-match-open. Spoilerstyrt: teamMatches bygger på
-     getRes, så en spoilerdold match räknas inte som spelad och döljs här. */
+     som i kalendern via data-match-open. Nästa match (om motståndaren är känd)
+     avslutar listan som en egen framåtblickande rad. Spoilerstyrt: teamMatches
+     bygger på getRes, så en spoilerdold match räknas inte som spelad. */
   function renderCalcJourney(sel) {
     var host = document.getElementById("calc-journey");
     if (!host) return;
     var matches = teamMatches(sel.team, sel.g, getCtx());
     var played = matches.filter(function (mm) { return mm.played && mm.home && mm.away; });
+    var next = matches.filter(function (mm) { return !mm.played; })[0];
+    var nextRow = next && next.home && next.away ? calcJourneyNextRow(sel.team, next) : "";
 
     var head = '<div class="calc-journey-head">' +
       '<h4>' + esc(teamSvFixture(sel.team)) + 's VM</h4></div>';
 
-    if (!played.length) {
+    if (!played.length && !nextRow) {
       morphInto(host, head + '<div class="calc-faint">Inga matcher spelade ännu.</div>');
       return;
     }
     morphInto(host, head + '<ol class="cj-list">' +
-      played.map(function (mm) { return calcJourneyRow(sel.team, mm); }).join("") + '</ol>');
+      played.map(function (mm) { return calcJourneyRow(sel.team, mm); }).join("") +
+      nextRow + '</ol>');
+  }
+
+  // Nästa match längst ned i resan: tid i stället för resultat, pil i stället
+  // för V/O/F-bricka. Klickbar som de spelade raderna.
+  function calcJourneyNextRow(team, mm) {
+    var opp = mm.isHome ? mm.away : mm.home;
+    var d = parseDateUTC(mm.m.date);
+    var dateShort = d.getUTCDate() + " " + MONTHS[d.getUTCMonth()];
+    var tag = mm.label.replace(/\s+\d+$/, "");
+    var when = whenLabels(mm.m);
+    var open = matchOpenAttr(mm.key);
+    return '<li class="cj-row next' + open.cls + '"' + open.attr + '>' +
+      '<span class="cj-date">' + dateShort + '</span>' +
+      '<span class="cj-match">' +
+        '<span class="cj-team"><span class="cj-abbr" title="' + esc(team.sv) + '">' + esc(teamSvFixture(team)) + '</span>' + flagImg(team.iso) + '</span>' +
+        '<span class="cj-score time">' + esc(when.time) + '</span>' +
+        '<span class="cj-team opp">' + flagImg(opp.iso) + '<span class="cj-abbr" title="' + esc(opp.sv) + '">' + esc(teamSvFixture(opp)) + '</span></span>' +
+      '</span>' +
+      '<span class="cj-tag">' + esc(tag) + '</span>' +
+      '<span class="cj-out n" title="Nästa match">→</span>' +
+    '</li>';
   }
 
   function calcJourneyRow(team, mm) {
@@ -3336,6 +3618,9 @@
     if (!calcOpen) return false;
     var tab = t.closest && t.closest("[data-calc-tab]");
     if (tab) { calcSetTeam(tab.getAttribute("data-calc-tab")); return true; }
+    // Klick på en motståndarcell i tavlan: byt fokuslag till det laget.
+    var go = t.closest && t.closest("[data-calc-goto]");
+    if (go) { calcSetTeam(go.getAttribute("data-calc-goto")); return true; }
     if (t.closest && t.closest("[data-calc-boardmore]")) {
       setUi("calcBoardN", ui("calcBoardN", "8") === "all" ? "8" : "all");
       renderCalcBoard(r32TeamByKey(r32TeamKey)); return true;
@@ -3772,13 +4057,8 @@
       });
     });
 
-    // Förväntade mål per lag i varje gruppmatch (ur exakt-resultatoddsen) –
-    // underlag för att anpassa lagens anfall/försvar för slutspelsmatcherna.
-    var ratingMatches = odds.matches.map(function (m) {
-      var muH = 0, muA = 0;
-      m.scores.forEach(function (s) { muH += s.h * s.p; muA += s.a * s.p; });
-      return { home: m.home, away: m.away, g: m.g, muH: muH, muA: muA };
-    });
+    // Förväntade mål per lag i varje gruppmatch (delas med visnings-modellen).
+    var ratingMatches = buildRatingMatches(odds);
 
     var input = {
       n: BRACKET_N, seed: 0x9e3779b9,
@@ -3808,7 +4088,7 @@
   function bracketEnsureWorker() {
     if (bracketWorker) return;
     try {
-      bracketWorker = new Worker("assets/bracketworker.js?v=7");
+      bracketWorker = new Worker("assets/bracketworker.js?v=8");
       bracketWorker.onmessage = function (e) {
         var d = e.data || {};
         if (d.seq !== bracketSeq) return;       // ett nyare anrop har startats

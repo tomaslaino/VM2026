@@ -156,6 +156,67 @@
     return { a: a, d: d, mu0: mu0 };
   }
 
+  // ---- analytisk matchmodell (för UI-visning) -------------------------------
+  // EXAKT samma modell som matchWinnerModel i compute(), men i väntevärde i
+  // stället för sampling: Poisson-mål (trunkerade vid 8 som poisson()-sampeln),
+  // förlängning med λ/3 och "straffar" via tanh-lutningen. Det gör att t.ex.
+  // "ni vinner X %" i kalkylatorn/sextondelskollen visar SAMMA siffra som
+  // simuleringen faktiskt räknar med – en enda sanning för matchvinst överallt.
+  function poissonPmfCapped(lambda, max) {
+    var p = new Array(max + 1);
+    var term = Math.exp(-lambda), acc = term;
+    p[0] = term;
+    for (var k = 1; k < max; k++) { term = term * lambda / k; p[k] = term; acc += term; }
+    p[max] = Math.max(0, 1 - acc);        // svansen klumpas på taket, som sampeln
+    return p;
+  }
+  // {p1, px} för två oberoende trunkerade Poisson (p2 = 1 − p1 − px).
+  function poissonHeadToHead(lamX, lamY) {
+    var px = poissonPmfCapped(lamX, 8), py = poissonPmfCapped(lamY, 8);
+    var win = 0, draw = 0;
+    for (var i = 0; i <= 8; i++) {
+      draw += px[i] * py[i];
+      for (var j = 0; j < i; j++) win += px[i] * py[j];
+    }
+    return { p1: win, px: draw };
+  }
+  // Delad modellbyggare: samma indata som compute() (ratingMatches + strength)
+  // ger ett objekt med analytiska sannolikheter för en slutspelsmatch.
+  //   winP(x, y)  – P(x går vidare) inkl. förlängning + straffar
+  //   rp90(x, y)  – {1, X, 2} efter 90 minuter (null utan ratingMatches)
+  function buildMatchModel(opts) {
+    opts = opts || {};
+    var K = opts.K != null ? opts.K : 0.6;
+    var strength = opts.strength || {};
+    var R = opts.ratingMatches && opts.ratingMatches.length
+      ? fitRatings(opts.ratingMatches, strength, opts.koStrScale, opts.koPaceScale)
+      : null;
+    var vals = Object.keys(strength).map(function (k) { return strength[k]; });
+    var minStr = (vals.length ? Math.min.apply(null, vals) : 0) - 1;
+    function S(name) { return strength[name] != null ? strength[name] : minStr; }
+    function logisticWin(x, y) { return 1 / (1 + Math.exp(-K * (S(x) - S(y)))); }
+    function lambdas(x, y) {
+      var ax = R.a[x] || 0, dx = R.d[x] || 0, ay = R.a[y] || 0, dy = R.d[y] || 0;
+      return {
+        lamX: R.mu0 * Math.exp(ax + dy), lamY: R.mu0 * Math.exp(ay + dx),
+        pPen: 0.5 + 0.10 * Math.tanh((ax - dx) - (ay - dy))
+      };
+    }
+    function rp90(x, y) {
+      if (!R) return null;
+      var L = lambdas(x, y), h = poissonHeadToHead(L.lamX, L.lamY);
+      return { "1": h.p1, "X": h.px, "2": Math.max(0, 1 - h.p1 - h.px) };
+    }
+    function winP(x, y) {
+      if (!R) return logisticWin(x, y);
+      var L = lambdas(x, y);
+      var full = poissonHeadToHead(L.lamX, L.lamY);
+      var et = poissonHeadToHead(L.lamX / 3, L.lamY / 3);
+      return full.p1 + full.px * (et.p1 + et.px * L.pPen);
+    }
+    return { winP: winP, rp90: rp90, hasRatings: !!R };
+  }
+
   // ---- aggregerings-helpers ------------------------------------------------
   // minP: undre gräns för att tas med (default 0.1%). Kalkylatorns
   // motståndarlistor vill visa VARJE lag som förekom i simuleringen, hur
@@ -481,7 +542,11 @@
     return out;
   }
 
-  var api = { compute: compute, strengthsFromOutrights: strengthsFromOutrights };
+  var api = {
+    compute: compute,
+    strengthsFromOutrights: strengthsFromOutrights,
+    buildMatchModel: buildMatchModel
+  };
   root.BracketEngine = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof self !== "undefined" ? self : (typeof globalThis !== "undefined" ? globalThis : this));
