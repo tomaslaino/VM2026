@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-02T01:50:21.274Z",
+    "updatedAt": "2026-07-02T05:49:30.474Z",
     "source": "espn",
     "matchCount": 82,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -417,19 +417,10 @@
     "k:81": {
       "h": 2,
       "a": 0,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:81",
-      "status": "IN_PLAY",
-      "minute": 84,
-      "home": "United States",
-      "away": "Bosnia-Herzegovina",
-      "score": "2-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1812,7 +1803,7 @@
       "date": "2026-07-02",
       "time": "02:00",
       "utcDate": "2026-07-02T00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "United States",
       "away": "Bosnia-Herzegovina",
@@ -2012,9 +2003,12 @@
       "utcDate": "2026-07-07T00:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Round of 32 9 Winner",
+      "home": "United States",
       "away": "Belgium",
-      "homeRef": null,
+      "homeRef": {
+        "group": "D",
+        "idx": 0
+      },
       "awayRef": {
         "group": "G",
         "idx": 0

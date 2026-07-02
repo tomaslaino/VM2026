@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-02T01:50:21.304Z",
+    "updatedAt": "2026-07-02T05:49:30.499Z",
     "source": "espn"
   },
   "details": {
@@ -36341,11 +36341,11 @@
     },
     "k:81": {
       "espnId": "760494",
-      "status": "IN_PLAY",
-      "minute": 84,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-02T00:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
           "h": 2,
@@ -36423,6 +36423,24 @@
           "team": "a",
           "in": "Amar Memic",
           "out": "Nikola Katic"
+        },
+        {
+          "minute": 87,
+          "team": "h",
+          "in": "Sebastian Berhalter",
+          "out": "Sergiño Dest"
+        },
+        {
+          "minute": 88,
+          "team": "h",
+          "in": "Ricardo Pepi",
+          "out": "Christian Pulisic"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Giovanni Reyna",
+          "out": "Weston McKennie"
         }
       ],
       "penalties": [],
@@ -36489,7 +36507,8 @@
           "bench": [
             {
               "name": "Giovanni Reyna",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             },
             {
               "name": "Chris Brady",
@@ -36517,7 +36536,8 @@
             },
             {
               "name": "Sebastian Berhalter",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Alejandro Zendejas",
@@ -36537,7 +36557,8 @@
             },
             {
               "name": "Ricardo Pepi",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             }
           ]
         },
@@ -36671,17 +36692,17 @@
       },
       "referee": "Raphael Claus",
       "venue": "Levi's Stadium, Santa Clara, California",
-      "attendance": null,
+      "attendance": 68827,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "51%",
-          "a": "49%"
+          "h": "48%",
+          "a": "52%"
         },
         {
           "key": "totalShots",
-          "h": "7",
-          "a": "6"
+          "h": "8",
+          "a": "10"
         },
         {
           "key": "shotsOnTarget",
@@ -36695,12 +36716,12 @@
         },
         {
           "key": "foulsCommitted",
-          "h": "5",
-          "a": "10"
+          "h": "7",
+          "a": "13"
         },
         {
           "key": "offsides",
-          "h": "2",
+          "h": "3",
           "a": "0"
         },
         {
@@ -36710,13 +36731,13 @@
         },
         {
           "key": "totalPasses",
-          "h": "362",
-          "a": "351"
+          "h": "415",
+          "a": "447"
         },
         {
           "key": "passPct",
-          "h": "85%",
-          "a": "81%"
+          "h": "84%",
+          "a": "82%"
         },
         {
           "key": "yellowCards",
@@ -36729,7 +36750,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-02T01:50:21.304Z"
+      "updatedAt": "2026-07-02T05:49:30.499Z"
     }
   }
 }
