@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-02T22:45:42.464Z",
+    "updatedAt": "2026-07-02T23:49:05.172Z",
     "source": "espn",
-    "matchCount": 83,
-    "liveCount": 0,
+    "matchCount": 84,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -423,9 +423,23 @@
       "h": 3,
       "a": 0,
       "status": "FINISHED"
+    },
+    "k:83": {
+      "h": 0,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:83",
+      "status": "IN_PLAY",
+      "minute": 45,
+      "home": "Portugal",
+      "away": "Croatia",
+      "score": "0-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1842,7 +1856,7 @@
       "date": "2026-07-03",
       "time": "01:00",
       "utcDate": "2026-07-02T23:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Portugal",
       "away": "Croatia",

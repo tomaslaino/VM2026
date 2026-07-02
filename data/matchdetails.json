@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-02T22:45:42.474Z",
+    "updatedAt": "2026-07-02T23:49:05.209Z",
     "source": "espn"
   },
   "details": {
@@ -48027,6 +48027,403 @@
         }
       ],
       "updatedAt": "2026-07-02T21:37:50.771Z"
+    },
+    "k:83": {
+      "espnId": "760496",
+      "fmt": 2,
+      "status": "IN_PLAY",
+      "minute": 45,
+      "utcDate": "2026-07-02T23:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [
+        {
+          "minute": 17,
+          "team": "h",
+          "player": "Rúben Dias",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Diogo Costa",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "João Cancelo",
+              "jersey": "20",
+              "pos": "RB",
+              "st": {
+                "fc": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Nuno Mendes",
+              "jersey": "25",
+              "pos": "LB",
+              "st": {
+                "fs": 2,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Vitinha",
+              "jersey": "23",
+              "pos": "LM",
+              "st": {
+                "fs": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Rúben Dias",
+              "jersey": "3",
+              "pos": "CD-R",
+              "st": {
+                "fc": 2,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Renato Veiga",
+              "jersey": "13",
+              "pos": "CD-L",
+              "st": {
+                "fc": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Pedro Neto",
+              "jersey": "18",
+              "pos": "AM-R"
+            },
+            {
+              "name": "João Neves",
+              "jersey": "15",
+              "pos": "RM",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Cristiano Ronaldo",
+              "jersey": "7",
+              "pos": "F",
+              "st": {
+                "sh": 1
+              }
+            },
+            {
+              "name": "Bruno Fernandes",
+              "jersey": "8",
+              "pos": "AM",
+              "st": {
+                "fs": 1,
+                "sg": 1,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Rafael Leão",
+              "jersey": "17",
+              "pos": "AM-L",
+              "st": {
+                "sh": 1
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Samú Costa",
+              "jersey": "24"
+            },
+            {
+              "name": "Rúben Neves",
+              "jersey": "21"
+            },
+            {
+              "name": "Tomás Araújo",
+              "jersey": "4"
+            },
+            {
+              "name": "Gonçalo Inácio",
+              "jersey": "14"
+            },
+            {
+              "name": "Matheus Nunes",
+              "jersey": "6"
+            },
+            {
+              "name": "João Félix",
+              "jersey": "11"
+            },
+            {
+              "name": "Nélson Semedo",
+              "jersey": "2"
+            },
+            {
+              "name": "Francisco Conceição",
+              "jersey": "26"
+            },
+            {
+              "name": "Gonçalo Ramos",
+              "jersey": "9"
+            },
+            {
+              "name": "Gonçalo Guedes",
+              "jersey": "19"
+            },
+            {
+              "name": "Rui Silva",
+              "jersey": "22"
+            },
+            {
+              "name": "Diogo Dalot",
+              "jersey": "5"
+            },
+            {
+              "name": "Francisco Trincão",
+              "jersey": "16"
+            },
+            {
+              "name": "Bernardo Silva",
+              "jersey": "10"
+            },
+            {
+              "name": "José Sá",
+              "jersey": "12"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Dominik Livakovic",
+              "jersey": "1",
+              "pos": "G",
+              "st": {
+                "sv": 2
+              }
+            },
+            {
+              "name": "Josip Stanisic",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Ivan Perisic",
+              "jersey": "14",
+              "pos": "LB",
+              "st": {
+                "fs": 1
+              }
+            },
+            {
+              "name": "Mateo Kovacic",
+              "jersey": "8",
+              "pos": "LM",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Josip Sutalo",
+              "jersey": "6",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Marin Pongracic",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Nikola Vlasic",
+              "jersey": "13",
+              "pos": "AM-R",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Luka Modric",
+              "jersey": "10",
+              "pos": "RM"
+            },
+            {
+              "name": "Ante Budimir",
+              "jersey": "11",
+              "pos": "F",
+              "st": {
+                "fc": 1,
+                "fs": 2,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Petar Sucic",
+              "jersey": "17",
+              "pos": "AM",
+              "st": {
+                "fc": 3,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Martin Baturina",
+              "jersey": "16",
+              "pos": "AM-L",
+              "st": {
+                "sh": 1
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Andrej Kramaric",
+              "jersey": "9"
+            },
+            {
+              "name": "Igor Matanovic",
+              "jersey": "20"
+            },
+            {
+              "name": "Luka Sucic",
+              "jersey": "21"
+            },
+            {
+              "name": "Dominik Kotarski",
+              "jersey": "23"
+            },
+            {
+              "name": "Mario Pasalic",
+              "jersey": "15"
+            },
+            {
+              "name": "Luka Vuskovic",
+              "jersey": "22"
+            },
+            {
+              "name": "Josko Gvardiol",
+              "jersey": "4"
+            },
+            {
+              "name": "Nikola Moro",
+              "jersey": "7"
+            },
+            {
+              "name": "Duje Caleta-Car",
+              "jersey": "5"
+            },
+            {
+              "name": "Petar Musa",
+              "jersey": "26"
+            },
+            {
+              "name": "Marco Pasalic",
+              "jersey": "24"
+            },
+            {
+              "name": "Toni Fruk",
+              "jersey": "19"
+            },
+            {
+              "name": "Kristijan Jakic",
+              "jersey": "18"
+            },
+            {
+              "name": "Martin Erlic",
+              "jersey": "25"
+            },
+            {
+              "name": "Ivor Pandur",
+              "jersey": "12"
+            }
+          ]
+        }
+      },
+      "referee": "Espen Eskas",
+      "venue": "BMO Field, Toronto",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "70%",
+          "a": "29%"
+        },
+        {
+          "key": "totalShots",
+          "h": "9",
+          "a": "3"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "6",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "5",
+          "a": "6"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "2"
+        },
+        {
+          "key": "totalPasses",
+          "h": "333",
+          "a": "137"
+        },
+        {
+          "key": "passPct",
+          "h": "94%",
+          "a": "83%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-02T23:49:05.209Z"
     }
   }
 }
