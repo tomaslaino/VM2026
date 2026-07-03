@@ -59,6 +59,38 @@
   var calGroupOpen = null;      // grupp-bokstav för öppen tabell-popup i kalendern
   var calHighlights = {};       // matchnyckel -> { SVT?:{full,long,short}, TV4?:{...} } (repriser i kalendern)
 
+  /* ---------- Bakgrundsscroll: lås body medan ett fönster (modal/drawer/popup)
+     är öppet – annars scrollar sidan bakom på mobil och känns trasig. Räknare
+     så att nästlade fönster (t.ex. spelarprofil ovanpå matchinfo) inte låser
+     upp bakgrunden förrän det yttersta fönstret också stängts. */
+  var scrollLockCount = 0, scrollLockY = 0;
+  function lockScroll() {
+    if (scrollLockCount === 0) {
+      scrollLockY = window.scrollY || window.pageYOffset || 0;
+      document.body.classList.add("scroll-locked");
+      document.body.style.top = -scrollLockY + "px";
+    }
+    scrollLockCount++;
+  }
+  function unlockScroll() {
+    scrollLockCount = Math.max(0, scrollLockCount - 1);
+    if (scrollLockCount === 0) {
+      document.body.classList.remove("scroll-locked");
+      document.body.style.top = "";
+      window.scrollTo(0, scrollLockY);
+    }
+  }
+
+  /* Stänger de "sidopanel"-fönster som kan hamna bakom/ovanpå en nyöppnad
+     modal om de lämnas öppna (lag-lådan, kalenderns gruppruta, slutspelets
+     infopanel). Anropas av andra moduler (matchinfo.js, live.js,
+     playerstats.js) innan de öppnar sin egen modal ovanpå. */
+  function closeSideOverlays() {
+    if (selectedTeam) closeTeam();
+    if (calGroupOpen) hideCalGroupPopup();
+    if (hoverMatch) { hoverMatch = null; hideAside(); syncExpandButtons(); }
+  }
+
   function loadState() {
     try {
       var raw = localStorage.getItem(STORE_KEY);
@@ -1969,8 +2001,10 @@
       (side.predicted ? " predicted" : "") + (side.team ? "" : " tbd");
     var slot = ha === "h" ? res.match.home : res.match.away;
     var penStar = penWin ? '<span class="pen-star" title="Vann på straffar">*</span>' : "";
+    // Ingen egen lagknapp här – hela rutan öppnar matchinfo (data-match-open på
+    // kortet). Lagen klickar man fram inuti den modalen i stället, som vanligt.
     var inner = side.team
-      ? teamOpenBtn(side.team, flagImg(side.team.iso) + '<span class="s-name" title="' + esc(side.team.sv) + '">' + shyTeamName(esc(bracketTeamName(side))) + '</span>' + penStar, "side-team")
+      ? '<span class="side-team">' + flagImg(side.team.iso) + '<span class="s-name" title="' + esc(side.team.sv) + '">' + shyTeamName(esc(bracketTeamName(side))) + '</span>' + penStar + '</span>'
       : '<span class="s-name placeholder seed-chip ' + seedTypeClass(slot) + '" title="' + esc(slotSeedLong(slot)) + '">' + slotSeedHtml(slot) + '</span>';
     var r = res.result || {};
     var scoreCell = scoreDisplay(r[ha]);
@@ -6057,9 +6091,14 @@
     var tg = t.closest && t.closest("[data-toggle-group]");
     if (tg) { var L = tg.getAttribute("data-toggle-group"); expandedGroups[L] = !expandedGroups[L]; render(); return; }
 
-    // klick på lag → öppna statistikflik (alla vyer)
+    // klick på lag → öppna statistikflik (alla vyer). Om klicket kommer inifrån
+    // matchinfo-modalen (lägre z-index än laglådan) stängs modalen först så att
+    // laglådan inte hamnar bakom den.
     var teamEl = t.closest && t.closest("[data-team-open]");
     if (teamEl) {
+      if (t.closest && t.closest("#matchModal") && window.VMMatchInfo && typeof window.VMMatchInfo.close === "function") {
+        window.VMMatchInfo.close();
+      }
       openTeamByIso(teamEl.getAttribute("data-team-open"));
       return;
     }
@@ -6531,6 +6570,8 @@
     var backdrop = document.createElement("div"); backdrop.id = "drawerBackdrop"; backdrop.className = "drawer-backdrop";
     document.body.appendChild(backdrop);
     var drawer = document.createElement("aside"); drawer.id = "teamDrawer"; drawer.className = "team-drawer";
+    drawer.setAttribute("role", "dialog");
+    drawer.setAttribute("aria-modal", "true");
     document.body.appendChild(drawer);
 
     var calGroupBackdrop = document.createElement("div");
