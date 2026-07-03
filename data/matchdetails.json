@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-02T23:49:05.209Z",
+    "updatedAt": "2026-07-03T01:26:55.503Z",
     "source": "espn"
   },
   "details": {
@@ -48031,31 +48031,138 @@
     "k:83": {
       "espnId": "760496",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 45,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-02T23:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
+          "h": 2,
+          "a": 1
+        },
+        "ht": {
           "h": 0,
           "a": 0
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
+      "goals": [
+        {
+          "minute": 53,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Ivan Perisic",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        },
+        {
+          "minute": 68,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Cristiano Ronaldo",
+          "assist": null,
+          "type": "PENALTY",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 4,
+          "team": "h",
+          "scorer": "Gonçalo Ramos",
+          "assist": "Rafael Leão",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 1
+          }
+        }
+      ],
       "bookings": [
         {
           "minute": 17,
           "team": "h",
           "player": "Rúben Dias",
           "card": "YELLOW"
+        },
+        {
+          "minute": 59,
+          "team": "a",
+          "player": "Luka Modric",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Ivan Perisic",
+          "card": "YELLOW"
         }
       ],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Igor Matanovic",
+          "out": "Ante Budimir"
+        },
+        {
+          "minute": 62,
+          "team": "h",
+          "in": "Bernardo Silva",
+          "out": "Vitinha"
+        },
+        {
+          "minute": 63,
+          "team": "h",
+          "in": "Francisco Conceição",
+          "out": "Pedro Neto"
+        },
+        {
+          "minute": 63,
+          "team": "h",
+          "in": "Nélson Semedo",
+          "out": "Bruno Fernandes"
+        },
+        {
+          "minute": 63,
+          "team": "h",
+          "in": "Gonçalo Ramos",
+          "out": "João Cancelo"
+        },
+        {
+          "minute": 68,
+          "team": "a",
+          "in": "Mario Pasalic",
+          "out": "Martin Baturina"
+        },
+        {
+          "minute": 81,
+          "team": "h",
+          "in": "Rúben Neves",
+          "out": "Cristiano Ronaldo"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Josko Gvardiol",
+          "out": "Nikola Vlasic"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Andrej Kramaric",
+          "out": "Mateo Kovacic"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -48064,7 +48171,11 @@
             {
               "name": "Diogo Costa",
               "jersey": "1",
-              "pos": "G"
+              "pos": "G",
+              "st": {
+                "gc": 1,
+                "sv": 5
+              }
             },
             {
               "name": "João Cancelo",
@@ -48072,6 +48183,7 @@
               "pos": "RB",
               "st": {
                 "fc": 1,
+                "gc": 1,
                 "sh": 1
               }
             },
@@ -48081,6 +48193,7 @@
               "pos": "LB",
               "st": {
                 "fs": 2,
+                "gc": 1,
                 "sh": 1
               }
             },
@@ -48089,7 +48202,9 @@
               "jersey": "23",
               "pos": "LM",
               "st": {
-                "fs": 1,
+                "fc": 1,
+                "fs": 3,
+                "gc": 1,
                 "sh": 1
               }
             },
@@ -48099,7 +48214,8 @@
               "pos": "CD-R",
               "st": {
                 "fc": 2,
-                "fs": 1
+                "fs": 2,
+                "gc": 1
               }
             },
             {
@@ -48108,13 +48224,18 @@
               "pos": "CD-L",
               "st": {
                 "fc": 1,
-                "sh": 1
+                "fs": 1,
+                "gc": 1,
+                "sh": 2
               }
             },
             {
               "name": "Pedro Neto",
               "jersey": "18",
-              "pos": "AM-R"
+              "pos": "AM-R",
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "João Neves",
@@ -48123,6 +48244,7 @@
               "st": {
                 "fc": 1,
                 "fs": 1,
+                "gc": 1,
                 "sh": 1
               }
             },
@@ -48131,7 +48253,10 @@
               "jersey": "7",
               "pos": "F",
               "st": {
-                "sh": 1
+                "gc": 1,
+                "sg": 1,
+                "g": 1,
+                "sh": 2
               }
             },
             {
@@ -48139,7 +48264,8 @@
               "jersey": "8",
               "pos": "AM",
               "st": {
-                "fs": 1,
+                "fs": 2,
+                "gc": 1,
                 "sg": 1,
                 "sh": 2
               }
@@ -48149,7 +48275,9 @@
               "jersey": "17",
               "pos": "AM-L",
               "st": {
-                "sh": 1
+                "gc": 1,
+                "a": 1,
+                "sh": 2
               }
             }
           ],
@@ -48160,7 +48288,8 @@
             },
             {
               "name": "Rúben Neves",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Tomás Araújo",
@@ -48180,15 +48309,29 @@
             },
             {
               "name": "Nélson Semedo",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true,
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Francisco Conceição",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true,
+              "st": {
+                "sh": 1
+              }
             },
             {
               "name": "Gonçalo Ramos",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true,
+              "st": {
+                "sg": 1,
+                "g": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Gonçalo Guedes",
@@ -48208,7 +48351,8 @@
             },
             {
               "name": "Bernardo Silva",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true
             },
             {
               "name": "José Sá",
@@ -48224,20 +48368,29 @@
               "jersey": "1",
               "pos": "G",
               "st": {
+                "gc": 2,
                 "sv": 2
               }
             },
             {
               "name": "Josip Stanisic",
               "jersey": "2",
-              "pos": "RB"
+              "pos": "RB",
+              "st": {
+                "gc": 2
+              }
             },
             {
               "name": "Ivan Perisic",
               "jersey": "14",
               "pos": "LB",
               "st": {
-                "fs": 1
+                "fc": 1,
+                "fs": 1,
+                "gc": 2,
+                "sg": 1,
+                "g": 1,
+                "sh": 1
               }
             },
             {
@@ -48245,31 +48398,48 @@
               "jersey": "8",
               "pos": "LM",
               "st": {
-                "fc": 1
+                "fc": 1,
+                "fs": 1,
+                "gc": 2,
+                "sg": 3,
+                "sh": 3
               }
             },
             {
               "name": "Josip Sutalo",
               "jersey": "6",
-              "pos": "CD-R"
+              "pos": "CD-R",
+              "st": {
+                "fs": 1,
+                "gc": 2
+              }
             },
             {
               "name": "Marin Pongracic",
               "jersey": "3",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "gc": 2
+              }
             },
             {
               "name": "Nikola Vlasic",
               "jersey": "13",
               "pos": "AM-R",
               "st": {
-                "fc": 1
+                "fc": 2,
+                "gc": 1,
+                "sh": 1
               }
             },
             {
               "name": "Luka Modric",
               "jersey": "10",
-              "pos": "RM"
+              "pos": "RM",
+              "st": {
+                "fc": 2,
+                "gc": 2
+              }
             },
             {
               "name": "Ante Budimir",
@@ -48287,7 +48457,10 @@
               "pos": "AM",
               "st": {
                 "fc": 3,
-                "fs": 1
+                "fs": 1,
+                "gc": 2,
+                "sg": 1,
+                "sh": 1
               }
             },
             {
@@ -48295,6 +48468,7 @@
               "jersey": "16",
               "pos": "AM-L",
               "st": {
+                "gc": 1,
                 "sh": 1
               }
             }
@@ -48302,11 +48476,19 @@
           "bench": [
             {
               "name": "Andrej Kramaric",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Igor Matanovic",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true,
+              "st": {
+                "fc": 2,
+                "gc": 2,
+                "sg": 1,
+                "sh": 3
+              }
             },
             {
               "name": "Luka Sucic",
@@ -48318,7 +48500,12 @@
             },
             {
               "name": "Mario Pasalic",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true,
+              "st": {
+                "gc": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Luka Vuskovic",
@@ -48326,7 +48513,11 @@
             },
             {
               "name": "Josko Gvardiol",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Nikola Moro",
@@ -48365,57 +48556,57 @@
       },
       "referee": "Espen Eskas",
       "venue": "BMO Field, Toronto",
-      "attendance": null,
+      "attendance": 43036,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "70%",
-          "a": "29%"
+          "h": "61%",
+          "a": "40%"
         },
         {
           "key": "totalShots",
-          "h": "9",
-          "a": "3"
+          "h": "15",
+          "a": "13"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
-          "a": "1"
-        },
-        {
-          "key": "wonCorners",
-          "h": "6",
-          "a": "0"
-        },
-        {
-          "key": "foulsCommitted",
-          "h": "5",
+          "h": "3",
           "a": "6"
         },
         {
+          "key": "wonCorners",
+          "h": "9",
+          "a": "5"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "6",
+          "a": "12"
+        },
+        {
           "key": "offsides",
-          "h": "0",
-          "a": "1"
+          "h": "1",
+          "a": "4"
         },
         {
           "key": "saves",
-          "h": "1",
+          "h": "5",
           "a": "2"
         },
         {
           "key": "totalPasses",
-          "h": "333",
-          "a": "137"
+          "h": "584",
+          "a": "368"
         },
         {
           "key": "passPct",
-          "h": "94%",
-          "a": "83%"
+          "h": "91%",
+          "a": "85%"
         },
         {
           "key": "yellowCards",
           "h": "1",
-          "a": "0"
+          "a": "2"
         },
         {
           "key": "redCards",
@@ -48423,7 +48614,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-02T23:49:05.209Z"
+      "updatedAt": "2026-07-03T01:26:55.503Z"
     }
   }
 }

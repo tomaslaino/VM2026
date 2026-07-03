@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-02T23:49:05.172Z",
+    "updatedAt": "2026-07-03T01:26:55.464Z",
     "source": "espn",
     "matchCount": 84,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -425,21 +425,12 @@
       "status": "FINISHED"
     },
     "k:83": {
-      "h": 0,
-      "a": 0,
-      "status": "IN_PLAY"
+      "h": 2,
+      "a": 1,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:83",
-      "status": "IN_PLAY",
-      "minute": 45,
-      "home": "Portugal",
-      "away": "Croatia",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1856,7 +1847,7 @@
       "date": "2026-07-03",
       "time": "01:00",
       "utcDate": "2026-07-02T23:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Portugal",
       "away": "Croatia",
@@ -2011,9 +2002,12 @@
       "utcDate": "2026-07-06T19:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Round of 32 11 Winner",
+      "home": "Portugal",
       "away": "Spain",
-      "homeRef": null,
+      "homeRef": {
+        "group": "K",
+        "idx": 0
+      },
       "awayRef": {
         "group": "H",
         "idx": 0
