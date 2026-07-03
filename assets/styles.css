@@ -2447,8 +2447,9 @@ html.view-bracket .bracket .m-footer {
   font-size: 9.5px;
 }
 /* Datum/tid ("mån 29/6 · 22:30") ska alltid rymmas på en rad – ingen
-   radbrytning, så alla kort behåller exakt samma höjd. */
-html.view-bracket .bracket .m-when { white-space: nowrap; }
+   radbrytning, så alla kort behåller exakt samma höjd. Blir kolumnen ändå för
+   smal (telefon) ellipsas tiden i stället för att glida in under Odds-knappen. */
+html.view-bracket .bracket .m-when { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 html.view-bracket .bracket .match-expand {
   height: 16px;
   padding: 0 6px 0 8px;
@@ -3532,6 +3533,25 @@ a.tv-bcast:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   .nm-val { font-size: 16px; }
   .nm-unit { min-width: 26px; }
 
+  /* Matchraderna på förstasidan (Nattens/Avslutade matcher): repris-/TV-zonen
+     flyttar till en egen rad längst ner. I toppraden (datum | rundbricka |
+     repris) fick den långa repristexten ("Sändning slut · repris dröjer") inte
+     plats på telefonbredd utan lade sig ovanpå rundbrickan, och klockslaget
+     klipptes i datumrutan. */
+  .rp-row {
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "when group" "teams teams" "watch watch";
+  }
+  .rp-watch { justify-self: end; min-width: 0; }
+  .rp-watch:empty { display: none; }
+  .rm-norepris { white-space: normal; text-align: right; }
+  /* Tre rader per kort ⇒ högre rull-tak så ~fyra matcher fortfarande syns. */
+  .rp-list { max-height: 420px; }
+
+  /* Slutspelsträdet på telefon: något bredare kolumner (trädet panoreras ändå
+     i sidled) så datum + Odds-knapp ryms i matchrutornas sidfot utan krock. */
+  .bracket.two-sided { --bcol: 148px; }
+
   .fx-match {
     flex-direction: column;
     align-items: stretch;
@@ -4293,6 +4313,11 @@ span.pr-caps-debut.pr-caps-legend {
 .mi-ev-main {
   font-size: 13.5px; font-weight: 600; line-height: 1.3;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  /* Kroppen (mi-ev-body) kant-justerar sina barn (flex-start/flex-end), så
+     spannet stretchas inte till kroppens bredd. Utan tak blir nowrap-namnet
+     då bredare än den krympta kroppen och glider in under kort-/målikonen på
+     smala skärmar – taket låter ellipsen ta över i stället. */
+  max-width: 100%;
 }
 .mi-ev.goal .mi-ev-main { font-weight: 750; }
 .mi-ev-detail { font-size: 11.5px; color: var(--ink-soft); line-height: 1.3; }
@@ -4310,6 +4335,13 @@ span.pr-caps-debut.pr-caps-legend {
   content: ""; flex: 1; height: 1px; background: var(--line);
 }
 .mi-ev-divider + .mi-ev { border-top: 0; }
+/* Tidslinjen på telefon: en halv rad är bara ~150px bred, så spelarnamnen
+   bryts till två rader i stället för att ellipsas, och den lilla flaggan
+   döljs (vilket lag händelsen gäller syns redan på radens sida). */
+@media (max-width: 480px) {
+  .mi-ev .flag, .mi-ev-flag-ph { display: none; }
+  .mi-ev-main { white-space: normal; }
+}
 
 /* Laguppställning – sidovis översikt */
 .mi-lineups-overview { display: flex; flex-direction: column; gap: 6px; }
