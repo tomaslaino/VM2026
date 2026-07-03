@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-03T18:21:33.830Z",
+    "updatedAt": "2026-07-03T19:56:20.326Z",
     "source": "espn"
   },
   "details": {
@@ -49166,16 +49166,19 @@
       "espnId": "760499",
       "fmt": 2,
       "status": "IN_PLAY",
-      "minute": 21,
+      "minute": 90,
       "utcDate": "2026-07-03T18:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
+          "h": 1,
+          "a": 1
+        },
+        "ht": {
           "h": 0,
           "a": 1
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
@@ -49192,10 +49195,59 @@
             "h": 0,
             "a": 1
           }
+        },
+        {
+          "minute": 55,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Mohamed Hany",
+          "assist": null,
+          "type": "OWN",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
         }
       ],
       "bookings": [],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Kai Trewin",
+          "out": "Jordan Bos"
+        },
+        {
+          "minute": 67,
+          "team": "a",
+          "in": "Haissem Hassan",
+          "out": "Mostafa Zico"
+        },
+        {
+          "minute": 67,
+          "team": "a",
+          "in": "Hossam Abdelmaguid",
+          "out": "Hamdy Fathy"
+        },
+        {
+          "minute": 74,
+          "team": "h",
+          "in": "Ajdin Hrustic",
+          "out": "Cristian Volpato"
+        },
+        {
+          "minute": 74,
+          "team": "h",
+          "in": "Mohamed Toure",
+          "out": "Nestory Irankunda"
+        },
+        {
+          "minute": 80,
+          "team": "a",
+          "in": "Trézéguet",
+          "out": "Karim Hafez"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -49206,7 +49258,8 @@
               "jersey": "18",
               "pos": "G",
               "st": {
-                "gc": 1
+                "gc": 1,
+                "sv": 1
               }
             },
             {
@@ -49214,6 +49267,7 @@
               "jersey": "5",
               "pos": "RM",
               "st": {
+                "fc": 1,
                 "gc": 1
               }
             },
@@ -49222,7 +49276,10 @@
               "jersey": "16",
               "pos": "LM",
               "st": {
-                "gc": 1
+                "fs": 1,
+                "gc": 1,
+                "sg": 1,
+                "sh": 1
               }
             },
             {
@@ -49238,6 +49295,7 @@
               "jersey": "19",
               "pos": "CD",
               "st": {
+                "fc": 3,
                 "gc": 1
               }
             },
@@ -49246,6 +49304,7 @@
               "jersey": "3",
               "pos": "CD-R",
               "st": {
+                "fs": 1,
                 "gc": 1
               }
             },
@@ -49256,7 +49315,8 @@
               "st": {
                 "fc": 1,
                 "fs": 1,
-                "gc": 1
+                "gc": 1,
+                "sh": 1
               }
             },
             {
@@ -49264,6 +49324,8 @@
               "jersey": "13",
               "pos": "CM-L",
               "st": {
+                "fc": 1,
+                "fs": 2,
                 "gc": 1,
                 "sh": 1
               }
@@ -49273,7 +49335,9 @@
               "jersey": "17",
               "pos": "F",
               "st": {
-                "gc": 1
+                "fs": 2,
+                "gc": 1,
+                "sh": 2
               }
             },
             {
@@ -49281,8 +49345,9 @@
               "jersey": "20",
               "pos": "CF-R",
               "st": {
+                "fs": 1,
                 "gc": 1,
-                "sh": 1
+                "sh": 2
               }
             },
             {
@@ -49292,7 +49357,7 @@
               "st": {
                 "fc": 1,
                 "gc": 1,
-                "sh": 1
+                "sh": 2
               }
             }
           ],
@@ -49303,7 +49368,11 @@
             },
             {
               "name": "Ajdin Hrustic",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true,
+              "st": {
+                "sh": 2
+              }
             },
             {
               "name": "Cameron Burgess",
@@ -49315,7 +49384,11 @@
             },
             {
               "name": "Kai Trewin",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true,
+              "st": {
+                "sh": 1
+              }
             },
             {
               "name": "Milos Degenek",
@@ -49327,7 +49400,8 @@
             },
             {
               "name": "Mohamed Toure",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Tete Yengi",
@@ -49357,74 +49431,109 @@
             {
               "name": "Mostafa Shoubir",
               "jersey": "23",
-              "pos": "G"
+              "pos": "G",
+              "st": {
+                "gc": 1,
+                "sv": 1
+              }
             },
             {
               "name": "Mohamed Hany",
               "jersey": "3",
-              "pos": "RB"
+              "pos": "RB",
+              "st": {
+                "og": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Karim Hafez",
               "jersey": "15",
               "pos": "LB",
               "st": {
+                "fs": 1,
+                "gc": 1,
                 "a": 1
               }
             },
             {
               "name": "Hamdy Fathy",
               "jersey": "14",
-              "pos": "CM-R"
+              "pos": "CM-R",
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Yasser Ibrahim",
               "jersey": "2",
               "pos": "CD-R",
               "st": {
-                "fc": 1,
-                "fs": 1
+                "fc": 3,
+                "fs": 1,
+                "gc": 1
               }
             },
             {
               "name": "Ramy Rabia",
               "jersey": "5",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "fs": 1,
+                "gc": 1,
+                "sg": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Emam Ashour",
               "jersey": "8",
               "pos": "RM",
               "st": {
+                "fc": 1,
+                "fs": 2,
+                "gc": 1,
                 "sg": 1,
                 "g": 1,
-                "sh": 2
+                "sh": 3
               }
             },
             {
               "name": "Marawan Attia",
               "jersey": "19",
-              "pos": "CM-L"
+              "pos": "CM-L",
+              "st": {
+                "fc": 1,
+                "gc": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Mostafa Zico",
               "jersey": "11",
               "pos": "CF-L",
               "st": {
-                "fs": 1
+                "fc": 2,
+                "fs": 1,
+                "gc": 1
               }
             },
             {
               "name": "Mohamed Salah",
               "jersey": "10",
-              "pos": "CF-R"
+              "pos": "CF-R",
+              "st": {
+                "fs": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Omar Marmoush",
               "jersey": "22",
               "pos": "LM",
               "st": {
-                "sh": 1
+                "gc": 1,
+                "sh": 2
               }
             }
           ],
@@ -49451,11 +49560,16 @@
             },
             {
               "name": "Hossam Abdelmaguid",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true,
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "Haissem Hassan",
-              "jersey": "12"
+              "jersey": "12",
+              "in": true
             },
             {
               "name": "Mohamed El Shenawy",
@@ -49475,7 +49589,8 @@
             },
             {
               "name": "Trézéguet",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true
             }
           ]
         }
@@ -49486,48 +49601,48 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "32%",
-          "a": "68%"
+          "h": "45%",
+          "a": "55%"
         },
         {
           "key": "totalShots",
-          "h": "3",
-          "a": "3"
+          "h": "12",
+          "a": "7"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "1"
+          "h": "1",
+          "a": "2"
         },
         {
           "key": "wonCorners",
-          "h": "1",
-          "a": "0"
+          "h": "4",
+          "a": "3"
         },
         {
           "key": "foulsCommitted",
-          "h": "2",
-          "a": "1"
+          "h": "7",
+          "a": "8"
         },
         {
           "key": "offsides",
           "h": "0",
-          "a": "1"
+          "a": "3"
         },
         {
           "key": "saves",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "1"
         },
         {
           "key": "totalPasses",
-          "h": "76",
-          "a": "163"
+          "h": "409",
+          "a": "521"
         },
         {
           "key": "passPct",
-          "h": "78%",
-          "a": "90%"
+          "h": "81%",
+          "a": "85%"
         },
         {
           "key": "yellowCards",
@@ -49540,7 +49655,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-03T18:21:33.830Z"
+      "updatedAt": "2026-07-03T19:56:20.326Z"
     }
   }
 }
