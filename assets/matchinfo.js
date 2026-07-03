@@ -16,14 +16,19 @@
   var BACKEND = (CFG.backend || "").replace(/\/$/, "");
   var STATIC_URL = CFG.staticDetails || "data/matchdetails.json";
   var HIGHLIGHTS_URL = CFG.staticHighlights || "data/highlights.json";
+  var NEWS_URL = CFG.staticTeamNews || "data/team_news.json";
   var POLL_MS = 45000;
 
   var details = {};        // key -> detaljobjekt
   var detailsLoaded = false;
   var highlights = {};     // key -> { SVT?: {full,long,short}, TV4?: {...} }
   var highlightsLast = 0;
+  var teamNews = null;     // iso -> { items: [...] } (data/team_news.json)
+  var teamNewsLast = 0;
   var openKey = null;      // öppen match (resultatnyckel) eller null
   var pollTimer = null;
+  var pvRetryTimer = null; // inför-snacket: rita om när odds/motor blir klara
+  var pvRetryCount = 0;
   var activeTab = "events";
   var revealed = {};       // nyckel -> true: spoilern är manuellt "visad ändå"
 
@@ -91,6 +96,23 @@
         return highlights;
       })
       .catch(function () { return highlights; });
+  }
+
+  /* Landsnyheter (data/team_news.json, skrivs av GitHub Actions): nyheter om
+     varje landslag från respektive lands egna medier via Google Nyheter.
+     Cachas en stund mellan öppningar – nyheter uppdateras inte sekundsnabbt. */
+  function fetchTeamNews() {
+    var now = Date.now();
+    if (teamNews && now - teamNewsLast < 600000) return Promise.resolve(teamNews);
+    teamNewsLast = now;
+    return fetch(NEWS_URL + (NEWS_URL.indexOf("?") === -1 ? "?" : "&") + "t=" + now,
+      { headers: { Accept: "application/json" }, cache: "no-store" })
+      .then(function (r) { return r && r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (data && data.teams) teamNews = data.teams;
+        return teamNews;
+      })
+      .catch(function () { return teamNews; });
   }
 
   /* Hämta om detaljerna (anropas av app.js när nya resultat kommit in).
@@ -172,8 +194,17 @@
       VMAnalytics.trackEvent("match",
         (info.home.sv || info.home.name) + "–" + (info.away.sv || info.away.name));
     }
-    // Ej påbörjade matcher saknar händelser – landa på laguppställningen.
-    activeTab = (info && !info.live && !info.played) ? "lineups" : "events";
+    // Ej påbörjade matcher landar på inför-snacket; övriga på händelserna.
+    var upcoming = info && !info.live && !info.played && !info.spoiler;
+    activeTab = upcoming ? "preview" : "events";
+    pvRetryCount = 0;
+    if (upcoming) {
+      // Ladda underlaget till inför-snacket: odds/motor + landsnyheter.
+      if (window.VMApp && typeof window.VMApp.ensurePreviewData === "function") {
+        try { window.VMApp.ensurePreviewData(function () { if (openKey) renderModal(); }); } catch (e) {}
+      }
+      fetchTeamNews().then(function () { if (openKey) renderModal(); });
+    }
     var m = ensureModal();
     m.classList.add("open");
     renderModal();
@@ -187,6 +218,7 @@
   function close() {
     openKey = null;
     clearTimeout(pollTimer);
+    clearTimeout(pvRetryTimer);
     var m = document.getElementById("matchModal");
     if (m) m.classList.remove("open");
   }
@@ -742,6 +774,416 @@
     return '<div class="mi-section-title">Om matchen</div><div class="mi-facts">' + rows + "</div>";
   }
 
+  /* ====================================================================
+     INFÖR-SNACK (fliken "Inför" för matcher som ännu inte spelats)
+     Dataunderlaget kommer från app.js (VMApp.matchPreview): marknadens 1X2,
+     vinstchans, form, tabelläge, FIFA-rank och VM-vinstchanser ur samma
+     motor som slutspelsträdet. Nyheterna kommer från data/team_news.json –
+     hämtade från respektive lands egna medier via Google Nyheter.
+  ==================================================================== */
+
+  function fmtPctSv(p, decimals) {
+    if (p == null || !isFinite(p)) return "–";
+    var v = p * 100;
+    if (decimals == null) decimals = v < 9.95 && v > 0 ? 1 : 0;
+    var s = v.toFixed(decimals).replace(".", ",");
+    // "0,0 %" för en liten men existerande chans ser död ut – visa "<0,1 %".
+    if (parseFloat(s.replace(",", ".")) === 0 && p > 0) return "<0,1 %";
+    return s + " %";
+  }
+
+  function pvNum(n) { return n == null ? "–" : String(n); }
+
+  /* Rita om inför-snacket när asynkron data (odds/motor/trupp) blivit klar.
+     Kapat antal försök så en trasig datakälla inte pollar för evigt. */
+  function schedulePreviewRetry() {
+    clearTimeout(pvRetryTimer);
+    if (!openKey || pvRetryCount >= 12) return;
+    pvRetryTimer = setTimeout(function () {
+      if (!openKey || activeTab !== "preview") return;
+      pvRetryCount++;
+      renderModal();
+    }, 1200);
+  }
+
+  /* ---------- Favoritbanner ---------- */
+
+  function pvVerdictHtml(info, pv) {
+    var hName = teamName(info.home, info.homeLabel);
+    var aName = teamName(info.away, info.awayLabel);
+    var pH = null, pA = null, sub = "";
+    if (pv.winP != null) {                       // slutspel: chans att gå vidare
+      pH = pv.winP; pA = 1 - pv.winP;
+      sub = "chans att gå vidare";
+    } else if (pv.rp) {                          // gruppspel: chans att vinna matchen
+      pH = pv.rp.h; pA = pv.rp.a;
+      sub = "chans att vinna matchen";
+    }
+    if (pH == null) return "";
+    var even = Math.abs(pH - pA) < 0.07;
+    var favHome = pH >= pA;
+    var fav = favHome ? info.home : info.away;
+    var favName = favHome ? hName : aName;
+    var p = Math.max(pH, pA);
+    var main, subTxt;
+    if (even) {
+      main = flagImg(info.home && info.home.iso) + '<span>Jämn match</span>' + flagImg(info.away && info.away.iso);
+      subTxt = esc(hName) + " " + fmtPctSv(pH) + " · " + esc(aName) + " " + fmtPctSv(pA) + " – " + sub;
+    } else {
+      main = flagImg(fav && fav.iso) + '<span>' + esc(favName) + ' är favorit</span>';
+      subTxt = fmtPctSv(p) + " " + sub + " enligt spelmarknaden";
+    }
+    return '<div class="mi-pv-verdict">' +
+      '<span class="mi-pv-eyebrow">Inför matchen</span>' +
+      '<div class="mi-pv-verdict-main">' + main + '</div>' +
+      '<div class="mi-pv-verdict-sub">' + subTxt + '</div>' +
+      '</div>';
+  }
+
+  /* ---------- Oddsbar (1 / X / 2) ---------- */
+
+  function pvOddsHtml(info, pv) {
+    if (!pv.rp) return "";
+    var cols = matchColors(info.home && info.home.iso, info.away && info.away.iso);
+    var hName = teamName(info.home, info.homeLabel);
+    var aName = teamName(info.away, info.awayLabel);
+    var tot = pv.rp.h + pv.rp.x + pv.rp.a;
+    if (!(tot > 0)) return "";
+    var wh = pv.rp.h / tot * 100, wx = pv.rp.x / tot * 100, wa = pv.rp.a / tot * 100;
+    var h = '<div class="mi-section-title">Så tippar spelmarknaden</div>' +
+      '<div class="mi-pv-odds">' +
+      '<div class="mi-pv-odds-labels">' +
+        '<span class="mi-pv-odds-lb home"><span class="mi-pv-dot" style="background:' + cols.home + '"></span>' +
+          esc(hName) + ' <strong>' + fmtPctSv(pv.rp.h, 0) + '</strong></span>' +
+        '<span class="mi-pv-odds-lb draw">Oavgjort <strong>' + fmtPctSv(pv.rp.x, 0) + '</strong></span>' +
+        '<span class="mi-pv-odds-lb away"><strong>' + fmtPctSv(pv.rp.a, 0) + '</strong> ' + esc(aName) +
+          '<span class="mi-pv-dot" style="background:' + cols.away + '"></span></span>' +
+      '</div>' +
+      '<div class="mi-pv-odds-bar">' +
+        '<span style="width:' + wh.toFixed(1) + '%;background:' + cols.home + '"></span>' +
+        '<span class="draw" style="width:' + wx.toFixed(1) + '%"></span>' +
+        '<span style="width:' + wa.toFixed(1) + '%;background:' + cols.away + '"></span>' +
+      '</div>';
+    if (pv.winP != null) {
+      h += '<div class="mi-pv-odds-note">Oavgjort efter 90 minuter avgörs med förlängning och straffar – ' +
+        'total chans att gå vidare: ' + esc(hName) + ' <strong>' + fmtPctSv(pv.winP, 0) + '</strong> · ' +
+        esc(aName) + ' <strong>' + fmtPctSv(1 - pv.winP, 0) + '</strong></div>';
+    }
+    h += '</div>';
+    return h;
+  }
+
+  /* ---------- Form (senaste VM-matcherna) ---------- */
+
+  function pvFormPills(side) {
+    var items = (side && side.form) || [];
+    if (!items.length) return '<span class="mi-pv-form-empty">Första VM-matchen</span>';
+    return items.slice(-5).map(function (it) {
+      var cls = it.res === "V" ? "v" : it.res === "F" ? "f" : "o";
+      var tip = it.res + " " + it.gf + "–" + it.ga + (it.pen ? " (straffar)" : "") +
+        " mot " + (it.opp ? it.opp.sv : "?") + " · " + it.label;
+      return '<span class="mi-pv-pill ' + cls + '" title="' + esc(tip) + '">' + it.res + '</span>';
+    }).join("");
+  }
+
+  function pvFormRecent(side) {
+    var items = (side && side.form) || [];
+    return items.slice(-3).reverse().map(function (it) {
+      return '<span class="mi-pv-form-line">' +
+        '<span class="mi-pv-form-score ' + (it.res === "V" ? "v" : it.res === "F" ? "f" : "o") + '">' +
+          it.gf + "–" + it.ga + '</span> ' +
+        flagImg(it.opp && it.opp.iso) + '<span class="mi-pv-form-opp">' + esc(it.opp ? it.opp.sv : "?") + '</span>' +
+        (it.pen ? '<span class="mi-pv-form-pen">straffar</span>' : '') +
+        '</span>';
+    }).join("");
+  }
+
+  function pvFormHtml(info, pv) {
+    if (!pv.home && !pv.away) return "";
+    return '<div class="mi-section-title">Formen i VM</div>' +
+      '<div class="mi-pv-form">' +
+      '<div class="mi-pv-form-col home">' +
+        '<div class="mi-pv-form-head">' + flagImg(info.home && info.home.iso) +
+          '<span>' + esc(teamName(info.home, info.homeLabel)) + '</span></div>' +
+        '<div class="mi-pv-pills">' + pvFormPills(pv.home) + '</div>' +
+        '<div class="mi-pv-form-list">' + pvFormRecent(pv.home) + '</div>' +
+      '</div>' +
+      '<div class="mi-pv-form-col away">' +
+        '<div class="mi-pv-form-head">' + flagImg(info.away && info.away.iso) +
+          '<span>' + esc(teamName(info.away, info.awayLabel)) + '</span></div>' +
+        '<div class="mi-pv-pills">' + pvFormPills(pv.away) + '</div>' +
+        '<div class="mi-pv-form-list">' + pvFormRecent(pv.away) + '</div>' +
+      '</div>' +
+      '</div>';
+  }
+
+  /* ---------- Lagen i siffror (speglade jämförelserader) ----------
+     Stapellängd = styrka: för "lägre är bättre"-mått (FIFA-rank, insläppta)
+     viktas staplarna inverterat så att längre alltid betyder bättre. */
+
+  function pvCmpRow(label, hTxt, aTxt, hW, aW, cols) {
+    var tot = (hW || 0) + (aW || 0);
+    var pct = tot > 0 ? Math.round((hW / tot) * 100) : 50;
+    return '<div class="mi-stat">' +
+      '<div class="mi-stat-row">' +
+        '<span class="mi-stat-val">' + hTxt + '</span>' +
+        '<span class="mi-stat-lbl">' + esc(label) + '</span>' +
+        '<span class="mi-stat-val">' + aTxt + '</span>' +
+      '</div>' +
+      '<div class="mi-stat-bar">' +
+        '<span class="home" style="width:' + pct + '%;background:' + cols.home + '"></span>' +
+        '<span class="away" style="width:' + (100 - pct) + '%;background:' + cols.away + '"></span>' +
+      '</div>' +
+      '</div>';
+  }
+
+  function pvGoalsOf(side) {
+    var gf = 0, ga = 0;
+    ((side && side.form) || []).forEach(function (it) { gf += it.gf; ga += it.ga; });
+    return { gf: gf, ga: ga, n: ((side && side.form) || []).length };
+  }
+
+  function pvCompareHtml(info, pv) {
+    if (!pv.home || !pv.away) return "";
+    var cols = matchColors(info.home && info.home.iso, info.away && info.away.iso);
+    var H = pv.home, A = pv.away;
+    var rows = "";
+    rows += pvCmpRow("FIFA-ranking",
+      H.fifa < 999 ? "#" + H.fifa : "–", A.fifa < 999 ? "#" + A.fifa : "–",
+      H.fifa < 999 ? 1 / H.fifa : 0, A.fifa < 999 ? 1 / A.fifa : 0, cols);
+    if (H.rounds && A.rounds) {
+      rows += pvCmpRow("Chans att vinna VM",
+        fmtPctSv(H.rounds.win), fmtPctSv(A.rounds.win),
+        H.rounds.win, A.rounds.win, cols);
+      if (pv.kind === "group" && ((H.rounds.r32 || 0) < 0.999 || (A.rounds.r32 || 0) < 0.999)) {
+        rows += pvCmpRow("Chans att nå slutspel",
+          fmtPctSv(H.rounds.r32), fmtPctSv(A.rounds.r32),
+          H.rounds.r32, A.rounds.r32, cols);
+      }
+    }
+    var hg = pvGoalsOf(H), ag = pvGoalsOf(A);
+    if (hg.n || ag.n) {
+      rows += pvCmpRow("Gjorda mål i VM", pvNum(hg.gf), pvNum(ag.gf), hg.gf, ag.gf, cols);
+      rows += pvCmpRow("Insläppta mål", pvNum(hg.ga), pvNum(ag.ga),
+        1 / (1 + hg.ga), 1 / (1 + ag.ga), cols);
+    }
+    if (pv.kind === "group" && H.group && A.group) {
+      rows += pvCmpRow("Poäng i gruppen", pvNum(H.group.pts), pvNum(A.group.pts),
+        H.group.pts, A.group.pts, cols);
+    }
+    if (!rows) return "";
+    var posLine = "";
+    if (H.group && A.group) {
+      posLine = '<div class="mi-pv-posline">' +
+        flagImg(info.home && info.home.iso) + '<span>' + H.group.rank + ':a i grupp ' + H.group.letter +
+          ' (' + H.group.pts + ' p, ' + (H.group.gd >= 0 ? "+" : "−") + Math.abs(H.group.gd) + ')</span>' +
+        '<span class="mi-pv-posline-sep">·</span>' +
+        flagImg(info.away && info.away.iso) + '<span>' + A.group.rank + ':a i grupp ' + A.group.letter +
+          ' (' + A.group.pts + ' p, ' + (A.group.gd >= 0 ? "+" : "−") + Math.abs(A.group.gd) + ')</span>' +
+        '</div>';
+    }
+    return '<div class="mi-section-title">Lagen i siffror</div>' +
+      '<div class="mi-stats mi-pv-compare">' + rows + '</div>' + posLine;
+  }
+
+  /* ---------- "Vinnaren möter …" (slutspel) ---------- */
+
+  function pvKoNextHtml(pv) {
+    if (!pv.koNext) return "";
+    var opp = pv.koNext.opp
+      ? flagImg(pv.koNext.opp.iso) + '<strong>' + esc(pv.koNext.opp.sv) + '</strong>'
+      : '<strong>' + esc(pv.koNext.oppLabel || "?") + '</strong>';
+    return '<div class="mi-pv-konext">Vinnaren möter ' + opp +
+      ' i ' + esc(String(pv.koNext.round).toLowerCase()) + '</div>';
+  }
+
+  /* ---------- Avbräck & frågetecken (skador/avstängningar) ---------- */
+
+  function pvStatusItems(teamObj, sideCode) {
+    var vp = window.VMPlayers;
+    if (!teamObj || !teamObj.iso || !vp || !vp.isLoaded()) return null;
+    var t = vp.getTeamByIso(teamObj.iso);
+    if (!t) return [];
+    var out = [];
+    (t.players || []).forEach(function (p) {
+      var st = vp.getPlayerStatus ? vp.getPlayerStatus(p.id) : null;
+      if (!st) return;
+      out.push('<div class="mi-pv-item mi-pl-openable" data-mi-player="' + esc(p.id) +
+        '" data-mi-side="' + sideCode + '" role="button" tabindex="0" title="' + esc(st.text) + '">' +
+        '<span class="mi-pv-item-name">' + esc(p.name) + '</span>' +
+        '<span class="pstat pstat--' + esc(st.cls) + '"><span class="pstat-dot"></span>' + esc(st.label) + '</span>' +
+        '</div>');
+    });
+    return out;
+  }
+
+  function pvInjuriesHtml(info) {
+    var vp = window.VMPlayers;
+    if (!vp) return "";
+    if (!vp.isLoaded()) {
+      vp.load().then(function () { if (openKey) renderModal(); }).catch(function () {});
+      return "";
+    }
+    var hi = pvStatusItems(info.home, "h") || [];
+    var ai = pvStatusItems(info.away, "a") || [];
+    if (!hi.length && !ai.length) {
+      // Visa bara "inga avbräck" när statusdata över huvud taget finns.
+      if (!vp.statusCount || !vp.statusCount()) return "";
+      return '<div class="mi-section-title">Avbräck &amp; frågetecken</div>' +
+        '<div class="mi-pv-note">Inga kända skador eller avstängningar i något av lagen.</div>';
+    }
+    function col(items, teamObj, name) {
+      return '<div class="mi-pv-col">' +
+        '<div class="mi-pv-col-head">' + flagImg(teamObj && teamObj.iso) + '<span>' + esc(name) + '</span></div>' +
+        (items.length ? items.join("") : '<div class="mi-pv-note">Inga kända avbräck.</div>') +
+        '</div>';
+    }
+    return '<div class="mi-section-title">Avbräck &amp; frågetecken</div>' +
+      '<div class="mi-pv-cols">' +
+      col(hi, info.home, teamName(info.home, info.homeLabel)) +
+      col(ai, info.away, teamName(info.away, info.awayLabel)) +
+      '</div>';
+  }
+
+  /* ---------- Spelare att hålla ögonen på (VM-statistik) ---------- */
+
+  function pvKeyPlayers(teamObj, sideCode) {
+    var vp = window.VMPlayers, ps = window.VMPlayerStats;
+    if (!teamObj || !teamObj.iso || !vp || !vp.isLoaded() || !ps || !ps.getPlayerStats) return [];
+    var t = vp.getTeamByIso(teamObj.iso);
+    if (!t) return [];
+    var rows = [];
+    (t.players || []).forEach(function (p) {
+      var r = null;
+      try { r = ps.getPlayerStats(p.id); } catch (e) {}
+      if (r && r.played) rows.push({ p: p, r: r });
+    });
+    rows.sort(function (a, b) {
+      return (b.r.points - a.r.points) ||
+        ((b.r.rating || 0) - (a.r.rating || 0)) ||
+        (b.r.min - a.r.min);
+    });
+    return rows.slice(0, 2).map(function (e) {
+      var bits = [];
+      if (e.r.goals) bits.push(e.r.goals + " mål");
+      if (e.r.assists) bits.push(e.r.assists + " assist");
+      if (e.r.rating != null && e.r.ratingQ) bits.push("betyg " + e.r.rating.toFixed(1).replace(".", ","));
+      if (!bits.length) bits.push(Math.round(e.r.min) + " min spelade");
+      return '<div class="mi-pv-item mi-pl-openable" data-mi-player="' + esc(e.p.id) +
+        '" data-mi-side="' + sideCode + '" role="button" tabindex="0" title="Visa spelarprofil">' +
+        '<span class="mi-pv-item-name">' +
+          (e.p.shirt_number != null ? '<span class="mi-pv-nr">' + e.p.shirt_number + '</span>' : '') +
+          esc(e.p.name) + '</span>' +
+        '<span class="mi-pv-item-sub">' + esc(bits.join(" · ")) + '</span>' +
+        '</div>';
+    });
+  }
+
+  function pvKeyPlayersHtml(info) {
+    var hi = pvKeyPlayers(info.home, "h");
+    var ai = pvKeyPlayers(info.away, "a");
+    if (!hi.length && !ai.length) return "";
+    function col(items, teamObj, name) {
+      return '<div class="mi-pv-col">' +
+        '<div class="mi-pv-col-head">' + flagImg(teamObj && teamObj.iso) + '<span>' + esc(name) + '</span></div>' +
+        (items.length ? items.join("") : '<div class="mi-pv-note">Ingen VM-statistik ännu.</div>') +
+        '</div>';
+    }
+    return '<div class="mi-section-title">Spelare att hålla ögonen på</div>' +
+      '<div class="mi-pv-cols">' +
+      col(hi, info.home, teamName(info.home, info.homeLabel)) +
+      col(ai, info.away, teamName(info.away, info.awayLabel)) +
+      '</div>';
+  }
+
+  /* ---------- Nyheter från lägren (respektive lands medier) ---------- */
+
+  var SV_MON = ["jan", "feb", "mar", "apr", "maj", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
+
+  function pvTimeAgo(iso) {
+    var t = iso ? new Date(iso).getTime() : NaN;
+    if (!isFinite(t)) return "";
+    var diff = Date.now() - t;
+    if (diff < 0) diff = 0;
+    var min = Math.round(diff / 60000);
+    if (min < 60) return "för " + Math.max(1, min) + " min sedan";
+    var h = Math.round(min / 60);
+    if (h < 24) return "för " + h + " tim sedan";
+    var d = Math.round(h / 24);
+    if (d === 1) return "i går";
+    if (d < 7) return "för " + d + " dagar sedan";
+    var dt = new Date(t);
+    return dt.getDate() + " " + SV_MON[dt.getMonth()];
+  }
+
+  function pvNewsCol(teamObj, name) {
+    var entry = teamObj && teamObj.iso && teamNews ? teamNews[teamObj.iso] : null;
+    var items = (entry && entry.items) || [];
+    var body;
+    if (!items.length) {
+      body = '<div class="mi-pv-note">Inga färska nyheter hittades just nu.</div>';
+    } else {
+      body = items.slice(0, 4).map(function (it) {
+        var meta = [];
+        if (it.source) meta.push(it.source);
+        var ago = pvTimeAgo(it.published);
+        if (ago) meta.push(ago);
+        return '<a class="mi-pv-news-item" href="' + esc(it.url) + '" target="_blank" rel="noopener noreferrer">' +
+          '<span class="mi-pv-news-title" dir="auto">' + esc(it.title) + '</span>' +
+          (meta.length ? '<span class="mi-pv-news-meta">' + esc(meta.join(" · ")) + '</span>' : '') +
+          '</a>';
+      }).join("");
+    }
+    return '<div class="mi-pv-col">' +
+      '<div class="mi-pv-col-head">' + flagImg(teamObj && teamObj.iso) + '<span>' + esc(name) + '</span></div>' +
+      body + '</div>';
+  }
+
+  function pvNewsHtml(info) {
+    if (!teamNews) return "";
+    var hasHome = info.home && info.home.iso && teamNews[info.home.iso] &&
+      (teamNews[info.home.iso].items || []).length;
+    var hasAway = info.away && info.away.iso && teamNews[info.away.iso] &&
+      (teamNews[info.away.iso].items || []).length;
+    if (!hasHome && !hasAway) return "";
+    return '<div class="mi-section-title">Senaste nytt från lägren</div>' +
+      '<div class="mi-pv-cols mi-pv-news">' +
+      pvNewsCol(info.home, teamName(info.home, info.homeLabel)) +
+      pvNewsCol(info.away, teamName(info.away, info.awayLabel)) +
+      '</div>' +
+      '<div class="mi-pv-newsnote">Nyheter från respektive lands medier via Google Nyheter – rubriker på landets språk, öppnas i ny flik.</div>';
+  }
+
+  /* ---------- Hela inför-panelen ---------- */
+
+  function previewHtml(info) {
+    if (!info.home || !info.away) {
+      return '<div class="mi-empty">Inför-snacket dyker upp när båda lagen är klara.</div>';
+    }
+    var pv = null;
+    if (window.VMApp && typeof window.VMApp.matchPreview === "function") {
+      try { pv = window.VMApp.matchPreview(info.key); } catch (e) {}
+    }
+    if (!pv) return '<div class="mi-empty">Inför-snacket är inte tillgängligt just nu.</div>';
+    if (!pv.ready || !pv.probsReady) schedulePreviewRetry();
+
+    var h = '<div class="mi-preview">';
+    h += pvVerdictHtml(info, pv);
+    if (!pv.ready && !pv.rp) {
+      h += '<div class="mi-pv-note mi-pv-loading">Hämtar odds och sannolikheter …</div>';
+    }
+    h += pvOddsHtml(info, pv);
+    h += pvKoNextHtml(pv);
+    h += pvFormHtml(info, pv);
+    h += pvCompareHtml(info, pv);
+    h += pvInjuriesHtml(info);
+    h += pvKeyPlayersHtml(info);
+    h += pvNewsHtml(info);
+    h += '<div class="mi-pv-foot">Sannolikheter: spelmarknadens odds + sajtens simuleringsmotor (samma som slutspelsträdet).</div>';
+    h += '</div>';
+    return h;
+  }
+
   function emptyHintForTab(tab, info) {
     if (tab === "events") {
       if (info.live) {
@@ -767,13 +1209,17 @@
   function tabsHtml(info, det) {
     var gm = /^g:([A-L]):/.exec(info.key || "");
     var groupLetter = gm ? gm[1] : null;
+    var upcoming = !info.live && !info.played;
 
-    // Alla matcher – även ej påbörjade – visar samma flikar i samma ordning.
-    // Tomma flikar förklarar i stället att innehållet kommer närmare avspark.
-    var tabs = TABS.slice();
+    // Kommande matcher: Händelser/Statistik är garanterat tomma före avspark –
+    // de ersätts av inför-snacket. Pågående/spelade visar de vanliga flikarna.
+    var tabs = upcoming
+      ? [{ id: "preview", label: "Inför" }, { id: "lineups", label: "Laguppställning" }]
+      : TABS.slice();
     if (groupLetter) tabs.push({ id: "table", label: "Tabell" });
-    // Säkerhetsnät: faller tillbaka till Händelser om aktiv flik saknas här.
-    if (!tabs.some(function (t) { return t.id === activeTab; })) activeTab = "events";
+    // Säkerhetsnät: faller tillbaka till första fliken om aktiv flik saknas här
+    // (t.ex. när en kommande match går igång medan modalen står på "Inför").
+    if (!tabs.some(function (t) { return t.id === activeTab; })) activeTab = tabs[0].id;
 
     var h = '<div class="mi-tabs" role="tablist">';
     tabs.forEach(function (t) {
@@ -783,21 +1229,29 @@
     });
     h += '</div><div class="mi-tab-panels">';
 
-    h += '<div class="mi-tab-panel' + (activeTab === "events" ? " active" : "") + '" data-mi-panel="events">';
-    var hasEvents = det && ((det.goals || []).length || (det.bookings || []).length || (det.subs || []).length);
-    if (hasEvents) h += timelineHtml(info, det, true);
-    else h += emptyHintForTab("events", info);
-    h += "</div>";
+    if (upcoming) {
+      h += '<div class="mi-tab-panel' + (activeTab === "preview" ? " active" : "") + '" data-mi-panel="preview">';
+      h += previewHtml(info);
+      h += "</div>";
+    } else {
+      h += '<div class="mi-tab-panel' + (activeTab === "events" ? " active" : "") + '" data-mi-panel="events">';
+      var hasEvents = det && ((det.goals || []).length || (det.bookings || []).length || (det.subs || []).length);
+      if (hasEvents) h += timelineHtml(info, det, true);
+      else h += emptyHintForTab("events", info);
+      h += "</div>";
+    }
 
     h += '<div class="mi-tab-panel' + (activeTab === "lineups" ? " active" : "") + '" data-mi-panel="lineups">';
     if (det && det.lineups && det.lineups.h && det.lineups.a) h += lineupsOverviewHtml(info, det);
     else h += emptyHintForTab("lineups", info);
     h += "</div>";
 
-    h += '<div class="mi-tab-panel' + (activeTab === "stats" ? " active" : "") + '" data-mi-panel="stats">';
-    if (det && det.stats && det.stats.length) h += statsHtml(det, info, true);
-    else h += emptyHintForTab("stats", info);
-    h += "</div>";
+    if (!upcoming) {
+      h += '<div class="mi-tab-panel' + (activeTab === "stats" ? " active" : "") + '" data-mi-panel="stats">';
+      if (det && det.stats && det.stats.length) h += statsHtml(det, info, true);
+      else h += emptyHintForTab("stats", info);
+      h += "</div>";
+    }
 
     if (groupLetter) {
       h += '<div class="mi-tab-panel' + (activeTab === "table" ? " active" : "") + '" data-mi-panel="table">';

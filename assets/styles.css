@@ -4510,6 +4510,209 @@ span.pr-caps-debut.pr-caps-legend {
 }
 .mi-note { margin-top: 16px; font-size: 11.5px; color: var(--ink-soft); text-align: center; }
 
+/* ====================================================================
+   INFÖR-SNACK ("Inför"-fliken för kommande matcher i matchmodalen)
+==================================================================== */
+
+/* Favoritbanner: diskret glaskort med stor huvudrad och procent under. */
+.mi-pv-verdict {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  margin: 4px 0 6px; padding: 16px 14px 14px;
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background:
+    radial-gradient(120% 160% at 20% 0%, rgba(61,109,181,.14), transparent 55%),
+    radial-gradient(120% 160% at 80% 0%, rgba(196,30,58,.12), transparent 55%),
+    var(--bg-soft);
+  text-align: center;
+}
+.mi-pv-eyebrow {
+  font-size: 10.5px; font-weight: 800; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink-soft);
+}
+.mi-pv-verdict-main {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 19px; font-weight: 800; letter-spacing: .01em;
+}
+.mi-pv-verdict-main .flag {
+  width: 26px; height: 19px; border-radius: 3px; object-fit: cover;
+  box-shadow: 0 0 0 1px var(--line);
+}
+.mi-pv-verdict-sub { font-size: 13px; color: var(--ink-soft); }
+
+/* Oddsbar 1/X/2: etikettrad med färgprickar + tredelad stapel. */
+.mi-pv-odds { margin-top: 2px; }
+.mi-pv-odds-labels {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 10px; font-size: 12.5px; color: var(--ink-soft); margin-bottom: 7px;
+}
+.mi-pv-odds-lb { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+.mi-pv-odds-lb strong { color: var(--ink); font-size: 13.5px; }
+.mi-pv-odds-lb.draw { flex: none; }
+.mi-pv-odds-lb.away { justify-content: flex-end; text-align: right; }
+.mi-pv-dot {
+  flex: none; width: 9px; height: 9px; border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.35);
+}
+.mi-pv-odds-bar {
+  display: flex; gap: 2px; height: 10px;
+  border-radius: 5px; overflow: hidden;
+}
+.mi-pv-odds-bar span { display: block; height: 100%; min-width: 3px; }
+.mi-pv-odds-bar .draw { background: #3a4f6e; }
+.mi-pv-odds-note {
+  margin-top: 8px; font-size: 12px; color: var(--ink-soft); line-height: 1.5;
+}
+.mi-pv-odds-note strong { color: var(--ink); }
+
+/* "Vinnaren möter …" (slutspel) */
+.mi-pv-konext {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  flex-wrap: wrap; margin-top: 12px; padding: 9px 12px;
+  border: 1px dashed var(--line); border-radius: var(--radius-sm);
+  font-size: 13px; color: var(--ink-soft); text-align: center;
+}
+.mi-pv-konext strong { color: var(--ink); }
+.mi-pv-konext .flag {
+  width: 18px; height: 13px; border-radius: 2px; object-fit: cover;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+/* Form: två kolumner med V/O/F-pills + de senaste resultaten. */
+.mi-pv-form {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 18px;
+}
+.mi-pv-form-col.away { text-align: right; }
+.mi-pv-form-head {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 13px; font-weight: 700; margin-bottom: 7px; min-width: 0;
+}
+.mi-pv-form-col.away .mi-pv-form-head { justify-content: flex-end; }
+.mi-pv-form-head span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mi-pv-form-head .flag {
+  flex: none; width: 18px; height: 13px; border-radius: 2px;
+  object-fit: cover; box-shadow: 0 0 0 1px var(--line);
+}
+.mi-pv-pills { display: flex; gap: 5px; }
+.mi-pv-form-col.away .mi-pv-pills { justify-content: flex-end; }
+.mi-pv-pill {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 11.5px; font-weight: 800; color: #fff; cursor: default;
+}
+.mi-pv-pill.v { background: linear-gradient(160deg, #35c084, #1f8f5e); }
+.mi-pv-pill.o { background: linear-gradient(160deg, #7e93ad, #5a6d85); }
+.mi-pv-pill.f { background: linear-gradient(160deg, #f0564a, #c22c22); }
+.mi-pv-form-empty { font-size: 12px; color: var(--ink-soft); font-style: italic; }
+.mi-pv-form-list { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
+.mi-pv-form-line {
+  display: flex; align-items: center; gap: 6px; min-width: 0;
+  font-size: 12px; color: var(--ink-soft);
+}
+.mi-pv-form-col.away .mi-pv-form-line { flex-direction: row-reverse; }
+.mi-pv-form-line .flag {
+  flex: none; width: 15px; height: 11px; border-radius: 2px;
+  object-fit: cover; box-shadow: 0 0 0 1px var(--line);
+}
+.mi-pv-form-opp { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mi-pv-form-score {
+  flex: none; font-weight: 750; font-variant-numeric: tabular-nums; color: var(--ink);
+  min-width: 28px; text-align: center; border-radius: 4px; padding: 0 3px;
+}
+.mi-pv-form-score.v { background: rgba(45,184,122,.16); color: #5fd8a4; }
+.mi-pv-form-score.o { background: rgba(126,147,173,.16); }
+.mi-pv-form-score.f { background: rgba(232,38,74,.14); color: #ff8a95; }
+.mi-pv-form-pen { flex: none; font-size: 10.5px; font-style: italic; opacity: .8; }
+
+/* Placering i gruppen under jämförelsen. */
+.mi-pv-posline {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  flex-wrap: wrap; margin-top: 10px; font-size: 12px; color: var(--ink-soft);
+}
+.mi-pv-posline .flag {
+  width: 15px; height: 11px; border-radius: 2px; object-fit: cover;
+  box-shadow: 0 0 0 1px var(--line);
+}
+.mi-pv-posline-sep { opacity: .6; }
+
+/* Tvåkolumnslistor: avbräck, nyckelspelare, nyheter. */
+.mi-pv-cols {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 18px;
+  align-items: start;
+}
+.mi-pv-col { min-width: 0; }
+.mi-pv-col-head {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 12.5px; font-weight: 700; margin-bottom: 6px; min-width: 0;
+}
+.mi-pv-col-head span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mi-pv-col-head .flag {
+  flex: none; width: 16px; height: 12px; border-radius: 2px;
+  object-fit: cover; box-shadow: 0 0 0 1px var(--line);
+}
+.mi-pv-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 6px 2px; border-top: 1px solid var(--line); min-width: 0;
+}
+.mi-pv-item:first-of-type { border-top: 0; }
+.mi-pv-item-name {
+  display: inline-flex; align-items: center; gap: 6px; min-width: 0;
+  font-size: 13px; font-weight: 600;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.mi-pv-nr {
+  flex: none; min-width: 20px; height: 20px; padding: 0 4px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 6px; background: var(--bg-soft); border: 1px solid var(--line);
+  font-size: 11px; font-weight: 750; font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+}
+.mi-pv-item-sub { flex: none; font-size: 11.5px; color: var(--ink-soft); text-align: right; }
+.mi-pv-item .pstat { flex: none; }
+.mi-pv-item.mi-pl-openable { cursor: pointer; border-radius: 6px; }
+.mi-pv-item.mi-pl-openable:hover { background: rgba(61,109,181,.10); }
+
+/* Nyheter från lägren: klickbara kort med rubrik + källa/tid. */
+.mi-pv-news { gap: 8px 18px; }
+.mi-pv-news-item {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 9px 11px; margin-bottom: 6px;
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background: var(--bg-soft); text-decoration: none; color: var(--ink);
+  transition: border-color .15s, background .15s, transform .15s;
+}
+.mi-pv-news-item:hover {
+  border-color: var(--line-strong); background: #13233c;
+  transform: translateY(-1px);
+}
+.mi-pv-news-title {
+  font-size: 12.5px; font-weight: 600; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.mi-pv-news-meta { font-size: 11px; color: var(--ink-soft); }
+.mi-pv-newsnote {
+  margin-top: 4px; font-size: 11px; color: var(--ink-soft);
+  text-align: center; opacity: .85;
+}
+
+.mi-pv-note {
+  padding: 9px 11px; border: 1px dashed var(--line); border-radius: var(--radius-sm);
+  color: var(--ink-soft); font-size: 12.5px; text-align: center;
+}
+.mi-pv-loading { margin-top: 10px; animation: pvPulse 1.6s ease-in-out infinite; }
+@keyframes pvPulse { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+.mi-pv-foot {
+  margin-top: 16px; font-size: 11px; color: var(--ink-soft);
+  text-align: center; opacity: .85;
+}
+
+/* Smala skärmar: kolumnsektionerna staplas, formen behåller två spalter. */
+@media (max-width: 560px) {
+  .mi-pv-cols { grid-template-columns: minmax(0, 1fr); }
+  .mi-pv-verdict-main { font-size: 17px; }
+  .mi-pv-odds-lb { font-size: 11.5px; }
+}
+
 /* Repriser + sammandrag samt livesändning (SVT Play / TV4 Play) i matchmodalen.
    Minimalistisk layout: en kolumn per kanal med kanalbrickan centrerad överst
    och länkarna som luftiga pillerknappar under – inga tunga rutor. Kolumnerna

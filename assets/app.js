@@ -3078,6 +3078,186 @@
     return 1 / (1 + Math.pow(10, (f(fifaRankOf(tb)) - f(fifaRankOf(ta))) / 400));
   }
 
+  /* ====================================================================
+     INFÖR-SNACK (matchmodalens "Inför"-flik, assets/matchinfo.js)
+     Samlar allt motorn vet om en ospelad match i ett dataobjekt: marknadens
+     1X2, vinstchans, form, tabelläge, FIFA-rank och rundsannolikheter.
+     All matematik återanvänder samma modell som resten av sajten
+     (matchWinP / bracketProbs) – inga egna skattningar här.
+  ==================================================================== */
+
+  /* Kicka igång odds/styrkor om de inte laddats ännu; cb körs när oddsen
+     finns. bracketProbs räknas asynkront i workern – matchinfo ritar om via
+     onDataUpdated/poll när den blir klar. */
+  function ensurePreviewData(cb) {
+    if (!window.BracketEngine) { if (cb) cb(); return; }
+    bracketEnsureExtras(function () {
+      r32EnsureOdds(function () { if (cb) cb(); });
+    });
+    if (!bracketProbs) updateBracketProbs();
+  }
+
+  // Grupptillhörighet (bokstav + index) för ett lagobjekt ur WC.groups.
+  function teamGroupPos(team) {
+    for (var li = 0; li < WC.groupLetters.length; li++) {
+      var L = WC.groupLetters[li];
+      var i = WC.groups[L].indexOf(team);
+      if (i !== -1) return { letter: L, idx: i };
+    }
+    return null;
+  }
+
+  // Lagets spelade VM-matcher i kronologisk ordning: gruppspel + slutspel.
+  function teamFormFor(team, ctx) {
+    if (!team) return [];
+    var gp = teamGroupPos(team);
+    var items = [];
+    if (gp) {
+      groupFixtures(gp.letter).forEach(function (fx) {
+        if (fx.h !== gp.idx && fx.a !== gp.idx) return;
+        var r = getRes(fx.key);
+        if (!isPlayed(r)) return;
+        var isHome = fx.h === gp.idx;
+        var opp = WC.groups[gp.letter][isHome ? fx.a : fx.h];
+        var gf = isHome ? r.h : r.a, ga = isHome ? r.a : r.h;
+        items.push({
+          date: fx.date, edt: fx.edt || "",
+          opp: opp, gf: gf, ga: ga, pen: false,
+          res: gf > ga ? "V" : gf < ga ? "F" : "O",
+          label: "Grupp " + gp.letter
+        });
+      });
+    }
+    WC.knockout.forEach(function (mt) {
+      var res = ctx.resolved[mt.m];
+      if (!res || !res.bothTeams) return;
+      var r = res.result;
+      if (!isPlayed(r)) return;
+      var isHome = res.home.team === team;
+      var isAway = res.away.team === team;
+      if (!isHome && !isAway) return;
+      var opp = isHome ? res.away.team : res.home.team;
+      var gf = isHome ? r.h : r.a, ga = isHome ? r.a : r.h;
+      var resLetter = gf > ga ? "V" : gf < ga ? "F" : "O";
+      var pen = false;
+      if (gf === ga && r.pw) {
+        pen = true;
+        resLetter = ((r.pw === "h") === isHome) ? "V" : "F";
+      }
+      items.push({
+        date: res.match.date, edt: res.match.edt || "",
+        opp: opp, gf: gf, ga: ga, pen: pen,
+        res: resLetter, label: koRoundLabel(res.match)
+      });
+    });
+    items.sort(function (a, b) {
+      if (a.date !== b.date) return a.date < b.date ? -1 : 1;
+      var ae = a.edt || "", be = b.edt || "";
+      return ae < be ? -1 : ae > be ? 1 : 0;
+    });
+    return items;
+  }
+
+  function previewSideFacts(team, ctx) {
+    if (!team) return null;
+    var gp = teamGroupPos(team);
+    var group = null;
+    if (gp) {
+      var table = ctx.tables[gp.letter];
+      for (var i = 0; i < table.length; i++) {
+        if (table[i].team !== team) continue;
+        group = {
+          letter: gp.letter, rank: i + 1, pld: table[i].pld, pts: table[i].pts,
+          gf: table[i].gf, ga: table[i].ga, gd: table[i].gd
+        };
+        break;
+      }
+    }
+    return {
+      team: team,
+      fifa: fifaRankOf(team),
+      rounds: (bracketProbs && bracketProbs.rounds && bracketProbs.rounds[team.name]) || null,
+      form: teamFormFor(team, ctx),
+      group: group
+    };
+  }
+
+  // Marknadens 1X2 (normaliserad) för en gruppmatch, orienterad efter fixturen.
+  function groupRpFor(letter, fx) {
+    if (!r32OddsData || r32OddsData === "loading" || r32OddsData === "error") return null;
+    var pair = [fx.h, fx.a].slice().sort(function (a, b) { return a - b; }).join(",");
+    for (var i = 0; i < r32OddsData.matches.length; i++) {
+      var m = r32OddsData.matches[i];
+      if (m.g !== letter || m.pair !== pair) continue;
+      if (m.i === fx.h) return { h: m.rp["1"], x: m.rp.X, a: m.rp["2"] };
+      return { h: m.rp["2"], x: m.rp.X, a: m.rp["1"] };
+    }
+    return null;
+  }
+
+  // "Vinnaren möter …" – matchen som vinnaren av slutspelsmatch `no` går till.
+  function koNextFor(no, ctx) {
+    for (var i = 0; i < WC.knockout.length; i++) {
+      var mt = WC.knockout[i];
+      var viaHome = mt.home.t === "wm" && mt.home.m === no;
+      var viaAway = mt.away.t === "wm" && mt.away.m === no;
+      if (!viaHome && !viaAway) continue;
+      var res = ctx.resolved[mt.m];
+      var other = viaHome ? (res && res.away) : (res && res.home);
+      return {
+        round: koRoundLabel(res ? res.match : mt),
+        opp: other && other.team ? other.team : null,
+        oppLabel: other ? other.label : null
+      };
+    }
+    return null;
+  }
+
+  /**
+   * Dataunderlag för matchmodalens inför-snack. Returnerar alltid ett objekt
+   * (eller null för okänd nyckel); fält som kräver odds/motor är null tills
+   * ensurePreviewData laddat klart – ready säger om oddsen finns på plats.
+   */
+  function matchPreview(key) {
+    var info = describeMatch(key);
+    if (!info) return null;
+    var ctx = getCtx();
+    var oddsReady = !!(r32OddsData && r32OddsData !== "loading" && r32OddsData !== "error");
+    var pv = {
+      ready: oddsReady,
+      probsReady: !!bracketProbs,
+      kind: info.kind,
+      home: previewSideFacts(info.home, ctx),
+      away: previewSideFacts(info.away, ctx),
+      rp: null, winP: null, koNext: null,
+      oddsUpdated: marketOddsStamp || null
+    };
+    if (info.kind === "group") {
+      var gm = /^g:([A-L]):/.exec(key);
+      if (oddsReady && info.m && gm) pv.rp = groupRpFor(gm[1], info.m);
+    } else if (info.home && info.away) {
+      // Slutspel: marknadens 1X2 efter 90 min + total vinstchans (förl./straffar).
+      if (oddsReady) {
+        var koMap = buildKoOddsMap(r32OddsData.knockout);
+        var e = koMap[key];
+        if (e && e.rp) {
+          // Orientera efter modalens hemmalag (fixturens ordning kan avvika).
+          if (e.home === info.away.name) pv.rp = { h: e.rp["2"], x: e.rp.X, a: e.rp["1"] };
+          else pv.rp = { h: e.rp["1"], x: e.rp.X, a: e.rp["2"] };
+        }
+        if (!pv.rp) {
+          var rp90 = koRpFallback(info.home.name, info.away.name);
+          if (rp90) pv.rp = { h: rp90["1"], x: rp90.X, a: rp90["2"] };
+        }
+      }
+      var p = matchWinP(info.home.name, info.away.name);
+      if (p != null) pv.winP = p;
+      var km = /^k:(\d+)$/.exec(key);
+      if (km) pv.koNext = koNextFor(parseInt(km[1], 10), ctx);
+    }
+    return pv;
+  }
+
   /* ---------- vy-skelett ---------- */
   function renderCalcView() {
     /* Morf i stället för innerHTML-rivning: de dynamiska ytorna är märkta
@@ -6700,6 +6880,9 @@
     setSyncStatus: setSyncStatus,
     autoSync: autoSync,
     describeMatch: describeMatch,
+    // Inför-snacket i matchmodalen: dataunderlag + lazy-laddning av odds/motor.
+    matchPreview: matchPreview,
+    ensurePreviewData: ensurePreviewData,
     setMatchDetails: setMatchDetails,
     // Matchdetaljer (laguppställning/händelser) för en resultatnyckel, om de
     // hämtats av assets/matchinfo.js. Används av lag-lådans uppställningsbläddrare.
