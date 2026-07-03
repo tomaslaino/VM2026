@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-03T19:56:20.326Z",
+    "updatedAt": "2026-07-03T21:15:21.421Z",
     "source": "espn"
   },
   "details": {
@@ -49165,11 +49165,11 @@
     "k:88": {
       "espnId": "760499",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 90,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-03T18:00Z",
-      "duration": "REGULAR",
-      "winner": null,
+      "duration": "PENALTY_SHOOTOUT",
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 1,
@@ -49180,8 +49180,14 @@
           "a": 1
         },
         "rt": null,
-        "et": null,
-        "pen": null
+        "et": {
+          "h": 1,
+          "a": 1
+        },
+        "pen": {
+          "h": 2,
+          "a": 4
+        }
       },
       "goals": [
         {
@@ -49209,7 +49215,20 @@
           }
         }
       ],
-      "bookings": [],
+      "bookings": [
+        {
+          "minute": 105,
+          "team": "a",
+          "player": "Haissem Hassan",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 120,
+          "team": "a",
+          "player": "Yasser Ibrahim",
+          "card": "YELLOW"
+        }
+      ],
       "subs": [
         {
           "minute": 45,
@@ -49246,6 +49265,36 @@
           "team": "a",
           "in": "Trézéguet",
           "out": "Karim Hafez"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Paul Okon-Engstler",
+          "out": "Aiden O'Neill"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Awer Mabil",
+          "out": "Connor Metcalfe"
+        },
+        {
+          "minute": 105,
+          "team": "a",
+          "in": "Hamza Abdelkarim",
+          "out": "Omar Marmoush"
+        },
+        {
+          "minute": 119,
+          "team": "h",
+          "in": "Mathew Ryan",
+          "out": "Patrick Beach"
+        },
+        {
+          "minute": 120,
+          "team": "a",
+          "in": "Mahmoud Saber",
+          "out": "Marawan Attia"
         }
       ],
       "penalties": [],
@@ -49259,7 +49308,7 @@
               "pos": "G",
               "st": {
                 "gc": 1,
-                "sv": 1
+                "sv": 3
               }
             },
             {
@@ -49276,7 +49325,7 @@
               "jersey": "16",
               "pos": "LM",
               "st": {
-                "fs": 1,
+                "fs": 2,
                 "gc": 1,
                 "sg": 1,
                 "sh": 1
@@ -49287,6 +49336,7 @@
               "jersey": "25",
               "pos": "CD-L",
               "st": {
+                "fc": 1,
                 "gc": 1
               }
             },
@@ -49295,7 +49345,7 @@
               "jersey": "19",
               "pos": "CD",
               "st": {
-                "fc": 3,
+                "fc": 4,
                 "gc": 1
               }
             },
@@ -49304,8 +49354,10 @@
               "jersey": "3",
               "pos": "CD-R",
               "st": {
-                "fs": 1,
-                "gc": 1
+                "fc": 1,
+                "fs": 2,
+                "gc": 1,
+                "sh": 1
               }
             },
             {
@@ -49314,7 +49366,7 @@
               "pos": "CM-R",
               "st": {
                 "fc": 1,
-                "fs": 1,
+                "fs": 2,
                 "gc": 1,
                 "sh": 1
               }
@@ -49371,6 +49423,7 @@
               "jersey": "10",
               "in": true,
               "st": {
+                "fc": 1,
                 "sh": 2
               }
             },
@@ -49387,6 +49440,7 @@
               "jersey": "15",
               "in": true,
               "st": {
+                "fs": 1,
                 "sh": 1
               }
             },
@@ -49396,12 +49450,22 @@
             },
             {
               "name": "Awer Mabil",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true,
+              "st": {
+                "fs": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Mohamed Toure",
               "jersey": "9",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Tete Yengi",
@@ -49413,11 +49477,13 @@
             },
             {
               "name": "Mathew Ryan",
-              "jersey": "1"
+              "jersey": "1",
+              "in": true
             },
             {
               "name": "Paul Okon-Engstler",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Paul Izzo",
@@ -49442,6 +49508,7 @@
               "jersey": "3",
               "pos": "RB",
               "st": {
+                "fc": 1,
                 "og": 1,
                 "gc": 1
               }
@@ -49469,7 +49536,7 @@
               "jersey": "2",
               "pos": "CD-R",
               "st": {
-                "fc": 3,
+                "fc": 4,
                 "fs": 1,
                 "gc": 1
               }
@@ -49479,6 +49546,7 @@
               "jersey": "5",
               "pos": "CD-L",
               "st": {
+                "fc": 1,
                 "fs": 1,
                 "gc": 1,
                 "sg": 1,
@@ -49491,11 +49559,11 @@
               "pos": "RM",
               "st": {
                 "fc": 1,
-                "fs": 2,
+                "fs": 5,
                 "gc": 1,
                 "sg": 1,
                 "g": 1,
-                "sh": 3
+                "sh": 5
               }
             },
             {
@@ -49505,7 +49573,7 @@
               "st": {
                 "fc": 1,
                 "gc": 1,
-                "sh": 1
+                "sh": 3
               }
             },
             {
@@ -49523,8 +49591,10 @@
               "jersey": "10",
               "pos": "CF-R",
               "st": {
-                "fs": 1,
-                "gc": 1
+                "fs": 3,
+                "gc": 1,
+                "sg": 1,
+                "sh": 2
               }
             },
             {
@@ -49569,7 +49639,11 @@
             {
               "name": "Haissem Hassan",
               "jersey": "12",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Mohamed El Shenawy",
@@ -49577,11 +49651,16 @@
             },
             {
               "name": "Hamza Abdelkarim",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true,
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "Mahmoud Saber",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Nabil Donga",
@@ -49590,39 +49669,42 @@
             {
               "name": "Trézéguet",
               "jersey": "7",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 1
+              }
             }
           ]
         }
       },
       "referee": "Gustavo Tejera",
       "venue": "AT&T Stadium, Arlington, Texas",
-      "attendance": null,
+      "attendance": 70244,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "45%",
-          "a": "55%"
+          "h": "42%",
+          "a": "58%"
         },
         {
           "key": "totalShots",
-          "h": "12",
-          "a": "7"
+          "h": "16",
+          "a": "14"
         },
         {
           "key": "shotsOnTarget",
           "h": "1",
-          "a": "2"
+          "a": "3"
         },
         {
           "key": "wonCorners",
           "h": "4",
-          "a": "3"
+          "a": "7"
         },
         {
           "key": "foulsCommitted",
-          "h": "7",
-          "a": "8"
+          "h": "12",
+          "a": "14"
         },
         {
           "key": "offsides",
@@ -49631,23 +49713,23 @@
         },
         {
           "key": "saves",
-          "h": "1",
+          "h": "3",
           "a": "1"
         },
         {
           "key": "totalPasses",
-          "h": "409",
-          "a": "521"
+          "h": "507",
+          "a": "723"
         },
         {
           "key": "passPct",
-          "h": "81%",
+          "h": "80%",
           "a": "85%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "0"
+          "a": "2"
         },
         {
           "key": "redCards",
@@ -49655,7 +49737,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-03T19:56:20.326Z"
+      "updatedAt": "2026-07-03T21:15:21.421Z"
     }
   }
 }

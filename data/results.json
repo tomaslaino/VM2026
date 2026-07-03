@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-03T19:56:20.290Z",
+    "updatedAt": "2026-07-03T21:15:21.391Z",
     "source": "espn",
     "matchCount": 86,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -437,19 +437,11 @@
     "k:88": {
       "h": 1,
       "a": 1,
-      "status": "IN_PLAY"
+      "status": "FINISHED",
+      "pw": "a"
     }
   },
-  "live": [
-    {
-      "key": "k:88",
-      "status": "IN_PLAY",
-      "minute": 90,
-      "home": "Australia",
-      "away": "Egypt",
-      "score": "1-1"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1900,7 +1892,7 @@
       "date": "2026-07-03",
       "time": "20:00",
       "utcDate": "2026-07-03T18:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Australia",
       "away": "Egypt",
@@ -2056,9 +2048,12 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Round of 32 14 Winner",
-      "away": "Round of 32 16 Winner",
+      "away": "Egypt",
       "homeRef": null,
-      "awayRef": null
+      "awayRef": {
+        "group": "G",
+        "idx": 2
+      }
     },
     "k:96": {
       "date": "2026-07-07",
