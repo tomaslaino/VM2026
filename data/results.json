@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-07-03T01:26:55.464Z",
+    "updatedAt": "2026-07-03T05:32:34.618Z",
     "source": "espn",
-    "matchCount": 84,
+    "matchCount": 85,
     "liveCount": 0,
     "apiCalls": 2
   },
@@ -427,6 +427,11 @@
     "k:83": {
       "h": 2,
       "a": 1,
+      "status": "FINISHED"
+    },
+    "k:85": {
+      "h": 2,
+      "a": 0,
       "status": "FINISHED"
     }
   },
@@ -1864,7 +1869,7 @@
       "date": "2026-07-03",
       "time": "05:00",
       "utcDate": "2026-07-03T03:00Z",
-      "status": "TIMED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Switzerland",
       "away": "Algeria",
@@ -2047,9 +2052,12 @@
       "utcDate": "2026-07-07T20:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Round of 32 13 Winner",
+      "home": "Switzerland",
       "away": "Round of 32 15 Winner",
-      "homeRef": null,
+      "homeRef": {
+        "group": "B",
+        "idx": 1
+      },
       "awayRef": null
     },
     "k:97": {
