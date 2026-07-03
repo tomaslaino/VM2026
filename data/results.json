@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-03T21:15:21.391Z",
+    "updatedAt": "2026-07-03T22:28:54.171Z",
     "source": "espn",
-    "matchCount": 86,
-    "liveCount": 0,
+    "matchCount": 87,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -439,9 +439,23 @@
       "a": 1,
       "status": "FINISHED",
       "pw": "a"
+    },
+    "k:86": {
+      "h": 1,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:86",
+      "status": "IN_PLAY",
+      "minute": 28,
+      "home": "Argentina",
+      "away": "Cape Verde",
+      "score": "1-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1909,7 +1923,7 @@
       "date": "2026-07-04",
       "time": "00:00",
       "utcDate": "2026-07-03T22:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Argentina",
       "away": "Cape Verde",
