@@ -29,7 +29,7 @@ npm run sync:news  # synka landslagsnyheter per land → data/team_news.json (Go
 |---|---|
 | `index.html` | Ingångspunkt, innehåller `window.VM_CONFIG` |
 | `assets/app.js` | Huvudlogik: tabeller, slutspelsträd, kalender |
-| `assets/matchinfo.js` | Matchmodal med detaljer/statistik + inför-snack ("Inför"-fliken) för ospelade matcher (data från `VMApp.matchPreview` i app.js) |
+| `assets/matchinfo.js` | Matchmodal med detaljer/statistik + inför-snack ("Inför"-fliken) för ospelade matcher (data från `VMApp.matchPreview` i app.js) samt fliken "Senaste nytt" (lägernyheter på svenska ur `data/team_news.json`) |
 | `assets/r32engine.js` | Monte Carlo-motor: simulerar vem man möter i R32 utifrån odds (delas av huvudtråd + worker) |
 | `assets/r32worker.js` | Web Worker som kör `r32engine.js` utanför huvudtråden |
 | `data/odds.json` | Exakta resultat-odds för de återstående gruppmatcherna (indata till R32-motorn) |
@@ -37,7 +37,7 @@ npm run sync:news  # synka landslagsnyheter per land → data/team_news.json (Go
 | `assets/live.js` | Trupp i lag-lådan + spelarprofil-modal (visar skade-/avstängningsstatus) |
 | `data/wc2026_player_status.json` | Spelartillgänglighet (skador/avstängningar/osäkra) per spelar-id |
 | `server/scripts/syncPlayerStatus.js` | Synkar spelarstatus från API-Football `/injuries` |
-| `data/team_news.json` | Landslagsnyheter per lag från respektive lands egna medier (Google Nyheter-RSS, lokala sökfrågor) – inför-snackets nyhetssektion |
+| `data/team_news.json` | Landslagsnyheter per lag från respektive lands egna medier (Google Nyheter-RSS, lokala sökfrågor) med svensk sammanfattning per rubrik (`title_sv`, gratis Google Translate-gtx) – driver fliken "Senaste nytt" i matchmodalen |
 | `server/scripts/syncTeamNews.js` | Synkar landslagsnyheterna (körs varannan timme av `sync-team-news.yml`) |
 | `assets/playerstats.js` | Spelarstatistik: Spelare/Lag/Region/Ligor + eget VM-betyg (10-gradigt, ur events + ESPN-boxscore `st` i lineups, `fmt: 2` i matchdetails) |
 | `assets/styles.css` | All CSS |

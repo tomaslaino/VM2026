@@ -4671,29 +4671,38 @@ span.pr-caps-debut.pr-caps-legend {
 .mi-pv-item.mi-pl-openable { cursor: pointer; border-radius: 6px; }
 .mi-pv-item.mi-pl-openable:hover { background: rgba(61,109,181,.10); }
 
-/* Nyheter från lägren: klickbara kort med rubrik + källa/tid. */
-.mi-pv-news { gap: 8px 18px; }
-.mi-pv-news-item {
-  display: flex; flex-direction: column; gap: 3px;
-  padding: 9px 11px; margin-bottom: 6px;
-  border: 1px solid var(--line); border-radius: var(--radius-sm);
-  background: var(--bg-soft); text-decoration: none; color: var(--ink);
-  transition: border-color .15s, background .15s, transform .15s;
+/* Teaser i Inför-fliken som pekar vidare till fliken "Senaste nytt". */
+.mi-pv-newslink {
+  display: flex; align-items: center; gap: 12px; width: 100%; margin-top: 16px;
+  padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background:
+    radial-gradient(140% 180% at 0% 0%, rgba(61,109,181,.12), transparent 55%),
+    var(--bg-soft);
+  color: var(--ink); font: inherit; text-align: left; cursor: pointer;
+  transition: border-color .15s, background-color .15s, transform .15s;
 }
-.mi-pv-news-item:hover {
-  border-color: var(--line-strong); background: #13233c;
+.mi-pv-newslink:hover {
+  border-color: var(--line-strong); background-color: #13233c;
   transform: translateY(-1px);
 }
-.mi-pv-news-title {
-  font-size: 12.5px; font-weight: 600; line-height: 1.4;
-  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
-  overflow: hidden;
+.mi-pv-newslink-ic {
+  flex: none; width: 34px; height: 34px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line); border-radius: 10px;
+  background: rgba(61,109,181,.14); color: #8fb4e4;
 }
-.mi-pv-news-meta { font-size: 11px; color: var(--ink-soft); }
-.mi-pv-newsnote {
-  margin-top: 4px; font-size: 11px; color: var(--ink-soft);
-  text-align: center; opacity: .85;
+.mi-pv-newslink-ic svg { width: 18px; height: 18px; }
+.mi-pv-newslink-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.mi-pv-newslink-title { font-size: 13px; font-weight: 750; }
+.mi-pv-newslink-sub {
+  font-size: 11.5px; color: var(--ink-soft);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
+.mi-pv-newslink-arrow {
+  flex: none; font-size: 15px; color: var(--ink-soft);
+  transition: transform .15s, color .15s;
+}
+.mi-pv-newslink:hover .mi-pv-newslink-arrow { transform: translateX(3px); color: var(--ink); }
 
 .mi-pv-note {
   padding: 9px 11px; border: 1px dashed var(--line); border-radius: var(--radius-sm);
@@ -4711,6 +4720,64 @@ span.pr-caps-debut.pr-caps-legend {
   .mi-pv-cols { grid-template-columns: minmax(0, 1fr); }
   .mi-pv-verdict-main { font-size: 17px; }
   .mi-pv-odds-lb { font-size: 11.5px; }
+}
+
+/* ====================================================================
+   FLIKEN "SENASTE NYTT" (matchmodalen) – nyheter från lägren ur
+   respektive lands egna medier, sammanfattade på svenska. Ett kort per
+   nyhet med lagfärgad accentlist, källchip och tidsangivelse.
+==================================================================== */
+.mi-news-intro {
+  margin: 2px 0 12px; text-align: center;
+  font-size: 10.5px; font-weight: 800; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink-soft);
+}
+.mi-news-cols {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 18px; align-items: start;
+}
+.mi-news-col { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.mi-news-col .mi-pv-col-head { margin-bottom: 0; }
+.mi-news-item {
+  position: relative; display: flex; flex-direction: column; gap: 7px;
+  padding: 10px 12px 9px 15px; overflow: hidden;
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background:
+    linear-gradient(115deg, color-mix(in srgb, var(--news-accent, var(--usa-blue)) 9%, transparent), transparent 45%),
+    var(--bg-soft);
+  text-decoration: none; color: var(--ink);
+  transition: border-color .15s, background-color .15s, transform .15s;
+}
+/* Lagfärgad accentlist längs vänsterkanten. */
+.mi-news-item::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--news-accent, var(--usa-blue)); opacity: .9;
+}
+.mi-news-item:hover {
+  border-color: var(--line-strong); background-color: #13233c;
+  transform: translateY(-1px);
+}
+.mi-news-sum { font-size: 13px; font-weight: 600; line-height: 1.45; }
+.mi-news-meta {
+  display: flex; align-items: center; gap: 8px; min-width: 0;
+  font-size: 11px; color: var(--ink-soft);
+}
+.mi-news-src {
+  flex: none; max-width: 62%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  padding: 2px 8px; border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--news-accent, var(--usa-blue)) 45%, var(--line));
+  background: color-mix(in srgb, var(--news-accent, var(--usa-blue)) 12%, transparent);
+  font-size: 10.5px; font-weight: 750; letter-spacing: .02em; color: var(--ink);
+}
+.mi-news-time { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mi-news-ext { margin-left: auto; flex: none; font-size: 11px; opacity: .45; transition: opacity .15s; }
+.mi-news-item:hover .mi-news-ext { opacity: .95; }
+.mi-news-note {
+  margin-top: 14px; font-size: 11px; color: var(--ink-soft);
+  text-align: center; opacity: .85; line-height: 1.5;
+}
+@media (max-width: 560px) {
+  .mi-news-cols { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* Repriser + sammandrag samt livesändning (SVT Play / TV4 Play) i matchmodalen.

@@ -778,8 +778,9 @@
      INFÖR-SNACK (fliken "Inför" för matcher som ännu inte spelats)
      Dataunderlaget kommer från app.js (VMApp.matchPreview): marknadens 1X2,
      vinstchans, form, tabelläge, FIFA-rank och VM-vinstchanser ur samma
-     motor som slutspelsträdet. Nyheterna kommer från data/team_news.json –
-     hämtade från respektive lands egna medier via Google Nyheter.
+     motor som slutspelsträdet. Nyheterna från lägren (data/team_news.json –
+     respektive lands egna medier via Google Nyheter, svenska sammanfattningar
+     i title_sv) har en egen flik, "Senaste nytt"; Inför visar bara en teaser.
   ==================================================================== */
 
   function fmtPctSv(p, decimals) {
@@ -1116,42 +1117,83 @@
     return dt.getDate() + " " + SV_MON[dt.getMonth()];
   }
 
-  function pvNewsCol(teamObj, name) {
+  function newsItemsOf(teamObj) {
     var entry = teamObj && teamObj.iso && teamNews ? teamNews[teamObj.iso] : null;
-    var items = (entry && entry.items) || [];
-    var body;
-    if (!items.length) {
-      body = '<div class="mi-pv-note">Inga färska nyheter hittades just nu.</div>';
-    } else {
-      body = items.slice(0, 4).map(function (it) {
-        var meta = [];
-        if (it.source) meta.push(it.source);
-        var ago = pvTimeAgo(it.published);
-        if (ago) meta.push(ago);
-        return '<a class="mi-pv-news-item" href="' + esc(it.url) + '" target="_blank" rel="noopener noreferrer">' +
-          '<span class="mi-pv-news-title" dir="auto">' + esc(it.title) + '</span>' +
-          (meta.length ? '<span class="mi-pv-news-meta">' + esc(meta.join(" · ")) + '</span>' : '') +
-          '</a>';
-      }).join("");
-    }
-    return '<div class="mi-pv-col">' +
+    return (entry && entry.items) || [];
+  }
+
+  /* Ett nyhetskort: svensk sammanfattning + källchip (den inhemska tidningen)
+     och tidsangivelse. Originalrubriken ligger som tooltip; saknas översättning
+     visas originalet med dir="auto" (t.ex. arabiska/persiska rubriker). */
+  function newsItemHtml(it, accent) {
+    var sv = it.title_sv || "";
+    var text = sv || it.title || "";
+    var dirAttr = sv ? "" : ' dir="auto"';
+    var tip = sv && it.title && it.title !== sv
+      ? ' title="Originalrubrik' + (it.source ? " (" + esc(it.source) + ")" : "") + ": " + esc(it.title) + '"'
+      : "";
+    var ago = pvTimeAgo(it.published);
+    return '<a class="mi-news-item" style="--news-accent:' + esc(accent) + '" href="' + esc(it.url) +
+      '" target="_blank" rel="noopener noreferrer"' + tip + '>' +
+      '<span class="mi-news-sum"' + dirAttr + '>' + esc(text) + '</span>' +
+      '<span class="mi-news-meta">' +
+        (it.source ? '<span class="mi-news-src">' + esc(it.source) + '</span>' : '') +
+        (ago ? '<span class="mi-news-time">' + esc(ago) + '</span>' : '') +
+        '<span class="mi-news-ext" aria-hidden="true">↗</span>' +
+      '</span></a>';
+  }
+
+  function newsColHtml(teamObj, name, accent) {
+    var items = newsItemsOf(teamObj);
+    var body = items.length
+      ? items.slice(0, 5).map(function (it) { return newsItemHtml(it, accent); }).join("")
+      : '<div class="mi-pv-note">Inga färska nyheter från lägret just nu.</div>';
+    return '<div class="mi-news-col">' +
       '<div class="mi-pv-col-head">' + flagImg(teamObj && teamObj.iso) + '<span>' + esc(name) + '</span></div>' +
       body + '</div>';
   }
 
-  function pvNewsHtml(info) {
-    if (!teamNews) return "";
-    var hasHome = info.home && info.home.iso && teamNews[info.home.iso] &&
-      (teamNews[info.home.iso].items || []).length;
-    var hasAway = info.away && info.away.iso && teamNews[info.away.iso] &&
-      (teamNews[info.away.iso].items || []).length;
-    if (!hasHome && !hasAway) return "";
-    return '<div class="mi-section-title">Senaste nytt från lägren</div>' +
-      '<div class="mi-pv-cols mi-pv-news">' +
-      pvNewsCol(info.home, teamName(info.home, info.homeLabel)) +
-      pvNewsCol(info.away, teamName(info.away, info.awayLabel)) +
+  /* ---------- Fliken "Senaste nytt" ---------- */
+
+  function newsTabHtml(info) {
+    if (!info.home || !info.away || (!info.home.iso && !info.away.iso)) {
+      return '<div class="mi-empty">Nyheterna dyker upp när båda lagen är klara.</div>';
+    }
+    if (!teamNews) {
+      fetchTeamNews().then(function () { if (openKey) renderModal(); });
+      return '<div class="mi-pv-note mi-pv-loading">Hämtar nyheter från lägren …</div>';
+    }
+    if (!newsItemsOf(info.home).length && !newsItemsOf(info.away).length) {
+      return '<div class="mi-empty">Inga färska nyheter om lagen hittades just nu.</div>';
+    }
+    var cols = matchColors(info.home && info.home.iso, info.away && info.away.iso);
+    return '<div class="mi-news">' +
+      '<div class="mi-news-intro">Ur ländernas egna medier · sammanfattat på svenska</div>' +
+      '<div class="mi-news-cols">' +
+      newsColHtml(info.home, teamName(info.home, info.homeLabel), cols.home) +
+      newsColHtml(info.away, teamName(info.away, info.awayLabel), cols.away) +
       '</div>' +
-      '<div class="mi-pv-newsnote">Nyheter från respektive lands medier via Google Nyheter – rubriker på landets språk, öppnas i ny flik.</div>';
+      '<div class="mi-news-note">Maskinöversatta sammanfattningar av rubriker från respektive lands medier ' +
+        'via Google Nyheter. Håll muspekaren över ett kort för originalrubriken – klick öppnar artikeln i ny flik.</div>' +
+      '</div>';
+  }
+
+  /* Teaser i Inför-fliken som pekar vidare till nyhetsfliken. */
+  function pvNewsTeaserHtml(info) {
+    var n = newsItemsOf(info.home).slice(0, 5).length + newsItemsOf(info.away).slice(0, 5).length;
+    if (!n) return "";
+    return '<button type="button" class="mi-pv-newslink" data-mi-goto="news">' +
+      '<span class="mi-pv-newslink-ic" aria-hidden="true">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">' +
+        '<path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v9a2 2 0 0 1-2 2h-1"/>' +
+        '<path d="M7 9h7M7 12.5h7M7 16h4.5"/></svg>' +
+      '</span>' +
+      '<span class="mi-pv-newslink-body">' +
+        '<span class="mi-pv-newslink-title">Senaste nytt från lägren</span>' +
+        '<span class="mi-pv-newslink-sub">' + n + ' nyheter ur ländernas egna medier – sammanfattade på svenska</span>' +
+      '</span>' +
+      '<span class="mi-pv-newslink-arrow" aria-hidden="true">→</span>' +
+      '</button>';
   }
 
   /* ---------- Hela inför-panelen ---------- */
@@ -1178,7 +1220,7 @@
     h += pvCompareHtml(info, pv);
     h += pvInjuriesHtml(info);
     h += pvKeyPlayersHtml(info);
-    h += pvNewsHtml(info);
+    h += pvNewsTeaserHtml(info);
     h += '<div class="mi-pv-foot">Sannolikheter: spelmarknadens odds + sajtens simuleringsmotor (samma som slutspelsträdet).</div>';
     h += '</div>';
     return h;
@@ -1212,9 +1254,12 @@
     var upcoming = !info.live && !info.played;
 
     // Kommande matcher: Händelser/Statistik är garanterat tomma före avspark –
-    // de ersätts av inför-snacket. Pågående/spelade visar de vanliga flikarna.
+    // de ersätts av inför-snacket + nyheterna från lägren. Pågående/spelade
+    // visar de vanliga flikarna.
     var tabs = upcoming
-      ? [{ id: "preview", label: "Inför" }, { id: "lineups", label: "Laguppställning" }]
+      ? [{ id: "preview", label: "Inför" },
+         { id: "news", label: "Senaste nytt" },
+         { id: "lineups", label: "Laguppställning" }]
       : TABS.slice();
     if (groupLetter) tabs.push({ id: "table", label: "Tabell" });
     // Säkerhetsnät: faller tillbaka till första fliken om aktiv flik saknas här
@@ -1232,6 +1277,9 @@
     if (upcoming) {
       h += '<div class="mi-tab-panel' + (activeTab === "preview" ? " active" : "") + '" data-mi-panel="preview">';
       h += previewHtml(info);
+      h += "</div>";
+      h += '<div class="mi-tab-panel' + (activeTab === "news" ? " active" : "") + '" data-mi-panel="news">';
+      h += newsTabHtml(info);
       h += "</div>";
     } else {
       h += '<div class="mi-tab-panel' + (activeTab === "events" ? " active" : "") + '" data-mi-panel="events">';
@@ -1542,6 +1590,13 @@
     card.querySelectorAll("[data-mi-tab]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         activeTab = btn.getAttribute("data-mi-tab");
+        renderModal();
+      });
+    });
+    // Genvägar in i en annan flik (t.ex. nyhetsteasern i Inför-snacket).
+    card.querySelectorAll("[data-mi-goto]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        activeTab = btn.getAttribute("data-mi-goto");
         renderModal();
       });
     });

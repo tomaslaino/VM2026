@@ -5,8 +5,14 @@
   Poängen är lokal vinkel: nyheter om Egypten kommer ur egyptisk press (arabiska),
   nyheter om Japan ur japansk press osv. Det styrs per lag med en sökfråga på
   landets språk (landslagets vedertagna namn/smeknamn) plus Google News-parametrar
-  hl (språk), gl (land) och ceid (utgåva). Rubrikerna visas därmed på landets
-  språk i frontend (assets/matchinfo.js markerar dem med dir="auto").
+  hl (språk), gl (land) och ceid (utgåva).
+
+  Varje rubrik översätts dessutom till en kort svensk sammanfattning (title_sv)
+  via Googles öppna översättnings-endpoint (ingen nyckel). Frontenden
+  (assets/matchinfo.js, fliken "Senaste nytt") visar den svenska texten med
+  källhänvisning till den inhemska tidningen; originalrubriken behålls i title.
+  Redan översatta rubriker återanvänds från förra körningen (nyckel: url) så
+  bara nytillkomna artiklar kostar översättningsanrop.
 
   Ger en fråga noll träffar i landets utgåva provas en reservutgåva för samma
   språk. Misslyckas hämtningen helt behålls lagets gamla nyheter från förra
@@ -26,6 +32,7 @@ const MAX_ITEMS = 6;        // per lag i utfilen
 const MAX_AGE_DAYS = 14;    // äldre träffar än så tas inte med
 const FETCH_TIMEOUT = 15000;
 const DELAY_MS = 150;       // paus mellan anropen – snällt mot Google
+const SUMMARY_MAX = 170;    // max längd på den svenska sammanfattningen
 
 /* Sökfråga per lag på landets eget språk (landslagets namn/smeknamn) +
    Google News-utgåva. gl väger upp källor från landet; "when:14d" begränsar
@@ -168,6 +175,63 @@ async function fetchRss(url) {
   }
 }
 
+/* ---------- Svensk sammanfattning av rubrikerna ---------- */
+
+/* Kort och kärnfullt: rensa osynliga tecken (Google Translate lämnar ibland
+   zero-width spaces), normalisera whitespace och klipp överlånga rubriker
+   (t.ex. inklistrade sociala medier-poster) vid närmaste ordgräns. */
+function tightenSummary(s) {
+  let t = String(s || "")
+    .replace(/[\u200B-\u200D\uFEFF]/g, "")
+    .replace(/\s+/g, " ").trim();
+  if (t.length <= SUMMARY_MAX) return t;
+  t = t.slice(0, SUMMARY_MAX);
+  const cut = t.lastIndexOf(" ");
+  if (cut > 60) t = t.slice(0, cut);
+  return t.replace(/[\s,;:.!–—-]+$/, "") + " …";
+}
+
+/* Översätt en rubrik till svenska via Googles öppna gtx-endpoint (samma som
+   translate.google.com använder – ingen API-nyckel). sl=auto klarar alla
+   truppspråk; vid fel returneras null och frontenden visar originalrubriken. */
+async function translateToSwedish(text) {
+  const url = "https://translate.googleapis.com/translate_a/single?client=gtx" +
+    "&sl=auto&tl=sv&dt=t&q=" + encodeURIComponent(text);
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT);
+  try {
+    const res = await fetch(url, {
+      signal: ctrl.signal,
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; VM2026-news/1.0; +https://gravergrav.se)" }
+    });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    const segs = Array.isArray(data) && Array.isArray(data[0]) ? data[0] : [];
+    const out = segs.map((seg) => (Array.isArray(seg) ? seg[0] || "" : "")).join("").trim();
+    return out || null;
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/* Sätt title_sv på varje nyhet. Svenska rubriker används rakt av; övriga slås
+   först upp i förra körningens översättningar (prevSv, nyckel: url) och bara
+   nya rubriker skickas till översättningen. */
+async function addSwedishSummaries(items, prevSv, stats) {
+  for (const it of items) {
+    if (it.title_sv) continue;                       // följde med från förra körningen
+    if (it.lang === "sv") { it.title_sv = tightenSummary(it.title); continue; }
+    const prev = prevSv.get(it.url);
+    if (prev) { it.title_sv = prev; continue; }
+    const sv = await translateToSwedish(it.title);
+    if (sv) { it.title_sv = tightenSummary(sv); stats.translated++; }
+    else stats.missed++;
+    await sleep(DELAY_MS);
+  }
+}
+
 function freshSorted(items) {
   const cutoff = Date.now() - MAX_AGE_DAYS * 86400000;
   return items
@@ -184,6 +248,15 @@ export async function syncTeamNews({ log = console.log } = {}) {
   try {
     previous = JSON.parse(fs.readFileSync(OUT_FILE, "utf8")).teams || {};
   } catch {}
+
+  // Översättningscache från förra körningen: url → svensk sammanfattning.
+  const prevSv = new Map();
+  for (const t of Object.values(previous)) {
+    for (const it of t.items || []) {
+      if (it.url && it.title_sv) prevSv.set(it.url, it.title_sv);
+    }
+  }
+  const svStats = { translated: 0, missed: 0 };
 
   const teams = {};
   let ok = 0, empty = 0, failed = 0;
@@ -214,17 +287,20 @@ export async function syncTeamNews({ log = console.log } = {}) {
       teams[iso] = { edition: usedCeid, items: [] };
       empty++;
     }
+    await addSwedishSummaries(teams[iso].items, prevSv, svStats);
     await sleep(DELAY_MS);
   }
 
   const payload = {
     updated: new Date().toISOString(),
     source: "Google News RSS – respektive lands medier (lokala sökfrågor per lag)",
-    note: "Byggd av server/scripts/syncTeamNews.js. Rubriker på respektive lands språk.",
+    note: "Byggd av server/scripts/syncTeamNews.js. Originalrubrik i title, svensk sammanfattning i title_sv.",
     teams
   };
   fs.writeFileSync(OUT_FILE, JSON.stringify(payload, null, 2) + "\n", "utf8");
-  log(`[news] klart: ${ok} lag med färska nyheter, ${failed} återanvända, ${empty} tomma → ${path.relative(process.cwd(), OUT_FILE)}`);
+  log(`[news] klart: ${ok} lag med färska nyheter, ${failed} återanvända, ${empty} tomma · ` +
+    `${svStats.translated} nyöversatta rubriker${svStats.missed ? `, ${svStats.missed} utan översättning` : ""} → ` +
+    path.relative(process.cwd(), OUT_FILE));
   return { ok, failed, empty };
 }
 
