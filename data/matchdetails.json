@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-03T17:00:34.576Z",
+    "updatedAt": "2026-07-03T18:21:33.830Z",
     "source": "espn"
   },
   "details": {
@@ -49161,6 +49161,386 @@
         }
       ],
       "updatedAt": "2026-07-03T05:32:34.717Z"
+    },
+    "k:88": {
+      "espnId": "760499",
+      "fmt": 2,
+      "status": "IN_PLAY",
+      "minute": 21,
+      "utcDate": "2026-07-03T18:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 1
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 13,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Emam Ashour",
+          "assist": "Karim Hafez",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "3-4-2-1",
+          "starters": [
+            {
+              "name": "Patrick Beach",
+              "jersey": "18",
+              "pos": "G",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Jordan Bos",
+              "jersey": "5",
+              "pos": "RM",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Aziz Behich",
+              "jersey": "16",
+              "pos": "LM",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Lucas Herrington",
+              "jersey": "25",
+              "pos": "CD-L",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Harry Souttar",
+              "jersey": "19",
+              "pos": "CD",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Alessandro Circati",
+              "jersey": "3",
+              "pos": "CD-R",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Jackson Irvine",
+              "jersey": "22",
+              "pos": "CM-R",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Aiden O'Neill",
+              "jersey": "13",
+              "pos": "CM-L",
+              "st": {
+                "gc": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Nestory Irankunda",
+              "jersey": "17",
+              "pos": "F",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Cristian Volpato",
+              "jersey": "20",
+              "pos": "CF-R",
+              "st": {
+                "gc": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Connor Metcalfe",
+              "jersey": "8",
+              "pos": "CF-L",
+              "st": {
+                "fc": 1,
+                "gc": 1,
+                "sh": 1
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Cameron Devlin",
+              "jersey": "14"
+            },
+            {
+              "name": "Ajdin Hrustic",
+              "jersey": "10"
+            },
+            {
+              "name": "Cameron Burgess",
+              "jersey": "21"
+            },
+            {
+              "name": "Nishan Velupillay",
+              "jersey": "23"
+            },
+            {
+              "name": "Kai Trewin",
+              "jersey": "15"
+            },
+            {
+              "name": "Milos Degenek",
+              "jersey": "2"
+            },
+            {
+              "name": "Awer Mabil",
+              "jersey": "11"
+            },
+            {
+              "name": "Mohamed Toure",
+              "jersey": "9"
+            },
+            {
+              "name": "Tete Yengi",
+              "jersey": "26"
+            },
+            {
+              "name": "Jason Geria",
+              "jersey": "6"
+            },
+            {
+              "name": "Mathew Ryan",
+              "jersey": "1"
+            },
+            {
+              "name": "Paul Okon-Engstler",
+              "jersey": "24"
+            },
+            {
+              "name": "Paul Izzo",
+              "jersey": "12"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Mostafa Shoubir",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Mohamed Hany",
+              "jersey": "3",
+              "pos": "RB"
+            },
+            {
+              "name": "Karim Hafez",
+              "jersey": "15",
+              "pos": "LB",
+              "st": {
+                "a": 1
+              }
+            },
+            {
+              "name": "Hamdy Fathy",
+              "jersey": "14",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Yasser Ibrahim",
+              "jersey": "2",
+              "pos": "CD-R",
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Ramy Rabia",
+              "jersey": "5",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Emam Ashour",
+              "jersey": "8",
+              "pos": "RM",
+              "st": {
+                "sg": 1,
+                "g": 1,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Marawan Attia",
+              "jersey": "19",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Mostafa Zico",
+              "jersey": "11",
+              "pos": "CF-L",
+              "st": {
+                "fs": 1
+              }
+            },
+            {
+              "name": "Mohamed Salah",
+              "jersey": "10",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Omar Marmoush",
+              "jersey": "22",
+              "pos": "LM",
+              "st": {
+                "sh": 1
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Mahdy Soliman",
+              "jersey": "16"
+            },
+            {
+              "name": "Zizo",
+              "jersey": "25"
+            },
+            {
+              "name": "Ibrahim Adel",
+              "jersey": "20"
+            },
+            {
+              "name": "Mohamed Alaa",
+              "jersey": "26"
+            },
+            {
+              "name": "Tarek Alaa",
+              "jersey": "24"
+            },
+            {
+              "name": "Hossam Abdelmaguid",
+              "jersey": "4"
+            },
+            {
+              "name": "Haissem Hassan",
+              "jersey": "12"
+            },
+            {
+              "name": "Mohamed El Shenawy",
+              "jersey": "1"
+            },
+            {
+              "name": "Hamza Abdelkarim",
+              "jersey": "9"
+            },
+            {
+              "name": "Mahmoud Saber",
+              "jersey": "21"
+            },
+            {
+              "name": "Nabil Donga",
+              "jersey": "18"
+            },
+            {
+              "name": "Trézéguet",
+              "jersey": "7"
+            }
+          ]
+        }
+      },
+      "referee": "Gustavo Tejera",
+      "venue": "AT&T Stadium, Arlington, Texas",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "32%",
+          "a": "68%"
+        },
+        {
+          "key": "totalShots",
+          "h": "3",
+          "a": "3"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "76",
+          "a": "163"
+        },
+        {
+          "key": "passPct",
+          "h": "78%",
+          "a": "90%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-03T18:21:33.830Z"
     }
   }
 }
