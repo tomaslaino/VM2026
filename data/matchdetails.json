@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-03T22:28:54.200Z",
+    "updatedAt": "2026-07-03T23:37:24.964Z",
     "source": "espn"
   },
   "details": {
@@ -49743,23 +49743,77 @@
       "espnId": "760500",
       "fmt": 2,
       "status": "IN_PLAY",
-      "minute": 28,
+      "minute": 76,
       "utcDate": "2026-07-03T22:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
-          "h": 0,
+          "h": 1,
+          "a": 1
+        },
+        "ht": {
+          "h": 1,
           "a": 0
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
-      "bookings": [],
-      "subs": [],
+      "goals": [
+        {
+          "minute": 29,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Lionel Messi",
+          "assist": "Lisandro Martínez",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 59,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Deroy Duarte",
+          "assist": "Ryan Mendes",
+          "type": "REGULAR",
+          "score": null
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 68,
+          "team": "a",
+          "player": "Kevin Pina",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 63,
+          "team": "h",
+          "in": "Julián Álvarez",
+          "out": "Lautaro Martínez"
+        },
+        {
+          "minute": 64,
+          "team": "h",
+          "in": "Nico González",
+          "out": "Thiago Almada"
+        },
+        {
+          "minute": 67,
+          "team": "a",
+          "in": "Jamiro Monteiro",
+          "out": "Laros Duarte"
+        },
+        {
+          "minute": 67,
+          "team": "a",
+          "in": "Dailon Livramento",
+          "out": "Nuno da Costa"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -49768,68 +49822,106 @@
             {
               "name": "Emiliano Martínez",
               "jersey": "23",
-              "pos": "G"
+              "pos": "G",
+              "st": {
+                "gc": 1,
+                "sv": 1
+              }
             },
             {
               "name": "Nahuel Molina",
               "jersey": "26",
-              "pos": "RB"
+              "pos": "RB",
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Facundo Medina",
               "jersey": "25",
-              "pos": "LB"
+              "pos": "LB",
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Alexis Mac Allister",
               "jersey": "20",
-              "pos": "CM-R"
+              "pos": "CM-R",
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Cristian Romero",
               "jersey": "13",
               "pos": "CD-R",
               "st": {
-                "fc": 1
+                "fc": 2,
+                "gc": 1
               }
             },
             {
               "name": "Lisandro Martínez",
               "jersey": "6",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "gc": 1,
+                "a": 1
+              }
             },
             {
               "name": "Rodrigo De Paul",
               "jersey": "7",
               "pos": "RM",
               "st": {
-                "fc": 1
+                "fc": 1,
+                "gc": 1
               }
             },
             {
               "name": "Enzo Fernández",
               "jersey": "24",
-              "pos": "CM-L"
+              "pos": "CM-L",
+              "st": {
+                "fs": 1,
+                "gc": 1,
+                "sg": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Lautaro Martínez",
               "jersey": "22",
-              "pos": "CF-L"
+              "pos": "CF-L",
+              "st": {
+                "fc": 2,
+                "gc": 1
+              }
             },
             {
               "name": "Lionel Messi",
               "jersey": "10",
               "pos": "CF-R",
               "st": {
-                "fs": 1,
-                "sg": 1,
-                "sh": 2
+                "fc": 1,
+                "fs": 4,
+                "gc": 1,
+                "sg": 4,
+                "g": 1,
+                "sh": 6
               }
             },
             {
               "name": "Thiago Almada",
               "jersey": "16",
-              "pos": "LM"
+              "pos": "LM",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "gc": 1
+              }
             }
           ],
           "bench": [
@@ -49867,11 +49959,16 @@
             },
             {
               "name": "Julián Álvarez",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true
             },
             {
               "name": "Nico González",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true,
+              "st": {
+                "sh": 1
+              }
             },
             {
               "name": "Juan Musso",
@@ -49903,59 +50000,94 @@
               "jersey": "1",
               "pos": "G",
               "st": {
-                "sv": 1
+                "fs": 1,
+                "gc": 1,
+                "sv": 4
               }
             },
             {
               "name": "Steven Moreira",
               "jersey": "22",
-              "pos": "RB"
+              "pos": "RB",
+              "st": {
+                "fs": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Sidny Lopes Cabral",
               "jersey": "13",
               "pos": "LB",
               "st": {
-                "fs": 1
+                "fs": 2,
+                "gc": 1
               }
             },
             {
               "name": "Kevin Pina",
               "jersey": "6",
-              "pos": "DM"
+              "pos": "DM",
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Pico Lopes",
               "jersey": "4",
-              "pos": "CD-R"
+              "pos": "CD-R",
+              "st": {
+                "fs": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Diney Borges",
               "jersey": "3",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Ryan Mendes",
               "jersey": "20",
               "pos": "RM",
               "st": {
-                "sh": 1
+                "gc": 1,
+                "a": 1,
+                "sh": 2
               }
             },
             {
               "name": "Laros Duarte",
               "jersey": "15",
-              "pos": "CM-R"
+              "pos": "CM-R",
+              "st": {
+                "fs": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Nuno da Costa",
               "jersey": "21",
-              "pos": "F"
+              "pos": "F",
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Deroy Duarte",
               "jersey": "14",
-              "pos": "CM-L"
+              "pos": "CM-L",
+              "st": {
+                "fc": 3,
+                "gc": 1,
+                "sg": 2,
+                "g": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Jovane Cabral",
@@ -49963,7 +50095,9 @@
               "pos": "LM",
               "st": {
                 "fc": 1,
-                "fs": 1
+                "fs": 2,
+                "gc": 1,
+                "sh": 1
               }
             }
           ],
@@ -50002,11 +50136,13 @@
             },
             {
               "name": "Dailon Livramento",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Jamiro Monteiro",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true
             },
             {
               "name": "João Paulo",
@@ -50037,53 +50173,53 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "64%",
-          "a": "36%"
+          "h": "66%",
+          "a": "34%"
         },
         {
           "key": "totalShots",
-          "h": "2",
-          "a": "1"
+          "h": "9",
+          "a": "5"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
-          "a": "0"
+          "h": "5",
+          "a": "2"
         },
         {
           "key": "wonCorners",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "2",
-          "a": "1"
+          "h": "8",
+          "a": "6"
         },
         {
           "key": "offsides",
-          "h": "0",
+          "h": "2",
           "a": "0"
         },
         {
           "key": "saves",
-          "h": "0",
-          "a": "1"
+          "h": "1",
+          "a": "4"
         },
         {
           "key": "totalPasses",
-          "h": "198",
-          "a": "111"
+          "h": "575",
+          "a": "294"
         },
         {
           "key": "passPct",
-          "h": "92%",
-          "a": "83%"
+          "h": "93%",
+          "a": "86%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -50091,7 +50227,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-03T22:28:54.200Z"
+      "updatedAt": "2026-07-03T23:37:24.964Z"
     }
   }
 }
