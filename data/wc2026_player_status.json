@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-04T18:31:19.918Z",
+  "updated": "2026-07-04T20:27:46.408Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mex-roberto-alvarado": {
@@ -23,39 +23,6 @@
       "source": {
         "name": "La Crónica de Hoy",
         "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQMWx0QWpvOTJkTEMyUjZURFJuSTh4R3I3OGtxYm1ZM3pTRWNRaGhxNGNpUlRob0ZpMXpBWTEtLVNFOVdGX241Q1RGUzM4eGQ2dV9NZlZKS3RucW0xbnQ1NzRQdGpaempXOWF5Q0hHZjZyMENJUHU2Z3UtTFpCcFpzUTNwODFYTWJXay1OTER2aFozdnBTajV5WHVsTVh6czJFR1YxMW9SWXl6eER6XzhtYTh3NWFVRjhmelpScUJ0ZVVKLTlHa1JPVGVuQlVDcDRHcUY0RHpLM18ycXFVVHhDLWpTc2Z3RWJqWk92dw?oc=5"
-      },
-      "origin": "news"
-    },
-    "can-ismael-kone": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Ismael Kone skriver ett brev till kanadensare efter stöd efter VM-skada: \"Det har rört mig väldigt djupt\"",
-      "updated": "2026-07-03",
-      "source": {
-        "name": "Canadian Soccer Daily -",
-        "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNY28tbHo4N2VlLXRWUG1YelRfWGRfRHVZbWtOVktUbXVGZkppdERQemVQVFFVZkxDT25rczE3Wi02b1dMSDNsdkN2azllZ1FldlhRTHFuZERDYWxZLVhkWkZ6NXE5SmR5LXZkRWJmaGVOYXNRV2ljMzRaRkhQNGZST2J4MVBETVZpSXEwTGIxV2pxNW9GdnFHUlJFamJsTFpJMWNYYjBQZ2VYenVUZnlsNDEwLVZtWjhXNkh6ejJtNGstSi1ldndzcG1MVHBuWUNnNW4tNDlxakc3b0otemk2Qkg4NWlwNEU?oc=5"
-      },
-      "origin": "news"
-    },
-    "can-alphonso-davies": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Alphonso Davies SKADADES igen! Hur orolig är CanMNT? Noah Saviolo (h6O9pCjQUe)",
-      "updated": "2026-07-01",
-      "source": {
-        "name": "Mshale",
-        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE52a19tSGttZklUSFBfN0lHQUJnUDN2OUZLQkFNMTMzUmlXclF0Z1ZYWkljZVF6Z1lQOVJmeWxKcE9aX0M2TldWQXpDQ0QtY0lzZTRURHBpc2RaQ00?oc=5"
-      },
-      "origin": "news"
-    },
-    "can-stephen-eustaquio": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "NYCKELTAK: Eustáquio kliver upp när Davies äntligen återvänder från skada i CanMNT:s historiska vinst mot Sydafrika",
-      "updated": "2026-06-29",
-      "source": {
-        "name": "OneSoccer",
-        "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPeGdnMTQ2NWtkSUo2cno5bS1XcXRjaTlpRGhYcjVuRWk0amE3b3FzWHh2NnBvWjZwVkM5dHFBM2xrb2c2em1FUVZXaTlTWE42NGtKVFVBMzJmd19nbjdMSE8wenBWTFF6c0s1UWVobjdtT3ZPQlJjWDc5UFltVXF2YVNyTFFQenFwVnZqTGdSZWs5LVJ6aUFhX1BVdXRISHFwWUd2ejFKcll3ZlNReEhXLXpsaUw1YlJ0SDExOS1pdGF6cnRIZDVwYy1MUVFKTFRs?oc=5"
       },
       "origin": "news"
     },
@@ -81,14 +48,25 @@
       },
       "origin": "news"
     },
+    "mar-azzedine-ounahi": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Världscupen. Marocko eliminerar Kanada tack vare Ounahi men förlorar Saibari till skada",
+      "updated": "2026-07-04",
+      "source": {
+        "name": "africaradio.com",
+        "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNOEFuekN2Z1RKNTBwNEpDUnJvM2NxMVFONzlKYm1MZ2VHNG5MSWtYWFc1bWV3Z2N2enhBYWttOEVSWVd1dGdlMkdNS1BwTE9rWUhqWUNRUkpuRmppcmNhNTVvdVI3U1hkTi12akpWeUpvOXVLMmJIQzVYTWJSc01LeHVpYkZWZnpZc2JKS1Bid2hHcXlBT0tBRnhubTZMRWJLZndFVXRLdF9iMy1KbDFPRXd4cE5aLXNFQ0RZQ09BWFlyemlONmRRNERrODU?oc=5"
+      },
+      "origin": "news"
+    },
     "mar-ismael-saibari": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "LIVE - VM 2026: Marocko förlorar Saibari skadad och lider mot Kanada",
+      "detail": "Världscupen. Marocko eliminerar Kanada tack vare Ounahi men förlorar Saibari till skada",
       "updated": "2026-07-04",
       "source": {
-        "name": "MSN",
-        "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPRTVPVlZlVVdfdjl6b3VKN0x6c1pybjBtM0poUUtpZ0xRSGxvb00zc01veHNJY20xN2RXcXV0NjRhMno4eTFxTGFFZFpMR3BxQTBXa25rOTd4UlZBc290eXhXVDFXUnVQUXZHWGUxdEdGNU91WmsweEREWGlmdTlvZE1CZXR5M01tUmRtRlozTkpKc0hGUXBQOXpkWFhzR3FoZjJGYUpRdFZpczZuc3ZmbktCaFhTbkNGR2ZlN1o4S2FSR3VxUUVONjY0VkJ2b1VQYzhVY3l0QQ?oc=5"
+        "name": "africaradio.com",
+        "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNOEFuekN2Z1RKNTBwNEpDUnJvM2NxMVFONzlKYm1MZ2VHNG5MSWtYWFc1bWV3Z2N2enhBYWttOEVSWVd1dGdlMkdNS1BwTE9rWUhqWUNRUkpuRmppcmNhNTVvdVI3U1hkTi12akpWeUpvOXVLMmJIQzVYTWJSc01LeHVpYkZWZnpZc2JKS1Bid2hHcXlBT0tBRnhubTZMRWJLZndFVXRLdF9iMy1KbDFPRXd4cE5aLXNFQ0RZQ09BWFlyemlONmRRNERrODU?oc=5"
       },
       "origin": "news"
     },
@@ -148,17 +126,6 @@
       },
       "origin": "news"
     },
-    "fra-aurelien-tchouameni": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Paraguay-Frankrike: vi vet mer om Aurélien Tchouaménis skada, förverkad för åttondelsfinal i världscupen",
-      "updated": "2026-07-04",
-      "source": {
-        "name": "RMC Sport",
-        "url": "https://news.google.com/rss/articles/CBMimwJBVV95cUxQUnBUWGJlMV9ydzdKUjZ0Tm8takFIb040Y0ZEZXNicEtyRGFNb1g1dVNFdjJtTzlkNGxjMG9VTWV1UTM0Yjcwc0xYbmlBdHNHZzF6MEJiQmFUYWxqRndOcVJpTER1RWdGRGVFNG56aEc5SkhNYnVacllzYmdiR3RyYWtUYXVuYWdQbFVpTkNyX3o3VldNMFNYR092Mi1mdUFmN0QzRmwzVWZvUk9Ybm9VNko2NDdRaG96eFpvNE5RbW9Nc2w0TVpBS0ZmS3VfbUtCTWlBZmtkZVR0RUpnVmE4X2g2NE9MUEtaNzV4eG1OdzVTQmxwcDVKakx2cTJVOVVRWmZ5ajFRcmZTdW1mMGE5c0M4MTgySnExdjJV?oc=5"
-      },
-      "origin": "news"
-    },
     "arg-facundo-medina": {
       "availability": "doubtful",
       "kind": "injury",
@@ -192,6 +159,17 @@
       },
       "origin": "news"
     },
+    "eng-reece-james": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Mexiko vs. England: Tre lejon gav Reece James skadelyft innan VM:s åttondelsfinal",
+      "updated": "2026-07-02",
+      "source": {
+        "name": "Sports Mole",
+        "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQYm90b0xsakdsRkxyZzZqMGZQRG1uZ1FEeEJfcUZlS1hRX09kblphTXdTME5pcDVYMWFIY1FsdmMwOEdIUjZsZTZEM24xRTYtQ1I2cm5NMmlXMk9tbTJDd285ZERicTBBRkVEbDZZT0hDUnBzZ01HYzJXa3d1b0VfUGVCTEJGNmcxMXhLZVNoWlRLSmRlUkxDZW5aNmdqQTdlRDJUcGtaRDBwcWRnTmNyNUF1N2g4UGxYbldWWVdDcXFYQTlDNzhsd3lHdDEtNDVQVFRyTTk0a3NmRnc?oc=5"
+      },
+      "origin": "news"
+    },
     "bra-casemiro": {
       "availability": "out",
       "kind": "suspension",
@@ -201,18 +179,6 @@
       "source": {
         "name": "Matchfakta (ESPN)",
         "url": "https://www.espn.com/soccer/match/_/gameId/760487"
-      },
-      "origin": "cards"
-    },
-    "mar-issa-diop": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Andra gula kortet i turneringen (mot Skottland och Nederländerna)",
-      "updated": "2026-06-30",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760488"
       },
       "origin": "cards"
     },
