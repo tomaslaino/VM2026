@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-04T01:15:35.586Z",
+    "updatedAt": "2026-07-04T04:56:28.458Z",
     "source": "espn"
   },
   "details": {
@@ -50379,6 +50379,560 @@
         }
       ],
       "updatedAt": "2026-07-04T01:15:35.585Z"
+    },
+    "k:87": {
+      "espnId": "760501",
+      "fmt": 2,
+      "status": "FINISHED",
+      "minute": null,
+      "utcDate": "2026-07-04T01:30Z",
+      "duration": "REGULAR",
+      "winner": "HOME_TEAM",
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 0
+        },
+        "ht": {
+          "h": 1,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 14,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Jhon Arias",
+          "assist": "Luis Suárez",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 12,
+          "team": "h",
+          "player": "Jhon Arias",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 49,
+          "team": "a",
+          "player": "Caleb Yirenkyi",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 66,
+          "team": "a",
+          "player": "Fatawu Issahaku",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 76,
+          "team": "a",
+          "player": "Alidu Seidu",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 78,
+          "team": "h",
+          "player": "Richard Ríos",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 8,
+          "team": "h",
+          "in": "Luis Suárez",
+          "out": "Jhon Córdoba"
+        },
+        {
+          "minute": 13,
+          "team": "a",
+          "in": "Alidu Seidu",
+          "out": "Marvin Senaya"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Richard Ríos",
+          "out": "James Rodríguez"
+        },
+        {
+          "minute": 62,
+          "team": "a",
+          "in": "Fatawu Issahaku",
+          "out": "Iñaki Williams"
+        },
+        {
+          "minute": 62,
+          "team": "a",
+          "in": "Elisha Owusu",
+          "out": "Kwasi Sibo"
+        },
+        {
+          "minute": 73,
+          "team": "h",
+          "in": "Juan Fernando Quintero",
+          "out": "Jhon Arias"
+        },
+        {
+          "minute": 79,
+          "team": "a",
+          "in": "Ernest Nuamah",
+          "out": "Jordan Ayew"
+        },
+        {
+          "minute": 79,
+          "team": "a",
+          "in": "Prince Adu",
+          "out": "Caleb Yirenkyi"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Jáminton Campaz",
+          "out": "Luis Díaz"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Camilo Vargas",
+              "jersey": "12",
+              "pos": "G"
+            },
+            {
+              "name": "Daniel Muñoz",
+              "jersey": "2",
+              "pos": "RB",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Johan Mojica",
+              "jersey": "17",
+              "pos": "LB",
+              "st": {
+                "fs": 1,
+                "sg": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Jefferson Lerma",
+              "jersey": "16",
+              "pos": "CM",
+              "st": {
+                "fs": 1
+              }
+            },
+            {
+              "name": "Davinson Sánchez",
+              "jersey": "23",
+              "pos": "CD-R",
+              "st": {
+                "fc": 1,
+                "fs": 2,
+                "sg": 1,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Jhon Lucumí",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Gustavo Puerta",
+              "jersey": "14",
+              "pos": "RM",
+              "st": {
+                "fc": 3,
+                "fs": 3,
+                "sg": 1,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Jhon Arias",
+              "jersey": "11",
+              "pos": "LM",
+              "st": {
+                "fc": 1,
+                "sg": 1,
+                "g": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Jhon Córdoba",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "James Rodríguez",
+              "jersey": "10",
+              "pos": "RF"
+            },
+            {
+              "name": "Luis Díaz",
+              "jersey": "7",
+              "pos": "LF",
+              "st": {
+                "fc": 1,
+                "sg": 2,
+                "sh": 5
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Willer Ditta",
+              "jersey": "18"
+            },
+            {
+              "name": "Kevin Castaño",
+              "jersey": "5"
+            },
+            {
+              "name": "David Ospina",
+              "jersey": "1"
+            },
+            {
+              "name": "Álvaro Montero",
+              "jersey": "24"
+            },
+            {
+              "name": "Deiver Machado",
+              "jersey": "22"
+            },
+            {
+              "name": "Luis Suárez",
+              "jersey": "25",
+              "in": true,
+              "st": {
+                "fc": 4,
+                "fs": 2,
+                "a": 1,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Andrés Gómez",
+              "jersey": "26"
+            },
+            {
+              "name": "Jorge Carrascal",
+              "jersey": "8"
+            },
+            {
+              "name": "Cucho Hernández",
+              "jersey": "19"
+            },
+            {
+              "name": "Juan Fernando Quintero",
+              "jersey": "20",
+              "in": true,
+              "st": {
+                "sh": 2
+              }
+            },
+            {
+              "name": "Richard Ríos",
+              "jersey": "6",
+              "in": true,
+              "st": {
+                "fc": 3,
+                "fs": 1,
+                "sg": 1,
+                "sh": 3
+              }
+            },
+            {
+              "name": "Juan Portilla",
+              "jersey": "15"
+            },
+            {
+              "name": "Yerry Mina",
+              "jersey": "13"
+            },
+            {
+              "name": "Santiago Arias",
+              "jersey": "4"
+            },
+            {
+              "name": "Jáminton Campaz",
+              "jersey": "21",
+              "in": true,
+              "st": {
+                "sg": 1,
+                "sh": 2
+              }
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-1-4-1",
+          "starters": [
+            {
+              "name": "Lawrence Ati Zigi",
+              "jersey": "1",
+              "pos": "G",
+              "st": {
+                "gc": 1,
+                "sv": 7
+              }
+            },
+            {
+              "name": "Marvin Senaya",
+              "jersey": "26",
+              "pos": "RB"
+            },
+            {
+              "name": "Gideon Mensah",
+              "jersey": "14",
+              "pos": "LB",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Thomas Partey",
+              "jersey": "5",
+              "pos": "DM",
+              "st": {
+                "fs": 2,
+                "gc": 1,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Derrick Luckassen",
+              "jersey": "23",
+              "pos": "CD-R",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Jerome Opoku",
+              "jersey": "18",
+              "pos": "CD-L",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Iñaki Williams",
+              "jersey": "19",
+              "pos": "RM",
+              "st": {
+                "fs": 1,
+                "gc": 1,
+                "sh": 3
+              }
+            },
+            {
+              "name": "Caleb Yirenkyi",
+              "jersey": "3",
+              "pos": "CM-R",
+              "st": {
+                "fc": 2,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Jordan Ayew",
+              "jersey": "9",
+              "pos": "F",
+              "st": {
+                "fs": 2,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Kwasi Sibo",
+              "jersey": "8",
+              "pos": "CM-L",
+              "st": {
+                "fs": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Antoine Semenyo",
+              "jersey": "11",
+              "pos": "LM",
+              "st": {
+                "fc": 1,
+                "fs": 3,
+                "gc": 1,
+                "sh": 3
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Abdul Mumin",
+              "jersey": "6"
+            },
+            {
+              "name": "Prince Adu",
+              "jersey": "25",
+              "in": true,
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Kojo Peprah Oppong",
+              "jersey": "21"
+            },
+            {
+              "name": "Alidu Seidu",
+              "jersey": "2",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Baba Rahman",
+              "jersey": "17"
+            },
+            {
+              "name": "Elisha Owusu",
+              "jersey": "15",
+              "in": true
+            },
+            {
+              "name": "Jonas Adjetey",
+              "jersey": "4"
+            },
+            {
+              "name": "Augustine Boakye",
+              "jersey": "20"
+            },
+            {
+              "name": "Brandon Thomas-Asante",
+              "jersey": "10"
+            },
+            {
+              "name": "Christopher Bonsu Baah",
+              "jersey": "13"
+            },
+            {
+              "name": "Ernest Nuamah",
+              "jersey": "24",
+              "in": true,
+              "st": {
+                "fc": 2,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Benjamin Asare",
+              "jersey": "16"
+            },
+            {
+              "name": "Kamaldeen Sulemana",
+              "jersey": "22"
+            },
+            {
+              "name": "Joseph Anang",
+              "jersey": "12"
+            },
+            {
+              "name": "Fatawu Issahaku",
+              "jersey": "7",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 2
+              }
+            }
+          ]
+        }
+      },
+      "referee": "Clément Turpin",
+      "venue": "GEHA Field at Arrowhead Stadium, Kansas City, Missouri",
+      "attendance": 69045,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "61%",
+          "a": "39%"
+        },
+        {
+          "key": "totalShots",
+          "h": "20",
+          "a": "8"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "8",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "3",
+          "a": "2"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "14",
+          "a": "10"
+        },
+        {
+          "key": "offsides",
+          "h": "2",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "7"
+        },
+        {
+          "key": "totalPasses",
+          "h": "586",
+          "a": "377"
+        },
+        {
+          "key": "passPct",
+          "h": "91%",
+          "a": "83%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "2",
+          "a": "3"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-04T04:56:28.458Z"
     }
   }
 }

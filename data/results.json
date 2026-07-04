@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-07-04T01:15:35.510Z",
+    "updatedAt": "2026-07-04T04:56:28.397Z",
     "source": "espn",
-    "matchCount": 87,
+    "matchCount": 88,
     "liveCount": 0,
     "apiCalls": 2
   },
@@ -443,6 +443,11 @@
     "k:86": {
       "h": 3,
       "a": 2,
+      "status": "FINISHED"
+    },
+    "k:87": {
+      "h": 1,
+      "a": 0,
       "status": "FINISHED"
     }
   },
@@ -1931,7 +1936,7 @@
       "date": "2026-07-04",
       "time": "03:30",
       "utcDate": "2026-07-04T01:30Z",
-      "status": "TIMED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Colombia",
       "away": "Ghana",
@@ -2070,12 +2075,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Switzerland",
-      "away": "Round of 32 15 Winner",
+      "away": "Colombia",
       "homeRef": {
         "group": "B",
         "idx": 1
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "K",
+        "idx": 1
+      }
     },
     "k:97": {
       "date": "2026-07-09",
