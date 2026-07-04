@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-04T06:10:49.048Z",
+    "updatedAt": "2026-07-04T12:01:35.727Z",
     "source": "365scores",
     "matchCount": 4
   },
@@ -256,7 +256,7 @@
       "gameId": 4750903,
       "kickoff": "2026-07-04T21:00Z",
       "h": {
-        "formation": "4-1-4-1",
+        "formation": "4-3-1-2",
         "starters": [
           {
             "name": "Orlando Gill",
@@ -284,34 +284,34 @@
             "pos": "RB"
           },
           {
+            "name": "Matias Galarza",
+            "jersey": "23",
+            "pos": "DM"
+          },
+          {
             "name": "Andres Cubas",
             "jersey": "14",
             "pos": "DM"
           },
           {
-            "name": "Julio Enciso",
-            "jersey": "19",
-            "pos": "AM-L"
-          },
-          {
-            "name": "Matias Galarza",
-            "jersey": "23",
-            "pos": "AM"
-          },
-          {
             "name": "Damian Bobadilla",
             "jersey": "16",
+            "pos": "DM"
+          },
+          {
+            "name": "Diego Gomez",
+            "jersey": "8",
             "pos": "AM"
           },
           {
             "name": "Miguel Almiron",
             "jersey": "10",
-            "pos": "AM-R"
+            "pos": "LF"
           },
           {
-            "name": "Gabriel Avalos",
-            "jersey": "21",
-            "pos": "ST"
+            "name": "Julio Enciso",
+            "jersey": "19",
+            "pos": "RF"
           }
         ],
         "bench": [
@@ -328,10 +328,6 @@
             "jersey": "2"
           },
           {
-            "name": "Omar Alderete",
-            "jersey": "3"
-          },
-          {
             "name": "Fabian Balbuena",
             "jersey": "5"
           },
@@ -342,10 +338,6 @@
           {
             "name": "Braian Ojeda",
             "jersey": "20"
-          },
-          {
-            "name": "Diego Gomez",
-            "jersey": "8"
           },
           {
             "name": "Mauricio",
@@ -370,6 +362,10 @@
           {
             "name": "Alex Arce",
             "jersey": "18"
+          },
+          {
+            "name": "Gabriel Avalos",
+            "jersey": "21"
           },
           {
             "name": "Isidro Pitta",
@@ -411,8 +407,8 @@
             "pos": "DM"
           },
           {
-            "name": "Aurélien Tchouaméni",
-            "jersey": "8",
+            "name": "Manu Kone",
+            "jersey": "6",
             "pos": "DM"
           },
           {
@@ -470,10 +466,6 @@
             "jersey": "13"
           },
           {
-            "name": "Manu Kone",
-            "jersey": "6"
-          },
-          {
             "name": "Warren Zaire-Emery",
             "jersey": "18"
           },
@@ -490,16 +482,12 @@
             "jersey": "25"
           },
           {
-            "name": "Marcus Thuram",
-            "jersey": "9"
-          },
-          {
             "name": "Jean Philippe Mateta",
             "jersey": "22"
           }
         ]
       },
-      "updatedAt": "2026-07-04T06:10:46.777Z"
+      "updatedAt": "2026-07-04T12:01:33.910Z"
     },
     "k:91": {
       "status": "probable",
@@ -904,8 +892,8 @@
             "pos": "DM"
           },
           {
-            "name": "Marcus Rashford",
-            "jersey": "11",
+            "name": "Anthony Gordon",
+            "jersey": "18",
             "pos": "AM-L"
           },
           {
@@ -966,8 +954,8 @@
             "jersey": "7"
           },
           {
-            "name": "Anthony Gordon",
-            "jersey": "18"
+            "name": "Marcus Rashford",
+            "jersey": "11"
           },
           {
             "name": "Ollie Watkins",
@@ -979,7 +967,7 @@
           }
         ]
       },
-      "updatedAt": "2026-07-04T06:10:48.741Z"
+      "updatedAt": "2026-07-04T12:01:35.427Z"
     }
   }
 }
