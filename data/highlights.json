@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-04T01:29:19.965Z",
+    "updatedAt": "2026-07-04T05:26:57.206Z",
     "source": "svt+tv4",
     "matchCount": 88
   },
@@ -1907,11 +1907,6 @@
     },
     "k:86": {
       "SVT": {
-        "live": {
-          "url": "https://www.svtplay.se/video/KvvvpAX/fifa-fotbolls-vm-2026/argentina-kap-verde",
-          "title": "FIFA Fotbolls-VM 2026",
-          "until": "2026-08-02T23:59:59+02:00"
-        },
         "full": {
           "url": "https://www.svtplay.se/video/KvvvpAX/fifa-fotbolls-vm-2026/argentina-kap-verde",
           "title": "FIFA Fotbolls-VM 2026",
@@ -1942,6 +1937,28 @@
           "url": "https://www.svtplay.se/video/Kz77nrv/fifa-fotbolls-vm-2026/colombia-ghana",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-08-03T23:59:59+02:00"
+        },
+        "full": {
+          "url": "https://www.svtplay.se/video/Kz77nrv/fifa-fotbolls-vm-2026/colombia-ghana",
+          "title": "FIFA Fotbolls-VM 2026",
+          "until": "2026-08-03T23:59:59+02:00"
+        },
+        "long": {
+          "url": "https://www.svtplay.se/klipp/e2dVR5Q/utokade-hojdpunkter-colombia-ghana",
+          "title": "Utökade höjdpunkter: Colombia – Ghana",
+          "until": "2026-10-19T05:30:00+02:00"
+        },
+        "short": {
+          "url": "https://www.svtplay.se/klipp/eoramd7/sextondelsfinal-colombia-ghana",
+          "title": "Sextondelsfinal: Colombia – Ghana",
+          "until": "2026-10-19T05:30:00+02:00"
+        }
+      },
+      "TV4": {
+        "short": {
+          "url": "https://www.tv4play.se/klipp/27d0fdcab94870bf9a1b/video-hojdpunkter-colombia-ghana",
+          "title": "Höjdpunkter: Colombia - Ghana",
+          "until": null
         }
       }
     },
