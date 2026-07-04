@@ -20,7 +20,6 @@
   --third-q-bg: #3a2e14;
   --third-o: #5e7085;
   --gold: #e0b23a;
-  --fotmob: #6aa8ff;      /* blå accent för FotMob-betyg (extern källa) */
   --live: #e8264a;        /* röd – behålls för förlust, rött kort, fjärdeplats */
   /* Matchstatus-färger: grönt = kommande/pågående, rött = avslutad.
      (--livecol används för pågående matcher i stället för det röda --live.) */
@@ -4081,23 +4080,13 @@ span.pr-caps-debut.pr-caps-legend {
 .rt-low { color: color-mix(in srgb, var(--live) 75%, var(--ink)); }
 .rt-none { color: var(--ink-soft); }
 .pm-rating.rt-mid .pm-rating-val { color: var(--ink); }
-/* Eget VM-betyg + FotMob-betyg sida vid sida (radbryter på smala skärmar). */
-.pm-rating-pair { display: flex; gap: 10px; flex-wrap: wrap; }
-.pm-rating-pair .pm-rating { flex: 1 1 200px; margin-bottom: 12px; }
-.pm-rating-fm .pm-rating-txt strong { color: var(--fotmob, #7db6ff); }
 
 /* ---------- Matchlogg (match för match) i spelarprofilen ---------- */
 .pm-log { margin-top: 16px; }
 .pm-log-head {
-  display: flex; align-items: baseline; justify-content: space-between;
   font-size: 11px; font-weight: 700; text-transform: uppercase;
   letter-spacing: .05em; color: var(--ink-soft); margin-bottom: 6px;
 }
-.pm-log-legend { font-weight: 700; letter-spacing: .03em; }
-.pm-log-fmleg { color: var(--fotmob, #7db6ff); }
-/* FotMob-kolumnen i loggen: smalare, dämpad, i FotMob-accent. */
-.pm-log-fmrt { min-width: 22px; font-size: 12px; font-weight: 700; opacity: .92; }
-.pm-log-fmrt.rt-mid, .pm-log-fmrt.rt-none { color: var(--fotmob, #7db6ff); }
 .pm-log-row {
   display: flex; align-items: center; gap: 8px; width: 100%;
   padding: 8px 6px; border: 0; border-top: 1px solid var(--line);
@@ -4869,39 +4858,6 @@ span.pr-caps-debut.pr-caps-legend {
 .mi-pv-item.mi-pl-openable { cursor: pointer; border-radius: 6px; }
 .mi-pv-item.mi-pl-openable:hover { background: rgba(61,109,181,.10); }
 
-/* Teaser i Inför-fliken som pekar vidare till fliken "Senaste nytt". */
-.mi-pv-newslink {
-  display: flex; align-items: center; gap: 12px; width: 100%; margin-top: 16px;
-  padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius-sm);
-  background:
-    radial-gradient(140% 180% at 0% 0%, rgba(61,109,181,.12), transparent 55%),
-    var(--bg-soft);
-  color: var(--ink); font: inherit; text-align: left; cursor: pointer;
-  transition: border-color .15s, background-color .15s, transform .15s;
-}
-.mi-pv-newslink:hover {
-  border-color: var(--line-strong); background-color: #13233c;
-  transform: translateY(-1px);
-}
-.mi-pv-newslink-ic {
-  flex: none; width: 34px; height: 34px;
-  display: inline-flex; align-items: center; justify-content: center;
-  border: 1px solid var(--line); border-radius: 10px;
-  background: rgba(61,109,181,.14); color: #8fb4e4;
-}
-.mi-pv-newslink-ic svg { width: 18px; height: 18px; }
-.mi-pv-newslink-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.mi-pv-newslink-title { font-size: 13px; font-weight: 750; }
-.mi-pv-newslink-sub {
-  font-size: 11.5px; color: var(--ink-soft);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-.mi-pv-newslink-arrow {
-  flex: none; font-size: 15px; color: var(--ink-soft);
-  transition: transform .15s, color .15s;
-}
-.mi-pv-newslink:hover .mi-pv-newslink-arrow { transform: translateX(3px); color: var(--ink); }
-
 .mi-pv-note {
   padding: 9px 11px; border: 1px dashed var(--line); border-radius: var(--radius-sm);
   color: var(--ink-soft); font-size: 12.5px; text-align: center;
@@ -4978,6 +4934,10 @@ span.pr-caps-debut.pr-caps-legend {
 /* Löptextsammanfattning (data/news_summaries.json) i stället för rubriklistan:
    berättande text om läget i båda lägren + numrerade källreferenser. */
 .mi-news-summary { max-width: 680px; margin: 0 auto; }
+.mi-news-headline {
+  margin: 2px 0 14px; font-size: 20px; line-height: 1.25;
+  font-weight: 800; letter-spacing: -0.01em; color: var(--ink);
+}
 .mi-news-summary p {
   margin: 0 0 13px; font-size: 13.5px; line-height: 1.75; color: var(--ink);
 }
@@ -5363,9 +5323,6 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 /* Ligor under minutgränsen tonas ned men behåller läsbarhet. */
 tr.ps-league-unq td { opacity: .62; }
 .ps-rating { font-variant-numeric: tabular-nums; }
-/* FotMob-betyget (extern källa) särskiljs subtilt från det egna VM-betyget. */
-.ps-fmrating { font-variant-numeric: tabular-nums; }
-.ps-fmrating .ps-num { color: var(--fotmob, #7db6ff); }
 
 /* Scatter: VM-betyg mot renommé (mellan verktygsraden och ligatabellen).
    Punktfärgerna är validerade mot kortytan (#122238) för CVD-separation och

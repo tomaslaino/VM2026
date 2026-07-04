@@ -6,14 +6,14 @@
       berikad med VM-statistik som samlas in från matchhändelserna
       (data/matchdetails.json via app.js): matcher, spelade minuter, mål,
       assist, poäng, mål/90, assist/90, straffmål, självmål, gula/röda kort
-      samt ett eget VM-betyg (se nedan).
+      samt ett matchbetyg (FotMob, se nedan).
     • Lag – aggregerad tabell per lag: matcher, vinster/oavgjort/förlust,
       poäng, gjorda/insläppta mål, målskillnad, mål per match, hållna
       nollor och kort.
     • Region – samma aggregat per konfederation/världsdel.
     • Ligor – klubbligornas VM: spelarna grupperas på vilken liga (land +
       division, data/club_leagues.json) deras klubb spelar i, med minut-
-      viktat VM-betyg, produktion och två överprestationsmått:
+      viktat FotMob-betyg, produktion och två överprestationsmått:
         ±Renommé (betyg mot förväntat betyg utifrån ligans renommé – viktad
         regression över kvalificerade ligor, visualiserad i en scatter-graf)
         samt Δ Förväntan (landslagens utveckling mot turneringsstartens
@@ -22,11 +22,11 @@
         verktygsraden förklarar måtten. Klick på en liga öppnar en modal
         med ligans VM-spelare.
 
-  VM-betyget är en transparent 10-gradig skala (bas 6.0) per match som väger
-  mål/assist, lagets målskillnad medan spelaren var på planen, resultat,
-  hållen nolla (MV/försvar), räddningar, skott, fouls och kort – byggt på
-  händelserna + ESPN:s spelar-boxscore (st i lineups). Turneringsbetyget är
-  minutviktat över spelarens matcher.
+  Matchbetyget är FotMobs Opta-baserade spelarbetyg (10-gradigt) ur
+  data/fotmob_ratings.json, kopplat till ESPN-lineupens namn. Det fångar hela
+  spelet – även tacklingar, brytningar, passningar och positionsspel – som
+  ESPN:s gratisdata saknar. Turneringsbetyget är minutviktat över spelarens
+  matcher; saknar FotMob betyg för en match räknas den inte in.
 
   Spelade minuter beräknas ur startelvor + inbyten (lineups/subs) och
   justeras för röda kort. Per-90-värden använder en minutkvalificering så
@@ -48,7 +48,7 @@
 
   /* Minuter en spelare måste ha spelat för att kvalificera till per-90-toppar. */
   var QUAL_MIN = 2;
-  /* Minuter för kvalificerat VM-betyg (spelare) resp. liga-rankning (Ligor). */
+  /* Minuter för kvalificerat betyg (spelare) resp. liga-rankning (Ligor). */
   var RATING_QUAL_MIN = 90;
   var LEAGUE_QUAL_MIN = 450;
 
@@ -204,8 +204,7 @@
       goals: 0, pens: 0, og: 0, assists: 0, y: 0, r: 0,
       min: 0, apps: 0,
       sh: 0, sg: 0, sv: 0, fc: 0, fs: 0,   // boxscore: skott/på mål/räddningar/fouls
-      rSum: 0, rMin: 0,                     // VM-betyg: Σ(betyg × min) och Σ(min)
-      fmSum: 0, fmMin: 0,                   // FotMob-betyg: Σ(betyg × min) och Σ(min över matcher med betyg)
+      rSum: 0, rMin: 0,                     // FotMob-betyg: Σ(betyg × min) och Σ(min över matcher med betyg)
       log: []                               // per-match-rader (spelarmodalens matchlogg)
     });
   }
@@ -231,21 +230,14 @@
   }
 
   /*
-    VM-betyget per match: 10-gradig skala med bas 6.0, i stil med de
-    matchbetyg statistiksajter sätter, men helt transparent:
-
-      +1.0 per mål (straffmål +0.75, självmål −0.7) · +0.5 per assist
-      ± lagets målskillnad medan spelaren var inne × 0.3 (max ±0.9)
-      ± 0.2 för vinst/förlust (skalat med andel spelad tid)
-      +0.5 (MV) / +0.3 (försvarare) för hållen nolla (minst 60 min)
-      +0.12 per räddning (MV, max +0.72)
-      +0.12 per skott på mål utöver målen · +0.02 per övrigt skott
-      −0.05 per begången foul · +0.03 per utsatt för foul
-      −0.3 gult kort · −1.0 andra gula · −1.2 direkt rött
-
-    Klipps till [3, 10]. Boxscore-termerna kräver st-fältet i lineups
-    (ESPN); saknas det bidrar de med 0. Turneringsbetyget är minutviktat:
-    Σ(matchbetyg × minuter) / Σ(minuter).
+    Matchbetyget är FotMobs Opta-baserade spelarbetyg (10-gradigt), hämtat i
+    data/fotmob_ratings.json och kopplat till ESPN-lineupens spelarnamn (k =
+    normaliserat namn). Det fångar hela spelet – även tacklingar, brytningar,
+    passningar och positionsspel – till skillnad från ESPN:s gratisdata som
+    saknar defensiva aktioner. Saknas betyget för en spelare i en match (sena
+    inhopp eller namn som inte kunnat kopplas) bidrar hen inte till snittet.
+    Turneringsbetyget är minutviktat (ESPN-minuter): Σ(betyg × min) / Σ(min).
+    Lag-, regions- och ligasnitt bygger vidare på samma per-spelare-betyg.
   */
   function addSideMatch(map, key, meta, det, side, team, oppTeam) {
     var lu = det.lineups && det.lineups[side];
@@ -279,12 +271,10 @@
       }
     });
 
-    /* Boxscore + lineup-position per spelare (bara startelvan har position). */
-    var box = {}, luPos = {};
+    /* Boxscore per spelare (skott/räddningar/fouls till spelarmodalen). */
+    var box = {};
     (lu.starters || []).forEach(function (s) {
-      if (!s || !s.name) return;
-      if (s.st) box[norm(s.name)] = s.st;
-      if (s.pos) luPos[norm(s.name)] = s.pos;
+      if (s && s.name && s.st) box[norm(s.name)] = s.st;
     });
     (lu.bench || []).forEach(function (s) {
       if (s && s.name && s.st) box[norm(s.name)] = s.st;
@@ -315,19 +305,10 @@
       else if (bk.card === "RED") o.rd++;
     });
 
-    /* Målminuter (per gynnad sida) för plus/minus i spelarens fönster. */
-    var gFor = [], gAg = [];
-    (det.goals || []).forEach(function (gl) {
-      if (gl.minute == null) return;
-      (gl.team === side ? gFor : gAg).push(gl.minute);
-    });
-
     var ft = det.score && det.score.ft;
     var res = ft && ft.h != null && ft.a != null
       ? (ft[side] > ft[opp] ? 1 : ft[side] < ft[opp] ? -1 : 0)
       : 0;
-
-    var idx = squadIndex(team.iso); // positionsfallback för inhoppare
 
     Object.keys(play).forEach(function (k) {
       var pl = play[k];
@@ -357,58 +338,25 @@
         min: mins, on: pin, off: pout, full: full, starter: !!pl.starter,
         g: o.g, pen: o.pen, og: o.og, a: o.a, y: o.y, yr: o.yr, rd: o.rd,
         sv: st ? (st.sv || 0) : 0,
-        rating: null,
-        fmRating: null
+        rating: null
       };
       b.log.push(entry);
 
-      /* FotMobs matchbetyg (om spelaren kopplats i data/fotmob_ratings.json,
-         nycklat på ESPN:s normaliserade namn = k). Minutviktas separat: bara
-         matcher där FotMob satt betyg räknas in i snittet. */
+      if (mins <= 0) return;
+
+      /* Matchbetyg = FotMobs Opta-baserade betyg, kopplat på ESPN:s
+         normaliserade namn (k) i data/fotmob_ratings.json. Saknas betyget
+         (t.ex. sena inhopp eller namn som inte kunnat kopplas) bidrar spelaren
+         inte till snittet och visas som "–". Minutviktat turneringsbetyg:
+         Σ(betyg × minuter) / Σ(minuter över matcher med betyg). */
       var fmMap = fotmobRatings && fotmobRatings[key] && fotmobRatings[key].players
         ? fotmobRatings[key].players[side] : null;
       var fmR = fmMap && fmMap[k] != null ? fmMap[k] : null;
       if (fmR != null) {
-        entry.fmRating = fmR;
-        if (mins > 0) { b.fmSum += fmR * mins; b.fmMin += mins; }
+        entry.rating = fmR;
+        b.rSum += fmR * mins;
+        b.rMin += mins;
       }
-
-      if (mins <= 0) return;
-
-      /* Roll: MV/försvarare/övrig – lineup-position, annars truppens. */
-      var role = "mfw";
-      var lp = luPos[k];
-      if (lp === "G") role = "gk";
-      else if (lp && /B|CD/.test(lp)) role = "df";
-      else if (!lp) {
-        var sp = findSquadPlayer(idx, pl.name);
-        if (sp) role = sp.pos_code === "GK" ? "gk" : sp.pos_code === "DF" ? "df" : "mfw";
-      }
-
-      var pf = 0, pa = 0;
-      gFor.forEach(function (m) { if (m >= pin && m <= pout) pf++; });
-      gAg.forEach(function (m) { if (m >= pin && m <= pout) pa++; });
-
-      var r = 6
-        + (o.g - o.pen) * 1.0 + o.pen * 0.75 - o.og * 0.7
-        + o.a * 0.5
-        + Math.max(-0.9, Math.min(0.9, (pf - pa) * 0.3))
-        + res * 0.2 * (mins / full);
-      if ((role === "gk" || role === "df") && mins >= 60 && pa === 0) {
-        r += role === "gk" ? 0.5 : 0.3;
-      }
-      if (st) {
-        if (role === "gk") r += Math.min((st.sv || 0) * 0.12, 0.72);
-        r += Math.max(0, (st.sg || 0) - (st.g || 0)) * 0.12;
-        r += Math.max(0, (st.sh || 0) - (st.sg || 0)) * 0.02;
-        r += -(st.fc || 0) * 0.05 + (st.fs || 0) * 0.03;
-      }
-      r += -(o.y * 0.3) - (o.yr * 1.0) - (o.rd * 1.2);
-      r = Math.max(3, Math.min(10, r));
-
-      entry.rating = r;
-      b.rSum += r * mins;
-      b.rMin += mins;
     });
   }
 
@@ -553,7 +501,6 @@
       gi90: per90(goals + assists, min),
       sh: st.sh || 0, sg: st.sg || 0, sv: st.sv || 0, fc: st.fc || 0, fs: st.fs || 0,
       rSum: st.rSum || 0, rMin: st.rMin || 0,
-      fmSum: st.fmSum || 0, fmMin: st.fmMin || 0,
       /* Matchlogg i kronologisk ordning (datum, sedan nyckel som stabil backup). */
       log: (st.log || []).slice().sort(function (a, b) {
         var ad = a.date || "", bd = b.date || "";
@@ -561,8 +508,6 @@
       }),
       rating: (st.rMin || 0) > 0 ? st.rSum / st.rMin : null,
       ratingQ: (st.rMin || 0) >= RATING_QUAL_MIN,
-      fmRating: (st.fmMin || 0) > 0 ? st.fmSum / st.fmMin : null,
-      fmRatingQ: (st.fmMin || 0) >= RATING_QUAL_MIN,
       qualified: min >= QUAL_MIN,
       hasStats: !!(goals || assists || st.og || st.y || st.r),
       played: (st.apps || 0) > 0 || min > 0
@@ -680,7 +625,7 @@
 
      Varje truppspelare hör till en klubb, varje klubb till en liga (land +
      division, data/club_leagues.json). Utöver produktion och minutviktat
-     VM-betyg beräknas två överprestationsmått:
+     FotMob-betyg beräknas två överprestationsmått:
 
        • ±Snitt – ligans minutviktade betyg minus hela turneringens
          minutviktade snittbetyg. Positivt = ligans spelare har presterat
@@ -859,7 +804,6 @@
     g90:     { type: "num", qual: true, get: function (r) { return r.g90; } },
     a90:     { type: "num", qual: true, get: function (r) { return r.a90; } },
     rating:  { type: "num", qual: "rating", get: function (r) { return r.rating; } },
-    fmrating:{ type: "num", qual: "fmrating", get: function (r) { return r.fmRating; } },
     y:       { type: "num", get: function (r) { return r.y; } },
     r:       { type: "num", get: function (r) { return r.r; } },
     mv:      { type: "num", get: function (r) { return r.mv; } },
@@ -998,12 +942,9 @@
       var an = av == null ? -Infinity : av;
       var bn = bv == null ? -Infinity : bv;
       if (s.qual) {
-        /* "rating"/"fmrating" kräver minst RATING_QUAL_MIN minuter, övriga QUAL_MIN. */
-        var qOf = function (r) {
-          return s.qual === "rating" ? r.ratingQ : s.qual === "fmrating" ? r.fmRatingQ : r.qualified;
-        };
-        if (!qOf(a)) an = -Infinity;
-        if (!qOf(b)) bn = -Infinity;
+        /* "rating" kräver minst RATING_QUAL_MIN minuter, övriga QUAL_MIN. */
+        if (!(s.qual === "rating" ? a.ratingQ : a.qualified)) an = -Infinity;
+        if (!(s.qual === "rating" ? b.ratingQ : b.qualified)) bn = -Infinity;
       }
       d = an - bn;
     } else {
@@ -1149,7 +1090,7 @@
       var lrows = buildLeagueRows();
       return [
         {
-          id: "lrating", kind: "leagues", title: "Högst VM-betyg", icon: "⭐", rows: lrows,
+          id: "lrating", kind: "leagues", title: "Högst betyg (FotMob)", icon: "⭐", rows: lrows,
           valFn: function (r) { return r.ratingQ && r.rating != null ? r.rating : 0; },
           mainFn: function (r) { return fmtRating(r.rating); },
           rateFn: function (r) { return r.active + " spelare · " + r.min + " min"; }
@@ -1235,15 +1176,9 @@
         rateFn: function (r) { return fmt2(r.a90) + " ass/90 min"; }
       },
       {
-        id: "rating", kind: "players", title: "Högst VM-betyg", icon: "⭐", rows: prows,
+        id: "rating", kind: "players", title: "Högst betyg (FotMob)", icon: "⭐", rows: prows,
         valFn: function (r) { return r.ratingQ && r.rating != null ? r.rating : 0; },
         mainFn: function (r) { return fmtRating(r.rating); },
-        rateFn: function (r) { return r.min + " min · " + r.apps + (r.apps === 1 ? " match" : " matcher"); }
-      },
-      {
-        id: "fmrating", kind: "players", title: "Högst FotMob-betyg", icon: "📊", rows: prows,
-        valFn: function (r) { return r.fmRatingQ && r.fmRating != null ? r.fmRating : 0; },
-        mainFn: function (r) { return fmtRating(r.fmRating); },
         rateFn: function (r) { return r.min + " min · " + r.apps + (r.apps === 1 ? " match" : " matcher"); }
       }
     ];
@@ -1429,7 +1364,7 @@
     m.classList.add("open");
   }
 
-  /* ---------- Scatter: VM-betyg mot renommé (Ligor-läget) ----------
+  /* ---------- Scatter: FotMob-betyg mot renommé (Ligor-läget) ----------
      Varje punkt är en kvalificerad liga (≥ LEAGUE_QUAL_MIN min). Den streckade
      linjen är regressionens förväntade betyg; avståndet till linjen är exakt
      tabellens ±Renommé. Byggs efter render (behöver containerns bredd) och
@@ -1470,7 +1405,7 @@
     function Y(v) { return mT + ((y1 - v) / (y1 - y0)) * ih; }
 
     var s = '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + " " + H +
-      '" style="width:100%;height:auto" role="img" aria-label="Punktdiagram: ligornas VM-betyg mot renommé">';
+      '" style="width:100%;height:auto" role="img" aria-label="Punktdiagram: ligornas FotMob-betyg mot renommé">';
     /* Rutnät + axelvärden (hårfina linjer, dämpad text). */
     for (var yv = y0; yv <= y1 + 1e-9; yv += yStep) {
       s += '<line class="grid" x1="' + mL + '" y1="' + Y(yv) + '" x2="' + (W - mR) + '" y2="' + Y(yv) + '"></line>' +
@@ -1481,7 +1416,7 @@
         '<text class="axis-text" x="' + X(xv) + '" y="' + (mT + ih + 15) + '" text-anchor="middle">' + xv + "</text>";
     }
     s += '<text class="axis-title" x="' + (mL + iw / 2) + '" y="' + (H - 4) + '" text-anchor="middle">Renommé (0–100)</text>';
-    s += '<text class="axis-title" transform="rotate(-90)" x="' + (-(mT + ih / 2)) + '" y="13" text-anchor="middle">VM-betyg</text>';
+    s += '<text class="axis-title" transform="rotate(-90)" x="' + (-(mT + ih / 2)) + '" y="13" text-anchor="middle">FotMob-betyg</text>';
     /* Regressionslinjen över datats renommé-spann. */
     s += '<line class="reg" x1="' + X(repMin) + '" y1="' + Y(reg.a + reg.b * repMin) +
       '" x2="' + X(repMax) + '" y2="' + Y(reg.a + reg.b * repMax) + '"></line>';
@@ -1555,7 +1490,7 @@
       var name = document.createElement("span");
       name.className = "t-name"; name.textContent = r.label;
       tip.appendChild(name);
-      tip.appendChild(tipRow("VM-betyg", fmtRating(r.rating)));
+      tip.appendChild(tipRow("FotMob-betyg", fmtRating(r.rating)));
       tip.appendChild(tipRow("Förväntat", fmtRating(r.expRating)));
       tip.appendChild(tipRow("±Renommé", fmtSigned(r.oprep)));
       tip.appendChild(tipRow("Renommé", String(r.rep)));
@@ -1632,12 +1567,9 @@
         (r.goals || (r.og ? '<span class="ps-og" title="' + r.og + ' självmål">sj</span>' : '<span class="ps-zero">–</span>')) + "</td>" +
       '<td class="c-stat ps-num' + (r.assists ? " hot" : "") + '">' + (r.assists || '<span class="ps-zero">–</span>') + "</td>" +
       '<td class="c-stat ps-num ps-pts">' + (r.points || '<span class="ps-zero">–</span>') + "</td>" +
-      '<td class="c-stat ps-rating">' + (r.rating == null ? '<span class="ps-zero">–</span>'
+      '<td class="c-stat ps-rating">' + (r.rating == null ? '<span class="ps-zero" title="FotMob har inte satt betyg (t.ex. sena inhopp eller namn som inte kunnat kopplas)">–</span>'
         : r.ratingQ ? '<span class="ps-num">' + fmtRating(r.rating) + "</span>"
         : '<span class="ps-zero" title="Under ' + RATING_QUAL_MIN + ' spelade minuter – osäkert betyg">' + fmtRating(r.rating) + "</span>") + "</td>" +
-      '<td class="c-stat ps-fmrating">' + (r.fmRating == null ? '<span class="ps-zero" title="FotMob har inte satt betyg (t.ex. sena inhopp eller namn som inte kunnat kopplas)">–</span>'
-        : r.fmRatingQ ? '<span class="ps-num">' + fmtRating(r.fmRating) + "</span>"
-        : '<span class="ps-zero" title="Under ' + RATING_QUAL_MIN + ' spelade minuter – osäkert betyg">' + fmtRating(r.fmRating) + "</span>") + "</td>" +
       '<td class="c-stat ps-rate">' + g90 + "</td>" +
       '<td class="c-stat ps-rate">' + a90 + "</td>" +
       '<td class="c-stat">' + cardsCell(r.y, "y") + "</td>" +
@@ -1663,8 +1595,7 @@
       thSort("goals", "Mål", "", "Mål i VM 2026") +
       thSort("assists", "Ass", "", "Assist i VM 2026") +
       thSort("points", "P", "", "Poäng = mål + assist") +
-      thSort("rating", "Betyg", "", "VM-betyg (10-gradigt, minutviktat över matcherna): bas 6.0 ± mål, assist, lagets målskillnad på planen, resultat, hållen nolla, räddningar, skott, fouls och kort. Kräver " + RATING_QUAL_MIN + " min för rankning.") +
-      thSort("fmrating", "FotMob", "", "FotMobs matchbetyg (10-gradigt, minutviktat över matcherna), källa FotMob. Bygger på Opta-liknande händelsedata och fångar även defensivt spel (tacklingar, brytningar, passningar) som det egna betyget saknar. Kräver " + RATING_QUAL_MIN + " min för rankning; saknas för spelare FotMob inte betygsatt.") +
+      thSort("rating", "Betyg", "", "FotMobs matchbetyg (10-gradigt, minutviktat över matcherna). Bygger på Opta-liknande händelsedata och fångar hela spelet – även tacklingar, brytningar, passningar och positionsspel. Kräver " + RATING_QUAL_MIN + " min för rankning; saknas för spelare FotMob inte betygsatt.") +
       thSort("g90", "Mål/90", "", "Mål per 90 spelade minuter (kräver minst " + QUAL_MIN + " min)") +
       thSort("a90", "Ass/90", "", "Assist per 90 spelade minuter (kräver minst " + QUAL_MIN + " min)") +
       thSort("y", "Gul", "", "Gula kort") +
@@ -1673,7 +1604,7 @@
       thSort("min", "Min", "", "Spelade minuter i VM 2026") +
       "</tr></thead><tbody>";
     if (!shown.length) {
-      h += '<tr><td class="ps-empty" colspan="20">Inga spelare matchar filtren.</td></tr>';
+      h += '<tr><td class="ps-empty" colspan="19">Inga spelare matchar filtren.</td></tr>';
     } else {
       shown.forEach(function (r, i) { h += playerRowHtml(r, i); });
     }
@@ -1867,7 +1798,7 @@
       thSort("assists", "Ass", "", "Assist av ligans spelare i VM") +
       thSort("min", "Min", "", "Spelade minuter totalt i VM") +
       thSort("rep", "Renommé", "", "Ligans styrka inför VM på en 0–100-skala (100 = Premier League). Fryst under turneringen.") +
-      thSort("rating", "Betyg", "", "Minutviktat VM-betyg 1–10 för ligans spelare (kräver " + LEAGUE_QUAL_MIN + " spelade minuter).") +
+      thSort("rating", "Betyg", "", "Minutviktat FotMob-betyg 1–10 för ligans spelare (kräver " + LEAGUE_QUAL_MIN + " spelade minuter).") +
       thSort("oprep", "±Renommé", "", "Betyg minus förväntat betyg av renommét. Plus = ligan presterar över sitt renommé.") +
       thSort("dexp", "Δ Förv.", "", "Landslagens utveckling mot slutspelsförväntan vid VM-start. Plus = ligans landslag går bättre än väntat.") +
       "</tr></thead><tbody>";
@@ -1975,7 +1906,7 @@
         "<summary>Vad betyder kolumnerna?</summary>" +
         "<dl>" +
           "<dt>Renommé</dt><dd>Ligans styrka inför VM på en skala 0–100 (100 = Premier League). Fryst under turneringen.</dd>" +
-          "<dt>Betyg</dt><dd>Snittbetyg 1–10 för ligans spelare i VM hittills, viktat efter speltid.</dd>" +
+          "<dt>Betyg</dt><dd>FotMobs snittbetyg 1–10 för ligans spelare i VM hittills, viktat efter speltid.</dd>" +
           '<dt>±Renommé</dt><dd><span class="ps-up">Plus</span> = presterar över sitt renommé, <span class="ps-down">minus</span> = under. Samma sak som avståndet till linjen i grafen.</dd>' +
           "<dt>Δ Förv.</dt><dd>Hur ligans landslag har över- eller underpresterat mot slutspelsförväntan vid VM-start.</dd>" +
         "</dl>" +

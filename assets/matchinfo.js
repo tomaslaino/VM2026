@@ -1359,6 +1359,7 @@
      längst ner (data/news_summaries.json). */
   function newsSummaryHtml(sum) {
     var h = '<div class="mi-news-summary">';
+    if (sum.headline) h += '<h3 class="mi-news-headline">' + esc(sum.headline) + "</h3>";
     sum.paragraphs.forEach(function (p) { h += "<p>" + esc(p) + "</p>"; });
     h += "</div>";
     var refs = sum.references || [];
@@ -1417,28 +1418,6 @@
       '</div>';
   }
 
-  /* Teaser i Inför-fliken som pekar vidare till nyhetsfliken. */
-  function pvNewsTeaserHtml(info) {
-    var sum = summaryOf(info.key);
-    var n = newsItemsOf(info.home).slice(0, 5).length + newsItemsOf(info.away).slice(0, 5).length;
-    if (!sum && !n) return "";
-    var sub = sum
-      ? "Sammanfattning av de viktigaste nyheterna och snacket i båda länderna"
-      : n + " nyheter ur ländernas egna medier – sammanfattade på svenska";
-    return '<button type="button" class="mi-pv-newslink" data-mi-goto="news">' +
-      '<span class="mi-pv-newslink-ic" aria-hidden="true">' +
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">' +
-        '<path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v9a2 2 0 0 1-2 2h-1"/>' +
-        '<path d="M7 9h7M7 12.5h7M7 16h4.5"/></svg>' +
-      '</span>' +
-      '<span class="mi-pv-newslink-body">' +
-        '<span class="mi-pv-newslink-title">Senaste nytt från lägren</span>' +
-        '<span class="mi-pv-newslink-sub">' + esc(sub) + '</span>' +
-      '</span>' +
-      '<span class="mi-pv-newslink-arrow" aria-hidden="true">→</span>' +
-      '</button>';
-  }
-
   /* ---------- Hela inför-panelen ---------- */
 
   function previewHtml(info) {
@@ -1463,7 +1442,6 @@
     h += pvCompareHtml(info, pv);
     h += pvInjuriesHtml(info);
     h += pvKeyPlayersHtml(info);
-    h += pvNewsTeaserHtml(info);
     h += '<div class="mi-pv-foot">Sannolikheter: spelmarknadens odds + sajtens simuleringsmotor (samma som slutspelsträdet).</div>';
     h += '</div>';
     return h;

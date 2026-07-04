@@ -331,9 +331,8 @@
       '</span>' +
       '<span class="pm-log-ev">' + logEvents(e, isGk) + '</span>' +
       logScore(e) +
-      '<span class="pm-log-rt ' + rtClass(e.rating) + '" title="VM-betyg">' + fmtRating(e.rating) + '</span>' +
-      '<span class="pm-log-rt pm-log-fmrt ' + rtClass(e.fmRating) + '" title="FotMob-betyg">' +
-        (e.fmRating == null ? "·" : fmtRating(e.fmRating)) + '</span>' +
+      '<span class="pm-log-rt ' + rtClass(e.rating) + '" title="FotMob-betyg">' +
+        (e.rating == null ? "–" : fmtRating(e.rating)) + '</span>' +
       '</button>';
   }
 
@@ -448,25 +447,14 @@
     var isGk = (wc.pos || (player && player.pos_code)) === "GK";
     var html = "";
 
-    if (wc.rating != null || wc.fmRating != null) {
-      html += '<div class="pm-rating-pair">';
-      if (wc.rating != null) {
-        html += '<div class="pm-rating ' + rtClass(wc.rating) + '">' +
-          '<span class="pm-rating-val">' + fmtRating(wc.rating) + '</span>' +
-          '<span class="pm-rating-txt"><strong>VM-betyg</strong>' +
-            '<span>' + (wc.ratingQ
-              ? "Minutviktat snitt över " + wc.apps + (wc.apps === 1 ? " match" : " matcher")
-              : "Under 90 spelade minuter – osäkert betyg") + '</span>' +
-          '</span></div>';
-      }
-      if (wc.fmRating != null) {
-        html += '<div class="pm-rating pm-rating-fm ' + rtClass(wc.fmRating) + '">' +
-          '<span class="pm-rating-val">' + fmtRating(wc.fmRating) + '</span>' +
-          '<span class="pm-rating-txt"><strong>FotMob-betyg</strong>' +
-            '<span>Opta-baserat · fångar även defensivt spel</span>' +
-          '</span></div>';
-      }
-      html += '</div>';
+    if (wc.rating != null) {
+      html += '<div class="pm-rating ' + rtClass(wc.rating) + '">' +
+        '<span class="pm-rating-val">' + fmtRating(wc.rating) + '</span>' +
+        '<span class="pm-rating-txt"><strong>FotMob-betyg</strong>' +
+          '<span>' + (wc.ratingQ
+            ? "Minutviktat snitt över " + wc.apps + (wc.apps === 1 ? " match" : " matcher")
+            : "Under 90 spelade minuter – osäkert betyg") + '</span>' +
+        '</span></div>';
     }
 
     var goalsTitle = [];
@@ -498,19 +486,16 @@
     if (rows) html += '<div class="pm-info">' + rows + '</div>';
 
     if (wc.log && wc.log.length) {
-      var anyFm = wc.log.some(function (e) { return e.fmRating != null; });
-      html += '<div class="pm-log"><div class="pm-log-head">Match för match' +
-        (anyFm ? '<span class="pm-log-legend">VM · <span class="pm-log-fmleg">FotMob</span></span>' : "") +
-        '</div>' +
+      html += '<div class="pm-log"><div class="pm-log-head">Match för match</div>' +
         wc.log.map(function (e) { return logRow(e, isGk); }).join("") +
         '</div>';
     }
 
-    html += '<div class="pm-note">Ur matchrapporterna (ESPN). <strong>VM-betyget</strong> är ' +
-      'transparent och 10-gradigt (bas 6,0) per match: väger mål, assist, resultat medan ' +
-      'spelaren var på planen, hållen nolla, räddningar, skott, fouls och kort – men saknar ' +
-      'defensiva aktioner (ESPN ger dem inte). <strong>FotMob-betyget</strong> bygger på ' +
-      'Opta-liknande data och fångar även försvarsspel. Klicka på en match för hela matchrapporten.</div>';
+    html += '<div class="pm-note">Statistik ur matchrapporterna (ESPN). ' +
+      '<strong>Betyget</strong> är FotMobs Opta-baserade matchbetyg (10-gradigt), ' +
+      'minutviktat över spelarens matcher – det fångar hela spelet, även tacklingar, ' +
+      'brytningar och passningar. Saknas betyg för en match kunde spelaren inte kopplas ' +
+      'hos FotMob (t.ex. sent inhopp). Klicka på en match för hela matchrapporten.</div>';
     return html;
   }
 
