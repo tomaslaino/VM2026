@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-04T16:42:53.698Z",
+    "updatedAt": "2026-07-04T17:47:34.907Z",
     "source": "espn"
   },
   "details": {
@@ -50933,6 +50933,445 @@
         }
       ],
       "updatedAt": "2026-07-04T04:56:28.458Z"
+    },
+    "k:90": {
+      "espnId": "760502",
+      "fmt": 2,
+      "status": "IN_PLAY",
+      "minute": 45,
+      "utcDate": "2026-07-04T17:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [
+        {
+          "minute": 20,
+          "team": "a",
+          "player": "Redouane Halhal",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 40,
+          "team": "a",
+          "player": "Achraf Hakimi",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 40,
+          "team": "h",
+          "player": "Richie Laryea",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 43,
+          "team": "h",
+          "player": "Jonathan David",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "player": "Azzedine Ounahi",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 22,
+          "team": "a",
+          "in": "Soufiane Rahimi",
+          "out": "Ismael Saibari"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Maxime Crépeau",
+              "jersey": "16",
+              "pos": "G",
+              "st": {
+                "sv": 1
+              }
+            },
+            {
+              "name": "Alistair Johnston",
+              "jersey": "2",
+              "pos": "RB",
+              "st": {
+                "fc": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Richie Laryea",
+              "jersey": "22",
+              "pos": "LB",
+              "st": {
+                "fc": 2,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Niko Sigur",
+              "jersey": "23",
+              "pos": "CM-R",
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Moïse Bombito",
+              "jersey": "15",
+              "pos": "CD-R",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Luc de Fougerolles",
+              "jersey": "4",
+              "pos": "CD-L",
+              "st": {
+                "fc": 2
+              }
+            },
+            {
+              "name": "Tajon Buchanan",
+              "jersey": "17",
+              "pos": "RM",
+              "st": {
+                "fc": 3
+              }
+            },
+            {
+              "name": "Stephen Eustáquio",
+              "jersey": "7",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Tani Oluwaseyi",
+              "jersey": "12",
+              "pos": "CF-L",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "sg": 1,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Jonathan David",
+              "jersey": "10",
+              "pos": "CF-R",
+              "st": {
+                "fc": 2,
+                "sg": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Ali Ahmed",
+              "jersey": "20",
+              "pos": "LM",
+              "st": {
+                "fs": 2
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Alfie Jones",
+              "jersey": "3"
+            },
+            {
+              "name": "Dayne St. Clair",
+              "jersey": "1"
+            },
+            {
+              "name": "Joel Waterman",
+              "jersey": "5"
+            },
+            {
+              "name": "Alphonso Davies",
+              "jersey": "19"
+            },
+            {
+              "name": "Promise David",
+              "jersey": "24"
+            },
+            {
+              "name": "Liam Millar",
+              "jersey": "11"
+            },
+            {
+              "name": "Derek Cornelius",
+              "jersey": "13"
+            },
+            {
+              "name": "Owen Goodman",
+              "jersey": "18"
+            },
+            {
+              "name": "Nathan Saliba",
+              "jersey": "25"
+            },
+            {
+              "name": "Mathieu Choinière",
+              "jersey": "6"
+            },
+            {
+              "name": "Jonathan Osorio",
+              "jersey": "21"
+            },
+            {
+              "name": "Cyle Larin",
+              "jersey": "9"
+            },
+            {
+              "name": "Jacob Shaffelburg",
+              "jersey": "14"
+            },
+            {
+              "name": "Jayden Nelson",
+              "jersey": "26"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Yassine Bounou",
+              "jersey": "1",
+              "pos": "G",
+              "st": {
+                "sv": 2
+              }
+            },
+            {
+              "name": "Achraf Hakimi",
+              "jersey": "2",
+              "pos": "RB",
+              "st": {
+                "fc": 1,
+                "fs": 2
+              }
+            },
+            {
+              "name": "Noussair Mazraoui",
+              "jersey": "3",
+              "pos": "LB",
+              "st": {
+                "fs": 3
+              }
+            },
+            {
+              "name": "Neil El Aynaoui",
+              "jersey": "24",
+              "pos": "LM"
+            },
+            {
+              "name": "Issa Diop",
+              "jersey": "14",
+              "pos": "CD-R",
+              "st": {
+                "fs": 1
+              }
+            },
+            {
+              "name": "Redouane Halhal",
+              "jersey": "25",
+              "pos": "CD-L",
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Brahim Díaz",
+              "jersey": "10",
+              "pos": "AM-R",
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Ayyoub Bouaddi",
+              "jersey": "6",
+              "pos": "RM",
+              "st": {
+                "fs": 1
+              }
+            },
+            {
+              "name": "Ismael Saibari",
+              "jersey": "11",
+              "pos": "F"
+            },
+            {
+              "name": "Azzedine Ounahi",
+              "jersey": "8",
+              "pos": "AM",
+              "st": {
+                "fc": 1,
+                "fs": 3
+              }
+            },
+            {
+              "name": "Bilal El Khannouss",
+              "jersey": "23",
+              "pos": "AM-L",
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Zakaria El Ouahdi",
+              "jersey": "13"
+            },
+            {
+              "name": "Amine Sbaï",
+              "jersey": "17"
+            },
+            {
+              "name": "Soufiane Rahimi",
+              "jersey": "9",
+              "in": true,
+              "st": {
+                "sg": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Youssef Belammari",
+              "jersey": "19"
+            },
+            {
+              "name": "Anass Salah-Eddine",
+              "jersey": "26"
+            },
+            {
+              "name": "Ayoube Amaimouni",
+              "jersey": "21"
+            },
+            {
+              "name": "Gessime Yassine",
+              "jersey": "16"
+            },
+            {
+              "name": "Chadi Riad",
+              "jersey": "18"
+            },
+            {
+              "name": "Samir El Mourabet",
+              "jersey": "15"
+            },
+            {
+              "name": "Chemsdine Talbi",
+              "jersey": "7"
+            },
+            {
+              "name": "Marwane Saadane",
+              "jersey": "5"
+            },
+            {
+              "name": "Munir El Kajoui",
+              "jersey": "12"
+            },
+            {
+              "name": "Ahmed Reda Tagnaouti",
+              "jersey": "22"
+            },
+            {
+              "name": "Sofyan Amrabat",
+              "jersey": "4"
+            },
+            {
+              "name": "Ayoub El Kaabi",
+              "jersey": "20"
+            }
+          ]
+        }
+      },
+      "referee": "Michael Oliver",
+      "venue": "NRG Stadium, Houston, Texas",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "34%",
+          "a": "66%"
+        },
+        {
+          "key": "totalShots",
+          "h": "4",
+          "a": "1"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "5",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "13",
+          "a": "5"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "2"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "2"
+        },
+        {
+          "key": "totalPasses",
+          "h": "123",
+          "a": "257"
+        },
+        {
+          "key": "passPct",
+          "h": "73%",
+          "a": "89%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "2",
+          "a": "3"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-04T17:47:34.907Z"
     }
   }
 }
