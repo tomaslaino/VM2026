@@ -7,7 +7,9 @@
       "Bash(ls node_modules/@puppeteer)",
       "Bash(ls node_modules/puppeteer* -d)",
       "Bash(claude update *)",
-      "Bash(git log *)"
+      "Bash(git log *)",
+      "Bash(node -e ' *)",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('data/news_summaries.json'\\)\\); print\\(type\\(d\\)\\); print\\(list\\(d.keys\\(\\)\\)[:20] if isinstance\\(d,dict\\) else len\\(d\\)\\)\")"
     ]
   }
 }
