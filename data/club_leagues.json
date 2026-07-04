@@ -1,11 +1,12 @@
 {
-  "note": "Klubb → liga (land + division) för alla klubbar i data/wc2026_players.json. Divisionstillhörighet enligt säsongen 2025/26 (den säsong som föregick VM). Handkuraterad – uppdatera när truppdatan ändras; klubbar som saknas hamnar i 'Okänd liga' i frontend. MLS och A-League är gränsöverskridande ligor (USA/Kanada resp. Australien/Nya Zeeland).",
-  "updated": "2026-07-02",
+  "note": "Klubb → liga (land + division) för alla klubbar i data/wc2026_players.json. Divisionstillhörighet enligt säsongen 2025/26 (den säsong som föregick VM). rep = ligans renommé inför VM på en 0–100-skala (100 = Premier League), handkuraterad kompositbedömning av UEFA:s landskoefficienter, Optas globala ligastyrkeindex och allmän konsensus – frys under turneringen, den är baslinjen som Ligor-flikens ±Renommé mäter överprestation mot. Handkuraterad – uppdatera när truppdatan ändras; klubbar som saknas hamnar i 'Okänd liga' i frontend. MLS och A-League är gränsöverskridande ligor (USA/Kanada resp. Australien/Nya Zeeland).",
+  "updated": "2026-07-04",
   "leagues": {
     "ENG1": {
       "country": "England",
       "name": "Premier League",
       "tier": 1,
+      "rep": 100,
       "iso": "gb-eng",
       "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
     },
@@ -13,6 +14,7 @@
       "country": "England",
       "name": "Championship",
       "tier": 2,
+      "rep": 56,
       "iso": "gb-eng",
       "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
     },
@@ -20,6 +22,7 @@
       "country": "England",
       "name": "League One",
       "tier": 3,
+      "rep": 30,
       "iso": "gb-eng",
       "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
     },
@@ -27,6 +30,7 @@
       "country": "England",
       "name": "National League",
       "tier": 5,
+      "rep": 10,
       "iso": "gb-eng",
       "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
     },
@@ -34,6 +38,7 @@
       "country": "Spanien",
       "name": "La Liga",
       "tier": 1,
+      "rep": 87,
       "iso": "es",
       "flag": "🇪🇸"
     },
@@ -41,6 +46,7 @@
       "country": "Spanien",
       "name": "Segunda División",
       "tier": 2,
+      "rep": 45,
       "iso": "es",
       "flag": "🇪🇸"
     },
@@ -48,6 +54,7 @@
       "country": "Spanien",
       "name": "Primera Federación",
       "tier": 3,
+      "rep": 20,
       "iso": "es",
       "flag": "🇪🇸"
     },
@@ -55,6 +62,7 @@
       "country": "Tyskland",
       "name": "Bundesliga",
       "tier": 1,
+      "rep": 83,
       "iso": "de",
       "flag": "🇩🇪"
     },
@@ -62,6 +70,7 @@
       "country": "Tyskland",
       "name": "2. Bundesliga",
       "tier": 2,
+      "rep": 46,
       "iso": "de",
       "flag": "🇩🇪"
     },
@@ -69,6 +78,7 @@
       "country": "Tyskland",
       "name": "Oberliga",
       "tier": 5,
+      "rep": 5,
       "iso": "de",
       "flag": "🇩🇪"
     },
@@ -76,6 +86,7 @@
       "country": "Italien",
       "name": "Serie A",
       "tier": 1,
+      "rep": 84,
       "iso": "it",
       "flag": "🇮🇹"
     },
@@ -83,6 +94,7 @@
       "country": "Italien",
       "name": "Serie B",
       "tier": 2,
+      "rep": 40,
       "iso": "it",
       "flag": "🇮🇹"
     },
@@ -90,6 +102,7 @@
       "country": "Frankrike",
       "name": "Ligue 1",
       "tier": 1,
+      "rep": 78,
       "iso": "fr",
       "flag": "🇫🇷"
     },
@@ -97,6 +110,7 @@
       "country": "Frankrike",
       "name": "Ligue 2",
       "tier": 2,
+      "rep": 40,
       "iso": "fr",
       "flag": "🇫🇷"
     },
@@ -104,6 +118,7 @@
       "country": "Frankrike",
       "name": "Championnat National",
       "tier": 3,
+      "rep": 18,
       "iso": "fr",
       "flag": "🇫🇷"
     },
@@ -111,6 +126,7 @@
       "country": "Nederländerna",
       "name": "Eredivisie",
       "tier": 1,
+      "rep": 65,
       "iso": "nl",
       "flag": "🇳🇱"
     },
@@ -118,6 +134,7 @@
       "country": "Nederländerna",
       "name": "Eerste Divisie",
       "tier": 2,
+      "rep": 28,
       "iso": "nl",
       "flag": "🇳🇱"
     },
@@ -125,6 +142,7 @@
       "country": "Portugal",
       "name": "Primeira Liga",
       "tier": 1,
+      "rep": 67,
       "iso": "pt",
       "flag": "🇵🇹"
     },
@@ -132,6 +150,7 @@
       "country": "Portugal",
       "name": "Liga Portugal 2",
       "tier": 2,
+      "rep": 28,
       "iso": "pt",
       "flag": "🇵🇹"
     },
@@ -139,6 +158,7 @@
       "country": "Belgien",
       "name": "Pro League",
       "tier": 1,
+      "rep": 60,
       "iso": "be",
       "flag": "🇧🇪"
     },
@@ -146,6 +166,7 @@
       "country": "Belgien",
       "name": "Challenger Pro League",
       "tier": 2,
+      "rep": 26,
       "iso": "be",
       "flag": "🇧🇪"
     },
@@ -153,6 +174,7 @@
       "country": "Turkiet",
       "name": "Süper Lig",
       "tier": 1,
+      "rep": 58,
       "iso": "tr",
       "flag": "🇹🇷"
     },
@@ -160,6 +182,7 @@
       "country": "Turkiet",
       "name": "1. Lig",
       "tier": 2,
+      "rep": 26,
       "iso": "tr",
       "flag": "🇹🇷"
     },
@@ -167,6 +190,7 @@
       "country": "Saudiarabien",
       "name": "Saudi Pro League",
       "tier": 1,
+      "rep": 50,
       "iso": "sa",
       "flag": "🇸🇦"
     },
@@ -174,6 +198,7 @@
       "country": "Saudiarabien",
       "name": "Division 1",
       "tier": 2,
+      "rep": 18,
       "iso": "sa",
       "flag": "🇸🇦"
     },
@@ -181,6 +206,7 @@
       "country": "USA/Kanada",
       "name": "MLS",
       "tier": 1,
+      "rep": 50,
       "iso": "us",
       "flag": "🇺🇸"
     },
@@ -188,6 +214,7 @@
       "country": "USA",
       "name": "USL Championship",
       "tier": 2,
+      "rep": 22,
       "iso": "us",
       "flag": "🇺🇸"
     },
@@ -195,6 +222,7 @@
       "country": "Australien/NZ",
       "name": "A-League",
       "tier": 1,
+      "rep": 20,
       "iso": "au",
       "flag": "🇦🇺"
     },
@@ -202,6 +230,7 @@
       "country": "Japan",
       "name": "J1 League",
       "tier": 1,
+      "rep": 47,
       "iso": "jp",
       "flag": "🇯🇵"
     },
@@ -209,6 +238,7 @@
       "country": "Japan",
       "name": "J2 League",
       "tier": 2,
+      "rep": 24,
       "iso": "jp",
       "flag": "🇯🇵"
     },
@@ -216,6 +246,7 @@
       "country": "Brasilien",
       "name": "Série A",
       "tier": 1,
+      "rep": 66,
       "iso": "br",
       "flag": "🇧🇷"
     },
@@ -223,6 +254,7 @@
       "country": "Argentina",
       "name": "Primera División",
       "tier": 1,
+      "rep": 57,
       "iso": "ar",
       "flag": "🇦🇷"
     },
@@ -230,6 +262,7 @@
       "country": "Sverige",
       "name": "Allsvenskan",
       "tier": 1,
+      "rep": 38,
       "iso": "se",
       "flag": "🇸🇪"
     },
@@ -237,6 +270,7 @@
       "country": "Norge",
       "name": "Eliteserien",
       "tier": 1,
+      "rep": 38,
       "iso": "no",
       "flag": "🇳🇴"
     },
@@ -244,6 +278,7 @@
       "country": "Danmark",
       "name": "Superligaen",
       "tier": 1,
+      "rep": 47,
       "iso": "dk",
       "flag": "🇩🇰"
     },
@@ -251,6 +286,7 @@
       "country": "Finland",
       "name": "Veikkausliiga",
       "tier": 1,
+      "rep": 23,
       "iso": "fi",
       "flag": "🇫🇮"
     },
@@ -258,6 +294,7 @@
       "country": "Skottland",
       "name": "Premiership",
       "tier": 1,
+      "rep": 44,
       "iso": "gb-sct",
       "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿"
     },
@@ -265,6 +302,7 @@
       "country": "Schweiz",
       "name": "Super League",
       "tier": 1,
+      "rep": 48,
       "iso": "ch",
       "flag": "🇨🇭"
     },
@@ -272,6 +310,7 @@
       "country": "Schweiz",
       "name": "Challenge League",
       "tier": 2,
+      "rep": 24,
       "iso": "ch",
       "flag": "🇨🇭"
     },
@@ -279,6 +318,7 @@
       "country": "Österrike",
       "name": "Bundesliga",
       "tier": 1,
+      "rep": 46,
       "iso": "at",
       "flag": "🇦🇹"
     },
@@ -286,6 +326,7 @@
       "country": "Tjeckien",
       "name": "Chance Liga",
       "tier": 1,
+      "rep": 44,
       "iso": "cz",
       "flag": "🇨🇿"
     },
@@ -293,6 +334,7 @@
       "country": "Polen",
       "name": "Ekstraklasa",
       "tier": 1,
+      "rep": 42,
       "iso": "pl",
       "flag": "🇵🇱"
     },
@@ -300,6 +342,7 @@
       "country": "Grekland",
       "name": "Super League",
       "tier": 1,
+      "rep": 45,
       "iso": "gr",
       "flag": "🇬🇷"
     },
@@ -307,6 +350,7 @@
       "country": "Cypern",
       "name": "First Division",
       "tier": 1,
+      "rep": 28,
       "iso": "cy",
       "flag": "🇨🇾"
     },
@@ -314,6 +358,7 @@
       "country": "Kroatien",
       "name": "HNL",
       "tier": 1,
+      "rep": 42,
       "iso": "hr",
       "flag": "🇭🇷"
     },
@@ -321,6 +366,7 @@
       "country": "Serbien",
       "name": "Super Liga",
       "tier": 1,
+      "rep": 38,
       "iso": "rs",
       "flag": "🇷🇸"
     },
@@ -328,6 +374,7 @@
       "country": "Slovenien",
       "name": "PrvaLiga",
       "tier": 1,
+      "rep": 28,
       "iso": "si",
       "flag": "🇸🇮"
     },
@@ -335,6 +382,7 @@
       "country": "Slovakien",
       "name": "Niké Liga",
       "tier": 1,
+      "rep": 28,
       "iso": "sk",
       "flag": "🇸🇰"
     },
@@ -342,6 +390,7 @@
       "country": "Bosnien-Hercegovina",
       "name": "Premijer Liga",
       "tier": 1,
+      "rep": 20,
       "iso": "ba",
       "flag": "🇧🇦"
     },
@@ -349,6 +398,7 @@
       "country": "Bulgarien",
       "name": "First League",
       "tier": 1,
+      "rep": 27,
       "iso": "bg",
       "flag": "🇧🇬"
     },
@@ -356,6 +406,7 @@
       "country": "Rumänien",
       "name": "SuperLiga",
       "tier": 1,
+      "rep": 34,
       "iso": "ro",
       "flag": "🇷🇴"
     },
@@ -363,6 +414,7 @@
       "country": "Ungern",
       "name": "NB I",
       "tier": 1,
+      "rep": 32,
       "iso": "hu",
       "flag": "🇭🇺"
     },
@@ -370,6 +422,7 @@
       "country": "Ryssland",
       "name": "Premier League",
       "tier": 1,
+      "rep": 47,
       "iso": "ru",
       "flag": "🇷🇺"
     },
@@ -377,6 +430,7 @@
       "country": "Irland",
       "name": "Premier Division",
       "tier": 1,
+      "rep": 24,
       "iso": "ie",
       "flag": "🇮🇪"
     },
@@ -384,6 +438,7 @@
       "country": "Kazakstan",
       "name": "Premier League",
       "tier": 1,
+      "rep": 20,
       "iso": "kz",
       "flag": "🇰🇿"
     },
@@ -391,6 +446,7 @@
       "country": "Azerbajdzjan",
       "name": "Premyar Liqa",
       "tier": 1,
+      "rep": 18,
       "iso": "az",
       "flag": "🇦🇿"
     },
@@ -398,6 +454,7 @@
       "country": "Armenien",
       "name": "Premier League",
       "tier": 1,
+      "rep": 12,
       "iso": "am",
       "flag": "🇦🇲"
     },
@@ -405,6 +462,7 @@
       "country": "Israel",
       "name": "Ligat ha'Al",
       "tier": 1,
+      "rep": 34,
       "iso": "il",
       "flag": "🇮🇱"
     },
@@ -412,6 +470,7 @@
       "country": "Mexiko",
       "name": "Liga MX",
       "tier": 1,
+      "rep": 52,
       "iso": "mx",
       "flag": "🇲🇽"
     },
@@ -419,6 +478,7 @@
       "country": "Costa Rica",
       "name": "Primera División",
       "tier": 1,
+      "rep": 17,
       "iso": "cr",
       "flag": "🇨🇷"
     },
@@ -426,6 +486,7 @@
       "country": "Honduras",
       "name": "Liga Nacional",
       "tier": 1,
+      "rep": 13,
       "iso": "hn",
       "flag": "🇭🇳"
     },
@@ -433,6 +494,7 @@
       "country": "Panama",
       "name": "LPF",
       "tier": 1,
+      "rep": 12,
       "iso": "pa",
       "flag": "🇵🇦"
     },
@@ -440,6 +502,7 @@
       "country": "Haiti",
       "name": "Ligue Haïtienne",
       "tier": 1,
+      "rep": 5,
       "iso": "ht",
       "flag": "🇭🇹"
     },
@@ -447,6 +510,7 @@
       "country": "Colombia",
       "name": "Primera A",
       "tier": 1,
+      "rep": 38,
       "iso": "co",
       "flag": "🇨🇴"
     },
@@ -454,6 +518,7 @@
       "country": "Ecuador",
       "name": "LigaPro",
       "tier": 1,
+      "rep": 32,
       "iso": "ec",
       "flag": "🇪🇨"
     },
@@ -461,6 +526,7 @@
       "country": "Chile",
       "name": "Primera División",
       "tier": 1,
+      "rep": 30,
       "iso": "cl",
       "flag": "🇨🇱"
     },
@@ -468,6 +534,7 @@
       "country": "Paraguay",
       "name": "Primera División",
       "tier": 1,
+      "rep": 28,
       "iso": "py",
       "flag": "🇵🇾"
     },
@@ -475,6 +542,7 @@
       "country": "Uruguay",
       "name": "Primera División",
       "tier": 1,
+      "rep": 35,
       "iso": "uy",
       "flag": "🇺🇾"
     },
@@ -482,6 +550,7 @@
       "country": "Venezuela",
       "name": "Primera División",
       "tier": 1,
+      "rep": 20,
       "iso": "ve",
       "flag": "🇻🇪"
     },
@@ -489,6 +558,7 @@
       "country": "Sydkorea",
       "name": "K League 1",
       "tier": 1,
+      "rep": 42,
       "iso": "kr",
       "flag": "🇰🇷"
     },
@@ -496,6 +566,7 @@
       "country": "Kina",
       "name": "Super League",
       "tier": 1,
+      "rep": 28,
       "iso": "cn",
       "flag": "🇨🇳"
     },
@@ -503,6 +574,7 @@
       "country": "Iran",
       "name": "Pro League",
       "tier": 1,
+      "rep": 27,
       "iso": "ir",
       "flag": "🇮🇷"
     },
@@ -510,6 +582,7 @@
       "country": "Irak",
       "name": "Stars League",
       "tier": 1,
+      "rep": 18,
       "iso": "iq",
       "flag": "🇮🇶"
     },
@@ -517,6 +590,7 @@
       "country": "Qatar",
       "name": "Stars League",
       "tier": 1,
+      "rep": 32,
       "iso": "qa",
       "flag": "🇶🇦"
     },
@@ -524,6 +598,7 @@
       "country": "Förenade Arabemiraten",
       "name": "Pro League",
       "tier": 1,
+      "rep": 30,
       "iso": "ae",
       "flag": "🇦🇪"
     },
@@ -531,6 +606,7 @@
       "country": "Jordanien",
       "name": "Pro League",
       "tier": 1,
+      "rep": 12,
       "iso": "jo",
       "flag": "🇯🇴"
     },
@@ -538,6 +614,7 @@
       "country": "Uzbekistan",
       "name": "Super League",
       "tier": 1,
+      "rep": 22,
       "iso": "uz",
       "flag": "🇺🇿"
     },
@@ -545,6 +622,7 @@
       "country": "Malaysia",
       "name": "Super League",
       "tier": 1,
+      "rep": 10,
       "iso": "my",
       "flag": "🇲🇾"
     },
@@ -552,6 +630,7 @@
       "country": "Indonesien",
       "name": "Super League",
       "tier": 1,
+      "rep": 9,
       "iso": "id",
       "flag": "🇮🇩"
     },
@@ -559,6 +638,7 @@
       "country": "Thailand",
       "name": "Thai League 1",
       "tier": 1,
+      "rep": 16,
       "iso": "th",
       "flag": "🇹🇭"
     },
@@ -566,6 +646,7 @@
       "country": "Egypten",
       "name": "Premier League",
       "tier": 1,
+      "rep": 30,
       "iso": "eg",
       "flag": "🇪🇬"
     },
@@ -573,6 +654,7 @@
       "country": "Marocko",
       "name": "Botola Pro",
       "tier": 1,
+      "rep": 30,
       "iso": "ma",
       "flag": "🇲🇦"
     },
@@ -580,6 +662,7 @@
       "country": "Algeriet",
       "name": "Ligue 1",
       "tier": 1,
+      "rep": 23,
       "iso": "dz",
       "flag": "🇩🇿"
     },
@@ -587,6 +670,7 @@
       "country": "Tunisien",
       "name": "Ligue 1",
       "tier": 1,
+      "rep": 24,
       "iso": "tn",
       "flag": "🇹🇳"
     },
@@ -594,6 +678,7 @@
       "country": "Ghana",
       "name": "Premier League",
       "tier": 1,
+      "rep": 13,
       "iso": "gh",
       "flag": "🇬🇭"
     },
@@ -601,6 +686,7 @@
       "country": "Sydafrika",
       "name": "Premiership",
       "tier": 1,
+      "rep": 26,
       "iso": "za",
       "flag": "🇿🇦"
     }
