@@ -5063,9 +5063,17 @@
     next: { one: "Nästa match", many: "Nästa matcher" }
   };
 
-  /** Live-status: pulserande prick + spelminut (eller Halvtid/LIVE). */
+  /** Live-status: pulserande prick + spelminut (eller Halvtid/LIVE).
+      Spoilerskydd: minuten visas aldrig över 90' – i förlängning/straffar ser
+      brickan ut som vanlig tilläggstid, annars avslöjar den att det står lika.
+      "Halvtid" visas bara i den riktiga halvtidsvilan (≤ 45'); pauser senare i
+      matchen (inför/i förlängningen) visas som "90'" av samma skäl. */
   function focusLiveBadge(e) {
-    var txt = e.paused ? "Halvtid" : (e.minute != null ? esc(e.minute) + "'" : "LIVE");
+    var min = e.minute != null && isFinite(e.minute) ? Number(e.minute) : null;
+    var txt;
+    if (e.paused && (min == null || min <= 45)) txt = "Halvtid";
+    else if (min != null) txt = Math.min(min, 90) + "'";
+    else txt = "LIVE";
     return '<span class="fh-live"><span class="live-dot"></span>' + txt + '</span>';
   }
 
