@@ -3658,6 +3658,9 @@ a.tv-bcast:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   button.nm-spot-row:active {
     opacity: .85;
   }
+  /* Hover-tooltippen (arenainfo m.m.) har inget hovertillstånd på pekskärm –
+     dölj den helt så att den inte fastnar ovanpå matchmodalen vid tryck. */
+  .tooltip { display: none; }
 }
 
 /* ---------- Laguppställningsbläddrare i lag-lådan (teamlineups.js) ----------

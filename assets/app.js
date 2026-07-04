@@ -6388,16 +6388,22 @@
     pop.style.top = top + "px";
   }
 
+  /* Pekskärmar skickar en emulerad mouseover vid tryck men aldrig någon
+     mouseout – tooltippen skulle fastna ovanpå matchmodalen. Visa den
+     därför bara på enheter som faktiskt kan hovra. */
+  function canHover() {
+    return !(window.matchMedia && window.matchMedia("(hover: none)").matches);
+  }
   function onOver(e) {
     var mc = e.target.closest && e.target.closest("[data-m]");
     if (mc) {
       var no = parseInt(mc.getAttribute("data-m"), 10);
       if (ui("view", "groups") === "bracket") setBracketLineage(no);
-      showTip(no, e.clientX, e.clientY);
+      if (canHover()) showTip(no, e.clientX, e.clientY);
       return;
     }
     var rt = e.target.closest && e.target.closest("[data-r32-tip]");
-    if (rt) {
+    if (rt && canHover()) {
       var html = r32TipMap[rt.getAttribute("data-r32-tip")];
       if (html != null) { tipEl.innerHTML = html; tipEl.classList.add("show", "r32"); positionTip(e.clientX, e.clientY); }
     }
