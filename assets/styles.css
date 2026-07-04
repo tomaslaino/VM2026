@@ -4555,6 +4555,16 @@ span.pr-caps-debut.pr-caps-legend {
 .mi-pl-ic.sub { font-size: 9px; font-weight: 800; }
 .mi-pl-ic.sub.in { color: var(--adv, #2e9e6b); }
 .mi-pl-ic.sub.out { color: #d63425; }
+/* Varningsprick i troliga elvor: spelare med skade-/avstängningsstatus.
+   Samma färgspråk som spelarprofilens statusrad (pm-status). */
+.mi-pl-ic.warn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 13px; height: 13px; border-radius: 50%;
+  font-size: 9px; font-weight: 800; color: #fff;
+  background: var(--third-q); cursor: help;
+}
+.mi-pl-ic.warn.out { background: var(--live); }
+.mi-pl-ic.warn.susp { background: var(--pstat-susp); }
 .mi-pl-pair.coaches { margin: 4px 0 2px; }
 .mi-pl-coach {
   display: flex; align-items: center; gap: 6px; min-height: 28px;
@@ -4605,6 +4615,32 @@ span.pr-caps-debut.pr-caps-legend {
   color: var(--ink-soft); font-size: 13px; text-align: center;
 }
 .mi-note { margin-top: 16px; font-size: 11.5px; color: var(--ink-soft); text-align: center; }
+
+/* Trolig/bekräftad startelva före avspark (data/lineups_prelim.json) */
+.mi-prelim-note {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 12px; margin-bottom: 14px;
+  border: 1px dashed var(--line); border-radius: var(--radius-sm);
+  background: var(--bg-soft); font-size: 12.5px; color: var(--ink-soft);
+}
+.mi-prelim-chip {
+  flex: none; padding: 3px 10px; border-radius: 999px;
+  font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--third-q);
+  background: color-mix(in srgb, var(--third-q) 14%, var(--bg-soft));
+  border: 1px solid color-mix(in srgb, var(--third-q) 40%, var(--line));
+}
+.mi-prelim-note.confirmed {
+  border-style: solid;
+  border-color: color-mix(in srgb, var(--adv) 35%, var(--line));
+}
+.mi-prelim-note.confirmed .mi-prelim-chip {
+  color: var(--adv);
+  background: color-mix(in srgb, var(--adv) 14%, var(--bg-soft));
+  border-color: color-mix(in srgb, var(--adv) 40%, var(--line));
+}
+.mi-prelim-text { min-width: 0; }
+.mi-prelim-upd { opacity: .8; }
 
 /* ====================================================================
    INFÖR-SNACK ("Inför"-fliken för kommande matcher i matchmodalen)

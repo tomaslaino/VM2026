@@ -17,6 +17,7 @@
   var STATIC_URL = CFG.staticDetails || "data/matchdetails.json";
   var HIGHLIGHTS_URL = CFG.staticHighlights || "data/highlights.json";
   var NEWS_URL = CFG.staticTeamNews || "data/team_news.json";
+  var PRELIM_URL = CFG.staticLineups || "data/lineups_prelim.json";
   var POLL_MS = 45000;
 
   var details = {};        // key -> detaljobjekt
@@ -25,6 +26,8 @@
   var highlightsLast = 0;
   var teamNews = null;     // iso -> { items: [...] } (data/team_news.json)
   var teamNewsLast = 0;
+  var prelimLineups = null; // key -> trolig/bekräftad elva (data/lineups_prelim.json)
+  var prelimLast = 0;
   var openKey = null;      // öppen match (resultatnyckel) eller null
   var pollTimer = null;
   var pvRetryTimer = null; // inför-snacket: rita om när odds/motor blir klara
@@ -113,6 +116,29 @@
         return teamNews;
       })
       .catch(function () { return teamNews; });
+  }
+
+  /* Troliga startelvor (data/lineups_prelim.json, skrivs av GitHub Actions):
+     365Scores publicerar en trolig elva ofta redan dagen före match och samma
+     data slår om till "bekräftad" när de officiella elvorna släpps (~1 h före
+     avspark). Kort cache – nära avspark vill man se bekräftelsen snabbt. */
+  function fetchPrelimLineups() {
+    var now = Date.now();
+    if (prelimLineups && now - prelimLast < 180000) return Promise.resolve(prelimLineups);
+    prelimLast = now;
+    return fetch(PRELIM_URL + (PRELIM_URL.indexOf("?") === -1 ? "?" : "&") + "t=" + now,
+      { headers: { Accept: "application/json" }, cache: "no-store" })
+      .then(function (r) { return r && r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (data && data.lineups) prelimLineups = data.lineups;
+        return prelimLineups;
+      })
+      .catch(function () { return prelimLineups; });
+  }
+
+  function prelimFor(key) {
+    var e = key && prelimLineups ? prelimLineups[key] : null;
+    return e && e.h && e.a ? e : null;
   }
 
   /* Hämta om detaljerna (anropas av app.js när nya resultat kommit in).
@@ -204,6 +230,11 @@
         try { window.VMApp.ensurePreviewData(function () { if (openKey) renderModal(); }); } catch (e) {}
       }
       fetchTeamNews().then(function () { if (openKey) renderModal(); });
+    }
+    if (!info || !info.played) {
+      // Trolig/bekräftad startelva för matcher som inte är färdigspelade –
+      // täcker även livematcher där ESPN:s officiella lineups dröjer.
+      fetchPrelimLineups().then(function () { if (openKey) renderModal(); });
     }
     var m = ensureModal();
     m.classList.add("open");
@@ -590,6 +621,10 @@
   function playerBadgesHtml(events) {
     if (!events) return "";
     var parts = [];
+    if (events.warn) {
+      parts.push('<span class="mi-pl-ic warn ' + esc(events.warn.cls) +
+        '" title="' + esc(events.warn.text) + '">!</span>');
+    }
     var g;
     for (g = 0; g < events.goals; g++) {
       parts.push('<span class="mi-pl-ic goal" title="Mål">⚽</span>');
@@ -646,15 +681,35 @@
     return t && t.coach ? t.coach : null;
   }
 
-  function lineupsOverviewHtml(info, det) {
+  /* I prelim-läge (trolig elva före avspark) finns inga matchhändelser att
+     visa – i stället märks spelare med skade-/avstängningsstatus (ur
+     window.VMPlayers, data/wc2026_player_status.json) med en varningsprick. */
+  function buildStatusWarns(lu, hCtx, aCtx) {
+    var map = {};
+    if (!window.VMPlayers || !window.VMPlayers.isLoaded()) return map;
+    function addSide(side, ctx) {
+      (side.starters || []).concat(side.bench || []).forEach(function (p) {
+        var sp = resolveSquadPlayer(ctx.idx, p.name, p.jersey);
+        var st = sp ? window.VMPlayers.getPlayerStatus(sp.id) : null;
+        if (st) {
+          map[normName(p.name)] = { goals: 0, cards: [], subOut: false, subIn: false, warn: st };
+        }
+      });
+    }
+    addSide(lu.h, hCtx);
+    addSide(lu.a, aCtx);
+    return map;
+  }
+
+  function lineupsOverviewHtml(info, det, prelimMode) {
     var lu = det && det.lineups;
     if (!lu || !lu.h || !lu.a) return "";
-    var evMap = buildPlayerEvents(det);
     var hIso = info.home && info.home.iso;
     var aIso = info.away && info.away.iso;
     var cols = matchColors(hIso, aIso);
     var hCtx = { color: cols.home, sideCode: "h", idx: squadIndexFor(hIso) };
     var aCtx = { color: cols.away, sideCode: "a", idx: squadIndexFor(aIso) };
+    var evMap = prelimMode ? buildStatusWarns(lu, hCtx, aCtx) : buildPlayerEvents(det);
     var hCoach = coachOf(info.home);
     var aCoach = coachOf(info.away);
     var h = '<div class="mi-lineups-overview">';
@@ -684,6 +739,32 @@
       h += '<div class="mi-pl-section-label">Avbytare</div>';
       h += lineupPairRows(benchH, benchA, evMap, hCtx, aCtx);
     }
+    h += "</div>";
+    return h;
+  }
+
+  /* Trolig/bekräftad startelva före avspark (data/lineups_prelim.json).
+     Återanvänder gräsplans-renderingen ovan med en tydlig banner om att
+     elvan är preliminär tills den officiella laguppställningen släpps. */
+  function prelimLineupsHtml(info, pre) {
+    var confirmed = pre.status === "confirmed";
+    var det = { lineups: { h: pre.h, a: pre.a }, goals: [], bookings: [], subs: [] };
+    var body = lineupsOverviewHtml(info, det, !confirmed);
+    if (!body) return emptyHintForTab("lineups", info);
+    var upd = pre.updatedAt ? pvTimeAgo(pre.updatedAt) : "";
+    var h = '<div class="mi-prelim">';
+    h += '<div class="mi-prelim-note' + (confirmed ? " confirmed" : "") + '">' +
+      '<span class="mi-prelim-chip">' + (confirmed ? "Bekräftade elvor" : "Troliga elvor") + '</span>' +
+      '<span class="mi-prelim-text">' +
+        (confirmed
+          ? "De officiella startelvorna är inrapporterade."
+          : "Preliminär bedömning – de officiella elvorna släpps ungefär en timme före avspark.") +
+        (upd ? ' <span class="mi-prelim-upd">Uppdaterad ' + esc(upd) + ".</span>" : "") +
+      '</span></div>';
+    h += body;
+    h += '<div class="mi-note">Källa: 365Scores.' +
+      (confirmed ? "" : " Spelare med skade- eller avstängningsstatus markeras med en varningsprick.") +
+      '</div>';
     h += "</div>";
     return h;
   }
@@ -1240,7 +1321,8 @@
       if (info.live || info.played) {
         return '<div class="mi-empty">Laguppställningen för den här matchen är inte tillgänglig ännu.</div>';
       }
-      return '<div class="mi-empty">Startelvor publiceras närmare avspark.</div>';
+      return '<div class="mi-empty">Troliga startelvor dyker upp här dagen före match – ' +
+        'de officiella elvorna släpps ungefär en timme före avspark.</div>';
     }
     if (info.live || info.played) {
       return '<div class="mi-empty">Statistik för den här matchen är inte tillgänglig ännu.</div>';
@@ -1290,8 +1372,15 @@
     }
 
     h += '<div class="mi-tab-panel' + (activeTab === "lineups" ? " active" : "") + '" data-mi-panel="lineups">';
-    if (det && det.lineups && det.lineups.h && det.lineups.a) h += lineupsOverviewHtml(info, det);
-    else h += emptyHintForTab("lineups", info);
+    if (det && det.lineups && det.lineups.h && det.lineups.a) {
+      h += lineupsOverviewHtml(info, det);
+    } else {
+      // Före avspark (och tidigt i livematcher innan ESPN publicerat de
+      // officiella elvorna): visa trolig/bekräftad startelva från 365Scores.
+      var pre = !info.played ? prelimFor(info.key) : null;
+      if (pre) h += prelimLineupsHtml(info, pre);
+      else h += emptyHintForTab("lineups", info);
+    }
     h += "</div>";
 
     if (!upcoming) {
@@ -1590,6 +1679,11 @@
     card.querySelectorAll("[data-mi-tab]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         activeTab = btn.getAttribute("data-mi-tab");
+        // Nära avspark slår den troliga elvan om till bekräftad – kolla efter
+        // färsk data när fliken öppnas (fetchen är cachad ett par minuter).
+        if (activeTab === "lineups") {
+          fetchPrelimLineups().then(function () { if (openKey) renderModal(); });
+        }
         renderModal();
       });
     });

@@ -22,6 +22,7 @@ npm run sync       # synka resultat till server/data/results.json
 npm run sync:static # synka till data/results.json + data/matchdetails.json (GitHub Pages)
 npm run sync:status # synka spelarstatus (skador/avstängningar) → data/wc2026_player_status.json (kräver API_FOOTBALL_KEY)
 npm run sync:news  # synka landslagsnyheter per land → data/team_news.json (Google Nyheter-RSS, ingen nyckel)
+npm run sync:lineups # synka troliga/bekräftade startelvor för kommande matcher → data/lineups_prelim.json (365Scores, ingen nyckel)
 ```
 
 ## Viktiga filer
@@ -39,6 +40,8 @@ npm run sync:news  # synka landslagsnyheter per land → data/team_news.json (Go
 | `server/scripts/syncPlayerStatus.js` | Synkar spelarstatus från API-Football `/injuries` |
 | `data/team_news.json` | Landslagsnyheter per lag från respektive lands egna medier (Google Nyheter-RSS, lokala sökfrågor) med svensk sammanfattning per rubrik (`title_sv`, gratis Google Translate-gtx) – driver fliken "Senaste nytt" i matchmodalen |
 | `server/scripts/syncTeamNews.js` | Synkar landslagsnyheterna (körs varannan timme av `sync-team-news.yml`) |
+| `data/lineups_prelim.json` | Troliga startelvor för kommande matcher (≤48 h) från 365Scores webb-API; `status` slår om `probable` → `confirmed` när de officiella elvorna släpps (~1 h före avspark). Visas i matchmodalens "Laguppställning"-flik tills ESPN:s officiella lineups tar över i `matchdetails.json`; spelare med skade-/avstängningsstatus får varningsprick |
+| `server/scripts/syncLineups.js` | Synkar troliga startelvor (körs var 15:e min av `sync-lineups.yml`; committar bara vid faktisk ändring). OBS: Sofascore ger 403 server-side – 365Scores är den öppna källan |
 | `assets/playerstats.js` | Spelarstatistik: Spelare/Lag/Region/Ligor + eget VM-betyg (10-gradigt, ur events + ESPN-boxscore `st` i lineups, `fmt: 2` i matchdetails). Ligor-fliken har ±Renommé (betyg mot förväntat ur regression betyg ~ renommé) med scatter-graf och klickbar liga → spelarmodal |
 | `assets/styles.css` | All CSS |
 | `server/index.js` | Express-server + WebSocket |
