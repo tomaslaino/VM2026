@@ -3955,6 +3955,55 @@ span.pr-caps-debut.pr-caps-legend {
 .pm-row-val { font-weight: 500; text-align: right; min-width: 0; }
 .pm-note { margin-top: 16px; font-size: 12px; color: var(--ink-soft); text-align: center; }
 
+/* "Marknad & form"-kortet överst på profilfliken – betting-metrik */
+.pm-market { display: flex; flex-direction: column; gap: 12px; margin-bottom: 18px; }
+.pm-mv {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 14px; border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in srgb, var(--adv) 34%, var(--line));
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--adv) 14%, var(--bg-soft)),
+    var(--bg-soft) 68%);
+}
+.pm-mv-val {
+  font-size: 27px; font-weight: 800; line-height: 1; flex: none;
+  color: color-mix(in srgb, var(--adv) 78%, var(--ink));
+  font-variant-numeric: tabular-nums; letter-spacing: -.01em;
+}
+.pm-mv-lbl { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.pm-mv-lbl strong { font-size: 13px; font-weight: 700; }
+.pm-mv-lbl span { font-size: 12px; color: var(--ink-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.pm-form {
+  padding: 12px 14px; border-radius: var(--radius-sm);
+  border: 1px solid var(--line); background: var(--bg-soft);
+}
+.pm-form-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+  margin-bottom: 10px;
+}
+.pm-form-head strong { font-size: 13px; font-weight: 700; }
+.pm-form-head span { font-size: 11.5px; color: var(--ink-soft); text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pm-form-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.pm-fstat {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 8px 4px; border-radius: 8px;
+  background: color-mix(in srgb, var(--card) 60%, transparent);
+  border: 1px solid var(--line);
+}
+.pm-fstat b { font-size: 19px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.pm-fstat span { font-size: 10.5px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .03em; }
+.pm-form-gauge {
+  margin-top: 11px; height: 7px; border-radius: 999px; overflow: hidden;
+  background: color-mix(in srgb, var(--line) 70%, transparent);
+}
+.pm-form-fill { display: block; height: 100%; border-radius: 999px; transition: width .4s ease; }
+.pm-form-fill.hot { background: linear-gradient(90deg, color-mix(in srgb, var(--adv) 60%, #fff 0%), var(--adv)); }
+.pm-form-fill.warm { background: var(--third-q); }
+.pm-form-fill.cool { background: var(--line-strong); }
+.pm-form-league { margin-top: 9px; font-size: 12px; color: var(--ink-soft); }
+.pm-form-league strong { color: var(--ink); font-weight: 700; }
+
 /* Flikar i spelarprofilen (Profil / VM 2026) */
 .pm-tabs {
   display: flex; gap: 4px; margin: 18px 0 0;
@@ -5206,6 +5255,12 @@ a.mi-avail-src:hover { border-color: var(--usa-blue); background: rgba(61, 109, 
 .ps-arrow { font-size: 8px; margin-left: 4px; color: var(--usa-red); vertical-align: middle; }
 .ps-num { font-variant-numeric: tabular-nums; }
 .ps-num.hot { font-weight: 800; }
+/* Marknadsvärde-kolumnen i spelartabellen */
+.ps-table .ps-c-mv { text-align: right; width: 4.6rem; }
+.ps-mv {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: 12.5px;
+  color: color-mix(in srgb, var(--adv) 62%, var(--ink));
+}
 .ps-pts { font-weight: 800; }
 .ps-fp { color: color-mix(in srgb, var(--usa-red) 55%, var(--ink)); }
 tr.ps-has-stats td { background: color-mix(in srgb, var(--usa-blue) 7%, transparent); }

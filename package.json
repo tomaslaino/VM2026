@@ -15,6 +15,7 @@
     "sync:availability": "node server/scripts/syncAvailability.js",
     "sync:news": "node server/scripts/syncTeamNews.js",
     "sync:lineups": "node server/scripts/syncLineups.js",
+    "sync:metrics": "node server/scripts/syncPlayerMetrics.js",
     "squads": "node server/jobs/fetchSquads.js",
     "live": "node server/jobs/livePoll.js",
     "finalize": "node server/jobs/finalize.js",

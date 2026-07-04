@@ -1,0 +1,4183 @@
+{
+  "tournament": "FIFA World Cup 2026",
+  "source": "Marknadsvärde/klubb/porträtt från Transfermarkt (spelarprofilen); klubbform (matcher och mål, liga + totalt) för säsongen 2025/26 från spelarens Wikipedia-artikel (Career statistics). Ingen API-nyckel.",
+  "note": "Betting-relevant spelardata som saknas i övriga datalager. market_value_eur = Transfermarkts marknadsvärde (proxy för kvalitet). season = klubbform 2025/26: league/total {apps, goals} + gpa (mål per match). Assist, minuter och skott ingår inte (finns inte robust gratis). tm_id/wiki_title cachas för att slippa söka om. Poster med manual: true bevaras.",
+  "updated": "2026-07-04T19:26:12.457Z",
+  "players": {
+    "cze-matej-kovar": {
+      "name": "Matěj Kovář",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "550829",
+      "tm_slug": "matej-kovar",
+      "club": "PSV Eindhoven",
+      "market_value_eur": 8000000,
+      "market_value": "€8m",
+      "mv_date": "2026-05-28",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/550829-1765213743.jpg?lm=1",
+      "wiki_title": "Matěj Kovář",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "PSV",
+        "league": {
+          "comp": "Eredivisie",
+          "apps": 31,
+          "goals": 0
+        },
+        "total": {
+          "apps": 44,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "cze-david-zima": {
+      "name": "David Zima",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "544149",
+      "tm_slug": "david-zima",
+      "club": "SK Slavia Prague",
+      "market_value_eur": 7000000,
+      "market_value": "€7m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/544149-1663596313.jpg?lm=1",
+      "wiki_title": "David Zima",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2023–24",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 24,
+          "goals": 1
+        },
+        "total": {
+          "apps": 33,
+          "goals": 1
+        },
+        "gpa": 0.03
+      }
+    },
+    "cze-tomas-holes": {
+      "name": "Tomáš Holeš",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "216278",
+      "tm_slug": "tomas-holes",
+      "club": "SK Slavia Prague",
+      "market_value_eur": 1000000,
+      "market_value": "€1m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/216278-1697831325.png?lm=1",
+      "wiki_title": "Tomáš Holeš",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Slavia Prague",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 25,
+          "goals": 2
+        },
+        "total": {
+          "apps": 30,
+          "goals": 2
+        },
+        "gpa": 0.07
+      }
+    },
+    "cze-robin-hranac": {
+      "name": "Robin Hranáč",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "620217",
+      "tm_slug": "robin-hranac",
+      "club": "TSG 1899 Hoffenheim",
+      "market_value_eur": 10000000,
+      "market_value": "€10m",
+      "mv_date": "2026-05-27",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/620217-1713471898.jpg?lm=1",
+      "wiki_title": "Robin Hranáč",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "TSG Hoffenheim",
+        "league": {
+          "comp": null,
+          "apps": 29,
+          "goals": 1
+        },
+        "total": {
+          "apps": 31,
+          "goals": 1
+        },
+        "gpa": 0.03
+      }
+    },
+    "cze-vladimir-coufal": {
+      "name": "Vladimír Coufal",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "157672",
+      "tm_slug": "vladimir-coufal",
+      "club": "TSG 1899 Hoffenheim",
+      "market_value_eur": 2500000,
+      "market_value": "€2.5m",
+      "mv_date": "2026-05-27",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/157672-1755091456.jpg?lm=1",
+      "wiki_title": "Vladimír Coufal",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "TSG Hoffenheim",
+        "league": {
+          "comp": "Bundesliga",
+          "apps": 34,
+          "goals": 1
+        },
+        "total": {
+          "apps": 35,
+          "goals": 1
+        },
+        "gpa": 0.03
+      }
+    },
+    "cze-stepan-chaloupek": {
+      "name": "Štěpán Chaloupek",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "944827",
+      "tm_slug": "stepan-chaloupek",
+      "club": "SK Slavia Prague",
+      "market_value_eur": 10000000,
+      "market_value": "€10m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/944827-1769071543.jpg?lm=1",
+      "wiki_title": "Štěpán Chaloupek",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Slavia Prague",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 26,
+          "goals": 8
+        },
+        "total": {
+          "apps": 36,
+          "goals": 9
+        },
+        "gpa": 0.25
+      }
+    },
+    "cze-ladislav-krejci": {
+      "name": "Ladislav Krejčí",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "345911",
+      "tm_slug": "ladislav-krejci",
+      "club": "Wolverhampton Wanderers",
+      "market_value_eur": 22000000,
+      "market_value": "€22m",
+      "mv_date": "2026-06-03",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/345911-1716965804.jpg?lm=1",
+      "wiki_title": "Ladislav Krejčí (footballer, born 1999)",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Wolverhampton Wanderers (loan)",
+        "league": {
+          "comp": "Premier League",
+          "apps": 28,
+          "goals": 2
+        },
+        "total": {
+          "apps": 32,
+          "goals": 2
+        },
+        "gpa": 0.06
+      }
+    },
+    "cze-vladimir-darida": {
+      "name": "Vladimír Darida",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "179643",
+      "tm_slug": "vladimir-darida",
+      "club": "FC Hradec Kralove",
+      "market_value_eur": 375000,
+      "market_value": "€375k",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/179643-1657098719.jpg?lm=1",
+      "wiki_title": "Vladimír Darida",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Hradec Králové",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 32,
+          "goals": 11
+        },
+        "total": {
+          "apps": 35,
+          "goals": 12
+        },
+        "gpa": 0.34
+      }
+    },
+    "cze-adam-hlozek": {
+      "name": "Adam Hložek",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "552057",
+      "tm_slug": "adam-hlozek",
+      "club": "TSG 1899 Hoffenheim",
+      "market_value_eur": 10000000,
+      "market_value": "€10m",
+      "mv_date": "2026-05-27",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/552057-1755092070.jpg?lm=1",
+      "wiki_title": "Adam Hložek",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "TSG Hoffenheim",
+        "league": {
+          "comp": null,
+          "apps": 5,
+          "goals": 0
+        },
+        "total": {
+          "apps": 5,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "cze-patrik-schick": {
+      "name": "Patrik Schick",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "242086",
+      "tm_slug": "patrik-schick",
+      "club": "Bayer 04 Leverkusen",
+      "market_value_eur": 18000000,
+      "market_value": "€18m",
+      "mv_date": "2026-05-27",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/242086-1727378322.jpg?lm=1",
+      "wiki_title": "Patrik Schick",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Bayer Leverkusen",
+        "league": {
+          "comp": "Bundesliga",
+          "apps": 28,
+          "goals": 16
+        },
+        "total": {
+          "apps": 42,
+          "goals": 22
+        },
+        "gpa": 0.52
+      }
+    },
+    "cze-jan-kuchta": {
+      "name": "Jan Kuchta",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "334802",
+      "tm_slug": "jan-kuchta",
+      "club": "AC Sparta Prague",
+      "market_value_eur": 2700000,
+      "market_value": "€2.7m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/334802-1716966274.jpg?lm=1",
+      "wiki_title": "Jan Kuchta",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Midtjylland",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 30,
+          "goals": 12
+        },
+        "total": {
+          "apps": 45,
+          "goals": 15
+        },
+        "gpa": 0.33
+      }
+    },
+    "cze-lukas-cerv": {
+      "name": "Lukáš Červ",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "611049",
+      "tm_slug": "lukas-cerv",
+      "club": "FC Viktoria Plzen",
+      "market_value_eur": 6000000,
+      "market_value": "€6m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/611049-1659447996.jpg?lm=1",
+      "wiki_title": "Lukáš Červ",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 32,
+          "goals": 1
+        },
+        "total": {
+          "apps": 49,
+          "goals": 3
+        },
+        "gpa": 0.06
+      }
+    },
+    "cze-mojmir-chytil": {
+      "name": "Mojmír Chytil",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "405855",
+      "tm_slug": "mojmir-chytil",
+      "club": "SK Slavia Prague",
+      "market_value_eur": 4000000,
+      "market_value": "€4m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/405855-1697832425.png?lm=1",
+      "wiki_title": "Mojmír Chytil",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Slavia Prague",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 28,
+          "goals": 13
+        },
+        "total": {
+          "apps": 36,
+          "goals": 14
+        },
+        "gpa": 0.39
+      }
+    },
+    "cze-david-jurasek": {
+      "name": "David Jurásek",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "500054",
+      "tm_slug": "david-jurasek",
+      "club": "SK Slavia Prague",
+      "market_value_eur": 5000000,
+      "market_value": "€5m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/500054-1701333965.jpg?lm=1",
+      "wiki_title": "David Jurásek",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Beşiktaş (loan)",
+        "league": {
+          "comp": "Süper Lig",
+          "apps": 10,
+          "goals": 0
+        },
+        "total": {
+          "apps": 17,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "cze-pavel-sulc": {
+      "name": "Pavel Šulc",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "500053",
+      "tm_slug": "pavel-sulc",
+      "club": "Olympique Lyon",
+      "market_value_eur": 20000000,
+      "market_value": "€20m",
+      "mv_date": "2026-06-01",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/500053-1718742395.jpg?lm=1",
+      "wiki_title": "Pavel Šulc",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Lyon",
+        "league": {
+          "comp": "Ligue 1",
+          "apps": 27,
+          "goals": 11
+        },
+        "total": {
+          "apps": 38,
+          "goals": 14
+        },
+        "gpa": 0.37
+      }
+    },
+    "cze-jindrich-stanek": {
+      "name": "Jindřich Staněk",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "242089",
+      "tm_slug": "jindrich-stanek",
+      "club": "SK Slavia Prague",
+      "market_value_eur": 2000000,
+      "market_value": "€2m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/242089-1716965449.jpg?lm=1",
+      "wiki_title": "Jindřich Staněk",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Slavia Prague",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 19,
+          "goals": 0
+        },
+        "total": {
+          "apps": 25,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "cze-lukas-provod": {
+      "name": "Lukáš Provod",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "292779",
+      "tm_slug": "lukas-provod",
+      "club": "SK Slavia Prague",
+      "market_value_eur": 8000000,
+      "market_value": "€8m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/292779-1697832390.png?lm=1",
+      "wiki_title": "Lukáš Provod",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Slavia Prague (loan)",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 30,
+          "goals": 7
+        },
+        "total": {
+          "apps": 39,
+          "goals": 8
+        },
+        "gpa": 0.21
+      }
+    },
+    "cze-michal-sadilek": {
+      "name": "Michal Sadílek",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "321204",
+      "tm_slug": "michal-sadilek",
+      "club": "SK Slavia Prague",
+      "market_value_eur": 8000000,
+      "market_value": "€8m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/321204-1658219516.jpg?lm=1",
+      "wiki_title": "Michal Sadílek",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Slavia Prague",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 28,
+          "goals": 1
+        },
+        "total": {
+          "apps": 38,
+          "goals": 2
+        },
+        "gpa": 0.05
+      }
+    },
+    "cze-tomas-chory": {
+      "name": "Tomáš Chorý",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "198614",
+      "tm_slug": "tomas-chory",
+      "club": "SK Slavia Prague",
+      "market_value_eur": 2700000,
+      "market_value": "€2.7m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/198614-1515072144.jpg?lm=1",
+      "wiki_title": "Tomáš Chorý",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Slavia Prague",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 24,
+          "goals": 17
+        },
+        "total": {
+          "apps": 33,
+          "goals": 17
+        },
+        "gpa": 0.52
+      }
+    },
+    "cze-jaroslav-zeleny": {
+      "name": "Jaroslav Zelený",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "142219",
+      "tm_slug": "jaroslav-zeleny",
+      "club": "AC Sparta Prague",
+      "market_value_eur": 600000,
+      "market_value": "€600k",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/142219-1781248144.jpg?lm=1",
+      "wiki_title": "Jaroslav Zelený",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Sparta Prague",
+        "league": {
+          "comp": null,
+          "apps": 25,
+          "goals": 1
+        },
+        "total": {
+          "apps": 36,
+          "goals": 1
+        },
+        "gpa": 0.03
+      }
+    },
+    "cze-david-doudera": {
+      "name": "David Douděra",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "493758",
+      "tm_slug": "david-doudera",
+      "club": "SK Slavia Prague",
+      "market_value_eur": 3500000,
+      "market_value": "€3.5m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/493758-1697831504.png?lm=1",
+      "wiki_title": "David Douděra",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Slavia Prague",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 22,
+          "goals": 1
+        },
+        "total": {
+          "apps": 29,
+          "goals": 1
+        },
+        "gpa": 0.03
+      }
+    },
+    "cze-tomas-soucek": {
+      "name": "Tomáš Souček",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "283628",
+      "tm_slug": "tomas-soucek",
+      "club": "West Ham United",
+      "market_value_eur": 10000000,
+      "market_value": "€10m",
+      "mv_date": "2026-06-03",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/283628-1704184173.jpg?lm=1",
+      "wiki_title": "Tomáš Souček",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Premier League",
+          "apps": 35,
+          "goals": 5
+        },
+        "total": {
+          "apps": 39,
+          "goals": 6
+        },
+        "gpa": 0.15
+      }
+    },
+    "cze-lukas-hornicek": {
+      "name": "Lukáš Horníček",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "629773",
+      "tm_slug": "lukas-hornicek",
+      "club": "SC Braga",
+      "market_value_eur": 18000000,
+      "market_value": "€18m",
+      "mv_date": "2026-05-28",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/629773-1732826321.jpg?lm=1",
+      "wiki_title": "Lukáš Horníček",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Braga",
+        "league": {
+          "comp": "Primeira Liga",
+          "apps": 33,
+          "goals": 0
+        },
+        "total": {
+          "apps": 55,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "cze-alexandr-sojka": {
+      "name": "Alexandr Sojka",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "826103",
+      "tm_slug": "alexandr-sojka",
+      "club": "FC Viktoria Plzen",
+      "market_value_eur": 2300000,
+      "market_value": "€2.3m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/826103-1750680908.jpg?lm=1",
+      "wiki_title": "Alexandr Sojka",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Hradec Králové",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 18,
+          "goals": 1
+        },
+        "total": {
+          "apps": 20,
+          "goals": 2
+        },
+        "gpa": 0.1
+      }
+    },
+    "cze-hugo-sochurek": {
+      "name": "Hugo Sochůrek",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "1206877",
+      "tm_slug": "hugo-sochurek",
+      "club": "AC Sparta Prague",
+      "market_value_eur": 3500000,
+      "market_value": "€3.5m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/1206877-1761246727.jpg?lm=1",
+      "wiki_title": "Hugo Sochůrek",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Sparta Prague",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 8,
+          "goals": 0
+        },
+        "total": {
+          "apps": 10,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "cze-denis-visinsky": {
+      "name": "Denis Višinský",
+      "team": "CZE",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "652060",
+      "tm_slug": "denis-visinsky",
+      "club": "FC Viktoria Plzen",
+      "market_value_eur": 3000000,
+      "market_value": "€3m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/652060-1659447783.jpg?lm=1",
+      "wiki_title": "Denis Višinský",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Viktoria Plzeň",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 27,
+          "goals": 8
+        },
+        "total": {
+          "apps": 41,
+          "goals": 9
+        },
+        "gpa": 0.22
+      }
+    },
+    "mex-raul-rangel": {
+      "name": "Raúl Rangel",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "802855",
+      "tm_slug": "raul-rangel",
+      "club": "Deportivo Guadalajara",
+      "market_value_eur": 6500000,
+      "market_value": "€6.5m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/802855-1751874010.jpg?lm=1",
+      "wiki_title": "Raúl Rangel (footballer)",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Guadalajara",
+        "league": {
+          "comp": null,
+          "apps": 19,
+          "goals": 0
+        },
+        "total": {
+          "apps": 22,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "mex-jorge-sanchez": {
+      "name": "Jorge Sánchez",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "356044",
+      "tm_slug": "jorge-sanchez",
+      "club": "PAOK Thessaloniki",
+      "market_value_eur": 2000000,
+      "market_value": "€2m",
+      "mv_date": "2026-06-04",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/356044-1777755351.png?lm=1",
+      "wiki_title": "Jorge Sánchez (footballer, born 1997)",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "PAOK",
+        "league": {
+          "comp": "Super League Greece",
+          "apps": 10,
+          "goals": 0
+        },
+        "total": {
+          "apps": 11,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "mex-cesar-montes": {
+      "name": "César Montes",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "387687",
+      "tm_slug": "cesar-montes",
+      "club": "Lokomotiv Moscow",
+      "market_value_eur": 7500000,
+      "market_value": "€7.5m",
+      "mv_date": "2026-05-26",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/387687-1728229633.png?lm=1",
+      "wiki_title": "César Montes",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Lokomotiv Moscow",
+        "league": {
+          "comp": null,
+          "apps": 26,
+          "goals": 4
+        },
+        "total": {
+          "apps": 29,
+          "goals": 4
+        },
+        "gpa": 0.14
+      }
+    },
+    "mex-edson-alvarez": {
+      "name": "Edson Álvarez",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "401356",
+      "tm_slug": "edson-alvarez",
+      "club": "West Ham United",
+      "market_value_eur": 15000000,
+      "market_value": "€15m",
+      "mv_date": "2026-05-21",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/401356-1765380634.jpg?lm=1",
+      "wiki_title": "Edson Álvarez",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Fenerbahçe (loan)",
+        "league": {
+          "comp": "Süper Lig",
+          "apps": 12,
+          "goals": 0
+        },
+        "total": {
+          "apps": 18,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "mex-johan-vasquez": {
+      "name": "Johan Vásquez",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "532937",
+      "tm_slug": "johan-vasquez",
+      "club": "Genoa CFC",
+      "market_value_eur": 12000000,
+      "market_value": "€12m",
+      "mv_date": "2026-05-29",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/532937-1742929864.jpg?lm=1",
+      "wiki_title": "Johan Vásquez (footballer, born 1998)",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2024–25",
+        "league": {
+          "comp": "Serie A",
+          "apps": 36,
+          "goals": 1
+        },
+        "total": {
+          "apps": 39,
+          "goals": 1
+        },
+        "gpa": 0.03
+      }
+    },
+    "mex-erik-lira": {
+      "name": "Érik Lira",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "602324",
+      "tm_slug": "erik-lira",
+      "club": "CD Cruz Azul",
+      "market_value_eur": 12000000,
+      "market_value": "€12m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/602324-1751873784.jpg?lm=1",
+      "wiki_title": "Érik Lira",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Cruz Azul",
+        "league": {
+          "comp": null,
+          "apps": 37,
+          "goals": 0
+        },
+        "total": {
+          "apps": 47,
+          "goals": 1
+        },
+        "gpa": 0.02
+      }
+    },
+    "mex-luis-romo": {
+      "name": "Luis Romo",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "532938",
+      "tm_slug": "luis-romo",
+      "club": "Deportivo Guadalajara",
+      "market_value_eur": 3000000,
+      "market_value": "€3m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/532938-1780508976.jpg?lm=1",
+      "wiki_title": "Luis Romo",
+      "wiki_checked": true
+    },
+    "mex-alvaro-fidalgo": {
+      "name": "Álvaro Fidalgo",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "261503",
+      "tm_slug": "alvaro-fidalgo",
+      "club": "Real Betis Balompié",
+      "market_value_eur": 6000000,
+      "market_value": "€6m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/261503-1773343851.jpg?lm=1",
+      "wiki_title": "Álvaro Fidalgo",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Betis",
+        "league": {
+          "comp": "La Liga",
+          "apps": 9,
+          "goals": 1
+        },
+        "total": {
+          "apps": 13,
+          "goals": 1
+        },
+        "gpa": 0.08
+      }
+    },
+    "mex-raul-jimenez": {
+      "name": "Raúl Jiménez",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "206040",
+      "tm_slug": "raul-jimenez",
+      "club": "Wolverhampton Wanderers",
+      "market_value_eur": 3000000,
+      "market_value": "€3m",
+      "mv_date": "2026-06-03",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/206040-1782888297.jpg?lm=1",
+      "wiki_title": "Raúl Jiménez",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Premier League",
+          "apps": 36,
+          "goals": 9
+        },
+        "total": {
+          "apps": 43,
+          "goals": 10
+        },
+        "gpa": 0.23
+      }
+    },
+    "mex-alexis-vega": {
+      "name": "Alexis Vega",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "424689",
+      "tm_slug": "alexis-vega",
+      "club": "Deportivo Toluca",
+      "market_value_eur": 8000000,
+      "market_value": "€8m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/424689-1666538728.jpg?lm=1",
+      "wiki_title": "Alexis Vega (Mexican footballer)",
+      "wiki_checked": true
+    },
+    "mex-santiago-gimenez": {
+      "name": "Santiago Giménez",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "552955",
+      "tm_slug": "santiago-gimenez",
+      "club": "AC Milan",
+      "market_value_eur": 18000000,
+      "market_value": "€18m",
+      "mv_date": "2026-05-29",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/552955-1739903736.jpg?lm=1",
+      "wiki_title": "Santiago Giménez",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "AC Milan",
+        "league": {
+          "comp": null,
+          "apps": 16,
+          "goals": 0
+        },
+        "total": {
+          "apps": 18,
+          "goals": 1
+        },
+        "gpa": 0.06
+      }
+    },
+    "mex-carlos-acevedo": {
+      "name": "Carlos Acevedo",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "356042",
+      "tm_slug": "carlos-acevedo",
+      "club": "Santos Laguna",
+      "market_value_eur": 2800000,
+      "market_value": "€2.8m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/356042-1666549577.jpg?lm=1",
+      "wiki_title": "Carlos Acevedo",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Santos Laguna",
+        "league": {
+          "comp": null,
+          "apps": 17,
+          "goals": 0
+        },
+        "total": {
+          "apps": 19,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "mex-guillermo-ochoa": {
+      "name": "Guillermo Ochoa",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "29559",
+      "tm_slug": "guillermo-ochoa",
+      "club": "AEL Limassol",
+      "market_value_eur": 250000,
+      "market_value": "€250k",
+      "mv_date": "2026-06-02",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/29559-1668452843.jpg?lm=1",
+      "wiki_title": "Guillermo Ochoa",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "AEL Limassol",
+        "league": {
+          "comp": "Cypriot First Division",
+          "apps": 22,
+          "goals": 0
+        },
+        "total": {
+          "apps": 26,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "mex-armando-gonzalez": {
+      "name": "Armando González",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "837619",
+      "tm_slug": "armando-gonzalez",
+      "club": "Deportivo Guadalajara",
+      "market_value_eur": 15000000,
+      "market_value": "€15m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/837619-1727117232.jpg?lm=1",
+      "wiki_title": "Armando González (footballer, born 2003)",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Guadalajara",
+        "league": {
+          "comp": null,
+          "apps": 35,
+          "goals": 24
+        },
+        "total": {
+          "apps": 38,
+          "goals": 25
+        },
+        "gpa": 0.66
+      }
+    },
+    "mex-israel-reyes": {
+      "name": "Israel Reyes",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "687558",
+      "tm_slug": "israel-reyes",
+      "club": "CF América",
+      "market_value_eur": 6500000,
+      "market_value": "€6.5m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/687558-1751873902.jpg?lm=1",
+      "wiki_title": "Israel Reyes",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2023–24",
+        "league": {
+          "comp": null,
+          "apps": 33,
+          "goals": 0
+        },
+        "total": {
+          "apps": 43,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "mex-julian-quinones": {
+      "name": "Julián Quiñones",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "416090",
+      "tm_slug": "julian-quinones",
+      "club": "Al-Qadsiah FC",
+      "market_value_eur": 14000000,
+      "market_value": "€14m",
+      "mv_date": "2026-06-04",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/416090-1719229425.jpg?lm=1",
+      "wiki_title": "Julián Quiñones",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Saudi Pro League",
+          "apps": 31,
+          "goals": 33
+        },
+        "total": {
+          "apps": 35,
+          "goals": 37
+        },
+        "gpa": 1.06
+      }
+    },
+    "mex-orbelin-pineda": {
+      "name": "Orbelín Pineda",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "334042",
+      "tm_slug": "orbelin-pineda",
+      "club": "AEK Athens",
+      "market_value_eur": 7000000,
+      "market_value": "€7m",
+      "mv_date": "2026-06-04",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/334042-1754429262.png?lm=1",
+      "wiki_title": "Orbelín Pineda",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": null,
+          "apps": 31,
+          "goals": 5
+        },
+        "total": {
+          "apps": 50,
+          "goals": 5
+        },
+        "gpa": 0.1
+      }
+    },
+    "mex-obed-vargas": {
+      "name": "Obed Vargas",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "889435",
+      "tm_slug": "obed-vargas",
+      "club": "Atlético de Madrid",
+      "market_value_eur": 10000000,
+      "market_value": "€10m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/889435-1740863407.jpg?lm=1",
+      "wiki_title": "Obed Vargas",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Atlético Madrid",
+        "league": {
+          "comp": "La Liga",
+          "apps": 12,
+          "goals": 0
+        },
+        "total": {
+          "apps": 13,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "mex-gilberto-mora": {
+      "name": "Gilberto Mora",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "1155723",
+      "tm_slug": "gilberto-mora",
+      "club": "Club Tijuana",
+      "market_value_eur": 10000000,
+      "market_value": "€10m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/1155723-1751873501.jpg?lm=1",
+      "wiki_title": "Gilberto Mora (footballer, born 2008)",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Tijuana",
+        "league": {
+          "comp": "Liga MX",
+          "apps": 20,
+          "goals": 6
+        },
+        "total": {
+          "apps": 23,
+          "goals": 8
+        },
+        "gpa": 0.35
+      }
+    },
+    "mex-mateo-chavez": {
+      "name": "Mateo Chávez",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "1066953",
+      "tm_slug": "mateo-chavez",
+      "club": "AZ Alkmaar",
+      "market_value_eur": 4000000,
+      "market_value": "€4m",
+      "mv_date": "2026-05-28",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/1066953-1753350485.jpg?lm=1",
+      "wiki_title": "Mateo Chávez",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Eredivisie",
+        "league": {
+          "comp": "Eredivisie",
+          "apps": 20,
+          "goals": 1
+        },
+        "total": {
+          "apps": 32,
+          "goals": 1
+        },
+        "gpa": 0.03
+      }
+    },
+    "mex-cesar-huerta": {
+      "name": "César Huerta",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "540315",
+      "tm_slug": "cesar-huerta",
+      "club": "RSC Anderlecht",
+      "market_value_eur": 3500000,
+      "market_value": "€3.5m",
+      "mv_date": "2026-06-04",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/540315-1722760933.jpg?lm=1",
+      "wiki_title": "César Huerta",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Anderlecht",
+        "league": {
+          "comp": null,
+          "apps": 11,
+          "goals": 1
+        },
+        "total": {
+          "apps": 17,
+          "goals": 2
+        },
+        "gpa": 0.12
+      }
+    },
+    "mex-guillermo-martinez": {
+      "name": "Guillermo Martínez",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "347932",
+      "tm_slug": "guillermo-martinez",
+      "club": "UNAM Pumas",
+      "market_value_eur": 1500000,
+      "market_value": "€1.5m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/347932-1780520014.jpg?lm=1",
+      "wiki_title": "Guillermo Martínez (footballer)",
+      "wiki_checked": true
+    },
+    "mex-jesus-gallardo": {
+      "name": "Jesús Gallardo",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "344854",
+      "tm_slug": "jesus-gallardo",
+      "club": "Deportivo Toluca",
+      "market_value_eur": 2800000,
+      "market_value": "€2.8m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/344854-1668453242.jpg?lm=1",
+      "wiki_title": "Jesús Gallardo",
+      "wiki_checked": true
+    },
+    "mex-luis-chavez": {
+      "name": "Luis Chávez",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "331059",
+      "tm_slug": "luis-chavez",
+      "club": "Dynamo Moscow",
+      "market_value_eur": 6000000,
+      "market_value": "€6m",
+      "mv_date": "2026-05-26",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/331059-1693158645.png?lm=1",
+      "wiki_title": "Luis Chávez (footballer)",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2024–25",
+        "league": {
+          "comp": "Russian Premier League",
+          "apps": 4,
+          "goals": 0
+        },
+        "total": {
+          "apps": 5,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "mex-roberto-alvarado": {
+      "name": "Roberto Alvarado",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "353583",
+      "tm_slug": "roberto-alvarado",
+      "club": "Deportivo Guadalajara",
+      "market_value_eur": 7500000,
+      "market_value": "€7.5m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/353583-1668454179.jpg?lm=1",
+      "wiki_title": "Roberto Alvarado",
+      "wiki_checked": true
+    },
+    "mex-brian-gutierrez": {
+      "name": "Brian Gutiérrez",
+      "team": "MEX",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "724443",
+      "tm_slug": "brian-gutierrez",
+      "club": "Deportivo Guadalajara",
+      "market_value_eur": 8000000,
+      "market_value": "€8m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/724443-1740682013.jpg?lm=1",
+      "wiki_title": "Brian Gutiérrez",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Guadalajara",
+        "league": {
+          "comp": "Liga MX",
+          "apps": 17,
+          "goals": 2
+        },
+        "total": {
+          "apps": 34,
+          "goals": 6
+        },
+        "gpa": 0.18
+      }
+    },
+    "rsa-ronwen-williams": {
+      "name": "Ronwen Williams",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "175577",
+      "tm_slug": "ronwen-williams",
+      "club": "Mamelodi Sundowns FC",
+      "market_value_eur": 800000,
+      "market_value": "€800k",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/175577-1771237794.jpg?lm=1",
+      "wiki_title": "Ronwen Williams",
+      "wiki_checked": true
+    },
+    "rsa-thabang-matuludi": {
+      "name": "Thabang Matuludi",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "1109254",
+      "tm_slug": "thabang-matuludi",
+      "club": "Polokwane City FC",
+      "market_value_eur": 1200000,
+      "market_value": "€1.2m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/1109254-1741933394.jpg?lm=1",
+      "wiki_title": "Thabang Matuludi",
+      "wiki_checked": true
+    },
+    "rsa-khulumani-ndamane": {
+      "name": "Khulumani Ndamane",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "1283140",
+      "tm_slug": "khulumani-ndamane",
+      "club": "Mamelodi Sundowns FC",
+      "market_value_eur": 1200000,
+      "market_value": "€1.2m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/1283140-1771236109.jpg?lm=1",
+      "wiki_title": "Khulumani Ndamane",
+      "wiki_checked": true
+    },
+    "rsa-teboho-mokoena": {
+      "name": "Teboho Mokoena",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "436372",
+      "tm_slug": "teboho-mokoena",
+      "club": "Mamelodi Sundowns FC",
+      "market_value_eur": 2800000,
+      "market_value": "€2.8m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/436372-1771236183.jpg?lm=1",
+      "wiki_title": "Teboho Mokoena (soccer, born 1997)",
+      "wiki_checked": true
+    },
+    "rsa-thalente-mbatha": {
+      "name": "Thalente Mbatha",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "735697",
+      "tm_slug": "thalente-mbatha",
+      "club": "Orlando Pirates",
+      "market_value_eur": 2000000,
+      "market_value": "€2m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/735697-1715273419.png?lm=1",
+      "wiki_title": "Thalente Mbatha",
+      "wiki_checked": true
+    },
+    "rsa-aubrey-modiba": {
+      "name": "Aubrey Modiba",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "353432",
+      "tm_slug": "aubrey-modiba",
+      "club": "Mamelodi Sundowns FC",
+      "market_value_eur": 1800000,
+      "market_value": "€1.8m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/353432-1771236297.jpg?lm=1",
+      "wiki_title": "Aubrey Modiba",
+      "wiki_checked": true
+    },
+    "rsa-oswin-appollis": {
+      "name": "Oswin Appollis",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "673381",
+      "tm_slug": "oswin-appollis",
+      "club": "Orlando Pirates",
+      "market_value_eur": 2500000,
+      "market_value": "€2.5m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/673381-1754037319.png?lm=1",
+      "wiki_title": "Oswin Appollis",
+      "wiki_checked": true
+    },
+    "rsa-tshepang-moremi": {
+      "name": "Tshepang Moremi",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "844485",
+      "tm_slug": "tshepang-moremi",
+      "club": "Orlando Pirates",
+      "market_value_eur": 1400000,
+      "market_value": "€1.4m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/844485-1754037742.png?lm=1",
+      "wiki_title": "Tshepang Moremi",
+      "wiki_checked": true
+    },
+    "rsa-lyle-foster": {
+      "name": "Lyle Foster",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "467623",
+      "tm_slug": "lyle-foster",
+      "club": "Burnley FC",
+      "market_value_eur": 8000000,
+      "market_value": "€8m",
+      "mv_date": "2026-06-03",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/467623-1779949909.jpg?lm=1",
+      "wiki_title": "Lyle Foster",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Premier League",
+          "apps": 26,
+          "goals": 3
+        },
+        "total": {
+          "apps": 27,
+          "goals": 3
+        },
+        "gpa": 0.11
+      }
+    },
+    "rsa-relebohile-mofokeng": {
+      "name": "Relebohile Mofokeng",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "1125037",
+      "tm_slug": "relebohile-mofokeng",
+      "club": "Union Saint-Gilloise",
+      "market_value_eur": 3000000,
+      "market_value": "€3m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/1125037-1736459558.png?lm=1",
+      "wiki_title": "Relebohile Mofokeng",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Orlando Pirates",
+        "league": {
+          "comp": null,
+          "apps": 27,
+          "goals": 10
+        },
+        "total": {
+          "apps": 36,
+          "goals": 11
+        },
+        "gpa": 0.31
+      }
+    },
+    "rsa-themba-zwane": {
+      "name": "Themba Zwane",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "176578",
+      "tm_slug": "themba-zwane",
+      "club": "Mamelodi Sundowns FC",
+      "market_value_eur": 250000,
+      "market_value": "€250k",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/176578-1771237046.jpg?lm=1",
+      "wiki_title": "Themba Zwane",
+      "wiki_checked": true
+    },
+    "rsa-thapelo-maseko": {
+      "name": "Thapelo Maseko",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "983330",
+      "tm_slug": "thapelo-maseko",
+      "club": "Mamelodi Sundowns FC",
+      "market_value_eur": 750000,
+      "market_value": "€750k",
+      "mv_date": "2026-06-02",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/983330-1715201867.jpg?lm=1",
+      "wiki_title": "Thapelo Maseko",
+      "wiki_checked": true
+    },
+    "rsa-sphephelo-sithole": {
+      "name": "Sphephelo Sithole",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "401736",
+      "tm_slug": "yaya-sithole",
+      "club": "CD Tondela",
+      "market_value_eur": 600000,
+      "market_value": "€600k",
+      "mv_date": "2026-05-28",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/401736-1781204736.jpg?lm=1",
+      "wiki_title": "Sphephelo Sithole",
+      "wiki_checked": true
+    },
+    "rsa-mbekezeli-mbokazi": {
+      "name": "Mbekezeli Mbokazi",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "1378320",
+      "tm_slug": "mbekezeli-mbokazi",
+      "club": "Chicago Fire FC",
+      "market_value_eur": 3500000,
+      "market_value": "€3.5m",
+      "mv_date": "2026-06-02",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/1378320-1771596912.jpg?lm=1",
+      "wiki_title": "Mbekezeli Mbokazi",
+      "wiki_checked": true
+    },
+    "rsa-iqraam-rayners": {
+      "name": "Iqraam Rayners",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "337884",
+      "tm_slug": "iqraam-rayners",
+      "club": "Mamelodi Sundowns FC",
+      "market_value_eur": 2800000,
+      "market_value": "€2.8m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/337884-1771236829.jpg?lm=1",
+      "wiki_title": "Iqraam Rayners",
+      "wiki_checked": true
+    },
+    "rsa-sipho-chaine": {
+      "name": "Sipho Chaine",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "453370",
+      "tm_slug": "sipho-chaine",
+      "club": "Orlando Pirates",
+      "market_value_eur": 1600000,
+      "market_value": "€1.6m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/453370-1772446947.png?lm=1",
+      "wiki_title": "Sipho Chaine",
+      "wiki_checked": true
+    },
+    "rsa-evidence-makgopa": {
+      "name": "Evidence Makgopa",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "746781",
+      "tm_slug": "evidence-makgopa",
+      "club": "Orlando Pirates",
+      "market_value_eur": 1400000,
+      "market_value": "€1.4m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/746781-1715275953.png?lm=1",
+      "wiki_title": "Evidence Makgopa",
+      "wiki_checked": true
+    },
+    "rsa-samukele-kabini": {
+      "name": "Samukele Kabini",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "1175086",
+      "tm_slug": "samukele-kabini",
+      "club": "Molde FK",
+      "market_value_eur": 2500000,
+      "market_value": "€2.5m",
+      "mv_date": "2026-05-28",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/1175086-1762904439.jpg?lm=1",
+      "wiki_title": "Samukele Kabini",
+      "wiki_checked": true
+    },
+    "rsa-nkosinathi-sibisi": {
+      "name": "Nkosinathi Sibisi",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "399068",
+      "tm_slug": "nkosinathi-sibisi",
+      "club": "Orlando Pirates",
+      "market_value_eur": 1600000,
+      "market_value": "€1.6m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/399068-1715256845.png?lm=1",
+      "wiki_title": "Nkosinathi Sibisi",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Orlando Pirates F.C.",
+        "league": {
+          "comp": null,
+          "apps": 23,
+          "goals": 0
+        },
+        "total": {
+          "apps": 23,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "rsa-khuliso-mudau": {
+      "name": "Khuliso Mudau",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "450806",
+      "tm_slug": "khuliso-mudau",
+      "club": "Mamelodi Sundowns FC",
+      "market_value_eur": 1200000,
+      "market_value": "€1.2m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/450806-1771237474.jpg?lm=1",
+      "wiki_title": "Khuliso Mudau",
+      "wiki_checked": true
+    },
+    "rsa-ime-okon": {
+      "name": "Ime Okon",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "1107265",
+      "tm_slug": "ime-okon",
+      "club": "Hannover 96",
+      "market_value_eur": 2000000,
+      "market_value": "€2m",
+      "mv_date": "2026-06-01",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/1107265-1757925374.png?lm=1",
+      "wiki_title": "Ime Okon",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Hannover 96",
+        "league": {
+          "comp": "2. Bundesliga",
+          "apps": 25,
+          "goals": 2
+        },
+        "total": {
+          "apps": 25,
+          "goals": 2
+        },
+        "gpa": 0.08
+      }
+    },
+    "rsa-ricardo-goss": {
+      "name": "Ricardo Goss",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "258304",
+      "tm_slug": "ricardo-goss",
+      "club": "Mamelodi Sundowns FC",
+      "market_value_eur": 350000,
+      "market_value": "€350k",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/258304-1715326378.jpg?lm=1",
+      "wiki_title": "Ricardo Goss",
+      "wiki_checked": true
+    },
+    "rsa-jayden-adams": {
+      "name": "Jayden Adams",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "804472",
+      "tm_slug": "jayden-adams",
+      "club": "Mamelodi Sundowns FC",
+      "market_value_eur": 1800000,
+      "market_value": "€1.8m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/804472-1771236484.jpg?lm=1",
+      "wiki_title": "Jayden Adams",
+      "wiki_checked": true
+    },
+    "rsa-olwethu-makhanya": {
+      "name": "Olwethu Makhanya",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "1069801",
+      "tm_slug": "olwethu-makhanya",
+      "club": "Philadelphia Union",
+      "market_value_eur": 2000000,
+      "market_value": "€2m",
+      "mv_date": "2026-06-02",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/1069801-1771714009.jpg?lm=1",
+      "wiki_title": "Olwethu Makhanya",
+      "wiki_checked": true
+    },
+    "rsa-kamogelo-sebelebele": {
+      "name": "Kamogelo Sebelebele",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "994370",
+      "tm_slug": "kamogelo-sebelebele",
+      "club": "Orlando Pirates",
+      "market_value_eur": 1200000,
+      "market_value": "€1.2m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/994370-1754038079.png?lm=1",
+      "wiki_title": "Kamogelo Sebelebele",
+      "wiki_checked": true
+    },
+    "rsa-bradley-cross": {
+      "name": "Bradley Cross",
+      "team": "RSA",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "555209",
+      "tm_slug": "bradley-cross",
+      "club": "Kaizer Chiefs",
+      "market_value_eur": 1000000,
+      "market_value": "€1m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/555209-1715353823.jpg?lm=1",
+      "wiki_title": "Bradley Cross (soccer)",
+      "wiki_checked": true
+    },
+    "kor-kim-seung-gyu": {
+      "name": "Kim Seung-gyu",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Kim Seung-gyu",
+      "wiki_checked": true
+    },
+    "kor-lee-han-beom": {
+      "name": "Lee Han-beom",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Lee Han-beom",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Danish Superliga",
+          "apps": 29,
+          "goals": 0
+        },
+        "total": {
+          "apps": 49,
+          "goals": 2
+        },
+        "gpa": 0.04
+      }
+    },
+    "kor-lee-gi-hyuk": {
+      "name": "Lee Gi-hyuk",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Lee Gi-hyuk",
+      "wiki_checked": true
+    },
+    "kor-kim-min-jae": {
+      "name": "Kim Min-jae",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Kim Min-jae (footballer)",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Bundesliga",
+          "apps": 25,
+          "goals": 1
+        },
+        "total": {
+          "apps": 37,
+          "goals": 1
+        },
+        "gpa": 0.03
+      }
+    },
+    "kor-kim-tae-hyeon": {
+      "name": "Kim Tae-hyeon",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Kim Tae-hyeon",
+      "wiki_checked": true
+    },
+    "kor-hwang-in-beom": {
+      "name": "Hwang In-beom",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Hwang In-beom",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Feyenoord",
+        "league": {
+          "comp": "Eredivisie",
+          "apps": 17,
+          "goals": 1
+        },
+        "total": {
+          "apps": 24,
+          "goals": 1
+        },
+        "gpa": 0.04
+      }
+    },
+    "kor-son-heung-min": {
+      "name": "Son Heung-min",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Son Heung-min",
+      "wiki_checked": true
+    },
+    "kor-paik-seung-ho": {
+      "name": "Paik Seung-ho",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Paik Seung-ho",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Championship",
+          "apps": 43,
+          "goals": 4
+        },
+        "total": {
+          "apps": 46,
+          "goals": 4
+        },
+        "gpa": 0.09
+      }
+    },
+    "kor-cho-gue-sung": {
+      "name": "Cho Gue-sung",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Cho Gue-sung",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Danish Superliga",
+          "apps": 26,
+          "goals": 3
+        },
+        "total": {
+          "apps": 42,
+          "goals": 7
+        },
+        "gpa": 0.17
+      }
+    },
+    "kor-lee-jae-sung": {
+      "name": "Lee Jae-sung",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Lee Jae-sung",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Mainz 05",
+        "league": {
+          "comp": "Bundesliga",
+          "apps": 28,
+          "goals": 4
+        },
+        "total": {
+          "apps": 39,
+          "goals": 6
+        },
+        "gpa": 0.15
+      }
+    },
+    "kor-hwang-hee-chan": {
+      "name": "Hwang Hee-chan",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Hwang Hee-chan",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Premier League",
+          "apps": 26,
+          "goals": 2
+        },
+        "total": {
+          "apps": 31,
+          "goals": 3
+        },
+        "gpa": 0.1
+      }
+    },
+    "kor-song-bum-keun": {
+      "name": "Song Bum-keun",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Song Bum-keun",
+      "wiki_checked": true
+    },
+    "kor-lee-tae-seok": {
+      "name": "Lee Tae-seok",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Lee Tae-seok",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Austria Wien",
+        "league": {
+          "comp": "Austrian Bundesliga",
+          "apps": 30,
+          "goals": 3
+        },
+        "total": {
+          "apps": 30,
+          "goals": 3
+        },
+        "gpa": 0.1
+      }
+    },
+    "kor-cho-wi-je": {
+      "name": "Cho Wi-je",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Cho Wi-je",
+      "wiki_checked": true
+    },
+    "kor-kim-moon-hwan": {
+      "name": "Kim Moon-hwan",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Kim Moon-hwan",
+      "wiki_checked": true
+    },
+    "kor-park-jin-seob": {
+      "name": "Park Jin-seob",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Park Jin-seob (footballer, born 1995)",
+      "wiki_checked": true
+    },
+    "kor-bae-jun-ho": {
+      "name": "Bae Jun-ho",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Bae Jun-ho",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Championship",
+          "apps": 42,
+          "goals": 2
+        },
+        "total": {
+          "apps": 45,
+          "goals": 3
+        },
+        "gpa": 0.07
+      }
+    },
+    "kor-oh-hyeon-gyu": {
+      "name": "Oh Hyeon-gyu",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Oh Hyeon-gyu",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Genk",
+        "league": {
+          "comp": "Belgian Pro League",
+          "apps": 20,
+          "goals": 6
+        },
+        "total": {
+          "apps": 32,
+          "goals": 10
+        },
+        "gpa": 0.31
+      }
+    },
+    "kor-lee-kang-in": {
+      "name": "Lee Kang-in",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Lee Kang-in",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Ligue 1",
+          "apps": 27,
+          "goals": 3
+        },
+        "total": {
+          "apps": 39,
+          "goals": 4
+        },
+        "gpa": 0.1
+      }
+    },
+    "kor-yang-hyun-jun": {
+      "name": "Yang Hyun-jun",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Yang Hyun-jun",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Scottish Premiership",
+          "apps": 31,
+          "goals": 8
+        },
+        "total": {
+          "apps": 47,
+          "goals": 10
+        },
+        "gpa": 0.21
+      }
+    },
+    "kor-jo-hyeon-woo": {
+      "name": "Jo Hyeon-woo",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Jo Hyeon-woo",
+      "wiki_checked": true
+    },
+    "kor-seol-young-woo": {
+      "name": "Seol Young-woo",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Seol Young-woo",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Red Star Belgrade",
+        "league": {
+          "comp": "Serbian SuperLiga",
+          "apps": 31,
+          "goals": 2
+        },
+        "total": {
+          "apps": 50,
+          "goals": 2
+        },
+        "gpa": 0.04
+      }
+    },
+    "kor-jens-castrop": {
+      "name": "Jens Castrop",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Jens Castrop",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Borussia Mönchengladbach",
+        "league": {
+          "comp": "Bundesliga",
+          "apps": 26,
+          "goals": 3
+        },
+        "total": {
+          "apps": 28,
+          "goals": 3
+        },
+        "gpa": 0.11
+      }
+    },
+    "kor-kim-jin-gyu": {
+      "name": "Kim Jin-gyu",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Kim Jin-gyu (footballer, born 1997)",
+      "wiki_checked": true
+    },
+    "kor-eom-ji-sung": {
+      "name": "Eom Ji-sung",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Eom Ji-sung",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Championship",
+          "apps": 44,
+          "goals": 2
+        },
+        "total": {
+          "apps": 48,
+          "goals": 3
+        },
+        "gpa": 0.06
+      }
+    },
+    "kor-lee-dong-gyeong": {
+      "name": "Lee Dong-gyeong",
+      "team": "KOR",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Lee Dong-gyeong",
+      "wiki_checked": true
+    },
+    "bih-nikola-vasilj": {
+      "name": "Nikola Vasilj",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Nikola Vasilj",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Bundesliga",
+          "apps": 34,
+          "goals": 0
+        },
+        "total": {
+          "apps": 36,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "bih-nihad-mujakic": {
+      "name": "Nihad Mujakić",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Nihad Mujakić",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Eyüpspor (loan)",
+        "league": {
+          "comp": "Süper Lig",
+          "apps": 16,
+          "goals": 0
+        },
+        "total": {
+          "apps": 16,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "bih-dennis-hadzikadunic": {
+      "name": "Dennis Hadžikadunić",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Dennis Hadžikadunić",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Sampdoria (loan)",
+        "league": {
+          "comp": "Serie B",
+          "apps": 28,
+          "goals": 0
+        },
+        "total": {
+          "apps": 28,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "bih-tarik-muharemovic": {
+      "name": "Tarik Muharemović",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Tarik Muharemović",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Sassuolo",
+        "league": {
+          "comp": "Serie A",
+          "apps": 32,
+          "goals": 2
+        },
+        "total": {
+          "apps": 33,
+          "goals": 2
+        },
+        "gpa": 0.06
+      }
+    },
+    "bih-sead-kolasinac": {
+      "name": "Sead Kolašinac",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Sead Kolašinac",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Atalanta",
+        "league": {
+          "comp": "Serie A",
+          "apps": 19,
+          "goals": 0
+        },
+        "total": {
+          "apps": 28,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "bih-benjamin-tahirovic": {
+      "name": "Benjamin Tahirović",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Benjamin Tahirović",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Brøndby",
+        "league": {
+          "comp": "Danish Superliga",
+          "apps": 25,
+          "goals": 1
+        },
+        "total": {
+          "apps": 32,
+          "goals": 1
+        },
+        "gpa": 0.03
+      }
+    },
+    "bih-amar-dedic": {
+      "name": "Amar Dedić",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Amar Dedić",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Benfica",
+        "league": {
+          "comp": "Primeira Liga",
+          "apps": 24,
+          "goals": 1
+        },
+        "total": {
+          "apps": 43,
+          "goals": 1
+        },
+        "gpa": 0.02
+      }
+    },
+    "bih-armin-gigovic": {
+      "name": "Armin Gigović",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Armin Gigović",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Young Boys",
+        "league": {
+          "comp": "Swiss Super League",
+          "apps": 31,
+          "goals": 1
+        },
+        "total": {
+          "apps": 41,
+          "goals": 4
+        },
+        "gpa": 0.1
+      }
+    },
+    "bih-samed-bazdar": {
+      "name": "Samed Baždar",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Samed Baždar",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Jagiellonia (loan)",
+        "league": {
+          "comp": "Ekstraklasa",
+          "apps": 15,
+          "goals": 3
+        },
+        "total": {
+          "apps": 17,
+          "goals": 3
+        },
+        "gpa": 0.18
+      }
+    },
+    "bih-ermedin-demirovic": {
+      "name": "Ermedin Demirović",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Ermedin Demirović",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "VfB Stuttgart",
+        "league": {
+          "comp": "Bundesliga",
+          "apps": 25,
+          "goals": 12
+        },
+        "total": {
+          "apps": 38,
+          "goals": 15
+        },
+        "gpa": 0.39
+      }
+    },
+    "bih-edin-dzeko": {
+      "name": "Edin Džeko",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Edin Džeko",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Fiorentina",
+        "league": {
+          "comp": "Serie A",
+          "apps": 11,
+          "goals": 0
+        },
+        "total": {
+          "apps": 18,
+          "goals": 2
+        },
+        "gpa": 0.11
+      }
+    },
+    "bih-mladen-jurkas": {
+      "name": "Mladen Jurkas",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Bosnia and Herzegovina national football team",
+      "wiki_checked": true
+    },
+    "bih-ivan-basic": {
+      "name": "Ivan Bašić",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Ivan Bašić",
+      "wiki_checked": true
+    },
+    "bih-ivan-sunjic": {
+      "name": "Ivan Šunjić",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Ivan Šunjić",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Cypriot First Division",
+          "apps": 29,
+          "goals": 4
+        },
+        "total": {
+          "apps": 46,
+          "goals": 4
+        },
+        "gpa": 0.09
+      }
+    },
+    "bih-amar-memic": {
+      "name": "Amar Memić",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Amar Memić",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 30,
+          "goals": 3
+        },
+        "total": {
+          "apps": 44,
+          "goals": 3
+        },
+        "gpa": 0.07
+      }
+    },
+    "bih-amir-hadziahmetovic": {
+      "name": "Amir Hadžiahmetović",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Amir Hadžiahmetović",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Hull City (loan)",
+        "league": {
+          "comp": "Championship",
+          "apps": 37,
+          "goals": 0
+        },
+        "total": {
+          "apps": 39,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "bih-dzenis-burnic": {
+      "name": "Dženis Burnić",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Dženis Burnić",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Karlsruher SC",
+        "league": {
+          "comp": "2. Bundesliga",
+          "apps": 32,
+          "goals": 1
+        },
+        "total": {
+          "apps": 33,
+          "goals": 1
+        },
+        "gpa": 0.03
+      }
+    },
+    "bih-nikola-katic": {
+      "name": "Nikola Katić",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Nikola Katić",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Schalke 04",
+        "league": {
+          "comp": "2. Bundesliga",
+          "apps": 26,
+          "goals": 1
+        },
+        "total": {
+          "apps": 28,
+          "goals": 1
+        },
+        "gpa": 0.04
+      }
+    },
+    "bih-kerim-alajbegovic": {
+      "name": "Kerim Alajbegović",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Kerim Alajbegović",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Red Bull Salzburg",
+        "league": {
+          "comp": "Austrian Bundesliga",
+          "apps": 28,
+          "goals": 9
+        },
+        "total": {
+          "apps": 44,
+          "goals": 13
+        },
+        "gpa": 0.3
+      }
+    },
+    "bih-esmir-bajraktarevic": {
+      "name": "Esmir Bajraktarević",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Esmir Bajraktarević",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "PSV",
+        "league": {
+          "comp": "Eredivisie",
+          "apps": 28,
+          "goals": 4
+        },
+        "total": {
+          "apps": 36,
+          "goals": 7
+        },
+        "gpa": 0.19
+      }
+    },
+    "bih-stjepan-radeljic": {
+      "name": "Stjepan Radeljić",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Stjepan Radeljić",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Rijeka",
+        "league": {
+          "comp": "Croatian Football League",
+          "apps": 25,
+          "goals": 2
+        },
+        "total": {
+          "apps": 42,
+          "goals": 2
+        },
+        "gpa": 0.05
+      }
+    },
+    "bih-martin-zlomislic": {
+      "name": "Martin Zlomislić",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Martin Zlomislić",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Rijeka",
+        "league": {
+          "comp": "Croatian Football League",
+          "apps": 33,
+          "goals": 0
+        },
+        "total": {
+          "apps": 53,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "bih-haris-tabakovic": {
+      "name": "Haris Tabaković",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Haris Tabaković",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Borussia Mönchengladbach (loan)",
+        "league": {
+          "comp": "Bundesliga",
+          "apps": 32,
+          "goals": 13
+        },
+        "total": {
+          "apps": 35,
+          "goals": 15
+        },
+        "gpa": 0.43
+      }
+    },
+    "bih-arjan-malic": {
+      "name": "Arjan Malić",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Arjan Malić",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Sturm Graz",
+        "league": {
+          "comp": "Austrian Bundesliga",
+          "apps": 18,
+          "goals": 1
+        },
+        "total": {
+          "apps": 28,
+          "goals": 1
+        },
+        "gpa": 0.04
+      }
+    },
+    "bih-jovo-lukic": {
+      "name": "Jovo Lukić",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Jovo Lukić",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Universitatea Cluj",
+        "league": {
+          "comp": "Liga I",
+          "apps": 32,
+          "goals": 18
+        },
+        "total": {
+          "apps": 39,
+          "goals": 20
+        },
+        "gpa": 0.51
+      }
+    },
+    "bih-ermin-mahmic": {
+      "name": "Ermin Mahmić",
+      "team": "BIH",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Ermin Mahmić",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Slovan Liberec",
+        "league": {
+          "comp": "Czech First League",
+          "apps": 28,
+          "goals": 7
+        },
+        "total": {
+          "apps": 30,
+          "goals": 8
+        },
+        "gpa": 0.27
+      }
+    },
+    "can-dayne-st-clair": {
+      "name": "Dayne St. Clair",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "439750",
+      "tm_slug": "dayne-st-clair",
+      "club": "Inter Miami CF",
+      "market_value_eur": 3500000,
+      "market_value": "€3.5m",
+      "mv_date": "2026-06-02",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/439750-1771695035.jpg?lm=1",
+      "wiki_title": "Dayne St. Clair",
+      "wiki_checked": true
+    },
+    "can-alistair-johnston": {
+      "name": "Alistair Johnston",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "637446",
+      "tm_slug": "alistair-johnston",
+      "club": "Celtic FC",
+      "market_value_eur": 8000000,
+      "market_value": "€8m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/637446-1701212171.jpg?lm=1",
+      "wiki_title": "Alistair Johnston",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": null,
+          "apps": 7,
+          "goals": 0
+        },
+        "total": {
+          "apps": 11,
+          "goals": 1
+        },
+        "gpa": 0.09
+      }
+    },
+    "can-alfie-jones": {
+      "name": "Alfie Jones",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "340990",
+      "tm_slug": "alfie-jones",
+      "club": "Middlesbrough FC",
+      "market_value_eur": 6000000,
+      "market_value": "€6m",
+      "mv_date": "2026-05-28",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/340990-1780911787.jpg?lm=1",
+      "wiki_title": "Alfie Jones",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Middlesbrough",
+        "league": {
+          "comp": "Championship",
+          "apps": 22,
+          "goals": 1
+        },
+        "total": {
+          "apps": 23,
+          "goals": 1
+        },
+        "gpa": 0.04
+      }
+    },
+    "can-luc-de-fougerolles": {
+      "name": "Luc de Fougerolles",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "921995",
+      "tm_slug": "luc-de-fougerolles",
+      "club": "Fulham FC U21",
+      "market_value_eur": 1000000,
+      "market_value": "€1m",
+      "mv_date": "2026-06-04",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/921995-1760114291.jpg?lm=1",
+      "wiki_title": "Luc de Fougerolles",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Dender EH (loan)",
+        "league": {
+          "comp": "Belgian Pro League",
+          "apps": 27,
+          "goals": 0
+        },
+        "total": {
+          "apps": 30,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "can-joel-waterman": {
+      "name": "Joel Waterman",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "441738",
+      "tm_slug": "joel-waterman",
+      "club": "Chicago Fire FC",
+      "market_value_eur": 2000000,
+      "market_value": "€2m",
+      "mv_date": "2026-06-02",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/441738-1771696324.jpg?lm=1",
+      "wiki_title": "Joel Waterman",
+      "wiki_checked": true
+    },
+    "can-mathieu-choiniere": {
+      "name": "Mathieu Choinière",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "589006",
+      "tm_slug": "mathieu-choiniere",
+      "club": "Los Angeles FC",
+      "market_value_eur": 800000,
+      "market_value": "€800k",
+      "mv_date": "2026-06-02",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/589006-1771689836.jpg?lm=1",
+      "wiki_title": "Mathieu Choinière",
+      "wiki_checked": true
+    },
+    "can-stephen-eustaquio": {
+      "name": "Stephen Eustáquio",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "512913",
+      "tm_slug": "stephen-eustaquio",
+      "club": "FC Porto",
+      "market_value_eur": 6000000,
+      "market_value": "€6m",
+      "mv_date": "2026-06-02",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/512913-1778846068.jpg?lm=1",
+      "wiki_title": "Stephen Eustáquio",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Primeira Liga",
+          "apps": 8,
+          "goals": 0
+        },
+        "total": {
+          "apps": 16,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "can-ismael-kone": {
+      "name": "Ismaël Koné",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "921655",
+      "tm_slug": "ismael-kone",
+      "club": "US Sassuolo",
+      "market_value_eur": 25000000,
+      "market_value": "€25m",
+      "mv_date": "2026-05-29",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/921655-1757604633.jpg?lm=1",
+      "wiki_title": "Ismaël Koné",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Sassuolo",
+        "league": {
+          "comp": "Serie A",
+          "apps": 35,
+          "goals": 6
+        },
+        "total": {
+          "apps": 36,
+          "goals": 6
+        },
+        "gpa": 0.17
+      }
+    },
+    "can-cyle-larin": {
+      "name": "Cyle Larin",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "343463",
+      "tm_slug": "cyle-larin",
+      "club": "Southampton FC",
+      "market_value_eur": 2500000,
+      "market_value": "€2.5m",
+      "mv_date": "2026-05-28",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/343463-1720430112.jpg?lm=1",
+      "wiki_title": "Cyle Larin",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Southampton (loan)",
+        "league": {
+          "comp": "Championship",
+          "apps": 16,
+          "goals": 8
+        },
+        "total": {
+          "apps": 22,
+          "goals": 9
+        },
+        "gpa": 0.41
+      }
+    },
+    "can-jonathan-david": {
+      "name": "Jonathan David",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "533738",
+      "tm_slug": "jonathan-david",
+      "club": "Juventus FC",
+      "market_value_eur": 30000000,
+      "market_value": "€30m",
+      "mv_date": "2026-05-29",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/533738-1760114012.jpg?lm=1",
+      "wiki_title": "Jonathan David",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Juventus",
+        "league": {
+          "comp": "Serie A",
+          "apps": 35,
+          "goals": 6
+        },
+        "total": {
+          "apps": 46,
+          "goals": 8
+        },
+        "gpa": 0.17
+      }
+    },
+    "can-liam-millar": {
+      "name": "Liam Millar",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "487417",
+      "tm_slug": "liam-millar",
+      "club": "Hull City",
+      "market_value_eur": 3000000,
+      "market_value": "€3m",
+      "mv_date": "2026-05-28",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/487417-1738999688.jpg?lm=1",
+      "wiki_title": "Liam Millar",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Championship",
+          "apps": 33,
+          "goals": 3
+        },
+        "total": {
+          "apps": 38,
+          "goals": 3
+        },
+        "gpa": 0.08
+      }
+    },
+    "can-tani-oluwaseyi": {
+      "name": "Tani Oluwaseyi",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "972465",
+      "tm_slug": "tani-oluwaseyi",
+      "club": "Villarreal CF",
+      "market_value_eur": 7000000,
+      "market_value": "€7m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/972465-1758059359.jpg?lm=1",
+      "wiki_title": "Tani Oluwaseyi",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Villarreal",
+        "league": {
+          "comp": "La Liga",
+          "apps": 27,
+          "goals": 2
+        },
+        "total": {
+          "apps": 37,
+          "goals": 7
+        },
+        "gpa": 0.19
+      }
+    },
+    "can-derek-cornelius": {
+      "name": "Derek Cornelius",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "328609",
+      "tm_slug": "derek-cornelius",
+      "club": "Olympique Marseille",
+      "market_value_eur": 2500000,
+      "market_value": "€2.5m",
+      "mv_date": "2026-05-20",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/328609-1618857970.jpg?lm=1",
+      "wiki_title": "Derek Cornelius",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Marseille",
+        "league": {
+          "comp": "Ligue 1",
+          "apps": 2,
+          "goals": 0
+        },
+        "total": {
+          "apps": 2,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "can-jacob-shaffelburg": {
+      "name": "Jacob Shaffelburg",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "637632",
+      "tm_slug": "jacob-shaffelburg",
+      "club": "Los Angeles FC",
+      "market_value_eur": 2500000,
+      "market_value": "€2.5m",
+      "mv_date": "2026-06-02",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/637632-1771690425.jpg?lm=1",
+      "wiki_title": "Jacob Shaffelburg",
+      "wiki_checked": true
+    },
+    "can-moise-bombito": {
+      "name": "Moïse Bombito",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "1089202",
+      "tm_slug": "moise-bombito",
+      "club": "OGC Nice",
+      "market_value_eur": 7000000,
+      "market_value": "€7m",
+      "mv_date": "2026-06-01",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/1089202-1756826846.jpg?lm=1",
+      "wiki_title": "Moïse Bombito",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Nice",
+        "league": {
+          "comp": null,
+          "apps": 2,
+          "goals": 0
+        },
+        "total": {
+          "apps": 2,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "can-maxime-crepeau": {
+      "name": "Maxime Crépeau",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "189014",
+      "tm_slug": "maxime-crepeau",
+      "club": "Orlando City SC",
+      "market_value_eur": 1800000,
+      "market_value": "€1.8m",
+      "mv_date": "2026-06-02",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/189014-1771712360.jpg?lm=1",
+      "wiki_title": "Maxime Crépeau",
+      "wiki_checked": true
+    },
+    "can-tajon-buchanan": {
+      "name": "Tajon Buchanan",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "638793",
+      "tm_slug": "tajon-buchanan",
+      "club": "Villarreal CF",
+      "market_value_eur": 12000000,
+      "market_value": "€12m",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/638793-1758059596.jpg?lm=1",
+      "wiki_title": "Tajon Buchanan",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Villarreal (loan)",
+        "league": {
+          "comp": "La Liga",
+          "apps": 34,
+          "goals": 7
+        },
+        "total": {
+          "apps": 43,
+          "goals": 7
+        },
+        "gpa": 0.16
+      }
+    },
+    "can-owen-goodman": {
+      "name": "Owen Goodman",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "814848",
+      "tm_slug": "owen-goodman",
+      "club": "Crystal Palace",
+      "market_value_eur": 550000,
+      "market_value": "€550k",
+      "mv_date": "2026-05-12",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/814848-1780911605.jpg?lm=1",
+      "wiki_title": "Owen Goodman",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Barnsley (loan)",
+        "league": {
+          "comp": "League One",
+          "apps": 22,
+          "goals": 0
+        },
+        "total": {
+          "apps": 22,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "can-alphonso-davies": {
+      "name": "Alphonso Davies",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "424204",
+      "tm_slug": "alphonso-davies",
+      "club": "Bayern Munich",
+      "market_value_eur": 40000000,
+      "market_value": "€40m",
+      "mv_date": "2026-05-27",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/424204-1711745534.jpg?lm=1",
+      "wiki_title": "Alphonso Davies",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Bundesliga",
+          "apps": 13,
+          "goals": 1
+        },
+        "total": {
+          "apps": 23,
+          "goals": 1
+        },
+        "gpa": 0.04
+      }
+    },
+    "can-ali-ahmed": {
+      "name": "Ali Ahmed",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "995642",
+      "tm_slug": "ali-ahmed",
+      "club": "Norwich City",
+      "market_value_eur": 5000000,
+      "market_value": "€5m",
+      "mv_date": "2026-05-28",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/995642-1740765149.jpg?lm=1",
+      "wiki_title": "Ali Ahmed (soccer)",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Norwich City",
+        "league": {
+          "comp": "Championship",
+          "apps": 19,
+          "goals": 4
+        },
+        "total": {
+          "apps": 21,
+          "goals": 4
+        },
+        "gpa": 0.19
+      }
+    },
+    "can-jonathan-osorio": {
+      "name": "Jonathan Osorio",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "260807",
+      "tm_slug": "jonathan-osorio",
+      "club": "Toronto FC",
+      "market_value_eur": 1000000,
+      "market_value": "€1m",
+      "mv_date": "2026-06-02",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/260807-1771789904.jpg?lm=1",
+      "wiki_title": "Jonathan Osorio",
+      "wiki_checked": true
+    },
+    "can-richie-laryea": {
+      "name": "Richie Laryea",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "417348",
+      "tm_slug": "richie-laryea",
+      "club": "Toronto FC",
+      "market_value_eur": 1000000,
+      "market_value": "€1m",
+      "mv_date": "2026-06-02",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/417348-1771789769.jpg?lm=1",
+      "wiki_title": "Richie Laryea",
+      "wiki_checked": true
+    },
+    "can-niko-sigur": {
+      "name": "Niko Sigur",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "1045375",
+      "tm_slug": "niko-sigur",
+      "club": "HNK Hajduk Split",
+      "market_value_eur": 4000000,
+      "market_value": "€4m",
+      "mv_date": "2026-05-29",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/1045375-1767281251.jpg?lm=1",
+      "wiki_title": "Niko Sigur",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Hajduk Split",
+        "league": {
+          "comp": "HNL",
+          "apps": 29,
+          "goals": 1
+        },
+        "total": {
+          "apps": 35,
+          "goals": 1
+        },
+        "gpa": 0.03
+      }
+    },
+    "can-promise-david": {
+      "name": "Promise David",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "888785",
+      "tm_slug": "promise-david",
+      "club": "Union Saint-Gilloise",
+      "market_value_eur": 17000000,
+      "market_value": "€17m",
+      "mv_date": "2026-06-04",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/888785-1772107518.jpg?lm=1",
+      "wiki_title": "Promise David",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Union SG",
+        "league": {
+          "comp": "Belgian Pro League",
+          "apps": 24,
+          "goals": 9
+        },
+        "total": {
+          "apps": 37,
+          "goals": 15
+        },
+        "gpa": 0.41
+      }
+    },
+    "can-nathan-saliba": {
+      "name": "Nathan Saliba",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "842420",
+      "tm_slug": "nathan-dylan-saliba",
+      "club": "RSC Anderlecht",
+      "market_value_eur": 7500000,
+      "market_value": "€7.5m",
+      "mv_date": "2026-06-04",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/842420-1740597560.jpg?lm=1",
+      "wiki_title": "Nathan Saliba",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Anderlecht",
+        "league": {
+          "comp": "Belgian Pro League",
+          "apps": 34,
+          "goals": 3
+        },
+        "total": {
+          "apps": 45,
+          "goals": 5
+        },
+        "gpa": 0.11
+      }
+    },
+    "can-jayden-nelson": {
+      "name": "Jayden Nelson",
+      "team": "CAN",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "635445",
+      "tm_slug": "jayden-nelson",
+      "club": "Austin FC",
+      "market_value_eur": 2000000,
+      "market_value": "€2m",
+      "mv_date": "2026-06-02",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/635445-1771529471.jpg?lm=1",
+      "wiki_title": "Jayden Nelson",
+      "wiki_checked": true
+    },
+    "qat-mahmud-abunada": {
+      "name": "Mahmud Abunada",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "669629",
+      "tm_slug": "mahmoud-abunada",
+      "club": "Al-Rayyan SC",
+      "market_value_eur": 400000,
+      "market_value": "€400k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/669629-1725823800.png?lm=1",
+      "wiki_title": "Mahmud Abunada",
+      "wiki_checked": true
+    },
+    "qat-pedro-miguel": {
+      "name": "Pedro Miguel",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Pedro Miguel (footballer)",
+      "wiki_checked": true
+    },
+    "qat-lucas-mendes": {
+      "name": "Lucas Mendes",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "83983",
+      "tm_slug": "lucas-mendes",
+      "club": "Al-Wakrah SC",
+      "market_value_eur": 350000,
+      "market_value": "€350k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/83983-1740661376.jpg?lm=1",
+      "wiki_title": "Lucas Mendes (footballer, born 1990)",
+      "wiki_checked": true
+    },
+    "qat-issa-laye": {
+      "name": "Issa Laye",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "1264176",
+      "tm_slug": "issa-laye",
+      "club": "Al-Arabi SC",
+      "market_value_eur": 200000,
+      "market_value": "€200k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/1264176-1741193319.JPG?lm=1",
+      "wiki_title": "Issa Laye",
+      "wiki_checked": true
+    },
+    "qat-jassem-gaber": {
+      "name": "Jassem Gaber",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "735813",
+      "tm_slug": "jassem-gaber",
+      "club": "Al-Rayyan SC",
+      "market_value_eur": 500000,
+      "market_value": "€500k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/735813-1725823687.png?lm=1",
+      "wiki_title": "Jassem Gaber",
+      "wiki_checked": true
+    },
+    "qat-abdulaziz-hatem": {
+      "name": "Abdulaziz Hatem",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "113915",
+      "tm_slug": "abdulaziz-hatim",
+      "club": "Al-Rayyan SC",
+      "market_value_eur": 250000,
+      "market_value": "€250k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/113915-1740665022.jpg?lm=1",
+      "wiki_title": "Abdulaziz Hatem",
+      "wiki_checked": true
+    },
+    "qat-ahmed-alaaeldin": {
+      "name": "Ahmed Alaaeldin",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "187987",
+      "tm_slug": "ahmed-alaaeldin",
+      "club": "Al-Rayyan SC",
+      "market_value_eur": 300000,
+      "market_value": "€300k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/187987-1725823454.png?lm=1",
+      "wiki_title": "Ahmed Alaaeldin",
+      "wiki_checked": true
+    },
+    "qat-edmilson-junior": {
+      "name": "Edmilson Junior",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "237846",
+      "tm_slug": "edmilson-junior",
+      "club": "Al-Duhail SC",
+      "market_value_eur": 1800000,
+      "market_value": "€1.8m",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/237846-1737911253.jpg?lm=1",
+      "wiki_title": "Edmilson Junior",
+      "wiki_checked": true
+    },
+    "qat-mohammed-muntari": {
+      "name": "Mohammed Muntari",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "266935",
+      "tm_slug": "mohammed-muntari",
+      "club": "Al-Gharafa SC",
+      "market_value_eur": 200000,
+      "market_value": "€200k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/266935-1738110954.jpg?lm=1",
+      "wiki_title": "Mohammed Muntari",
+      "wiki_checked": true
+    },
+    "qat-hassan-al-haydos": {
+      "name": "Hassan Al-Haydos",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "86286",
+      "tm_slug": "hassan-al-haydos",
+      "club": "Al-Sadd SC",
+      "market_value_eur": 300000,
+      "market_value": "€300k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/86286-1725787366.jpg?lm=1",
+      "wiki_title": "Hassan Al-Haydos",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Al-Sadd",
+        "league": {
+          "comp": null,
+          "apps": 7,
+          "goals": 0
+        },
+        "total": {
+          "apps": 10,
+          "goals": 1
+        },
+        "gpa": 0.1
+      }
+    },
+    "qat-akram-afif": {
+      "name": "Akram Afif",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "336646",
+      "tm_slug": "akram-afif",
+      "club": "Al-Sadd SC",
+      "market_value_eur": 8000000,
+      "market_value": "€8m",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/336646-1725787211.jpg?lm=1",
+      "wiki_title": "Akram Afif",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Al Sadd",
+        "league": {
+          "comp": null,
+          "apps": 15,
+          "goals": 11
+        },
+        "total": {
+          "apps": 22,
+          "goals": 12
+        },
+        "gpa": 0.55
+      }
+    },
+    "qat-karim-boudiaf": {
+      "name": "Karim Boudiaf",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "222385",
+      "tm_slug": "karim-boudiaf",
+      "club": "Al-Duhail SC",
+      "market_value_eur": 175000,
+      "market_value": "€175k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/222385-1737911305.jpg?lm=1",
+      "wiki_title": "Karim Boudiaf",
+      "wiki_checked": true
+    },
+    "qat-ayoub-al-oui": {
+      "name": "Ayoub Al-Oui",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "1054631",
+      "tm_slug": "ayoub-al-oui",
+      "club": "Al-Gharafa SC",
+      "market_value_eur": 375000,
+      "market_value": "€375k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/1054631-1762259857.jpg?lm=1",
+      "wiki_title": "Ayoub Al-Oui",
+      "wiki_checked": true
+    },
+    "qat-homam-ahmed": {
+      "name": "Homam Ahmed",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "556713",
+      "tm_slug": "homam-al-amin",
+      "club": "Al-Duhail SC",
+      "market_value_eur": 500000,
+      "market_value": "€500k",
+      "mv_date": "2026-06-05",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/556713-1737911388.jpg?lm=1",
+      "wiki_title": "Homam Ahmed",
+      "wiki_checked": true
+    },
+    "qat-yusuf-abdurisag": {
+      "name": "Yusuf Abdurisag",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "589099",
+      "tm_slug": "yusuf-abdurisag",
+      "club": "Al-Sadd SC",
+      "market_value_eur": 275000,
+      "market_value": "€275k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/589099-1725787818.jpg?lm=1",
+      "wiki_title": "Yusuf Abdurisag",
+      "wiki_checked": true
+    },
+    "qat-boualem-khoukhi": {
+      "name": "Boualem Khoukhi",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "222669",
+      "tm_slug": "boualem-khoukhi",
+      "club": "Al-Sadd SC",
+      "market_value_eur": 200000,
+      "market_value": "€200k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/222669-1725787279.jpg?lm=1",
+      "wiki_title": "Boualem Khoukhi",
+      "wiki_checked": true
+    },
+    "qat-ahmed-al-ganehi": {
+      "name": "Ahmed Al-Ganehi",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "670659",
+      "tm_slug": "ahmed-al-ganehi",
+      "club": "Al-Rayyan SC",
+      "market_value_eur": 500000,
+      "market_value": "€500k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/670659-1738110806.jpg?lm=1",
+      "wiki_title": "Ahmed Al-Ganehi",
+      "wiki_checked": true
+    },
+    "qat-sultan-al-brake": {
+      "name": "Sultan Al-Brake",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "336665",
+      "tm_slug": "sultan-al-brake",
+      "club": "Al-Duhail SC",
+      "market_value_eur": 300000,
+      "market_value": "€300k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/336665-1737911354.jpg?lm=1",
+      "wiki_title": "Sultan Al-Brake",
+      "wiki_checked": true
+    },
+    "qat-almoez-ali": {
+      "name": "Almoez Ali",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "345095",
+      "tm_slug": "almoez-ali",
+      "club": "Al-Duhail SC",
+      "market_value_eur": 2500000,
+      "market_value": "€2.5m",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/345095-1737911544.jpg?lm=1",
+      "wiki_title": "Almoez Ali",
+      "wiki_checked": true
+    },
+    "qat-ahmed-fathy": {
+      "name": "Ahmed Fathy",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Ahmed Fathy (Qatari footballer)",
+      "wiki_checked": true
+    },
+    "qat-salah-zakaria": {
+      "name": "Salah Zakaria",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "632912",
+      "tm_slug": "salah-zakaria",
+      "club": "Al-Duhail SC",
+      "market_value_eur": 400000,
+      "market_value": "€400k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/632912-1737911673.jpg?lm=1",
+      "wiki_title": "Salah Zakaria",
+      "wiki_checked": true
+    },
+    "qat-meshaal-barsham": {
+      "name": "Meshaal Barsham",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "560423",
+      "tm_slug": "meshaal-barsham",
+      "club": "Al-Sadd SC",
+      "market_value_eur": 700000,
+      "market_value": "€700k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/560423-1725787457.jpg?lm=1",
+      "wiki_title": "Meshaal Barsham",
+      "wiki_checked": true
+    },
+    "qat-assim-madibo": {
+      "name": "Assim Madibo",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "336667",
+      "tm_slug": "assim-madibo",
+      "club": "Al-Duhail SC",
+      "market_value_eur": 350000,
+      "market_value": "€350k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/336667-1762278060.jpg?lm=1",
+      "wiki_title": "Assim Madibo",
+      "wiki_checked": true
+    },
+    "qat-tahsin-jamshid": {
+      "name": "Tahsin Jamshid",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "wiki_title": "Tahsin Jamshid",
+      "wiki_checked": true
+    },
+    "qat-al-hashmi-al-hussain": {
+      "name": "Al-Hashmi Al-Hussain",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "943150",
+      "tm_slug": "al-hashmi-al-hussain",
+      "club": "Al-Arabi SC",
+      "market_value_eur": 250000,
+      "market_value": "€250k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/943150-1762258519.jpg?lm=1",
+      "wiki_title": "Al-Hashmi Al-Hussain",
+      "wiki_checked": true
+    },
+    "qat-mohamed-manai": {
+      "name": "Mohamed Manai",
+      "team": "QAT",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "822935",
+      "tm_slug": "mohamed-manai",
+      "club": "Al-Shamal SC",
+      "market_value_eur": 500000,
+      "market_value": "€500k",
+      "mv_date": "2026-05-14",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/822935-1739291004.jpg?lm=1",
+      "wiki_title": "Mohamed Manai",
+      "wiki_checked": true
+    },
+    "sui-gregor-kobel": {
+      "name": "Gregor Kobel",
+      "team": "SUI",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "257814",
+      "tm_slug": "gregor-kobel",
+      "club": "Borussia Dortmund",
+      "market_value_eur": 40000000,
+      "market_value": "€40m",
+      "mv_date": "2026-05-27",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/257814-1709559904.jpg?lm=1",
+      "wiki_title": "Gregor Kobel",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Borussia Dortmund",
+        "league": {
+          "comp": "Bundesliga",
+          "apps": 34,
+          "goals": 0
+        },
+        "total": {
+          "apps": 47,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "sui-miro-muheim": {
+      "name": "Miro Muheim",
+      "team": "SUI",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "298603",
+      "tm_slug": "miro-muheim",
+      "club": "Hamburger SV",
+      "market_value_eur": 5000000,
+      "market_value": "€5m",
+      "mv_date": "2026-05-27",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/298603-1728395082.jpg?lm=1",
+      "wiki_title": "Miro Muheim",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Bundesliga",
+        "league": {
+          "comp": "Bundesliga",
+          "apps": 29,
+          "goals": 0
+        },
+        "total": {
+          "apps": 32,
+          "goals": 0
+        },
+        "gpa": 0
+      }
+    },
+    "sui-silvan-widmer": {
+      "name": "Silvan Widmer",
+      "team": "SUI",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "168989",
+      "tm_slug": "silvan-widmer",
+      "club": "1.FSV Mainz 05",
+      "market_value_eur": 800000,
+      "market_value": "€800k",
+      "mv_date": "2026-05-27",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/168989-1629202510.jpg?lm=1",
+      "wiki_title": "Silvan Widmer",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Mainz 05",
+        "league": {
+          "comp": "Bundesliga",
+          "apps": 27,
+          "goals": 2
+        },
+        "total": {
+          "apps": 40,
+          "goals": 3
+        },
+        "gpa": 0.08
+      }
+    },
+    "sui-nico-elvedi": {
+      "name": "Nico Elvedi",
+      "team": "SUI",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "192635",
+      "tm_slug": "nico-elvedi",
+      "club": "Borussia Mönchengladbach",
+      "market_value_eur": 8000000,
+      "market_value": "€8m",
+      "mv_date": "2026-05-27",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/192635-1691249306.jpg?lm=1",
+      "wiki_title": "Nico Elvedi",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Borussia Mönchengladbach",
+        "league": {
+          "comp": null,
+          "apps": 33,
+          "goals": 0
+        },
+        "total": {
+          "apps": 36,
+          "goals": 2
+        },
+        "gpa": 0.06
+      }
+    },
+    "sui-manuel-akanji": {
+      "name": "Manuel Akanji",
+      "team": "SUI",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "284730",
+      "tm_slug": "manuel-akanji",
+      "club": "Inter Milan",
+      "market_value_eur": 17000000,
+      "market_value": "€17m",
+      "mv_date": "2026-05-29",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/284730-1684165752.jpg?lm=1",
+      "wiki_title": "Manuel Akanji",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Inter Milan (loan)",
+        "league": {
+          "comp": "Serie A",
+          "apps": 33,
+          "goals": 2
+        },
+        "total": {
+          "apps": 45,
+          "goals": 2
+        },
+        "gpa": 0.04
+      }
+    },
+    "sui-denis-zakaria": {
+      "name": "Denis Zakaria",
+      "team": "SUI",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "334526",
+      "tm_slug": "denis-zakaria",
+      "club": "AS Monaco",
+      "market_value_eur": 25000000,
+      "market_value": "€25m",
+      "mv_date": "2026-06-01",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/334526-1780491997.jpg?lm=1",
+      "wiki_title": "Denis Zakaria",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": "Ligue 1",
+          "apps": 24,
+          "goals": 2
+        },
+        "total": {
+          "apps": 33,
+          "goals": 2
+        },
+        "gpa": 0.06
+      }
+    },
+    "sui-breel-embolo": {
+      "name": "Breel Embolo",
+      "team": "SUI",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "237662",
+      "tm_slug": "breel-embolo",
+      "club": "Stade Rennais FC",
+      "market_value_eur": 15000000,
+      "market_value": "€15m",
+      "mv_date": "2026-06-01",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/237662-1779793638.jpg?lm=1",
+      "wiki_title": "Breel Embolo",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Rennes",
+        "league": {
+          "comp": "Ligue 1",
+          "apps": 31,
+          "goals": 8
+        },
+        "total": {
+          "apps": 34,
+          "goals": 10
+        },
+        "gpa": 0.29
+      }
+    },
+    "sui-remo-freuler": {
+      "name": "Remo Freuler",
+      "team": "SUI",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "148252",
+      "tm_slug": "remo-freuler",
+      "club": "Without Club",
+      "market_value_eur": 3000000,
+      "market_value": "€3m",
+      "mv_date": "2026-05-29",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/148252-1688044464.jpg?lm=1",
+      "wiki_title": "Remo Freuler",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "2025–26",
+        "league": {
+          "comp": null,
+          "apps": 29,
+          "goals": 1
+        },
+        "total": {
+          "apps": 40,
+          "goals": 1
+        },
+        "gpa": 0.03
+      }
+    },
+    "sui-johan-manzambi": {
+      "name": "Johan Manzambi",
+      "team": "SUI",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "927353",
+      "tm_slug": "johan-manzambi",
+      "club": "SC Freiburg",
+      "market_value_eur": 50000000,
+      "market_value": "€50m",
+      "mv_date": "2026-05-27",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/927353-1753954939.jpg?lm=1",
+      "wiki_title": "Johan Manzambi",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "SC Freiburg",
+        "league": {
+          "comp": "Bundesliga",
+          "apps": 27,
+          "goals": 5
+        },
+        "total": {
+          "apps": 47,
+          "goals": 7
+        },
+        "gpa": 0.15
+      }
+    },
+    "sui-granit-xhaka": {
+      "name": "Granit Xhaka",
+      "team": "SUI",
+      "updated": "2026-07-04",
+      "tm_checked": true,
+      "tm_id": "111455",
+      "tm_slug": "granit-xhaka",
+      "club": "Sunderland AFC",
+      "market_value_eur": 8000000,
+      "market_value": "€8m",
+      "mv_date": "2026-06-03",
+      "photo": "https://img.a.transfermarkt.technology/portrait/big/111455-1689711080.jpg?lm=1",
+      "wiki_title": "Granit Xhaka",
+      "wiki_checked": true,
+      "season": {
+        "season": "2025/26",
+        "club": "Sunderland",
+        "league": {
+          "comp": "Premier League",
+          "apps": 34,
+          "goals": 1
+        },
+        "total": {
+          "apps": 36,
+          "goals": 1
+        },
+        "gpa": 0.03
+      }
+    }
+  }
+}

@@ -24,6 +24,7 @@ npm run sync:availability # bygg spelartillgänglighet → data/wc2026_player_st
 npm run sync:status # legacy: samma fil från API-Football /injuries (kräver API_FOOTBALL_KEY; workflowen kör numera sync:availability)
 npm run sync:news  # synka landslagsnyheter per land → data/team_news.json (Google Nyheter-RSS, ingen nyckel)
 npm run sync:lineups # synka troliga/bekräftade startelvor för kommande matcher → data/lineups_prelim.json (365Scores, ingen nyckel)
+npm run sync:metrics # synka betting-metrik per spelare → data/wc2026_player_metrics.json (marknadsvärde + porträtt från Transfermarkt, klubbform 2025/26 matcher+mål från Wikipedia, ingen nyckel)
 ```
 
 ## Viktiga filer
@@ -35,8 +36,10 @@ npm run sync:lineups # synka troliga/bekräftade startelvor för kommande matche
 | `assets/r32engine.js` | Monte Carlo-motor: simulerar vem man möter i R32 utifrån odds (delas av huvudtråd + worker) |
 | `assets/r32worker.js` | Web Worker som kör `r32engine.js` utanför huvudtråden |
 | `data/odds.json` | Exakta resultat-odds för de återstående gruppmatcherna (indata till R32-motorn) |
-| `assets/players.js` | Statiskt datalager för truppdata + spelarstatus (`window.VMPlayers`) |
-| `assets/live.js` | Trupp i lag-lådan + spelarprofil-modal (visar skade-/avstängningsstatus) |
+| `assets/players.js` | Statiskt datalager för truppdata + spelarstatus + betting-metrik (`window.VMPlayers`, bl.a. `getPlayerMetrics`) |
+| `assets/live.js` | Trupp i lag-lådan + spelarprofil-modal (visar skade-/avstängningsstatus, porträttfoto samt "Marknad & form"-kortet: marknadsvärde + klubbform 2025/26 ur `data/wc2026_player_metrics.json`) |
+| `data/wc2026_player_metrics.json` | Betting-metrik per spelar-id: `market_value_eur`/`market_value` (Transfermarkt), `photo` (porträtt), `season` = klubbform 2025/26 (`league`/`total` {apps, goals} + `gpa` mål per match, från Wikipedia). Uppslag (`tm_id`/`wiki_title`) cachas; `*_checked`-flaggor skiljer "ingen data finns" från "hämtning misslyckades → prova igen". Poster med `manual: true` bevaras |
+| `server/scripts/syncPlayerMetrics.js` | Bygger spelarmetriken: slår upp spelaren på Transfermarkt (verifierar nationalitet) för marknadsvärde/klubb/porträtt + parsar klubbform 2025/26 (matcher/mål, liga + totalt) ur spelarens Wikipedia-artikel. Inkrementell/resumbar, ingen nyckel. Körs dagligen av `sync-player-metrics.yml`. Assist/minuter/skott ingår inte (finns inte robust gratis) |
 | `data/wc2026_player_status.json` | Spelartillgänglighet (skador/avstängningar/osäkra) per spelar-id, med `source: {name, url}` och `detail` – visas i matchmodalens "Senaste nytt" (Avbräck & frågetecken), Inför-fliken, spelarprofilen och statistikfiltren. Poster med `manual: true` bevaras av synken |
 | `server/scripts/syncAvailability.js` | Bygger spelartillgängligheten: avstängningar beräknas ur `results.json`/`matchdetails.json` (röda kort, ackumulerade gula – enstaka gula rensas efter kvartsfinal; källänk till ESPN-matchsidan) + skador/frågetecken ur ländernas egna medier via Google Nyheter-RSS (spelarnamnsmatchning mot truppen, svensk översättning, artikeln som källa; rykten kastas när spelaren spelat en senare match). Körs varje timme av `sync-player-status.yml` |
 | `server/scripts/syncPlayerStatus.js` | Legacy: samma fil från API-Football `/injuries` (körs inte längre av workflow) |

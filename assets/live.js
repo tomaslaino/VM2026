@@ -357,10 +357,70 @@
       '</span></div>';
   }
 
+  /** Betting-metrik (marknadsvärde + klubbform 2025/26) för ett spelar-id, eller null. */
+  function metricsOf(id) {
+    return (window.VMPlayers && VMPlayers.getPlayerMetrics) ? VMPlayers.getPlayerMetrics(id) : null;
+  }
+
+  /* Målform 0–100 som liten mätare: mål per match skalat mot 1.0 (elitanfallare
+     ligger runt 0,7–1,0). Ger en snabb visuell känsla för målhotet. */
+  function formGaugeCls(gpa) {
+    if (gpa >= 0.5) return "hot";
+    if (gpa >= 0.25) return "warm";
+    return "cool";
+  }
+
+  /**
+   * "Marknad & form"-kortet på profilfliken: marknadsvärde (kvalitetsproxy) och
+   * klubbform innevarande säsong (mål/matcher + mål per match). Betting-data som
+   * inte finns någon annanstans på sidan. Tomt om ingen metrik hämtats.
+   */
+  function marketPanelHtml(player) {
+    var m = metricsOf(player.id);
+    if (!m || (m.market_value == null && !m.season)) return "";
+    var html = '<div class="pm-market">';
+
+    if (m.market_value) {
+      var meta = ["Transfermarkt"];
+      if (m.club) meta.push(m.club);
+      html += '<div class="pm-mv">' +
+        '<span class="pm-mv-val">' + esc(m.market_value) + '</span>' +
+        '<span class="pm-mv-lbl"><strong>Marknadsvärde</strong>' +
+          '<span>' + esc(meta.join(" · ")) + '</span></span>' +
+        '</div>';
+    }
+
+    if (m.season) {
+      var s = m.season;
+      var gpa = s.gpa == null ? 0 : s.gpa;
+      var pct = Math.max(2, Math.min(100, Math.round(gpa * 100)));
+      var lg = s.league || {};
+      html += '<div class="pm-form">' +
+        '<div class="pm-form-head"><strong>Klubbform ' + esc(s.season) + '</strong>' +
+          (lg.comp ? '<span>' + esc(lg.comp) + ' + cuper</span>' : "") + '</div>' +
+        '<div class="pm-form-stats">' +
+          '<div class="pm-fstat"><b>' + esc(s.total.goals) + '</b><span>Mål</span></div>' +
+          '<div class="pm-fstat"><b>' + esc(s.total.apps) + '</b><span>Matcher</span></div>' +
+          '<div class="pm-fstat"><b>' + (s.gpa == null ? "–" : s.gpa.toFixed(2)) +
+            '</b><span>Mål / match</span></div>' +
+        '</div>' +
+        '<div class="pm-form-gauge" title="Mål per match, skalat mot 1,0">' +
+          '<span class="pm-form-fill ' + formGaugeCls(gpa) + '" style="width:' + pct + '%"></span>' +
+        '</div>' +
+        (lg.apps != null ? '<div class="pm-form-league">I ligan: <strong>' + esc(lg.goals) +
+          '</strong> mål på ' + esc(lg.apps) + ' matcher</div>' : "") +
+        '</div>';
+    }
+
+    html += '</div>';
+    return html;
+  }
+
   /** Profilfliken: Wikipedia-bas + VM-tillskott på landskamper/landslagsmål. */
   function profilPanelHtml(player, wc) {
     var lg = leagueOf(player.club);
-    return '<div class="pm-stats">' +
+    return marketPanelHtml(player) +
+      '<div class="pm-stats">' +
         statCell(player.age, "Ålder") +
         statCellPlus(player.caps, wc ? wc.apps : 0, "Landskamper") +
         statCellPlus(player.goals, wc ? wc.goals : 0, "Landslagsmål") +
@@ -447,8 +507,15 @@
     var hasWc = !!(wc && wc.played);
     var st = statusOf(player.id);
 
-    var avatar = '<div class="pm-photo placeholder">' +
-      esc((player.name || "?").charAt(0)) + '</div>';
+    var mm = metricsOf(player.id);
+    var initial = esc((player.name || "?").charAt(0));
+    var avatar = (mm && mm.photo)
+      ? '<img class="pm-photo" src="' + esc(mm.photo) + '" alt="' + esc(player.name) + '" ' +
+        'loading="lazy" referrerpolicy="no-referrer" ' +
+        // Faller tillbaka till bokstavsplattan om porträttet inte kan laddas.
+        'onerror="this.replaceWith(Object.assign(document.createElement(\'div\'),' +
+        '{className:\'pm-photo placeholder\',textContent:\'' + initial + '\'}))">'
+      : '<div class="pm-photo placeholder">' + initial + '</div>';
 
     var card = m.querySelector(".pm-card");
     card.setAttribute("data-pid", player.id == null ? "" : String(player.id));

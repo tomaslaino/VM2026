@@ -505,6 +505,9 @@
                  sh: 0, sg: 0, sv: 0, fc: 0, fs: 0, rSum: 0, rMin: 0, log: [] };
     var goals = st.goals, assists = st.assists, min = st.min || 0;
     var avail = (p && window.VMPlayers && VMPlayers.getPlayerStatus) ? VMPlayers.getPlayerStatus(p.id) : null;
+    var met = (p && window.VMPlayers && VMPlayers.getPlayerMetrics) ? VMPlayers.getPlayerMetrics(p.id) : null;
+    var csGoals = met && met.season ? met.season.total.goals : null;
+    var csApps = met && met.season ? met.season.total.apps : null;
     return {
       name: p ? p.name : (fallbackName || "?"),
       nameN: norm(p ? p.name : fallbackName),
@@ -518,6 +521,11 @@
       age: p && p.age != null ? p.age : null,
       club: p ? (p.club || null) : null, clubN: norm(p && p.club),
       caps: p && p.caps != null ? p.caps : null,
+      /* Betting-metrik (marknadsvärde + klubbform 2025/26) från player_metrics. */
+      mv: met && met.market_value_eur != null ? met.market_value_eur : null,
+      mvLabel: met && met.market_value ? met.market_value : null,
+      csGoals: csGoals, csApps: csApps,
+      csGpa: met && met.season ? met.season.gpa : null,
       goals: goals, pens: st.pens, og: st.og, assists: assists,
       y: st.y, r: st.r,
       min: min, apps: st.apps || 0,
@@ -811,7 +819,10 @@
     a90:     { type: "num", qual: true, get: function (r) { return r.a90; } },
     rating:  { type: "num", qual: "rating", get: function (r) { return r.rating; } },
     y:       { type: "num", get: function (r) { return r.y; } },
-    r:       { type: "num", get: function (r) { return r.r; } }
+    r:       { type: "num", get: function (r) { return r.r; } },
+    mv:      { type: "num", get: function (r) { return r.mv; } },
+    csgoals: { type: "num", get: function (r) { return r.csGoals; } },
+    csgpa:   { type: "num", get: function (r) { return r.csGpa; } }
   };
 
   var TEAM_SORTS = {
@@ -1557,6 +1568,13 @@
       '<td class="ps-c-pos" title="' + esc(posTitle) + '">' + (r.pos ? esc(r.pos) : "–") + "</td>" +
       '<td class="c-stat">' + (r.age != null ? r.age : "–") + "</td>" +
       '<td class="ps-c-club"><span title="' + esc(r.club || "") + '">' + (r.club ? esc(r.club) : "–") + "</span></td>" +
+      '<td class="c-stat ps-c-mv">' + (r.mvLabel
+        ? '<span class="ps-mv">' + esc(r.mvLabel) + "</span>"
+        : '<span class="ps-zero">–</span>') + "</td>" +
+      '<td class="c-stat ps-num' + (r.csGoals ? " hot" : "") + '"' +
+        (r.csApps != null ? ' title="' + r.csGoals + " mål på " + r.csApps + ' matcher i klubben 2025/26"' : "") + ">" +
+        (r.csGoals != null ? r.csGoals : '<span class="ps-zero">–</span>') + "</td>" +
+      '<td class="c-stat ps-rate">' + (r.csGpa != null ? fmt2(r.csGpa) : '<span class="ps-zero">–</span>') + "</td>" +
       '<td class="c-stat ps-num' + (r.goals ? " hot" : "") + '"' +
         (goalsTitle.length ? ' title="' + esc(goalsTitle.join(" · ")) + '"' : "") + ">" +
         (r.goals || (r.og ? '<span class="ps-og" title="' + r.og + ' självmål">sj</span>' : '<span class="ps-zero">–</span>')) + "</td>" +
@@ -1584,6 +1602,9 @@
       thSort("pos", "Pos", "ps-c-pos", "Position: GK målvakt · DF försvarare · MF mittfältare · FW anfallare") +
       thSort("age", "Ålder", "") +
       thSort("club", "Klubb", "ps-c-club") +
+      thSort("mv", "Värde", "ps-c-mv", "Marknadsvärde (Transfermarkt) – proxy för spelarens kvalitet/klass") +
+      thSort("csgoals", "Kl.mål", "", "Mål i klubblaget säsongen 2025/26 (alla turneringar). Källa: Wikipedia. Målform är den viktigaste betting-signalen för målskyttsmarknaderna.") +
+      thSort("csgpa", "Mål/M", "", "Mål per match i klubblaget 2025/26") +
       thSort("goals", "Mål", "", "Mål i VM 2026") +
       thSort("assists", "Ass", "", "Assist i VM 2026") +
       thSort("points", "P", "", "Poäng = mål + assist") +
@@ -1596,7 +1617,7 @@
       thSort("min", "Min", "", "Spelade minuter i VM 2026") +
       "</tr></thead><tbody>";
     if (!shown.length) {
-      h += '<tr><td class="ps-empty" colspan="16">Inga spelare matchar filtren.</td></tr>';
+      h += '<tr><td class="ps-empty" colspan="19">Inga spelare matchar filtren.</td></tr>';
     } else {
       shown.forEach(function (r, i) { h += playerRowHtml(r, i); });
     }

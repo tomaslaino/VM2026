@@ -43,6 +43,7 @@
 
   var DATA_URL = (window.VM_CONFIG && window.VM_CONFIG.players) || "data/wc2026_players.json";
   var STATUS_URL = (window.VM_CONFIG && window.VM_CONFIG.playerStatus) || "data/wc2026_player_status.json";
+  var METRICS_URL = (window.VM_CONFIG && window.VM_CONFIG.playerMetrics) || "data/wc2026_player_metrics.json";
 
   var SV_MONTHS_SHORT = ["jan", "feb", "mar", "apr", "maj", "jun",
     "jul", "aug", "sep", "okt", "nov", "dec"];
@@ -76,6 +77,9 @@
   var statusMap = {};              // player.id -> rå statuspost (skade-/avstängningsstatus)
   var statusUpdated = null;        // när statusdatan senast uppdaterades (ISO)
 
+  var metricsMap = {};             // player.id -> betting-metrik (marknadsvärde/klubbform)
+  var metricsUpdated = null;       // när metrikdatan senast uppdaterades (ISO)
+
   function index(payload) {
     data = payload;
     byCode = {};
@@ -100,6 +104,17 @@
       .catch(function () { statusMap = {}; statusUpdated = null; });
   }
 
+  /* Laddar betting-metrik (marknadsvärde/klubbform). Valfri – fel sväljs. */
+  function loadMetrics() {
+    return fetch(METRICS_URL, { headers: { Accept: "application/json" } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (payload) {
+        metricsMap = (payload && payload.players) || {};
+        metricsUpdated = (payload && payload.updated) || null;
+      })
+      .catch(function () { metricsMap = {}; metricsUpdated = null; });
+  }
+
   /** Laddar datafilen en gång och cachar resultatet. Returnerar ett Promise. */
   function load() {
     if (loadPromise) return loadPromise;
@@ -109,8 +124,8 @@
         return r.json();
       })
       .then(function (payload) { index(payload); });
-    // Truppdatan är obligatorisk; statusdatan är valfri och blockerar inte.
-    loadPromise = Promise.all([playersP, loadStatus()])
+    // Truppdatan är obligatorisk; status- och metrikdatan är valfria (blockerar ej).
+    loadPromise = Promise.all([playersP, loadStatus(), loadMetrics()])
       .then(function () { return data; })
       .catch(function (err) {
         loadPromise = null; // tillåt nytt försök senare
@@ -259,6 +274,19 @@
     return statusUpdated;
   }
 
+  /* ---------- Betting-metrik (marknadsvärde / klubbform 2025/26) ---------- */
+
+  /** Rå metrikpost för ett spelar-id (marknadsvärde, klubbform, foto), eller null. */
+  function getPlayerMetrics(id) {
+    if (id == null) return null;
+    return metricsMap[id] || null;
+  }
+
+  /** ISO-datum då metrikdatan senast uppdaterades, eller null. */
+  function getMetricsUpdated() {
+    return metricsUpdated;
+  }
+
   /**
    * Fritextsök bland spelare och förbundskaptener.
    * @returns {{players: {player: Player, team: Team}[], coaches: {name: string, team: Team}[]}}
@@ -308,6 +336,8 @@
     getPlayerStatus: getPlayerStatus,
     getStatusUpdated: getStatusUpdated,
     statusCount: statusCount,
+    getPlayerMetrics: getPlayerMetrics,
+    getMetricsUpdated: getMetricsUpdated,
     search: search,
     isoToCode: function (iso) { return ISO_TO_CODE[String(iso || "").toLowerCase()] || null; },
   };
