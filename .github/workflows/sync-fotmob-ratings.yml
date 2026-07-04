@@ -1,0 +1,60 @@
+name: Synka FotMob-spelarbetyg
+
+# Hämtar FotMobs spelarbetyg (Opta-baserade, fångar även defensivt spel) för
+# färdigspelade VM-matcher och committar data/fotmob_ratings.json, som
+# statistiksidan och spelarmodalen visar bredvid det egna VM-betyget.
+#
+# Skriptet är inkrementellt: en färdig match betygsätts en gång och behålls,
+# så bara nytillkomna matcher hämtas. Filen skrivs bara om vid faktisk ändring.
+
+on:
+  schedule:
+    # Var 30:e minut – nya slutresultat + FotMob hinner sätta färdiga betyg
+    # en stund efter slutsignal. Skriptet committar bara vid faktisk ändring.
+    - cron: "*/30 * * * *"
+  workflow_dispatch: {} # Tillåt manuell körning från Actions-fliken.
+
+concurrency:
+  group: sync-fotmob-ratings
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checka ut repo
+        uses: actions/checkout@v4
+
+      - name: Sätt upp Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Hämta FotMob-spelarbetyg
+        run: node server/scripts/syncFotmobRatings.js
+
+      - name: Committa om något ändrats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fotmob_ratings.json
+          if git diff --staged --quiet; then
+            echo "Inga förändringar – hoppar över commit."
+            exit 0
+          fi
+          git commit -m "Auto-synk FotMob-spelarbetyg $(date -u +'%Y-%m-%d %H:%M UTC')"
+          # Resultat-workflowen pushar ofta till samma branch – rebase + retry
+          # så att en samtidig push inte får den här att faila.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "Push klar."
+              exit 0
+            fi
+            echo "Push avvisad (försök $i) – rebasar mot senaste main…"
+            git pull --rebase --autostash origin main || true
+          done
+          echo "Kunde inte pusha efter flera försök." >&2
+          exit 1
