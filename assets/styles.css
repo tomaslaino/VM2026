@@ -5336,6 +5336,38 @@ tr.ps-league-unq td { opacity: .62; }
 .ps-scat-tip .t-row { display: flex; justify-content: space-between; gap: 14px; color: var(--ink-soft); }
 .ps-scat-tip .t-row b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
 .ps-scat-sub { margin-top: 4px; font-size: 12px; line-height: 1.45; color: var(--ink-soft); }
+/* Scatter-rubrik: säger rakt ut vad grafen visar. */
+.ps-scat-head { margin-bottom: 10px; }
+.ps-scat-head h4 { margin: 0 0 2px; font-size: 14.5px; font-weight: 800; }
+.ps-scat-head p { margin: 0; font-size: 12.5px; line-height: 1.45; color: var(--ink-soft); }
+.ps-scat-head .ps-up, .ps-scat-head .ps-down, .ps-explain-more .ps-up, .ps-explain-more .ps-down { font-weight: 700; }
+
+/* Pedagogisk förklaringsruta (Ligor): ledtext + hopfällbar kolumnnyckel.
+   Ersätter de tidigare utspridda hjälptexterna på fliken. */
+.ps-explain { padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.ps-explain-lead { margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--ink); }
+.ps-explain-more { margin-top: 9px; }
+.ps-explain-more > summary {
+  cursor: pointer; width: fit-content; list-style: none; user-select: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12.5px; font-weight: 700; color: var(--ink-soft);
+}
+.ps-explain-more > summary::-webkit-details-marker { display: none; }
+.ps-explain-more > summary::before {
+  content: "\203A"; font-size: 15px; line-height: 1;
+  display: inline-block; transition: transform .15s ease;
+}
+.ps-explain-more[open] > summary::before { transform: rotate(90deg); }
+.ps-explain-more > summary:hover { color: var(--ink); }
+.ps-explain-more dl {
+  margin: 11px 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px;
+  font-size: 12.5px; line-height: 1.45;
+}
+.ps-explain-more dt { font-weight: 700; color: var(--ink); white-space: nowrap; }
+.ps-explain-more dd { margin: 0; color: var(--ink-soft); }
+.ps-explain-note { margin: 11px 0 0; font-size: 12px; line-height: 1.45; color: var(--ink-soft); }
+/* Bantad ligatabell (10 kolumner) behöver mindre bredd än den breda spelartabellen. */
+.ps-table.ps-table-leagues { min-width: 640px; }
 
 @media (max-width: 700px) {
   .ps-count { width: 100%; margin-left: 0; }

@@ -13,13 +13,14 @@
     • Region – samma aggregat per konfederation/världsdel.
     • Ligor – klubbligornas VM: spelarna grupperas på vilken liga (land +
       division, data/club_leagues.json) deras klubb spelar i, med minut-
-      viktat VM-betyg, produktion och tre överprestationsmått:
-        ±Snitt (betyg mot turneringssnittet), ±Renommé (betyg mot förväntat
-        betyg utifrån ligans renommé – viktad regression över kvalificerade
-        ligor, visualiserad i en scatter-graf) samt Δ Förväntan (landslagens
-        utveckling mot turneringsstartens slutspelsförväntan,
-        data/bracket_probs_pre.json vs bracket_probs.json). Klick på en liga
-        öppnar en modal med ligans VM-spelare.
+      viktat VM-betyg, produktion och två överprestationsmått:
+        ±Renommé (betyg mot förväntat betyg utifrån ligans renommé – viktad
+        regression över kvalificerade ligor, visualiserad i en scatter-graf)
+        samt Δ Förväntan (landslagens utveckling mot turneringsstartens
+        slutspelsförväntan, data/bracket_probs_pre.json vs
+        bracket_probs.json). En hopfällbar "Vad betyder siffrorna?" under
+        verktygsraden förklarar måtten. Klick på en liga öppnar en modal
+        med ligans VM-spelare.
 
   VM-betyget är en transparent 10-gradig skala (bas 6.0) per match som väger
   mål/assist, lagets målskillnad medan spelaren var på planen, resultat,
@@ -860,18 +861,12 @@
 
   var LEAGUE_SORTS = {
     league:  { type: "str", get: function (r) { return r.label; } },
-    tier:    { type: "num", get: function (r) { return -r.tier; } },
-    rep:     { type: "num", get: function (r) { return r.rep; } },
     players: { type: "num", get: function (r) { return r.players; } },
-    active:  { type: "num", get: function (r) { return r.active; } },
-    teams:   { type: "num", get: function (r) { return r.teams; } },
-    min:     { type: "num", get: function (r) { return r.min; } },
     goals:   { type: "num", get: function (r) { return r.goals; } },
     assists: { type: "num", get: function (r) { return r.assists; } },
-    points:  { type: "num", get: function (r) { return r.points; } },
-    gi90:    { type: "num", qual: true, get: function (r) { return r.gi90; } },
+    min:     { type: "num", get: function (r) { return r.min; } },
+    rep:     { type: "num", get: function (r) { return r.rep; } },
     rating:  { type: "num", qual: true, get: function (r) { return r.rating; } },
-    op:      { type: "num", qual: true, get: function (r) { return r.op; } },
     oprep:   { type: "num", qual: true, get: function (r) { return r.oprep; } },
     dexp:    { type: "num", get: function (r) { return r.dexp; } }
   };
@@ -1389,7 +1384,7 @@
     box.style.display = "";
 
     var W = Math.max(300, (box.clientWidth || 752) - 32); // minus paddingen
-    var H = 300, mL = 40, mR = 14, mT = 14, mB = 36;
+    var H = 300, mL = 48, mR = 14, mT = 14, mB = 36;
     var iw = W - mL - mR, ih = H - mT - mB;
 
     /* Domäner: renommé fast 0–100, betyg efter data + regressionens ändpunkter. */
@@ -1423,6 +1418,7 @@
         '<text class="axis-text" x="' + X(xv) + '" y="' + (mT + ih + 15) + '" text-anchor="middle">' + xv + "</text>";
     }
     s += '<text class="axis-title" x="' + (mL + iw / 2) + '" y="' + (H - 4) + '" text-anchor="middle">Renommé (0–100)</text>';
+    s += '<text class="axis-title" transform="rotate(-90)" x="' + (-(mT + ih / 2)) + '" y="13" text-anchor="middle">VM-betyg</text>';
     /* Regressionslinjen över datats renommé-spann. */
     s += '<line class="reg" x1="' + X(repMin) + '" y1="' + Y(reg.a + reg.b * repMin) +
       '" x2="' + X(repMax) + '" y2="' + Y(reg.a + reg.b * repMax) + '"></line>';
@@ -1466,14 +1462,17 @@
 
     box.innerHTML =
       '<div class="ps-scatter">' +
+        '<div class="ps-scat-head">' +
+          "<h4>Presterar ligorna över sitt renommé?</h4>" +
+          '<p>Varje punkt är en liga. Ligor <span class="ps-up">över</span> den streckade linjen presterar bättre än renommét, <span class="ps-down">under</span> sämre.</p>' +
+        "</div>" +
         '<div class="ps-scat-legend">' +
-          '<span class="ps-scat-key"><span class="k-dot up"></span>Över förväntat betyg</span>' +
+          '<span class="ps-scat-key"><span class="k-dot up"></span>Över förväntat</span>' +
           '<span class="ps-scat-key"><span class="k-dot down"></span>Under förväntat</span>' +
-          '<span class="ps-scat-key"><span class="k-line"></span>Förväntat betyg av renommét</span>' +
+          '<span class="ps-scat-key"><span class="k-line"></span>Förväntat betyg</span>' +
         "</div>" +
         '<div class="ps-scat-plot">' + s + '<div class="ps-scat-tip" role="status"></div></div>' +
-        '<div class="ps-scat-sub">Varje punkt är en liga med minst ' + LEAGUE_QUAL_MIN +
-          " VM-minuter. Avståndet till linjen är tabellens ±Renommé. Klicka på en punkt för ligans spelare.</div>" +
+        '<div class="ps-scat-sub">Klicka på en punkt för ligans spelare.</div>' +
       "</div>";
 
     /* Hover/fokus-tooltip (värdena finns även i tabellen under). */
@@ -1749,31 +1748,26 @@
     var ratingCell = r.rating == null ? dash
       : unq ? '<span class="ps-zero" title="Under ' + LEAGUE_QUAL_MIN + ' spelade minuter – osäkert snitt">' + fmtRating(r.rating) + "</span>"
       : '<span class="ps-num">' + fmtRating(r.rating) + "</span>";
-    var opCell = r.op == null ? dash
-      : '<span class="' + (unq ? "ps-zero" : r.op >= 0 ? "ps-up" : "ps-down") + '">' + fmtSigned(r.op) + "</span>";
     var oprepCell = r.oprep == null ? dash
       : '<span class="' + (unq ? "ps-zero" : r.oprep >= 0 ? "ps-up" : "ps-down") + '"' +
         (r.expRating != null ? ' title="Förväntat betyg av renommét: ' + fmtRating(r.expRating) + '"' : "") + ">" +
         fmtSigned(r.oprep) + "</span>";
     var dexpCell = r.dexp == null || r.min <= 0 ? dash
       : '<span class="' + (r.dexp >= 0 ? "ps-up" : "ps-down") + '">' + fmtSigned(r.dexp) + "</span>";
+    /* Divisionsnivån vävs in i liganamnet (bara när den inte är högsta serien)
+       i stället för en egen kolumn. */
+    var tierSuffix = r.tier > 1 ? ' · nivå ' + r.tier : "";
     return '<tr class="ps-openable' + (unq ? " ps-league-unq" : "") + '" data-ps-league="' + esc(r.id) + '" tabindex="0" role="button">' +
       '<td class="c-pos">' + (i + 1) + "</td>" +
       '<td class="ps-c-name"><span class="team">' + leagueFlag(r) +
         '<span class="t-name" title="' + esc(r.label) + '">' + esc(r.country) +
-        '<span class="ps-league-name">' + esc(r.name) + "</span></span></span></td>" +
-      '<td class="c-stat"><span class="ps-tier t' + r.tier + '" title="Divisionsnivå i ligasystemet">' + r.tier + "</span></td>" +
-      '<td class="c-stat">' + (r.rep != null ? '<span class="ps-num">' + r.rep + "</span>" : dash) + "</td>" +
+        '<span class="ps-league-name">' + esc(r.name) + tierSuffix + "</span></span></span></td>" +
       '<td class="c-stat">' + r.players + "</td>" +
-      '<td class="c-stat">' + num(r.active) + "</td>" +
-      '<td class="c-stat">' + num(r.teams) + "</td>" +
-      '<td class="c-stat">' + (r.min ? '<span class="ps-num">' + r.min + "'</span>" : dash) + "</td>" +
       '<td class="c-stat ps-num' + (r.goals ? " hot" : "") + '">' + (r.goals || dash) + "</td>" +
       '<td class="c-stat ps-num' + (r.assists ? " hot" : "") + '">' + (r.assists || dash) + "</td>" +
-      '<td class="c-stat ps-rate">' + (r.min >= LEAGUE_QUAL_MIN ? fmt2(r.gi90)
-        : r.min > 0 ? '<span class="ps-zero" title="För få minuter för rättvist snitt">' + fmt2(r.gi90) + "</span>" : dash) + "</td>" +
+      '<td class="c-stat">' + (r.min ? '<span class="ps-num">' + r.min + "'</span>" : dash) + "</td>" +
+      '<td class="c-stat">' + (r.rep != null ? '<span class="ps-num">' + r.rep + "</span>" : dash) + "</td>" +
       '<td class="c-stat ps-rating">' + ratingCell + "</td>" +
-      '<td class="c-stat">' + opCell + "</td>" +
       '<td class="c-stat">' + oprepCell + "</td>" +
       '<td class="c-stat">' + dexpCell + "</td>" +
       "</tr>";
@@ -1788,25 +1782,20 @@
     }
     var rows = filteredLeagueRows();
     var shown = rows.slice(0, stateUi.limit);
-    var h = '<div class="ps-table-wrap"><table class="standings ps-table"><thead><tr>' +
+    var h = '<div class="ps-table-wrap"><table class="standings ps-table ps-table-leagues"><thead><tr>' +
       '<th class="c-pos">#</th>' +
       thSort("league", "Liga", "ps-c-name", "Klubbliga: land och division") +
-      thSort("tier", "Nivå", "", "Divisionsnivå (1 = högsta serien)") +
-      thSort("rep", "Renommé", "", "Ligans renommé inför VM på en 0–100-skala (100 = Premier League): kompositbedömning av UEFA-koefficienter, globala ligastyrkeindex och konsensus. Fryst under turneringen.") +
       thSort("players", "Spelare", "", "Antal spelare i VM-trupperna från ligan") +
-      thSort("active", "I spel", "", "Spelare med spelade minuter") +
-      thSort("teams", "Landslag", "", "Antal landslag med spelare från ligan") +
-      thSort("min", "Min", "", "Spelade minuter totalt") +
-      thSort("goals", "Mål", "", "Mål av ligans spelare") +
-      thSort("assists", "Ass", "", "Assist av ligans spelare") +
-      thSort("gi90", "M+A/90", "", "Mål + assist per 90 spelade minuter") +
-      thSort("rating", "Betyg", "", "Minutviktat VM-betyg för ligans spelare (kräver " + LEAGUE_QUAL_MIN + " min)") +
-      thSort("op", "±Snitt", "", "Ligans betyg minus turneringens minutviktade snittbetyg. Positivt = ligans spelare överpresterar mot VM-snittet.") +
-      thSort("oprep", "±Renommé", "", "Ligans betyg minus det betyg man kan förvänta sig av ligans renommé (minutviktad regression över kvalificerade ligor). Positivt = ligan presterar över sitt rykte.") +
-      thSort("dexp", "Δ Förv.", "", "Landslagens utveckling mot turneringsstartens slutspelsförväntan (13 juni), i förväntade avancemang, fördelat på ligan efter dess andel av lagens speltid. Positivt = ligans spelares landslag har gått bättre än väntat.") +
+      thSort("goals", "Mål", "", "Mål av ligans spelare i VM") +
+      thSort("assists", "Ass", "", "Assist av ligans spelare i VM") +
+      thSort("min", "Min", "", "Spelade minuter totalt i VM") +
+      thSort("rep", "Renommé", "", "Ligans styrka inför VM på en 0–100-skala (100 = Premier League). Fryst under turneringen.") +
+      thSort("rating", "Betyg", "", "Minutviktat VM-betyg 1–10 för ligans spelare (kräver " + LEAGUE_QUAL_MIN + " spelade minuter).") +
+      thSort("oprep", "±Renommé", "", "Betyg minus förväntat betyg av renommét. Plus = ligan presterar över sitt renommé.") +
+      thSort("dexp", "Δ Förv.", "", "Landslagens utveckling mot slutspelsförväntan vid VM-start. Plus = ligans landslag går bättre än väntat.") +
       "</tr></thead><tbody>";
     if (!shown.length) {
-      h += '<tr><td class="ps-empty" colspan="15">Inga ligor matchar filtren.</td></tr>';
+      h += '<tr><td class="ps-empty" colspan="10">Inga ligor matchar filtren.</td></tr>';
     } else {
       shown.forEach(function (r, i) { h += leagueRowHtml(r, i); });
     }
@@ -1853,14 +1842,9 @@
         "</div>";
     }
     if (stateUi.mode === "leagues") {
-      var lrows = buildLeagueRows();
-      var gAvg = lrows.globalRating;
       return '<div class="ps-toolbar">' +
         '<input id="psSearch" type="search" autocomplete="off" placeholder="Sök liga eller land…" ' +
           'aria-label="Sök liga" value="' + esc(stateUi.q) + '">' +
-        '<span class="ps-toolbar-hint">Spelarnas klubbligor (division 2025/26). ' +
-          (gAvg != null ? "Turneringens snittbetyg: <strong>" + fmtRating(gAvg) + "</strong>. " : "") +
-          "Gråade rader har under " + LEAGUE_QUAL_MIN + " spelade minuter. Klicka på en liga för dess VM-spelare.</span>" +
         '<span class="ps-count" id="psCount"></span>' +
         "</div>";
     }
@@ -1905,18 +1889,38 @@
       "</div>";
   }
 
+  /* Pedagogisk förklaring av Ligor-fliken: en alltid synlig ledtext plus en
+     hopfällbar kolumnnyckel. Ersätter de tidigare utspridda hjälptexterna. */
+  function leagueExplainerHtml() {
+    return '<div class="ps-explain">' +
+      '<p class="ps-explain-lead">Varje rad är en <strong>klubbliga</strong>. Måttet i fokus är hur ligans VM-spelare presterar mot vad ligans renommé förväntar sig.</p>' +
+      '<details class="ps-explain-more">' +
+        "<summary>Vad betyder kolumnerna?</summary>" +
+        "<dl>" +
+          "<dt>Renommé</dt><dd>Ligans styrka inför VM på en skala 0–100 (100 = Premier League). Fryst under turneringen.</dd>" +
+          "<dt>Betyg</dt><dd>Snittbetyg 1–10 för ligans spelare i VM hittills, viktat efter speltid.</dd>" +
+          '<dt>±Renommé</dt><dd><span class="ps-up">Plus</span> = presterar över sitt renommé, <span class="ps-down">minus</span> = under. Samma sak som avståndet till linjen i grafen.</dd>' +
+          "<dt>Δ Förv.</dt><dd>Hur ligans landslag har över- eller underpresterat mot slutspelsförväntan vid VM-start.</dd>" +
+        "</dl>" +
+        '<p class="ps-explain-note">Gråa rader har spelat för lite (under ' + LEAGUE_QUAL_MIN + ' min) för ett rättvist betyg. Klicka på en liga för dess VM-spelare.</p>' +
+      "</details>" +
+    "</div>";
+  }
+
   function render() {
     if (!rootEl || !document.body.contains(rootEl)) return;
+    var isLeagues = stateUi.mode === "leagues";
     rootEl.innerHTML =
       introHtml() +
       leadersHtml() +
       '<section class="card ps-card">' +
       toolbarHtml() +
-      (stateUi.mode === "leagues" ? '<div id="psScatterBox"></div>' : "") +
+      (isLeagues ? leagueExplainerHtml() : "") +
+      (isLeagues ? '<div id="psScatterBox"></div>' : "") +
       '<div id="psTableBox">' + tableHtml() + "</div>" +
       "</section>";
     updateCount();
-    if (stateUi.mode === "leagues") renderLeagueScatter();
+    if (isLeagues) renderLeagueScatter();
   }
 
   function renderTable() {
