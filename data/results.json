@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-04T20:00:23.374Z",
+    "updatedAt": "2026-07-04T21:11:13.974Z",
     "source": "espn",
-    "matchCount": 89,
-    "liveCount": 0,
+    "matchCount": 90,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -454,9 +454,23 @@
       "h": 0,
       "a": 3,
       "status": "FINISHED"
+    },
+    "k:89": {
+      "h": 0,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:89",
+      "status": "IN_PLAY",
+      "minute": 6,
+      "home": "Paraguay",
+      "away": "France",
+      "score": "0-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1975,7 +1989,7 @@
       "date": "2026-07-04",
       "time": "23:00",
       "utcDate": "2026-07-04T21:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Paraguay",
       "away": "France",

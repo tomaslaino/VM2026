@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-04T20:00:23.413Z",
+    "updatedAt": "2026-07-04T21:11:13.999Z",
     "source": "espn"
   },
   "details": {
@@ -51553,6 +51553,336 @@
         }
       ],
       "updatedAt": "2026-07-04T20:00:23.412Z"
+    },
+    "k:89": {
+      "espnId": "760503",
+      "fmt": 2,
+      "status": "IN_PLAY",
+      "minute": 7,
+      "utcDate": "2026-07-04T21:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "5-4-1",
+          "starters": [
+            {
+              "name": "Orlando Gill",
+              "jersey": "12",
+              "pos": "G"
+            },
+            {
+              "name": "Juan Jose Cáceres",
+              "jersey": "4",
+              "pos": "RB"
+            },
+            {
+              "name": "Júnior Alonso",
+              "jersey": "6",
+              "pos": "LB"
+            },
+            {
+              "name": "Omar Alderete",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Gustavo Gómez",
+              "jersey": "15",
+              "pos": "CD"
+            },
+            {
+              "name": "Gustavo Velázquez",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Miguel Almirón",
+              "jersey": "10",
+              "pos": "RM"
+            },
+            {
+              "name": "Diego Gómez",
+              "jersey": "8",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Julio Enciso",
+              "jersey": "19",
+              "pos": "F"
+            },
+            {
+              "name": "Andrés Cubas",
+              "jersey": "14",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Matías Galarza",
+              "jersey": "23",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Alejandro Romero Gamarra",
+              "jersey": "17"
+            },
+            {
+              "name": "Fabián Balbuena",
+              "jersey": "5"
+            },
+            {
+              "name": "Alex Arce",
+              "jersey": "18"
+            },
+            {
+              "name": "Maurício",
+              "jersey": "11"
+            },
+            {
+              "name": "Gustavo Caballero",
+              "jersey": "24"
+            },
+            {
+              "name": "Damián Bobadilla",
+              "jersey": "16"
+            },
+            {
+              "name": "Antonio Sanabria",
+              "jersey": "9"
+            },
+            {
+              "name": "Ramón Sosa",
+              "jersey": "7"
+            },
+            {
+              "name": "Braian Ojeda",
+              "jersey": "20"
+            },
+            {
+              "name": "Gastón Olveira",
+              "jersey": "22"
+            },
+            {
+              "name": "Gatito Fernández",
+              "jersey": "1"
+            },
+            {
+              "name": "José Canale",
+              "jersey": "13"
+            },
+            {
+              "name": "Alexandro Maidana",
+              "jersey": "26"
+            },
+            {
+              "name": "Isidro Pitta",
+              "jersey": "25"
+            },
+            {
+              "name": "Gabriel Ávalos",
+              "jersey": "21"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Mike Maignan",
+              "jersey": "16",
+              "pos": "G"
+            },
+            {
+              "name": "Jules Koundé",
+              "jersey": "5",
+              "pos": "RB"
+            },
+            {
+              "name": "Lucas Digne",
+              "jersey": "3",
+              "pos": "LB"
+            },
+            {
+              "name": "Adrien Rabiot",
+              "jersey": "14",
+              "pos": "LM"
+            },
+            {
+              "name": "Dayot Upamecano",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "William Saliba",
+              "jersey": "17",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Ousmane Dembélé",
+              "jersey": "7",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Manu Koné",
+              "jersey": "6",
+              "pos": "RM"
+            },
+            {
+              "name": "Kylian Mbappé",
+              "jersey": "10",
+              "pos": "F"
+            },
+            {
+              "name": "Michael Olise",
+              "jersey": "11",
+              "pos": "AM"
+            },
+            {
+              "name": "Bradley Barcola",
+              "jersey": "12",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Aurélien Tchouaméni",
+              "jersey": "8"
+            },
+            {
+              "name": "Désiré Doué",
+              "jersey": "20"
+            },
+            {
+              "name": "Jean-Philippe Mateta",
+              "jersey": "22"
+            },
+            {
+              "name": "Theo Hernández",
+              "jersey": "19"
+            },
+            {
+              "name": "N'Golo Kanté",
+              "jersey": "13"
+            },
+            {
+              "name": "Lucas Hernández",
+              "jersey": "21"
+            },
+            {
+              "name": "Maghnes Akliouche",
+              "jersey": "25"
+            },
+            {
+              "name": "Maxence Lacroix",
+              "jersey": "26"
+            },
+            {
+              "name": "Ibrahima Konaté",
+              "jersey": "15"
+            },
+            {
+              "name": "Robin Risser",
+              "jersey": "23"
+            },
+            {
+              "name": "Marcus Thuram",
+              "jersey": "9"
+            },
+            {
+              "name": "Brice Samba",
+              "jersey": "1"
+            },
+            {
+              "name": "Rayan Cherki",
+              "jersey": "24"
+            },
+            {
+              "name": "Warren Zaïre-Emery",
+              "jersey": "18"
+            },
+            {
+              "name": "Malo Gusto",
+              "jersey": "2"
+            }
+          ]
+        }
+      },
+      "referee": "Ilgiz Tantashev",
+      "venue": "Lincoln Financial Field, Philadelphia, Pennsylvania",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "11%",
+          "a": "90%"
+        },
+        {
+          "key": "totalShots",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "9",
+          "a": "75"
+        },
+        {
+          "key": "passPct",
+          "h": "44%",
+          "a": "89%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-04T21:11:13.999Z"
     }
   }
 }
