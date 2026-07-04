@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-04T22:12:57.079Z",
+    "updatedAt": "2026-07-04T23:16:09.718Z",
     "source": "espn",
     "matchCount": 90,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -457,20 +457,11 @@
     },
     "k:89": {
       "h": 0,
-      "a": 0,
-      "status": "IN_PLAY"
+      "a": 1,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:89",
-      "status": "IN_PLAY",
-      "minute": 48,
-      "home": "Paraguay",
-      "away": "France",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1989,7 +1980,7 @@
       "date": "2026-07-04",
       "time": "23:00",
       "utcDate": "2026-07-04T21:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Paraguay",
       "away": "France",
@@ -2110,9 +2101,12 @@
       "utcDate": "2026-07-09T20:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Round of 16 1 Winner",
+      "home": "France",
       "away": "Morocco",
-      "homeRef": null,
+      "homeRef": {
+        "group": "I",
+        "idx": 0
+      },
       "awayRef": {
         "group": "C",
         "idx": 1

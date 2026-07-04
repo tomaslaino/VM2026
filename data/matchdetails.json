@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-04T22:12:57.125Z",
+    "updatedAt": "2026-07-04T23:16:09.797Z",
     "source": "espn"
   },
   "details": {
@@ -51557,15 +51557,15 @@
     "k:89": {
       "espnId": "760503",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 49,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-04T21:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 0,
-          "a": 0
+          "a": 1
         },
         "ht": {
           "h": 0,
@@ -51575,16 +51575,78 @@
         "et": null,
         "pen": null
       },
-      "goals": [],
+      "goals": [
+        {
+          "minute": 70,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Kylian Mbappé",
+          "assist": null,
+          "type": "PENALTY",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        }
+      ],
       "bookings": [
         {
           "minute": 19,
           "team": "a",
           "player": "Bradley Barcola",
           "card": "YELLOW"
+        },
+        {
+          "minute": 81,
+          "team": "a",
+          "player": "Manu Koné",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Michael Olise",
+          "card": "YELLOW"
         }
       ],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 58,
+          "team": "h",
+          "in": "José Canale",
+          "out": "Omar Alderete"
+        },
+        {
+          "minute": 61,
+          "team": "h",
+          "in": "Gustavo Caballero",
+          "out": "Julio Enciso"
+        },
+        {
+          "minute": 61,
+          "team": "a",
+          "in": "Désiré Doué",
+          "out": "Bradley Barcola"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Maurício",
+          "out": "Diego Gómez"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Gabriel Ávalos",
+          "out": "Miguel Almirón"
+        },
+        {
+          "minute": 84,
+          "team": "a",
+          "in": "Rayan Cherki",
+          "out": "Ousmane Dembélé"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -51593,14 +51655,20 @@
             {
               "name": "Orlando Gill",
               "jersey": "12",
-              "pos": "G"
+              "pos": "G",
+              "st": {
+                "gc": 1,
+                "sv": 4
+              }
             },
             {
               "name": "Juan Jose Cáceres",
               "jersey": "4",
               "pos": "RB",
               "st": {
-                "fs": 1
+                "fc": 1,
+                "fs": 3,
+                "gc": 1
               }
             },
             {
@@ -51608,7 +51676,8 @@
               "jersey": "6",
               "pos": "LB",
               "st": {
-                "sh": 1
+                "gc": 1,
+                "sh": 2
               }
             },
             {
@@ -51621,7 +51690,8 @@
               "jersey": "15",
               "pos": "CD",
               "st": {
-                "fs": 1
+                "fs": 1,
+                "gc": 1
               }
             },
             {
@@ -51629,7 +51699,8 @@
               "jersey": "2",
               "pos": "CD-R",
               "st": {
-                "fc": 2
+                "fc": 2,
+                "gc": 1
               }
             },
             {
@@ -51637,7 +51708,9 @@
               "jersey": "10",
               "pos": "RM",
               "st": {
-                "fs": 2
+                "fs": 2,
+                "gc": 1,
+                "sh": 1
               }
             },
             {
@@ -51645,6 +51718,8 @@
               "jersey": "8",
               "pos": "CM-R",
               "st": {
+                "fc": 1,
+                "gc": 1,
                 "sh": 1
               }
             },
@@ -51662,7 +51737,8 @@
               "jersey": "14",
               "pos": "CM-L",
               "st": {
-                "fc": 1
+                "fc": 2,
+                "gc": 1
               }
             },
             {
@@ -51670,8 +51746,9 @@
               "jersey": "23",
               "pos": "LM",
               "st": {
-                "fc": 1,
-                "fs": 2
+                "fc": 3,
+                "fs": 3,
+                "gc": 1
               }
             }
           ],
@@ -51690,11 +51767,22 @@
             },
             {
               "name": "Maurício",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true,
+              "st": {
+                "fs": 1,
+                "sg": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Gustavo Caballero",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true,
+              "st": {
+                "fc": 2,
+                "gc": 1
+              }
             },
             {
               "name": "Damián Bobadilla",
@@ -51722,7 +51810,11 @@
             },
             {
               "name": "José Canale",
-              "jersey": "13"
+              "jersey": "13",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Alexandro Maidana",
@@ -51734,7 +51826,11 @@
             },
             {
               "name": "Gabriel Ávalos",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true,
+              "st": {
+                "fc": 1
+              }
             }
           ]
         },
@@ -51746,7 +51842,8 @@
               "jersey": "16",
               "pos": "G",
               "st": {
-                "fs": 1
+                "fs": 1,
+                "sv": 1
               }
             },
             {
@@ -51770,7 +51867,8 @@
               "jersey": "14",
               "pos": "LM",
               "st": {
-                "sh": 2
+                "fs": 1,
+                "sh": 3
               }
             },
             {
@@ -51778,7 +51876,8 @@
               "jersey": "4",
               "pos": "CD-R",
               "st": {
-                "fc": 1
+                "fc": 1,
+                "fs": 2
               }
             },
             {
@@ -51794,7 +51893,7 @@
               "jersey": "7",
               "pos": "AM-R",
               "st": {
-                "sh": 1
+                "sh": 2
               }
             },
             {
@@ -51802,9 +51901,10 @@
               "jersey": "6",
               "pos": "RM",
               "st": {
-                "fc": 1,
-                "fs": 1,
-                "sh": 2
+                "fc": 2,
+                "fs": 2,
+                "sg": 1,
+                "sh": 3
               }
             },
             {
@@ -51812,7 +51912,11 @@
               "jersey": "10",
               "pos": "F",
               "st": {
-                "fs": 1
+                "fc": 1,
+                "fs": 2,
+                "sg": 4,
+                "g": 1,
+                "sh": 5
               }
             },
             {
@@ -51820,8 +51924,8 @@
               "jersey": "11",
               "pos": "AM",
               "st": {
-                "fc": 1,
-                "fs": 1
+                "fc": 2,
+                "fs": 3
               }
             },
             {
@@ -51829,7 +51933,8 @@
               "jersey": "12",
               "pos": "AM-L",
               "st": {
-                "fc": 2
+                "fc": 2,
+                "sh": 1
               }
             }
           ],
@@ -51840,7 +51945,13 @@
             },
             {
               "name": "Désiré Doué",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Jean-Philippe Mateta",
@@ -51884,7 +51995,8 @@
             },
             {
               "name": "Rayan Cherki",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Warren Zaïre-Emery",
@@ -51899,32 +52011,32 @@
       },
       "referee": "Ilgiz Tantashev",
       "venue": "Lincoln Financial Field, Philadelphia, Pennsylvania",
-      "attendance": null,
+      "attendance": 68324,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "20%",
-          "a": "80%"
+          "h": "24%",
+          "a": "76%"
         },
         {
           "key": "totalShots",
-          "h": "2",
-          "a": "5"
+          "h": "5",
+          "a": "15"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "1"
+          "h": "1",
+          "a": "5"
         },
         {
           "key": "wonCorners",
-          "h": "0",
-          "a": "7"
+          "h": "2",
+          "a": "12"
         },
         {
           "key": "foulsCommitted",
-          "h": "5",
-          "a": "7"
+          "h": "13",
+          "a": "11"
         },
         {
           "key": "offsides",
@@ -51933,23 +52045,23 @@
         },
         {
           "key": "saves",
-          "h": "0",
-          "a": "0"
+          "h": "4",
+          "a": "1"
         },
         {
           "key": "totalPasses",
-          "h": "85",
-          "a": "331"
+          "h": "183",
+          "a": "568"
         },
         {
           "key": "passPct",
           "h": "54%",
-          "a": "92%"
+          "a": "90%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "1"
+          "a": "3"
         },
         {
           "key": "redCards",
@@ -51957,7 +52069,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-04T22:12:57.124Z"
+      "updatedAt": "2026-07-04T23:16:09.797Z"
     }
   }
 }
