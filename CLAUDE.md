@@ -39,7 +39,7 @@ npm run sync:news  # synka landslagsnyheter per land → data/team_news.json (Go
 | `server/scripts/syncPlayerStatus.js` | Synkar spelarstatus från API-Football `/injuries` |
 | `data/team_news.json` | Landslagsnyheter per lag från respektive lands egna medier (Google Nyheter-RSS, lokala sökfrågor) med svensk sammanfattning per rubrik (`title_sv`, gratis Google Translate-gtx) – driver fliken "Senaste nytt" i matchmodalen |
 | `server/scripts/syncTeamNews.js` | Synkar landslagsnyheterna (körs varannan timme av `sync-team-news.yml`) |
-| `assets/playerstats.js` | Spelarstatistik: Spelare/Lag/Region/Ligor + eget VM-betyg (10-gradigt, ur events + ESPN-boxscore `st` i lineups, `fmt: 2` i matchdetails) |
+| `assets/playerstats.js` | Spelarstatistik: Spelare/Lag/Region/Ligor + eget VM-betyg (10-gradigt, ur events + ESPN-boxscore `st` i lineups, `fmt: 2` i matchdetails). Ligor-fliken har ±Renommé (betyg mot förväntat ur regression betyg ~ renommé) med scatter-graf och klickbar liga → spelarmodal |
 | `assets/styles.css` | All CSS |
 | `server/index.js` | Express-server + WebSocket |
 | `server/espnSync.js` | ESPN API-synk |
@@ -48,7 +48,7 @@ npm run sync:news  # synka landslagsnyheter per land → data/team_news.json (Go
 | `data/matchdetails.json` | Statisk matchdetaljer (uppdateras av Actions) |
 | `data/bracket_probs.json` | Sannolikheter för slutspelet (statisk fallback, byggd av `gen_bracket_probs.mjs`) |
 | `data/bracket_probs_pre.json` | Fryst förväntansbaslinje (turneringsstartens rundsannolikheter) för Ligor-flikens Δ Förväntan – ändra ej |
-| `data/club_leagues.json` | Klubb → liga (land + division 2025/26) för alla klubbar i trupperna; driver Ligor-fliken i statistiken |
+| `data/club_leagues.json` | Klubb → liga (land + division 2025/26) för alla klubbar i trupperna; driver Ligor-fliken i statistiken. `rep` = ligans renommé 0–100 inför VM (fryst baslinje för ±Renommé – ändra ej under turneringen) |
 | `scripts/prob/gen_bracket_probs.mjs` | Bygger `bracket_probs.json` med SAMMA motor/data/seed som frontend |
 | `scripts/prob/` | Odds-hämtning + karta (bracket_map). `vm_sannolikheter.py` är pensionerad referens |
 | `.github/workflows/` | GitHub Actions-workflows |
