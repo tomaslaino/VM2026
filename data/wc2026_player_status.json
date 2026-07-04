@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-04T12:41:10.039Z",
+  "updated": "2026-07-04T14:48:44.208Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mex-roberto-alvarado": {
@@ -129,11 +129,11 @@
     "egy-karim-hafez": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Karim Hafez genomgår läkarundersökningar efter en skada mot Australien",
+      "detail": "Yalla Koura avslöjar karaktären på Karim Hafez skada och hans ställning till att delta mot Argentina",
       "updated": "2026-07-04",
       "source": {
-        "name": "صدى البلد",
-        "url": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE9NZGhrZGZyVzROV09aZXp4ZGE2MDdoRVhDVUVkdm93WURidF8tVm9uNnZJMzEySWZnTmV5WTFSQmlPQ0tFRFNZ?oc=5"
+        "name": "يلاكورة",
+        "url": "https://news.google.com/rss/articles/CBMiwgRBVV95cUxPRmNyVWN2MGoxbDVMR0N5U2dKTmwxdVNrV0VYQkFhcWg4YWdsRjNJejRzWmtUcGxqZTFDWENlbGNiTHJpZEt3TjdVUEFlTUsxVzFoc3h6YUpud0dCZTBYdE1OVHd5SllobkZxSWQ3VmIyRnQ0TTRXVk9McmFxOXpfd0RLbDBiWm9qOVBaQ0JXZi1OVy1tNW81Tk41dGpYeGl4ZHp5R1JfdTZpX0RBYmM1YmZ5d3I5MjQtVHlqRVFKdmlncHZRaUlMck1WejgtRkU1S01HbkkzbTJoS216WGhsMVI0ZFFFdEo2YzVhT3RKZmlhdk5wQlpzeWpvNEwwWGpXaWZBY1BUSEk5RXlOdUZmS2MtT0FlMDFkSnZGZ2pDWl9hMVR4c3BIY0pGWjM0alFmazhfcXprbVdEV1RWTVBfN1M2M21XQzJ1VGwyUDNXRmN2S0kzTGh5QjV4RGZNRjhtbnIxNmFvY3VGZWlUcXRxUzF3MGJwczhDcHZraWIwT3pidUE3OGlhaEtlc0hYQlVoRHZ2UmY5cmg5TWVWbU1YOUo5S255aGZmVU1MUndfWEdoZEJhTnc1Y1lsRXA0a2dLQzhnMW5RLVR4bG1kVlJKTXBzX2R4aXdwNFBObWlfTGdsblZMWVduNFNlZDJ4Tk0ybW5lNTNWOF9mbHFteW43RG84ZjNZUDBBTVVPMXFwdk9tS21nMXRqZUh3d0tYZF8wcnRWZEZGQlV4dnRHaE9Lemh1WUNYbDZZWTBkd0RJWW5jZ9IBxwRBVV95cUxNOUtkdDhfWU0yelNzY0NiT1IxVE9QNlprYllTMm9nRmlNejJEbk5Xc0htRzRzSHJTOUNDUmRWazhsRVZSUU9FTV9McklrMGpESmFReUV0bnNPaWROLXBSUUZzT2RUdEZxNmRaSFBmZVRaTkdSWnFybFNQa19tRjZNVzdiamtoOUJ4Ympfb3lFV0hKZVhtRHZXeEZsM1lDcXB4ZHU3MUhFWFZjSGR6YmFPVzUxMjR6U2ZFZDRLdjBwYnBiNzBqUWh1TEpQWk5LMk1VNk9qcmNST0gwQ0VjUlJMbjUybUJrcHVhMUMwUTJtRGtmN2p1U19laXBTVjMtVFpFbENIVkxUVDZwUy1iV0JjQnNsOERLenBjMWZIWXZsMW5KeFdzcFEtY25aYXZPSEhpbUhGTmllQ0hETGp0bDBYLWNvdW5KMmlfelEwRDdaTkRFVXVKNmg5NEFWQmVOd1ZqSTJGNERUMEUtcUZlbzlTLVFJdTlLT2htYWtRYWlMY1FsNnMxUWxCMGZKS0RwYlZoNElsYXpYMm1CZW41c3pOQ2x3dGhSQ29wWFdMS3FCLWJveGE5d3ZhbWlTai0yMTdxSzZKaF8yblM0M25oY09GRk80bGRwb3ZaQU5yZzFiTTNiVlVkMUtJVHB1bHN2QUNWSi1qanVEUmRYdy1Ib0YwZTVSVFpsalpGVC1OY0JXc0FhbUU2eGJKS2dXeC1rbFM4Z2xlTlJLaFZFUzVMSHE1ajZnREhuc2JhWWw1WlpVZ3FyR2VCUENZ?oc=5"
       },
       "origin": "news"
     },
@@ -188,7 +188,7 @@
       "updated": "2026-07-04",
       "source": {
         "name": "dsports",
-        "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOZHA5Qjh0N0lteDJwdVRmMVJoSHZCMGhIeGJxZzVsVnlQVGZrTzRGWnVvY25IcVEyVlYwY20xeVM3dTJ5em1GcXZyaXZ0TnFIQnZSVk9TekFickRzM29oTUJFY2J0NTdTSXVkeTNGUjZETUhrTXhKWkdVb29YYWJWZ09fUTNQU0I5UVBLeVBwb2ZoN2F0QXVSNDlZeHFhMzRvMlFvQzlXRGdDY2hoeWpzam1EakFSWUhrbmhLcWR6cGIyU1FfeTBhczFucVlncE1NZGp4ak9UTEdFb0k4OGQtRTMwcjA0WU5tcGVKdzU4N0xQYWNHUUJV0gH8AUFVX3lxTE9SQnRGUThhTFJZVXFCdnM4bnFRRFFYaGp0Q25vN3g3eVJ6M0dRNnV1Z01LcWhZVFJBTURsaFdDZ0FuT0lPWTkybFBoY0NXZ1dGaGZ2WF9qeFNCT0JPYWtEbXNYT0h3NjdtTUJhRHkwSDNFN3N0TU1XQ1l5YksteWJpSnZIS3dPUWhyRHpjYmV1NS01RUVvZXZUaXljNEZycW54b1BhdjJSc1d2SDFiOEF0SHhsUmhVMjdpMVVpVnZtVkRQMExYRDJkVEc2NmhzT25lN1JZNkZmZHJTMGJGYVNydDJCRE9zd2RkRmQ5OUZ3dHh2eXRJYzh0SXVoaQ?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxPUkJ0RlE4YUxSWVVxQnZzOG5xUURRWGhqdENubzd4N3lSejNHUTZ1dWdNS3FoWVRSQU1EbGhXQ2dBbk9JT1k5MmxQaGNDV2dXRmhmdlhfanhTQk9CT2FrRG1zWE9IdzY3bU1CYUR5MEgzRTdzdE1NV0NZeWJLLXliaUp2SEt3T1FockR6Y2JldTUtNUVFb2V2VGl5YzRGcnFueG9QYXYyUnNXdkgxYjhBdEh4bFJoVTI3aTFVaVZ2bVZEUDBMWEQyZFRHNjZoc09uZTdSWTZGZmRyUzBiRmFTcnQyQkRPc3dkZEZkOTlGd3R4dnl0SWM4dEl1aGnSAfwBQVVfeXFMT1JCdEZROGFMUllVcUJ2czhucVFEUVhoanRDbm83eDd5UnozR1E2dXVnTUtxaFlUUkFNRGxoV0NnQW5PSU9ZOTJsUGhjQ1dnV0ZoZnZYX2p4U0JPQk9ha0Rtc1hPSHc2N21NQmFEeTBIM0U3c3RNTVdDWXliSy15YmlKdkhLd09RaHJEemNiZXU1LTVFRW9ldlRpeWM0RnJxbnhvUGF2MlJzV3ZIMWI4QXRIeGxSaFUyN2kxVWlWdm1WRFAwTFhEMmRURzY2aHNPbmU3Ulk2RmZkclMwYkZhU3J0MkJET3N3ZGRGZDk5Rnd0eHZ5dEljOHRJdWhp?oc=5"
       },
       "origin": "news"
     },
