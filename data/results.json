@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-04T18:45:53.019Z",
+    "updatedAt": "2026-07-04T20:00:23.374Z",
     "source": "espn",
     "matchCount": 89,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -452,20 +452,11 @@
     },
     "k:90": {
       "h": 0,
-      "a": 1,
-      "status": "IN_PLAY"
+      "a": 3,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:90",
-      "status": "IN_PLAY",
-      "minute": 80,
-      "home": "Canada",
-      "away": "Morocco",
-      "score": "0-1"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1967,7 +1958,7 @@
       "date": "2026-07-04",
       "time": "19:00",
       "utcDate": "2026-07-04T17:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Canada",
       "away": "Morocco",
@@ -2106,9 +2097,12 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Round of 16 1 Winner",
-      "away": "Round of 16 2 Winner",
+      "away": "Morocco",
       "homeRef": null,
-      "awayRef": null
+      "awayRef": {
+        "group": "C",
+        "idx": 1
+      }
     },
     "k:98": {
       "date": "2026-07-10",

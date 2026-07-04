@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-04T18:45:53.091Z",
+    "updatedAt": "2026-07-04T20:00:23.413Z",
     "source": "espn"
   },
   "details": {
@@ -50937,15 +50937,15 @@
     "k:90": {
       "espnId": "760502",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 81,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-04T17:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 0,
-          "a": 1
+          "a": 3
         },
         "ht": {
           "h": 0,
@@ -50966,6 +50966,30 @@
           "score": {
             "h": 0,
             "a": 1
+          }
+        },
+        {
+          "minute": 82,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Azzedine Ounahi",
+          "assist": "Brahim Díaz",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 2
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 8,
+          "team": "a",
+          "scorer": "Soufiane Rahimi",
+          "assist": "Brahim Díaz",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 3
           }
         }
       ],
@@ -51055,6 +51079,30 @@
           "team": "h",
           "in": "Jacob Shaffelburg",
           "out": "Richie Laryea"
+        },
+        {
+          "minute": 87,
+          "team": "a",
+          "in": "Marwane Saadane",
+          "out": "Issa Diop"
+        },
+        {
+          "minute": 87,
+          "team": "a",
+          "in": "Samir El Mourabet",
+          "out": "Azzedine Ounahi"
+        },
+        {
+          "minute": 87,
+          "team": "h",
+          "in": "Jonathan Osorio",
+          "out": "Niko Sigur"
+        },
+        {
+          "minute": 87,
+          "team": "h",
+          "in": "Jayden Nelson",
+          "out": "Tajon Buchanan"
         }
       ],
       "penalties": [],
@@ -51067,7 +51115,8 @@
               "jersey": "16",
               "pos": "G",
               "st": {
-                "gc": 1,
+                "fc": 1,
+                "gc": 3,
                 "sv": 1
               }
             },
@@ -51077,7 +51126,7 @@
               "pos": "RB",
               "st": {
                 "fc": 1,
-                "gc": 1,
+                "gc": 3,
                 "sh": 1
               }
             },
@@ -51098,7 +51147,7 @@
               "st": {
                 "fc": 2,
                 "fs": 1,
-                "gc": 1
+                "gc": 2
               }
             },
             {
@@ -51107,7 +51156,7 @@
               "pos": "CD-R",
               "st": {
                 "fc": 1,
-                "gc": 1
+                "gc": 3
               }
             },
             {
@@ -51116,8 +51165,8 @@
               "pos": "CD-L",
               "st": {
                 "fc": 3,
-                "fs": 1,
-                "gc": 1,
+                "fs": 2,
+                "gc": 3,
                 "sh": 1
               }
             },
@@ -51127,7 +51176,7 @@
               "pos": "RM",
               "st": {
                 "fc": 3,
-                "gc": 1,
+                "gc": 2,
                 "sg": 1,
                 "sh": 1
               }
@@ -51137,8 +51186,8 @@
               "jersey": "7",
               "pos": "CM-L",
               "st": {
-                "fs": 1,
-                "gc": 1
+                "fs": 2,
+                "gc": 3
               }
             },
             {
@@ -51159,9 +51208,10 @@
               "pos": "CF-R",
               "st": {
                 "fc": 3,
-                "gc": 1,
+                "fs": 1,
+                "gc": 3,
                 "sg": 1,
-                "sh": 2
+                "sh": 3
               }
             },
             {
@@ -51197,7 +51247,9 @@
               "jersey": "24",
               "in": true,
               "st": {
-                "fc": 1
+                "fc": 2,
+                "fs": 1,
+                "gc": 2
               }
             },
             {
@@ -51222,24 +51274,41 @@
             },
             {
               "name": "Jonathan Osorio",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true,
+              "st": {
+                "fs": 1,
+                "gc": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Cyle Larin",
               "jersey": "9",
               "in": true,
               "st": {
-                "fc": 1
+                "fc": 2,
+                "gc": 2
               }
             },
             {
               "name": "Jacob Shaffelburg",
               "jersey": "14",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "gc": 2
+              }
             },
             {
               "name": "Jayden Nelson",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true,
+              "st": {
+                "gc": 1,
+                "sh": 1
+              }
             }
           ]
         },
@@ -51251,7 +51320,7 @@
               "jersey": "1",
               "pos": "G",
               "st": {
-                "fs": 1,
+                "fs": 2,
                 "sv": 3
               }
             },
@@ -51291,7 +51360,7 @@
               "jersey": "25",
               "pos": "CD-L",
               "st": {
-                "fc": 1,
+                "fc": 2,
                 "fs": 2
               }
             },
@@ -51300,8 +51369,9 @@
               "jersey": "10",
               "pos": "AM-R",
               "st": {
-                "fc": 1,
-                "fs": 1
+                "fc": 2,
+                "fs": 1,
+                "a": 2
               }
             },
             {
@@ -51324,9 +51394,9 @@
               "st": {
                 "fc": 1,
                 "fs": 4,
-                "sg": 1,
-                "g": 1,
-                "sh": 1
+                "sg": 2,
+                "g": 2,
+                "sh": 2
               }
             },
             {
@@ -51353,9 +51423,11 @@
               "jersey": "9",
               "in": true,
               "st": {
-                "fs": 1,
-                "sg": 1,
-                "sh": 1
+                "fc": 2,
+                "fs": 2,
+                "sg": 2,
+                "g": 1,
+                "sh": 3
               }
             },
             {
@@ -51380,7 +51452,8 @@
             },
             {
               "name": "Samir El Mourabet",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Chemsdine Talbi",
@@ -51389,7 +51462,11 @@
             },
             {
               "name": "Marwane Saadane",
-              "jersey": "5"
+              "jersey": "5",
+              "in": true,
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Munir El Kajoui",
@@ -51404,7 +51481,7 @@
               "jersey": "4",
               "in": true,
               "st": {
-                "fc": 1,
+                "fc": 3,
                 "fs": 1
               }
             },
@@ -51417,32 +51494,32 @@
       },
       "referee": "Michael Oliver",
       "venue": "NRG Stadium, Houston, Texas",
-      "attendance": null,
+      "attendance": 68777,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "39%",
-          "a": "61%"
+          "h": "45%",
+          "a": "55%"
         },
         {
           "key": "totalShots",
-          "h": "7",
-          "a": "2"
+          "h": "10",
+          "a": "5"
         },
         {
           "key": "shotsOnTarget",
           "h": "3",
-          "a": "2"
+          "a": "4"
         },
         {
           "key": "wonCorners",
-          "h": "8",
+          "h": "11",
           "a": "1"
         },
         {
           "key": "foulsCommitted",
-          "h": "20",
-          "a": "8"
+          "h": "24",
+          "a": "14"
         },
         {
           "key": "offsides",
@@ -51456,13 +51533,13 @@
         },
         {
           "key": "totalPasses",
-          "h": "272",
-          "a": "442"
+          "h": "358",
+          "a": "472"
         },
         {
           "key": "passPct",
-          "h": "75%",
-          "a": "85%"
+          "h": "76%",
+          "a": "82%"
         },
         {
           "key": "yellowCards",
@@ -51475,7 +51552,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-04T18:45:53.091Z"
+      "updatedAt": "2026-07-04T20:00:23.412Z"
     }
   }
 }
