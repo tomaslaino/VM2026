@@ -119,6 +119,33 @@ function normName(s) {
     .trim();
 }
 
+/* Landsnamn skiljer sig mellan trupp-JSON (engelska) och Transfermarkts flaggor
+   ("Korea, South", "Cote d'Ivoire" …). Kanoniska nycklar för de varianter som
+   inte klaras av ren tokenmatchning nedan. */
+var COUNTRY_ALIAS = {
+  "south korea": "kor", "korea south": "kor", "korea republic": "kor", "republic of korea": "kor",
+  "ivory coast": "civ", "cote divoire": "civ",
+  "united states": "usa", "usa": "usa", "united states of america": "usa",
+  "turkey": "tur", "turkiye": "tur",
+  "cape verde": "cpv", "cabo verde": "cpv",
+  "iran": "irn", "ir iran": "irn",
+  "dr congo": "cod", "congo dr": "cod", "democratic republic of the congo": "cod", "dr kongo": "cod",
+};
+
+// Matchar en TM-flaggtitel mot truppens landsnamn, tolerant för ordföljd,
+// delmängder ("Bosnia-Herzegovina") och kända aliasnamn.
+function countryMatches(flag, squad) {
+  var a = normName(flag).split(" ").filter(Boolean);
+  var b = normName(squad).split(" ").filter(Boolean);
+  if (!a.length || !b.length) return false;
+  var small = a.length <= b.length ? a : b;
+  var big = {};
+  (a.length <= b.length ? b : a).forEach(function (t) { big[t] = 1; });
+  if (small.every(function (t) { return big[t]; })) return true;
+  var ka = COUNTRY_ALIAS[normName(flag)], kb = COUNTRY_ALIAS[normName(squad)];
+  return !!ka && ka === kb;
+}
+
 /* ---------- Transfermarkt ---------- */
 
 // Snabbsök → {ok, hits:[{id,slug}]}. ok=false: hämtningen misslyckades.
@@ -146,11 +173,9 @@ async function tmProfile(hit) {
 
   const og = h.match(/og:image"\s+content="([^"]+)"/);
   let photo = og ? og[1] : null;
-  if (photo && /portrait\/(big|medium)\/\d+/.test(photo)) {
-    // ok – riktigt porträtt; annars (default-silhuett) släng
-  } else if (photo && !/portrait\//.test(photo)) {
-    photo = null;
-  }
+  // Behåll bara riktiga numrerade porträtt; kasta TM:s default-silhuett
+  // (portrait/big/default.jpg) och allt annat som inte är ett spelarfoto.
+  if (photo && !/portrait\/(big|medium|small|header)\/\d+/.test(photo)) photo = null;
 
   const club = (h.match(/Current club:[\s\S]*?title="([^"]+)"/) || [])[1] || null;
 
@@ -195,13 +220,21 @@ async function resolveTm(name, countryEn, cache) {
   if (cache && cache.tm_id) {
     hits = [{ id: cache.tm_id, slug: cache.tm_slug || name.toLowerCase().replace(/\s+/g, "-") }];
   } else {
-    const r = await tmSearchHits(name);
+    let r = await tmSearchHits(name);
+    await sleep(DELAY_MS);
+    // TM:s sök vill ha förnamn först. Truppen listar en del namn i omvänd ordning
+    // (koreanska/japanska: efternamn först) → prova omvänd ordföljd om noll träffar.
+    if (r.ok && r.hits.length === 0) {
+      const rev = name.trim().split(/\s+/).reverse().join(" ");
+      if (rev !== name.trim()) {
+        r = await tmSearchHits(rev);
+        await sleep(DELAY_MS);
+      }
+    }
     searchOk = r.ok;
     hits = r.hits;
-    await sleep(DELAY_MS);
   }
   if (!searchOk) return { ok: false, match: null };
-  const wantCountry = normName(countryEn);
   let anyFetchFail = false;
   for (const hit of hits) {
     const prof = await tmProfile(hit);
@@ -210,7 +243,7 @@ async function resolveTm(name, countryEn, cache) {
     const natOk =
       cache && cache.tm_id // redan verifierad tidigare körning
         ? true
-        : prof.nats.some((n) => normName(n) === wantCountry);
+        : prof.nats.some((n) => countryMatches(n, countryEn));
     if (natOk) return { ok: true, match: { hit, prof } };
   }
   // Inga träffar verifierades. Om något anrop dog → prova igen nästa körning.
@@ -236,6 +269,37 @@ async function wikiTitle(name, countryEn) {
   }
 }
 
+// Porträttet ur Wikipedia-artikelns infobox (reserv när TM saknar foto).
+// Hoppar över flaggor/ikoner och små bilder och returnerar en stabil,
+// länkbar Special:FilePath-URL (302 → serverad 300px-thumb) i stället för en
+// rå /thumb/-URL som Wikimedia kan neka on-demand-generering av.
+function wikiInfoboxImage(html) {
+  var box = (html.match(/<table[^>]*infobox[\s\S]*?<\/table>/i) || [])[0];
+  if (!box) return null;
+  var re = /<img[^>]+src="(\/\/upload\.wikimedia\.org\/[^"]+?)"/gi;
+  var m;
+  while ((m = re.exec(box))) {
+    var src = m[1];
+    if (/Flag[_-]|flag_of|\.svg(?:$|\/|\?)|Commons-logo|OOjs|Question_book|Edit-clear|ambox/i.test(src)) continue;
+    if (!/\.(jpe?g|png)/i.test(src)) continue;
+    var w = (src.match(/\/(\d+)px-/) || [])[1];
+    if (w && parseInt(w, 10) < 120) continue; // för liten – trolig ikon
+    return filepathUrl(src);
+  }
+  return null;
+}
+
+// Gör om en upload.wikimedia.org-URL till en stabil Special:FilePath-länk.
+function filepathUrl(src) {
+  // Filnamnet: mellan hash-katalogerna och /NNpx- (thumb) eller sista segmentet.
+  var file = (src.match(/\/thumb\/[^/]+\/[^/]+\/([^/]+)\/\d+px-/) ||
+              src.match(/\/[^/]+\/[^/]+\/([^/]+)$/) || [])[1];
+  if (!file) return "https:" + src;
+  // Lokala en-wiki-filer bor på en.wikipedia; annars Commons (en löser båda).
+  var host = /\/wikipedia\/en\//.test(src) ? "en.wikipedia.org" : "commons.wikimedia.org";
+  return "https://" + host + "/wiki/Special:FilePath/" + file + "?width=300";
+}
+
 // Career statistics-tabellen → innevarande säsong (matcher/mål liga + totalt).
 // → {ok, season}. ok=false: hämtningen misslyckades. ok=true: parsad (season
 // kan vara null om ingen 2025/26-rad finns i tabellen).
@@ -252,6 +316,8 @@ async function wikiSeason(title, clubHint) {
     return { ok: true, season: null };
   }
   if (!html) return { ok: true, season: null };
+
+  const image = wikiInfoboxImage(html);
 
   const tables = html.match(/<table[^>]*wikitable[\s\S]*?<\/table>/gi) || [];
   const clubN = normName(clubHint || "");
@@ -300,7 +366,7 @@ async function wikiSeason(title, clubHint) {
       });
     }
   }
-  if (!candidates.length) return { ok: true, season: null };
+  if (!candidates.length) return { ok: true, season: null, image: image };
   // Föredra raden vars klubb matchar TM:s nuvarande klubb; annars flest matcher.
   let best = null;
   if (clubN) {
@@ -309,6 +375,7 @@ async function wikiSeason(title, clubHint) {
   if (!best) best = candidates.slice().sort((a, b) => b.totalApps - a.totalApps)[0];
   return {
     ok: true,
+    image: image,
     season: {
       season: SEASON,
       club: best.club || null,
@@ -400,7 +467,7 @@ async function main() {
               rec.market_value = tm.match.prof.mv;
               rec.mv_date = tm.match.prof.mvDate;
             }
-            if (tm.match.prof.photo) rec.photo = tm.match.prof.photo;
+            if (tm.match.prof.photo) { rec.photo = tm.match.prof.photo; rec.photo_src = "transfermarkt"; }
           }
         }
       }
@@ -420,6 +487,8 @@ async function main() {
           if (ws.ok) {
             rec.wiki_checked = true;
             if (ws.season) rec.season = ws.season;
+            // Wikipedia-porträttet är reserv när TM inte gav något foto.
+            if (ws.image && !rec.photo) { rec.photo = ws.image; rec.photo_src = "wikipedia"; }
           }
         }
       }

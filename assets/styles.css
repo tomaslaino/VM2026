@@ -3924,10 +3924,16 @@ span.pr-caps-debut.pr-caps-legend {
 }
 .pm-close:hover { background: var(--line); }
 .pm-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; padding-right: 32px; }
-.pm-photo { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid var(--line); flex: none; }
+.pm-photo {
+  width: 74px; height: 74px; border-radius: 50%; object-fit: cover; object-position: top center;
+  border: 2px solid var(--line-strong); flex: none;
+  background: var(--bg-soft); box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
 .pm-photo.placeholder {
   display: flex; align-items: center; justify-content: center;
-  background: var(--bg-soft); color: var(--ink-soft); font-size: 26px; font-weight: 700;
+  background: radial-gradient(circle at 50% 32%,
+    color-mix(in srgb, var(--usa-blue) 30%, var(--bg-soft)), var(--bg-soft) 72%);
+  color: var(--ink-soft); font-size: 30px; font-weight: 800;
 }
 .pm-id h3 { margin: 0; font-size: 19px; }
 .pm-sub { color: var(--ink-soft); font-size: 13px; }
