@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-03T23:37:24.964Z",
+    "updatedAt": "2026-07-04T01:15:35.586Z",
     "source": "espn"
   },
   "details": {
@@ -49742,22 +49742,25 @@
     "k:86": {
       "espnId": "760500",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 76,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-03T22:00Z",
-      "duration": "REGULAR",
-      "winner": null,
+      "duration": "EXTRA_TIME",
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
-          "h": 1,
-          "a": 1
+          "h": 3,
+          "a": 2
         },
         "ht": {
           "h": 1,
           "a": 0
         },
         "rt": null,
-        "et": null,
+        "et": {
+          "h": 3,
+          "a": 2
+        },
         "pen": null
       },
       "goals": [
@@ -49778,6 +49781,33 @@
           "assist": "Ryan Mendes",
           "type": "REGULAR",
           "score": null
+        },
+        {
+          "minute": 92,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Lisandro Martínez",
+          "assist": "Alexis Mac Allister",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 103,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Sidny Lopes Cabral",
+          "assist": "Yannick Semedo",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 111,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Diney Borges",
+          "assist": null,
+          "type": "OWN",
+          "score": null
         }
       ],
       "bookings": [
@@ -49785,6 +49815,12 @@
           "minute": 68,
           "team": "a",
           "player": "Kevin Pina",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 115,
+          "team": "h",
+          "player": "Gonzalo Montiel",
           "card": "YELLOW"
         }
       ],
@@ -49812,6 +49848,48 @@
           "team": "a",
           "in": "Dailon Livramento",
           "out": "Nuno da Costa"
+        },
+        {
+          "minute": 80,
+          "team": "a",
+          "in": "Willy Semedo",
+          "out": "Ryan Mendes"
+        },
+        {
+          "minute": 80,
+          "team": "a",
+          "in": "Hélio Varela",
+          "out": "Jovane Cabral"
+        },
+        {
+          "minute": 84,
+          "team": "h",
+          "in": "Leandro Paredes",
+          "out": "Rodrigo De Paul"
+        },
+        {
+          "minute": 86,
+          "team": "h",
+          "in": "Nicolás Tagliafico",
+          "out": "Facundo Medina"
+        },
+        {
+          "minute": 100,
+          "team": "a",
+          "in": "Yannick Semedo",
+          "out": "Deroy Duarte"
+        },
+        {
+          "minute": 100,
+          "team": "a",
+          "in": "Gilson Benchimol",
+          "out": "Kevin Pina"
+        },
+        {
+          "minute": 104,
+          "team": "h",
+          "in": "Gonzalo Montiel",
+          "out": "Nahuel Molina"
         }
       ],
       "penalties": [],
@@ -49824,8 +49902,8 @@
               "jersey": "23",
               "pos": "G",
               "st": {
-                "gc": 1,
-                "sv": 1
+                "gc": 2,
+                "sv": 3
               }
             },
             {
@@ -49834,7 +49912,7 @@
               "pos": "RB",
               "st": {
                 "fc": 1,
-                "gc": 1
+                "gc": 2
               }
             },
             {
@@ -49850,7 +49928,11 @@
               "jersey": "20",
               "pos": "CM-R",
               "st": {
-                "gc": 1
+                "fc": 1,
+                "fs": 1,
+                "gc": 2,
+                "a": 1,
+                "sh": 2
               }
             },
             {
@@ -49859,7 +49941,9 @@
               "pos": "CD-R",
               "st": {
                 "fc": 2,
-                "gc": 1
+                "fs": 1,
+                "gc": 2,
+                "sh": 1
               }
             },
             {
@@ -49867,8 +49951,11 @@
               "jersey": "6",
               "pos": "CD-L",
               "st": {
-                "gc": 1,
-                "a": 1
+                "gc": 2,
+                "a": 1,
+                "sg": 1,
+                "g": 1,
+                "sh": 1
               }
             },
             {
@@ -49885,10 +49972,11 @@
               "jersey": "24",
               "pos": "CM-L",
               "st": {
-                "fs": 1,
-                "gc": 1,
-                "sg": 1,
-                "sh": 2
+                "fc": 1,
+                "fs": 2,
+                "gc": 2,
+                "sg": 2,
+                "sh": 4
               }
             },
             {
@@ -49906,11 +49994,11 @@
               "pos": "CF-R",
               "st": {
                 "fc": 1,
-                "fs": 4,
-                "gc": 1,
-                "sg": 4,
+                "fs": 5,
+                "gc": 2,
+                "sg": 6,
                 "g": 1,
-                "sh": 6
+                "sh": 9
               }
             },
             {
@@ -49927,7 +50015,12 @@
           "bench": [
             {
               "name": "Nicolás Tagliafico",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true,
+              "st": {
+                "fs": 2,
+                "gc": 1
+              }
             },
             {
               "name": "Valentín Barco",
@@ -49939,7 +50032,12 @@
             },
             {
               "name": "Gonzalo Montiel",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Nico Paz",
@@ -49960,14 +50058,21 @@
             {
               "name": "Julián Álvarez",
               "jersey": "9",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 1,
+                "gc": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Nico González",
               "jersey": "15",
               "in": true,
               "st": {
-                "sh": 1
+                "fc": 1,
+                "gc": 1,
+                "sh": 2
               }
             },
             {
@@ -49980,7 +50085,13 @@
             },
             {
               "name": "Leandro Paredes",
-              "jersey": "5"
+              "jersey": "5",
+              "in": true,
+              "st": {
+                "gc": 1,
+                "sg": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Nicolás Otamendi",
@@ -50000,9 +50111,9 @@
               "jersey": "1",
               "pos": "G",
               "st": {
-                "fs": 1,
-                "gc": 1,
-                "sv": 4
+                "fs": 2,
+                "gc": 3,
+                "sv": 8
               }
             },
             {
@@ -50010,8 +50121,9 @@
               "jersey": "22",
               "pos": "RB",
               "st": {
-                "fs": 1,
-                "gc": 1
+                "fs": 2,
+                "gc": 3,
+                "sh": 1
               }
             },
             {
@@ -50020,7 +50132,10 @@
               "pos": "LB",
               "st": {
                 "fs": 2,
-                "gc": 1
+                "gc": 3,
+                "sg": 2,
+                "g": 1,
+                "sh": 2
               }
             },
             {
@@ -50028,8 +50143,9 @@
               "jersey": "6",
               "pos": "DM",
               "st": {
-                "fc": 1,
-                "gc": 1
+                "fc": 2,
+                "gc": 2,
+                "sh": 1
               }
             },
             {
@@ -50038,7 +50154,7 @@
               "pos": "CD-R",
               "st": {
                 "fs": 1,
-                "gc": 1
+                "gc": 3
               }
             },
             {
@@ -50047,7 +50163,10 @@
               "pos": "CD-L",
               "st": {
                 "fc": 1,
-                "gc": 1
+                "og": 1,
+                "gc": 3,
+                "sg": 1,
+                "sh": 2
               }
             },
             {
@@ -50083,7 +50202,7 @@
               "pos": "CM-L",
               "st": {
                 "fc": 3,
-                "gc": 1,
+                "gc": 2,
                 "sg": 2,
                 "g": 1,
                 "sh": 2
@@ -50112,7 +50231,13 @@
             },
             {
               "name": "Yannick Semedo",
-              "jersey": "16"
+              "jersey": "16",
+              "in": true,
+              "st": {
+                "gc": 1,
+                "a": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Stopira",
@@ -50132,17 +50257,33 @@
             },
             {
               "name": "Hélio Varela",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true,
+              "st": {
+                "fs": 1,
+                "gc": 2,
+                "sh": 2
+              }
             },
             {
               "name": "Dailon Livramento",
               "jersey": "19",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 1,
+                "gc": 2
+              }
             },
             {
               "name": "Jamiro Monteiro",
               "jersey": "10",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 2,
+                "fs": 1,
+                "gc": 2,
+                "sh": 1
+              }
             },
             {
               "name": "João Paulo",
@@ -50150,7 +50291,13 @@
             },
             {
               "name": "Willy Semedo",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true,
+              "st": {
+                "fc": 2,
+                "gc": 2,
+                "sh": 1
+              }
             },
             {
               "name": "Wagner Pina",
@@ -50158,7 +50305,11 @@
             },
             {
               "name": "Gilson Benchimol",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "CJ dos Santos",
@@ -50169,56 +50320,56 @@
       },
       "referee": "Drew Fischer",
       "venue": "Hard Rock Stadium, Miami Gardens, Florida",
-      "attendance": null,
+      "attendance": 64478,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "66%",
-          "a": "34%"
+          "h": "64%",
+          "a": "37%"
         },
         {
           "key": "totalShots",
-          "h": "9",
-          "a": "5"
+          "h": "22",
+          "a": "16"
         },
         {
           "key": "shotsOnTarget",
-          "h": "5",
-          "a": "2"
+          "h": "10",
+          "a": "5"
         },
         {
           "key": "wonCorners",
-          "h": "2",
-          "a": "2"
+          "h": "8",
+          "a": "8"
         },
         {
           "key": "foulsCommitted",
-          "h": "8",
-          "a": "6"
+          "h": "13",
+          "a": "12"
         },
         {
           "key": "offsides",
-          "h": "2",
-          "a": "0"
+          "h": "3",
+          "a": "2"
         },
         {
           "key": "saves",
-          "h": "1",
-          "a": "4"
+          "h": "3",
+          "a": "8"
         },
         {
           "key": "totalPasses",
-          "h": "575",
-          "a": "294"
+          "h": "849",
+          "a": "476"
         },
         {
           "key": "passPct",
-          "h": "93%",
+          "h": "92%",
           "a": "86%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
+          "h": "1",
           "a": "1"
         },
         {
@@ -50227,7 +50378,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-03T23:37:24.964Z"
+      "updatedAt": "2026-07-04T01:15:35.585Z"
     }
   }
 }

@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-03T23:37:24.890Z",
+    "updatedAt": "2026-07-04T01:15:35.510Z",
     "source": "espn",
     "matchCount": 87,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -441,21 +441,12 @@
       "pw": "a"
     },
     "k:86": {
-      "h": 1,
-      "a": 1,
-      "status": "IN_PLAY"
+      "h": 3,
+      "a": 2,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:86",
-      "status": "IN_PLAY",
-      "minute": 76,
-      "home": "Argentina",
-      "away": "Cape Verde",
-      "score": "1-1"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1923,7 +1914,7 @@
       "date": "2026-07-04",
       "time": "00:00",
       "utcDate": "2026-07-03T22:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Argentina",
       "away": "Cape Verde",
@@ -2061,9 +2052,12 @@
       "utcDate": "2026-07-07T16:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Round of 32 14 Winner",
+      "home": "Argentina",
       "away": "Egypt",
-      "homeRef": null,
+      "homeRef": {
+        "group": "J",
+        "idx": 0
+      },
       "awayRef": {
         "group": "G",
         "idx": 2
