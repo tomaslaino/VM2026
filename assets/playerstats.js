@@ -60,6 +60,11 @@
   var pidIndex = null;     // pid -> spelarrad (för uppslag utifrån, t.ex. spelarmodalen)
   var rootEl = null;       // monteringspunkt (sätts av mount)
 
+  /* FotMobs spelarbetyg (data/fotmob_ratings.json): matchnyckel -> { players:
+     { h/a: { espnNormNamn: betyg } } }. Laddas en gång på mount. */
+  var fotmobRatings = null;
+  var fotmobLoad = 0;      // 0 = ej startad · 1 = laddar · 2 = klar (även vid fel)
+
   /* Ligadata (laddas först när Ligor-fliken öppnas). */
   var leagueData = null;   // data/club_leagues.json ({ leagues, clubs })
   var preRounds = null;    // data/bracket_probs_pre.json rounds (förväntan vid start)
@@ -200,6 +205,7 @@
       min: 0, apps: 0,
       sh: 0, sg: 0, sv: 0, fc: 0, fs: 0,   // boxscore: skott/på mål/räddningar/fouls
       rSum: 0, rMin: 0,                     // VM-betyg: Σ(betyg × min) och Σ(min)
+      fmSum: 0, fmMin: 0,                   // FotMob-betyg: Σ(betyg × min) och Σ(min över matcher med betyg)
       log: []                               // per-match-rader (spelarmodalens matchlogg)
     });
   }
@@ -351,9 +357,21 @@
         min: mins, on: pin, off: pout, full: full, starter: !!pl.starter,
         g: o.g, pen: o.pen, og: o.og, a: o.a, y: o.y, yr: o.yr, rd: o.rd,
         sv: st ? (st.sv || 0) : 0,
-        rating: null
+        rating: null,
+        fmRating: null
       };
       b.log.push(entry);
+
+      /* FotMobs matchbetyg (om spelaren kopplats i data/fotmob_ratings.json,
+         nycklat på ESPN:s normaliserade namn = k). Minutviktas separat: bara
+         matcher där FotMob satt betyg räknas in i snittet. */
+      var fmMap = fotmobRatings && fotmobRatings[key] && fotmobRatings[key].players
+        ? fotmobRatings[key].players[side] : null;
+      var fmR = fmMap && fmMap[k] != null ? fmMap[k] : null;
+      if (fmR != null) {
+        entry.fmRating = fmR;
+        if (mins > 0) { b.fmSum += fmR * mins; b.fmMin += mins; }
+      }
 
       if (mins <= 0) return;
 
@@ -535,6 +553,7 @@
       gi90: per90(goals + assists, min),
       sh: st.sh || 0, sg: st.sg || 0, sv: st.sv || 0, fc: st.fc || 0, fs: st.fs || 0,
       rSum: st.rSum || 0, rMin: st.rMin || 0,
+      fmSum: st.fmSum || 0, fmMin: st.fmMin || 0,
       /* Matchlogg i kronologisk ordning (datum, sedan nyckel som stabil backup). */
       log: (st.log || []).slice().sort(function (a, b) {
         var ad = a.date || "", bd = b.date || "";
@@ -542,6 +561,8 @@
       }),
       rating: (st.rMin || 0) > 0 ? st.rSum / st.rMin : null,
       ratingQ: (st.rMin || 0) >= RATING_QUAL_MIN,
+      fmRating: (st.fmMin || 0) > 0 ? st.fmSum / st.fmMin : null,
+      fmRatingQ: (st.fmMin || 0) >= RATING_QUAL_MIN,
       qualified: min >= QUAL_MIN,
       hasStats: !!(goals || assists || st.og || st.y || st.r),
       played: (st.apps || 0) > 0 || min > 0
@@ -700,6 +721,26 @@
     });
   }
 
+  /* FotMobs spelarbetyg – laddas en gång, oberoende av flik. Vid klar (även
+     fel) nollas spelar-cachen så betygen kcommer in i nästa render. */
+  function loadFotmobRatings() {
+    if (fotmobLoad) return;
+    fotmobLoad = 1;
+    var url = (window.VM_CONFIG && window.VM_CONFIG.fotmobRatings) || "data/fotmob_ratings.json";
+    fetch(url, { headers: { Accept: "application/json" }, cache: "no-store" })
+      .then(function (r) { return r && r.ok ? r.json() : null; })
+      .catch(function () { return null; })
+      .then(function (j) {
+        fotmobRatings = j && j.matches ? j.matches : null;
+        fotmobLoad = 2;
+        playerRowsCache = null;
+        teamRowsCache = null;
+        regionRowsCache = null;
+        leagueRowsCache = null;
+        if (rootEl && document.body.contains(rootEl)) render();
+      });
+  }
+
   /* Förväntat antal avancemang för ett lag ur rundsannolikheterna. */
   function expRounds(r) {
     if (!r) return null;
@@ -818,6 +859,7 @@
     g90:     { type: "num", qual: true, get: function (r) { return r.g90; } },
     a90:     { type: "num", qual: true, get: function (r) { return r.a90; } },
     rating:  { type: "num", qual: "rating", get: function (r) { return r.rating; } },
+    fmrating:{ type: "num", qual: "fmrating", get: function (r) { return r.fmRating; } },
     y:       { type: "num", get: function (r) { return r.y; } },
     r:       { type: "num", get: function (r) { return r.r; } },
     mv:      { type: "num", get: function (r) { return r.mv; } },
@@ -956,9 +998,12 @@
       var an = av == null ? -Infinity : av;
       var bn = bv == null ? -Infinity : bv;
       if (s.qual) {
-        /* "rating" kräver minst RATING_QUAL_MIN minuter, övriga QUAL_MIN. */
-        if (!(s.qual === "rating" ? a.ratingQ : a.qualified)) an = -Infinity;
-        if (!(s.qual === "rating" ? b.ratingQ : b.qualified)) bn = -Infinity;
+        /* "rating"/"fmrating" kräver minst RATING_QUAL_MIN minuter, övriga QUAL_MIN. */
+        var qOf = function (r) {
+          return s.qual === "rating" ? r.ratingQ : s.qual === "fmrating" ? r.fmRatingQ : r.qualified;
+        };
+        if (!qOf(a)) an = -Infinity;
+        if (!qOf(b)) bn = -Infinity;
       }
       d = an - bn;
     } else {
@@ -1194,6 +1239,12 @@
         valFn: function (r) { return r.ratingQ && r.rating != null ? r.rating : 0; },
         mainFn: function (r) { return fmtRating(r.rating); },
         rateFn: function (r) { return r.min + " min · " + r.apps + (r.apps === 1 ? " match" : " matcher"); }
+      },
+      {
+        id: "fmrating", kind: "players", title: "Högst FotMob-betyg", icon: "📊", rows: prows,
+        valFn: function (r) { return r.fmRatingQ && r.fmRating != null ? r.fmRating : 0; },
+        mainFn: function (r) { return fmtRating(r.fmRating); },
+        rateFn: function (r) { return r.min + " min · " + r.apps + (r.apps === 1 ? " match" : " matcher"); }
       }
     ];
   }
@@ -1226,7 +1277,8 @@
   function leaderName(cfg, r) {
     if (cfg.kind === "teams") return r.sv;
     if (cfg.kind === "regions") return r.region;
-    if (cfg.kind === "leagues") return r.label;
+    /* Flaggan visar redan klubblandet – visa bara liganamnet (fulla landet i title). */
+    if (cfg.kind === "leagues") return r.name;
     return r.name;
   }
   function leaderTitle(cfg, r) {
@@ -1583,6 +1635,9 @@
       '<td class="c-stat ps-rating">' + (r.rating == null ? '<span class="ps-zero">–</span>'
         : r.ratingQ ? '<span class="ps-num">' + fmtRating(r.rating) + "</span>"
         : '<span class="ps-zero" title="Under ' + RATING_QUAL_MIN + ' spelade minuter – osäkert betyg">' + fmtRating(r.rating) + "</span>") + "</td>" +
+      '<td class="c-stat ps-fmrating">' + (r.fmRating == null ? '<span class="ps-zero" title="FotMob har inte satt betyg (t.ex. sena inhopp eller namn som inte kunnat kopplas)">–</span>'
+        : r.fmRatingQ ? '<span class="ps-num">' + fmtRating(r.fmRating) + "</span>"
+        : '<span class="ps-zero" title="Under ' + RATING_QUAL_MIN + ' spelade minuter – osäkert betyg">' + fmtRating(r.fmRating) + "</span>") + "</td>" +
       '<td class="c-stat ps-rate">' + g90 + "</td>" +
       '<td class="c-stat ps-rate">' + a90 + "</td>" +
       '<td class="c-stat">' + cardsCell(r.y, "y") + "</td>" +
@@ -1609,6 +1664,7 @@
       thSort("assists", "Ass", "", "Assist i VM 2026") +
       thSort("points", "P", "", "Poäng = mål + assist") +
       thSort("rating", "Betyg", "", "VM-betyg (10-gradigt, minutviktat över matcherna): bas 6.0 ± mål, assist, lagets målskillnad på planen, resultat, hållen nolla, räddningar, skott, fouls och kort. Kräver " + RATING_QUAL_MIN + " min för rankning.") +
+      thSort("fmrating", "FotMob", "", "FotMobs matchbetyg (10-gradigt, minutviktat över matcherna), källa FotMob. Bygger på Opta-liknande händelsedata och fångar även defensivt spel (tacklingar, brytningar, passningar) som det egna betyget saknar. Kräver " + RATING_QUAL_MIN + " min för rankning; saknas för spelare FotMob inte betygsatt.") +
       thSort("g90", "Mål/90", "", "Mål per 90 spelade minuter (kräver minst " + QUAL_MIN + " min)") +
       thSort("a90", "Ass/90", "", "Assist per 90 spelade minuter (kräver minst " + QUAL_MIN + " min)") +
       thSort("y", "Gul", "", "Gula kort") +
@@ -1617,7 +1673,7 @@
       thSort("min", "Min", "", "Spelade minuter i VM 2026") +
       "</tr></thead><tbody>";
     if (!shown.length) {
-      h += '<tr><td class="ps-empty" colspan="19">Inga spelare matchar filtren.</td></tr>';
+      h += '<tr><td class="ps-empty" colspan="20">Inga spelare matchar filtren.</td></tr>';
     } else {
       shown.forEach(function (r, i) { h += playerRowHtml(r, i); });
     }
@@ -1781,8 +1837,8 @@
     return '<tr class="ps-openable' + (unq ? " ps-league-unq" : "") + '" data-ps-league="' + esc(r.id) + '" tabindex="0" role="button">' +
       '<td class="c-pos">' + (i + 1) + "</td>" +
       '<td class="ps-c-name"><span class="team">' + leagueFlag(r) +
-        '<span class="t-name" title="' + esc(r.label) + '">' + esc(r.country) +
-        '<span class="ps-league-name">' + esc(r.name) + tierSuffix + "</span></span></span></td>" +
+        '<span class="t-name" title="' + esc(r.label) + '">' + esc(r.name) + tierSuffix +
+        "</span></span></td>" +
       '<td class="c-stat">' + r.players + "</td>" +
       '<td class="c-stat ps-num' + (r.goals ? " hot" : "") + '">' + (r.goals || dash) + "</td>" +
       '<td class="c-stat ps-num' + (r.assists ? " hot" : "") + '">' + (r.assists || dash) + "</td>" +
@@ -2061,6 +2117,7 @@
      form som tabellen) eller null om id saknas/inte hittas. */
   function getPlayerStatsById(pid) {
     if (pid == null) return null;
+    loadFotmobRatings(); // säkerställ att FotMob-betygen laddas även från spelarmodalen
     var rows = buildPlayerRows();
     if (!pidIndex) {
       pidIndex = {};
@@ -2102,6 +2159,7 @@
       }).catch(function () {});
     }
     if (stateUi.mode === "leagues") loadLeagueData();
+    loadFotmobRatings();
     render();
   }
 

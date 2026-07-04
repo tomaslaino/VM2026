@@ -13,6 +13,7 @@ Webbapp för att följa fotbolls-VM 2026 (USA, Mexiko, Kanada). Visar grupptabel
 - **ESPN öppet API** – resultat, livehändelser (mål/kort/byten), matchstatistik. Ingen API-nyckel.
 - **Wikipedia** – truppdata (position, ålder, klubb, landskamper) via `scripts/fetch_player_details.py`.
 - **API-Football** (valfritt, betald) – spelarstatistik samt **spelartillgänglighet** (skador/avstängningar/osäkra, `/injuries`) via `API_FOOTBALL_KEY` i `.env`.
+- **FotMob öppet webb-API** – Opta-baserade **spelarbetyg** per match (fångar även defensivt spel som ESPN:s gratisdata saknar). Ingen nyckel.
 
 ### Nyckelkommandon
 ```bash
@@ -25,6 +26,7 @@ npm run sync:status # legacy: samma fil från API-Football /injuries (kräver AP
 npm run sync:news  # synka landslagsnyheter per land → data/team_news.json (Google Nyheter-RSS, ingen nyckel)
 npm run sync:lineups # synka troliga/bekräftade startelvor för kommande matcher → data/lineups_prelim.json (365Scores, ingen nyckel)
 npm run sync:metrics # synka betting-metrik per spelare → data/wc2026_player_metrics.json (marknadsvärde + porträtt från Transfermarkt, klubbform 2025/26 matcher+mål från Wikipedia, ingen nyckel)
+npm run sync:fotmob # synka FotMobs spelarbetyg per match → data/fotmob_ratings.json (Opta-baserade betyg för färdiga matcher, kopplas till ESPN-spelarnamn, ingen nyckel)
 ```
 
 ## Viktiga filer
@@ -37,7 +39,7 @@ npm run sync:metrics # synka betting-metrik per spelare → data/wc2026_player_m
 | `assets/r32worker.js` | Web Worker som kör `r32engine.js` utanför huvudtråden |
 | `data/odds.json` | Exakta resultat-odds för de återstående gruppmatcherna (indata till R32-motorn) |
 | `assets/players.js` | Statiskt datalager för truppdata + spelarstatus + betting-metrik (`window.VMPlayers`, bl.a. `getPlayerMetrics`) |
-| `assets/live.js` | Trupp i lag-lådan + spelarprofil-modal (visar skade-/avstängningsstatus, porträttfoto samt "Marknad & form"-kortet: marknadsvärde + klubbform 2025/26 ur `data/wc2026_player_metrics.json`) |
+| `assets/live.js` | Trupp i lag-lådan + spelarprofil-modal (visar skade-/avstängningsstatus, porträttfoto, "Marknad & form"-kortet: marknadsvärde + klubbform 2025/26 ur `data/wc2026_player_metrics.json`, samt VM-betyg **och FotMob-betyg** sida vid sida + match-för-match-logg med båda betygen ur `VMPlayerStats.getPlayerStats`) |
 | `data/wc2026_player_metrics.json` | Betting-metrik per spelar-id: `market_value_eur`/`market_value` (Transfermarkt), `photo` (porträtt) med `photo_src` (`transfermarkt` primärt, `wikipedia` som reserv), `season` = klubbform 2025/26 (`league`/`total` {apps, goals} + `gpa` mål per match, från Wikipedia). Uppslag (`tm_id`/`wiki_title`) cachas; `*_checked`-flaggor skiljer "ingen data finns" från "hämtning misslyckades → prova igen". Poster med `manual: true` bevaras |
 | `server/scripts/syncPlayerMetrics.js` | Bygger spelarmetriken: slår upp spelaren på Transfermarkt (tolerant nationalitetsverifiering + omvänd namnordning för koreanska/japanska namn) för marknadsvärde/klubb/porträtt + parsar klubbform 2025/26 (matcher/mål, liga + totalt) och infobox-porträtt (reserv) ur spelarens Wikipedia-artikel. Inkrementell/resumbar, ingen nyckel. Körs dagligen av `sync-player-metrics.yml`. Assist/minuter/skott ingår inte (finns inte robust gratis) |
 | `data/wc2026_player_status.json` | Spelartillgänglighet (skador/avstängningar/osäkra) per spelar-id, med `source: {name, url}` och `detail` – visas i matchmodalens "Senaste nytt" (Avbräck & frågetecken), Inför-fliken, spelarprofilen och statistikfiltren. Poster med `manual: true` bevaras av synken |
@@ -48,7 +50,9 @@ npm run sync:metrics # synka betting-metrik per spelare → data/wc2026_player_m
 | `data/news_summaries.json` | Handskrivna svenska löptextsammanfattningar per kommande match (`k:NN`) – de viktigaste nyheterna och diskussionerna i båda ländernas medier i berättande form, med numrerade `references` (källa+rubrik+url). Driver matchmodalens "Senaste nytt"-flik som förstahandsval; saknas matchen eller är `written` äldre än 5 dygn faller fliken tillbaka till rubriklistan ur `team_news.json`. Skrivs om för hand inför varje ny slutspelsomgång |
 | `data/lineups_prelim.json` | Troliga startelvor för kommande matcher (≤48 h) från 365Scores webb-API; `status` slår om `probable` → `confirmed` när de officiella elvorna släpps (~1 h före avspark). Visas i matchmodalens "Laguppställning"-flik tills ESPN:s officiella lineups tar över i `matchdetails.json`; spelare med skade-/avstängningsstatus får varningsprick |
 | `server/scripts/syncLineups.js` | Synkar troliga startelvor (körs var 15:e min av `sync-lineups.yml`; committar bara vid faktisk ändring). OBS: Sofascore ger 403 server-side – 365Scores är den öppna källan |
-| `assets/playerstats.js` | Spelarstatistik: Spelare/Lag/Region/Ligor + eget VM-betyg (10-gradigt, ur events + ESPN-boxscore `st` i lineups, `fmt: 2` i matchdetails). Ligor-fliken har ±Renommé (betyg mot förväntat ur regression betyg ~ renommé) med scatter-graf och klickbar liga → spelarmodal |
+| `assets/playerstats.js` | Spelarstatistik: Spelare/Lag/Region/Ligor + eget VM-betyg (10-gradigt, ur events + ESPN-boxscore `st` i lineups, `fmt: 2` i matchdetails) + **FotMob-betyg** (extern kolumn, Opta-baserat, ur `data/fotmob_ratings.json`, minutviktat; fångar defensivt spel som egna betyget saknar eftersom ESPN inte ger defensiva aktioner). Ligor-fliken har ±Renommé (betyg mot förväntat ur regression betyg ~ renommé) med scatter-graf och klickbar liga → spelarmodal |
+| `data/fotmob_ratings.json` | FotMobs spelarbetyg per match för färdigspelade matcher, nycklat på matchnyckel → `players.{h,a}.{espnNormNamn: betyg}` + `teamRating` + `fotmobId`. Nycklas på ESPN:s normaliserade spelarnamn så frontenden bara slår upp exakt. ~96% täckning av startspelare (luckor = arabisk translitterering + sena inhopp FotMob inte betygsatt) |
+| `server/scripts/syncFotmobRatings.js` | Bygger FotMob-betygen: matchar VM-matcher via FotMobs datum-API (`parentLeagueId === 77`) → hämtar `matchDetails` → kopplar `performance.rating` till ESPN-lineupens namn (`data/matchdetails.json`) med greedy namnmatchare (exakt → sorterad token-mängd för koreanska/japanska rotationer → token-subset för kortnamn). Inkrementell (färdiga matchers betyg behålls), ingen nyckel. Körs var 30:e min av `sync-fotmob-ratings.yml` |
 | `assets/styles.css` | All CSS |
 | `server/index.js` | Express-server + WebSocket |
 | `server/espnSync.js` | ESPN API-synk |
