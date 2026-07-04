@@ -1,0 +1,493 @@
+{
+  "updated": "2026-07-04T11:57:17Z",
+  "note": "Handskrivna svenska löptextsammanfattningar per kommande match till matchmodalens ”Senaste nytt”-flik. Underlag: ländernas egna medier (samma artiklar som i team_news.json) + internationella förhandsartiklar. Skrivs om inför varje ny omgång; saknas en match faller fliken tillbaka till rubriklistan.",
+  "matches": {
+    "k:89": {
+      "teams": [
+        "py",
+        "fr"
+      ],
+      "paragraphs": [
+        "I Paraguay är euforin total efter straffsegern mot Tyskland – en triumf som landets medier redan kallar historisk. Mittbacken José Canale säger till VS Sports att åttondelsfinalen mot Frankrike i Philadelphia ”är en match som kommer att finnas kvar i historien för oss”, och förbundskaptenen Gustavo Alfaro höjer temperaturen med budskapet att de stora nationerna ”var tvungna att korsa vägar med oss”. Tidningarna fylls av fansens berättelser: La Nación rapporterar både om supporterikonen Don Vitos uppmuntrande hälsningar till truppen och om bebisen som föddes mitt under Tysklandssegern och redan kallas ”segerns baby”. Rent sportsligt tvingas Alfaro klara sig utan Matías Galarza, avstängd efter sitt andra gula kort, och svara på frågor om Omar Alderete hinner bli spelklar.",
+        "På andra sidan är tongångarna självsäkra: franceinfo listar ”fyra galna siffror” för ett Frankrike som vunnit samtliga fyra matcher med 13–2 i målskillnad. Det stora franska samtalsämnet är dock Aurélien Tchouaméni, som skadade sig på fredagsträningen och enligt franceinfo löper stor risk att tvingas stå över. Ouest-France har redan skissat på troliga elvor utan mittfältsankaret, och i det franska förhandssnacket kretsar diskussionen kring vem som ska ta hans plats.",
+        "Ett annat orosmoln är vädret: ladepeche.fr varnar för närmare 40 graders värme på en arena utan tak, och amerikanska AccuWeather kallar det ”kanske turneringens hetaste och farligaste match” med åskrisk under kvällen. I internationella förhandsanalyser beskrivs Paraguays plan som att täppa till mittfältet och störa Frankrikes uppspel – precis som mot Tyskland. Oddsen talar tydligt för Frankrike, som enligt franceinfo dessutom blivit ett av VM:s stora dragplåster i USA – men i Asunción påminner man gärna om att även Tyskland var storfavorit."
+      ],
+      "references": [
+        {
+          "source": "VS Sports",
+          "title": "José Canale: \"Det är en match som kommer att finnas kvar i historien för oss\"",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOcEN6amsxUVBzOS0ydXd4UGFybEFHVy03MG85RjhlUEdqVjhOZWtBd3ZMRktZb3Uxc3RZdm5jeDNMWjZHOXlQZHdhUVZkcl80RmcxT2JCYmcwWEJXYmlJSVRsNG1BcVNIU2xoTmxMR0VnSVBTMWxHRWVUaUt6cUpPWEZFSmNXazB0ekUyZDUtZDFoX1REekFUMlNjYVJzQ1RGTk5tV1BfX2k0RGVqX210YjNB?oc=5"
+        },
+        {
+          "source": "VS Sports",
+          "title": "Gustavo Alfaros varning: \"De var tvungna att korsa vägar med oss\"",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQUVlybGk2cVp6WUNWQ0Mxc2o0WjhzLXQ4NTdVUGhKZjczZjF1R2dPempzZU9NeEJuUjNPSGgteDZ3ZXYyNjJZYTZicUpVQkZfeGdQcXo3bTNTQWdhdFQ1U3BFNjE4ZTJsemZqdUx2ZWR6QlRGeGtjVzJJeVVKWjFUZE1nNkRKYWkza3I3NDRNdlRfeWE2TmRNWjFubG02UVpJYU5YTHVZRVkxZ2hUUXJn?oc=5"
+        },
+        {
+          "source": "La Nación",
+          "title": "Don Vito kom med uppmuntrande meddelanden från de paraguayanska fansen till Albirroja",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNZjVfcjh2SDFKRjIwanZNZ2FDRi1CTVFybm5odElVSnRvczVWUWp4bjJmZHVCRUk4cnpwYXd5VlhIQmJweWVyNjlHd0N1RUR3SWUzZnFZWG02UVcxcW5RSjB6U3N0OTl3emtQS3NHNDE5QXZPZXVrb0JkRDJrNDIxVWxMQWV0cVQzQW4zbFkwZTZfMXdzdzc3Uk80Y0FZRVRIM1R4d1YyYUdpWDFQSndtQzYwenJrX3hodlZlalh1VjdMZ1ByeVpV?oc=5"
+        },
+        {
+          "source": "D10",
+          "title": "Alfaro om Alderetes situation: hinner han bli klar till Frankrike?",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQOEEyTTZ3cXZsQ0VtWG5pNUJGNlRxRHJ0TnZxS3F6YkhLNEJUYlBqeW9jLUpyNnpJbHBWeWJsRXJLWTVwU014VUtRaHJxc0JRZURKd0M1LS13TlJlTlM0eUdua3EwOWNaZ0h1SXBocEN4ZDZXTUtLN3dzbS1kTU9nXzA2d3JnUy0zSWlTMmdUQTZnOGV30gGiAUFVX3lxTE1VOHE5bHNSMlNHVmNhN2pkY2sza3dfajhyblI2blVDSE1ibDR2dW45ckQtRFZjLXE1X0JMaHJ6bVBNUUl6N29QeW83elBLYkJ5RGRHaDN3TzlnZ2VmSE9pTGVkNWNyaHE5TGJPQXNTbEk1LWo5YVVwYW03TENZMnM0VHBKRzNSTzFocUR0blpYSTFFU3RIcnN3RGZ2WHZRc1huQQ?oc=5"
+        },
+        {
+          "source": "franceinfo",
+          "title": "Segrar, mål, assist... Fyra galna siffror för Frankrikes lag inför åttondelsfinalen mot Paraguay i VM",
+          "url": "https://news.google.com/rss/articles/CBMinAJBVV95cUxQdVJFalp3bk5NUy16TnN4VUwxM2h5RGlhUVN1LXV1TUp5ZDlzUEVSYWw3cmJodzFSakpSUHY4V0tWSDJOcTFxc1UyQWVHeU5GTVh6dnRyZ1B4ekc0UjBMak1PTkJWZ1JzT181ZFZ1WEM4dXhyMjJtUTJVQlpIcXFqdFJTOGpJbEdLV1JBMlhnY3RobER4cURrUTVEMUNhRmswNFUzR21HVHRMbjdWaml4WkZsX0JqMkhiV1JybFdfM1R2M2pzUDE1Z3JtSjBnZlppcGxIaVJLSUZjT1RSdFMtOGR6d1oxb1YtSjJhVnVacXFOZnhvRjdtTWNoZWxsWFJfaXNIYjFTbGFXUndHZGZncGhiTlNKS1VnMm9BNQ?oc=5"
+        },
+        {
+          "source": "Ouest-France",
+          "title": "Frankrike - Paraguay. De troliga sammansättningarna av åttondelsfinalen i världscupen med Tchouaméni osäkerhet",
+          "url": "https://news.google.com/rss/articles/CBMinwJBVV95cUxNdXEzVUlzai1zc3hfdGhOeGlEOThxeXk4VWhRNHcyMnZTcDB5NklaWks2TGhrV0FRMjFiQlhzX3ItOTNpMGdwVjJZdDBJYnBNdkZVblF2cHZ5Y1hYMTVtTjY3aHJQRmxQZ3o3T3EzMjJhdVNfZW1JU2hDem1zbnZxVFQ4Y0s1MEtKdHcyeHNRMW9TS2JmRktNRmkzS1FIUDJfY3E2eWFvQXNGaFpsWmIzSDJuQXhqM2I3NG5ZbGdDZmFoV1M2NVVTZ3Z4eGlXYlFUSE1qV1Y1MUQ1N1E3cl9GOVp6MlRqTkdsRmVfUXJDNUxtNEVqNUJYT2R5ZzNiUGp2SzllRXV1YnBzdWg4TzRBb3dkT18zeVluNlNLZGwxTQ?oc=5"
+        },
+        {
+          "source": "ladepeche.fr",
+          "title": "Frankrike-Paraguay: nästan 40 grader väntat och en friluftsarena... Vad är prognoserna för åttondelsfinalen i världscupen",
+          "url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNOEU2QmFNTzUyOEhGM2hnVmJIZ1o1Nlk2N3hCMkhIdWJ6WkVGLV9NSVRDYlNqUTc2N0FuMHpncmd1UTE1VHRyTWJ0N2N2UWItc2ZfRkFNSUNWaENNT2QzQ044U245THJpRWtSNzBBNldON3d3RDBCQXlLa1FNRE4zaGJ6NklrNi1UNGNCdUk2bWdGLUEwZDh3QWd3dWNhNlFKVXNJcm5GMmFfWkhrSDVDWEhfQzhqMkg0TzJTc05Qc0pYTEFSblhleVM5bXB0bVZvc0xIbU9oUGdoREtFT0VTY05HaTRyZnp1OWxXQVhyaEFqVUN0X0xIZ25Xc0FpSmFfRVlXbU9VWFNMTERiM3hWaTRn?oc=5"
+        },
+        {
+          "source": "AccuWeather",
+          "title": "World Cup 2026 weather: dangerous heat wave to test fans, players through July 4",
+          "url": "https://www.accuweather.com/en/sports/live-news/world-cup-2026-weather-updates-dangerous-heat-wave-to-test-fans-players-through-july-4/1898671"
+        },
+        {
+          "source": "Al Jazeera",
+          "title": "France vs Paraguay: World Cup Round of 16 – Mbappé, prediction, kickoff",
+          "url": "https://www.aljazeera.com/sports/2026/7/4/france-vs-paraguay-world-cup-round-of-16-mbappe-prediction-kickoff"
+        }
+      ],
+      "written": "2026-07-04T11:57:17Z"
+    },
+    "k:90": {
+      "teams": [
+        "ca",
+        "ma"
+      ],
+      "paragraphs": [
+        "Kanada skriver historia: för första gången någonsin står herrlandslaget i en VM-åttondelsfinal, efter 1–0-segern mot Sydafrika. OneSoccer beskriver hur laget kan spela med ”frihet” nu när VM-arvet redan är säkrat, och hemma har hypen fått Hollywoodförstärkning – skådespelaren Simu Liu besökte lägret och hyllade spelarna. Samtidigt gnisslar det: att slutspelsmatchen spelas i Houston i stället för på hemmaplan kallas ”upprörande” av spelarna, även om bortakänslan ”känns normal”. Förbundskaptenen Jesse Marsch är brutalt ärlig inför uppgiften – att förbereda sig för Marocko ”är som en blodig mardröm”, säger han, men ser en möjlighet i att ”alla kommer att avfärda oss”. Skadeläget dominerar de kanadensiska spalterna: Alphonso Davies har känning igen, Ismael Koné rördes till tårar av stödet efter sin skada och Stephen Eustáquio har klivit fram i deras frånvaro.",
+        "I Marocko är förväntningarna enorma efter straffdramat mot Nederländerna, där Atlaslejonen kvitterade sent och höll nerverna i straffläggningen. Le Desk rapporterar att marockanska flygplatser mobiliserar för att flyga supportrar till Houston, och SNRT målar upp Kanada som nästa steg på vägen mot något stort. Le360 har publicerat den troliga elvan, men frågetecken finns: Chadi Riad är osäker och förbundskaptenen har fått försvara en ifrågasatt Brahim Díaz. Dessutom är Issa Diop avstängd efter sitt andra gula kort i turneringen.",
+        "Statistiken talar för Marocko – Opta ger laget drygt 50 procents chans att avgöra på ordinarie tid, och Kanada har aldrig slagit Marocko på fyra försök, senast 1–2 i VM 2022. Bland marockanska fans lever drömmen om en repris av semifinalsagan från Qatar, medan kanadensarna mest verkar njuta av att resan fortsätter."
+      ],
+      "references": [
+        {
+          "source": "OneSoccer",
+          "title": "AGR: Med 2026 års VM-arv säkerställt kan CanMNT njuta av \"friheten\" i åttondelsfinalen mot Marocko",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQdG45YWozUmM1emtTbXpIemIwMjNYb2xrZ2RpOEZmZmZYaGZBVHF6eDJNVWNPTHIzSVVUUFAtSGVZcEU2bHlyRkc3UENEZVdETmdLaXdjVWRQU0EzQnlaWS1jdnBXMVplc3hhdUV3TlN0UV9hZHFFemJmYnl3OHhtMmt4eHJOdGd6dFF3czcwTW9PUWRwYTRJN2QzaGRqNDNHSGlyMEJJYXZVTkN4V1dxUDZyRUxvNldGbHVkcw?oc=5"
+        },
+        {
+          "source": "BVM Sports",
+          "title": "Att inte vara i Kanada för VM-utslag \"upprörande\" för CanMNT, men att spela på bortaplan \"känns normalt\"",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQa1BtbEpMS1hXOS1DWVBlR0F1SEFLVGZ3ZXpmT29qaHdHckdiNG55Y1hieGU5SGJXRV9EMXpKdEhBb1lFdFkxc0F3Vm9VMjRXVDJHQWl5V1l4aTdhTFJEU1BhbEEtcmFmREJuNVFsaWN3VmpaVXRzcUJzQ0FRdU1MTEd0bWQxZlhjelFfaWdVcVctYTFYdnF4aHY4UEUwRTdNQ0lnVGpWTzA3UmV5VWNjMzExVVc4QVJZVEt5OG1YSE1tMnRRQlpkcTQ0SjZsVmdDRjlrdw?oc=5"
+        },
+        {
+          "source": "Canadian Soccer Daily -",
+          "title": "SE: Hollywoodstjärnan Simu Liu möter CanMNT före Marocko-drabbningen: \"Du inspirerar mig så jävla mycket\"",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQZnlYVEpuUUZ2WDRMN0djbmxqWU9LVktZTjlMTkE0SW5Dak53Q25aaFlvYXl1QV9UamhwclRrMFZtVlQwWHpMSUtXTnE3ZlBLbk1nQmlMSmhXY0ZHNGptb1U1YUZfRF9HeGgwUWpHUmxmNjlLUDdLMHpXM0c3R2JNM0J4bTdHRG1sMi1GeFlpWC1ERHg2NnVGTzNHVVdIQkdLR0x2RUNSNmlZb2dlSjZDUVhGa1IwSFEzMnRoR0Z5VGswd0FOUDA0SzJUMWFXdEU?oc=5"
+        },
+        {
+          "source": "Le Desk",
+          "title": "VM 2026: Marockanska flygplatser mobiliserar för Atlas Lions supportrar",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOemt2V2ljSHlEYk5veEJLUm9hdjRXYWxWcjQyTWZOeTY3MkJwMFMxVGZqN0JYdUNnTkdkdkhLcFlULUk5VDlWMU1WNEMzTndUUk1ZWGFQdTIzVkFjWkdaUU1LMXdhQWotMkpCWnB2M05VcEhlLUprU1lwSVFrWGZ3ZnhTSWlINEdWSGV5WlRob1VFOEFGb3JickJkYnNCcVItbmtHby1XQzNsYWJNSXZOXzd1bnJuclFYX1hB?oc=5"
+        },
+        {
+          "source": "Le360 Sport",
+          "title": "Marocko-Kanada: Atlas Lions troliga sammansättning",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPUTloTkdzYlNLSWZzWEU4MVFGb1BnaWVCRTZOZzg1dFQ0QnlfdnItcnd6ekNqVUVraGlGY1dGS1RzVW5wQlEyN3NzYmx6VlhlSlg4MU00QkQ5SHA0TlZvdU9KT1pheUdqQ3Z6LW5hOUVYS2JHb2NrUm1TOUN4U09YNW83cEVieWk0WlUxNTNxVUlhM1RNUGFoeFJiZ3VFXzJRVHpZYk5OYzlqLXBhQ2lhMmdSUS16Szg?oc=5"
+        },
+        {
+          "source": "SNRTnews",
+          "title": "VM 2026: Atlas Lions står inför utmaningen från Kanada",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPLUQ0ZkphdzMtNWx6YTZUYnU5RDR4dE13ZnhNczRaN0pISVFEcTc0YlFOVUNWRUVLS0NjeHd4ZXdLRXRveVQ3WVFqa0pwN0VXZnJLZ09jd29ac29KcUpCNnBIUzNUVUoxU3dyVE9EaGhMWXBXTl9PcTM0NDJFalJQVXozRDNWUDE5WEh3SnNxS0tqMmhDNkhJ?oc=5"
+        },
+        {
+          "source": "Mountakhab.net",
+          "title": "Marocko–Kanada: Chadi Riad osäker, Ouahbi försvarar Brahim Díaz",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNWnJVdm1iUmxfdUl5c0Z5QjltVkRPUTdNQU91NzRFd3BhREZiQWpadWJ4NUpuNGpMNWlCTlpzWVNfN3U0ejdlRHJ1T2xVRk1WbEc1RGxydDQ0MXBtU3pFTXlFRzZhcEUtejhyRWhBTFNWLWZrcjY5UW1JWGpBeFRwR0xnaW1mdnUzWlc0?oc=5"
+        },
+        {
+          "source": "Al Jazeera",
+          "title": "Canada vs Morocco: World Cup Round of 16 – Saibari, prediction, schedule",
+          "url": "https://www.aljazeera.com/sports/2026/7/3/canada-morocco-fifa-world-cup-round-of-16-saibari-prediction-schedule"
+        },
+        {
+          "source": "FIFA",
+          "title": "Canada v Morocco | World Cup Round of 16 | Match preview",
+          "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/canada-morocco-live-stream-team-news-tickets"
+        }
+      ],
+      "written": "2026-07-04T11:57:17Z"
+    },
+    "k:91": {
+      "teams": [
+        "br",
+        "no"
+      ],
+      "paragraphs": [
+        "I Brasilien handlar allt om Carlo Ancelottis pusslande inför åttondelsfinalen på MetLife Stadium utanför New York. Casemiro är avstängd efter sitt andra gula kort, Lucas Paquetás skada från Japanmatchen hänger som ett mörkt moln – enligt flera medier riskerar han att missa resten av VM – och ESPN Brasil rapporterar att Ancelotti testat Martinelli i startelvan. Ett glädjebesked finns: Raphinha är tillbaka i gruppträning enligt ge, även om han knappast startar. Hetast i det brasilianska mediedrevet är annars Neymar – Ancelotti medger öppet att 34-åringen ”inte är nöjd” med rollen som inhoppare. Terra bjuder dessutom på ett klassiskt brasilianskt orostecken: landslaget har aldrig vunnit med domaren som dömer mötet med Norge.",
+        "I Norge är folkfesten i full gång inför landets första VM-slutspel sedan 1998: statsminister Jonas Gahr Støre ser matchen på storbildsskärm i Arendal och smp.no skriver känslosamt om ”när Norge hittade lägerelden igen”. Nettavisen sammanfattar budskapet till alla tvivlare med den kärnfulla rubriken ”Håll käften, ät glass”. Erling Haaland har gjort fem mål i turneringen och blev förste norrman att göra flera mål i en och samma VM-match – men ABC Nyheter hävdar att Brasilien fruktar en annan spelare mest, ”och det är inte Haaland”.",
+        "Historien ger norrmännen extra bränsle: 1998 slog Norge Brasilien 2–1 i VM-gruppspelet, med nuvarande förbundskaptenen Ståle Solbakken i truppen. Förlusten mot Frankrike (1–4) är enda plumpen i ett annars starkt norskt VM, och Opta ger Brasilien bara drygt 53 procents chans att avgöra på ordinarie tid. LANCE! noterar till sist att FIFA i sena skedet rört om i avsparkstiden – ett irritationsmoment i båda lägren."
+      ],
+      "references": [
+        {
+          "source": "ESPN Brasil",
+          "title": "Brasilianska landslagsuppställningen: Ancelotti testar Martinelli och väcker tvivel om Paquetás plats mot Norge",
+          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOTF9FYlQ5U2w5V3d2akpOYzFTTXViblJCTUZnQjU0SmtlYWFlMWdGM1J5MWl3VGRLMHNKQmNOWFVicjh2Qzd4MmFqdnhRYlYtZy1mNElPMDllZXJ6UXNsRTVNTXVKeEVQRThqU05IRFFpZ250ZUpra0VzdFIxa3IyOEowS2ZhVjJLcjR1TXR6bFlJUnBHSTd1MHdBaWZ4Y29mSXFCMnFmR0F3R2F0YUc2ejJPQ0Z2UVl0eXVQT1UwTWJwci1vS1F1Z0w1TFVneTczWHZnWkhHaFI1YlVqTm41emVBWDA4UlNFRW56d0NR?oc=5"
+        },
+        {
+          "source": "ge",
+          "title": "Raphinha återvänder till Seleção-gruppen på träning inför Brasilien x Norge; se trolig laguppställning",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNdHN4ajRKTkZnNkhXTm5hb0FuS1BMZVFDT0tlWVNPYk8xbzZEejc1NUY1bU1UT3VCMGZlT0EwT3lEanlDM0dzZW1MZWRlQk1FVGlmZy1UQ2x4YkdMUmtrSHhZZUhRMXhEQ1FYUDdMTjMzUzFjUFlvVnFGZVJVV0M2X3VwaEhQMnhySGJwNThQQXdHSlJfM2VBdVZJSUJ3LS14aGQ0dTRrM2taenNfZlBwRG1ERTBDM2t3ZmxidEh2VnBZUdIB0AFBVV95cUxOb2gzbEhScG91dTZjam5hMlhoZ2ZXU09hT2o0ZzBYSDVrRGlVcWlEWFJTYjZFQTVhRnFmX3I2V1gwQy1oQUt0SEh1N2lmamtyZlJzUjMxUkViRGRYang1REN4VDRZMWdCaF8zdXBodkRwZ0I1QkFMU1I3eUVNcjY0YmdwallEVFotQzg5YWJaYUFqOUVRZzRrR1JNT05xTjRIcnFoUkstS0llcUtLRDY4ZXB3RjltZFczWlVRcGxoU1J3ZEVRZ2hFeERvYW9mb1ZD?oc=5"
+        },
+        {
+          "source": "ESPN Brasil",
+          "title": "Ancelotti är ärlig om hur Neymar hanterar reserverna i det brasilianska laget: \"Han är inte nöjd, men...\"",
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOVFp5TklVMTRhNGczM0NaZWp4WHZOdlAwWTk3Y1hTdlV6ZmxRMEVEbjI1VUdnb1VnTkNiZnIyLUdlenpJYUxzaERqblNWU0ZaanEwMFRwM0NhbXVwcEEtRndFN1lqNFVBMjJpRDZnS1c4MDVrSkpCNmx3OXlXLWxtaHJnajlxTG95QnhZc3FmSWgtRjNjR3dCZmpfMU8xNWFNNTVSbjRHaDJkd29PMmhVeHdXV2hOMDJFU3VlRnd3RDlhSXhrQTNkR0dxaXV1U0pVTU9JY2ZMZUlTVWZNLTdrbWlURHdTT3pGek01Sg?oc=5"
+        },
+        {
+          "source": "Terra",
+          "title": "Det brasilianska laget har aldrig vunnit med en domare som visslar för Brasilien och Norge",
+          "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxOc1pNSmFJTkY0T0hwUlpCcUdFUUFrRVlHaE11bmVHQVZFVmlyQUl4bEtMUTB4eTFRSXM3SGN2RFh2ZDUtWmV2cGRaSGNjWGt3MTlDcWV2emkzUFF3YUs0NnhxWlBVZTZyYkxkTDZXOTFndTN6UExXcWNibHdqZ2FkcHZjcl9JQXNvczJ1czM0R01vYWk4dnlNWkpSUG1tcldkMVhJRmhpQkFpalAzbnl2NkhKT3ZfbkNkNWl6cHJNTVdQYVFhWFJBejFMZXk1TEFKT252MlZMOVliOUZVVnItUmpDcUZUSzdTclY5bVY2bndfT3pINFhNaFBxdDE?oc=5"
+        },
+        {
+          "source": "LANCE!",
+          "title": "Brasilien x Norge kan ha ändrat tiden av FIFA; förstå",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNdTVGYkZLMHZLLTFaN2o0OGVlWXo1a0lFLVFKRHpQRzZyckpmV0JJdl9vdWQ0VDRGaDlmQ3V0TGI0dUlTMURSbVJMTk81S3ZIWlo5Uk1xNHZ1MmV0WXotMXNpWDhOcGxlcnJXcUFrLVpXRnY4NjdkRlFFX2Q2MkVub29DbUJJMnlTMy1sSi1heDh3c28wN2F3eldyb3FKeURyblNwREstRExneVYxM3c?oc=5"
+        },
+        {
+          "source": "smp.no",
+          "title": "\"När Norge hittade lägerelden igen\"",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5DUkpGcVgzem80ZWpEa2dUcUYtY3EtUk4teHFMa1F4bk5kWThEcl9BT1ItQmhtWE5JdE9BWVI5Rkh3WjFnVjh3RFRMTlVzeGcwYmJpaWlpN2UtaGozcTVHdlhLclhWRkxMZDNrTF9YbkxpSkZBSDctVWZWOXpFQQ?oc=5"
+        },
+        {
+          "source": "Nettavisen",
+          "title": "Håll käften, ät glass",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPcWVyYWhhWTE3NnctSExtMDNxMnpoU0VzcFgwbDRVNzA2azdueFYwbVZqMk9vWVhHRG1QZnVWQmFpSGRLZU01T1ZVc0NTVlRBdDVNN2pEdU1zQzlySTM2SC14ckdFTWZ5TGQyMC1oU21uak0xMHphVDdNc3ZfWjNNSTN3bHNfdW0wQUF6LXUxYzRSSDdUZW1uUldhRHhhNWIzNFR4VVBfb1pZdUNGelV4TVNB?oc=5"
+        },
+        {
+          "source": "altaposten.no",
+          "title": "Støre ska se VM-matchen i Arendal",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNcWZfeDJiVHg4MkVTTEw2UGVLeGxBdjVtUGlGR0xzaTRpRlUydEl2eUJsSUU0WTVnbEhnTVh2aUUyMjdEN2laUWMzMmRNSkZGenU1MHlwX29WSGs4QUI2THF3bDIzd2N6aXpMekpOaTVVa0kxMlY0YlR0al9LZDVFWUc1YmwtcW0t?oc=5"
+        },
+        {
+          "source": "ABC Nyheter",
+          "title": "Brasilien fruktar en spelare – och det är inte Haaland",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNdlpxOGNacTRCNXBfYTVmZmNBLW10UV9WM18tTmszOEdCMHVyZTVYU3dLcnhjbmFRRy1pdjZkYW1CSTJ1WEJPNWd1Ql9ZWVl1V213RXBFNUR2R1dib3QxNW16M2Nsam1ibnAybXIyZFRzNnZwck9rUTgxbDdETnlPTXZFSUpNb2tqNjNEWmpPS1Vnc3JRMS11Q3hFME5pT1IyelN5TVR3?oc=5"
+        },
+        {
+          "source": "Opta Analyst",
+          "title": "Brazil vs Norway Prediction: World Cup 2026 Match Preview",
+          "url": "https://theanalyst.com/articles/brazil-vs-norway-prediction-world-cup-2026-match-preview"
+        },
+        {
+          "source": "Goal",
+          "title": "Brazil vs Norway FIFA World Cup 2026 Preview",
+          "url": "https://www.goal.com/en/news/brazil-norway-world-cup-preview/blt6910d0cef5c2220b"
+        }
+      ],
+      "written": "2026-07-04T11:57:17Z"
+    },
+    "k:92": {
+      "teams": [
+        "mx",
+        "gb-eng"
+      ],
+      "paragraphs": [
+        "Värdnationen Mexiko möter England på ett kokande Estadio Azteca – och upptakten har varit allt annat än lugn. FIFA övervägde in i det sista att tidigarelägga avsparken med sex timmar på grund av risk för åska och översvämningar i Mexico City, vilket fick förbundskaptenen Javier Aguirre att fräsa att ”det är ett slag i magen”. Efter samtal med båda förbunden ligger avsparken fast klockan 18 lokal tid, rapporterar ESPN México – klockan 02 natten mot måndag svensk tid. TUDN frågar sig rentav om hela tidsdiskussionen gynnade El Tri, och MARCA:s mexikanska utgåva retar sig på att engelsk press ”minimerar” Mexikos obesegrade svit på Azteca.",
+        "Thomas Tuchel medger att värdnationens höjdfördel är ”enorm” eftersom England inte hinner anpassa sig fysiologiskt till Mexico Citys 2 200 meter. talkSPORT riktar samtidigt strålkastaren mot en kontroversiell domartillsättning och oroar sig för konditionen hos både Declan Rice och Reece James. Morgan Rogers hade helst sett en tidigarelagd avspark – ”bättre för oss”, sade han till Football365 – och Metro påminner självironiskt om att Three Lions-hymnen ”inte handlar om att vinna”.",
+        "I Mexiko sjuder det av självförtroende efter gruppsegern och 2–0 mot Ecuador, men det finns frågetecken: både Roberto Alvarado och supertalangen Gilberto Mora dras med skadekänningar. Utanför planen har spelarna fått lämna tillbaka lyxklockor de fått i gåva efter en kontrovers, rapporterar Mediotiempo. England är redan på plats i Mexico City, och Sky Sports ritar upp vägen hela vägen till finalen den 19 juli – men först väntar häxkitteln Azteca, där publiken lär göra allt för att förlänga Mexikos VM-fest på hemmaplan."
+      ],
+      "references": [
+        {
+          "source": "ESPN México",
+          "title": "Efter samtal är Mexiko-England kvar klockan 18.00. (CDMX): källor",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQdEdWVmFhQlFzMDdNOUJhT3lQZU4xM3Jqa1JpSU5vclhHNHoxYU5fSzk4QTA1dEIyUld5aDR3QmFjc1h0T05UV1hUWkJYcEN2bnZoUUx1ajh4bC13NzZMa1dWdlBXc29oVkduajM4YXg2eXVvSVV2NlUzVmphVGxCYjBNZjE3YjBtUmc2bklRZGRWMWREanMtSFcxVzVGYXdLNUotSkc2UVRuT0hyRUhTV2xNZFQ1c3lHS3JfVnJweVI?oc=5"
+        },
+        {
+          "source": "TUDN",
+          "title": "Mästarna | Kom tidsförändringen det mexikanska landslaget till godo?",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOSnRwazE3aW1JeEZ3a3liNDNDbERjUUVZcVQzN3RPeVJMYlk4R240SThOWFR4NUQyQ2ZCV3BnYkRQUmJCMllqdkhoT0M2NmdpeFdEaUp1REtYUEQwT3JHNnVYV1Ewb2ZGa05KaHdYM3J4WFdNQV9OcFY0bFhBZWl5OFpOcmhwdkVTVkZBT0MtSjB3VlI4VWtxOVNJWm5GTGlRd09BdE55LXpJaEwxQmc?oc=5"
+        },
+        {
+          "source": "MARCA",
+          "title": "Myt eller verklighet: I England minimerar de det mexikanska landslagets oslagbarhet på Azteca Stadium",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNeXZMYzRrUTZYMVM1RGdJeUd3SzlwVkF2ZkJScXFGVXJCN0FuZE1aQU03OGtnbk96bVgzXzllM2JPQ2dSU0EwWFdVV3VEbzA0bmRRTW00c0hjQkVTVlZOdnhWZWxCSHJZNVFkMDA2cTczYWcyeXR2Q2h4Z2lWM3FJaWhYemtHOVBSVFZwNVBB0gGOAUFVX3lxTE10TndTNU4zd21PM0ZFYmYtT20wbjRILW9zcXRlVHRpdlFnd0VISVk5Q2VGbEV1NEx0R205UnFyWi1INUJoMnY3VGVCeUJ3NkxOQXo2Y29UMWwzQnBlalpKckNEclNVRDNpY1dROFBSMkJMLW1wMmozbkQ5MVI2ZWVsTGliNHVrand2NTVwNWc?oc=5"
+        },
+        {
+          "source": "Mediotiempo",
+          "title": "Spelare i det mexikanska landslaget lämnar tillbaka LYXKlockor som de fick i present efter kontroverser",
+          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPR0ZNVjZqX2dzX1g0TnFuRERObEJyRF9nTm1pMG9RZTlhSmxLd2NReW1wSlpka2ZKZ1VwSEVDTTB5ck8yLWVTbGtNeVBLTHJ3YV93UHFQVFVtaVl5cVZPYlVmazRENUl6RmNOYXZHOUJqU291b0hxQW84LU5uQWl0OVN6V3RVb3k2M0JrVHRaX3M3azZYMWFhLWVwMGhZdm94ZnE1ZE5mZTBEWnVITkduZDFrZ0JoeW9BZ0MyRUpNcU1iMTcxUVdNWUUwTkpsbGlvZFBHOUhR0gHWAUFVX3lxTFBxQk1jT09HT2xOZ3NqQWNXVUNNTG1idWNqMUJGUUx3ZEFrZ0k3VUZEUWpUZUVzaFpzNkFuRXBrZmFULTRVT2M4N1hWd2JRSGpNMlZ2X2ZMOVlKMGlhZVFtQ283SkxrOXJOR3YyZkdaYy1kYWJsUUhTU2pKQUZyMF9VdlVIOHhTTzhxYUkxSXVHX0l0VHJVQlNjbnZ4SzRPQTRiMGh4dTNaTFdVLURGUm1JLUszS3dkbE5xa0ZwNWhxd2JYVWNXRHJtZW1Ec2V1TnVUT1NFSFE?oc=5"
+        },
+        {
+          "source": "talkSPORT",
+          "title": "Vem är domaren för Mexiko vs England? Kontroversiell tjänsteman sattes till ledningen",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQVFpMemFObzhRcThXVmFnQnltSld2Nk9fS28zaUtRUkR0bTU2ZE1nV2VYT2R0bHp5UUtKYWJmTHBqU3ZicEcxUGlMVGo2eHJiektNS1ZIOTdTSENmOXAyQlpkWnEtV0dUV2p4dWFKZFFtVUk1akZDc0sya1I0VVdnNDZxdFdGQ2VnNGJwVjZNX2Z4aWN4MzdGU1BtUWFEZElKR0x6VEZaSUNPWnlwdEE?oc=5"
+        },
+        {
+          "source": "Football365",
+          "title": "Tidigare avspark från England mot Mexiko \"bättre\" för Three Lions, anser Morgan Rogers",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNWFRDX0Y3R1VHNVhuMEU3SFJMWkFjWDBvVlF4NGtjeTMtZ3RKTGpaeS1SeFpQTFh6VEhHRnBzQWZLWHhwM2h1ckFydFdOeXBtRlV5QVoteHBMWTZoVnQzNGVSNnVUOGY4ODlsaVdhUWtNYlJoMTl6cW5HLXNoOFI5MEZiQ01xV09saFA3VFlSc2tzVmZGVjF0bmpTdkFFT1dqT1BVbw?oc=5"
+        },
+        {
+          "source": "Sky Sports",
+          "title": "Englands matcher för VM 2026, spelschema och turneringsväg till final – hur Three Lions kunde lyfta trofén den 19 juli",
+          "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxObHV3X0d5RVdiNXdRWjlPbHdocFhQSUxqNXpTUW9DV3RGZUp4UlZMYUJ0Z0Jvb01JZHJOS2xBeTJqMVRPbDQ4Ym0xVVAyZTZFYlFkOFcwS3VvaHZmY2pja2pYR2JDLUMyc3BHR0hacUJsa08ydkx6dU1PZ0owUER4eEkyT2xuNXo5eGRmQ1FsY0pNVm9JN2ZYX1RXczZZZ2RXY0VTYllPT25ycXNQUjBsNTdDSXYxMDVxdDJ0YTk3d3dvTlRjRTZoemVYdHFabUR4MnFCbTE5Y1dOcENlR3VYYUZ1OUNMNU0wQ1V3amM0Yl9pa0M4aEt3LWRIemlIQ1ho?oc=5"
+        },
+        {
+          "source": "talkSPORT",
+          "title": "England sweats over Reece James och Declan Rices kondition",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPaVBpRjdHSGlBNDhxd2daTEhtdU5vR0ZVU20yYkhWdllkdndYblZjU2poYzNwazV5cnBYOGJ2ZUJIUWVrRTZqSWhValExZ1ZNa2lrb3hmdVNOTXdxNG9ZbDlIMWNQa082eElBVFdOcDJWMFRBeTQ5RnpyN2hTLW14TGFvcUlNVUc1ZnMtdkhTVW5ScS1pNmhNZEs5bWtYRGl1TnZNMDJuTGRhQQ?oc=5"
+        },
+        {
+          "source": "Al Jazeera",
+          "title": "England vs Mexico World Cup knockout match to go ahead as scheduled",
+          "url": "https://www.aljazeera.com/sports/2026/7/4/england-vs-mexico-world-cup-knockout-match-to-go-ahead-as-scheduled"
+        },
+        {
+          "source": "ESPN",
+          "title": "Sources: Mexico vs. England World Cup kickoff time unchanged after talks",
+          "url": "https://www.espn.com/soccer/story/_/id/49260497/mexico-vs-england-world-cup-clash-brought-forward-six-hours-sources"
+        }
+      ],
+      "written": "2026-07-04T11:57:17Z"
+    },
+    "k:93": {
+      "teams": [
+        "pt",
+        "es"
+      ],
+      "paragraphs": [
+        "Det iberiska derbyt i Dallas är åttondelsfinalernas giganternas möte – och en repris av Nations League-finalen 2025, som Spanien vann på straffar. Alla ögon riktas mot generationsmötet: 41-årige Cristiano Ronaldo, med tre VM-mål hittills, mot 18-årige Lamine Yamal – båda utsedda till matchens lirare i sina sextondelsfinaler. Portugal tog sig vidare med blodsmak i munnen när Gonçalo Ramos nickade in 2–1 mot Kroatien på övertid, och tongångarna efteråt var tydliga: ”VM börjar nu”. Truppen har förberett sig i Toronto, där Ronaldo också hann hylla Luka Modrić – ”en fotbollslegend”.",
+        "Spanien har ännu inte släppt in ett mål på fyra matcher och avfärdade Österrike med 3–0 genom Oyarzabal och Pedro Porro. EL PAÍS lyfter fram just Porro som Lamine Yamals nya allierade på högerkanten. Skadeläget oroar dock: Yamal säger sig må bra men vårdas fortfarande efter sin smäll, och Nico Williams skada från Uruguaymatchen kan enligt De10 Sports äventyra resten av hans VM. I Portugal är respekten påtaglig – El Debate återger hur portugisisk press ”fruktar” Spanien: ”se upp, den röda furian har dykt upp i sitt andra VM”.",
+        "Spansk press kontrar med lottningsanalyser: heraldo.es har redan räknat ut vägen till finalen om La Roja fortsätter vinna. Matchen spelas på AT&T Stadium i Arlington, turneringens flitigast använda arena, och i båda länderna beskrivs derbyt som en final i förtid. Statistiskt är Spanien favorit – men i ett derby, och med Ronaldo på jakt efter sitt sista stora VM-ögonblick, vågar ingen räkna bort Portugal."
+      ],
+      "references": [
+        {
+          "source": "SIC Notícias",
+          "title": "Landslaget börjar förbereda sig för matchen mot Spanien i Toronto",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNMEJ2bDFUV3dUaEFDLUpoTjF1ZW5zTzNHM0xGcGVYTkNGeVRlRDJ3enJaa1BtSHJ2YU9rcjhLbTZsZmw5ckFyTXVxRU0xMXpIMnoyZ3E5UVJKaDlsblJKWjBhREh6MUlmLVlpcHZJS1FLaV9kR0RZZmthX3gzZ2J5NHpuUWpSclhPeTJ1NzhRRHg0Z2loMkhtNUJfWlpXZ2RMUnQ0NlZnb3Y2WDk5Z0hRM25FNWRLekxjR29QaUZVdkh3V25GdjVQakpoNks3MmxNQzBkb2hkUXlyOXdCUkJv?oc=5"
+        },
+        {
+          "source": "SIC Notícias",
+          "title": "Portugal-Kroatien: Urval anser att \"VM börjar nu\"",
+          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQbno5cUl2YTd0MXNzNWFRc0RMSWRZZEVwbzlFelJDSjNPamlVYzJSSTF6THhlajNFM0VUcmk4LWxGU1ZYZ3NxQVhfcXBTR3d1QkFOeVZDakVrdlNLa0xMWEotMDkwSEM0UFZ4b0tOQVZOZkRFRmNUZU51Nl9yT2pLWHZLZHVvRVphYTF2alU5T3JsaU5CamlOWFZ5dGZCRzhQUFl4bnhTY0kwOHluX2ZmUHpwMFZuSElHcUtwTW42ZVdYbE9sczNpQVV1Y1lBUkFRQ1BPSzM5N3BDOUM3dWdPSmtHLXk0WEgw?oc=5"
+        },
+        {
+          "source": "O Jogo",
+          "title": "Ronaldo: \"Modric är en fotbollslegend, jag hoppas att han fortsätter att spela\"",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQZEl4UFZITndRLTJONi1BZHExZzNUNkgwSkZEYUU2c1ZKdG9pb0t1bmh5X3puQ2dKcXNVRno5MUNfbmhtNndNaXBCOFdSSGVzVnVlOWdiaTV6a1Q3bTdJM2h1YlBVVlE4TVlhNnp6U2ptNG9MeGNJeURpekIxNWJEY3ZlRjBFWWZ2cFI0OHdSSDc3c2xWT1l3TG5wVlo1WDN6RzJhUnB5OWZMUnkwLTNrMVl1UmZzT2PSAaABQVVfeXFMTlY1R2t3QmY0TjQ1RUlNVURFbGE0M1NvNzRwYi12Q1B4SGFwX05lQVI0OWRtRzNiS3lrZktEV05BWk40bjA5WTVXTmZLX1IzMTQ3NDIwc09aVy1vempjUlc3dE9UUGlHY0huUUtNZWk0MERLa1Q2S1hjeHk2VFg2VFZCaE1mMnBoaHNXVXNGaDJNWlhjall1ODFnRlo3b3drSw?oc=5"
+        },
+        {
+          "source": "EL PAÍS",
+          "title": "Pedro Porro, Lamine Yamals nya allierade på högerkanten i det spanska laget",
+          "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxOSkpRUGcyOXBaenU5LWlhLUdEdGpnQlZYZHNOalg5d2lVeXBucHpDNHNqUXRWbEtuQnlYN05HTmxORmdYbjFEXzdRWnRoN2xhQzkxN0h3M1NpYVRTUHNHdmVoNTI0S2tQWjlUZ1hmOG50aUVNblNnVGVCaVBxbUd3UGJEV2ZVRjBRdE5UaWN2VThEMG9CS0FVRGo0UWJIcTdsUXU3R2NCdEJIeTd6RTRVY3FSeF9sOHowUHVNT1l6SDZEUWtJQktaU29VNFRLMG10dFhhbjdlY25jQ3hkR1o1b3NYekF4TXFCYkdKX01mVXVhMVIw0gH0AUFVX3lxTE5KSlFQZzI5cFp6dTktaWEtR0R0amdCVlhkc05qWDl3aVV5cG5wekM0c2pRdFZsS25CeVg3TkdObE5GZ1huMURfN1FadGg3bGFDOTE3SHczU2lhVFNQc0d2ZWg1MjRLa1BaOVRnWGY4bnRpRU1uU2dUZUJpUHFtR3dQYkRXZlVGMFF0TlRpY3ZVOEQwb0JLQVVEajRRYkhxN2xRdTdHY0J0Qkh5N3pFNFVjcVJ4X2w4ejBQdU1PWXpINkRRa0lCS1pTb1U0VEswbXR0WGFuN2VjbmNDeGRHWjVvc1h6QXhNcUJiR0pfTWZVdWExUjA?oc=5"
+        },
+        {
+          "source": "El Debate",
+          "title": "Den portugisiska pressen fruktar Spanien: \"Observera, den röda ilskan har dykt upp för sitt andra VM\"",
+          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQaTRwbTAzRFU5Z1lwdWh6c3N4VlZ2c3h2eE5sRXBkSnNxNEt4TWFubERhNVdJdXpNUEJtVWR0WUJRekt5eDVyTWN1Yzd3NVJ4RGYxbzA5Y2RSbVdhTEg0YlRVNFh3eVVEOGFaMzlIamFTdUt3M2phU3ZJSDN4enF4RjFrek9VMXNMRWUzbHoyYWtka3V3bnlfSEszQ0N5QTlMcTQ5aktzRmszdl9BbGVCLXh6UVNlb0ZiMjZ6eEM2bF91NUtOWmRjb3laazF3aGxqNlZBYlFpZTByTkhyVVR1cFhyeDLSAeoBQVVfeXFMT3c1aFRlaFptTk01S0hCNHBiTDREY1Rib0xfYkl3MkMtU21nTXh4NTZmNzdENGZnN3lOdmpGZGRBVzROTkhjelhiNndfS1VReFZ2bkphOEFoMW9KZU1HZ2dEeVJCdW1mTC1wZzV5RzQxdWF2Sy1mVkotMmt0VEh2WTNYVWlxYjk4UFNCaEhHUGFoeXRCR0FEWC10ektyYV9zaTJoOGlxd3JvNFdwMk15a3BhbmtmVC1lQzdXLU9tbExLWGZmZ1hUSkFpaTVucTFhMHkyeFNiRUJoLWdOaFdyODZSUTJ3NFJmbjZ3?oc=5"
+        },
+        {
+          "source": "heraldo.es",
+          "title": "VM-lottning för Spanien: vem kommer de att spela mot fram till finalen om de vinner sina matcher",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNLWFia19yakNVOWg2ckdrckhKdFBTRDMtWS1LOVh3RWh4MzBld0V2VXppcXN1MGE1UFkzNy1rU0hMYW0yUmVtOXN2R1FSbEdZMW1ydnVDcjA4eXJmYk9XVFVReVZVaDdBUXRhOUFPOGNkVkk5WnlPQUUwM3ZIZy10eTVWRElRR2dhMVlmSE50RG5ZUXNlNkhhZzlKbWZsdXZ2RFpXUHgyMzJZVERRdFppQ1dfalVnSEVpYjVtLWtLdjJXVU51V3RrQnVmYkZrUdIB0wFBVV95cUxNeTh6bkZCZTdiaVhnLTNiX3dhS1FlTWZmOENhSDVELW9UOGdsVWluYzFHUnBndUgtMUhTbnh3eXRJa1FkTHUtU2liRHpfZGJnblJNeWNwNnBuMHkxb3VqUFY1RE1Hd3FDQUZiNmg0ZGtHNnFsY3FrNjBhSXMtTS1UMGlrQ2phR1RBLUxpVHo5QUNGcmppYVRraDdkVDRxdTRjZUZDaGdnTFprY1pkcklnSVpDUm1XdGdjX0IwY2VEVWVoRURrNWUtenRNM1BhVVJJTl9r?oc=5"
+        },
+        {
+          "source": "De10 Sports",
+          "title": "Nico Williams: allvaret i skadan mot Uruguay avslöjas",
+          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNOFdBR3JvWHVIQmkxanlwOTQ4MWoxaXhDR2daWmZyN2RjaDBxUFNlVDJRR254b2FFNXZPZGR6S3VaRW1tN3FWa01kclJScnZ1a3RwWkE1cU1vbTFMUTNNSkkyTmVzTTJHX0R6QW5nblRuSWl0RjlTVUZuV3U0aXlfS0xuYWp1NS1EMmIwUzhJRXlBckxUV0ZmWWFSYXZLS19FMjNwTS03Q2FjMkgwaklDUENDclE5MTl6MWRhb0xRb1RCeEZqT0xjSmd4cnlyby15XzZRX1hn0gHqAUFVX3lxTE5xTkVIU1RlOGZpZEktekc5US1KaTUyNlZoeFlZMUduUkpJVGlJM2xEbXBxaUpNalpVTVpvRnZjNk91N21WaUxULU5IYXVCYXlud0hvN1hwdnMtYTNzWllMVkp4S29pN0hOS05LREJmZEZ4bnl3a3ZjRC05TTFEanJfb3IwU1RlclNLWVUtakg1VlFrcXk3YzdrYlZWNHlFLTF3MHRuVGxvNDNjNmZPNlplckFYRVU5LXJUSzRVTkVySW9rWDhfMjdhQndPZWUwVDRSUmF1aWRyV1FsaVl2N1pwZGV1dWpTVVpHdw?oc=5"
+        },
+        {
+          "source": "El Desmarque",
+          "title": "Lamine Yamal om formen efter skadan: ”fortsätter ta hand om mig”",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxORk9LRXZqdXZFb2szU05DdDVHN3NucnhBM3l4RmZ5MWx0S3pPenRuMXhqNFdYczVKaW9qUEptamM3ZFVITWpzR0UxVnVPTXNsSGJoSTZtSG1KR0RuTTRxdHN1UFdxa29iRXcwUEpNWlFrMUdmTE5rc3ZNMkVHVUl5NmNqenFiOENUQVFNeXhRQ0NWaXk5N3pkSXVBLVFNV1UyQnMteEpyLW9BOXlaVG9OTUFWN01jYnliN1dj?oc=5"
+        },
+        {
+          "source": "FOX Sports",
+          "title": "Yamal vs. Ronaldo Part 2: Spain and Portugal meet in World Cup Round of 16",
+          "url": "https://www.foxsports.com/stories/soccer/yamal-vs-ronaldo-part-2-spain-portugal-meet-world-cup-round-16"
+        }
+      ],
+      "written": "2026-07-04T11:57:17Z"
+    },
+    "k:94": {
+      "teams": [
+        "us",
+        "be"
+      ],
+      "paragraphs": [
+        "USA:s 2–0 mot Bosnien-Hercegovina – landets största slutspelsseger på en generation enligt NBC News – sågs av rekordpubliken 24,4 miljoner på Fox, och The Athletic frågar öppet om detta är det bästa USMNT någonsin. Men segern kom med ett gift: skyttekungen Folarin Balogun, tre mål i turneringen, drog på sig ett rött kort efter VAR-granskning och missar åttondelsfinalen i Seattle. Mauricio Pochettino är rasande – ”för mig är det aldrig ett rött kort” – och i laget kallas utvisningen ”bogus”, men FIFA tillåter ingen överklagan. Diskussionen i amerikanska medier handlar nu om ersättaren: FOX Sports listar fyra alternativ med Ricardo Pepi som storfavorit, samtidigt som Christian Pulisic själv manar till lugn kring sin skadestatus.",
+        "I Belgien är det biljettpriserna som chockar: Nieuwsblad rapporterar att biljetter till åttondelsfinalen kostar mellan 2 000 och 7 000 dollar. HLN skildrar hur ”ambitiösa USA” laddar med en avslappnad basebollutflykt och det uttalade målet ”låt oss bli världsmästare”. Red Devils har egna samtalsämnen: De Standaard öppnar diskussionen om Thibaut Courtois landslagsframtid efter VM, HLN beskriver hotellobbyn som lagets ”bankande hjärta” efter tre veckor tillsammans – och Nieuwsblad noterar att målfirandena mot Senegal till och med gav utslag på seismografer.",
+        "Mötet har historisk laddning: Belgien slog ut USA i åttondelsfinalen 2014, och tolv år senare får amerikanerna revanschchansen på hemmaplan – Seattles första VM-utslagsmatch någonsin. Utan Balogun vilar målansvaret på Pulisic och Pepi mot ett Belgien som visade både briljans och sårbarhet i 3–2-segern mot Senegal."
+      ],
+      "references": [
+        {
+          "source": "The New York Times",
+          "title": "Är detta den bästa USMNT någonsin? Får VM-matcher tillbaka det roliga? Sammanfattning av dag 21 - The Athletic",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOcFhNU1dUanI1TFZFN0F2b1dmQlR5d0ROWlhTQVpaS1ZRZnR0dGVtdWFldTFIUlVXT1V4SjNVNy11dzFWUUF4WjVBVGxjcFpNVUJDbFItcGFoaGhpdmJMakhQc3ktS0tLZHhuZXlzbEhHc1Rfc0hPZjNleVRHTHpZRWp0SUc?oc=5"
+        },
+        {
+          "source": "ESPN",
+          "title": "Rekord 24,4 miljoner såg USMNT:s världscupseger, enligt Fox Sports",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNUTFiaHQ4WlI5ME5vYWFIb2pZWDloSktYS3RNNzd1SEhqV2J6Y3B4eEF2c3lnOEsyMHBJT29GbGtsNFV1d2NjOFhzS3hUcmFTSDFHaHNXVklTUFVzb2xsYXdjQmFlMUl4MFVhUnRjbzl4Qy1hUHlzX1IyZkhTX24xN3NQRVpIeDcyQmhqcTlMWXM?oc=5"
+        },
+        {
+          "source": "ESPN",
+          "title": "Hur kommer USMNT att klara sig utan avstängde anfallaren Balogun?",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQdm1Wc3JLczNubXNKVjFZaXphMGFINzdQOThJa3psaGNxQ3hyaGhldzNFd2FwLVh2S2ZZQnRldmFGdnM3enNaU0EwU3NmSUhmVlZKQXM3d0R6SER6akczaUdQRVlWM21ITXpzdUJ0cW9HODBNeDVmZUE5SmJFZjdWdk45SEVUVi1TaExkYktNdEtmd3ZjVXZIVnpLdE9jLVhUS3RhblNsTGY2ZHBCa0txTnVzVC1xY0VLVUVON2dXcw?oc=5"
+        },
+        {
+          "source": "Seattle Sounders FC",
+          "title": "Seattle är redo för historisk USMNT-Belgien World Cup-uppgörelse",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQclI1MXpNZ21mbnBlSllkZE82S1BSbXVfZzk2eGFWTS1NNjZuZE9FVmh5RDFaYXFPSVh0S2cxSldQdlNjeVZZb0FFTEFXbDlhc0h4WVRWSFQ5OFRXY0M5LV9IcG1JUUhwSUx5M2RaTWY0ZGI2WF82bVJ4emRTTlRLUW1acVhWWEZBT0ctUS1seGJoNXc?oc=5"
+        },
+        {
+          "source": "Nieuwsblad",
+          "title": "Alla som vill delta i USA-Belgien måste betala 2 000 till 7 000 dollar: varför biljettpriserna för 1/8:e finalen i Red Devils går igenom taket",
+          "url": "https://news.google.com/rss/articles/CBMirAJBVV95cUxOVjBHQnFfNjhORGlPT01CSkxCY1BnQW56MTRTZ3VhR1JJTXVLMXZyVlpXZ29jZk5TSzVQSXZpdDhqSXJ5S2ZCT3d0RkhlZ1BZRmZacnFGVGYwejh3anlXVU1HOUhpUWYyUTZJZ05vZkUwWllnYU1XRGFzYmRrSlltc29JYWcxWnkzRXZUM1NrN1d2V0JQaVdray1CaUNEajNKakIyN0Q3TTktNDJJNEZxV3ZwaWhGcjBOYS0xcVNwRGRRWTRuS2s0RmdmMnFkX0hRaDVscXRaLURvbC1YdUJjSE5ab2hoZ1dNWkQ5c016TkpfemNJeXhuOW5HTkZTYTRZdjdsRnFuWTJUMFpoVXU2Z0l4UUpXQzBrSFJEcHZmT2tYcFlscGFlVHhmN24?oc=5"
+        },
+        {
+          "source": "De Standaard",
+          "title": "Hur ser Courtois framtid ut hos Red Devils? Diskussioner kommer efter VM",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxORlE1R2dEYzNySXo5ekdRN1Rzb3pqRzVtYjBOaXhDZTgwbzA0VFJQb2RCTExrMTJpLW01a0R4NXFraTRvWFdJOE40WnVrcU92QWtMT2ExYTU3LWROXzAwMFNGT1pvaHY2aEVBOE5ITDUya2hsN1NNbHVjZ0dnNmE4bXpkTm96SnpxVnRsWk85NTJBdzdfeE5NRVRsN1JfcFdUMkxscUQ4aERXVzdlcFJ1Tk1XRFNjLUVONGFXQmNjbw?oc=5"
+        },
+        {
+          "source": "HLN",
+          "title": "Familjedag? Varför just hotellobbyn har varit de röda djävlarnas bankande hjärta i tre veckor",
+          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPU2JrU2xyYXhfYVpxMlBJNlp3aFVPbFowaXlNSUNKT3BQRjB4dFRFQVZnVjlNbjhVZ29RaHhqMTB6NHdRQ2ZoRWxic3F5U09Td0tzX3lLV3gzMk5EWFFUbTZQUlROaklYLTRJSWhialo1MVRSSkx5NGdHQVJpWk4zN21VbkVQZGczeHoyTjRjTEE1Qmh1TFk2LUtELUtBUm84V2FqODd5WGwtSFA3bHlsWHVRLVhuNFNSa1c3LS1SMFpCZGRBVGFtbTZweGtUTlEwSGc?oc=5"
+        },
+        {
+          "source": "ESPN",
+          "title": "USMNT's Folarin Balogun gets red card, will miss Belgium game",
+          "url": "https://www.espn.com/soccer/story/_/id/49243703/usa-folarin-balogun-red-card-bosnia-herzegovina-world-cup-2026"
+        },
+        {
+          "source": "NBC News",
+          "title": "U.S. secures biggest World Cup win in a generation, faces Belgium without Balogun",
+          "url": "https://www.nbcnews.com/sports/soccer/us-world-cup-win-bosnia-balogun-red-card-tillman-belgium-rcna352686"
+        }
+      ],
+      "written": "2026-07-04T11:57:17Z"
+    },
+    "k:95": {
+      "teams": [
+        "ar",
+        "eg"
+      ],
+      "paragraphs": [
+        "Argentina är vidare – men 3–2 efter förlängning mot Kap Verde väckte fler frågor än svar. Olé sammanfattar den internationella pressens reaktion på ”den oroande kvalificeringen”, och i argentinska medier diskuteras varför de regerande världsmästarna darrade mot turneringens minsta nation. Ljuspunkterna stavas Lionel Messi, som med sitt sjunde turneringsmål toppar skytteligan, och Lisandro Martínez, som enligt TyC Sports klev fram med både assist och mål. Scaloni tonar ner dramatiken men bekräftar att Facundo Medina känt av en smäll, och målet är tydligt: att bli första nation sedan Brasilien 1958–62 att försvara VM-guldet.",
+        "På andra planhalvan skrivs historia: Egypten står i en VM-åttondelsfinal för första gången någonsin efter straffsegern mot Australien. Firandet har spridit sig långt utanför landets gränser – Youm7 visar jubelbilder från Kuwait och har samlat världspressens hyllningar av ”det historiska kvalet som skakar VM”. Faraonerna kliver upp till 24:e plats på FIFA-rankingen, och förbundet har enligt Masrawy fattat ett ”brådskande beslut” om spelarnas belöningar. Utmaningen är dock brutal: Yasser Ibrahim är avstängd efter sitt andra gula kort och Karim Hafez genomgår läkarundersökningar efter en skada i Australienmatchen.",
+        "Ambito har inför mötet i Atlanta grävt i historiken mellan länderna, och i egyptiska medier är tonen närmast ödesmättad: att få möta Messis Argentina beskrivs som både belöningen och priset för den historiska bedriften. I den argentinska hemmapressen är budskapet lika tydligt – en repris av gruppspelsformen krävs, annars kan sagan om guldförsvaret få ett abrupt slut."
+      ],
+      "references": [
+        {
+          "source": "TyC Sports",
+          "title": "Lisandro Martínez, hjälten för det argentinska landslaget: assist till Messi och bra mål mot Kap Verde",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNc1B2bUcybkRucmhyVDVoRUZmY21wMjduT0YwbGZzWEx6QUtxSk16ZTEzaDNoOVF2RE1oWEFKcklyX0ZoTnplenREY2VGRnRFQjRWYkcwUHQ4NlY3UExfVkFZZ3RYbnN4dTREVEo2QWxHdmM1RDVRSm01ZDRQdGx1cG9RQ2t3Q01QcVc1UFhmTFVyMXhuWkE?oc=5"
+        },
+        {
+          "source": "Olé",
+          "title": "Den internationella pressens reaktion efter den oroande argentinska klassificeringen",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOQm9sV1BOTlZrSDBsaWFWZWRSMkRpVmREdjJiQ3RSRU9MdFJpNU1jU2d1RGFOblNzZXFfcFBtMHhjeHFrWTNsV21DUVFTd0dEX0JVWGhmdGcxZXp6MUh6b1VMNS1WWDhmZUQ3OGxPYmlzY2dqbmlEenNrUjJLZll1a0YtMTVvXzJ0TEZRWkZVREw3b0lneUJoaHJVTG03NkxsSGU5VDJB0gGrAUFVX3lxTE94VlRHUkxVbWdsNzhEbkJJaG9ZeWZBZTdNTHU2MWVRdV9BVV9KYXZfVmtMUWI4dkhQbmxQaU5PQXE5M1hOMndQamMtUDE2NXFzRVc1MHk1UW1fNGxaM1BkbElFX0MwVFp5VDdENUg3U2dMVnJkY3FRTzAxRFN2M3FJbXpSNGJud2hFbWRHcnZVVGRVWXdEUXczeThGanNKcDlQRWxzc1lVSHc4VQ?oc=5"
+        },
+        {
+          "source": "TyC Sports",
+          "title": "Vad Scaloni sa om Argentinas matcher mot Kap Verde",
+          "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQM2psQkphQzlrUDVoTGotQkJlY2hlWUtEbHhxUjEzUVljV2tSeEdYOXRBeWdhQXhYN0IxWnBXS1lOcS15RkRKX0ZwYWJoR1ZjWmhWNUxvY3dyRGNLV3FiTXlfZ2VILVQ2Ni1VdUhvVGpoanBaZ3BWa2d4bGJCTWc4YThMM1JISW5hWHlLZ19UMkdvaHVJX3QyeWVFWVE2czNrWTMxT2p1NlZjZ21yLVpGVmFRWF9pei1GMkZlVVdrQVl6TkVQaUhBUTFBaTdVRXJWMzROeFdKTW9EYXBfcGxqT0htSWs4SE5OcGtWNEQzMXhGZ0U?oc=5"
+        },
+        {
+          "source": "Ambito",
+          "title": "VM 2026: historien mellan det argentinska landslaget och Egypten",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNMk9jUlNGSU4ydTFtSnNyRUZ6T3ZOejZoOENGeDRKa1VZUEk4RkFDd1FrSDctTnh4WXNQVWtUSnpkXy1GcGprbkx5UXR2MmR0RGFLVVRQZXFkWkRDeVltR25iaktiVC1VczUtdl9qYVRtVEd4VTZUeE1qQVpCRHl1OG56NXBiZ0RSaXFwR2FtTDJ6NXhQX2w4MlpURlg1Y0HSAaQBQVVfeXFMTl95UTlVaVIzQ0Noc2xrT250cDB3YnQ5Rl9rVnk3eElaNjFxUTZIYTFuU3RadjF6ajdidXlxeDE1LXhVbU9jdFc4R0pERWgzNHMxY0ZyMjFoVk90eGQ0dWZwWnllS1NOOVctWEtYRWhoMzh5UjZ0ZVdVYWZIZ1g1TXlGVkNQejJWbXZmd3dWVnNMTjhtVmdUYmdaU1Naa05rTE1aWDA?oc=5"
+        },
+        {
+          "source": "اليوم السابع",
+          "title": "Historiskt kval skakar världscupen.. Hur kommenterade världens tidningar det egyptiska landslagets prestation?",
+          "url": "https://news.google.com/rss/articles/CBMi3ANBVV95cUxOdE5sbFVnbUwwZnRpeWhaTHhwWTBJWEF2Y1RMSmJBYVY2cHZkX2llM2hHal9DOUxuRUhVNFZQNGs0VG5wYVdMVExtS2ZwclZCNXFwX19fc25IZzZreW1tQ2xGSmRRTDVyTi1qNmFYNGdsdWJQWDNsR2thWFBWZjBWQk02Z1ZtVlozaHRjTWdScUtTYVFoWjdRUFFxb1Fibzl1a3NRYlVhSmhuOVRkMC14d2c0NUNkdDBoWmJxc2dVNGc5NUYxaWVwRG4tRmRrVmQxalF4ZWFBMFdUVVpVSEttU0ZGaTNlRkxtUXY4TmpIakJkUTNjcHZGX3MtVkpRbm9qb3ZMakIyNktnT0NLUTFQY3Q4SktwU3VuZWVHM3hpT0l1WDFyMDdFMG1UcXBiMmlqN012SkhUcUJjUzZSdXFvcF9qWnRvaWdSdmN0R3VRa20xQ1I4UnV5RUVSYURjZjV3LUROczZLQWYyVTh1TjVSNDk1ZHZheGdHQXdKRVhNREIycjNuRE9SRzdNWmhUNW9OaWZWRlZmSjhzY19BeWpCc19oSDBaUm9tdEV1YkJhTHZySXdGcWZEMl8yQWRodWc3UVI0NlJ6TWhveE5QeDItVDBiNlByN3BUTnRQR9IB1wNBVV95cUxOUFY5WDVsLU9yMy1QY1lRMmo1SnoycndyZXN3bmQzdkVTUVBMZDNCQmk2MU9lTzdQWjQ4MDl6eEVrRHF0eEUxS242ZE1TVnhCdXU4S2tUb1pKZGtjSVVrTk44Ym5aU3RQOWpmQ01pV3gzNHFZeVVnZ0pyVG9TVndrOEFMMVNEYlI1NWhjY0c1OUotQWx4ZVp0NWYyX3FHUlliUFI4RzNtVHlUWGhPdVBaVGtfNHJENG9YTnJSUDJOQmtucVVFamU4VDBvQldaYzllTks2WURhVzJKQ3h4Rl9tZjF5UkIwUnJlZzBSWGZJbVpjdjUyeFlzMGdtYmdjZ1JnQUhOTkRXTmhLZVdaSUt3ampwb2xCVGl3TjU5cDdhbkFtbzY1c25LTmxOaXRjejJCNENwOGs3NjFpZE5yQUotbXkybmZha2c3bmJGNkRqdC1oYkFVTFBiTTU5MkJvSHZWQXNIOUNKazIyU2tEeVQxQ1doQUFVZWItckZVSmw5Tm5xc0xIUWowOHZFT2M4WUpkeXBNejE0VWgzT1U0RUU3a0EwYnU5dm1QMFZqVGR1YTN3MUlvdTdGTUx6ZEhwcU54NHNkQUJqekswRWtvbFpNTUtmbUg0SFk?oc=5"
+        },
+        {
+          "source": "اليوم السابع",
+          "title": "Det egyptiska landslaget tar sig upp till 24:e plats på FIFA:s ranking efter att ha kvalificerat sig till åttondelsfinal i världscupen.",
+          "url": "https://news.google.com/rss/articles/CBMirwNBVV95cUxNSjdsQmxpS1lSdzBWRG90NzhyVG1GQ3UwMHRfRmJERzJlSTdFcC1vMEpsMnBPaVhfczU2czBfdk9qaGtMVnBQcnlIY2YyZmttVnN3RWxKbkhndDFfYWdCSnFzWjZBZy04aG9oVUdWeGxwS3NBSm5EaWRIWW9tNFFBTTNrODlhOUFrWWdYSlU3VjViei1fbGhMMDVoeFJLYVBmUm05ZFItWUVTQ0huS1VwN053b2FrdHlldl9yNjhrVl9HeHM4S1EzdWFOUUpiTDFKdnNhTTV0NlhuUHptQ0RkTnhOQU5ONTdmRmd4LXJMem5mV0sta0xQZ1pLV1ZEa3RMajZvcDlya3ROQjVFdnFNcm03U3FGVjBzX0xVemNGcnZKR2hDdV9xQmdodFlBdFlidGxKNmVONE5hVXlFa1RUdjJFYmo3bFFJVWY2TTlaX1hPLVd2dkY0WU5vNTVqdDJCSW5LN1RPVndkWjVMRERTd2hLYXR5SExuSVl3N0pralUwbTdvQXFScngxcHRSN0lvTjVlbjFGaDhETXViWV9VSlZMTWFOb1lRdG04by0za9IBqgNBVV95cUxNbHozQ3gyeW1Fd3RvRUlPNzM3b0lBMDAtR2hwQVBnc2hKNURneFRULVdscjdIMzI3aGppWW5vWnh1bXlGOHFKaDNCWlEtWnRlamNEa21WcmtGMGZkd3V5bUJGTUl1alZvLUlJUFVtTlBQakRlRVJRRzc0Q21KVW1hZWtpRjZXenY3dEJabkJPTklRY09vNTdYNDJGUFYycEg3WHIwMVYySTdTdXp2TEZnWlJLa2xBaXVsRVljOFVNV2pqeWVYd2Q5QjFGUURMdUJFbXNqeWVRbVptZUxEeGktUENRWS03bk9FSmQ0TndzVDZwV1hJVHJkQ3ZXYkE2aWE2MkdTOHVaOWxUeGdtQlhvSVNpWHFHbEQ4TkgzcUtya1FNeGJObTE2TTkxNnAyV2xBcDlOc2pxVXd3RzdJeWI4cVduSXFsR3RmbUMzSmRhTl8xbWw0UDRMY3lxblEwLXNxLVNOekhlcnJVRk9VLUFFUFE0eW5YZnNqR2JYX0lhQ2ItdDBmY0ZVX3dybHdjdTUxUkQxZEk3eFJ0NmNVWFFMU2FLeTFRWmo2cGc?oc=5"
+        },
+        {
+          "source": "Masrawy",
+          "title": "Efter den historiska bedriften...ett brådskande beslut från fotbollsförbundet angående de egyptiska landslagsspelarna",
+          "url": "https://news.google.com/rss/articles/CBMi0ARBVV95cUxPOG9mR3pHUHFhb0VudFp0RG1SWVpRaURuREcyZlhxaHF4MFhQU1YtcGVSZjNsMmt4aFU2ZFFOMFdESnF4SFlnRkNXc0MxLWtMREdtX0NtTWVObTV1ZEZoeEpuN0NyR2ZGN1FHS21wc0lCODhhdUM2ZkhfdVpiS2FKMm5wOGpWc3c2YnRDQk0yY250SDJtcHMwMU9mWk5VWDBlaEVfRXFpVkwxTUJWNUZPaloxMVVZNzlRTnlwU0I5RGhDUERGTnEtRWgzMTlEX3E2VVRad2VNekpoQjNJaEtvXzJkZEt5WmhJQ1k5YlBBQUVKY3BrbTM5d3JTUV84NkpYdzNCaUFHM0pGeTVKRm5RTGt3NDNLLVFYZE52eUJkM1VKcU10UDJlOFZTd2NwdHFKcmdMelpiWGN1R1EtVDAxTlFLMmtOUmxMMGlkTHpMc04yZk9SdUh0M25CUkFUOFFNOGRWeDNzUkphenJwU0pVd0RzM3RvOGlHa085d1BsTldQd0NDUVNudm5iRXNXci1PbzlZc0RzOXBQaENHWWc2X25zVHk4QzhOUUxCcWUzSDlOdkxKN2dPYWVWUGxXSE9kaDdraERINHB0Y0wxUi16ZnltZ0hmcjFoS3ZHd1FQTV9ranMtQ2RpY09tTjA5Tm1DbDZJdG0ySm51WUVzQmtEckhHMmdSSmRBR29qUjBSYkJqb0VGLTJBY1ZFNmt2Y0VxdmJDbGY5WTBtMDVWREx2Q0dTRFkwMkloZ2hBRF9ZMWZ1SnVqbWxHN3VEZGhibDJp0gHWBEFVX3lxTE8wQnpQRXotQ09HcjR0dHQ5eUd5cjJWaVhTb3ZMblRaNGF6amhhbnNiTW5ERkZwNU4xTHhuajZ5ZFlLT0RfeHo1NzJUVUtVaDk3THVQQWpEWG02Yml6QktudXhxSUprd2tUVHlYUGdEalo1MktrbUszVGo2WUhxZDZFYlJQY0VNRnNzQ2NfVm9Qbkozbll5aDMteHZzaHpiSk12alRyN2ZRaklBYTM2ZzNyNEJkTlF4WU9Td3NrSjFHWjVaQVZRZkRwcnNRUmpqc3czeGJqSGcyeFB6RlpZQURqOUFYazdicThNM0VWUFBOdVBiMnl6U21RblUwbXpYUnpSRjNCaG55RlRDNlBheHA0RXNsZTZsU1lPMWJKdEQyUi1rNEhSd0RUbXZRVU00Tkx3REdINjZKWkYtUnFpY1lXNEJvdFd5MDdQekJjUUo0R0pOUXJjVURCLWZpRTdibWF5RWVIc1pLVEFNc2xBVEx1V25hbHl6SmNKNUdyZVE3SUxxbXVSRmF4OFVuajJDeXBCZng1eDhjX3diUE5zX3NLYVR2WnVlTkNmZ1ViUVJqdXVhQi1zTExHQUZKc3dYS3ZUVjF3UkJnNlRSMXlDOWI4dlFQRWQyVmtwQl9HRDJlUHNkd2hNWTNSak9MVlFpa3ZiRVg0X25uWGJFck5lU2J0OS1kYlpXWUJYa0k2cTFVaUdzV3lZWHdneTZqNThPNUlXWVNNTWJmaVVUT3dhZzhMcGF0WVZhQ1NRQjJ6NXk2UnU4WkNVcmN4OUZWNnFaT3Q0dFBBOGc?oc=5"
+        },
+        {
+          "source": "صدى البلد",
+          "title": "Karim Hafez genomgår läkarundersökningar efter skadan mot Australien",
+          "url": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE9NZGhrZGZyVzROV09aZXp4ZGE2MDdoRVhDVUVkdm93WURidF8tVm9uNnZJMzEySWZnTmV5WTFSQmlPQ0tFRFNZ?oc=5"
+        },
+        {
+          "source": "Bolavip",
+          "title": "When and where are Argentina vs Egypt playing in 2026 World Cup Round of 16?",
+          "url": "https://bolavip.com/en/world-cup/when-and-where-are-argentina-vs-egypt-playing-in-2026-world-cup-round-of-16"
+        }
+      ],
+      "written": "2026-07-04T11:57:17Z"
+    },
+    "k:96": {
+      "teams": [
+        "ch",
+        "co"
+      ],
+      "paragraphs": [
+        "Schweiz går in i åttondelsfinalen i Vancouver på en våg av Nati-eufori – Aargauer Zeitung beskriver hur landslaget blivit ”en projektionsyta för stolthet och sammanhållning”. Efter gruppsegern och 2–0 mot Algeriet kretsar det schweiziska mediedrevet ändå mest kring Granit Xhaka: förre landslagsspelaren Blerim Dzemaili hävdar i Blick att kaptenen ”bara är på 60 procent”. Xhaka, som spelar sitt fjärde raka VM, är fortfarande lagets hjärta – men SRF frågar sig redan om unge Johan Manzambi är ”den nya Xhaka”, och Aargauer Zeitung undrar om Noah Okafor blir ett problem mitt i euforin.",
+        "Colombia slog Ghana med 1–0 sent i natt och är fortfarande obesegrat i turneringen – med bara ett insläppt mål på fyra matcher. EL PAÍS fångar stämningen: laget är vidare ”och ändå inte nöjt – det känns som att det här kan bli Colombias bästa VM”. Hyllningarna öses över mittfältaren Puerta, som enligt El Colombiano bjöd på ”total fotboll” mot Ghana – är han rentav VM:s bästa mittfältare, frågar tidningen. Lagkaptenen James Rodríguez skrev dessutom historia under gruppspelet när han gick om Valderrama och Rincón som Colombias mesta VM-spelare genom tiderna.",
+        "Skadeläget bevakas timme för timme: James är enligt läkarrapporten oskadd, men Jhon Córdoba utvärderas och Luis Díaz väckte oro med en känning mot Ghana. Den frispråkige krönikören Carlos Antonio Vélez har som vanligt levererat ett ”tydligt besked” efter segern – hans utspel brukar sätta fart på debatten bland colombianska fans. Infobae påminner om att lagens enda tidigare VM-möte ”inte lämnade något gott minne” för Colombia, och ELTIEMPO noterar att detta blir det femte mötet genom historien – nu med en kvartsfinal mot Argentina eller Egypten i potten."
+      ],
+      "references": [
+        {
+          "source": "Blick",
+          "title": "\"FORZA!\": Dzemaili tror att Xhaka bara ligger på 60 procent",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQNThydGFEcU5MMkt2ejJvYy1jbHRkLUNPZEJSMnd0eUtsSm1xQXJnN1JkdkJPQnBhTy1QMVNSR2ZFeVhhT2RWQlJxV0VnT3RFRHNEbHZCX29Qc1htS3JQSUQ2dUxyeFN3Q3Z6R19qQmlGN0VjdHBvbzBINjhLYXhxSE14SVJIbWRfRlpxeHFPdWlIWk1jQWsxZUxuTzZaV1RsSzMxVGNtLXp0SEU1YkVwOXZNSkNhWXNFNVpFMUpOVVJxUQ?oc=5"
+        },
+        {
+          "source": "Aargauer Zeitung",
+          "title": "Det schweiziska fotbollslandslaget blir en projektionsyta för stolthet och solidaritet",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQcHVBVWxsTlI0dllDbTd6NnlnbVkwbnN0c2tmTU1HZUFfZlRFQkFSQ1luSGhJQ0FTeW1EMXd0LTdMaEpMTnlySlJpc3RZR1RLTXhvMW1KblBKTko3OEFkckd1bTlaVHZqdTFoRXNfLUhmbGI0Z3dqSGZOTGN5ZUZrenpjUERFZTlpMFplbUJfVTNIWmNneUhna1d5bkJsR3lCNmd6M1NnSnNfU00?oc=5"
+        },
+        {
+          "source": "SRF",
+          "title": "WM26: Kommer Manzambi att bli den nya Xhaka i det schweiziska landslaget?",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQa0hfVjM5VmRVb3FwQ1lsc3F3NnNNX0o0R0hXcHJFVjYwSnY3d0ZZQjJCMU4zT1d0RVBwQ2dhdlI1ZEd4d2NfLU5RN3NaVjRla0Y3Q2cxMmtqMHdxbDZMYUwtaUpwYkpiOUpGNjFEUFJxUzk0MVpaN18xWmN2SnJUbXNlOXh2c2hoSWJqQVJxNA?oc=5"
+        },
+        {
+          "source": "Aargauer Zeitung",
+          "title": "Fotbolls-VM 2026: Kommer Noah Okafor att bli ett problem mitt i Nati-euforin?",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOWlNVV283SElIRFEzb1psWm9SUVFjYkYwaUc5SWNCLVlCd2dRQmFDWjRITy1pNDhaZHE3R3FRTW16ZVdEbHdQbGt0WXRPSWVWQ053cDUyQmhsQzd6SnZneGU2Y09CVzRFbDRqYUtIeUtqdnA2cXR1LVNRNDF6SGlkWmtqWDFFQjJhcVM4cno3ZXVBZzRlc2dTbWFEY2dVc05Jd0RwSk41M3NkaC0tdF9OV2xaSG5KM0NmNGlPNkVB?oc=5"
+        },
+        {
+          "source": "EL PAÍS",
+          "title": "Colombia slår ut Ghana, är i åttondelsfinal och är inte nöjd: det känns som att det kan bli dess bästa VM",
+          "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPSnhQNDg3UWtrajhYM3lZY0c3aXkwaktFdG01eHdCTFRQUVJkTHAxUkZTTENSb2tXQTlsRDVkSHZHdzBMQ3hfd0hjTWxjeHFERFVOX3dPOHFVazZpRUtNTzVFczlwVWVWVWctcDRzbG1pYzh2WGxSZGVUNFl3bVd2LU8wYVF5bGZDLXcwOEdrTlRZSDhTY2xKRXp2bk5hZGpKQ0pseEVqS3NLSWtxVjFBT1lxaldXc0dQMVplUm11bTFQZ0kyQ214UHJtcGlDVnZ0ZEdiZTdWSkV6WkNJR3d5Q9IB9AFBVV95cUxQWW5WVkFjR1lmOEZ3ZWNZTWppcUh3R0J3OHZrdkhwMFRmM05la2xsWDJZSEFycE5fVEVkQ3BNODJvaUt3c25WLTRvOG01M0FXYXBaN2s4OHJ0T1VpTUdYSVl0NUxmT3N6RGYxbHBvekdnZnJmOGRGT3dWbmpSSWJ5UmgxR1JqcHRXS214cXZJejRRWVBxRkN3VnQ2T3IxNm9kZzY5RUNvNWxqRDR1WE9TLXBjYUl3SjBaemRDLXNSZ0xGekZUQnpsbkhhbmNoN0Jicm0yMlVwMWx2bHp3bUtSWFN0N2oxMk40dnowNDZIejBzZS1i?oc=5"
+        },
+        {
+          "source": "El Colombiano",
+          "title": "Puerta visade en uppvisning av \"total fotboll\" mot Ghana, är han den bästa mittfältaren i VM? | Colombianen",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPQWExeGxlM2dpS0FuSFRvdXItbW5KLVl2d1NWWDRRR3hsZFRGRE9MNnhfQlkzanN6WGFZUFI3RHVaaFFtY0RZNm43Q21qRVYzWkZmTTlKSEF0SjVSdHgwdkMwRnZJc3NnV3E0bDhTWi1aTEJlMkFfb2dvUjF0dC1VTmJvUDZJR1V4OVNjcDk2dktxRGtlNGZZb1V3TXlnVzU3a3NraG9Qa3FJR1YxR3Z2Ynh4N0t0V1A0Zl9oWXNSRFN6X0tK0gHKAUFVX3lxTE1xOUJYd3h5TTRTSFhYZ05oeTRpVzZjZGd4anhBT05qd0hkUG5GbXhjWm1lU1ZtRTdIRVEyMjkzRUxmeF8xaGZ2TTB3LWR1MVVmejI5X1BfWFJJcGdwWWdQNndJT2NfZzNpV05wUktNWlJrd1NneXhQMVVBY0x1RWhPN1hfVGFBSjczX1NBeXhwWHpobUxpWFQtdDhfLU52Tm1ubHJuNkhjTlN1Y2ZsdkJXZTJ0VjJvVEJRdVpaT0dOLWk1djRNX18xV1E?oc=5"
+        },
+        {
+          "source": "Win Sports",
+          "title": "Carlos Antonio Vélez lämnade ett tydligt besked efter Colombias seger",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNcDV5NjFFTUZCbGlUNWdfUEw0Tk13YXBzXzFUN3NBQjd2NnBlR3ZTWDlYQ19jV0xnUGdpbEo2N2I3ZVVEU1hQVVh3NVo2YVk3Ymt6S3BpY1g1b0w2NFhjTVVoUTRPTVkzNVd0R0Z0SnBWQkhqeUpqdzBxSGFrOVpzaThWel9tdXZTMWNoVkxFZWx1eXdLaGl6T1VXWkpHb3YzV3ZhX2lDdUc5WFFuM0U5eWxhd1ZTT3NZNUt5YUJfRkJWQ3hPcElaOXhR?oc=5"
+        },
+        {
+          "source": "Infobae",
+          "title": "Detta var den enda matchen mellan Colombia och Schweiz i ett VM: det lämnade inget gott minne",
+          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxORDI2Q25wMHp0b0ItZUxycXdGTm8yTjhMSDd6bHBVZlg1cUxsMEZoSVhUS1pmM0RicHRxWk5KOHlnMDk4T3VubzVabGVOQ0w1bTNuX0JSekdIRzhkTy1kYk9kSzFIX3lPUjJ6REhmaFZfaVAwUTZEa1dBLXY4ZW93RUdHd21UTERUX3g5OURRc2VCeG5lYVh5VE4xVm16QXE5ZHNzQzhFNVUwUXp4N0FXX0RQcktQeEZmb3hyVnJYX3RsM1ZhWi1qRW9MSm8yUmIzMjNYSXhJVS1GX3czaXfSAfgBQVVfeXFMUENzOGNEeG1Tc0JPbktkMkhIVERPNkdPdDhzSUhjbmY4U3hNWlhTemFuR2k2MEViZkg5RDdwdm5LQmROb1NnV2doZXIzbzVJcmFEUW9QSE5pOHExYmNUZlV1dC1BclhSQWQ1SHNKNkdGSDFQeHJDYktvV2FYaWx3NnBRajJPNlhuOXI4RGpsb2E1ZFpWZ2pCNHpKQWlYRkE1V2hKS0x4VHRnMWFXZ21qZTktcFlUN01XNUJzYnpJT0RpOGN1anlsNHNnUkJydEFKNElaOGxhVXk2U1JFTzVLLTgxU1F0X0Y2d2NxVkpTTngtaDc3NjBFTjc?oc=5"
+        },
+        {
+          "source": "Infobae",
+          "title": "Lorenzos medicinska rapport: James oskadd, Córdoba utvärderas",
+          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOcVZvTGRCOXotR0x5aVNCdFF0WTM4alkwYnhUZU5jeWwzZmxaMVhyb1ZHTW0yWnFXWEJDOU5wenhCUHIwTHBwZ2tTY3ZWZ1hWdTVqZGp6VVo2T2tFZjlLVXQ2YTBEMUF0dHU0TDRhMUExa1FtRlp0b2xkWnE5ZlhSSU5fMU52MXJSM21ZQTNneGN5bkdJbmp6cnRCdmRIZFo4b1N5UWFOQS1mZ3VXa0Jxb25TU0laZmNNVnNVMzQ3anVwUEJlSzlnRi1VOHl3QWZpdFdnVUwyWUx5VEtFRTRxOXF30gH8AUFVX3lxTE03VGl2a0NaMzR1M0Q5bjQ2Z0tMZGhSOWxCWTdseUhwZFk0NUljUjcweEt0bEV0a3dfNEZiOTJ1NGJZSXVfSzZma0dUU1gzU0lOeTVvQld4VmdyenE3eGNZVjVnQWg0c2xxNnBvbXRjbDlVVGZEZU9EWWk4US1Kdy1DM0YtSFpuWklEWHUtelQ5NmJLSXVVaVZTTWxoM3huZ2pkNHNBUml3RXBRTDh2R2I2VW5kV2tvcS1GWExpRjVBdU82RGp2cjhZYlJVVUxPR2pLNFNZRUxPNHBsQlpUVG82ZnJtNGVlWHFEVGh0LTRqUmdybHB0N0xXUjVfbg?oc=5"
+        }
+      ],
+      "written": "2026-07-04T11:57:17Z"
+    }
+  }
+}

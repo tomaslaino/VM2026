@@ -17,6 +17,7 @@
   var STATIC_URL = CFG.staticDetails || "data/matchdetails.json";
   var HIGHLIGHTS_URL = CFG.staticHighlights || "data/highlights.json";
   var NEWS_URL = CFG.staticTeamNews || "data/team_news.json";
+  var SUMMARY_URL = CFG.staticNewsSummaries || "data/news_summaries.json";
   var PRELIM_URL = CFG.staticLineups || "data/lineups_prelim.json";
   var POLL_MS = 45000;
 
@@ -26,6 +27,8 @@
   var highlightsLast = 0;
   var teamNews = null;     // iso -> { items: [...] } (data/team_news.json)
   var teamNewsLast = 0;
+  var newsSummaries = null; // key -> { paragraphs, references, written } (data/news_summaries.json)
+  var newsSummariesLast = 0;
   var prelimLineups = null; // key -> trolig/bekräftad elva (data/lineups_prelim.json)
   var prelimLast = 0;
   var openKey = null;      // öppen match (resultatnyckel) eller null
@@ -116,6 +119,38 @@
         return teamNews;
       })
       .catch(function () { return teamNews; });
+  }
+
+  /* Matchsammanfattningar (data/news_summaries.json): handskriven svensk
+     löptext per kommande match – de viktigaste nyheterna och diskussionerna
+     i båda ländernas medier, med källreferenser. Saknas en match faller
+     nyhetsfliken tillbaka till rubriklistan ur team_news.json. */
+  function fetchNewsSummaries() {
+    var now = Date.now();
+    if (newsSummaries && now - newsSummariesLast < 600000) return Promise.resolve(newsSummaries);
+    newsSummariesLast = now;
+    return fetch(SUMMARY_URL + (SUMMARY_URL.indexOf("?") === -1 ? "?" : "&") + "t=" + now,
+      { headers: { Accept: "application/json" }, cache: "no-store" })
+      .then(function (r) { return r && r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (data && data.matches) newsSummaries = data.matches;
+        else if (newsSummaries == null) newsSummaries = {};
+        return newsSummaries;
+      })
+      .catch(function () {
+        if (newsSummaries == null) newsSummaries = {};
+        return newsSummaries;
+      });
+  }
+
+  /* Sammanfattning för en match, om den finns och inte är för gammal (en
+     kvarglömd fil från en tidigare omgång ska inte visas som färsk). */
+  function summaryOf(key) {
+    var s = newsSummaries && key ? newsSummaries[key] : null;
+    if (!s || !s.paragraphs || !s.paragraphs.length) return null;
+    var t = s.written ? new Date(s.written).getTime() : NaN;
+    if (isFinite(t) && Date.now() - t > 5 * 86400000) return null;
+    return s;
   }
 
   /* Troliga startelvor (data/lineups_prelim.json, skrivs av GitHub Actions):
@@ -233,6 +268,7 @@
         try { window.VMApp.ensurePreviewData(function () { if (openKey) renderModal(); }); } catch (e) {}
       }
       fetchTeamNews().then(function () { if (openKey) renderModal(); });
+      fetchNewsSummaries().then(function () { if (openKey) renderModal(); });
     }
     if (!info || !info.played) {
       // Trolig/bekräftad startelva för matcher som inte är färdigspelade –
@@ -1318,15 +1354,53 @@
 
   /* ---------- Fliken "Senaste nytt" ---------- */
 
+  /* Löptextsammanfattningen: de viktigaste nyheterna och diskussionerna i
+     båda ländernas medier i berättande form, med numrerade källreferenser
+     längst ner (data/news_summaries.json). */
+  function newsSummaryHtml(sum) {
+    var h = '<div class="mi-news-summary">';
+    sum.paragraphs.forEach(function (p) { h += "<p>" + esc(p) + "</p>"; });
+    h += "</div>";
+    var refs = sum.references || [];
+    if (refs.length) {
+      h += '<div class="mi-news-refs">' +
+        '<div class="mi-section-title">Referenser</div>' +
+        '<div class="mi-news-ref-list">';
+      refs.forEach(function (r, i) {
+        if (!r || !r.url) return;
+        h += '<a class="mi-ref" href="' + esc(r.url) + '" target="_blank" rel="noopener noreferrer">' +
+          '<span class="mi-ref-num">' + (i + 1) + '</span>' +
+          '<span class="mi-ref-body">' +
+            (r.source ? '<span class="mi-ref-src">' + esc(r.source) + '</span>' : '') +
+            '<span class="mi-ref-title">' + esc(r.title || r.url) + '</span>' +
+          '</span>' +
+          '<span class="mi-news-ext" aria-hidden="true">↗</span></a>';
+      });
+      h += "</div></div>";
+    }
+    var ago = pvTimeAgo(sum.written);
+    h += '<div class="mi-news-note">Sammanfattning av de viktigaste nyheterna och diskussionerna kring ' +
+      'båda lagen, ur respektive lands medier' + (ago ? " (uppdaterad " + esc(ago) + ")" : "") +
+      ". Referenserna öppnas i ny flik.</div>";
+    return h;
+  }
+
   function newsTabHtml(info) {
     if (!info.home || !info.away || (!info.home.iso && !info.away.iso)) {
       return '<div class="mi-empty">Nyheterna dyker upp när båda lagen är klara.</div>';
     }
-    if (!teamNews) {
-      fetchTeamNews().then(function () { if (openKey) renderModal(); });
+    if (!teamNews || !newsSummaries) {
+      Promise.all([fetchTeamNews(), fetchNewsSummaries()])
+        .then(function () { if (openKey) renderModal(); });
       return '<div class="mi-pv-note mi-pv-loading">Hämtar nyheter från lägren …</div>';
     }
     var avail = availSectionHtml(info);
+    var sum = summaryOf(info.key);
+    if (sum) {
+      return '<div class="mi-news">' +
+        '<div class="mi-news-intro">Läget i båda lägren · ur ländernas egna medier</div>' +
+        avail + newsSummaryHtml(sum) + '</div>';
+    }
     if (!newsItemsOf(info.home).length && !newsItemsOf(info.away).length && !avail) {
       return '<div class="mi-empty">Inga färska nyheter om lagen hittades just nu.</div>';
     }
@@ -1345,8 +1419,12 @@
 
   /* Teaser i Inför-fliken som pekar vidare till nyhetsfliken. */
   function pvNewsTeaserHtml(info) {
+    var sum = summaryOf(info.key);
     var n = newsItemsOf(info.home).slice(0, 5).length + newsItemsOf(info.away).slice(0, 5).length;
-    if (!n) return "";
+    if (!sum && !n) return "";
+    var sub = sum
+      ? "Sammanfattning av de viktigaste nyheterna och snacket i båda länderna"
+      : n + " nyheter ur ländernas egna medier – sammanfattade på svenska";
     return '<button type="button" class="mi-pv-newslink" data-mi-goto="news">' +
       '<span class="mi-pv-newslink-ic" aria-hidden="true">' +
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">' +
@@ -1355,7 +1433,7 @@
       '</span>' +
       '<span class="mi-pv-newslink-body">' +
         '<span class="mi-pv-newslink-title">Senaste nytt från lägren</span>' +
-        '<span class="mi-pv-newslink-sub">' + n + ' nyheter ur ländernas egna medier – sammanfattade på svenska</span>' +
+        '<span class="mi-pv-newslink-sub">' + esc(sub) + '</span>' +
       '</span>' +
       '<span class="mi-pv-newslink-arrow" aria-hidden="true">→</span>' +
       '</button>';

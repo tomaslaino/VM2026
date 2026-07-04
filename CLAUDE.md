@@ -31,7 +31,7 @@ npm run sync:lineups # synka troliga/bekräftade startelvor för kommande matche
 |---|---|
 | `index.html` | Ingångspunkt, innehåller `window.VM_CONFIG` |
 | `assets/app.js` | Huvudlogik: tabeller, slutspelsträd, kalender |
-| `assets/matchinfo.js` | Matchmodal med detaljer/statistik + inför-snack ("Inför"-fliken) för ospelade matcher (data från `VMApp.matchPreview` i app.js) samt fliken "Senaste nytt" (lägernyheter på svenska ur `data/team_news.json`) |
+| `assets/matchinfo.js` | Matchmodal med detaljer/statistik + inför-snack ("Inför"-fliken) för ospelade matcher (data från `VMApp.matchPreview` i app.js) samt fliken "Senaste nytt": handskriven löptextsammanfattning per match ur `data/news_summaries.json` med källreferenser, annars rubriklista ur `data/team_news.json`. Överst i båda fallen "Avbräck & frågetecken" ur spelarstatusen |
 | `assets/r32engine.js` | Monte Carlo-motor: simulerar vem man möter i R32 utifrån odds (delas av huvudtråd + worker) |
 | `assets/r32worker.js` | Web Worker som kör `r32engine.js` utanför huvudtråden |
 | `data/odds.json` | Exakta resultat-odds för de återstående gruppmatcherna (indata till R32-motorn) |
@@ -42,6 +42,7 @@ npm run sync:lineups # synka troliga/bekräftade startelvor för kommande matche
 | `server/scripts/syncPlayerStatus.js` | Legacy: samma fil från API-Football `/injuries` (körs inte längre av workflow) |
 | `data/team_news.json` | Landslagsnyheter per lag från respektive lands egna medier (Google Nyheter-RSS, lokala sökfrågor) med svensk sammanfattning per rubrik (`title_sv`, gratis Google Translate-gtx) – driver fliken "Senaste nytt" i matchmodalen |
 | `server/scripts/syncTeamNews.js` | Synkar landslagsnyheterna (körs varannan timme av `sync-team-news.yml`) |
+| `data/news_summaries.json` | Handskrivna svenska löptextsammanfattningar per kommande match (`k:NN`) – de viktigaste nyheterna och diskussionerna i båda ländernas medier i berättande form, med numrerade `references` (källa+rubrik+url). Driver matchmodalens "Senaste nytt"-flik som förstahandsval; saknas matchen eller är `written` äldre än 5 dygn faller fliken tillbaka till rubriklistan ur `team_news.json`. Skrivs om för hand inför varje ny slutspelsomgång |
 | `data/lineups_prelim.json` | Troliga startelvor för kommande matcher (≤48 h) från 365Scores webb-API; `status` slår om `probable` → `confirmed` när de officiella elvorna släpps (~1 h före avspark). Visas i matchmodalens "Laguppställning"-flik tills ESPN:s officiella lineups tar över i `matchdetails.json`; spelare med skade-/avstängningsstatus får varningsprick |
 | `server/scripts/syncLineups.js` | Synkar troliga startelvor (körs var 15:e min av `sync-lineups.yml`; committar bara vid faktisk ändring). OBS: Sofascore ger 403 server-side – 365Scores är den öppna källan |
 | `assets/playerstats.js` | Spelarstatistik: Spelare/Lag/Region/Ligor + eget VM-betyg (10-gradigt, ur events + ESPN-boxscore `st` i lineups, `fmt: 2` i matchdetails). Ligor-fliken har ±Renommé (betyg mot förväntat ur regression betyg ~ renommé) med scatter-graf och klickbar liga → spelarmodal |
