@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-04T21:11:13.999Z",
+    "updatedAt": "2026-07-04T22:12:57.125Z",
     "source": "espn"
   },
   "details": {
@@ -51558,7 +51558,7 @@
       "espnId": "760503",
       "fmt": 2,
       "status": "IN_PLAY",
-      "minute": 7,
+      "minute": 49,
       "utcDate": "2026-07-04T21:00Z",
       "duration": "REGULAR",
       "winner": null,
@@ -51567,13 +51567,23 @@
           "h": 0,
           "a": 0
         },
-        "ht": null,
+        "ht": {
+          "h": 0,
+          "a": 0
+        },
         "rt": null,
         "et": null,
         "pen": null
       },
       "goals": [],
-      "bookings": [],
+      "bookings": [
+        {
+          "minute": 19,
+          "team": "a",
+          "player": "Bradley Barcola",
+          "card": "YELLOW"
+        }
+      ],
       "subs": [],
       "penalties": [],
       "lineups": {
@@ -51588,12 +51598,18 @@
             {
               "name": "Juan Jose Cáceres",
               "jersey": "4",
-              "pos": "RB"
+              "pos": "RB",
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Júnior Alonso",
               "jersey": "6",
-              "pos": "LB"
+              "pos": "LB",
+              "st": {
+                "sh": 1
+              }
             },
             {
               "name": "Omar Alderete",
@@ -51603,37 +51619,60 @@
             {
               "name": "Gustavo Gómez",
               "jersey": "15",
-              "pos": "CD"
+              "pos": "CD",
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Gustavo Velázquez",
               "jersey": "2",
-              "pos": "CD-R"
+              "pos": "CD-R",
+              "st": {
+                "fc": 2
+              }
             },
             {
               "name": "Miguel Almirón",
               "jersey": "10",
-              "pos": "RM"
+              "pos": "RM",
+              "st": {
+                "fs": 2
+              }
             },
             {
               "name": "Diego Gómez",
               "jersey": "8",
-              "pos": "CM-R"
+              "pos": "CM-R",
+              "st": {
+                "sh": 1
+              }
             },
             {
               "name": "Julio Enciso",
               "jersey": "19",
-              "pos": "F"
+              "pos": "F",
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
             },
             {
               "name": "Andrés Cubas",
               "jersey": "14",
-              "pos": "CM-L"
+              "pos": "CM-L",
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "Matías Galarza",
               "jersey": "23",
-              "pos": "LM"
+              "pos": "LM",
+              "st": {
+                "fc": 1,
+                "fs": 2
+              }
             }
           ],
           "bench": [
@@ -51705,57 +51744,93 @@
             {
               "name": "Mike Maignan",
               "jersey": "16",
-              "pos": "G"
+              "pos": "G",
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Jules Koundé",
               "jersey": "5",
-              "pos": "RB"
+              "pos": "RB",
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Lucas Digne",
               "jersey": "3",
-              "pos": "LB"
+              "pos": "LB",
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "Adrien Rabiot",
               "jersey": "14",
-              "pos": "LM"
+              "pos": "LM",
+              "st": {
+                "sh": 2
+              }
             },
             {
               "name": "Dayot Upamecano",
               "jersey": "4",
-              "pos": "CD-R"
+              "pos": "CD-R",
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "William Saliba",
               "jersey": "17",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "Ousmane Dembélé",
               "jersey": "7",
-              "pos": "AM-R"
+              "pos": "AM-R",
+              "st": {
+                "sh": 1
+              }
             },
             {
               "name": "Manu Koné",
               "jersey": "6",
-              "pos": "RM"
+              "pos": "RM",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Kylian Mbappé",
               "jersey": "10",
-              "pos": "F"
+              "pos": "F",
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Michael Olise",
               "jersey": "11",
-              "pos": "AM"
+              "pos": "AM",
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
             },
             {
               "name": "Bradley Barcola",
               "jersey": "12",
-              "pos": "AM-L"
+              "pos": "AM-L",
+              "st": {
+                "fc": 2
+              }
             }
           ],
           "bench": [
@@ -51828,28 +51903,28 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "11%",
-          "a": "90%"
+          "h": "20%",
+          "a": "80%"
         },
         {
           "key": "totalShots",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "5"
         },
         {
           "key": "shotsOnTarget",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "wonCorners",
           "h": "0",
-          "a": "1"
+          "a": "7"
         },
         {
           "key": "foulsCommitted",
-          "h": "0",
-          "a": "0"
+          "h": "5",
+          "a": "7"
         },
         {
           "key": "offsides",
@@ -51863,18 +51938,18 @@
         },
         {
           "key": "totalPasses",
-          "h": "9",
-          "a": "75"
+          "h": "85",
+          "a": "331"
         },
         {
           "key": "passPct",
-          "h": "44%",
-          "a": "89%"
+          "h": "54%",
+          "a": "92%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -51882,7 +51957,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-04T21:11:13.999Z"
+      "updatedAt": "2026-07-04T22:12:57.124Z"
     }
   }
 }
