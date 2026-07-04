@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-04T14:48:44.208Z",
+  "updated": "2026-07-04T16:30:14.858Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mex-roberto-alvarado": {
@@ -33,7 +33,7 @@
       "updated": "2026-07-03",
       "source": {
         "name": "Canadian Soccer Daily -",
-        "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNMWlCTXZwc1o1azB4dU5XOHoxemhXQ08tRExNX2xLSGZQSkFtOXNEUno3RVhZdUMtWVF2eTlfMGN2UlprOFVJbWVrQk5tNXpnXzJxN3pESTRpVG5qUnFiNlQ1NlpKZ1o3WUtGQmxBMVVGVWRWR3lXbDlRS3VLR054TzFZQjhyYlhWd01aWEtuYmxrUlU3OUtvNTA4X3BQSVdjX2ZUb0J6bXJLZkpzbDVya0JSZWc1UEVGdUZkUlZGZmdobTlfVjhoUEhiSDNxRXV3TE9HNUVsZjd0d1JHVDhF?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNY28tbHo4N2VlLXRWUG1YelRfWGRfRHVZbWtOVktUbXVGZkppdERQemVQVFFVZkxDT25rczE3Wi02b1dMSDNsdkN2azllZ1FldlhRTHFuZERDYWxZLVhkWkZ6NXE5SmR5LXZkRWJmaGVOYXNRV2ljMzRaRkhQNGZST2J4MVBETVZpSXEwTGIxV2pxNW9GdnFHUlJFamJsTFpJMWNYYjBQZ2VYenVUZnlsNDEwLVZtWjhXNkh6ejJtNGstSi1ldndzcG1MVHBuWUNnNW4tNDlxakc3b0otemk2Qkg4NWlwNEU?oc=5"
       },
       "origin": "news"
     },
@@ -70,28 +70,6 @@
       },
       "origin": "news"
     },
-    "mar-brahim-diaz": {
-      "availability": "doubtful",
-      "kind": "other",
-      "detail": "Marocko-Kanada: Chadi Riad osäker, Ouahbi försvarar Brahim Díaz",
-      "updated": "2026-07-04",
-      "source": {
-        "name": "Mountakhab.net",
-        "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNWnJVdm1iUmxfdUl5c0Z5QjltVkRPUTdNQU91NzRFd3BhREZiQWpadWJ4NUpuNGpMNWlCTlpzWVNfN3U0ejdlRHJ1T2xVRk1WbEc1RGxydDQ0MXBtU3pFTXlFRzZhcEUtejhyRWhBTFNWLWZrcjY5UW1JWGpBeFRwR0xnaW1mdnUzWlc0?oc=5"
-      },
-      "origin": "news"
-    },
-    "mar-chadi-riad": {
-      "availability": "doubtful",
-      "kind": "other",
-      "detail": "Marocko-Kanada: Chadi Riad osäker, Ouahbi försvarar Brahim Díaz",
-      "updated": "2026-07-04",
-      "source": {
-        "name": "Mountakhab.net",
-        "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNWnJVdm1iUmxfdUl5c0Z5QjltVkRPUTdNQU91NzRFd3BhREZiQWpadWJ4NUpuNGpMNWlCTlpzWVNfN3U0ejdlRHJ1T2xVRk1WbEc1RGxydDQ0MXBtU3pFTXlFRzZhcEUtejhyRWhBTFNWLWZrcjY5UW1JWGpBeFRwR0xnaW1mdnUzWlc0?oc=5"
-      },
-      "origin": "news"
-    },
     "usa-folarin-balogun": {
       "availability": "out",
       "kind": "suspension",
@@ -112,17 +90,6 @@
       "source": {
         "name": "MSN",
         "url": "https://news.google.com/rss/articles/CBMinANBVV95cUxQVUhkUUpfUWNORXdCS2JaaUkxcE8tRWFyMm1VQy1fVzRtZXoxS3pNekduS2NNUTJvd2pDZVJBZEFGTnhqTGxYd0g0c0tVeVZMVFZKQy1MWDFwajN3cmltRlFQMGE2N0FteHlXVmlvNXNuaTRlQ1dKbWRnajU3UVMtaVRpeWlueDNOZ3NGeXhneTlaTHkzT1o4cW5tbWRORmROdzFJWGhyWUc0SDdwUXhBUks3X0oxNHJIT3otX1VsZVlWallhc2dMYi1PNmJqNnFCTFl3TjFRaDFyTU9obHozbkpmVGlCRzVicmo3bTBBMnJmMTIzalUtV2hEcWd5eF9SRmJTMzMwdFI1VnN0OTduRC04Nm9CUUllQ0NHMXQtV3lORElscW9kLWt2SnJxYTVQejU4Sy1FRXNuLWVhcGIxa3hyRUxSYzU0Qmt2bGV2R01kdW01NmIxNlg1VUVwREdIVVMzSGlfeHZjanZsblMtSzh5VTBiTG5od3lkSGg5LVYwc1kzZXJWU0pEckUxTklIMDZFbHFZdkNjQ1Zj?oc=5"
-      },
-      "origin": "news"
-    },
-    "par-omar-alderete": {
-      "availability": "doubtful",
-      "kind": "other",
-      "detail": "Alfaro hänvisade till Alderetes situation: Kommer han att anlända mot Frankrike?",
-      "updated": "2026-07-03",
-      "source": {
-        "name": "D10",
-        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQOEEyTTZ3cXZsQ0VtWG5pNUJGNlRxRHJ0TnZxS3F6YkhLNEJUYlBqeW9jLUpyNnpJbHBWeWJsRXJLWTVwU014VUtRaHJxc0JRZURKd0M1LS13TlJlTlM0eUdua3EwOWNaZ0h1SXBocEN4ZDZXTUtLN3dzbS1kTU9nXzA2d3JnUy0zSWlTMmdUQTZnOGV30gGiAUFVX3lxTE1VOHE5bHNSMlNHVmNhN2pkY2sza3dfajhyblI2blVDSE1ibDR2dW45ckQtRFZjLXE1X0JMaHJ6bVBNUUl6N29QeW83elBLYkJ5RGRHaDN3TzlnZ2VmSE9pTGVkNWNyaHE5TGJPQXNTbEk1LWo5YVVwYW03TENZMnM0VHBKRzNSTzFocUR0blpYSTFFU3RIcnN3RGZ2WHZRc1huQQ?oc=5"
       },
       "origin": "news"
     },
@@ -162,11 +129,11 @@
     "fra-aurelien-tchouameni": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Aurélien Tchouaméni, skadad under träningen på fredagen, har \"en mycket god chans\" att dras tillbaka mot Paraguay",
+      "detail": "Paraguay-Frankrike: vi vet mer om Aurélien Tchouaménis skada, förverkad för åttondelsfinal i världscupen",
       "updated": "2026-07-04",
       "source": {
-        "name": "franceinfo",
-        "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxOUG16cElrRjBHU1VVLXlVN2dKSnIwR2ltejk1UHhOekd5cU9lSjJscjl5d0tUWjZWZ3ZQYU1NamdUM1ZXeGZuVkpPYnR3NlZ5czcwbE1JZ0pod1FrUGJqN0x3WGRKR3REMHdZLVRoSXpUeW5qS01MM3hVVHRjTmJha3NlRWFOTTExMW1xNVJ3a2hnbVVVUkUyQ01SUHB5YVFhN2FyS3Y5QTV3aHNnd1hSUDgtZ2h2a255R1Z3UW96Sk9HTjMtWnY4SE94UjBOR1hBNHJieW0yZVY3MThzMDJ0WGNkSHl0UVZKb3doa1ZTX2xJUm1fdy1BQXhEdU5tMTRs?oc=5"
+        "name": "RMC Sport",
+        "url": "https://news.google.com/rss/articles/CBMimwJBVV95cUxQUnBUWGJlMV9ydzdKUjZ0Tm8takFIb040Y0ZEZXNicEtyRGFNb1g1dVNFdjJtTzlkNGxjMG9VTWV1UTM0Yjcwc0xYbmlBdHNHZzF6MEJiQmFUYWxqRndOcVJpTER1RWdGRGVFNG56aEc5SkhNYnVacllzYmdiR3RyYWtUYXVuYWdQbFVpTkNyX3o3VldNMFNYR092Mi1mdUFmN0QzRmwzVWZvUk9Ybm9VNko2NDdRaG96eFpvNE5RbW9Nc2w0TVpBS0ZmS3VfbUtCTWlBZmtkZVR0RUpnVmE4X2g2NE9MUEtaNzV4eG1OdzVTQmxwcDVKakx2cTJVOVVRWmZ5ajFRcmZTdW1mMGE5c0M4MTgySnExdjJV?oc=5"
       },
       "origin": "news"
     },
@@ -182,13 +149,13 @@
       "origin": "news"
     },
     "col-jhon-cordoba": {
-      "availability": "doubtful",
+      "availability": "out",
       "kind": "injury",
-      "detail": "Jhon Córdoba gick i pension skadad i det colombianska landslaget och väntar på sina studier: \"Jag kände något i annonsen...",
+      "detail": "Är VM 2026 över för dig? De ger de första detaljerna om Jhon Córdobas skada",
       "updated": "2026-07-04",
       "source": {
-        "name": "dsports",
-        "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxPUkJ0RlE4YUxSWVVxQnZzOG5xUURRWGhqdENubzd4N3lSejNHUTZ1dWdNS3FoWVRSQU1EbGhXQ2dBbk9JT1k5MmxQaGNDV2dXRmhmdlhfanhTQk9CT2FrRG1zWE9IdzY3bU1CYUR5MEgzRTdzdE1NV0NZeWJLLXliaUp2SEt3T1FockR6Y2JldTUtNUVFb2V2VGl5YzRGcnFueG9QYXYyUnNXdkgxYjhBdEh4bFJoVTI3aTFVaVZ2bVZEUDBMWEQyZFRHNjZoc09uZTdSWTZGZmRyUzBiRmFTcnQyQkRPc3dkZEZkOTlGd3R4dnl0SWM4dEl1aGnSAfwBQVVfeXFMT1JCdEZROGFMUllVcUJ2czhucVFEUVhoanRDbm83eDd5UnozR1E2dXVnTUtxaFlUUkFNRGxoV0NnQW5PSU9ZOTJsUGhjQ1dnV0ZoZnZYX2p4U0JPQk9ha0Rtc1hPSHc2N21NQmFEeTBIM0U3c3RNTVdDWXliSy15YmlKdkhLd09RaHJEemNiZXU1LTVFRW9ldlRpeWM0RnJxbnhvUGF2MlJzV3ZIMWI4QXRIeGxSaFUyN2kxVWlWdm1WRFAwTFhEMmRURzY2aHNPbmU3Ulk2RmZkclMwYkZhU3J0MkJET3N3ZGRGZDk5Rnd0eHZ5dEljOHRJdWhp?oc=5"
+        "name": "bolavip.com",
+        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOMG5BZVlESVNiT2pxOFhxNGRmX1VkRGVlX2Jsd3F6Wk9uM2RFU3ZqRG9UbHlZQ0t5aFRodm9PTXFXUEZGczYyOGYtR184X2FzOGZrQTU3bHhfaFRGZHhfYkt2dlFleUJMQm5BZjZGZHlfdXFwSllSRVAtOHlrRWxZNjFDdDFUcmVnZlhHREtYbEtXMy1nVURBRVZCZS1Da3JQTndiXzE4MThjMXc4ck5R0gG0AUFVX3lxTE1JZFJMMlZkcEZUWE1NSk5IWXVvN2gwOXp3aEcyVjI2cVYwTkhlQ3dwcEVCa0JxT1gyd1N5SW1zRGpJNTREQmtNczQ0RC0xMjBSVDkxMmJTZlIxX0JEUkN3VTJpcVB6OGVEZW5hQ3RvcG5KUkhrMHhtNmU1b202YjYzUnNVbXB3c04yNU5VY0k3QzJyMjQ3YUQzcktiMkU0SksxTU9xRTlDOWdtb3pwRi1yLUFBdw?oc=5"
       },
       "origin": "news"
     },
@@ -211,17 +178,6 @@
       "source": {
         "name": "Metro.co.uk",
         "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNMWI2dk4zRUowbWlKY3RTX2FacFZaV3RmU2gwVzJPRURqTzV2R1VnV09hS3Y1NXZzUWpkaGxMTjFYMjRMbUs3bkFPcG51RUJoWTlXX0MyUzgyb3Blb3dDUVVCMDNqZEhTSU5rOUptMUxzT0tlRW9KWmw0eFE2X19uNEZnTVl1QmEwd2dZSnBJRm5uWXFVSXU2bGd1NTBKWUVtaHZvdFh0UXNBeEXSAbABQVVfeXFMT0QyTDNVS0loX2w3Zk5XLU1NdjdDaFpPdzBYWklPTnJOWjBJVzUtZFpqUVVzOUFRRUpDTk0zMEhLV1dMNDVhTzVqY3k1Z2Z2aHJFeFZnTHJxN1BqaUI4UmJRcmRGRVhXYUVoMHptUGpuUG10eXRWNzRzdmE2R2c3YXhjS3ZEeDMyNTc1MzFTX01XRWZHQ3J2MXNMMm0xN1dLQXpqcUs0Y3Y1eE83bkpnWkU?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-reece-james": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "England får stor dubbel skadeökning över konditionen för Reece James och Declan Rice",
-      "updated": "2026-07-03",
-      "source": {
-        "name": "talkSPORT",
-        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPaVBpRjdHSGlBNDhxd2daTEhtdU5vR0ZVU20yYkhWdllkdndYblZjU2poYzNwazV5cnBYOGJ2ZUJIUWVrRTZqSWhValExZ1ZNa2lrb3hmdVNOTXdxNG9ZbDlIMWNQa082eElBVFdOcDJWMFRBeTQ5RnpyN2hTLW14TGFvcUlNVUc1ZnMtdkhTVW5ScS1pNmhNZEs5bWtYRGl1TnZNMDJuTGRhQQ?oc=5"
       },
       "origin": "news"
     },
