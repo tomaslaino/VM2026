@@ -198,8 +198,29 @@
       goals: 0, pens: 0, og: 0, assists: 0, y: 0, r: 0,
       min: 0, apps: 0,
       sh: 0, sg: 0, sv: 0, fc: 0, fs: 0,   // boxscore: skott/på mål/räddningar/fouls
-      rSum: 0, rMin: 0                      // VM-betyg: Σ(betyg × min) och Σ(min)
+      rSum: 0, rMin: 0,                     // VM-betyg: Σ(betyg × min) och Σ(min)
+      log: []                               // per-match-rader (spelarmodalens matchlogg)
     });
+  }
+
+  /* Matchmetadata till spelarens matchlogg: rundetikett + datum via
+     VMApp.describeMatch (samma källa som matchinfo-modalen). */
+  function matchMeta(key) {
+    var label = null, date = null;
+    if (window.VMApp && typeof VMApp.describeMatch === "function") {
+      try {
+        var info = VMApp.describeMatch(key);
+        if (info) {
+          label = info.label || null;
+          date = info.m && info.m.date ? info.m.date : null;
+        }
+      } catch (e) {}
+    }
+    if (!label) {
+      var g = /^g:([A-L]):/.exec(key);
+      if (g) label = "Grupp " + g[1];
+    }
+    return { label: label, date: date };
   }
 
   /*
@@ -219,16 +240,16 @@
     (ESPN); saknas det bidrar de med 0. Turneringsbetyget är minutviktat:
     Σ(matchbetyg × minuter) / Σ(minuter).
   */
-  function addSideMatch(map, det, side, team) {
+  function addSideMatch(map, key, meta, det, side, team, oppTeam) {
     var lu = det.lineups && det.lineups[side];
     if (!lu) return;
     var full = matchFull(det);
     var opp = side === "h" ? "a" : "h";
-    var play = {}; // norm namn -> { name, in, out }
+    var play = {}; // norm namn -> { name, in, out, starter }
 
     (lu.starters || []).forEach(function (s) {
       if (!s || !s.name) return;
-      play[norm(s.name)] = { name: s.name, in: 0, out: full };
+      play[norm(s.name)] = { name: s.name, in: 0, out: full, starter: true };
     });
 
     (det.subs || []).forEach(function (sb) {
@@ -315,6 +336,24 @@
         b.sh += st.sh || 0; b.sg += st.sg || 0; b.sv += st.sv || 0;
         b.fc += st.fc || 0; b.fs += st.fs || 0;
       }
+
+      var o = ind[k] || { g: 0, pen: 0, og: 0, a: 0, y: 0, yr: 0, rd: 0 };
+
+      /* Matchloggrad (spelarmodalen): motståndare, resultat, speltid,
+         händelser och matchbetyg (sätts nedan när minuter finns). */
+      var entry = {
+        key: key, label: meta.label, date: meta.date,
+        oppIso: oppTeam ? oppTeam.iso : null,
+        oppSv: oppTeam ? teamShort(oppTeam) : "?",
+        gf: ft ? ft[side] : null, ga: ft ? ft[opp] : null,
+        res: (ft && ft.h != null && ft.a != null) ? res : null,
+        min: mins, on: pin, off: pout, full: full, starter: !!pl.starter,
+        g: o.g, pen: o.pen, og: o.og, a: o.a, y: o.y, yr: o.yr, rd: o.rd,
+        sv: st ? (st.sv || 0) : 0,
+        rating: null
+      };
+      b.log.push(entry);
+
       if (mins <= 0) return;
 
       /* Roll: MV/försvarare/övrig – lineup-position, annars truppens. */
@@ -331,7 +370,6 @@
       gFor.forEach(function (m) { if (m >= pin && m <= pout) pf++; });
       gAg.forEach(function (m) { if (m >= pin && m <= pout) pa++; });
 
-      var o = ind[k] || { g: 0, pen: 0, og: 0, a: 0, y: 0, yr: 0, rd: 0 };
       var r = 6
         + (o.g - o.pen) * 1.0 + o.pen * 0.75 - o.og * 0.7
         + o.a * 0.5
@@ -349,6 +387,7 @@
       r += -(o.y * 0.3) - (o.yr * 1.0) - (o.rd * 1.2);
       r = Math.max(3, Math.min(10, r));
 
+      entry.rating = r;
       b.rSum += r * mins;
       b.rMin += mins;
     });
@@ -385,8 +424,9 @@
         else if (bk.card === "YELLOW_RED" || bk.card === "RED") b.r++;
       });
 
-      addSideMatch(map, det, "h", sides.h);
-      addSideMatch(map, det, "a", sides.a);
+      var meta = matchMeta(key);
+      addSideMatch(map, key, meta, det, "h", sides.h, sides.a);
+      addSideMatch(map, key, meta, det, "a", sides.a, sides.h);
     });
     return map;
   }
@@ -461,7 +501,7 @@
 
   function makePlayerRow(te, p, st, fallbackName) {
     st = st || { goals: 0, pens: 0, og: 0, assists: 0, y: 0, r: 0, min: 0, apps: 0,
-                 sh: 0, sg: 0, sv: 0, fc: 0, fs: 0, rSum: 0, rMin: 0 };
+                 sh: 0, sg: 0, sv: 0, fc: 0, fs: 0, rSum: 0, rMin: 0, log: [] };
     var goals = st.goals, assists = st.assists, min = st.min || 0;
     var avail = (p && window.VMPlayers && VMPlayers.getPlayerStatus) ? VMPlayers.getPlayerStatus(p.id) : null;
     return {
@@ -486,6 +526,11 @@
       gi90: per90(goals + assists, min),
       sh: st.sh || 0, sg: st.sg || 0, sv: st.sv || 0, fc: st.fc || 0, fs: st.fs || 0,
       rSum: st.rSum || 0, rMin: st.rMin || 0,
+      /* Matchlogg i kronologisk ordning (datum, sedan nyckel som stabil backup). */
+      log: (st.log || []).slice().sort(function (a, b) {
+        var ad = a.date || "", bd = b.date || "";
+        return ad < bd ? -1 : ad > bd ? 1 : (a.key < b.key ? -1 : a.key > b.key ? 1 : 0);
+      }),
       rating: (st.rMin || 0) > 0 ? st.rSum / st.rMin : null,
       ratingQ: (st.rMin || 0) >= RATING_QUAL_MIN,
       qualified: min >= QUAL_MIN,

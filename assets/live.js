@@ -32,6 +32,29 @@
   var SV_MONTHS = ["januari", "februari", "mars", "april", "maj", "juni",
     "juli", "augusti", "september", "oktober", "november", "december"];
 
+  /* Klubb → liga (data/club_leagues.json). Laddas lätt i bakgrunden när
+     lag-lådan öppnas; profilfliken fylls på i efterhand om datan inte hunnit
+     fram när modalen öppnas. */
+  var leaguesData = null;
+  var leaguesPromise = null;
+
+  function ensureLeagues() {
+    if (!leaguesPromise) {
+      leaguesPromise = fetch("data/club_leagues.json", { headers: { Accept: "application/json" } })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) { leaguesData = d; })
+        .catch(function () {});
+    }
+    return leaguesPromise;
+  }
+
+  /** Ligaposten ({country,name,tier,rep,iso}) för en klubb, eller null. */
+  function leagueOf(club) {
+    if (!club || !leaguesData || !leaguesData.clubs || !leaguesData.leagues) return null;
+    var lid = leaguesData.clubs[club];
+    return lid ? (leaguesData.leagues[lid] || null) : null;
+  }
+
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
@@ -56,6 +79,7 @@
   function onTeamDrawer(team, group, panel) {
     lastTeam = { team: team, group: group, panel: panel };
     if (!panel) return;
+    ensureLeagues(); // förladda ligadatan så spelarprofilen har den direkt
 
     var card = document.createElement("div");
     card.className = "drawer-card players-card";
@@ -237,8 +261,105 @@
     try { return ps.getPlayerStats(playerId); } catch (e) { return null; }
   }
 
+  /* ---------- VM-betyg & matchlogg (presentation) ---------- */
+
+  function flagImg(iso) {
+    if (!iso) return "";
+    return '<img class="flag" loading="lazy" src="https://flagcdn.com/' + esc(iso) + '.svg" alt="" ' +
+      'onerror="this.style.visibility=\'hidden\'">';
+  }
+
+  /** 10-gradigt betyg med en decimal, "–" när det saknas. */
+  function fmtRating(v) {
+    return (v == null || !isFinite(v)) ? "–" : (Math.round(v * 10) / 10).toFixed(1);
+  }
+
+  /** Färgklass för ett betyg (guld/grön/neutral/röd). */
+  function rtClass(v) {
+    if (v == null || !isFinite(v)) return "rt-none";
+    if (v >= 7.5) return "rt-top";
+    if (v >= 6.5) return "rt-good";
+    if (v >= 5.5) return "rt-mid";
+    return "rt-low";
+  }
+
+  /** Speltidstext för en matchloggrad: "hela matchen" / byten / utvisning. */
+  function logRole(e) {
+    if ((e.rd || e.yr) && e.off < e.full) {
+      return (e.starter ? "" : "inbytt " + e.on + "′ · ") + "utvisad " + e.off + "′";
+    }
+    if (e.starter) return e.off < e.full ? "utbytt " + e.off + "′" : "hela matchen";
+    var s = "inbytt " + e.on + "′";
+    if (e.off < e.full) s += " · utbytt " + e.off + "′";
+    return s;
+  }
+
+  /** Händelseikoner (mål/assist/kort/räddningar) för en matchloggrad. */
+  function logEvents(e, isGk) {
+    var out = [];
+    if (e.g) {
+      out.push('<span class="pm-ev" title="' + e.g + " mål" +
+        (e.pen ? " (varav " + e.pen + " på straff)" : "") + '">⚽' +
+        (e.g > 1 ? "×" + e.g : "") + "</span>");
+    }
+    if (e.og) out.push('<span class="pm-ev pm-ev-og" title="Självmål">⚽SM</span>');
+    if (e.a) out.push('<span class="pm-ev pm-ev-a" title="' + e.a + ' assist">A' + (e.a > 1 ? "×" + e.a : "") + "</span>");
+    if (isGk && e.sv) out.push('<span class="pm-ev" title="' + e.sv + ' räddningar">🧤' + e.sv + "</span>");
+    if (e.y) out.push('<span class="pm-mini-card y" title="Gult kort"></span>');
+    if (e.yr) out.push('<span class="pm-mini-card yr" title="Utvisad – andra gula kortet"></span>');
+    if (e.rd) out.push('<span class="pm-mini-card r" title="Rött kort"></span>');
+    return out.join("");
+  }
+
+  /** Resultatpill (grön vinst / grå oavgjort / röd förlust) ur lagets perspektiv. */
+  function logScore(e) {
+    if (e.gf == null || e.ga == null) return '<span class="pm-log-score res-x">–</span>';
+    var cls = e.res === 1 ? "res-w" : e.res === -1 ? "res-l" : e.res === 0 ? "res-d" : "res-x";
+    var txt = e.res === 1 ? "Vinst" : e.res === -1 ? "Förlust" : "Oavgjort";
+    return '<span class="pm-log-score ' + cls + '" title="' + txt + " " + e.gf + "–" + e.ga + '">' +
+      e.gf + "–" + e.ga + "</span>";
+  }
+
+  /** En rad i matchloggen – klickbar (data-match-open) och öppnar matchrapporten. */
+  function logRow(e, isGk) {
+    return '<button type="button" class="pm-log-row" data-match-open="' + esc(e.key) + '" ' +
+        'title="Öppna matchrapporten">' +
+      '<span class="pm-log-flag">' + flagImg(e.oppIso) + '</span>' +
+      '<span class="pm-log-main">' +
+        '<span class="pm-log-opp">' + esc(e.oppSv) + '</span>' +
+        '<span class="pm-log-sub">' + esc((e.label ? e.label + " · " : "") + logRole(e)) + '</span>' +
+      '</span>' +
+      '<span class="pm-log-ev">' + logEvents(e, isGk) + '</span>' +
+      logScore(e) +
+      '<span class="pm-log-rt ' + rtClass(e.rating) + '">' + fmtRating(e.rating) + '</span>' +
+      '</button>';
+  }
+
+  /** Ligarad på profilfliken: flagga + liganamn (+ nivå) med land under. */
+  function leagueRowHtml(lg) {
+    var name = lg.name + (lg.tier > 1 ? " (nivå " + lg.tier + ")" : "");
+    return '<div class="pm-row"><span class="pm-row-lbl">Liga</span>' +
+      '<span class="pm-row-val pm-row-league">' +
+        '<span class="pm-league-name">' + flagImg(lg.iso) + esc(name) + '</span>' +
+        '<span class="pm-league-country">' + esc(lg.country) + '</span>' +
+      '</span></div>';
+  }
+
+  /** Ligans renommé (0–100) som liten mätare – samma skala som Ligor-fliken. */
+  function leagueRepHtml(lg) {
+    if (lg.rep == null) return "";
+    return '<div class="pm-row" title="Ligans renommé inför VM på skalan 0–100, där 100 = Premier League.">' +
+      '<span class="pm-row-lbl">Ligarenommé</span>' +
+      '<span class="pm-row-val pm-rep">' +
+        '<span class="pm-rep-bar"><span class="pm-rep-fill" style="width:' +
+          Math.max(2, Math.min(100, lg.rep)) + '%"></span></span>' +
+        '<span class="pm-rep-num">' + esc(lg.rep) + '/100</span>' +
+      '</span></div>';
+  }
+
   /** Profilfliken: Wikipedia-bas + VM-tillskott på landskamper/landslagsmål. */
   function profilPanelHtml(player, wc) {
+    var lg = leagueOf(player.club);
     return '<div class="pm-stats">' +
         statCell(player.age, "Ålder") +
         statCellPlus(player.caps, wc ? wc.apps : 0, "Landskamper") +
@@ -249,36 +370,71 @@
         infoRow("Position", player.position_sv) +
         infoRow("Födelsedatum", fmtDate(player.date_of_birth)) +
         infoRow("Klubb", player.club) +
-        infoRow("Klubbland", player.club_country) +
+        (lg ? leagueRowHtml(lg) + leagueRepHtml(lg)
+            : infoRow("Klubbland", player.club_country)) +
       '</div>' +
       '<div class="pm-note">Stora talet är totalen. Raden under visar antalet ' +
         'före VM-slutspelet (från Wikipedia) + grönt tillägg ' +
         '<span class="pm-plus pm-plus-inline">+N</span> under VM 2026.</div>';
   }
 
-  /** VM 2026-fliken: enbart det spelaren gjort under detta VM. */
-  function vmPanelHtml(wc) {
+  /** VM 2026-fliken: betyg, statistik och match-för-match-logg för detta VM. */
+  function vmPanelHtml(wc, player) {
     if (!wc || !wc.played) {
       return '<div class="pm-empty-vm">Har inte spelat någon match i VM 2026 ännu.</div>';
     }
+    var isGk = (wc.pos || (player && player.pos_code)) === "GK";
+    var html = "";
+
+    if (wc.rating != null) {
+      html += '<div class="pm-rating ' + rtClass(wc.rating) + '">' +
+        '<span class="pm-rating-val">' + fmtRating(wc.rating) + '</span>' +
+        '<span class="pm-rating-txt"><strong>VM-betyg</strong>' +
+          '<span>' + (wc.ratingQ
+            ? "Minutviktat snitt över " + wc.apps + (wc.apps === 1 ? " match" : " matcher")
+            : "Under 90 spelade minuter – osäkert betyg") + '</span>' +
+        '</span></div>';
+    }
+
     var goalsTitle = [];
     if (wc.pens) goalsTitle.push(wc.pens + " på straff");
     if (wc.og) goalsTitle.push(wc.og + " självmål (räknas ej)");
     var cards = "";
     if (wc.y) cards += '<span class="pm-card-pill y">' + wc.y + ' gul' + (wc.y === 1 ? "t" : "a") + '</span>';
     if (wc.r) cards += '<span class="pm-card-pill r">' + wc.r + ' röd' + (wc.r === 1 ? "tt" : "a") + '</span>';
-    return '<div class="pm-stats pm-stats-vm">' +
+
+    html += '<div class="pm-stats pm-stats-vm">' +
         statCell(wc.apps, "Matcher") +
         statCell(wc.min ? wc.min + "'" : 0, "Minuter") +
         statCell(wc.goals, "Mål") +
         statCell(wc.assists, "Assist") +
-      '</div>' +
-      '<div class="pm-info">' +
-        (goalsTitle.length ? infoRow("Varav", goalsTitle.join(" · ")) : "") +
-        '<div class="pm-row"><span class="pm-row-lbl">Kort</span>' +
-          '<span class="pm-row-val">' + (cards || "–") + '</span></div>' +
-      '</div>' +
-      '<div class="pm-note">Samlas in automatiskt från matchrapporterna (ESPN) under VM 2026.</div>';
+      '</div>';
+
+    var rows = "";
+    if (goalsTitle.length) rows += infoRow("Varav", goalsTitle.join(" · "));
+    if (cards) {
+      rows += '<div class="pm-row"><span class="pm-row-lbl">Kort</span>' +
+        '<span class="pm-row-val">' + cards + '</span></div>';
+    }
+    if (wc.sh || wc.sg) rows += infoRow("Skott (varav på mål)", wc.sh + " (" + wc.sg + ")");
+    if (isGk) rows += infoRow("Räddningar", wc.sv);
+    if (wc.fc || wc.fs) rows += infoRow("Fouls · utsatt för fouls", wc.fc + " · " + wc.fs);
+    if (wc.ratingQ && (wc.goals || wc.assists)) {
+      rows += infoRow("Mål + assist per 90 min", (Math.round(wc.gi90 * 100) / 100).toFixed(2));
+    }
+    if (rows) html += '<div class="pm-info">' + rows + '</div>';
+
+    if (wc.log && wc.log.length) {
+      html += '<div class="pm-log"><div class="pm-log-head">Match för match</div>' +
+        wc.log.map(function (e) { return logRow(e, isGk); }).join("") +
+        '</div>';
+    }
+
+    html += '<div class="pm-note">Ur matchrapporterna (ESPN). Betyget är 10-gradigt ' +
+      '(bas 6,0) per match och väger mål, assist, resultat medan spelaren var på ' +
+      'planen, hållen nolla, räddningar, skott, fouls och kort. ' +
+      'Klicka på en match för hela matchrapporten.</div>';
+    return html;
   }
 
   function openPlayer(player, team) {
@@ -294,7 +450,9 @@
     var avatar = '<div class="pm-photo placeholder">' +
       esc((player.name || "?").charAt(0)) + '</div>';
 
-    m.querySelector(".pm-card").innerHTML =
+    var card = m.querySelector(".pm-card");
+    card.setAttribute("data-pid", player.id == null ? "" : String(player.id));
+    card.innerHTML =
       '<button class="pm-close" title="Stäng">×</button>' +
       '<div class="pm-head">' + avatar +
         '<div class="pm-id">' +
@@ -317,15 +475,32 @@
       '</div>' +
       '<div class="pm-tab-panels">' +
         '<div class="pm-tab-panel active" data-pm-panel="profil">' + profilPanelHtml(player, wc) + '</div>' +
-        '<div class="pm-tab-panel" data-pm-panel="vm">' + vmPanelHtml(wc) + '</div>' +
+        '<div class="pm-tab-panel" data-pm-panel="vm">' + vmPanelHtml(wc, player) + '</div>' +
       '</div>';
 
     m.querySelector(".pm-close").addEventListener("click", closePlayer);
     m.classList.add("open");
+
+    // Ligadatan kan komma efter att modalen ritats – fyll då på profilfliken
+    // (bara om modalen fortfarande visar samma spelare).
+    if (!leaguesData) {
+      ensureLeagues().then(function () {
+        if (!leaguesData || !m.classList.contains("open")) return;
+        if (card.getAttribute("data-pid") !== String(player.id)) return;
+        var panel = card.querySelector('[data-pm-panel="profil"]');
+        if (panel) panel.innerHTML = profilPanelHtml(player, wc);
+      });
+    }
   }
 
-  /** Flikbyte i spelarmodalen (delegerat). */
+  /** Flikbyte + matchloggsklick i spelarmodalen (delegerat). */
   function onModalClick(e) {
+    // Klick på en matchloggrad: stäng spelarmodalen och låt klicket bubbla
+    // vidare till app.js body-lyssnare som öppnar matchinfo-modalen
+    // (den ligger under spelarmodalen i z-led, därför stängs vi först).
+    var mo = e.target.closest && e.target.closest("[data-match-open]");
+    if (mo) { closePlayer(); return; }
+
     var tab = e.target.closest && e.target.closest("[data-pm-tab]");
     if (!tab) return;
     var card = tab.closest(".pm-card");

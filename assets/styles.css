@@ -3997,6 +3997,99 @@ span.pr-caps-debut.pr-caps-legend {
 .pm-card-pill.y { background: color-mix(in srgb, #e6b800 22%, transparent); color: color-mix(in srgb, #e6b800 60%, var(--ink)); }
 .pm-card-pill.r { background: color-mix(in srgb, #c0392b 20%, transparent); color: color-mix(in srgb, #c0392b 70%, var(--ink)); }
 
+/* ---------- VM-betyg i spelarprofilen ----------
+   Färgskala för 10-gradiga betyg (bas 6,0): guld = toppklass (≥7,5),
+   grön = bra (≥6,5), neutral = godkänt (≥5,5), röd = svagt. */
+.pm-rating {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 12px; padding: 10px 14px;
+  background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+.pm-rating-val {
+  font-size: 30px; font-weight: 800; font-variant-numeric: tabular-nums;
+  line-height: 1; flex: none;
+}
+.pm-rating-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.pm-rating-txt strong { font-size: 13px; }
+.pm-rating-txt span:not(strong) { font-size: 12px; color: var(--ink-soft); }
+.pm-rating.rt-top {
+  border-color: color-mix(in srgb, var(--gold) 45%, var(--line));
+  background: color-mix(in srgb, var(--gold) 10%, var(--bg-soft));
+}
+.pm-rating.rt-good { border-color: color-mix(in srgb, var(--adv) 40%, var(--line)); }
+.pm-rating.rt-low { border-color: color-mix(in srgb, var(--live) 35%, var(--line)); }
+.rt-top { color: var(--gold); }
+.rt-good { color: var(--adv); }
+.rt-mid { color: var(--ink); }
+.rt-low { color: color-mix(in srgb, var(--live) 75%, var(--ink)); }
+.rt-none { color: var(--ink-soft); }
+.pm-rating.rt-mid .pm-rating-val { color: var(--ink); }
+
+/* ---------- Matchlogg (match för match) i spelarprofilen ---------- */
+.pm-log { margin-top: 16px; }
+.pm-log-head {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--ink-soft); margin-bottom: 6px;
+}
+.pm-log-row {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  padding: 8px 6px; border: 0; border-top: 1px solid var(--line);
+  background: transparent; color: var(--ink); font: inherit;
+  text-align: left; cursor: pointer; border-radius: 6px;
+}
+.pm-log-row:hover { background: var(--bg-soft); }
+.pm-log-flag { flex: none; line-height: 0; }
+.pm-log-flag .flag { width: 20px; height: 14px; }
+.pm-log-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.pm-log-opp { font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pm-log-sub { font-size: 11px; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pm-log-ev { flex: none; display: inline-flex; align-items: center; gap: 4px; }
+.pm-ev { font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pm-ev-a {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 16px; height: 16px; padding: 0 3px; border-radius: 4px;
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: color-mix(in srgb, var(--accent) 60%, var(--ink));
+  font-size: 10.5px; font-weight: 800;
+}
+.pm-ev-og { color: color-mix(in srgb, var(--live) 75%, var(--ink)); font-size: 10.5px; font-weight: 700; }
+.pm-mini-card {
+  display: inline-block; width: 9px; height: 12px; border-radius: 2px; flex: none;
+}
+.pm-mini-card.y { background: #e6b800; }
+.pm-mini-card.r { background: #c0392b; }
+.pm-mini-card.yr { background: linear-gradient(135deg, #e6b800 50%, #c0392b 50%); }
+.pm-log-score {
+  flex: none; min-width: 34px; text-align: center;
+  padding: 2px 6px; border-radius: 6px;
+  font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums;
+}
+.pm-log-score.res-w { background: color-mix(in srgb, var(--adv) 18%, transparent); color: color-mix(in srgb, var(--adv) 70%, var(--ink)); }
+.pm-log-score.res-d { background: var(--bg-soft); color: var(--ink-soft); }
+.pm-log-score.res-l { background: color-mix(in srgb, var(--live) 16%, transparent); color: color-mix(in srgb, var(--live) 70%, var(--ink)); }
+.pm-log-score.res-x { background: transparent; color: var(--ink-soft); }
+.pm-log-rt {
+  flex: none; min-width: 28px; text-align: right;
+  font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Liga + renommé på profilfliken ---------- */
+.pm-row-league { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
+.pm-league-name { display: inline-flex; align-items: center; gap: 6px; font-weight: 500; }
+.pm-league-name .flag { width: 18px; height: 12px; }
+.pm-league-country { font-size: 11.5px; color: var(--ink-soft); font-weight: 400; }
+.pm-rep { display: inline-flex; align-items: center; gap: 8px; cursor: help; }
+.pm-rep-bar {
+  width: 72px; height: 6px; border-radius: 999px; overflow: hidden;
+  background: var(--bg-soft); border: 1px solid var(--line);
+}
+.pm-rep-fill {
+  display: block; height: 100%; border-radius: 999px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--gold) 55%, var(--bg-soft)), var(--gold));
+}
+.pm-rep-num { font-size: 12.5px; font-variant-numeric: tabular-nums; }
+
 /* ---------- Spelarstatus (skada / avstängning / osäker) ----------
    --pstat-susp: avstängning får en egen lila ton för att skiljas från det
    röda "ej tillgänglig" (skada/sjuk) och det gula "osäker". */
