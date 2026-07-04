@@ -4912,6 +4912,41 @@ span.pr-caps-debut.pr-caps-legend {
   .mi-news-cols { grid-template-columns: minmax(0, 1fr); }
 }
 
+/* Avbräck & frågetecken överst i nyhetsfliken: spelare som inte spelar
+   (avstängda/skadade) och osäkra, med orsak + källänk på varje rad. */
+.mi-avail { margin-bottom: 18px; }
+.mi-avail-cols { margin-top: 2px; }
+.mi-avail-item {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 8px 10px; border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background: var(--bg-soft);
+  transition: border-color .15s, background-color .15s;
+}
+.mi-avail-item.mi-pl-openable { cursor: pointer; }
+.mi-avail-item.mi-pl-openable:hover { border-color: var(--line-strong); background-color: #13233c; }
+.mi-avail-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-width: 0; }
+.mi-avail-head .mi-pv-item-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mi-avail-head .pstat { flex: none; }
+.mi-avail-detail { font-size: 12px; line-height: 1.45; color: var(--ink-soft); }
+.mi-avail-meta {
+  display: flex; align-items: center; gap: 8px; min-width: 0;
+  font-size: 10.5px; color: var(--ink-soft);
+}
+.mi-avail-src {
+  flex: none; max-width: 70%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  padding: 2px 8px; border-radius: 999px;
+  border: 1px solid var(--line-strong); background: rgba(61, 109, 181, .12);
+  font-weight: 750; letter-spacing: .02em; color: var(--ink);
+  text-decoration: none; transition: border-color .15s, background-color .15s;
+}
+a.mi-avail-src:hover { border-color: var(--usa-blue); background: rgba(61, 109, 181, .22); }
+.mi-avail-src.is-plain { background: transparent; font-weight: 650; color: var(--ink-soft); }
+.mi-avail-time { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-left: auto; }
+.mi-avail-note {
+  margin-top: 10px; font-size: 11px; color: var(--ink-soft);
+  text-align: center; opacity: .85; line-height: 1.5;
+}
+
 /* Repriser + sammandrag samt livesändning (SVT Play / TV4 Play) i matchmodalen.
    Minimalistisk layout: en kolumn per kanal med kanalbrickan centrerad överst
    och länkarna som luftiga pillerknappar under – inga tunga rutor. Kolumnerna

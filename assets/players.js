@@ -219,7 +219,9 @@
 
   /**
    * Presentationsklart statusobjekt för en spelare, eller null om ingen status.
-   * @returns {{cls:string,label:string,text:string,availability:string,kind:string,updated:?string}|null}
+   * source ({name, url}) är källhänvisningen: ESPN-matchsidan för avstängningar
+   * beräknade ur matchdatan, nyhetsartikeln för skador/frågetecken.
+   * @returns {{cls:string,label:string,text:string,availability:string,kind:string,detail:?string,source:?{name:?string,url:?string},updated:?string}|null}
    */
   function describeStatus(s) {
     if (!s || typeof s !== "object") return null;
@@ -233,7 +235,11 @@
     if (upd) text += " · uppdaterad " + upd;
     return {
       cls: statusCls(kind, avail), label: label, text: text,
-      availability: avail, kind: kind, updated: s.updated || null
+      availability: avail, kind: kind,
+      detail: detail || null,
+      source: s.source && (s.source.name || s.source.url)
+        ? { name: s.source.name || null, url: s.source.url || null } : null,
+      updated: s.updated || null
     };
   }
 

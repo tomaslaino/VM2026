@@ -192,6 +192,9 @@
   }
 
   function onCardClick(e) {
+    // Källänkarna i avbräckslistan ligger inne i klickbara spelarrader –
+    // låt länken vinna över spelarprofilen.
+    if (e.target.closest && e.target.closest("a.mi-avail-src")) return;
     var row = e.target.closest && e.target.closest("[data-mi-player]");
     if (row) { openLineupPlayer(row.getAttribute("data-mi-player"), row.getAttribute("data-mi-side")); return; }
     // Klick på ett lag i modalhuvudet → stäng matchinfo och låt klicket bubbla
@@ -1234,6 +1237,85 @@
       body + '</div>';
   }
 
+  /* ---------- Avbräck i nyhetsfliken: vem spelar inte / är osäker? ---------- */
+
+  /* Rader för ett lag: spelare med skade-/avstängningsstatus, "spelar inte"
+     före frågetecken. Varje rad har orsak + källänk: ESPN-matchsidan för
+     avstängningar (beräknade ur matchdatan), nyhetsartikeln för skador. */
+  function availRowsHtml(teamObj, sideCode) {
+    var vp = window.VMPlayers;
+    if (!teamObj || !teamObj.iso || !vp || !vp.isLoaded()) return [];
+    var t = vp.getTeamByIso(teamObj.iso);
+    if (!t) return [];
+    var rows = [];
+    (t.players || []).forEach(function (p) {
+      var st = vp.getPlayerStatus ? vp.getPlayerStatus(p.id) : null;
+      if (st) rows.push({ p: p, st: st });
+    });
+    rows.sort(function (a, b) {
+      var r = (a.st.availability === "out" ? 0 : 1) - (b.st.availability === "out" ? 0 : 1);
+      return r || a.p.name.localeCompare(b.p.name, "sv");
+    });
+    return rows.map(function (e) {
+      var p = e.p, st = e.st;
+      var meta = "";
+      if (st.source && st.source.url) {
+        meta += '<a class="mi-avail-src" href="' + esc(st.source.url) +
+          '" target="_blank" rel="noopener noreferrer" title="Öppna källan i ny flik">' +
+          esc(st.source.name || "Källa") + ' <span aria-hidden="true">↗</span></a>';
+      } else if (st.source && st.source.name) {
+        meta += '<span class="mi-avail-src is-plain">' + esc(st.source.name) + '</span>';
+      }
+      var ago = pvTimeAgo(st.updated);
+      if (ago) meta += '<span class="mi-avail-time">' + esc(ago) + '</span>';
+      return '<div class="mi-avail-item mi-pl-openable" data-mi-player="' + esc(p.id) +
+        '" data-mi-side="' + sideCode + '" role="button" tabindex="0" title="Visa spelarprofil">' +
+        '<div class="mi-avail-head">' +
+          '<span class="mi-pv-item-name">' +
+            (p.shirt_number != null ? '<span class="mi-pv-nr">' + p.shirt_number + '</span>' : '') +
+            esc(p.name) + '</span>' +
+          '<span class="pstat pstat--' + esc(st.cls) + '"><span class="pstat-dot"></span>' + esc(st.label) + '</span>' +
+        '</div>' +
+        (st.detail ? '<div class="mi-avail-detail">' + esc(st.detail) + '</div>' : '') +
+        (meta ? '<div class="mi-avail-meta">' + meta + '</div>' : '') +
+        '</div>';
+    });
+  }
+
+  function availSectionHtml(info) {
+    var vp = window.VMPlayers;
+    if (!vp) return "";
+    if (!vp.isLoaded()) {
+      vp.load().then(function () { if (openKey) renderModal(); }).catch(function () {});
+      return "";
+    }
+    // Visa sektionen först när statusdata över huvud taget finns, så att en
+    // trasig/ännu inte byggd statusfil inte ger ett falskt "alla spelar".
+    if (!vp.statusCount || !vp.statusCount()) return "";
+    var hi = availRowsHtml(info.home, "h");
+    var ai = availRowsHtml(info.away, "a");
+    var h = '<div class="mi-avail">' +
+      '<div class="mi-section-title">Avbräck &amp; frågetecken inför matchen</div>';
+    if (!hi.length && !ai.length) {
+      h += '<div class="mi-pv-note">Inga kända avstängningar, skador eller frågetecken i något av lagen.</div>';
+    } else {
+      var col = function (items, teamObj, name) {
+        return '<div class="mi-news-col">' +
+          '<div class="mi-pv-col-head">' + flagImg(teamObj && teamObj.iso) + '<span>' + esc(name) + '</span></div>' +
+          (items.length ? items.join("") : '<div class="mi-pv-note">Inga kända avbräck.</div>') +
+          '</div>';
+      };
+      h += '<div class="mi-news-cols mi-avail-cols">' +
+        col(hi, info.home, teamName(info.home, info.homeLabel)) +
+        col(ai, info.away, teamName(info.away, info.awayLabel)) +
+        '</div>';
+      h += '<div class="mi-avail-note">Avstängningar beräknas ur officiell matchdata (kortlänken går till matchsidan). ' +
+        'Skade- och tveksamhetsuppgifter kommer ur ländernas egna medier – klicka på källan för hela artikeln.</div>';
+    }
+    h += '</div>';
+    return h;
+  }
+
   /* ---------- Fliken "Senaste nytt" ---------- */
 
   function newsTabHtml(info) {
@@ -1244,12 +1326,14 @@
       fetchTeamNews().then(function () { if (openKey) renderModal(); });
       return '<div class="mi-pv-note mi-pv-loading">Hämtar nyheter från lägren …</div>';
     }
-    if (!newsItemsOf(info.home).length && !newsItemsOf(info.away).length) {
+    var avail = availSectionHtml(info);
+    if (!newsItemsOf(info.home).length && !newsItemsOf(info.away).length && !avail) {
       return '<div class="mi-empty">Inga färska nyheter om lagen hittades just nu.</div>';
     }
     var cols = matchColors(info.home && info.home.iso, info.away && info.away.iso);
     return '<div class="mi-news">' +
       '<div class="mi-news-intro">Ur ländernas egna medier · sammanfattat på svenska</div>' +
+      avail +
       '<div class="mi-news-cols">' +
       newsColHtml(info.home, teamName(info.home, info.homeLabel), cols.home) +
       newsColHtml(info.away, teamName(info.away, info.awayLabel), cols.away) +

@@ -1,15 +1,15 @@
-name: Synka spelarstatus
+name: Synka spelartillgänglighet
 
-# Hämtar skador/avstängningar/osäkra spelare från API-Football och committar
-# data/wc2026_player_status.json som sidan (GitHub Pages) läser direkt.
-#
-# Kräver repo-hemligheten API_FOOTBALL_KEY. Saknas nyckeln gör skriptet INGET
-# (offline-läge) och workflowen avslutas grönt utan ändringar.
-# Körs var 3:e timme (fram till 2026-07-19) samt manuellt.
+# Bygger data/wc2026_player_status.json – vilka spelare som inte spelar
+# (avstängda/skadade) eller är osäkra inför lagets nästa match, med källa:
+#   · avstängningar beräknas ur officiell matchdata (results/matchdetails)
+#   · skador/frågetecken ur respektive lands medier via Google Nyheter-RSS
+# Ingen API-nyckel behövs. Manuella poster (manual: true) bevaras.
+# Körs varje timme (fram till 2026-07-19) samt manuellt.
 
 on:
   schedule:
-    - cron: "0 */3 * * *"
+    - cron: "23 * * * *"
   workflow_dispatch: {}
 
 permissions:
@@ -41,20 +41,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
 
-      - name: Installera beroenden
+      - name: Bygg spelartillgängligheten
         if: steps.window.outputs.proceed == 'true'
-        run: npm ci --no-audit --no-fund
-
-      - name: Hämta spelarstatus från API-Football
-        if: steps.window.outputs.proceed == 'true'
-        env:
-          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
-          API_FOOTBALL_PROVIDER: ${{ vars.API_FOOTBALL_PROVIDER }}
-          WC_LEAGUE_ID: ${{ vars.WC_LEAGUE_ID }}
-          WC_SEASON: ${{ vars.WC_SEASON }}
-        run: npm run sync:status
+        run: npm run sync:availability
 
       - name: Committa om filen ändrats
         if: steps.window.outputs.proceed == 'true'
@@ -62,9 +52,20 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if git diff --quiet -- data/wc2026_player_status.json; then
-            echo "Inga ändringar i spelarstatusen – ingen commit."
-          else
-            git add data/wc2026_player_status.json
-            git commit -m "chore: uppdatera spelarstatus (auto)"
-            git push
+            echo "Inga ändringar i spelartillgängligheten – ingen commit."
+            exit 0
           fi
+          git add data/wc2026_player_status.json
+          git commit -m "Auto-synk spelartillgänglighet $(date -u +'%Y-%m-%d %H:%M UTC')"
+          # Resultat-workflowen pushar ofta till samma branch – rebase + retry
+          # så att en samtidig push inte får den här att faila.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "Push klar."
+              exit 0
+            fi
+            echo "Push avvisad (försök $i) – rebasar mot senaste main…"
+            git pull --rebase --autostash origin main || true
+          done
+          echo "Kunde inte pusha efter flera försök." >&2
+          exit 1

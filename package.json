@@ -12,6 +12,7 @@
     "sync": "node server/jobs/syncResults.js",
     "sync:static": "node server/scripts/syncStatic.js",
     "sync:status": "node server/scripts/syncPlayerStatus.js",
+    "sync:availability": "node server/scripts/syncAvailability.js",
     "sync:news": "node server/scripts/syncTeamNews.js",
     "sync:lineups": "node server/scripts/syncLineups.js",
     "squads": "node server/jobs/fetchSquads.js",

@@ -20,7 +20,8 @@ npm start          # starta server (http://localhost:3000)
 npm run dev        # starta med --watch (auto-restart)
 npm run sync       # synka resultat till server/data/results.json
 npm run sync:static # synka till data/results.json + data/matchdetails.json (GitHub Pages)
-npm run sync:status # synka spelarstatus (skador/avstängningar) → data/wc2026_player_status.json (kräver API_FOOTBALL_KEY)
+npm run sync:availability # bygg spelartillgänglighet → data/wc2026_player_status.json (avstängningar ur matchdatan + skadenyheter ur ländernas medier, ingen nyckel)
+npm run sync:status # legacy: samma fil från API-Football /injuries (kräver API_FOOTBALL_KEY; workflowen kör numera sync:availability)
 npm run sync:news  # synka landslagsnyheter per land → data/team_news.json (Google Nyheter-RSS, ingen nyckel)
 npm run sync:lineups # synka troliga/bekräftade startelvor för kommande matcher → data/lineups_prelim.json (365Scores, ingen nyckel)
 ```
@@ -36,8 +37,9 @@ npm run sync:lineups # synka troliga/bekräftade startelvor för kommande matche
 | `data/odds.json` | Exakta resultat-odds för de återstående gruppmatcherna (indata till R32-motorn) |
 | `assets/players.js` | Statiskt datalager för truppdata + spelarstatus (`window.VMPlayers`) |
 | `assets/live.js` | Trupp i lag-lådan + spelarprofil-modal (visar skade-/avstängningsstatus) |
-| `data/wc2026_player_status.json` | Spelartillgänglighet (skador/avstängningar/osäkra) per spelar-id |
-| `server/scripts/syncPlayerStatus.js` | Synkar spelarstatus från API-Football `/injuries` |
+| `data/wc2026_player_status.json` | Spelartillgänglighet (skador/avstängningar/osäkra) per spelar-id, med `source: {name, url}` och `detail` – visas i matchmodalens "Senaste nytt" (Avbräck & frågetecken), Inför-fliken, spelarprofilen och statistikfiltren. Poster med `manual: true` bevaras av synken |
+| `server/scripts/syncAvailability.js` | Bygger spelartillgängligheten: avstängningar beräknas ur `results.json`/`matchdetails.json` (röda kort, ackumulerade gula – enstaka gula rensas efter kvartsfinal; källänk till ESPN-matchsidan) + skador/frågetecken ur ländernas egna medier via Google Nyheter-RSS (spelarnamnsmatchning mot truppen, svensk översättning, artikeln som källa; rykten kastas när spelaren spelat en senare match). Körs varje timme av `sync-player-status.yml` |
+| `server/scripts/syncPlayerStatus.js` | Legacy: samma fil från API-Football `/injuries` (körs inte längre av workflow) |
 | `data/team_news.json` | Landslagsnyheter per lag från respektive lands egna medier (Google Nyheter-RSS, lokala sökfrågor) med svensk sammanfattning per rubrik (`title_sv`, gratis Google Translate-gtx) – driver fliken "Senaste nytt" i matchmodalen |
 | `server/scripts/syncTeamNews.js` | Synkar landslagsnyheterna (körs varannan timme av `sync-team-news.yml`) |
 | `data/lineups_prelim.json` | Troliga startelvor för kommande matcher (≤48 h) från 365Scores webb-API; `status` slår om `probable` → `confirmed` när de officiella elvorna släpps (~1 h före avspark). Visas i matchmodalens "Laguppställning"-flik tills ESPN:s officiella lineups tar över i `matchdetails.json`; spelare med skade-/avstängningsstatus får varningsprick |

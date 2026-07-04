@@ -36,8 +36,9 @@ const SUMMARY_MAX = 170;    // max längd på den svenska sammanfattningen
 
 /* Sökfråga per lag på landets eget språk (landslagets namn/smeknamn) +
    Google News-utgåva. gl väger upp källor från landet; "when:14d" begränsar
-   till färska artiklar redan på serversidan. */
-const TEAMS = {
+   till färska artiklar redan på serversidan. Exporteras: syncAvailability.js
+   återanvänder samma frågor för riktade skadesökningar per lag. */
+export const TEAMS = {
   // Grupp A
   mx: { q: '"selección mexicana"', hl: "es-419", gl: "MX", ceid: "MX:es-419" },
   kr: { q: "축구대표팀", hl: "ko", gl: "KR", ceid: "KR:ko" },
@@ -102,7 +103,7 @@ const TEAMS = {
 
 /* Reservutgåva per språk om lagets primära ceid ger noll träffar
    (alla länder har ingen egen Google News-utgåva). */
-const FALLBACK_CEID = {
+export const FALLBACK_CEID = {
   ar: "EG:ar", en: "US:en", "en-GB": "GB:en", fr: "FR:fr",
   "es-419": "AR:es-419", es: "ES:es", "pt-BR": "BR:pt-419", "pt-PT": "PT:pt-150",
   de: "DE:de", nl: "NL:nl", bs: "HR:hr", uz: "RU:ru", fa: "US:en"
@@ -129,7 +130,7 @@ function tagContent(xml, tag) {
   return m ? decodeEntities(m[1]) : null;
 }
 
-function parseItems(xml, lang) {
+export function parseItems(xml, lang) {
   const items = [];
   const re = /<item>([\s\S]*?)<\/item>/g;
   let m;
@@ -157,7 +158,7 @@ function parseItems(xml, lang) {
   return items;
 }
 
-async function fetchRss(url) {
+export async function fetchRss(url) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT);
   try {
@@ -180,7 +181,7 @@ async function fetchRss(url) {
 /* Kort och kärnfullt: rensa osynliga tecken (Google Translate lämnar ibland
    zero-width spaces), normalisera whitespace och klipp överlånga rubriker
    (t.ex. inklistrade sociala medier-poster) vid närmaste ordgräns. */
-function tightenSummary(s) {
+export function tightenSummary(s) {
   let t = String(s || "")
     .replace(/[\u200B-\u200D\uFEFF]/g, "")
     .replace(/\s+/g, " ").trim();
@@ -194,7 +195,7 @@ function tightenSummary(s) {
 /* Översätt en rubrik till svenska via Googles öppna gtx-endpoint (samma som
    translate.google.com använder – ingen API-nyckel). sl=auto klarar alla
    truppspråk; vid fel returneras null och frontenden visar originalrubriken. */
-async function translateToSwedish(text) {
+export async function translateToSwedish(text) {
   const url = "https://translate.googleapis.com/translate_a/single?client=gtx" +
     "&sl=auto&tl=sv&dt=t&q=" + encodeURIComponent(text);
   const ctrl = new AbortController();

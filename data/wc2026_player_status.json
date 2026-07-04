@@ -1,7 +1,288 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "source": "API-Football (injuries) + manuell redigering",
-  "updated": null,
-  "note": "Spelartillgänglighet per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (missar matchen) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. reason/detail är fritext. Fylls automatiskt av server/scripts/syncPlayerStatus.js (kräver API_FOOTBALL_KEY) men kan även redigeras för hand.",
-  "statuses": {}
+  "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
+  "updated": "2026-07-04T10:52:30.966Z",
+  "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
+  "statuses": {
+    "mex-roberto-alvarado": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "På gränsen till skada! Roberto Alvarado sätter igång larmen i Chivas och Mexiko innan matchen med England...",
+      "updated": "2026-07-04",
+      "source": {
+        "name": "Rebaño Pasión",
+        "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQR21wSEkyLXlPVXpBT19zY2RpQkV0b1loNDk3bFF0amdaR2I1bnViakNlX04ydVhnNHZZbVFZNmkwZnZScTVIVjl6TTZQV1hITENpekVQSFJKTGctRHJfaFJKQkdtLUJncktBSUIzY3cwdC1ReUVIZHNZTnNJUmc4Rm9JeDhlaFVVTkhHRzVqb2NBSWVFTGdDUUtkUXFhQ0lKYUVQcFZHSHRfWHBYWXNNeVpaZS1VSlQ0R1Y4emFjUkcxUmQtdjZVaThseFRtRERQUmlfY0l3bmM5SWRrdEt6TUU4UjNHMmpjTGpVdGRvR1l2OXd30gH0AUFVX3lxTFBHbXBISTIteU9VekFPX3NjZGlCRXRvWWg0OTdsUXRqZ1pHYjVudWJqQ2VfTjJ1WGc0dlltUVk2aTBmdlJxNUhWOXpNNlBXWEhMQ2l6RVBIUkpMZy1Ecl9oUkpCR20tQmdyS0FJQjNjdzB0LVF5RUhkc1lOc0lSZzhGb0l4OGVoVVVOSEdHNWpvY0FJZUVMZ0NRS2RRcWFDSUphRVBwVkdIdF9YcFhZc015WlplLVVKVDRHVjh6YWNSRzFSZC12NlVpOGx4VG1ERFBSaV9jSXduYzlJZGt0S3pNRThSM0cyamNMalV0ZG9HWXY5d3c?oc=5"
+      },
+      "origin": "news"
+    },
+    "mex-gilberto-mora": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Är Gil Mora skadad? Det finns två spelare \"berörda\"; förvecklingar på grund av Mexiko vs. schema England påverkar El Tri",
+      "updated": "2026-07-03",
+      "source": {
+        "name": "La Crónica de Hoy",
+        "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQMWx0QWpvOTJkTEMyUjZURFJuSTh4R3I3OGtxYm1ZM3pTRWNRaGhxNGNpUlRob0ZpMXpBWTEtLVNFOVdGX241Q1RGUzM4eGQ2dV9NZlZKS3RucW0xbnQ1NzRQdGpaempXOWF5Q0hHZjZyMENJUHU2Z3UtTFpCcFpzUTNwODFYTWJXay1OTER2aFozdnBTajV5WHVsTVh6czJFR1YxMW9SWXl6eER6XzhtYTh3NWFVRjhmelpScUJ0ZVVKLTlHa1JPVGVuQlVDcDRHcUY0RHpLM18ycXFVVHhDLWpTc2Z3RWJqWk92dw?oc=5"
+      },
+      "origin": "news"
+    },
+    "can-ismael-kone": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Ismael Kone skriver ett brev till kanadensare efter stöd efter VM-skada: \"Det har rört mig väldigt djupt\"",
+      "updated": "2026-07-03",
+      "source": {
+        "name": "Canadian Soccer Daily -",
+        "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNMWlCTXZwc1o1azB4dU5XOHoxemhXQ08tRExNX2xLSGZQSkFtOXNEUno3RVhZdUMtWVF2eTlfMGN2UlprOFVJbWVrQk5tNXpnXzJxN3pESTRpVG5qUnFiNlQ1NlpKZ1o3WUtGQmxBMVVGVWRWR3lXbDlRS3VLR054TzFZQjhyYlhWd01aWEtuYmxrUlU3OUtvNTA4X3BQSVdjX2ZUb0J6bXJLZkpzbDVya0JSZWc1UEVGdUZkUlZGZmdobTlfVjhoUEhiSDNxRXV3TE9HNUVsZjd0d1JHVDhF?oc=5"
+      },
+      "origin": "news"
+    },
+    "can-alphonso-davies": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Alphonso Davies SKADADES igen! Hur orolig är CanMNT? Noah Saviolo (h6O9pCjQUe)",
+      "updated": "2026-07-01",
+      "source": {
+        "name": "Mshale",
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE52a19tSGttZklUSFBfN0lHQUJnUDN2OUZLQkFNMTMzUmlXclF0Z1ZYWkljZVF6Z1lQOVJmeWxKcE9aX0M2TldWQXpDQ0QtY0lzZTRURHBpc2RaQ00?oc=5"
+      },
+      "origin": "news"
+    },
+    "can-stephen-eustaquio": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "NYCKELTAK: Eustáquio kliver upp när Davies äntligen återvänder från skada i CanMNT:s historiska vinst mot Sydafrika",
+      "updated": "2026-06-29",
+      "source": {
+        "name": "OneSoccer",
+        "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPeGdnMTQ2NWtkSUo2cno5bS1XcXRjaTlpRGhYcjVuRWk0amE3b3FzWHh2NnBvWjZwVkM5dHFBM2xrb2c2em1FUVZXaTlTWE42NGtKVFVBMzJmd19nbjdMSE8wenBWTFF6c0s1UWVobjdtT3ZPQlJjWDc5UFltVXF2YVNyTFFQenFwVnZqTGdSZWs5LVJ6aUFhX1BVdXRISHFwWUd2ejFKcll3ZlNReEhXLXpsaUw1YlJ0SDExOS1pdGF6cnRIZDVwYy1MUVFKTFRs?oc=5"
+      },
+      "origin": "news"
+    },
+    "bra-raphinha": {
+      "availability": "doubtful",
+      "kind": "other",
+      "detail": "Raphinha tränar med en grupp i det brasilianska laget och närmar sig att återvända till VM 2026",
+      "updated": "2026-07-03",
+      "source": {
+        "name": "Grupo Lomes de Comunicação",
+        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNTjQ4U0NzOS1NVEZMbVNXSDhtZTBiOTdMMFBJallXS3ZkaWFhLXo2ZkVmWEY5cXpkQTJuYllQQk1tVGVlVXJHUEhVWWRERkxyN2ctVk5ydy1aQTY2N29TS3c4NEx3eXZFbVRRbDJYWnNaSlBNMnd4b09EV2JKNmJicDN3YVVtdTVFbXc4a282eUlRWENZdTZMaDd5SG1uT296dXhWN2g5OGFmNHY0VGcyblduWlpxNlRXZU5F?oc=5"
+      },
+      "origin": "news"
+    },
+    "mar-brahim-diaz": {
+      "availability": "doubtful",
+      "kind": "other",
+      "detail": "Marocko-Kanada: Chadi Riad osäker, Ouahbi försvarar Brahim Díaz",
+      "updated": "2026-07-04",
+      "source": {
+        "name": "Mountakhab.net",
+        "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNWnJVdm1iUmxfdUl5c0Z5QjltVkRPUTdNQU91NzRFd3BhREZiQWpadWJ4NUpuNGpMNWlCTlpzWVNfN3U0ejdlRHJ1T2xVRk1WbEc1RGxydDQ0MXBtU3pFTXlFRzZhcEUtejhyRWhBTFNWLWZrcjY5UW1JWGpBeFRwR0xnaW1mdnUzWlc0?oc=5"
+      },
+      "origin": "news"
+    },
+    "mar-chadi-riad": {
+      "availability": "doubtful",
+      "kind": "other",
+      "detail": "Marocko-Kanada: Chadi Riad osäker, Ouahbi försvarar Brahim Díaz",
+      "updated": "2026-07-04",
+      "source": {
+        "name": "Mountakhab.net",
+        "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNWnJVdm1iUmxfdUl5c0Z5QjltVkRPUTdNQU91NzRFd3BhREZiQWpadWJ4NUpuNGpMNWlCTlpzWVNfN3U0ejdlRHJ1T2xVRk1WbEc1RGxydDQ0MXBtU3pFTXlFRzZhcEUtejhyRWhBTFNWLWZrcjY5UW1JWGpBeFRwR0xnaW1mdnUzWlc0?oc=5"
+      },
+      "origin": "news"
+    },
+    "usa-folarin-balogun": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Rött kort i sextondelsfinalen mot Bosnien-Hercegovina",
+      "updated": "2026-07-02",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760494"
+      },
+      "origin": "cards"
+    },
+    "usa-christian-pulisic": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Låt oss slappna av – USMNT-stjärnan ger uppdatering om Christian Pulisic frånvaro, skada",
+      "updated": "2026-07-03",
+      "source": {
+        "name": "MSN",
+        "url": "https://news.google.com/rss/articles/CBMinANBVV95cUxQVUhkUUpfUWNORXdCS2JaaUkxcE8tRWFyMm1VQy1fVzRtZXoxS3pNekduS2NNUTJvd2pDZVJBZEFGTnhqTGxYd0g0c0tVeVZMVFZKQy1MWDFwajN3cmltRlFQMGE2N0FteHlXVmlvNXNuaTRlQ1dKbWRnajU3UVMtaVRpeWlueDNOZ3NGeXhneTlaTHkzT1o4cW5tbWRORmROdzFJWGhyWUc0SDdwUXhBUks3X0oxNHJIT3otX1VsZVlWallhc2dMYi1PNmJqNnFCTFl3TjFRaDFyTU9obHozbkpmVGlCRzVicmo3bTBBMnJmMTIzalUtV2hEcWd5eF9SRmJTMzMwdFI1VnN0OTduRC04Nm9CUUllQ0NHMXQtV3lORElscW9kLWt2SnJxYTVQejU4Sy1FRXNuLWVhcGIxa3hyRUxSYzU0Qmt2bGV2R01kdW01NmIxNlg1VUVwREdIVVMzSGlfeHZjanZsblMtSzh5VTBiTG5od3lkSGg5LVYwc1kzZXJWU0pEckUxTklIMDZFbHFZdkNjQ1Zj?oc=5"
+      },
+      "origin": "news"
+    },
+    "par-omar-alderete": {
+      "availability": "doubtful",
+      "kind": "other",
+      "detail": "Alfaro hänvisade till Alderetes situation: Kommer han att anlända mot Frankrike?",
+      "updated": "2026-07-03",
+      "source": {
+        "name": "D10",
+        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQOEEyTTZ3cXZsQ0VtWG5pNUJGNlRxRHJ0TnZxS3F6YkhLNEJUYlBqeW9jLUpyNnpJbHBWeWJsRXJLWTVwU014VUtRaHJxc0JRZURKd0M1LS13TlJlTlM0eUdua3EwOWNaZ0h1SXBocEN4ZDZXTUtLN3dzbS1kTU9nXzA2d3JnUy0zSWlTMmdUQTZnOGV30gGiAUFVX3lxTE1VOHE5bHNSMlNHVmNhN2pkY2sza3dfajhyblI2blVDSE1ibDR2dW45ckQtRFZjLXE1X0JMaHJ6bVBNUUl6N29QeW83elBLYkJ5RGRHaDN3TzlnZ2VmSE9pTGVkNWNyaHE5TGJPQXNTbEk1LWo5YVVwYW03TENZMnM0VHBKRzNSTzFocUR0blpYSTFFU3RIcnN3RGZ2WHZRc1huQQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "egy-karim-hafez": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Karim Hafez genomgår läkarundersökningar efter en skada mot Australien",
+      "updated": "2026-07-04",
+      "source": {
+        "name": "صدى البلد",
+        "url": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE9NZGhrZGZyVzROV09aZXp4ZGE2MDdoRVhDVUVkdm93WURidF8tVm9uNnZJMzEySWZnTmV5WTFSQmlPQ0tFRFNZ?oc=5"
+      },
+      "origin": "news"
+    },
+    "egy-trezeguet": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "En skada utesluter Karim Hafez från matchen mellan Egypten och Australien... och Trezeguet kommer in",
+      "updated": "2026-07-03",
+      "source": {
+        "name": "السعودية نيوز",
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1EbmkyT0NTbks4enpsRU00dUtRcFNNTGdpaEUyLU9RcjlQYXZ5eTduSXRXRGVObEozd21WcFY2WVQwYXR1NzZ2dC1HUk1iSmRFTkQ5Yldn?oc=5"
+      },
+      "origin": "news"
+    },
+    "esp-lamine-yamal": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Lamine Yamal avslöjar hur hon mår efter sin skada: \"Fortsätt ta hand om mig själv\"",
+      "updated": "2026-07-02",
+      "source": {
+        "name": "El Desmarque",
+        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxORk9LRXZqdXZFb2szU05DdDVHN3NucnhBM3l4RmZ5MWx0S3pPenRuMXhqNFdYczVKaW9qUEptamM3ZFVITWpzR0UxVnVPTXNsSGJoSTZtSG1KR0RuTTRxdHN1UFdxa29iRXcwUEpNWlFrMUdmTE5rc3ZNMkVHVUl5NmNqenFiOENUQVFNeXhRQ0NWaXk5N3pkSXVBLVFNV1UyQnMteEpyLW9BOXlaVG9OTUFWN01jYnliN1dj?oc=5"
+      },
+      "origin": "news"
+    },
+    "esp-nico-williams": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Nico Williams: De avslöjar allvaret i hans skada mot Uruguay. Kommer han att missa resten av världscupen?",
+      "updated": "2026-07-02",
+      "source": {
+        "name": "De10 Sports",
+        "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNOFdBR3JvWHVIQmkxanlwOTQ4MWoxaXhDR2daWmZyN2RjaDBxUFNlVDJRR254b2FFNXZPZGR6S3VaRW1tN3FWa01kclJScnZ1a3RwWkE1cU1vbTFMUTNNSkkyTmVzTTJHX0R6QW5nblRuSWl0RjlTVUZuV3U0aXlfS0xuYWp1NS1EMmIwUzhJRXlBckxUV0ZmWWFSYXZLS19FMjNwTS03Q2FjMkgwaklDUENDclE5MTl6MWRhb0xRb1RCeEZqT0xjSmd4cnlyby15XzZRX1hn0gHqAUFVX3lxTE5xTkVIU1RlOGZpZEktekc5US1KaTUyNlZoeFlZMUduUkpJVGlJM2xEbXBxaUpNalpVTVpvRnZjNk91N21WaUxULU5IYXVCYXlud0hvN1hwdnMtYTNzWllMVkp4S29pN0hOS05LREJmZEZ4bnl3a3ZjRC05TTFEanJfb3IwU1RlclNLWVUtakg1VlFrcXk3YzdrYlZWNHlFLTF3MHRuVGxvNDNjNmZPNlplckFYRVU5LXJUSzRVTkVySW9rWDhfMjdhQndPZWUwVDRSUmF1aWRyV1FsaVl2N1pwZGV1dWpTVVpHdw?oc=5"
+      },
+      "origin": "news"
+    },
+    "fra-aurelien-tchouameni": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Aurélien Tchouaméni, skadad under träningen på fredagen, har \"en mycket god chans\" att dras tillbaka mot Paraguay",
+      "updated": "2026-07-04",
+      "source": {
+        "name": "franceinfo",
+        "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxOUG16cElrRjBHU1VVLXlVN2dKSnIwR2ltejk1UHhOekd5cU9lSjJscjl5d0tUWjZWZ3ZQYU1NamdUM1ZXeGZuVkpPYnR3NlZ5czcwbE1JZ0pod1FrUGJqN0x3WGRKR3REMHdZLVRoSXpUeW5qS01MM3hVVHRjTmJha3NlRWFOTTExMW1xNVJ3a2hnbVVVUkUyQ01SUHB5YVFhN2FyS3Y5QTV3aHNnd1hSUDgtZ2h2a255R1Z3UW96Sk9HTjMtWnY4SE94UjBOR1hBNHJieW0yZVY3MThzMDJ0WGNkSHl0UVZKb3doa1ZTX2xJUm1fdy1BQXhEdU5tMTRs?oc=5"
+      },
+      "origin": "news"
+    },
+    "arg-facundo-medina": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Scaloni talade om Medinas skada: \"Han blev trång\"",
+      "updated": "2026-07-04",
+      "source": {
+        "name": "TyC Sports",
+        "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPVlZIYVlxcTJ1Um1HejZOdDkwUEttSHVGbjJCOXBsRG5RVW1NSy1DTjVEYUN0TVRvOWhRTGxBdU82Q21QQ0FqdU55eXFJUlI5bHlaRW42MW42b0ZoN2tkTVNkVlFKQ3VrWjkzTW5CbUliN0t0MVlrcktZZ1E3ZGZPMG1MVlhlclU4WFVoVWEyWVBub2ZTbHV3bVB0aHU0OE5WTW1BRjl3TWEwa1FiR1E5TEdRSHNXS3pEYjVOa1ZPYw?oc=5"
+      },
+      "origin": "news"
+    },
+    "col-jhon-cordoba": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "James har ingen skada och Jhon Córdoba kommer att utvärderas: Lorenzos medicinska rapport efter att ha slagit Ghana",
+      "updated": "2026-07-04",
+      "source": {
+        "name": "Infobae",
+        "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOcVZvTGRCOXotR0x5aVNCdFF0WTM4alkwYnhUZU5jeWwzZmxaMVhyb1ZHTW0yWnFXWEJDOU5wenhCUHIwTHBwZ2tTY3ZWZ1hWdTVqZGp6VVo2T2tFZjlLVXQ2YTBEMUF0dHU0TDRhMUExa1FtRlp0b2xkWnE5ZlhSSU5fMU52MXJSM21ZQTNneGN5bkdJbmp6cnRCdmRIZFo4b1N5UWFOQS1mZ3VXa0Jxb25TU0laZmNNVnNVMzQ3anVwUEJlSzlnRi1VOHl3QWZpdFdnVUwyWUx5VEtFRTRxOXF30gH8AUFVX3lxTE03VGl2a0NaMzR1M0Q5bjQ2Z0tMZGhSOWxCWTdseUhwZFk0NUljUjcweEt0bEV0a3dfNEZiOTJ1NGJZSXVfSzZma0dUU1gzU0lOeTVvQld4VmdyenE3eGNZVjVnQWg0c2xxNnBvbXRjbDlVVGZEZU9EWWk4US1Kdy1DM0YtSFpuWklEWHUtelQ5NmJLSXVVaVZTTWxoM3huZ2pkNHNBUml3RXBRTDh2R2I2VW5kV2tvcS1GWExpRjVBdU82RGp2cjhZYlJVVUxPR2pLNFNZRUxPNHBsQlpUVG82ZnJtNGVlWHFEVGh0LTRqUmdybHB0N0xXUjVfbg?oc=5"
+      },
+      "origin": "news"
+    },
+    "col-luis-diaz": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "[VIDEO] Luis Díaz gjorde allt med en dribbling: han hakade på och orsakade en skada i Ghana",
+      "updated": "2026-07-04",
+      "source": {
+        "name": "deportesrcn.com",
+        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNNXdXRUdidXFsd2poT1ptQnhXTVhoVUxmT1VvU3V1S013Nm9mRkV5TUlKbUZWSjF5Z09MMkd2VUpPMzYzUTVxX3puVXd2X2pjMzZobjQ5d0J5bndxYTVvTGhRZk1sTFJhYW0yT0I3cHEwTmFibE9LektkSXc3RlFkVmduZXg3bHBveVRMZU5BTXdwbHRoYUNmdnBRREtsWUk1dDBVWDRlRW1tZGR1bzRfLVA0bHVGMU8yZUdScm1n0gG-AUFVX3lxTE51MEk3LUdkdjZvWHdoYWpoX2ZQdEdWb1pWdEpQc2JLVElmMW1fMTRadG1sWko3aG5CemJlOEljRWo5NVZCaElqNUxLYWlMamJ5a184SW9wa19jR2hnWVpjbzBEZjJGN19XYTctWTJwQjF2ejhKYzR5ZWdad1lxd3k1eG42cUphMzZzWGh6REtfSGtCN3dBLU95OGgyOGZuRlZJSkh1dWU3a1lBZThYNjBHaDBESmNhaEwzeDFLeUE?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-declan-rice": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "England får stor dubbel skadeökning över konditionen för Reece James och Declan Rice",
+      "updated": "2026-07-03",
+      "source": {
+        "name": "talkSPORT",
+        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPaVBpRjdHSGlBNDhxd2daTEhtdU5vR0ZVU20yYkhWdllkdndYblZjU2poYzNwazV5cnBYOGJ2ZUJIUWVrRTZqSWhValExZ1ZNa2lrb3hmdVNOTXdxNG9ZbDlIMWNQa082eElBVFdOcDJWMFRBeTQ5RnpyN2hTLW14TGFvcUlNVUc1ZnMtdkhTVW5ScS1pNmhNZEs5bWtYRGl1TnZNMDJuTGRhQQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-reece-james": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "England får stor dubbel skadeökning över konditionen för Reece James och Declan Rice",
+      "updated": "2026-07-03",
+      "source": {
+        "name": "talkSPORT",
+        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPaVBpRjdHSGlBNDhxd2daTEhtdU5vR0ZVU20yYkhWdllkdndYblZjU2poYzNwazV5cnBYOGJ2ZUJIUWVrRTZqSWhValExZ1ZNa2lrb3hmdVNOTXdxNG9ZbDlIMWNQa082eElBVFdOcDJWMFRBeTQ5RnpyN2hTLW14TGFvcUlNVUc1ZnMtdkhTVW5ScS1pNmhNZEs5bWtYRGl1TnZNMDJuTGRhQQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "bra-casemiro": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Andra gula kortet i turneringen (mot Marocko och Japan)",
+      "updated": "2026-06-29",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760487"
+      },
+      "origin": "cards"
+    },
+    "mar-issa-diop": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Andra gula kortet i turneringen (mot Skottland och Nederländerna)",
+      "updated": "2026-06-30",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760488"
+      },
+      "origin": "cards"
+    },
+    "par-matias-galarza": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Andra gula kortet i turneringen (mot Turkiet och Tyskland)",
+      "updated": "2026-06-29",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760489"
+      },
+      "origin": "cards"
+    },
+    "egy-yasser-ibrahim": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Andra gula kortet i turneringen (mot Iran och Australien)",
+      "updated": "2026-07-03",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760499"
+      },
+      "origin": "cards"
+    }
+  }
 }
