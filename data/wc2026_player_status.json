@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-04T16:30:14.858Z",
+  "updated": "2026-07-04T18:31:19.918Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mex-roberto-alvarado": {
@@ -60,13 +60,35 @@
       "origin": "news"
     },
     "bra-raphinha": {
-      "availability": "doubtful",
+      "availability": "out",
       "kind": "other",
-      "detail": "Raphinha tränar med en grupp i det brasilianska laget och närmar sig att återvända till VM 2026",
-      "updated": "2026-07-03",
+      "detail": "Raphinha fortsätter utan träning med grupp och missar Brasilien mot Norge",
+      "updated": "2026-07-02",
       "source": {
-        "name": "Grupo Lomes de Comunicação",
-        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNTjQ4U0NzOS1NVEZMbVNXSDhtZTBiOTdMMFBJallXS3ZkaWFhLXo2ZkVmWEY5cXpkQTJuYllQQk1tVGVlVXJHUEhVWWRERkxyN2ctVk5ydy1aQTY2N29TS3c4NEx3eXZFbVRRbDJYWnNaSlBNMnd4b09EV2JKNmJicDN3YVVtdTVFbXc4a282eUlRWENZdTZMaDd5SG1uT296dXhWN2g5OGFmNHY0VGcyblduWlpxNlRXZU5F?oc=5"
+        "name": "GE",
+        "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQN2NrYURGVVJmdDdoekVYNldQT3hvSEx5VmVHWVNsc3VNU0JJSkZuOHlwTi1lb2pmbDZXRmowOTlaR0t6SGlYdm9BVFI4Q01zdm5rY3l6VkFMYXlCTzQ4M1pqUUM3X0pGdlgyVklaU19MWEFETTVmYWt0QTlQYUI1bjJCQkJ2LS1qV0FvWjJtd1hnWFh1M0VrX3hGRlBNa3dtTC1fNGN2Wk5QWTV4b0tfTHRXZ2luNFhobjAtdUp2cW96SU5zWjRYT2ZEeDBRNTFrbzhn0gHiAUFVX3lxTE9DRDBXQjNoTzI4RmNKLW9aYzF0Vzc0V1BnU1JlaDNLd2FpOGVDbmNxVnVmUFJzOXp3VEs2SGxqNjRiVHkxbno1NVNnaGc5VW5yOW1ycDFlVjdpLUhsNGFsaTh4c2xEMV9oa0F4czd4cGFhTDZyYlRjM3hCVTNySjNwZUhJZ3hseFFCS2pENEpHWEdXQ3JYZHBRTGFqOEFhQVFHSGVyRlNab1NGSXkzSGNmQ0hJX29VZTNKdklGNHdjTTZGM0Zva2dnOWVLZ0hTZEtwUHdmRDJWLWtyTFA0M0VUNnc?oc=5"
+      },
+      "origin": "news"
+    },
+    "bra-lucas-paqueta": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Lucas Paquetá förklarar skadan som tog honom ur Seleção-spelet och beskriver hans återhämtning",
+      "updated": "2026-07-02",
+      "source": {
+        "name": "O POVO",
+        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPNHktV3ljbkJwNk1EMW1pMDNMRUtFcWFsYjViWmEwZmljZU1ERmNWdktvRHpHS3RNWElFQ2dKNTJvY0NlbmtKM2hCX245Yko2MEl3VVF5UmVLNVowR1p2NGV5eW96QUR4MXZkeDhBd2VlYVQ5MHlDREZDR3lfOTRiQjdJakh6X3JuUWk3aVdLM2VLOGw3R0J2NG16bVNjUmthVmVyQmVFM09yZE80cVE?oc=5"
+      },
+      "origin": "news"
+    },
+    "mar-ismael-saibari": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "LIVE - VM 2026: Marocko förlorar Saibari skadad och lider mot Kanada",
+      "updated": "2026-07-04",
+      "source": {
+        "name": "MSN",
+        "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPRTVPVlZlVVdfdjl6b3VKN0x6c1pybjBtM0poUUtpZ0xRSGxvb00zc01veHNJY20xN2RXcXV0NjRhMno4eTFxTGFFZFpMR3BxQTBXa25rOTd4UlZBc290eXhXVDFXUnVQUXZHWGUxdEdGNU91WmsweEREWGlmdTlvZE1CZXR5M01tUmRtRlozTkpKc0hGUXBQOXpkWFhzR3FoZjJGYUpRdFZpczZuc3ZmbktCaFhTbkNGR2ZlN1o4S2FSR3VxUUVONjY0VkJ2b1VQYzhVY3l0QQ?oc=5"
       },
       "origin": "news"
     },
@@ -96,11 +118,11 @@
     "egy-karim-hafez": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Yalla Koura avslöjar karaktären på Karim Hafez skada och hans ställning till att delta mot Argentina",
+      "detail": "Karim Hafez genomgår läkarundersökningar efter en skada mot Australien",
       "updated": "2026-07-04",
       "source": {
-        "name": "يلاكورة",
-        "url": "https://news.google.com/rss/articles/CBMiwgRBVV95cUxPRmNyVWN2MGoxbDVMR0N5U2dKTmwxdVNrV0VYQkFhcWg4YWdsRjNJejRzWmtUcGxqZTFDWENlbGNiTHJpZEt3TjdVUEFlTUsxVzFoc3h6YUpud0dCZTBYdE1OVHd5SllobkZxSWQ3VmIyRnQ0TTRXVk9McmFxOXpfd0RLbDBiWm9qOVBaQ0JXZi1OVy1tNW81Tk41dGpYeGl4ZHp5R1JfdTZpX0RBYmM1YmZ5d3I5MjQtVHlqRVFKdmlncHZRaUlMck1WejgtRkU1S01HbkkzbTJoS216WGhsMVI0ZFFFdEo2YzVhT3RKZmlhdk5wQlpzeWpvNEwwWGpXaWZBY1BUSEk5RXlOdUZmS2MtT0FlMDFkSnZGZ2pDWl9hMVR4c3BIY0pGWjM0alFmazhfcXprbVdEV1RWTVBfN1M2M21XQzJ1VGwyUDNXRmN2S0kzTGh5QjV4RGZNRjhtbnIxNmFvY3VGZWlUcXRxUzF3MGJwczhDcHZraWIwT3pidUE3OGlhaEtlc0hYQlVoRHZ2UmY5cmg5TWVWbU1YOUo5S255aGZmVU1MUndfWEdoZEJhTnc1Y1lsRXA0a2dLQzhnMW5RLVR4bG1kVlJKTXBzX2R4aXdwNFBObWlfTGdsblZMWVduNFNlZDJ4Tk0ybW5lNTNWOF9mbHFteW43RG84ZjNZUDBBTVVPMXFwdk9tS21nMXRqZUh3d0tYZF8wcnRWZEZGQlV4dnRHaE9Lemh1WUNYbDZZWTBkd0RJWW5jZ9IBxwRBVV95cUxNOUtkdDhfWU0yelNzY0NiT1IxVE9QNlprYllTMm9nRmlNejJEbk5Xc0htRzRzSHJTOUNDUmRWazhsRVZSUU9FTV9McklrMGpESmFReUV0bnNPaWROLXBSUUZzT2RUdEZxNmRaSFBmZVRaTkdSWnFybFNQa19tRjZNVzdiamtoOUJ4Ympfb3lFV0hKZVhtRHZXeEZsM1lDcXB4ZHU3MUhFWFZjSGR6YmFPVzUxMjR6U2ZFZDRLdjBwYnBiNzBqUWh1TEpQWk5LMk1VNk9qcmNST0gwQ0VjUlJMbjUybUJrcHVhMUMwUTJtRGtmN2p1U19laXBTVjMtVFpFbENIVkxUVDZwUy1iV0JjQnNsOERLenBjMWZIWXZsMW5KeFdzcFEtY25aYXZPSEhpbUhGTmllQ0hETGp0bDBYLWNvdW5KMmlfelEwRDdaTkRFVXVKNmg5NEFWQmVOd1ZqSTJGNERUMEUtcUZlbzlTLVFJdTlLT2htYWtRYWlMY1FsNnMxUWxCMGZKS0RwYlZoNElsYXpYMm1CZW41c3pOQ2x3dGhSQ29wWFdMS3FCLWJveGE5d3ZhbWlTai0yMTdxSzZKaF8yblM0M25oY09GRk80bGRwb3ZaQU5yZzFiTTNiVlVkMUtJVHB1bHN2QUNWSi1qanVEUmRYdy1Ib0YwZTVSVFpsalpGVC1OY0JXc0FhbUU2eGJKS2dXeC1rbFM4Z2xlTlJLaFZFUzVMSHE1ajZnREhuc2JhWWw1WlpVZ3FyR2VCUENZ?oc=5"
+        "name": "صدى البلد",
+        "url": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE9NZGhrZGZyVzROV09aZXp4ZGE2MDdoRVhDVUVkdm93WURidF8tVm9uNnZJMzEySWZnTmV5WTFSQmlPQ0tFRFNZ?oc=5"
       },
       "origin": "news"
     },
@@ -156,17 +178,6 @@
       "source": {
         "name": "bolavip.com",
         "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOMG5BZVlESVNiT2pxOFhxNGRmX1VkRGVlX2Jsd3F6Wk9uM2RFU3ZqRG9UbHlZQ0t5aFRodm9PTXFXUEZGczYyOGYtR184X2FzOGZrQTU3bHhfaFRGZHhfYkt2dlFleUJMQm5BZjZGZHlfdXFwSllSRVAtOHlrRWxZNjFDdDFUcmVnZlhHREtYbEtXMy1nVURBRVZCZS1Da3JQTndiXzE4MThjMXc4ck5R0gG0AUFVX3lxTE1JZFJMMlZkcEZUWE1NSk5IWXVvN2gwOXp3aEcyVjI2cVYwTkhlQ3dwcEVCa0JxT1gyd1N5SW1zRGpJNTREQmtNczQ0RC0xMjBSVDkxMmJTZlIxX0JEUkN3VTJpcVB6OGVEZW5hQ3RvcG5KUkhrMHhtNmU1b202YjYzUnNVbXB3c04yNU5VY0k3QzJyMjQ3YUQzcktiMkU0SksxTU9xRTlDOWdtb3pwRi1yLUFBdw?oc=5"
-      },
-      "origin": "news"
-    },
-    "col-luis-diaz": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "[VIDEO] Luis Díaz gjorde allt med en dribbling: han hakade på och orsakade en skada i Ghana",
-      "updated": "2026-07-04",
-      "source": {
-        "name": "deportesrcn.com",
-        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNNXdXRUdidXFsd2poT1ptQnhXTVhoVUxmT1VvU3V1S013Nm9mRkV5TUlKbUZWSjF5Z09MMkd2VUpPMzYzUTVxX3puVXd2X2pjMzZobjQ5d0J5bndxYTVvTGhRZk1sTFJhYW0yT0I3cHEwTmFibE9LektkSXc3RlFkVmduZXg3bHBveVRMZU5BTXdwbHRoYUNmdnBRREtsWUk1dDBVWDRlRW1tZGR1bzRfLVA0bHVGMU8yZUdScm1n0gG-AUFVX3lxTE51MEk3LUdkdjZvWHdoYWpoX2ZQdEdWb1pWdEpQc2JLVElmMW1fMTRadG1sWko3aG5CemJlOEljRWo5NVZCaElqNUxLYWlMamJ5a184SW9wa19jR2hnWVpjbzBEZjJGN19XYTctWTJwQjF2ejhKYzR5ZWdad1lxd3k1eG42cUphMzZzWGh6REtfSGtCN3dBLU95OGgyOGZuRlZJSkh1dWU3a1lBZThYNjBHaDBESmNhaEwzeDFLeUE?oc=5"
       },
       "origin": "news"
     },
