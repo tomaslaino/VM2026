@@ -1,19 +1,44 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-05T18:34:44.777Z",
+  "updated": "2026-07-05T20:35:34.963Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
-    "mex-roberto-alvarado": {
-      "availability": "doubtful",
-      "kind": "other",
-      "detail": "Alarm i El Tri: Piojo Alvarado är osäker mot England och Aguirre analyserar redan en ersättare",
-      "updated": "2026-07-04",
+    "bra-casemiro": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Andra gula kortet i turneringen (mot Marocko och Japan)",
+      "updated": "2026-06-29",
       "source": {
-        "name": "debate.com.mx",
-        "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQUzFmSVdrVGN0UlNsTHR5YWZQZjd1ZEJKQVd0bFNIZHc2ZDJ0YUgxX01Hb3diSWFxaXRxWmNhYnJUbkgwbnFzWlg4S0pnOHZxMWV6Y3AtcHRxTEFpTTdDQ1BiZG4tVk1HTFNIcVQzYjlVWWlDcWQ1ZHFWRGZjcVdIemx4WDdlWWVFVHMzTWtqMXA1aGlsRVNUVF9mTG12XzRTNndOUVdSSjYyX0NHVjdMTDNJNGJGUGNSdmR5bmtWRXdCV3cxNVhOTVZBaUxtUkhFY201Um1RMDdBcURkM3VkdkZvbw?oc=5"
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760487"
       },
-      "origin": "news"
+      "origin": "cards"
+    },
+    "usa-folarin-balogun": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Rött kort i sextondelsfinalen mot Bosnien-Hercegovina",
+      "updated": "2026-07-02",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760494"
+      },
+      "origin": "cards"
+    },
+    "egy-yasser-ibrahim": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Andra gula kortet i turneringen (mot Iran och Australien)",
+      "updated": "2026-07-03",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760499"
+      },
+      "origin": "cards"
     },
     "bra-lucas-paqueta": {
       "availability": "out",
@@ -38,119 +63,6 @@
         "url": "https://www.cnnbrasil.com.br/esportes/futebol/copa-do-mundo/ancelotti-confirma-raphinha-disponivel-no-banco-em-brasil-x-noruega/"
       },
       "origin": "news"
-    },
-    "mar-ismael-saibari": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Marocko-Frankrike: Ismael Saibari, skadad, svår att återhämta sig",
-      "updated": "2026-07-05",
-      "source": {
-        "name": "lequotidien.com.tn",
-        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOQ0JleDdzNkN4VjRWYS1qckNrWlV0OTJXejdqajM4b0hkUjZNVEVtSzhZaEhxWGFPY0M2cE5QYjF1TzJPbDlsMmd0T0IyZTFBSVdhOE13QnQzZzEzV0ZTZmp6U1ZGZ2lrSVJuekpuR1RBQzBEVjY4V0lXWlMxZTdrYW5TQTdvOG5QWjFpbEdYd3BWSXBJRTJIYkJhS3BGbzRxbWZEdw?oc=5"
-      },
-      "origin": "news"
-    },
-    "usa-folarin-balogun": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Rött kort i sextondelsfinalen mot Bosnien-Hercegovina",
-      "updated": "2026-07-02",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760494"
-      },
-      "origin": "cards"
-    },
-    "fra-michael-olise": {
-      "availability": "doubtful",
-      "kind": "suspension",
-      "detail": "Frankrike-Paraguay: kan det mycket svåra gula kortet mot Michael Olise annulleras?",
-      "updated": "2026-07-05",
-      "source": {
-        "name": "Le Parisien",
-        "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxQM0FJS1dudzUtWmdoWUphZnhONHdHWHZFZ2hQd2xoakNFQzl3TkllQjNYMXJhLUNVRlp1UzMzVTZNdkpqLXc2LVpxX2lfMzY4T05kR3FEZHdwZFJHSlprLXdid2ozUXFlanBoNWoydGNGS2V6Z0wwQ1B6MHdxQU54Z05Xc25mRzFwZmtvYzZhSEdGelBZWG9jS1ZFUTB6TG9KWXJ4MWJrbXloUE9pYUozN2VmQ0FtSk0yaG1aR0NtVXVyWWVaVG8yQ0ZOeFZxUmNsRnlPZnBiSTgwS21veW5jRzcyLS02bUM3aVB1NnVyWHpUbjI0N0N1TTVOaE9IMS1SaGVOVnZzcmtQQnh2Tkxwcw?oc=5"
-      },
-      "origin": "news"
-    },
-    "arg-lisandro-martinez": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Lisandro Martínez talade om sitt första mål i världscupen och blev känslosam när han kom ihåg sin skada",
-      "updated": "2026-07-04",
-      "source": {
-        "name": "La Nación",
-        "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxObk1YVWFMSHd2WXdUMkV6dUZfSHdIRDN6emVibzRxWXpNa0JaY3NhNGhkMGdYZVhucjdwcF9qcktrNklFNnJWclhGMG1LRFdpOEdxa1hmd2lYLUVoWDQyVDFyaG1oUUs0Y3dBWnpjaXBhcnJ3ZWdfc0l4YXh5TzlxTHBGX0lsZnNzUXBQZTBTMWJOQ2pPbFFEdWtJUzhtRkp0NXYzaDFodVN4UURvQlcwdnVIenNGOUVRREZyWDVmcDVhemhickttMXNEQ2NERGduY1IzNVdYdGtXcmZqMzF4TFJ0VDM?oc=5"
-      },
-      "origin": "news"
-    },
-    "arg-facundo-medina": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Scaloni talade om Medinas skada: \"Han blev trång\"",
-      "updated": "2026-07-04",
-      "source": {
-        "name": "TyC Sports",
-        "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPVlZIYVlxcTJ1Um1HejZOdDkwUEttSHVGbjJCOXBsRG5RVW1NSy1DTjVEYUN0TVRvOWhRTGxBdU82Q21QQ0FqdU55eXFJUlI5bHlaRW42MW42b0ZoN2tkTVNkVlFKQ3VrWjkzTW5CbUliN0t0MVlrcktZZ1E3ZGZPMG1MVlhlclU4WFVoVWEyWVBub2ZTbHV3bVB0aHU0OE5WTW1BRjl3TWEwa1FiR1E5TEdRSHNXS3pEYjVOa1ZPYw?oc=5"
-      },
-      "origin": "news"
-    },
-    "col-jhon-cordoba": {
-      "availability": "out",
-      "kind": "injury",
-      "detail": "Dåliga nyheter för det colombianska landslaget: Jhon Córdoba missar VM 2026 på grund av en allvarlig skada",
-      "updated": "2026-07-05",
-      "source": {
-        "name": "MARCA",
-        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPeVZscmdSMUN6Q1Jpb2pKVXN2T2FGaVZJRWtfU0Q2RTBXeTd1SmN0V3pfMmZ2Y2w1dGxQeUJDX29FcVdnQ3RWc19JRW9WSllLXzI4eTlad3o0Wk5VS1oyaGNBSElZRE1TNmNhNVI0QkFQWnV2S0dZWlhnUjJTZ3JnMU90aUdNcDB5ekhPMXQydkwtbnBHVE5sQzRLWFlxTzFBLWM1eFJMcGpROFdXWGc4V2RKby1GQW9mRUwxd05B0gG-AUFVX3lxTE95VmxyZ1IxQ3pDUmlvakpVc3ZPYUZpVklFa19TRDZFMFd5N3VKY3RXel8yZnZjbDV0bFB5QkNfb0VxV2dDdFZzX0lFb1ZKWUtfMjh5OVp3ejRaTlVLWjJoY0FISVlETVM2Y2E1UjRCQVBadXZLR1laWGdSMlNncmcxT3RpR01wMHl6SE8xdDJ2TC1ucEdUTmxDNEtYWXFPMUEtYzV4UkxwalE4V1dYZzhXZEpvLUZBb2ZFTDF3TkE?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-djed-spence": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Djed Spence: England drabbats av ett nytt skadeproblem bara timmar innan Mexiko möter",
-      "updated": "2026-07-05",
-      "source": {
-        "name": "GB News",
-        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9NZE5iLXQxdjFERlBvaDRmZFpfX2ZWWDBtRlJPdHlJUk1TOFVZLTAyMm51R1ZoSDktWXVZUy1KY25XUm55TlI5d2o1cHRqVWNxVTRCWTQ0LUFJaWZnM2ZzdlM1RWx5Q0RzQnJuaDBKZTVKZ0hmUmZOXzlETQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-reece-james": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Reece James skadeuppdatering när Chelsea-stjärnan möter Englands VM-verklighet",
-      "updated": "2026-07-04",
-      "source": {
-        "name": "Football London",
-        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPbmFUQjlUM09wQ2hJc1F0ZXZEckNtMjQtaWNPYjJlTl80N0xxeVF0TlNJQ09lM2ZPU096Z3h1RUItNTZVTEhsbkNBSmdwazBxaDJJWVRpRnNldDZVV2JnbDAwWlBFeHMwR0tBTFJ0ekFISWd6cmNjRmRDUnJtbWY0bmVCQngwWUNhSWxOUGNWaWJfUdIBkgFBVV95cUxPbmFUQjlUM09wQ2hJc1F0ZXZEckNtMjQtaWNPYjJlTl80N0xxeVF0TlNJQ09lM2ZPU096Z3h1RUItNTZVTEhsbkNBSmdwazBxaDJJWVRpRnNldDZVV2JnbDAwWlBFeHMwR0tBTFJ0ekFISWd6cmNjRmRDUnJtbWY0bmVCQngwWUNhSWxOUGNWaWJfUQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "bra-casemiro": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Andra gula kortet i turneringen (mot Marocko och Japan)",
-      "updated": "2026-06-29",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760487"
-      },
-      "origin": "cards"
-    },
-    "egy-yasser-ibrahim": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Andra gula kortet i turneringen (mot Iran och Australien)",
-      "updated": "2026-07-03",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760499"
-      },
-      "origin": "cards"
     }
   }
 }
