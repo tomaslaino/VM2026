@@ -1,13 +1,13 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-05T05:15:55.970Z",
+  "updated": "2026-07-05T08:24:14.793Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mex-roberto-alvarado": {
       "availability": "doubtful",
       "kind": "other",
-      "detail": "Alarm i El Tri: Piojo Alvarado är osäker mot England och Aguirre analyserar redan en ersättare",
+      "detail": "Larm i El Tri: Piojo Alvarado är osäker mot England och Aguirre analyserar redan en ersättare",
       "updated": "2026-07-04",
       "source": {
         "name": "debate.com.mx",
@@ -56,28 +56,6 @@
       "source": {
         "name": "africaradio.com",
         "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNOEFuekN2Z1RKNTBwNEpDUnJvM2NxMVFONzlKYm1MZ2VHNG5MSWtYWFc1bWV3Z2N2enhBYWttOEVSWVd1dGdlMkdNS1BwTE9rWUhqWUNRUkpuRmppcmNhNTVvdVI3U1hkTi12akpWeUpvOXVLMmJIQzVYTWJSc01LeHVpYkZWZnpZc2JKS1Bid2hHcXlBT0tBRnhubTZMRWJLZndFVXRLdF9iMy1KbDFPRXd4cE5aLXNFQ0RZQ09BWFlyemlONmRRNERrODU?oc=5"
-      },
-      "origin": "news"
-    },
-    "usa-malik-tillman": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Malik Tillman skadad men oskadd efter skrämmande incident i USMNT:s seger över Bosnien",
-      "updated": "2026-07-04",
-      "source": {
-        "name": "MSN",
-        "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPMVdxWEUtNDBpd1Y4ZGJMTWVoVjRwZ215T3BCUDAtem5RbklENGg4blc1SlZGeFM4WjJTdDU0d21UVVY5cEZTZ0Y5QnZ3ay1SZWdRRHAyTkdtMFo5MjhrZm41Y3k5SWJ0VmEyN3VHWDVDdExDYkhGYWFuUVU2NmxFZTc5dS1uOUpuOHJsU1I0bHBiY0I4dFUybHEtLTYwWVZmZTJURmhDdGd3YnNWdGIxWkExYkRZSEtaZHBZZWF5YkVDZzVTcjRxTTM5TU9yVTQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "usa-ricardo-pepi": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "USMNT står inför avgörande anfallare efter Balogun-skada Kommer Ricardo Pepi att vara svaret?",
-      "updated": "2026-07-04",
-      "source": {
-        "name": "fitguru.training",
-        "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQeFRxZTNBWmdaMlMxc21QUDN5Y1JCUkFtYTJLejEtZmdCNlBPc0VMc1c5SlF4dWVXOGJkUUtJUjRKVTlxOERnMnV5TXRwM2g0VzlSblhjVUxRWmo1OWZ1enRnWHZIVzQ1YWs1UjBmbGd3b3h2UmlneFJHWGRTVkZneWg1T0V3SU9mU3J5QzFFR1hDemUxWUQ2YkFrSlFWYkhpV053c0ZyUENOeHFlLXBCODRFaVphMkNTV3BFQlkxRkg3QThyVHFxazhuR0NsNERwMEstUndTRFoydUdX?oc=5"
       },
       "origin": "news"
     },
