@@ -1,14 +1,8 @@
 /*
-  Bygger TVÅ filer AUTOMATISKT ur samma färska källor per kommande slutspelsmatch:
-    • data/news_summaries.json – en kort svensk förhandsartikel ("Senaste nytt").
-    • data/match_analysis.json  – en kort redaktionell ANALYS med PROGNOS (troligt
-      resultat) som visas överst i "Inför"-fliken. Samma referens-, trapp- och
-      Gemini-maskineri; en extra modellanrop per match producerar bedömningen.
-
-  Nedan beskrivs artikeldelen; analysdelen delar hela pipelinen (steg 1–3) och
-  får ett eget prompt/schema i steg 4 ({verdict, prediction, predictionNote,
-  paragraphs}, utan källhänvisningar – det är en bedömning, inte en refererad
-  artikel).
+  Bygger data/news_summaries.json AUTOMATISKT: "Redaktionens analys" per kommande
+  slutspelsmatch – en fyllig svensk analysartikel skriven av en språkmodell UTIFRÅN
+  färska källor, som väger samman läget i båda lägren OCH LANDAR I EN KONKRET
+  PROGNOS (troligt slutresultat) med argument för den.
 
   Pipeline per match:
     1. Läs kommande slutspelsmatcher ur data/results.json (fixtures) – bara
@@ -22,9 +16,12 @@
        om när referenserna faktiskt ändrats (refsHash) eller trappans intervall
        löpt ut – annars hoppas matchen över (spar API-anrop).
     4. Språkmodellen (Google Gemini, gratis nivå) skriver {headline, lead,
-       paragraphs} på svenska med markörerna **fet**, *kursiv* och [[n]]-
-       källhänvisningar mot de numrerade referenserna. Vi renumrerar till exakt
-       de källor som faktiskt citerades och skriver ut posten.
+       paragraphs, prediction, predictionNote} på svenska med markörerna **fet**,
+       *kursiv* och [[n]]-källhänvisningar mot de numrerade referenserna. Analysen
+       väger samman källorna och avslutas med en argumenterad prognos; prediction
+       är det troliga slutresultatet (t.ex. "2–1 Brasilien") och predictionNote en
+       kort brasklapp. Vi renumrerar citaten till exakt de källor som faktiskt
+       användes och skriver ut posten.
 
   Poster med "manual": true rörs aldrig (handskrivna behålls).
 
@@ -50,7 +47,6 @@ import { TEAMS, parseItems, fetchRss, translateToSwedish, tightenSummary } from 
 
 const __dir = path.dirname(fileURLToPath(import.meta.url));
 const OUT_FILE = path.join(__dir, "../../data/news_summaries.json");
-const ANALYSIS_FILE = path.join(__dir, "../../data/match_analysis.json");
 const RESULTS_FILE = path.join(__dir, "../../data/results.json");
 const TEAM_NEWS_FILE = path.join(__dir, "../../data/team_news.json");
 const STATUS_FILE = path.join(__dir, "../../data/wc2026_player_status.json");
@@ -475,7 +471,7 @@ function buildPrompt(match, refs) {
   const stakes = next
     ? `Utslagsspel: vinnaren går vidare till ${next}, förloraren är utslagen. Oavgjort efter full tid avgörs i förlängning och eventuellt straffar.`
     : `Utslagsspel: oavgjort efter full tid avgörs i förlängning och eventuellt straffar.`;
-  return `Du skriver en införartikel inför en VM-match. Skriv på svenska.
+  return `Du skriver "Redaktionens analys" inför en VM-match: en fyllig, källbelagd analysartikel som väger samman läget i båda lägren och SLUTAR MED EN KONKRET PROGNOS (troligt slutresultat) som du argumenterar för. Skriv på svenska.
 
 MATCH
 - Lag A: ${match.home.sv}
@@ -492,25 +488,29 @@ Leta i källorna efter de faktorer som faktiskt betyder något för just den hä
 - Taktik: nyckeldueller, presspel, omställningar, fasta situationer, en möjlig planändring.
 - Yttre faktorer: höjd, väder, plan, hemmapublik, resande, domarprofil.
 - Narrativ: press på lagen, tränar-/spelarcitat, inbördes historik, rivalitet, interna problem.
-- Statistik: form, mål/xG, försvarsdata – om den finns i källorna.
+- Statistik: form, mål/xG, försvarsdata, oddsläge/favoritskap – om det finns i källorna.
 
-SKRIVKRAV
+SKRIVKRAV (ARTIKELN)
 - Slagkraftig rubrik (headline, REN TEXT utan markörer eller källhänvisningar) och en ingress (lead) som slår an artikelns huvudtes.
-- Välj EN tydlig huvudtes för matchen och bygg artikeln kring de 2–4 VIKTIGASTE faktorerna. Lyft inte alla faktorer mekaniskt – välj ut och prioritera.
-- Förklara VARFÖR varje vald faktor påverkar matchbilden. Analys, inte uppräkning.
-- Var konkret: namn, siffror, exakta lägen. Undvik generiska fraser och floskler ("allt står på spel", "stämningen är på topp", "en match att minnas", retoriska slutfrågor).
+- Väg in SÅ MYCKET relevant information som möjligt från OLIKA källor – lyft gärna in flera perspektiv, men prioritera de faktorer som faktiskt påverkar utgången och förklara VARFÖR var och en spelar roll. Analys, inte uppräkning.
+- Var konkret: namn, siffror, exakta lägen, citat. Undvik generiska fraser och floskler ("allt står på spel", "stämningen är på topp", "en match att minnas", retoriska slutfrågor).
 - Hitta INTE på fakta, namn, siffror eller citat. Saknas en uppgift i källorna – hoppa hellre över den än att spekulera.
 - Ren logistik utan betydelse för spelet (TV-kanal, biljetter, öppettider) hör inte hit.
-- Bygg i första hand på LÄNDERNAS EGNA MEDIER och ge båda lagens hemmaperspektiv – vad skrivs i respektive lands press om det egna laget (laguppställning, skadeläge, tränar-/spelarcitat, stämning). Använd internationella källor som komplement.
+- Bygg brett på LÄNDERNAS EGNA MEDIER och ge BÅDA lagens hemmaperspektiv – vad skrivs i respektive lands press om det egna laget (laguppställning, skadeläge, tränar-/spelarcitat, stämning, förväntan). Väv ihop hemmakällor från båda länderna och komplettera med internationella källor.
 - Ton: initierad, lite spetsig, journalistisk men inte överdriven. Målgrupp: fotbollsintresserade svenska VM-följare.
-- Längd: cirka 400–480 ord, fördelat på 4–6 stycken (paragraphs). VIKTIGT: mer text ska betyda MER konkret och relevant information (fler faktorer, mer djup) – aldrig utfyllnad, upprepning eller floskler för att nå längden.
+- Längd: cirka 650–800 ord, fördelat på 6–9 stycken (paragraphs). De 1–2 SISTA styckena ska knyta ihop analysen och bygga argumentet för din prognos (favoritskap, avbräck, form, taktisk matchbild, yttre förhållanden – väg för och emot). VIKTIGT: mer text ska betyda MER konkret och relevant information (fler faktorer, fler källor, mer djup) – aldrig utfyllnad, upprepning eller floskler för att nå längden.
+
+PROGNOS (avslut)
+- "prediction": ditt troliga SLUTRESULTAT, KORT. Helst med siffror och lagnamn, t.ex. "2–1 Brasilien" eller "1–1, Marocko på straffar". Skriv laget vid namn, inte "Lag A". REN TEXT utan markörer/källhänvisningar.
+- "predictionNote": EN mening som fångar den största osäkerheten/brasklappen (t.ex. vad som skulle kunna kullkasta prognosen). Ren text. Får vara tom sträng om ingen tydlig sådan finns.
+- Ta tydlig ställning i prognosen – vela inte. Det ska framgå vem du tror vinner (eller att det går till förlängning/straffar) och prognosen ska följa logiskt av argumenten i de sista styckena.
 
 KÄLLHANTERING
-- Varje påstående som bygger på en källa ska ha en hänvisning direkt efter: [[3]] eller [[2,5]] (max 1–2 källor per påstående).
+- Varje påstående som bygger på en källa ska ha en hänvisning direkt efter: [[3]] eller [[2,5]] (max 1–2 källor per påstående). Citaten gäller ARTIKELTEXTEN (lead + paragraphs), inte prediction/predictionNote.
 - **fet** för nyckelnamn och avgörande fakta, *kursiv* för direkta citat och smeknamn.
-- Använd bara källnummer som finns i listan; du måste inte använda alla.
+- Använd bara källnummer som finns i listan; du måste inte använda alla, men använd gärna MÅNGA olika källor.
 
-Svara ENDAST med JSON: {"headline": "...", "lead": "...", "paragraphs": ["...","...","..."]}.
+Svara ENDAST med JSON: {"headline": "...", "lead": "...", "paragraphs": ["...","..."], "prediction": "...", "predictionNote": "..."}.
 
 Källor:
 ${list}`;
@@ -521,9 +521,11 @@ const RESPONSE_SCHEMA = {
   properties: {
     headline: { type: "STRING" },
     lead: { type: "STRING" },
-    paragraphs: { type: "ARRAY", items: { type: "STRING" } }
+    paragraphs: { type: "ARRAY", items: { type: "STRING" } },
+    prediction: { type: "STRING" },
+    predictionNote: { type: "STRING" }
   },
-  required: ["headline", "lead", "paragraphs"]
+  required: ["headline", "lead", "paragraphs", "prediction"]
 };
 
 async function callGemini(prompt, model, schema) {
@@ -576,79 +578,12 @@ function renumberCitations(art, refs) {
   // Rubriken renderas som ren text – rensa ev. markörer/citat modellen råkat lägga in.
   const headline = String(art.headline || "")
     .replace(/\[\[[^\]]*\]\]/g, "").replace(/\*+/g, "").replace(/\s+/g, " ").trim();
-  return { headline, lead, paragraphs, references };
-}
-
-/* ---------- Analys & prognos (data/match_analysis.json) ---------- */
-
-const ANALYSIS_SCHEMA = {
-  type: "OBJECT",
-  properties: {
-    verdict: { type: "STRING" },
-    prediction: { type: "STRING" },
-    predictionNote: { type: "STRING" },
-    paragraphs: { type: "ARRAY", items: { type: "STRING" } }
-  },
-  required: ["verdict", "prediction", "paragraphs"]
-};
-
-/* Prompt för den redaktionella bedömningen: samma källunderlag som artikeln, men
-   modellen ska landa i EN konkret prognos (troligt resultat) och motivera den. */
-function buildAnalysisPrompt(match, refs) {
-  const list = refs.map((r, i) => {
-    let s = `[${i + 1}]${r.avail ? " [AVBRÄCK]" : ""}${r.conditions ? " [FÖRHÅLLANDEN]" : ""} (${r.source || "okänd källa"}) ${r.title}`;
-    if (r.body) s += `\n    Utdrag: ${r.body}`;
-    return s;
-  }).join("\n\n");
-  const next = nextStageLabel(match.no);
-  const stakes = next
-    ? `Vinnaren går vidare till ${next}, förloraren är utslagen. Oavgjort efter full tid avgörs i förlängning och eventuellt straffar.`
-    : `Oavgjort efter full tid avgörs i förlängning och eventuellt straffar.`;
-  return `Du är en kunnig fotbollsanalytiker som skriver en KORT bedömning med en tydlig PROGNOS inför en VM-match. Skriv på svenska.
-
-MATCH
-- Lag A (nämns först): ${match.home.sv}
-- Lag B: ${match.away.sv}
-- Datum och tid: ${koLabelSv(match.koMs)}
-- Fas: ${match.round} i fotbolls-VM 2026
-- Betydelse: ${stakes}
-
-UNDERLAG
-Bygg bedömningen på de numrerade källorna nedan (ländernas egna och internationella medier). Under de flesta källor finns ett "Utdrag" ur artikeltexten, ibland på originalspråk – läs det och väg in konkreta uppgifter. [AVBRÄCK] = bekräftad skada/avstängning/osäker spelare. [FÖRHÅLLANDEN] = spelavgörande omständigheter (höjd, värme, plan m.m.). Väg också in din egen fotbollskunskap om lagens relativa styrka och favoritskap, men hitta inte på specifika fakta (namn, siffror, citat) som inte finns i källorna.
-
-UPPGIFT
-Gör en helhetsbedömning och landa i EN konkret prognos för hur matchen sannolikt slutar. Väg in de faktorer som faktiskt betyder något: favoritskap/oddsläge, skador och avstängningar, form, taktisk matchbild, nyckelspelare och yttre förhållanden.
-
-SVARSFÄLT (JSON)
-- "verdict": en slagkraftig men saklig rubrik för din bedömning (REN TEXT, inga markörer). Ex: "Frankrikes kvalitet avgör – men Marocko gör det tight".
-- "prediction": ditt troliga slutresultat, KORT. Helst med siffror och lagnamn, t.ex. "2–1 Frankrike" eller "1–1, Marocko på straffar". Skriv laget vid namn, inte "Lag A".
-- "predictionNote": en (1) mening som fångar den största osäkerheten/brasklappen. Får vara tom sträng om ingen tydlig sådan finns.
-- "paragraphs": 2–3 KORTA stycken (tillsammans ca 110–190 ord) som motiverar prognosen. Var konkret och spetsig: peka på de 2–4 viktigaste faktorerna och förklara VARFÖR de påverkar utgången. Använd **fet** för nyckelnamn/avgörande fakta och *kursiv* för direkta citat. Undvik floskler och utfyllnad.
-
-REGLER
-- Ta tydlig ställning – vela inte. Det ska framgå vem du tror vinner (eller att det går till förlängning/straffar) och varför.
-- INGA källhänvisningar/fotnoter (inga [[n]]). Detta är en bedömning, inte en refererad artikel.
-- Hitta inte på fakta. Saknas en uppgift – bygg bedömningen på det som finns.
-- Ton: initierad, lite spetsig, som en bra expertkommentator. Målgrupp: svenska VM-följare.
-
-Svara ENDAST med JSON: {"verdict":"...","prediction":"...","predictionNote":"...","paragraphs":["...","..."]}.
-
-Källor:
-${list}`;
-}
-
-/* Sanera modellens analyssvar: rensa ev. markörer ur rubrik/prognos, släpp
-   citat modellen ändå råkat lägga in i brödtexten, kräv giltigt innehåll. */
-function cleanAnalysis(art) {
-  if (!art) return null;
+  // Prognosen är redaktionens slutsats, inte en refererad rad – ren text.
   const plain = (s) => String(s || "").replace(/\[\[[^\]]*\]\]/g, "").replace(/\*+/g, "").replace(/\s+/g, " ").trim();
-  const dropCites = (s) => String(s || "").replace(/\[\[[^\]]*\]\]/g, "").replace(/\s{2,}/g, " ").trim();
-  const verdict = plain(art.verdict);
   const prediction = plain(art.prediction);
-  const predictionNote = dropCites(art.predictionNote).replace(/\*+/g, "");
-  const paragraphs = (art.paragraphs || []).map(dropCites).filter(Boolean);
-  if (!verdict || !prediction || !paragraphs.length) return null;
-  return { verdict, prediction, predictionNote, paragraphs };
+  const predictionNote = plain(art.predictionNote);
+  if (!prediction) return null;
+  return { headline, lead, paragraphs, references, prediction, predictionNote };
 }
 
 /* ---------- Huvudflöde ---------- */
@@ -670,10 +605,6 @@ async function main() {
     ? JSON.parse(fs.readFileSync(OUT_FILE, "utf8"))
     : { updated: new Date().toISOString(), note: "", matches: {} };
   if (!file.matches) file.matches = {};
-  const analysis = fs.existsSync(ANALYSIS_FILE)
-    ? JSON.parse(fs.readFileSync(ANALYSIS_FILE, "utf8"))
-    : { updated: new Date().toISOString(), note: "Redaktionell matchanalys med prognos per kommande match (k:NN), automatgenererad av syncNewsSummaries.js ur samma källor som artiklarna. Visas överst i Inför-fliken. Poster med manual:true behålls.", matches: {} };
-  if (!analysis.matches) analysis.matches = {};
   const teamNews = fs.existsSync(TEAM_NEWS_FILE)
     ? (JSON.parse(fs.readFileSync(TEAM_NEWS_FILE, "utf8")).teams || {}) : {};
   const avail = loadAvailability();
@@ -687,22 +618,21 @@ async function main() {
   if (only.length) matches = matches.filter((m) => only.includes(m.key));
   console.log(`${matches.length} kommande match(er) i fönstret (${GEN_WINDOW_H} h).`);
 
-  // Primär- + reservmodell (egen, separat gratiskvot vid 429). Ett anrop per
-  // utdata (artikel resp. analys); trappan bakar in hur ofta det sker.
+  // Primär- + reservmodell (egen, separat gratiskvot vid 429). Ett anrop per match.
   const models = [MODEL, FALLBACK_MODEL].filter((m, i, a) => m && a.indexOf(m) === i);
   let quotaDead = false;
 
-  // Kör en prompt mot modellerna med samma retry/fallback-logik som tidigare.
-  // 503 = tillfälligt överbelastad → backa av; 429 = kvot slut → byt modell,
-  // och är båda slut sätts quotaDead så resten av körningen avbryts.
-  async function generate(matchKey, label, prompt, schema) {
+  // Kör prompten mot modellerna med retry/fallback. 503 = tillfälligt
+  // överbelastad → backa av; 429 = kvot slut → byt modell, och är båda slut
+  // sätts quotaDead så resten av körningen avbryts.
+  async function generate(matchKey, prompt, schema) {
     let out = null, lastErr = null;
     for (const model of models) {
       for (let attempt = 1; attempt <= 2 && !out; attempt++) {
         try { out = await callGemini(prompt, model, schema); }
         catch (e) {
           lastErr = e;
-          console.warn(`${matchKey}: ${label} (${model}) försök ${attempt} misslyckades – ${e.message}`);
+          console.warn(`${matchKey}: (${model}) försök ${attempt} misslyckades – ${e.message}`);
           if (e.status === 429) break;
           await sleep(e.status === 503 ? attempt * 4000 : 800);
         }
@@ -713,23 +643,14 @@ async function main() {
     return out;
   }
 
-  let wrote = 0, aWrote = 0;
+  let wrote = 0;
   for (const match of matches) {
     if (quotaDead) break;
-    const existing = file.matches[match.key];       // artikel
-    const aExisting = analysis.matches[match.key];  // analys
-    const newsManual = !!(existing && existing.manual);
-    const anaManual = !!(aExisting && aExisting.manual);
-    if (newsManual && anaManual) { console.log(`${match.key}: manual=true (båda) – rörs ej.`); continue; }
+    const existing = file.matches[match.key];
+    if (existing && existing.manual) { console.log(`${match.key}: manual=true – rörs ej.`); continue; }
 
-    // Hämta-grind: rör inte RSS oftare än fetchGateH – men bara om den utdata
-    // som är due över huvud taget är due (annars finns inget att göra).
-    const gateMs = fetchGateH(match.hoursToKo) * 3600000;
-    const newsMs = existing?.written ? Date.parse(existing.written) : 0;
-    const anaMs = aExisting?.written ? Date.parse(aExisting.written) : 0;
-    const newsFetchDue = !newsManual && (!newsMs || now - newsMs >= gateMs);
-    const anaFetchDue = !anaManual && (!anaMs || now - anaMs >= gateMs);
-    if (!force && !newsFetchDue && !anaFetchDue) {
+    const writtenMs = existing?.written ? Date.parse(existing.written) : 0;
+    if (!force && writtenMs && now - writtenMs < fetchGateH(match.hoursToKo) * 3600000) {
       console.log(`${match.key}: hämtade nyligen – väntar (${match.hoursToKo.toFixed(0)} h kvar).`); continue;
     }
 
@@ -737,13 +658,9 @@ async function main() {
     if (refs.length < 3) { console.log(`${match.key}: för få referenser (${refs.length}).`); continue; }
     const hash = refsHashOf(refs);
     const tierMs = tierIntervalH(match.hoursToKo) * 3600000;
-
-    // Skriv om en utdata när referenserna ändrats (refsHash) eller trappans
-    // intervall löpt ut. Grindas oberoende så artikeln inte skrivs om i onödan
-    // bara för att analysen saknas (och tvärtom).
-    const doNews = !newsManual && (force || !existing || existing.refsHash !== hash || !newsMs || now - newsMs >= tierMs);
-    const doAnalysis = !anaManual && (force || !aExisting || aExisting.refsHash !== hash || !anaMs || now - anaMs >= tierMs);
-    if (!doNews && !doAnalysis) {
+    const tierElapsed = !writtenMs || now - writtenMs >= tierMs;
+    const changed = !existing || existing.refsHash !== hash;
+    if (!force && !tierElapsed && !changed) {
       console.log(`${match.key}: oförändrat & ej dags (${match.hoursToKo.toFixed(0)} h kvar).`); continue;
     }
 
@@ -752,75 +669,47 @@ async function main() {
     const bodies = await attachBodies(refs);
     console.log(`${match.key}: ${bodies}/${refs.length} källor med brödtext.`);
 
+    const prompt = buildPrompt(match, refs);
     if (dryRun) {
       console.log(`\n===== ${match.key} ${match.home.sv}–${match.away.sv} (${refs.length} ref) =====`);
-      if (doNews) { console.log("----- ARTIKEL -----"); console.log(buildPrompt(match, refs)); }
-      if (doAnalysis) { console.log("\n----- ANALYS & PROGNOS -----"); console.log(buildAnalysisPrompt(match, refs)); }
+      console.log(prompt);
       continue;
     }
 
-    if (doNews) {
-      const raw = await generate(match.key, "artikel", buildPrompt(match, refs), RESPONSE_SCHEMA);
-      const art = raw && renumberCitations(raw, refs);
-      if (art) {
-        file.matches[match.key] = {
-          teams: [match.homeIso, match.awayIso],
-          headline: art.headline,
-          lead: art.lead,
-          paragraphs: art.paragraphs,
-          references: art.references,
-          written: new Date().toISOString(),
-          refsHash: hash,
-          generated: true
-        };
-        wrote++;
-        console.log(`${match.key}: skrev artikel (${art.references.length} källor, ${match.hoursToKo.toFixed(0)} h kvar).`);
-      } else {
-        console.warn(`${match.key}: kunde inte generera artikel – behåller ev. gammal post.`);
+    const raw = await generate(match.key, prompt, RESPONSE_SCHEMA);
+    const art = raw && renumberCitations(raw, refs);
+    if (!art) {
+      console.warn(`${match.key}: kunde inte generera – behåller ev. gammal post.`);
+      // Både primär- och reservmodell slut på kvot: resten skulle också 429:a –
+      // avbryt körningen i stället för att hamra API:t. Nästa körning tar vid.
+      if (quotaDead) {
+        console.warn("Gemini-kvoten är slut på båda modellerna – avbryter resten av körningen.");
+        break;
       }
+      continue;
     }
 
-    if (doAnalysis && !quotaDead) {
-      const rawA = await generate(match.key, "analys", buildAnalysisPrompt(match, refs), ANALYSIS_SCHEMA);
-      const ana = cleanAnalysis(rawA);
-      if (ana) {
-        analysis.matches[match.key] = {
-          teams: [match.homeIso, match.awayIso],
-          verdict: ana.verdict,
-          prediction: ana.prediction,
-          predictionNote: ana.predictionNote,
-          paragraphs: ana.paragraphs,
-          written: new Date().toISOString(),
-          refsHash: hash,
-          generated: true
-        };
-        aWrote++;
-        console.log(`${match.key}: skrev analys (prognos: ${ana.prediction}).`);
-      } else {
-        console.warn(`${match.key}: kunde inte generera analys – behåller ev. gammal post.`);
-      }
-    }
-
-    // Både primär- och reservmodell slut på kvot: resten skulle också 429:a –
-    // avbryt körningen i stället för att hamra API:t. Nästa körning tar vid.
-    if (quotaDead) {
-      console.warn("Gemini-kvoten är slut på båda modellerna – avbryter resten av körningen.");
-      break;
-    }
+    file.matches[match.key] = {
+      teams: [match.homeIso, match.awayIso],
+      headline: art.headline,
+      lead: art.lead,
+      paragraphs: art.paragraphs,
+      references: art.references,
+      prediction: art.prediction,
+      predictionNote: art.predictionNote,
+      written: new Date().toISOString(),
+      refsHash: hash,
+      generated: true
+    };
+    wrote++;
+    console.log(`${match.key}: skrev analys (prognos: ${art.prediction}; ${art.references.length} källor, ${match.hoursToKo.toFixed(0)} h kvar).`);
   }
 
   if (dryRun) return;
   if (wrote) {
     file.updated = new Date().toISOString();
     fs.writeFileSync(OUT_FILE, JSON.stringify(file, null, 2) + "\n");
-    console.log(`Klart – ${wrote} artikel(er) uppdaterade i ${path.relative(process.cwd(), OUT_FILE)}.`);
-  } else {
-    console.log("Inga artiklar behövde uppdateras.");
-  }
-  if (aWrote) {
-    analysis.updated = new Date().toISOString();
-    fs.writeFileSync(ANALYSIS_FILE, JSON.stringify(analysis, null, 2) + "\n");
-    console.log(`Klart – ${aWrote} analys(er) uppdaterade i ${path.relative(process.cwd(), ANALYSIS_FILE)}.`);
+    console.log(`Klart – ${wrote} analys(er) uppdaterade i ${path.relative(process.cwd(), OUT_FILE)}.`);
   } else {
     console.log("Inga analyser behövde uppdateras.");
   }
