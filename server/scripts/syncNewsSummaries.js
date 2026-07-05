@@ -1,7 +1,14 @@
 /*
-  Bygger data/news_summaries.json AUTOMATISKT: en kort svensk förhandsartikel
-  ("Senaste nytt"-fliken) per kommande slutspelsmatch, skriven av en språkmodell
-  UTIFRÅN färska källor.
+  Bygger TVÅ filer AUTOMATISKT ur samma färska källor per kommande slutspelsmatch:
+    • data/news_summaries.json – en kort svensk förhandsartikel ("Senaste nytt").
+    • data/match_analysis.json  – en kort redaktionell ANALYS med PROGNOS (troligt
+      resultat) som visas överst i "Inför"-fliken. Samma referens-, trapp- och
+      Gemini-maskineri; en extra modellanrop per match producerar bedömningen.
+
+  Nedan beskrivs artikeldelen; analysdelen delar hela pipelinen (steg 1–3) och
+  får ett eget prompt/schema i steg 4 ({verdict, prediction, predictionNote,
+  paragraphs}, utan källhänvisningar – det är en bedömning, inte en refererad
+  artikel).
 
   Pipeline per match:
     1. Läs kommande slutspelsmatcher ur data/results.json (fixtures) – bara
@@ -43,6 +50,7 @@ import { TEAMS, parseItems, fetchRss, translateToSwedish, tightenSummary } from 
 
 const __dir = path.dirname(fileURLToPath(import.meta.url));
 const OUT_FILE = path.join(__dir, "../../data/news_summaries.json");
+const ANALYSIS_FILE = path.join(__dir, "../../data/match_analysis.json");
 const RESULTS_FILE = path.join(__dir, "../../data/results.json");
 const TEAM_NEWS_FILE = path.join(__dir, "../../data/team_news.json");
 const STATUS_FILE = path.join(__dir, "../../data/wc2026_player_status.json");
@@ -518,14 +526,14 @@ const RESPONSE_SCHEMA = {
   required: ["headline", "lead", "paragraphs"]
 };
 
-async function callGemini(prompt, model) {
+async function callGemini(prompt, model, schema) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${API_KEY}`;
   const body = {
     contents: [{ role: "user", parts: [{ text: prompt }] }],
     generationConfig: {
       temperature: 0.45,
       responseMimeType: "application/json",
-      responseSchema: RESPONSE_SCHEMA
+      responseSchema: schema || RESPONSE_SCHEMA
     }
   };
   const res = await fetch(url, {
@@ -571,6 +579,78 @@ function renumberCitations(art, refs) {
   return { headline, lead, paragraphs, references };
 }
 
+/* ---------- Analys & prognos (data/match_analysis.json) ---------- */
+
+const ANALYSIS_SCHEMA = {
+  type: "OBJECT",
+  properties: {
+    verdict: { type: "STRING" },
+    prediction: { type: "STRING" },
+    predictionNote: { type: "STRING" },
+    paragraphs: { type: "ARRAY", items: { type: "STRING" } }
+  },
+  required: ["verdict", "prediction", "paragraphs"]
+};
+
+/* Prompt för den redaktionella bedömningen: samma källunderlag som artikeln, men
+   modellen ska landa i EN konkret prognos (troligt resultat) och motivera den. */
+function buildAnalysisPrompt(match, refs) {
+  const list = refs.map((r, i) => {
+    let s = `[${i + 1}]${r.avail ? " [AVBRÄCK]" : ""}${r.conditions ? " [FÖRHÅLLANDEN]" : ""} (${r.source || "okänd källa"}) ${r.title}`;
+    if (r.body) s += `\n    Utdrag: ${r.body}`;
+    return s;
+  }).join("\n\n");
+  const next = nextStageLabel(match.no);
+  const stakes = next
+    ? `Vinnaren går vidare till ${next}, förloraren är utslagen. Oavgjort efter full tid avgörs i förlängning och eventuellt straffar.`
+    : `Oavgjort efter full tid avgörs i förlängning och eventuellt straffar.`;
+  return `Du är en kunnig fotbollsanalytiker som skriver en KORT bedömning med en tydlig PROGNOS inför en VM-match. Skriv på svenska.
+
+MATCH
+- Lag A (nämns först): ${match.home.sv}
+- Lag B: ${match.away.sv}
+- Datum och tid: ${koLabelSv(match.koMs)}
+- Fas: ${match.round} i fotbolls-VM 2026
+- Betydelse: ${stakes}
+
+UNDERLAG
+Bygg bedömningen på de numrerade källorna nedan (ländernas egna och internationella medier). Under de flesta källor finns ett "Utdrag" ur artikeltexten, ibland på originalspråk – läs det och väg in konkreta uppgifter. [AVBRÄCK] = bekräftad skada/avstängning/osäker spelare. [FÖRHÅLLANDEN] = spelavgörande omständigheter (höjd, värme, plan m.m.). Väg också in din egen fotbollskunskap om lagens relativa styrka och favoritskap, men hitta inte på specifika fakta (namn, siffror, citat) som inte finns i källorna.
+
+UPPGIFT
+Gör en helhetsbedömning och landa i EN konkret prognos för hur matchen sannolikt slutar. Väg in de faktorer som faktiskt betyder något: favoritskap/oddsläge, skador och avstängningar, form, taktisk matchbild, nyckelspelare och yttre förhållanden.
+
+SVARSFÄLT (JSON)
+- "verdict": en slagkraftig men saklig rubrik för din bedömning (REN TEXT, inga markörer). Ex: "Frankrikes kvalitet avgör – men Marocko gör det tight".
+- "prediction": ditt troliga slutresultat, KORT. Helst med siffror och lagnamn, t.ex. "2–1 Frankrike" eller "1–1, Marocko på straffar". Skriv laget vid namn, inte "Lag A".
+- "predictionNote": en (1) mening som fångar den största osäkerheten/brasklappen. Får vara tom sträng om ingen tydlig sådan finns.
+- "paragraphs": 2–3 KORTA stycken (tillsammans ca 110–190 ord) som motiverar prognosen. Var konkret och spetsig: peka på de 2–4 viktigaste faktorerna och förklara VARFÖR de påverkar utgången. Använd **fet** för nyckelnamn/avgörande fakta och *kursiv* för direkta citat. Undvik floskler och utfyllnad.
+
+REGLER
+- Ta tydlig ställning – vela inte. Det ska framgå vem du tror vinner (eller att det går till förlängning/straffar) och varför.
+- INGA källhänvisningar/fotnoter (inga [[n]]). Detta är en bedömning, inte en refererad artikel.
+- Hitta inte på fakta. Saknas en uppgift – bygg bedömningen på det som finns.
+- Ton: initierad, lite spetsig, som en bra expertkommentator. Målgrupp: svenska VM-följare.
+
+Svara ENDAST med JSON: {"verdict":"...","prediction":"...","predictionNote":"...","paragraphs":["...","..."]}.
+
+Källor:
+${list}`;
+}
+
+/* Sanera modellens analyssvar: rensa ev. markörer ur rubrik/prognos, släpp
+   citat modellen ändå råkat lägga in i brödtexten, kräv giltigt innehåll. */
+function cleanAnalysis(art) {
+  if (!art) return null;
+  const plain = (s) => String(s || "").replace(/\[\[[^\]]*\]\]/g, "").replace(/\*+/g, "").replace(/\s+/g, " ").trim();
+  const dropCites = (s) => String(s || "").replace(/\[\[[^\]]*\]\]/g, "").replace(/\s{2,}/g, " ").trim();
+  const verdict = plain(art.verdict);
+  const prediction = plain(art.prediction);
+  const predictionNote = dropCites(art.predictionNote).replace(/\*+/g, "");
+  const paragraphs = (art.paragraphs || []).map(dropCites).filter(Boolean);
+  if (!verdict || !prediction || !paragraphs.length) return null;
+  return { verdict, prediction, predictionNote, paragraphs };
+}
+
 /* ---------- Huvudflöde ---------- */
 
 async function main() {
@@ -590,6 +670,10 @@ async function main() {
     ? JSON.parse(fs.readFileSync(OUT_FILE, "utf8"))
     : { updated: new Date().toISOString(), note: "", matches: {} };
   if (!file.matches) file.matches = {};
+  const analysis = fs.existsSync(ANALYSIS_FILE)
+    ? JSON.parse(fs.readFileSync(ANALYSIS_FILE, "utf8"))
+    : { updated: new Date().toISOString(), note: "Redaktionell matchanalys med prognos per kommande match (k:NN), automatgenererad av syncNewsSummaries.js ur samma källor som artiklarna. Visas överst i Inför-fliken. Poster med manual:true behålls.", matches: {} };
+  if (!analysis.matches) analysis.matches = {};
   const teamNews = fs.existsSync(TEAM_NEWS_FILE)
     ? (JSON.parse(fs.readFileSync(TEAM_NEWS_FILE, "utf8")).teams || {}) : {};
   const avail = loadAvailability();
@@ -603,13 +687,49 @@ async function main() {
   if (only.length) matches = matches.filter((m) => only.includes(m.key));
   console.log(`${matches.length} kommande match(er) i fönstret (${GEN_WINDOW_H} h).`);
 
-  let wrote = 0;
-  for (const match of matches) {
-    const existing = file.matches[match.key];
-    if (existing && existing.manual) { console.log(`${match.key}: manual=true – rörs ej.`); continue; }
+  // Primär- + reservmodell (egen, separat gratiskvot vid 429). Ett anrop per
+  // utdata (artikel resp. analys); trappan bakar in hur ofta det sker.
+  const models = [MODEL, FALLBACK_MODEL].filter((m, i, a) => m && a.indexOf(m) === i);
+  let quotaDead = false;
 
-    const writtenMs = existing?.written ? Date.parse(existing.written) : 0;
-    if (!force && writtenMs && now - writtenMs < fetchGateH(match.hoursToKo) * 3600000) {
+  // Kör en prompt mot modellerna med samma retry/fallback-logik som tidigare.
+  // 503 = tillfälligt överbelastad → backa av; 429 = kvot slut → byt modell,
+  // och är båda slut sätts quotaDead så resten av körningen avbryts.
+  async function generate(matchKey, label, prompt, schema) {
+    let out = null, lastErr = null;
+    for (const model of models) {
+      for (let attempt = 1; attempt <= 2 && !out; attempt++) {
+        try { out = await callGemini(prompt, model, schema); }
+        catch (e) {
+          lastErr = e;
+          console.warn(`${matchKey}: ${label} (${model}) försök ${attempt} misslyckades – ${e.message}`);
+          if (e.status === 429) break;
+          await sleep(e.status === 503 ? attempt * 4000 : 800);
+        }
+      }
+      if (out) break;
+    }
+    if (!out && lastErr && lastErr.status === 429) quotaDead = true;
+    return out;
+  }
+
+  let wrote = 0, aWrote = 0;
+  for (const match of matches) {
+    if (quotaDead) break;
+    const existing = file.matches[match.key];       // artikel
+    const aExisting = analysis.matches[match.key];  // analys
+    const newsManual = !!(existing && existing.manual);
+    const anaManual = !!(aExisting && aExisting.manual);
+    if (newsManual && anaManual) { console.log(`${match.key}: manual=true (båda) – rörs ej.`); continue; }
+
+    // Hämta-grind: rör inte RSS oftare än fetchGateH – men bara om den utdata
+    // som är due över huvud taget är due (annars finns inget att göra).
+    const gateMs = fetchGateH(match.hoursToKo) * 3600000;
+    const newsMs = existing?.written ? Date.parse(existing.written) : 0;
+    const anaMs = aExisting?.written ? Date.parse(aExisting.written) : 0;
+    const newsFetchDue = !newsManual && (!newsMs || now - newsMs >= gateMs);
+    const anaFetchDue = !anaManual && (!anaMs || now - anaMs >= gateMs);
+    if (!force && !newsFetchDue && !anaFetchDue) {
       console.log(`${match.key}: hämtade nyligen – väntar (${match.hoursToKo.toFixed(0)} h kvar).`); continue;
     }
 
@@ -617,9 +737,13 @@ async function main() {
     if (refs.length < 3) { console.log(`${match.key}: för få referenser (${refs.length}).`); continue; }
     const hash = refsHashOf(refs);
     const tierMs = tierIntervalH(match.hoursToKo) * 3600000;
-    const tierElapsed = !writtenMs || now - writtenMs >= tierMs;
-    const changed = !existing || existing.refsHash !== hash;
-    if (!force && !tierElapsed && !changed) {
+
+    // Skriv om en utdata när referenserna ändrats (refsHash) eller trappans
+    // intervall löpt ut. Grindas oberoende så artikeln inte skrivs om i onödan
+    // bara för att analysen saknas (och tvärtom).
+    const doNews = !newsManual && (force || !existing || existing.refsHash !== hash || !newsMs || now - newsMs >= tierMs);
+    const doAnalysis = !anaManual && (force || !aExisting || aExisting.refsHash !== hash || !anaMs || now - anaMs >= tierMs);
+    if (!doNews && !doAnalysis) {
       console.log(`${match.key}: oförändrat & ej dags (${match.hoursToKo.toFixed(0)} h kvar).`); continue;
     }
 
@@ -628,52 +752,61 @@ async function main() {
     const bodies = await attachBodies(refs);
     console.log(`${match.key}: ${bodies}/${refs.length} källor med brödtext.`);
 
-    const prompt = buildPrompt(match, refs);
     if (dryRun) {
       console.log(`\n===== ${match.key} ${match.home.sv}–${match.away.sv} (${refs.length} ref) =====`);
-      console.log(prompt);
+      if (doNews) { console.log("----- ARTIKEL -----"); console.log(buildPrompt(match, refs)); }
+      if (doAnalysis) { console.log("\n----- ANALYS & PROGNOS -----"); console.log(buildAnalysisPrompt(match, refs)); }
       continue;
     }
 
-    // Testa primärmodellen; slår den i kvottaket (429) faller vi över till
-    // reservmodellen (egen gratiskvot). 503 = tillfälligt överbelastad → backa av.
-    const models = [MODEL, FALLBACK_MODEL].filter((m, i, a) => m && a.indexOf(m) === i);
-    let art = null, lastErr = null;
-    for (const model of models) {
-      for (let attempt = 1; attempt <= 2 && !art; attempt++) {
-        try { art = renumberCitations(await callGemini(prompt, model), refs); }
-        catch (e) {
-          lastErr = e;
-          console.warn(`${match.key}: (${model}) försök ${attempt} misslyckades – ${e.message}`);
-          if (e.status === 429) break;              // kvot slut på denna modell → byt modell
-          await sleep(e.status === 503 ? attempt * 4000 : 800);
-        }
+    if (doNews) {
+      const raw = await generate(match.key, "artikel", buildPrompt(match, refs), RESPONSE_SCHEMA);
+      const art = raw && renumberCitations(raw, refs);
+      if (art) {
+        file.matches[match.key] = {
+          teams: [match.homeIso, match.awayIso],
+          headline: art.headline,
+          lead: art.lead,
+          paragraphs: art.paragraphs,
+          references: art.references,
+          written: new Date().toISOString(),
+          refsHash: hash,
+          generated: true
+        };
+        wrote++;
+        console.log(`${match.key}: skrev artikel (${art.references.length} källor, ${match.hoursToKo.toFixed(0)} h kvar).`);
+      } else {
+        console.warn(`${match.key}: kunde inte generera artikel – behåller ev. gammal post.`);
       }
-      if (art) break;
-    }
-    if (!art) {
-      console.warn(`${match.key}: kunde inte generera – behåller ev. gammal post.`);
-      // Både primär- och reservmodell slut på kvot: resten skulle också 429:a –
-      // avbryt körningen i stället för att hamra API:t. Nästa körning tar vid.
-      if (lastErr && lastErr.status === 429) {
-        console.warn("Gemini-kvoten är slut på båda modellerna – avbryter resten av körningen.");
-        break;
-      }
-      continue;
     }
 
-    file.matches[match.key] = {
-      teams: [match.homeIso, match.awayIso],
-      headline: art.headline,
-      lead: art.lead,
-      paragraphs: art.paragraphs,
-      references: art.references,
-      written: new Date().toISOString(),
-      refsHash: hash,
-      generated: true
-    };
-    wrote++;
-    console.log(`${match.key}: skrev artikel (${art.references.length} källor, ${match.hoursToKo.toFixed(0)} h kvar).`);
+    if (doAnalysis && !quotaDead) {
+      const rawA = await generate(match.key, "analys", buildAnalysisPrompt(match, refs), ANALYSIS_SCHEMA);
+      const ana = cleanAnalysis(rawA);
+      if (ana) {
+        analysis.matches[match.key] = {
+          teams: [match.homeIso, match.awayIso],
+          verdict: ana.verdict,
+          prediction: ana.prediction,
+          predictionNote: ana.predictionNote,
+          paragraphs: ana.paragraphs,
+          written: new Date().toISOString(),
+          refsHash: hash,
+          generated: true
+        };
+        aWrote++;
+        console.log(`${match.key}: skrev analys (prognos: ${ana.prediction}).`);
+      } else {
+        console.warn(`${match.key}: kunde inte generera analys – behåller ev. gammal post.`);
+      }
+    }
+
+    // Både primär- och reservmodell slut på kvot: resten skulle också 429:a –
+    // avbryt körningen i stället för att hamra API:t. Nästa körning tar vid.
+    if (quotaDead) {
+      console.warn("Gemini-kvoten är slut på båda modellerna – avbryter resten av körningen.");
+      break;
+    }
   }
 
   if (dryRun) return;
@@ -683,6 +816,13 @@ async function main() {
     console.log(`Klart – ${wrote} artikel(er) uppdaterade i ${path.relative(process.cwd(), OUT_FILE)}.`);
   } else {
     console.log("Inga artiklar behövde uppdateras.");
+  }
+  if (aWrote) {
+    analysis.updated = new Date().toISOString();
+    fs.writeFileSync(ANALYSIS_FILE, JSON.stringify(analysis, null, 2) + "\n");
+    console.log(`Klart – ${aWrote} analys(er) uppdaterade i ${path.relative(process.cwd(), ANALYSIS_FILE)}.`);
+  } else {
+    console.log("Inga analyser behövde uppdateras.");
   }
 }
 

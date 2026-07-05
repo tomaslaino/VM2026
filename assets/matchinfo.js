@@ -18,6 +18,7 @@
   var HIGHLIGHTS_URL = CFG.staticHighlights || "data/highlights.json";
   var NEWS_URL = CFG.staticTeamNews || "data/team_news.json";
   var SUMMARY_URL = CFG.staticNewsSummaries || "data/news_summaries.json";
+  var ANALYSIS_URL = CFG.staticMatchAnalysis || "data/match_analysis.json";
   var PRELIM_URL = CFG.staticLineups || "data/lineups_prelim.json";
   var POLL_MS = 45000;
 
@@ -29,6 +30,8 @@
   var teamNewsLast = 0;
   var newsSummaries = null; // key -> { paragraphs, references, written } (data/news_summaries.json)
   var newsSummariesLast = 0;
+  var matchAnalysis = null; // key -> { verdict, prediction, paragraphs } (data/match_analysis.json)
+  var matchAnalysisLast = 0;
   var prelimLineups = null; // key -> trolig/bekräftad elva (data/lineups_prelim.json)
   var prelimLast = 0;
   var openKey = null;      // öppen match (resultatnyckel) eller null
@@ -153,6 +156,33 @@
     return s;
   }
 
+  /* Redaktionell matchanalys med prognos (data/match_analysis.json): en kort,
+     handskriven bedömning per kommande match som visas överst i Inför-fliken.
+     Rörs inte av någon synk – saknas matchen visas bara marknadssiffrorna. */
+  function fetchMatchAnalysis() {
+    var now = Date.now();
+    if (matchAnalysis && now - matchAnalysisLast < 600000) return Promise.resolve(matchAnalysis);
+    matchAnalysisLast = now;
+    return fetch(ANALYSIS_URL + (ANALYSIS_URL.indexOf("?") === -1 ? "?" : "&") + "t=" + now,
+      { headers: { Accept: "application/json" }, cache: "no-store" })
+      .then(function (r) { return r && r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (data && data.matches) matchAnalysis = data.matches;
+        else if (matchAnalysis == null) matchAnalysis = {};
+        return matchAnalysis;
+      })
+      .catch(function () {
+        if (matchAnalysis == null) matchAnalysis = {};
+        return matchAnalysis;
+      });
+  }
+
+  function analysisOf(key) {
+    var a = matchAnalysis && key ? matchAnalysis[key] : null;
+    if (!a || !a.paragraphs || !a.paragraphs.length) return null;
+    return a;
+  }
+
   /* Troliga startelvor (data/lineups_prelim.json, skrivs av GitHub Actions):
      365Scores publicerar en trolig elva ofta redan dagen före match och samma
      data slår om till "bekräftad" när de officiella elvorna släpps (~1 h före
@@ -269,6 +299,7 @@
       }
       fetchTeamNews().then(function () { if (openKey) renderModal(); });
       fetchNewsSummaries().then(function () { if (openKey) renderModal(); });
+      fetchMatchAnalysis().then(function () { if (openKey) renderModal(); });
     }
     if (!info || !info.played) {
       // Trolig/bekräftad startelva för matcher som inte är färdigspelade –
@@ -1447,6 +1478,38 @@
       '</div>';
   }
 
+  /* ---------- Redaktionens analys & prognos ---------- */
+
+  /* Kort, handskriven bedömning med troligt resultat (data/match_analysis.json).
+     Body-styckena stöder fet- och kursivmarkörer via samma renderare som
+     nyhetstexten (utan källhänvisningar). Saknas matchen visas ingenting. */
+  function pvAnalysisHtml(info) {
+    if (matchAnalysis == null) {
+      fetchMatchAnalysis().then(function () { if (openKey) renderModal(); });
+      return "";
+    }
+    var a = analysisOf(info.key);
+    if (!a) return "";
+    var h = '<div class="mi-pv-analysis">' +
+      '<div class="mi-pv-analysis-head">' +
+        '<span class="mi-pv-eyebrow">Redaktionens analys</span>' +
+        (a.prediction
+          ? '<span class="mi-pv-tip"><span class="mi-pv-tip-lb">Trolig utgång</span>' +
+            '<span class="mi-pv-tip-score">' + esc(a.prediction) + '</span></span>'
+          : "") +
+      '</div>';
+    if (a.verdict) h += '<div class="mi-pv-analysis-verdict">' + esc(a.verdict) + '</div>';
+    a.paragraphs.forEach(function (p) {
+      h += '<p class="mi-pv-analysis-p">' + miInlineNews(p, []) + '</p>';
+    });
+    if (a.predictionNote) {
+      h += '<div class="mi-pv-analysis-note">' + esc("Brasklapp: " + a.predictionNote) + '</div>';
+    }
+    h += '<div class="mi-pv-analysis-foot">Redaktionell bedömning utifrån oddsläge, form, skadeläge och matchförhållanden – inte en garanti.</div>';
+    h += '</div>';
+    return h;
+  }
+
   /* ---------- Hela inför-panelen ---------- */
 
   function previewHtml(info) {
@@ -1466,6 +1529,7 @@
       h += '<div class="mi-pv-note mi-pv-loading">Hämtar odds och sannolikheter …</div>';
     }
     h += pvOddsHtml(info, pv);
+    h += pvAnalysisHtml(info);
     h += pvKoNextHtml(pv);
     h += pvFormHtml(info, pv);
     h += pvCompareHtml(info, pv);

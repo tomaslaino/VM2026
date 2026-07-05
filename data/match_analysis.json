@@ -1,0 +1,18 @@
+{
+  "updated": "2026-07-05T13:00:00.000Z",
+  "note": "Redaktionell matchanalys med prognos per kommande match (k:NN). Skrivs automatiskt av server/scripts/syncNewsSummaries.js (Gemini, ur samma källor som matchartiklarna) och visas överst i Inför-fliken. Auto-poster får generated:true + refsHash; poster med manual:true bevaras. Fälten: teams [iso,iso], verdict (rubrik), prediction (troligt resultat), predictionNote (kort brasklapp), paragraphs (analys, stöder **fet**/*kursiv*).",
+  "matches": {
+    "k:91": {
+      "teams": ["br", "no"],
+      "verdict": "Brasiliens kvalitet fäller avgörandet – men först efter en match på Norges villkor",
+      "prediction": "2–1 Brasilien",
+      "predictionNote": "öppet in i slutkvarten, förlängning inte otänkbar",
+      "paragraphs": [
+        "Spelmarknaden gör Brasilien till klar favorit och laget har mer kvalitet i varje led. Men Seleção går skadeförsvagat in: **Casemiro** är avstängd och både **Paquetá** (borta, baksår) och **Raphinha** (bänkad, inte fullt fit) saknas i praktiken. Det tar udden av kreativiteten och balansen på mittfältet, precis där Norge helst vill störa.",
+        "Norge kommer att sänka blocket, döda tempot och satsa allt på omställningar till **Erling Haaland**, turneringens hetaste målskytt (5 mål på 3 matcher). Lägg till New Jersey-värmen (känns som ~39 °C) och åskrisken – förhållanden som gynnar det lag som vill sakta ned matchen, alltså Norge. Ett tidigt norskt 0–0 som håller in i andra halvlek är deras enda realistiska väg till skräll.",
+        "Ändå: med **Vinícius Júnior** och sin anfallsbredd har Brasilien verktygen att till slut bryta ner ett djupt block, särskilt om de får ett tidigt mål. Jag tror de gör just det – men släpper in en Haaland-fullträff på vägen. **Prognos: 2–1 Brasilien.** Reservationen är den kuriösa statistiken att Brasilien aldrig slagit Norge (0 vinster på 4 möten); blir det tätt kan förlängning plötsligt kännas obehagligt nära."
+      ],
+      "updated": "2026-07-05"
+    }
+  }
+}

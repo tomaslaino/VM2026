@@ -4751,6 +4751,46 @@ span.pr-caps-debut.pr-caps-legend {
 }
 .mi-pv-odds-note strong { color: var(--ink); }
 
+/* Redaktionens analys & prognos: kort handskriven bedömning med troligt resultat. */
+.mi-pv-analysis {
+  margin: 12px 0 4px; padding: 14px 14px 12px;
+  border: 1px solid var(--line); border-left: 3px solid var(--accent, #3d6db5);
+  border-radius: var(--radius-sm);
+  background:
+    radial-gradient(130% 150% at 0% 0%, rgba(61,109,181,.10), transparent 60%),
+    var(--bg-soft);
+}
+.mi-pv-analysis-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; flex-wrap: wrap; margin-bottom: 8px;
+}
+.mi-pv-tip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 4px 10px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--bg);
+}
+.mi-pv-tip-lb {
+  font-size: 9.5px; font-weight: 800; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-soft);
+}
+.mi-pv-tip-score { font-size: 14px; font-weight: 800; color: var(--ink); }
+.mi-pv-analysis-verdict {
+  font-size: 15px; font-weight: 800; line-height: 1.35;
+  color: var(--ink); margin-bottom: 8px;
+}
+.mi-pv-analysis-p {
+  font-size: 13px; line-height: 1.6; color: var(--ink-soft); margin: 0 0 8px;
+}
+.mi-pv-analysis-p:last-of-type { margin-bottom: 0; }
+.mi-pv-analysis-p strong { color: var(--ink); font-weight: 700; }
+.mi-pv-analysis-note {
+  margin-top: 8px; font-size: 12px; color: var(--ink); font-weight: 600;
+}
+.mi-pv-analysis-foot {
+  margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line);
+  font-size: 11px; color: var(--ink-soft); line-height: 1.5;
+}
+
 /* "Vinnaren möter …" (slutspel) */
 .mi-pv-konext {
   display: flex; align-items: center; justify-content: center; gap: 7px;
