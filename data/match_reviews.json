@@ -1,6 +1,89 @@
 {
-  "updated": "2026-07-05T00:00:00.000Z",
+  "updated": "2026-07-05T22:35:55.084Z",
   "note": "Facit per spelad slutspelsmatch – automatgenererat av server/scripts/syncMatchReviews.js (jämför förhandsprognos mot utfall). Poster med manual:true rörs ej.",
-  "accuracy": null,
-  "matches": {}
+  "accuracy": {
+    "graded": 1,
+    "winner": 0,
+    "score": 0
+  },
+  "matches": {
+    "k:91": {
+      "teams": [
+        "br",
+        "no"
+      ],
+      "headline": "Haaland sänkte Brasilien: Vår prognos missade målet grovt",
+      "lead": "Vår förhandsprognos inför åttondelsfinalen mellan Brasilien och Norge pekade på en knapp brasiliansk seger, men verkligheten bjöd på en norsk sensation där Erling Haaland återigen visade sin klass, vilket lämnade vår analys med ett rejält felaktigt utfall.",
+      "paragraphs": [
+        "Vår prognos om en 2–1-seger för Brasilien visade sig vara helt felaktig när Norge, anförda av en ostoppbar **Erling Haaland**, stod för en skräll och slog ut *Seleção* med 2–1 i åttondelsfinalen av VM 2026. Den deterministiska domen är tydlig: FEL vinnare, FEL slutresultat. Trots att vi flaggade för en oväntat jämn och dramatisk tillställning, missbedömde vi helt utfallet och den avgörande faktorn.",
+        "Inför matchen betonade vi risken för väderkaos och Brasiliens tunga avbräck, samt Norges historiska övertag. Väderförhållandena blev dock inte den avgörande faktorn som vi befarade. Däremot visade sig avbräcken av **Danilo** och **Casemiro**, som båda var avstängda [[1,2]], vara mer kännbara för Brasilien än vad vi kanske till fullo insåg. Norges historiska 'spöke' – att Brasilien aldrig hade besegrat dem i tidigare möten, inklusive VM 1998 [[3,4]] – tycktes också spela en psykologisk roll, vilket vi korrekt identifierade som en riskfaktor.",
+        "Matchen präglades av Norges taktiska skicklighet och en briljant **Erling Haaland**. Trots att Brasilien dominerade bollinnehavet med 67% mot Norges 34% och hade fler skott (14–9), var det Norge som var kliniska i sina chanser. Efter en dubbelväxling i halvtid *signalled a shift in approach and on the counterattack Norway proved able to carve open a Brazil side* [[5]]. Det var **Haaland** som levererade när det gällde som mest, med två sena mål (79' och 90') som *stuns Brazil* [[5]]. Hans *heroiska dubbel* [[5]] var avgörande och *ESPN* rapporterade om hans fantastiska match [[6]].",
+        "Brasiliens tröstmål kom på straff av **Neymar** i den 90:e minuten, men det var för sent för att ändra matchbilden. Trots att Brasilien skapade chanser *failed to take them* [[5]], vilket framgår av att de bara fick 4 skott på mål jämfört med Norges 5, trots betydligt färre försök. Norges målvakt och försvar stod emot trycket, och **Haaland**s effektivitet med två mål på fyra skott [[5]] avgjorde matchen till Norges fördel."
+      ],
+      "references": [
+        {
+          "source": "instagram.com",
+          "title": "Det brasilianska laget går in på planen denna söndag (5) med två spelare avstängda. Dessa är Danilo och Casemiro, som kommer att behöva agera med extra uppmärksamhet. Om …",
+          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFAySGZkQVlybjdGMkY0SzYtRmhSUkwwd0I0aGpiWmhldlA2M29UNGdjOHA3S0NUR1BPNGltb3NGVld2T2FYQ3ZKbmRBajdUdC1iUXc?oc=5"
+        },
+        {
+          "source": "CNN Brasil",
+          "title": "Vem hänger i Brasilien? Se eventuell frånvaro på onsdagar",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNVENaTEZVV25mTENqamZrYWtjWVJhbUhTQkdXWEtzRDBlZzY3OExTQldRZmJqMnE4RC00NTVXUXlRb0lmVllRS3RRLUdBaUJFOWtJUEhwTzlkSVE4THkwWkJUeVUtNkJDaG9qYm1Xc0JzdlFvRmtPMkRFTkFsU0RucXI5ckJ0QldpQ3R2TUprMjIwSERzMGFvYktBLWlOSnNMeVpicU5IakJFVTA1QXJ5bm5LS0xBeU9yeS1uOFVIQVZsZUR3N3pF?oc=5"
+        },
+        {
+          "source": "Estadão",
+          "title": "Brasilien x Norge i åttondelsfinalen i världscupen: var kan man se live, tid och laguppställning",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPNzhoR1NHUHJxQWRxUW41dVEyOFZ0WExjNjdTN3ZEYjhISkdWa3pONTRTb1R3QV9lWkNPa1lGQnQ2ekpnVktiUXNqWEYzcFZ6MVNpSjhNTUFBc2NtUTJ1bmx1UHJ2SlRKQW1vUi03V0JSZ0pZX1NRRFktTUlDT1VKcGp5bUEwRGFiYWpPMGxrVjJNOWpNcEN3RWE2eHhtd01FMjlZYUxuMnhNbnVHZDZ2OEtOZks0MUlMUHM0M2RTMzhlb0R5b29KSTNhQ3RKei1jZzdaRUZBMGMwSmZZd1U00gHkAUFVX3lxTE9QdTVDVElGNGVzM0lmM0NXVktieXFobjB3VFVOMXJPNlRyeVBMUkRkc0pxYVN3TkYtdHFzSkQzcXB3d3AwaW1xcXV2bzdaaXdDQldZSkotX0ZDUTVnbDlnNFlPeEMwUlhrd2M4MXpnZG13bXRyREdaamNTMmpzMmdranlBbFA2V0pIVWxuZUdDMXdYQjRyQUJPNE9acHR5VlloQkJpUzJ3QThEYlV2NDdrV1RpMFZ1NEh0dWVaTnZ0d3hrbnpWZjdEZi1nVXA2ckRCQm5FX0NLSVZvV0ZvTi1ERlZuSg?oc=5"
+        },
+        {
+          "source": "Nettavisen",
+          "title": "Var var du när Norge slog Brasilien?",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQR3hzS2RlbDhvb2JEUmExX19YcndoeVdvRlB5XzFZMFFKSFd3ekJDWHR1Z3p3SjYzU1B2cWZQUFc1Z0VpTnh2NjhkdENOeEtEYm5DRW9JSUtrQk1ZdmhPLU1RMzlGdlItb2U1SEc5cTcwb2pTMTVfa2k5VFE2emJiOUQ5bFR3RFB3MzZWaWYzdFpfYW5qRVlTM1h6dVJXZW9ZYWY5Q180b21xQTFqUHpvendNdnU5RWd2ZFpJ?oc=5"
+        },
+        {
+          "source": "The Guardian",
+          "title": "Haalands heroiska dubbelgång överraskar Brasilien och skickar Norge till kvartsfinal i VM",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQN0NjdE1rcmRDcU83MEJIdEs1US1rUGdWUE5aTFQwWFk1S2ducWhOcFVuQ1c5UV9xTkFrNGlTaDhPOVFjdk1oblA4Z1htVDNqRGlGcXlISW1sZW9BbVpGU0k2V0llRHJMUmhxeTY5ckVKX1FRVnRrcVlhMXVReVZYWHJYUWk1OTRlNU5RVXdpRlZYbnpsbnJkWjFycmtWYlU?oc=5"
+        },
+        {
+          "source": "ESPN",
+          "title": "VM 2026-reaktion när Haaland gör fantastiskt bra match mot Brasilien för att skicka Norge till kvartsfinal",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQNlVjbFIyNV9qVTAtLW5OVjVRYkJrLTZWOVZoRXhzMERqUXlOOW5tS3ZiYWQzcUxTeDNCY2Z3YVczU045aUJfWlJsYzdEMWVYYUVBOGsxTVhDYkRrY1dDbXo0N0V6c3ZPRWxBVDRUY2dWb3FjVmFvc3I4YWpvV080U3lJSmU2SUFlSU5ZakFCdnViNXd0WWpyY05yUEE0WGJ4Q3kzTTRLdkN0MEtRNWl0dGlSSElNODA?oc=5"
+        }
+      ],
+      "grade": {
+        "verdict": "Vår förhandsprognos missade både vinnare och slutresultat, trots att vi identifierade vissa riskfaktorer som potentiellt avgörande.",
+        "score": 1
+      },
+      "lessons": [
+        "Underskatta aldrig ett lags förmåga att anpassa sin taktik under matchens gång, särskilt mot en individuell stjärna som kan avgöra med få chanser.",
+        "Historiska mönster och 'spöken' kan ha större psykologisk inverkan än vad som syns i dagsform och truppstyrka, särskilt i utslagsmatcher.",
+        "Ett lags höga bollinnehav och skottstatistik garanterar inte seger om motståndaren är klinisk i sina få chanser och har en matchvinnare."
+      ],
+      "predicted": {
+        "text": "2–1 Brasilien",
+        "a": 2,
+        "b": 1,
+        "winnerIso": "br",
+        "viaPens": false,
+        "viaEt": false
+      },
+      "actual": {
+        "h": 1,
+        "a": 2,
+        "winnerIso": "no",
+        "viaPens": false,
+        "viaEt": false,
+        "pen": null
+      },
+      "verdict": {
+        "winner": "miss",
+        "score": "miss"
+      },
+      "written": "2026-07-05T22:35:55.084Z",
+      "sourceHash": "42ebf5246bf94afc",
+      "generated": true
+    }
+  }
 }
