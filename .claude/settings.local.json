@@ -9,7 +9,16 @@
       "Bash(claude update *)",
       "Bash(git log *)",
       "Bash(node -e ' *)",
-      "Bash(python3 -c \"import json; d=json.load\\(open\\('data/news_summaries.json'\\)\\); print\\(type\\(d\\)\\); print\\(list\\(d.keys\\(\\)\\)[:20] if isinstance\\(d,dict\\) else len\\(d\\)\\)\")"
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('data/news_summaries.json'\\)\\); print\\(type\\(d\\)\\); print\\(list\\(d.keys\\(\\)\\)[:20] if isinstance\\(d,dict\\) else len\\(d\\)\\)\")",
+      "PowerShell(Get-ChildItem assets | Select-Object Name, Length; \\(Get-Content assets\\\\styles.css | Measure-Object -Line\\).Lines; \\(Get-Content assets\\\\app.js | Measure-Object -Line\\).Lines)",
+      "Bash(node mobile-shots.cjs)",
+      "Bash(python *)",
+      "PowerShell($j = Get-Content data\\\\results.json -Raw | ConvertFrom-Json; $j.results.PSObject.Properties.Name -notmatch '^g:')",
+      "Bash(git fetch *)",
+      "Bash(git merge *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }
