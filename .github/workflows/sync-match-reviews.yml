@@ -1,0 +1,70 @@
+name: Synka facit (Post-match-analys)
+
+# Skriver data/match_reviews.json automatiskt: "Facit" per spelad slutspelsmatch –
+# en efteranalys som jämför redaktionens förhandsprognos med utfallet, betygsätter
+# prognosen och drar lärdomar. Bygger även om data/analysis_lessons.json
+# (träffsäkerhet + lärdomskorpus) som syncNewsSummaries.js läser för att förbättra
+# kommande förhandsanalyser.
+#
+# Heartbeat var 30:e minut, men skriptet skriver bara facit när en match är klar
+# och underlaget (resultat/rapporter) ändrats (sourceHash). De flesta körningar
+# blir billiga no-ops.
+#
+# Kräver hemligheten GEMINI_API_KEY (samma gratisnyckel som förhandsanalyserna).
+# Saknas nyckeln loggar skriptet och avslutar utan fel.
+
+on:
+  schedule:
+    - cron: "7,37 * * * *"
+  workflow_dispatch: # Manuell körning från Actions-fliken.
+    inputs:
+      force:
+        description: "Tvinga omskrivning av alla spelade matchers facit"
+        type: boolean
+        default: false
+
+concurrency:
+  group: sync-match-reviews
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checka ut repo
+        uses: actions/checkout@v4
+
+      - name: Sätt upp Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Skriv/uppdatera facit
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node server/scripts/syncMatchReviews.js ${{ inputs.force && '--force' || '' }}
+
+      - name: Committa om något ändrats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/match_reviews.json data/analysis_lessons.json
+          if git diff --staged --quiet; then
+            echo "Inga förändringar – hoppar över commit."
+            exit 0
+          fi
+          git commit -m "Auto-synk facit $(date -u +'%Y-%m-%d %H:%M UTC')"
+          # Andra synk-workflows pushar ofta till samma branch – rebase + retry.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "Push klar."
+              exit 0
+            fi
+            echo "Push avvisad (försök $i) – rebasar mot senaste main…"
+            git pull --rebase --autostash origin main || true
+          done
+          echo "Kunde inte pusha efter flera försök." >&2
+          exit 1

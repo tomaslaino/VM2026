@@ -51,6 +51,9 @@ const RESULTS_FILE = path.join(__dir, "../../data/results.json");
 const TEAM_NEWS_FILE = path.join(__dir, "../../data/team_news.json");
 const STATUS_FILE = path.join(__dir, "../../data/wc2026_player_status.json");
 const PLAYERS_FILE = path.join(__dir, "../../data/wc2026_players.json");
+// Lärdomskorpus från post-match-facit (syncMatchReviews.js): matas in i prompten
+// så prognoserna lär av tidigare träffar/missar. Valfri – saknas den, ingen sektion.
+const LESSONS_FILE = path.join(__dir, "../../data/analysis_lessons.json");
 
 const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 // Reservmodell (egen, separat gratiskvot) om primärmodellen slår i kvottaket (429).
@@ -461,7 +464,22 @@ function nextStageLabel(no) {
   return null;
 }
 
-function buildPrompt(match, refs) {
+/* Lärdomar + träffsäkerhet ur tidigare facit (data/analysis_lessons.json). */
+function loadLessons() {
+  try { return JSON.parse(fs.readFileSync(LESSONS_FILE, "utf8")); } catch { return null; }
+}
+function lessonsSection(lessons) {
+  if (!lessons) return "";
+  const items = (lessons.lessons || []).slice(0, 12).map((l) => "- " + (l.text || l)).filter((s) => s.length > 3);
+  const acc = lessons.accuracy || {};
+  const rate = acc.graded
+    ? `Hittills har redaktionens prognoser fått RÄTT VINNARE i ${acc.winner}/${acc.graded} betygsatta matcher och rätt slutresultat i ${acc.score}/${acc.graded}. Kalibrera din självsäkerhet därefter – var djärv men ödmjuk inför osäkerheten.`
+    : "";
+  if (!items.length && !rate) return "";
+  return `\n\nLÄRDOMAR FRÅN TIDIGARE FACIT (redaktionens egna efteranalyser – väg in dessa så du inte upprepar gamla misstag)\n${items.join("\n")}${rate ? "\n" + rate : ""}`;
+}
+
+function buildPrompt(match, refs, lessons) {
   const list = refs.map((r, i) => {
     let s = `[${i + 1}]${r.avail ? " [AVBRÄCK]" : ""}${r.conditions ? " [FÖRHÅLLANDEN]" : ""} (${r.source || "okänd källa"}) ${r.title}`;
     if (r.body) s += `\n    Utdrag: ${r.body}`;
@@ -488,7 +506,7 @@ Leta i källorna efter de faktorer som faktiskt betyder något för just den hä
 - Taktik: nyckeldueller, presspel, omställningar, fasta situationer, en möjlig planändring.
 - Yttre faktorer: höjd, väder, plan, hemmapublik, resande, domarprofil.
 - Narrativ: press på lagen, tränar-/spelarcitat, inbördes historik, rivalitet, interna problem.
-- Statistik: form, mål/xG, försvarsdata, oddsläge/favoritskap – om det finns i källorna.
+- Statistik: form, mål/xG, försvarsdata, oddsläge/favoritskap – om det finns i källorna.${lessonsSection(lessons)}
 
 SKRIVKRAV (ARTIKELN)
 - Slagkraftig rubrik (headline, REN TEXT utan markörer eller källhänvisningar) och en ingress (lead) som slår an artikelns huvudtes.
@@ -609,6 +627,7 @@ async function main() {
   const teamNews = fs.existsSync(TEAM_NEWS_FILE)
     ? (JSON.parse(fs.readFileSync(TEAM_NEWS_FILE, "utf8")).teams || {}) : {};
   const avail = loadAvailability();
+  const lessons = loadLessons();   // lärdomar/träffsäkerhet ur tidigare facit (valfritt)
 
   // url→svensk rubrik ur tidigare referenser (spar översättningsanrop).
   const prevSv = new Map();
@@ -670,7 +689,7 @@ async function main() {
     const bodies = await attachBodies(refs);
     console.log(`${match.key}: ${bodies}/${refs.length} källor med brödtext.`);
 
-    const prompt = buildPrompt(match, refs);
+    const prompt = buildPrompt(match, refs, lessons);
     if (dryRun) {
       console.log(`\n===== ${match.key} ${match.home.sv}–${match.away.sv} (${refs.length} ref) =====`);
       console.log(prompt);
@@ -716,4 +735,15 @@ async function main() {
   }
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+// Kör bara pipelinen när filen startas direkt. Vid import (t.ex. från
+// syncMatchReviews.js, som återanvänder hjälparna nedan) ska main() INTE köras.
+const invokedDirectly = process.argv[1] &&
+  path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+if (invokedDirectly) main().catch((e) => { console.error(e); process.exit(1); });
+
+// Delade hjälpare som post-match-synken (syncMatchReviews.js) återanvänder, så att
+// nyhetshämtning/översättning/artikeltext/Gemini-anrop bara finns i en kopia.
+export {
+  sleep, fetchSearch, normTitle, attachBodies, callGemini, isoOf,
+  roundLabel, TEAM_NAMES, TEAM_NAMES as REVIEW_TEAM_NAMES
+};

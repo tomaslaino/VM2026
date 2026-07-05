@@ -19,6 +19,7 @@
   var NEWS_URL = CFG.staticTeamNews || "data/team_news.json";
   var SUMMARY_URL = CFG.staticNewsSummaries || "data/news_summaries.json";
   var PRELIM_URL = CFG.staticLineups || "data/lineups_prelim.json";
+  var REVIEWS_URL = CFG.staticMatchReviews || "data/match_reviews.json";
   var POLL_MS = 45000;
 
   var details = {};        // key -> detaljobjekt
@@ -31,6 +32,9 @@
   var newsSummariesLast = 0;
   var prelimLineups = null; // key -> trolig/bekräftad elva (data/lineups_prelim.json)
   var prelimLast = 0;
+  var matchReviews = null;  // key -> facit-post (data/match_reviews.json)
+  var reviewsAccuracy = null; // { graded, winner, score } – redaktionens träffsäkerhet
+  var reviewsLast = 0;
   var openKey = null;      // öppen match (resultatnyckel) eller null
   var pollTimer = null;
   var pvRetryTimer = null; // inför-snacket: rita om när odds/motor blir klara
@@ -176,6 +180,29 @@
     return e && e.h && e.a ? e : null;
   }
 
+  /* Facit (data/match_reviews.json, skrivs av GitHub Actions): efteranalys per
+     spelad slutspelsmatch som jämför förhandsprognosen med utfallet. Cachas en
+     stund mellan öppningar. reviewsAccuracy = redaktionens totala träffsäkerhet. */
+  function fetchMatchReviews() {
+    var now = Date.now();
+    if (matchReviews && now - reviewsLast < 300000) return Promise.resolve(matchReviews);
+    reviewsLast = now;
+    return fetch(REVIEWS_URL + (REVIEWS_URL.indexOf("?") === -1 ? "?" : "&") + "t=" + now,
+      { headers: { Accept: "application/json" }, cache: "no-store" })
+      .then(function (r) { return r && r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (data && data.matches) { matchReviews = data.matches; reviewsAccuracy = data.accuracy || null; }
+        else if (matchReviews == null) matchReviews = {};
+        return matchReviews;
+      })
+      .catch(function () { if (matchReviews == null) matchReviews = {}; return matchReviews; });
+  }
+
+  function reviewOf(key) {
+    var r = matchReviews && key ? matchReviews[key] : null;
+    return r && r.paragraphs && r.paragraphs.length ? r : null;
+  }
+
   /* Hämta om detaljerna (anropas av app.js när nya resultat kommit in).
      Lätt strypt så att täta resultatuppdateringar inte spammar nätverket. */
   var lastRefresh = 0;
@@ -274,6 +301,10 @@
       // Trolig/bekräftad startelva för matcher som inte är färdigspelade –
       // täcker även livematcher där ESPN:s officiella lineups dröjer.
       fetchPrelimLineups().then(function () { if (openKey) renderModal(); });
+    }
+    if (info && info.played) {
+      // Facit (efteranalys som jämför prognos med utfall) för spelade slutspelsmatcher.
+      fetchMatchReviews().then(function () { if (openKey) renderModal(); });
     }
     var m = ensureModal();
     m.classList.add("open");
@@ -1404,6 +1435,116 @@
       '</div>';
   }
 
+  /* ---------- Fliken "Facit" (efteranalys av spelade slutspelsmatcher) ----------
+     Jämför redaktionens förhandsprognos med utfallet: prognos-vs-facit-kort med
+     träff/miss, redaktionens självbetyg, efteranalys med källor, redaktionens
+     löpande träffsäkerhet samt lärdomar (data/match_reviews.json). */
+
+  function reviewScoreLine(o) {
+    if (!o) return "–";
+    var s = (o.h != null ? o.h : "–") + "–" + (o.a != null ? o.a : "–");
+    if (o.viaPens && o.pen) s += " (" + o.pen.h + "–" + o.pen.a + " straff)";
+    else if (o.viaEt) s += " (e.f.)";
+    return s;
+  }
+
+  function reviewBadge(state, hitTxt, missTxt) {
+    if (state === "hit") return '<span class="mi-fx-badge hit">✓ ' + esc(hitTxt) + "</span>";
+    if (state === "miss") return '<span class="mi-fx-badge miss">✗ ' + esc(missTxt) + "</span>";
+    return "";
+  }
+
+  function reviewCardHtml(info, rev) {
+    var pred = rev.predicted || {}, act = rev.actual || {}, v = rev.verdict || {};
+    var h = '<div class="mi-fx-scorecard">' +
+      '<div class="mi-fx-col pred"><span class="mi-fx-lbl">Vår prognos</span>' +
+        '<span class="mi-fx-score">' + esc(pred.text || "–") + "</span></div>" +
+      '<span class="mi-fx-arrow" aria-hidden="true">→</span>' +
+      '<div class="mi-fx-col fact"><span class="mi-fx-lbl">Facit</span>' +
+        '<span class="mi-fx-score">' + esc(reviewScoreLine(act)) + "</span></div>" +
+      "</div>";
+    var badges = reviewBadge(v.winner, "Rätt vinnare", "Fel vinnare") +
+      reviewBadge(v.score, "Rätt resultat", "Fel resultat");
+    if (badges) h += '<div class="mi-fx-badges">' + badges + "</div>";
+    return h;
+  }
+
+  function reviewAccuracyHtml() {
+    var a = reviewsAccuracy;
+    if (!a || !a.graded) return "";
+    return '<div class="mi-fx-accuracy">Redaktionens träffsäkerhet hittills: ' +
+      "<strong>rätt vinnare " + esc(a.winner) + "/" + esc(a.graded) + "</strong> · " +
+      "<strong>rätt resultat " + esc(a.score) + "/" + esc(a.graded) + "</strong></div>";
+  }
+
+  function reviewGradeHtml(rev) {
+    var g = rev.grade || {};
+    if (!g.verdict && g.score == null) return "";
+    var score = g.score != null
+      ? '<span class="mi-fx-grade-score">' + esc(g.score) + '<span class="mi-fx-grade-max">/5</span></span>'
+      : "";
+    return '<div class="mi-fx-grade">' +
+      '<div class="mi-fx-grade-lb">Redaktionens dom</div>' +
+      (g.verdict ? '<div class="mi-fx-grade-verdict">' + esc(g.verdict) + "</div>" : "") +
+      score + "</div>";
+  }
+
+  function reviewLessonsHtml(rev) {
+    var ls = rev.lessons || [];
+    if (!ls.length) return "";
+    var items = ls.map(function (l) { return "<li>" + esc(l) + "</li>"; }).join("");
+    return '<div class="mi-fx-lessons">' +
+      '<div class="mi-section-title">Vad vi tar med oss</div>' +
+      '<ul class="mi-fx-lesson-list">' + items + "</ul></div>";
+  }
+
+  function reviewSummaryHtml(rev) {
+    var refs = rev.references || [];
+    var h = '<div class="mi-news-summary">';
+    if (rev.headline) h += '<h3 class="mi-news-headline">' + esc(rev.headline) + "</h3>";
+    if (rev.lead) h += '<p class="mi-news-lead">' + miInlineNews(rev.lead, refs) + "</p>";
+    rev.paragraphs.forEach(function (p) { h += "<p>" + miInlineNews(p, refs) + "</p>"; });
+    h += "</div>";
+    if (refs.length) {
+      h += '<div class="mi-news-refs"><div class="mi-section-title">Referenser</div>' +
+        '<div class="mi-news-ref-list">';
+      refs.forEach(function (r, i) {
+        if (!r || !r.url) return;
+        h += '<a class="mi-ref" href="' + esc(r.url) + '" target="_blank" rel="noopener noreferrer">' +
+          '<span class="mi-ref-num">' + (i + 1) + "</span>" +
+          '<span class="mi-ref-body">' +
+            (r.source ? '<span class="mi-ref-src">' + esc(r.source) + "</span>" : "") +
+            '<span class="mi-ref-title">' + esc(r.title || r.url) + "</span>" +
+          "</span><span class=\"mi-news-ext\" aria-hidden=\"true\">↗</span></a>";
+      });
+      h += "</div></div>";
+    }
+    var ago = pvTimeAgo(rev.written);
+    h += '<div class="mi-news-note">Facit – automatgenererad efteranalys som jämför redaktionens ' +
+      "förhandsprognos med utfallet" + (ago ? ", uppdaterad " + esc(ago) : "") +
+      ". Referenserna öppnas i ny flik.</div>";
+    return h;
+  }
+
+  function reviewTabHtml(info) {
+    var rev = reviewOf(info.key);
+    if (!rev) {
+      if (!matchReviews) {
+        fetchMatchReviews().then(function () { if (openKey) renderModal(); });
+        return '<div class="mi-pv-note mi-pv-loading">Hämtar facit …</div>';
+      }
+      return '<div class="mi-empty">Facit för den här matchen är inte klart ännu.</div>';
+    }
+    return '<div class="mi-news mi-facit">' +
+      '<div class="mi-news-intro">Facit · vår prognos mot verkligheten</div>' +
+      reviewCardHtml(info, rev) +
+      reviewGradeHtml(rev) +
+      reviewSummaryHtml(rev) +
+      reviewLessonsHtml(rev) +
+      reviewAccuracyHtml() +
+      "</div>";
+  }
+
   /* ---------- Hela inför-panelen ---------- */
 
   function previewHtml(info) {
@@ -1468,6 +1609,9 @@
          { id: "preview", label: "Fakta & odds" },
          { id: "lineups", label: "Laguppställning" }]
       : TABS.slice();
+    // Spelade slutspelsmatcher med färdigt facit får en "Facit"-flik näst efter
+    // Händelser (Händelser är kvar som default).
+    if (!upcoming && reviewOf(info.key)) tabs.splice(1, 0, { id: "review", label: "Facit" });
     if (groupLetter) tabs.push({ id: "table", label: "Tabell" });
     // Säkerhetsnät: faller tillbaka till första fliken om aktiv flik saknas här
     // (t.ex. när en kommande match går igång medan modalen står på analysfliken).
@@ -1494,6 +1638,11 @@
       if (hasEvents) h += timelineHtml(info, det, true);
       else h += emptyHintForTab("events", info);
       h += "</div>";
+      if (reviewOf(info.key)) {
+        h += '<div class="mi-tab-panel' + (activeTab === "review" ? " active" : "") + '" data-mi-panel="review">';
+        h += reviewTabHtml(info);
+        h += "</div>";
+      }
     }
 
     h += '<div class="mi-tab-panel' + (activeTab === "lineups" ? " active" : "") + '" data-mi-panel="lineups">';

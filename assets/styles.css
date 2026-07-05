@@ -4771,6 +4771,56 @@ span.pr-caps-debut.pr-caps-legend {
   margin-top: 6px; font-size: 12.5px; line-height: 1.5; color: var(--ink-soft);
 }
 
+/* ---------- Facit (efteranalys av spelade matcher) ---------- */
+/* Prognos → facit-kort med träff/miss-markeringar. */
+.mi-fx-scorecard {
+  display: flex; align-items: stretch; gap: 10px; margin: 4px 0 10px;
+}
+.mi-fx-col {
+  flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 3px;
+  padding: 11px 13px; border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background: var(--bg-soft);
+}
+.mi-fx-col.fact { border-left: 3px solid var(--accent, #3d6db5); }
+.mi-fx-lbl {
+  font-size: 10px; font-weight: 800; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-soft);
+}
+.mi-fx-score { font-size: 19px; font-weight: 800; line-height: 1.2; color: var(--ink); }
+.mi-fx-arrow { align-self: center; font-size: 18px; color: var(--ink-soft); flex: none; }
+.mi-fx-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.mi-fx-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700;
+  border: 1px solid transparent;
+}
+.mi-fx-badge.hit { color: #7ee0ad; background: rgba(47,158,107,.16); border-color: rgba(47,158,107,.4); }
+.mi-fx-badge.miss { color: #f3a3ab; background: rgba(208,66,79,.15); border-color: rgba(208,66,79,.4); }
+/* Redaktionens självbetyg (0–5). */
+.mi-fx-grade {
+  margin: 0 0 14px; padding: 13px 15px;
+  border: 1px solid var(--line); border-left: 3px solid var(--accent, #3d6db5);
+  border-radius: var(--radius-sm); background: var(--bg-soft);
+  display: flex; flex-direction: column; gap: 5px;
+}
+.mi-fx-grade-lb {
+  font-size: 10px; font-weight: 800; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink-soft);
+}
+.mi-fx-grade-verdict { font-size: 14.5px; font-weight: 650; line-height: 1.45; color: var(--ink); }
+.mi-fx-grade-score { font-size: 24px; font-weight: 800; color: var(--ink); }
+.mi-fx-grade-max { font-size: 14px; font-weight: 700; color: var(--ink-soft); }
+/* Löpande träffsäkerhet + lärdomar. */
+.mi-fx-accuracy {
+  margin-top: 14px; padding: 9px 12px; border: 1px dashed var(--line);
+  border-radius: var(--radius-sm); font-size: 12.5px; color: var(--ink-soft); text-align: center;
+}
+.mi-fx-accuracy strong { color: var(--ink); font-weight: 750; }
+.mi-fx-lessons { margin-top: 16px; }
+.mi-fx-lesson-list { margin: 6px 0 0; padding-left: 18px; }
+.mi-fx-lesson-list li { font-size: 13px; line-height: 1.5; color: var(--ink-soft); margin-bottom: 5px; }
+.mi-fx-lesson-list li::marker { color: var(--accent, #3d6db5); }
+
 /* "Vinnaren möter …" (slutspel) */
 .mi-pv-konext {
   display: flex; align-items: center; justify-content: center; gap: 7px;
