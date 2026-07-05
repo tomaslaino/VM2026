@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-05T18:48:21.040Z",
+    "updatedAt": "2026-07-05T20:03:29.908Z",
     "source": "espn",
-    "matchCount": 90,
-    "liveCount": 0,
+    "matchCount": 91,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -459,9 +459,23 @@
       "h": 0,
       "a": 1,
       "status": "FINISHED"
+    },
+    "k:91": {
+      "h": 0,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:91",
+      "status": "IN_PLAY",
+      "minute": 2,
+      "home": "Brazil",
+      "away": "Norway",
+      "score": "0-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -1997,7 +2011,7 @@
       "date": "2026-07-05",
       "time": "22:00",
       "utcDate": "2026-07-05T20:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Brazil",
       "away": "Norway",

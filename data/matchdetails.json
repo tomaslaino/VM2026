@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-05T18:48:21.050Z",
+    "updatedAt": "2026-07-05T20:03:29.941Z",
     "source": "espn"
   },
   "details": {
@@ -52070,6 +52070,323 @@
         }
       ],
       "updatedAt": "2026-07-04T23:16:09.797Z"
+    },
+    "k:91": {
+      "espnId": "760504",
+      "fmt": 2,
+      "status": "IN_PLAY",
+      "minute": 3,
+      "utcDate": "2026-07-05T20:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Alisson Becker",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Danilo",
+              "jersey": "13",
+              "pos": "RB"
+            },
+            {
+              "name": "Douglas Santos",
+              "jersey": "16",
+              "pos": "LB"
+            },
+            {
+              "name": "Bruno Guimarães",
+              "jersey": "8",
+              "pos": "CM-R"
+            },
+            {
+              "name": "Marquinhos",
+              "jersey": "4",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Gabriel Magalhães",
+              "jersey": "3",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Rayan",
+              "jersey": "26",
+              "pos": "RM"
+            },
+            {
+              "name": "Casemiro",
+              "jersey": "5",
+              "pos": "CM-L"
+            },
+            {
+              "name": "Vinícius Júnior",
+              "jersey": "7",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Matheus Cunha",
+              "jersey": "9",
+              "pos": "CF-R"
+            },
+            {
+              "name": "Gabriel Martinelli",
+              "jersey": "22",
+              "pos": "LM"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Danilo Santos",
+              "jersey": "18"
+            },
+            {
+              "name": "Weverton",
+              "jersey": "12"
+            },
+            {
+              "name": "Ederson",
+              "jersey": "23"
+            },
+            {
+              "name": "Roger Ibañez",
+              "jersey": "24"
+            },
+            {
+              "name": "Raphinha",
+              "jersey": "11"
+            },
+            {
+              "name": "Bremer",
+              "jersey": "14"
+            },
+            {
+              "name": "Éderson",
+              "jersey": "2"
+            },
+            {
+              "name": "Neymar",
+              "jersey": "10"
+            },
+            {
+              "name": "Luiz Henrique",
+              "jersey": "21"
+            },
+            {
+              "name": "Igor Thiago",
+              "jersey": "25"
+            },
+            {
+              "name": "Endrick",
+              "jersey": "19"
+            },
+            {
+              "name": "Alex Sandro",
+              "jersey": "6"
+            },
+            {
+              "name": "Léo Pereira",
+              "jersey": "15"
+            },
+            {
+              "name": "Fabinho",
+              "jersey": "17"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Ørjan Nyland",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Julian Ryerson",
+              "jersey": "26",
+              "pos": "RB"
+            },
+            {
+              "name": "David Møller Wolfe",
+              "jersey": "5",
+              "pos": "LB"
+            },
+            {
+              "name": "Sander Berge",
+              "jersey": "8",
+              "pos": "CM"
+            },
+            {
+              "name": "Kristoffer Ajer",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Torbjørn Heggem",
+              "jersey": "17",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Martin Ødegaard",
+              "jersey": "10",
+              "pos": "RM"
+            },
+            {
+              "name": "Patrick Berg",
+              "jersey": "6",
+              "pos": "LM"
+            },
+            {
+              "name": "Erling Haaland",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Alexander Sørloth",
+              "jersey": "7",
+              "pos": "RF"
+            },
+            {
+              "name": "Antonio Nusa",
+              "jersey": "20",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Oscar Bobb",
+              "jersey": "22"
+            },
+            {
+              "name": "Jørgen Strand Larsen",
+              "jersey": "11"
+            },
+            {
+              "name": "Henrik Falchener",
+              "jersey": "25"
+            },
+            {
+              "name": "Kristian Thorstvedt",
+              "jersey": "18"
+            },
+            {
+              "name": "Jens Petter Hauge",
+              "jersey": "23"
+            },
+            {
+              "name": "Sondre Langas",
+              "jersey": "24"
+            },
+            {
+              "name": "Andreas Schjelderup",
+              "jersey": "21"
+            },
+            {
+              "name": "Thelo Aasgaard",
+              "jersey": "19"
+            },
+            {
+              "name": "Sander Tangvik",
+              "jersey": "12"
+            },
+            {
+              "name": "Fredrik Aursnes",
+              "jersey": "14"
+            },
+            {
+              "name": "Morten Thorsby",
+              "jersey": "2"
+            },
+            {
+              "name": "Egil Selvik",
+              "jersey": "13"
+            },
+            {
+              "name": "Leo Østigard",
+              "jersey": "4"
+            },
+            {
+              "name": "Fredrik André Bjørkan",
+              "jersey": "15"
+            }
+          ]
+        }
+      },
+      "referee": "Ismail Elfath",
+      "venue": "MetLife Stadium, East Rutherford, New Jersey",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "0%",
+          "a": "0%"
+        },
+        {
+          "key": "totalShots",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-05T20:03:29.941Z"
     }
   }
 }
