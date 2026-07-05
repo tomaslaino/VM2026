@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-05T21:16:42.475Z",
+    "updatedAt": "2026-07-05T22:27:04.034Z",
     "source": "espn",
     "matchCount": 91,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -461,21 +461,12 @@
       "status": "FINISHED"
     },
     "k:91": {
-      "h": 0,
-      "a": 0,
-      "status": "IN_PLAY"
+      "h": 1,
+      "a": 2,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:91",
-      "status": "IN_PLAY",
-      "minute": 54,
-      "home": "Brazil",
-      "away": "Norway",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -2011,7 +2002,7 @@
       "date": "2026-07-05",
       "time": "22:00",
       "utcDate": "2026-07-05T20:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Brazil",
       "away": "Norway",
@@ -2143,9 +2134,12 @@
       "utcDate": "2026-07-11T21:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Round of 16 3 Winner",
+      "home": "Norway",
       "away": "Round of 16 4 Winner",
-      "homeRef": null,
+      "homeRef": {
+        "group": "I",
+        "idx": 2
+      },
       "awayRef": null
     },
     "k:100": {

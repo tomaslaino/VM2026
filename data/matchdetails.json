@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-05T21:16:42.509Z",
+    "updatedAt": "2026-07-05T22:27:04.070Z",
     "source": "espn"
   },
   "details": {
@@ -52074,15 +52074,15 @@
     "k:91": {
       "espnId": "760504",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 54,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-05T20:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
-          "h": 0,
-          "a": 0
+          "h": 1,
+          "a": 2
         },
         "ht": {
           "h": 0,
@@ -52092,8 +52092,52 @@
         "et": null,
         "pen": null
       },
-      "goals": [],
-      "bookings": [],
+      "goals": [
+        {
+          "minute": 79,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Erling Haaland",
+          "assist": "Andreas Schjelderup",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Erling Haaland",
+          "assist": "Andreas Schjelderup",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 2
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 10,
+          "team": "h",
+          "scorer": "Neymar",
+          "assist": null,
+          "type": "PENALTY",
+          "score": {
+            "h": 1,
+            "a": 2
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Neymar",
+          "card": "YELLOW"
+        }
+      ],
       "subs": [
         {
           "minute": 45,
@@ -52106,6 +52150,42 @@
           "team": "a",
           "in": "Andreas Schjelderup",
           "out": "Antonio Nusa"
+        },
+        {
+          "minute": 58,
+          "team": "h",
+          "in": "Endrick",
+          "out": "Matheus Cunha"
+        },
+        {
+          "minute": 63,
+          "team": "a",
+          "in": "Fredrik Aursnes",
+          "out": "Julian Ryerson"
+        },
+        {
+          "minute": 67,
+          "team": "h",
+          "in": "Neymar",
+          "out": "Gabriel Martinelli"
+        },
+        {
+          "minute": 67,
+          "team": "h",
+          "in": "Danilo Santos",
+          "out": "Rayan"
+        },
+        {
+          "minute": 79,
+          "team": "h",
+          "in": "Éderson",
+          "out": "Bruno Guimarães"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Leo Østigard",
+          "out": "David Møller Wolfe"
         }
       ],
       "penalties": [],
@@ -52118,7 +52198,8 @@
               "jersey": "1",
               "pos": "G",
               "st": {
-                "sv": 2
+                "gc": 2,
+                "sv": 3
               }
             },
             {
@@ -52127,19 +52208,24 @@
               "pos": "RB",
               "st": {
                 "fc": 1,
+                "gc": 2,
                 "sh": 1
               }
             },
             {
               "name": "Douglas Santos",
               "jersey": "16",
-              "pos": "LB"
+              "pos": "LB",
+              "st": {
+                "gc": 2
+              }
             },
             {
               "name": "Bruno Guimarães",
               "jersey": "8",
               "pos": "CM-R",
               "st": {
+                "fc": 1,
                 "sg": 1,
                 "sh": 2
               }
@@ -52147,12 +52233,19 @@
             {
               "name": "Marquinhos",
               "jersey": "4",
-              "pos": "CD-R"
+              "pos": "CD-R",
+              "st": {
+                "fs": 1,
+                "gc": 2
+              }
             },
             {
               "name": "Gabriel Magalhães",
               "jersey": "3",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "gc": 2
+              }
             },
             {
               "name": "Rayan",
@@ -52160,7 +52253,8 @@
               "pos": "RM",
               "st": {
                 "fc": 2,
-                "sh": 1
+                "sg": 1,
+                "sh": 2
               }
             },
             {
@@ -52169,6 +52263,8 @@
               "pos": "CM-L",
               "st": {
                 "fc": 1,
+                "fs": 2,
+                "gc": 2,
                 "sh": 1
               }
             },
@@ -52178,6 +52274,7 @@
               "pos": "CF-L",
               "st": {
                 "fs": 1,
+                "gc": 2,
                 "sg": 1,
                 "sh": 2
               }
@@ -52204,7 +52301,11 @@
           "bench": [
             {
               "name": "Danilo Santos",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true,
+              "st": {
+                "gc": 2
+              }
             },
             {
               "name": "Weverton",
@@ -52228,11 +52329,24 @@
             },
             {
               "name": "Éderson",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true,
+              "st": {
+                "gc": 2,
+                "sh": 1
+              }
             },
             {
               "name": "Neymar",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "gc": 2,
+                "sg": 1,
+                "g": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Luiz Henrique",
@@ -52244,7 +52358,12 @@
             },
             {
               "name": "Endrick",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true,
+              "st": {
+                "gc": 2,
+                "sh": 2
+              }
             },
             {
               "name": "Alex Sandro",
@@ -52268,7 +52387,8 @@
               "jersey": "1",
               "pos": "G",
               "st": {
-                "sv": 2
+                "gc": 1,
+                "sv": 4
               }
             },
             {
@@ -52292,7 +52412,8 @@
               "jersey": "8",
               "pos": "CM",
               "st": {
-                "fs": 1
+                "fs": 1,
+                "gc": 1
               }
             },
             {
@@ -52300,19 +52421,26 @@
               "jersey": "3",
               "pos": "CD-R",
               "st": {
-                "fc": 1
+                "fc": 1,
+                "gc": 1
               }
             },
             {
               "name": "Torbjørn Heggem",
               "jersey": "17",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Martin Ødegaard",
               "jersey": "10",
               "pos": "RM",
               "st": {
+                "fs": 1,
+                "gc": 1,
                 "sg": 1,
                 "sh": 3
               }
@@ -52322,6 +52450,8 @@
               "jersey": "6",
               "pos": "LM",
               "st": {
+                "fs": 1,
+                "gc": 1,
                 "sh": 1
               }
             },
@@ -52330,8 +52460,11 @@
               "jersey": "9",
               "pos": "F",
               "st": {
-                "sg": 1,
-                "sh": 1
+                "fc": 1,
+                "gc": 1,
+                "sg": 3,
+                "g": 2,
+                "sh": 4
               }
             },
             {
@@ -52354,7 +52487,8 @@
               "jersey": "22",
               "in": true,
               "st": {
-                "fs": 1
+                "fs": 1,
+                "gc": 1
               }
             },
             {
@@ -52380,7 +52514,13 @@
             {
               "name": "Andreas Schjelderup",
               "jersey": "21",
-              "in": true
+              "in": true,
+              "st": {
+                "gc": 1,
+                "a": 2,
+                "sg": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Thelo Aasgaard",
@@ -52392,7 +52532,11 @@
             },
             {
               "name": "Fredrik Aursnes",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Morten Thorsby",
@@ -52404,7 +52548,12 @@
             },
             {
               "name": "Leo Østigard",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Fredrik André Bjørkan",
@@ -52415,47 +52564,47 @@
       },
       "referee": "Ismail Elfath",
       "venue": "MetLife Stadium, East Rutherford, New Jersey",
-      "attendance": null,
+      "attendance": 0,
       "stats": [
         {
           "key": "possessionPct",
           "h": "34%",
-          "a": "66%"
+          "a": "67%"
         },
         {
           "key": "totalShots",
-          "h": "8",
-          "a": "5"
+          "h": "14",
+          "a": "9"
         },
         {
           "key": "shotsOnTarget",
-          "h": "2",
-          "a": "2"
+          "h": "4",
+          "a": "5"
         },
         {
           "key": "wonCorners",
-          "h": "1",
-          "a": "3"
+          "h": "5",
+          "a": "5"
         },
         {
           "key": "foulsCommitted",
-          "h": "5",
-          "a": "3"
+          "h": "7",
+          "a": "6"
         },
         {
           "key": "offsides",
-          "h": "0",
+          "h": "1",
           "a": "1"
         },
         {
           "key": "saves",
-          "h": "2",
-          "a": "2"
+          "h": "3",
+          "a": "4"
         },
         {
           "key": "totalPasses",
-          "h": "206",
-          "a": "411"
+          "h": "329",
+          "a": "680"
         },
         {
           "key": "passPct",
@@ -52464,7 +52613,7 @@
         },
         {
           "key": "yellowCards",
-          "h": "0",
+          "h": "1",
           "a": "0"
         },
         {
@@ -52473,7 +52622,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-05T21:16:42.509Z"
+      "updatedAt": "2026-07-05T22:27:04.070Z"
     }
   }
 }
