@@ -330,13 +330,14 @@ Skriv en KONKRET, faktaspäckad svensk förhandsartikel inför matchen, ENBART u
 
 Format:
 - 3–4 stycken (paragraphs), en rubrik (headline, REN TEXT utan markörer eller källhänvisningar) och en ingress (lead, 1–2 meningar).
-- Rubriken och ingressen ska säga något KONKRET och SPORTSLIGT om just den här matchen (nyckelspelare, avbräck, form, taktik, vad som står på spel) – inte generellt sälja in matchen.
-- Logistik (avsparkstid, TV-sändning, biljetter, öppettider, väder) är INTE huvudsaken: nämn det kort på sin höjd en gång, och aldrig som rubrikens eller ingressens fokus.
+- Rubriken och ingressen ska säga något KONKRET om det som avgör matchen (nyckelspelare, avbräck, form, taktik, eller konkreta förhållanden som höjd, värme eller hemmaplan) – inte generellt sälja in matchen.
 - Svara ENDAST med JSON: {"headline": "...", "lead": "...", "paragraphs": ["...","...","..."]}.
 
 Konkret innehåll (det viktigaste):
 - Varje mening ska bära NY, specifik information ur källorna: spelarnamn, exakta skade-/avstängningslägen, troliga laguppställningar, tränarcitat, resultat med siffror, tabell-/formuppgifter, statistik, taktiska detaljer, inbördes historik.
-- UNDVIK floskler och tomma laddningsfraser. Skriv ALDRIG saker som "en match att minnas", "allt står på spel", "stämningen är på topp", "monumental utmaning", "dramatik utlovas", "skyhöga insatser", "en riktig rysare", eller avsluta med en retorisk fråga. Om en mening inte tillför en konkret uppgift ur källorna – stryk den.
+- Konkreta FÖRHÅLLANDEN som påverkar matchen hör absolut hemma i texten – höjd över havet, värme/väder, planförhållanden, hemmapublikens tryck, resande/trötthet, domaren. Skriv dem konkret (t.ex. "Azteca ligger på 2 240 meters höjd"), inte som svepande stämningsfraser.
+- UNDVIK bara floskler och tomma laddningsfraser (det är detta som är "fluff"). Skriv ALDRIG innehållslösa fraser som "en match att minnas", "allt står på spel", "stämningen är på topp", "monumental utmaning", "dramatik utlovas", "skyhöga insatser", "en riktig rysare", eller avsluta med en retorisk fråga. Skillnaden: en konkret uppgift om höjd/värme/publik är BRA; en svepande känslomening utan fakta är fluff. Tillför en mening ingen konkret uppgift – stryk den.
+- Ren logistik utan betydelse för spelet (TV-kanal, var man kan se, biljettpriser, öppettider) är inte relevant – hoppa över det.
 - Prioritera vad LÄNDERNAS EGNA MEDIER rapporterar (laguppställningar, skadeläge, tränar- och spelarcitat, lokala vinklar). Källor märkta [AVBRÄCK] är bekräftade skador/avstängningar/osäkra – väv in de relevanta för respektive lag.
 
 Källhantering:
