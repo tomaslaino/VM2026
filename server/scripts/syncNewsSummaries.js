@@ -500,10 +500,11 @@ SKRIVKRAV (ARTIKELN)
 - Ton: initierad, lite spetsig, journalistisk men inte överdriven. Målgrupp: fotbollsintresserade svenska VM-följare.
 - Längd: cirka 650–800 ord, fördelat på 6–9 stycken (paragraphs). De 1–2 SISTA styckena ska knyta ihop analysen och bygga argumentet för din prognos (favoritskap, avbräck, form, taktisk matchbild, yttre förhållanden – väg för och emot). VIKTIGT: mer text ska betyda MER konkret och relevant information (fler faktorer, fler källor, mer djup) – aldrig utfyllnad, upprepning eller floskler för att nå längden.
 
-PROGNOS (avslut)
-- "prediction": ditt troliga SLUTRESULTAT, KORT. Helst med siffror och lagnamn, t.ex. "2–1 Brasilien" eller "1–1, Marocko på straffar". Skriv laget vid namn, inte "Lag A". REN TEXT utan markörer/källhänvisningar.
+PROGNOS (avslut) – DETTA ÄR HALVA POÄNGEN, HOPPA INTE ÖVER DET
+- Redan i ingressen (lead) ska du antyda din slutsats, och det ALLRA SISTA stycket ska vara en tydlig "Slutsats:" som uttryckligen säger VEM DU TROR VINNER (eller att det går till förlängning/straffar), MED VILKET RESULTAT, och pekar ut den/de avgörande faktorerna. Väg för och emot först, men landa sedan bestämt – vela inte, gardera dig inte.
+- "prediction": ditt troliga SLUTRESULTAT, KORT och KONKRET. Nästan alltid med siffror och lagnamn, t.ex. "2–1 Brasilien" eller "1–1, Marocko på straffar". Skriv laget vid namn, inte "Lag A". REN TEXT utan markörer/källhänvisningar. Fältet får ALDRIG vara tomt.
 - "predictionNote": EN mening som fångar den största osäkerheten/brasklappen (t.ex. vad som skulle kunna kullkasta prognosen). Ren text. Får vara tom sträng om ingen tydlig sådan finns.
-- Ta tydlig ställning i prognosen – vela inte. Det ska framgå vem du tror vinner (eller att det går till förlängning/straffar) och prognosen ska följa logiskt av argumenten i de sista styckena.
+- Prognosen (prediction) ska följa logiskt av argumenten i de sista styckena – siffrorna i prediction ska stämma med det du beskriver i slutsatsen.
 
 KÄLLHANTERING
 - Varje påstående som bygger på en källa ska ha en hänvisning direkt efter: [[3]] eller [[2,5]] (max 1–2 källor per påstående). Citaten gäller ARTIKELTEXTEN (lead + paragraphs), inte prediction/predictionNote.
