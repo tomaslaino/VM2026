@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-05T12:02:16.756Z",
+    "updatedAt": "2026-07-05T14:05:54.686Z",
     "source": "365scores",
     "matchCount": 4
   },
@@ -10,7 +10,7 @@
       "gameId": 4750503,
       "kickoff": "2026-07-05T20:00Z",
       "h": {
-        "formation": "4-3-3",
+        "formation": "4-2-3-1",
         "starters": [
           {
             "name": "Alisson",
@@ -38,34 +38,34 @@
             "pos": "RB"
           },
           {
-            "name": "Danilo",
-            "jersey": "18",
-            "pos": "LM"
-          },
-          {
             "name": "Casemiro",
             "jersey": "5",
-            "pos": "CM"
+            "pos": "DM"
           },
           {
             "name": "Bruno Guimarães",
             "jersey": "8",
-            "pos": "RM"
+            "pos": "DM"
           },
           {
             "name": "Vinicius Júnior",
             "jersey": "7",
-            "pos": "LF"
+            "pos": "AM-L"
+          },
+          {
+            "name": "Gabriel Martinelli",
+            "jersey": "22",
+            "pos": "AM"
+          },
+          {
+            "name": "Rayan",
+            "jersey": "26",
+            "pos": "AM-R"
           },
           {
             "name": "Matheus Cunha",
             "jersey": "9",
             "pos": "ST"
-          },
-          {
-            "name": "Rayan",
-            "jersey": "26",
-            "pos": "RF"
           }
         ],
         "bench": [
@@ -102,16 +102,16 @@
             "jersey": "2"
           },
           {
+            "name": "Danilo",
+            "jersey": "18"
+          },
+          {
             "name": "Neymar",
             "jersey": "10"
           },
           {
             "name": "Luiz Henrique",
             "jersey": "21"
-          },
-          {
-            "name": "Gabriel Martinelli",
-            "jersey": "22"
           },
           {
             "name": "Raphinha",
@@ -245,7 +245,7 @@
           }
         ]
       },
-      "updatedAt": "2026-07-04T21:37:28.587Z"
+      "updatedAt": "2026-07-05T14:05:52.459Z"
     },
     "k:92": {
       "status": "probable",
