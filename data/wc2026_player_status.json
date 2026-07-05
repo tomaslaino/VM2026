@@ -1,20 +1,30 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-05T20:35:34.963Z",
+  "updated": "2026-07-05T22:28:57.710Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
-    "bra-casemiro": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Andra gula kortet i turneringen (mot Marocko och Japan)",
-      "updated": "2026-06-29",
+    "mex-roberto-alvarado": {
+      "availability": "doubtful",
+      "kind": "other",
+      "detail": "Alarm i El Tri: Piojo Alvarado är osäker mot England och Aguirre analyserar redan en ersättare",
+      "updated": "2026-07-04",
       "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760487"
+        "name": "debate.com.mx",
+        "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQTTJQUC1NWEQ1V2hYY0xrR3lmLUlMcU0tZVFDa3Bta2JQR1BoYTYxT2xzYndRejFOdlhSSndYaWZzREF6S0EzdWpJUmFMY3NEbGd6ME1zQ0dMeGxrbWhER1FvdGx6R21jaTBlWGJoR2ZqRHBTXzRJRzdGaURpc1ltY2lxcURHU2lLZkVXSWQxWG9wdWtuajNsYjhiTUNETjdxUXE1ajZDc0poeTc4YjNDS05CRG5QdWhXZnRHLUV1LVl0aFhnSjJTZ2wwWmFQRmxybm9RYmlNNnM1cmxqeVE?oc=5"
       },
-      "origin": "cards"
+      "origin": "news"
+    },
+    "mar-ismael-saibari": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Marocko-Frankrike: Ismael Saibari, skadad, svår att återhämta sig",
+      "updated": "2026-07-05",
+      "source": {
+        "name": "lequotidien.com.tn",
+        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOQ0JleDdzNkN4VjRWYS1qckNrWlV0OTJXejdqajM4b0hkUjZNVEVtSzhZaEhxWGFPY0M2cE5QYjF1TzJPbDlsMmd0T0IyZTFBSVdhOE13QnQzZzEzV0ZTZmp6U1ZGZ2lrSVJuekpuR1RBQzBEVjY4V0lXWlMxZTdrYW5TQTdvOG5QWjFpbEdYd3BWSXBJRTJIYkJhS3BGbzRxbWZEdw?oc=5"
+      },
+      "origin": "news"
     },
     "usa-folarin-balogun": {
       "availability": "out",
@@ -27,6 +37,83 @@
         "url": "https://www.espn.com/soccer/match/_/gameId/760494"
       },
       "origin": "cards"
+    },
+    "fra-manu-kone": {
+      "availability": "doubtful",
+      "kind": "suspension",
+      "detail": "Se upp för nästa kort: Michael Olise, Bradley Barcola och Manu Koné hotas av avstängning för den eventuella VM-semifinalen",
+      "updated": "2026-07-05",
+      "source": {
+        "name": "L'Équipe",
+        "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxPcm9VVkhfcVM2ZXJQdXNUVmtzV1V6eVk3Mk1EQ0xXUTQ4ejRLZ1ZqMnh6ellqUjNxU1JpQTcxSzlobVhISlhjdWxGdURnb0gtQkg1VEtSSWJOXzFwRnpMWHRLbVdNZVZSR3VKUHkyQmNHV1BHWnp0ZDNBaURiUjQyM29teUZIaVphMGZSN0RBTm40R2hGTDZucmdHVnFuN1pOVlNfOHljVWtEUGdHemltaWpyR1pYaDIwYWhNSlRQYWpwVzVwSU1mdVU2X3pZY0I5RlQyUktyZzJzMHJJY09sRk8yU2ZBenp0NTdoMnN6N2s2LTRfd1hFeUpaa1hMZGt4MU01TDllaXlWVElONnRYazVkaG4zZjMtVWhXRFBvV0U4cEM4RHdfQ3FNbTMxZw?oc=5"
+      },
+      "origin": "news"
+    },
+    "fra-michael-olise": {
+      "availability": "doubtful",
+      "kind": "suspension",
+      "detail": "Se upp för nästa kort: Michael Olise, Bradley Barcola och Manu Koné hotas av avstängning för den eventuella VM-semifinalen",
+      "updated": "2026-07-05",
+      "source": {
+        "name": "L'Équipe",
+        "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxPcm9VVkhfcVM2ZXJQdXNUVmtzV1V6eVk3Mk1EQ0xXUTQ4ejRLZ1ZqMnh6ellqUjNxU1JpQTcxSzlobVhISlhjdWxGdURnb0gtQkg1VEtSSWJOXzFwRnpMWHRLbVdNZVZSR3VKUHkyQmNHV1BHWnp0ZDNBaURiUjQyM29teUZIaVphMGZSN0RBTm40R2hGTDZucmdHVnFuN1pOVlNfOHljVWtEUGdHemltaWpyR1pYaDIwYWhNSlRQYWpwVzVwSU1mdVU2X3pZY0I5RlQyUktyZzJzMHJJY09sRk8yU2ZBenp0NTdoMnN6N2s2LTRfd1hFeUpaa1hMZGt4MU01TDllaXlWVElONnRYazVkaG4zZjMtVWhXRFBvV0U4cEM4RHdfQ3FNbTMxZw?oc=5"
+      },
+      "origin": "news"
+    },
+    "fra-bradley-barcola": {
+      "availability": "doubtful",
+      "kind": "suspension",
+      "detail": "Se upp för nästa kort: Michael Olise, Bradley Barcola och Manu Koné hotas av avstängning för den eventuella VM-semifinalen",
+      "updated": "2026-07-05",
+      "source": {
+        "name": "L'Équipe",
+        "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxPcm9VVkhfcVM2ZXJQdXNUVmtzV1V6eVk3Mk1EQ0xXUTQ4ejRLZ1ZqMnh6ellqUjNxU1JpQTcxSzlobVhISlhjdWxGdURnb0gtQkg1VEtSSWJOXzFwRnpMWHRLbVdNZVZSR3VKUHkyQmNHV1BHWnp0ZDNBaURiUjQyM29teUZIaVphMGZSN0RBTm40R2hGTDZucmdHVnFuN1pOVlNfOHljVWtEUGdHemltaWpyR1pYaDIwYWhNSlRQYWpwVzVwSU1mdVU2X3pZY0I5RlQyUktyZzJzMHJJY09sRk8yU2ZBenp0NTdoMnN6N2s2LTRfd1hFeUpaa1hMZGt4MU01TDllaXlWVElONnRYazVkaG4zZjMtVWhXRFBvV0U4cEM4RHdfQ3FNbTMxZw?oc=5"
+      },
+      "origin": "news"
+    },
+    "arg-facundo-medina": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "En skada på Facundo Medina som oroar Argentina",
+      "updated": "2026-07-04",
+      "source": {
+        "name": "Radio Dos Corrientes",
+        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQQ0NBQy12SGhYWVMtWlZXYzJzYTdkei1idklEeXZYR3J3NUhGdkpMdkhIemZQY1VzWFpKUVVLZWpoc1htOGdjNVg3czUwNzIzbl9JT1NCYlJxZXZ0T3lpbDg3TFNkY2ZlaDMyajdjSVh5RTlpR2Z4dXNzR0pzWlFmeTZrX21mYmJ2emZjVDhLUS1Jdw?oc=5"
+      },
+      "origin": "news"
+    },
+    "arg-lisandro-martinez": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Lisandro Martínez talade om sitt första mål i världscupen och blev känslosam när han kom ihåg sin skada",
+      "updated": "2026-07-04",
+      "source": {
+        "name": "La Nación",
+        "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxObk1YVWFMSHd2WXdUMkV6dUZfSHdIRDN6emVibzRxWXpNa0JaY3NhNGhkMGdYZVhucjdwcF9qcktrNklFNnJWclhGMG1LRFdpOEdxa1hmd2lYLUVoWDQyVDFyaG1oUUs0Y3dBWnpjaXBhcnJ3ZWdfc0l4YXh5TzlxTHBGX0lsZnNzUXBQZTBTMWJOQ2pPbFFEdWtJUzhtRkp0NXYzaDFodVN4UURvQlcwdnVIenNGOUVRREZyWDVmcDVhemhickttMXNEQ2NERGduY1IzNVdYdGtXcmZqMzF4TFJ0VDM?oc=5"
+      },
+      "origin": "news"
+    },
+    "col-jhon-cordoba": {
+      "availability": "out",
+      "kind": "injury",
+      "detail": "Colombia får de värsta nyheterna: Jhon Córdoba missar VM 2026 på grund av en allvarlig skada",
+      "updated": "2026-07-05",
+      "source": {
+        "name": "MARCA Usa",
+        "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPZUVQS1pFdVYtYlFTbndVMkJEb1l2R2pObHBtVXhYMGk2MUVLVm92Y3NXdWgyYzZYNmdEcldWVkJBeFc4Y0pEeG5EbG5UZThrMUoyZHB4Nkk1WERJVjI5blNVT0J2X3E5bEg2ZEtpWjRHemZURnBDc1RrOUNWdV9zZGV30gGHAUFVX3lxTE1nRnNyWEl4R3FSazV1anltMnp4OE0xbW9wYXFSTkFMTXNJM013YmJNRXJlSk9nU05FZWlWSEZFQzgxdXBzZ0tlLWtENjU0c3RGOHQ5YUR4ZDRuQUk4a2NDYUwySjB2dW5lVlJvenRUYzRMS0dydTBXeldTa0s1QnlCZEM0Y0JSWQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-djed-spence": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Djed Spence: England drabbats av ett nytt skadeproblem bara timmar innan Mexiko möter",
+      "updated": "2026-07-05",
+      "source": {
+        "name": "GB News",
+        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9NZE5iLXQxdjFERlBvaDRmZFpfX2ZWWDBtRlJPdHlJUk1TOFVZLTAyMm51R1ZoSDktWXVZUy1KY25XUm55TlI5d2o1cHRqVWNxVTRCWTQ0LUFJaWZnM2ZzdlM1RWx5Q0RzQnJuaDBKZTVKZ0hmUmZOXzlETQ?oc=5"
+      },
+      "origin": "news"
     },
     "egy-yasser-ibrahim": {
       "availability": "out",
