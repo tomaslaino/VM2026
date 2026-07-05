@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-05T11:17:40.176Z",
+  "updated": "2026-07-05T12:46:05.684Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mex-roberto-alvarado": {
@@ -48,17 +48,6 @@
       },
       "origin": "news"
     },
-    "usa-malik-tillman": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Malik Tillman skadad men oskadd efter skrämmande incident i USMNT:s seger över Bosnien",
-      "updated": "2026-07-04",
-      "source": {
-        "name": "MSN",
-        "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPMVdxWEUtNDBpd1Y4ZGJMTWVoVjRwZ215T3BCUDAtem5RbklENGg4blc1SlZGeFM4WjJTdDU0d21UVVY5cEZTZ0Y5QnZ3ay1SZWdRRHAyTkdtMFo5MjhrZm41Y3k5SWJ0VmEyN3VHWDVDdExDYkhGYWFuUVU2NmxFZTc5dS1uOUpuOHJsU1I0bHBiY0I4dFUybHEtLTYwWVZmZTJURmhDdGd3YnNWdGIxWkExYkRZSEtaZHBZZWF5YkVDZzVTcjRxTTM5TU9yVTQ?oc=5"
-      },
-      "origin": "news"
-    },
     "usa-christian-pulisic": {
       "availability": "doubtful",
       "kind": "injury",
@@ -82,17 +71,16 @@
       },
       "origin": "cards"
     },
-    "egy-yasser-ibrahim": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Andra gula kortet i turneringen (mot Iran och Australien)",
+    "usa-malik-tillman": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Malik Tillman skadad men oskadd efter skrämmande incident i USMNT:s seger över Bosnien",
       "updated": "2026-07-03",
       "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760499"
+        "name": "MSN",
+        "url": "https://news.google.com/rss/articles/CBMipgNBVV95cUxPMFdDWXJBZkZIYjVhTzFuOWJSRlIwSzQtbUJrSXZiN0loTlJ6cWVKdUEwSTY0eWp3Q1ZMVUF0Rjc4U1RET0pyQXlVM2ViYkdjWnZ0THI0NEZMTktyZC0zLW8wREJ4N25KNXc0VmRFdFExYk1Ba01LakRJZEpONlJaQU1iTEZBemh5c3UyWmxoWHRjVWpWTXRpSXQtYWl6dlhiMDRtM0dMUFk4aEE1ZjV2NHpPSDJYbDFoUDJMZHBjRG5oR2xsNUNvb2RvYWpXUmdUS0dkVlZxYkF2WllIaXlsMEdOSXF4Z01JUW1ldTRxVnpZbHlqOEVTd3QzczBnVUFnUWNPM3ZSeGNyRFZza1NGeWNqWTV4aWhMNlgzZnMxdU5EYllncHI3V2FFVWxSQ2Y3UWJWS3Y2MkItSDhDTktqZVRVRGhoM3BwY0dDYXNXS1ZwcjMwQk4tdDZaMUlac2tweTJtR3FMSGtESi16THcyaFAwMGkzYkViMUp3ak80NlpUa0hVQm9IVTlkdkJOc1I5X0FkQWtpc0dkUk5Ld0ZCZU1Oc3pXQQ?oc=5"
       },
-      "origin": "cards"
+      "origin": "news"
     },
     "esp-lamine-yamal": {
       "availability": "doubtful",
@@ -169,6 +157,18 @@
       "source": {
         "name": "Matchfakta (ESPN)",
         "url": "https://www.espn.com/soccer/match/_/gameId/760487"
+      },
+      "origin": "cards"
+    },
+    "egy-yasser-ibrahim": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Andra gula kortet i turneringen (mot Iran och Australien)",
+      "updated": "2026-07-03",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760499"
       },
       "origin": "cards"
     }
