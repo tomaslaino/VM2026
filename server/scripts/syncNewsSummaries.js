@@ -52,10 +52,11 @@ const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 const API_KEY = process.env.GEMINI_API_KEY || "";
 
 const GEN_WINDOW_H = 144;     // hur långt före avspark en match börjar få artikel (6 dygn)
-const MAX_REFS = 14;          // tak på antal referenser per artikel
+const MAX_REFS = 16;          // tak på antal referenser per artikel
 const REF_MAX_AGE_DAYS = 12;  // äldre artiklar tas inte med som referens
-const PER_SOURCE_LOCAL = 6;   // träffar att ta per lokal lagsökning
-const PER_PREVIEW = 9;        // träffar att ta ur den internationella förhandssökningen
+const PER_SOURCE_LOCAL = 8;   // träffar per allmän lokal lagsökning (landets media)
+const PER_SOURCE_MATCH = 6;   // träffar per lokal sökning som även nämner motståndaren
+const PER_PREVIEW = 6;        // träffar ur den internationella förhandssökningen
 const FETCH_DELAY_MS = 180;   // paus mellan nätanropen – snällt mot Google
 
 /* iso → { en (ESPN-namn), sv } för de 48 lagen. Används för namn i prompten och
@@ -209,9 +210,18 @@ const RELEVANCE_WORDS = ["lineup","laguppst","startel","injur","skad","avstäng"
   "doubt","osäker","preview","inför","predict","odds","form","comeback","återvänd","tillbaka",
   "avspark","kickoff","rött kort","red card","ban ","tactic","taktik","h2h","head-to-head"];
 
+/* Innehållslösa listningar (sändningstider, biljetter, kommunala storbilds-
+   visningar, damlandslag m.m.) – lokala men utan konkret matchinfo. Straffas
+   hårt så att redaktionella texter fyller platserna i stället. */
+const JUNK_WORDS = ["hur man tittar","hur man ser","hur du tittar","var man kan se","var du kan se",
+  "how to watch","tv-kanal","tv channel","livestream","live stream","spelschema","schema och var",
+  "när spelar","när är","vad tid","what time","biljett","ticket","köpa","kommun","ayuntamiento",
+  "prefeitura","câmara","instagram","damlag","femenin","women","feminin"];
+
 function scoreRef(it, match, now) {
   let s = 0;
   if (it.avail) s += 5;                    // avbräck lyfts alltid högt
+  if (it.local) s += 3;                    // ländernas egna medier prioriteras
   const ageH = it.published ? (now - Date.parse(it.published)) / 3600000 : 240;
   if (ageH < 24) s += 3; else if (ageH < 72) s += 2; else if (ageH < 168) s += 1;
   const hay = (normTitle(it.title) + " " + normTitle(it.title_sv || "")) ;
@@ -220,6 +230,8 @@ function scoreRef(it, match, now) {
   }
   const low = (it.title + " " + (it.title_sv || "")).toLowerCase();
   for (const w of RELEVANCE_WORDS) if (low.includes(w)) { s += 1; break; }
+  if (/\d/.test(it.title_sv || it.title)) s += 1;   // siffror = konkret (resultat/statistik)
+  if (!it.avail) for (const w of JUNK_WORDS) if (low.includes(w)) { s -= 5; break; }
   return s;
 }
 
@@ -229,18 +241,30 @@ async function buildReferences(match, teamNews, prevSv, availItems) {
   const cand = [];
   const push = (arr) => { for (const it of arr) cand.push(it); };
 
+  const tag = (arr, extra) => (arr || []).map((it) => ({ ...it, ...extra }));
+
   // Avbräck först – de ska överleva dedup/cap och rankas högt.
   push(availItems || []);
 
-  // Lokala medier för båda lagen (samma frågor som syncTeamNews, färskt hämtat).
+  // Ländernas egna medier för båda lagen (färskt hämtat i respektive lands utgåva).
   for (const iso of [match.homeIso, match.awayIso]) {
     const cfg = TEAMS[iso];
-    if (cfg) { push(await fetchSearch(cfg, cfg.hl.split("-")[0], PER_SOURCE_LOCAL)); await sleep(FETCH_DELAY_MS); }
-    // Redan översatta lokala nyheter ur team_news.json som extra underlag.
+    const opp = iso === match.homeIso ? match.away : match.home;
+    if (cfg) {
+      const lang = cfg.hl.split("-")[0];
+      // 1) Allmän lagnyhet ur landets media (inför en match domineras flödet av matchbevakning).
+      push(tag(await fetchSearch(cfg, lang, PER_SOURCE_LOCAL), { local: true }));
+      await sleep(FETCH_DELAY_MS);
+      // 2) Lokal bevakning som specifikt nämner motståndaren – mer matchkonkret.
+      const matchCfg = { q: `${cfg.q} (${opp.en} OR ${opp.sv})`, hl: cfg.hl, gl: cfg.gl, ceid: cfg.ceid };
+      push(tag(await fetchSearch(matchCfg, lang, PER_SOURCE_MATCH), { local: true }));
+      await sleep(FETCH_DELAY_MS);
+    }
+    // Redan översatta lokala nyheter ur team_news.json som extra underlag (även de lokala).
     const tn = teamNews && teamNews[iso];
-    if (tn && Array.isArray(tn.items)) push(tn.items);
+    if (tn && Array.isArray(tn.items)) push(tag(tn.items, { local: true }));
   }
-  // Internationell förhandssökning på matchen.
+  // Internationell förhandssökning på matchen (H2H/odds som komplement).
   const previewQ = `"${match.home.en}" "${match.away.en}" (World Cup OR Mundial OR "VM")`;
   push(await fetchSearch({ q: previewQ, hl: "en-US", gl: "US", ceid: "US:en" }, "en", PER_PREVIEW));
   await sleep(FETCH_DELAY_MS);
@@ -301,18 +325,23 @@ function buildPrompt(match, refs) {
     `[${i + 1}]${r.avail ? " [AVBRÄCK]" : ""} (${r.source || "okänd källa"}) ${r.title}`).join("\n");
   return `Match: ${match.home.sv} – ${match.away.sv} (${match.round} i fotbolls-VM 2026, ${koLabelSv(match.koMs)}).
 
-Skriv en kort, välskriven svensk förhandsartikel inför matchen, ENBART utifrån de numrerade källorna nedan.
+Skriv en KONKRET, faktaspäckad svensk förhandsartikel inför matchen, ENBART utifrån de numrerade källorna nedan.
 
-Krav:
-- 3 stycken (paragraphs), plus en rubrik (headline, REN TEXT utan markörer eller källhänvisningar) och en ingress (lead, 1–2 meningar som lockar in läsaren).
-- Klustra inte källor: som mest 1–2 hänvisningar efter ett påstående, inte långa listor som [[8,9,10]].
-- Korrekt, ledig och engagerande svenska. Journalistisk ton, som en riktig förhandsartikel.
-- ENDAST matchrelevant: laguppställningar, skador/avstängningar/osäkra, form, taktik, nyckelspelare, inbördes historik, odds/favoritskap och stämningen inför just den här matchen. Uteslut allt som inte rör matchen.
-- Bygg allt på källorna. Hitta INTE på fakta, namn eller citat. Varje påstående som bygger på en källa ska ha en hänvisning direkt efter påståendet med källans nummer inom dubbla hakparenteser: [[3]] eller [[2,5]] för flera. Överdriv inte – en hänvisning per påstående räcker.
-- Källor märkta [AVBRÄCK] är bekräftade skador/avstängningar/osäkra spelare inför matchen – väv in de relevanta avbräcken för respektive lag (med hänvisning), det är viktig läsning.
-- Markera med **fet** för nyckelnamn och avgörande fakta, och *kursiv* för direkta citat och smeknamn.
-- Du måste inte använda alla källor – välj de mest relevanta och färska. Använd bara källnummer som finns i listan.
-- Svara ENDAST med JSON enligt schemat: {"headline": "...", "lead": "...", "paragraphs": ["...","...","..."]}.
+Format:
+- 3–4 stycken (paragraphs), en rubrik (headline, REN TEXT utan markörer eller källhänvisningar) och en ingress (lead, 1–2 meningar).
+- Rubriken och ingressen ska säga något KONKRET om just den här matchen (ett namn, ett avbräck, en siffra, en taktisk poäng) – inte generellt sälja in matchen.
+- Svara ENDAST med JSON: {"headline": "...", "lead": "...", "paragraphs": ["...","...","..."]}.
+
+Konkret innehåll (det viktigaste):
+- Varje mening ska bära NY, specifik information ur källorna: spelarnamn, exakta skade-/avstängningslägen, troliga laguppställningar, tränarcitat, resultat med siffror, tabell-/formuppgifter, statistik, taktiska detaljer, inbördes historik.
+- UNDVIK floskler och tomma laddningsfraser. Skriv ALDRIG saker som "en match att minnas", "allt står på spel", "stämningen är på topp", "monumental utmaning", "dramatik utlovas", "skyhöga insatser", "en riktig rysare", eller avsluta med en retorisk fråga. Om en mening inte tillför en konkret uppgift ur källorna – stryk den.
+- Prioritera vad LÄNDERNAS EGNA MEDIER rapporterar (laguppställningar, skadeläge, tränar- och spelarcitat, lokala vinklar). Källor märkta [AVBRÄCK] är bekräftade skador/avstängningar/osäkra – väv in de relevanta för respektive lag.
+
+Källhantering:
+- Bygg allt på källorna. Hitta INTE på fakta, namn, siffror eller citat. Är något osäkert i källan, skriv det inte.
+- Varje påstående ska ha en hänvisning direkt efter: [[3]] eller [[2,5]]. Max 1–2 källor per påstående, inte långa listor.
+- Markera med **fet** för nyckelnamn/avgörande fakta och *kursiv* för direkta citat och smeknamn.
+- Använd bara källnummer som finns i listan; du måste inte använda alla.
 
 Källor:
 ${list}`;
@@ -333,7 +362,7 @@ async function callGemini(prompt) {
   const body = {
     contents: [{ role: "user", parts: [{ text: prompt }] }],
     generationConfig: {
-      temperature: 0.65,
+      temperature: 0.45,
       responseMimeType: "application/json",
       responseSchema: RESPONSE_SCHEMA
     }

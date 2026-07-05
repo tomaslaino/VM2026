@@ -14,7 +14,12 @@ name: Synka matchartiklar (Senaste nytt)
 on:
   schedule:
     - cron: "13,43 * * * *"
-  workflow_dispatch: {} # Manuell körning från Actions-fliken.
+  workflow_dispatch: # Manuell körning från Actions-fliken.
+    inputs:
+      force:
+        description: "Tvinga omskrivning av alla matcher i fönstret (strunta i trappan/refsHash)"
+        type: boolean
+        default: false
 
 concurrency:
   group: sync-news-summaries
@@ -38,7 +43,7 @@ jobs:
       - name: Skriv/uppdatera matchartiklar
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: node server/scripts/syncNewsSummaries.js
+        run: node server/scripts/syncNewsSummaries.js ${{ inputs.force && '--force' || '' }}
 
       - name: Committa om något ändrats
         run: |
