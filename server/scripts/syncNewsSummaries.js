@@ -334,31 +334,57 @@ function koLabelSv(koMs) {
   return `${wd} ${d.getUTCDate()} ${mon}, kl ${hh}:${mm} svensk tid`;
 }
 
+/* Nästa fas (för att beskriva vad som står på spel i utslagsspel). */
+function nextStageLabel(no) {
+  if (no >= 73 && no <= 88) return "åttondelsfinal";
+  if (no >= 89 && no <= 96) return "kvartsfinal";
+  if (no >= 97 && no <= 100) return "semifinal";
+  if (no >= 101 && no <= 102) return "final";
+  return null;
+}
+
 function buildPrompt(match, refs) {
   const list = refs.map((r, i) =>
     `[${i + 1}]${r.avail ? " [AVBRÄCK]" : ""}${r.conditions ? " [FÖRHÅLLANDEN]" : ""} (${r.source || "okänd källa"}) ${r.title}`).join("\n");
-  return `Match: ${match.home.sv} – ${match.away.sv} (${match.round} i fotbolls-VM 2026, ${koLabelSv(match.koMs)}).
+  const next = nextStageLabel(match.no);
+  const stakes = next
+    ? `Utslagsspel: vinnaren går vidare till ${next}, förloraren är utslagen. Oavgjort efter full tid avgörs i förlängning och eventuellt straffar.`
+    : `Utslagsspel: oavgjort efter full tid avgörs i förlängning och eventuellt straffar.`;
+  return `Du skriver en införartikel inför en VM-match. Skriv på svenska.
 
-Skriv en KONKRET, faktaspäckad svensk förhandsartikel inför matchen, ENBART utifrån de numrerade källorna nedan.
+MATCH
+- Lag A: ${match.home.sv}
+- Lag B: ${match.away.sv}
+- Datum och tid: ${koLabelSv(match.koMs)}
+- Fas: ${match.round} i fotbolls-VM 2026
+- Betydelse: ${stakes}
 
-Format:
-- 3–4 stycken (paragraphs), en rubrik (headline, REN TEXT utan markörer eller källhänvisningar) och en ingress (lead, 1–2 meningar).
-- Rubriken och ingressen ska säga något KONKRET om det som avgör matchen (nyckelspelare, avbräck, form, taktik, eller konkreta förhållanden som höjd, värme eller hemmaplan) – inte generellt sälja in matchen.
-- Svara ENDAST med JSON: {"headline": "...", "lead": "...", "paragraphs": ["...","...","..."]}.
+UNDERLAG
+Allt du skriver ska bygga på de numrerade källorna nedan (rubriker ur ländernas egna och internationella medier). [AVBRÄCK] = bekräftad skada/avstängning/osäker spelare. [FÖRHÅLLANDEN] = spelavgörande omständigheter (höjd, värme, plan m.m.).
 
-Konkret innehåll (det viktigaste):
-- Varje mening ska bära NY, specifik information ur källorna: spelarnamn, exakta skade-/avstängningslägen, troliga laguppställningar, tränarcitat, resultat med siffror, tabell-/formuppgifter, statistik, taktiska detaljer, inbördes historik.
-- Konkreta FÖRHÅLLANDEN som påverkar matchen hör absolut hemma i texten – höjd över havet, värme/väder, planförhållanden, hemmapublikens tryck, resande/trötthet, domaren. Skriv dem konkret (t.ex. "Azteca ligger på 2 240 meters höjd"), inte som svepande stämningsfraser.
-- UNDVIK bara floskler och tomma laddningsfraser (det är detta som är "fluff"). Skriv ALDRIG innehållslösa fraser som "en match att minnas", "allt står på spel", "stämningen är på topp", "monumental utmaning", "dramatik utlovas", "skyhöga insatser", "en riktig rysare", eller avsluta med en retorisk fråga. Skillnaden: en konkret uppgift om höjd/värme/publik är BRA; en svepande känslomening utan fakta är fluff. Tillför en mening ingen konkret uppgift – stryk den.
-- Ren logistik utan betydelse för spelet (TV-kanal, var man kan se, biljettpriser, öppettider) är inte relevant – hoppa över det.
-- Prioritera vad LÄNDERNAS EGNA MEDIER rapporterar (laguppställningar, skadeläge, tränar- och spelarcitat, lokala vinklar). Källor märkta [AVBRÄCK] är bekräftade skador/avstängningar/osäkra – väv in de relevanta för respektive lag.
-- Källor märkta [FÖRHÅLLANDEN] handlar om spelavgörande omständigheter (höjd, värme, plan, hemmaplan). Nämner de något som faktiskt påverkar just den här matchen ska du väva in det konkret (med hänvisning).
+Leta i källorna efter de faktorer som faktiskt betyder något för just den här matchen – exempel på dimensioner:
+- Spel & status: trolig laguppställning/formation, skador, avstängningar, form, vila/slitage, förlängning i förra matchen.
+- Taktik: nyckeldueller, presspel, omställningar, fasta situationer, en möjlig planändring.
+- Yttre faktorer: höjd, väder, plan, hemmapublik, resande, domarprofil.
+- Narrativ: press på lagen, tränar-/spelarcitat, inbördes historik, rivalitet, interna problem.
+- Statistik: form, mål/xG, försvarsdata – om den finns i källorna.
 
-Källhantering:
-- Bygg allt på källorna. Hitta INTE på fakta, namn, siffror eller citat. Är något osäkert i källan, skriv det inte.
-- Varje påstående ska ha en hänvisning direkt efter: [[3]] eller [[2,5]]. Max 1–2 källor per påstående, inte långa listor.
-- Markera med **fet** för nyckelnamn/avgörande fakta och *kursiv* för direkta citat och smeknamn.
+SKRIVKRAV
+- Slagkraftig rubrik (headline, REN TEXT utan markörer eller källhänvisningar) och en ingress (lead) som slår an artikelns huvudtes.
+- Välj EN tydlig huvudtes för matchen och bygg artikeln kring de 2–4 VIKTIGASTE faktorerna. Lyft inte alla faktorer mekaniskt – välj ut och prioritera.
+- Förklara VARFÖR varje vald faktor påverkar matchbilden. Analys, inte uppräkning.
+- Var konkret: namn, siffror, exakta lägen. Undvik generiska fraser och floskler ("allt står på spel", "stämningen är på topp", "en match att minnas", retoriska slutfrågor).
+- Hitta INTE på fakta, namn, siffror eller citat. Saknas en uppgift i källorna – hoppa hellre över den än att spekulera.
+- Ren logistik utan betydelse för spelet (TV-kanal, biljetter, öppettider) hör inte hit.
+- Ton: initierad, lite spetsig, journalistisk men inte överdriven. Målgrupp: fotbollsintresserade svenska VM-följare.
+- Längd: cirka 220–280 ord, fördelat på 3–4 stycken (paragraphs).
+
+KÄLLHANTERING
+- Varje påstående som bygger på en källa ska ha en hänvisning direkt efter: [[3]] eller [[2,5]] (max 1–2 källor per påstående).
+- **fet** för nyckelnamn och avgörande fakta, *kursiv* för direkta citat och smeknamn.
 - Använd bara källnummer som finns i listan; du måste inte använda alla.
+
+Svara ENDAST med JSON: {"headline": "...", "lead": "...", "paragraphs": ["...","...","..."]}.
 
 Källor:
 ${list}`;
