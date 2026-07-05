@@ -216,7 +216,8 @@ const RELEVANCE_WORDS = ["lineup","laguppst","startel","injur","skad","avstäng"
 const JUNK_WORDS = ["hur man tittar","hur man ser","hur du tittar","var man kan se","var du kan se",
   "how to watch","tv-kanal","tv channel","livestream","live stream","spelschema","schema och var",
   "när spelar","när är","vad tid","what time","biljett","ticket","köpa","kommun","ayuntamiento",
-  "prefeitura","câmara","instagram","damlag","femenin","women","feminin"];
+  "prefeitura","câmara","instagram","damlag","femenin","women","feminin",
+  "pubar","pubs"," pub ","öppet till","öppettider","opening hours"];
 
 function scoreRef(it, match, now) {
   let s = 0;
@@ -329,7 +330,8 @@ Skriv en KONKRET, faktaspäckad svensk förhandsartikel inför matchen, ENBART u
 
 Format:
 - 3–4 stycken (paragraphs), en rubrik (headline, REN TEXT utan markörer eller källhänvisningar) och en ingress (lead, 1–2 meningar).
-- Rubriken och ingressen ska säga något KONKRET om just den här matchen (ett namn, ett avbräck, en siffra, en taktisk poäng) – inte generellt sälja in matchen.
+- Rubriken och ingressen ska säga något KONKRET och SPORTSLIGT om just den här matchen (nyckelspelare, avbräck, form, taktik, vad som står på spel) – inte generellt sälja in matchen.
+- Logistik (avsparkstid, TV-sändning, biljetter, öppettider, väder) är INTE huvudsaken: nämn det kort på sin höjd en gång, och aldrig som rubrikens eller ingressens fokus.
 - Svara ENDAST med JSON: {"headline": "...", "lead": "...", "paragraphs": ["...","...","..."]}.
 
 Konkret innehåll (det viktigaste):
