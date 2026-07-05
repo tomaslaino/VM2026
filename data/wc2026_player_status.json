@@ -1,13 +1,13 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-05T14:56:46.946Z",
+  "updated": "2026-07-05T16:32:13.537Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mex-roberto-alvarado": {
       "availability": "doubtful",
       "kind": "other",
-      "detail": "Larm i El Tri: Piojo Alvarado är osäker mot England och Aguirre analyserar redan en ersättare",
+      "detail": "Alarm i El Tri: Piojo Alvarado är osäker mot England och Aguirre analyserar redan en ersättare",
       "updated": "2026-07-04",
       "source": {
         "name": "debate.com.mx",
@@ -42,22 +42,11 @@
     "mar-ismael-saibari": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "FOTBOLL (VM 2026): Marocko lätt vinnare av Kanada, förlorar Saibari till skada",
+      "detail": "Marocko-Frankrike: Ismael Saibari, skadad, svår att återhämta sig",
       "updated": "2026-07-05",
       "source": {
-        "name": "Creusot Infos",
-        "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOYl82dUViU2twSUVaMkFLZHRLd3UyLWticlUxNXRFZXVGMUhaeHMwSW1IamhVVTFFRmRqU3ZDQzJJRHl3ZVNQMlZDOEpLQXBCZXdOWkpxYkpCYzRfOTlzWWQydFJxZkh1eXlUVFdPMzY0a0dreGROZWN0OW14anNtOFVQa0VNZTlMTVlad2VRTXlLbWtXTnZEQ0F5SzN5bGRfSjFFd25pbTg1TkctekhaWWRVVEJpUlBhUnlldmdKU2FtTHRUT1E2eXJvMXhOdGMwSWFOeEFzQ0MzcEpwNGxFY2NkSQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "usa-christian-pulisic": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Christian Pulisic skada: Framsteg, potentiellt returdatum för USMNT-stjärnan",
-      "updated": "2026-07-04",
-      "source": {
-        "name": "MSN",
-        "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxOM0l1dURGU3NPaDMwUUw1MmxYNUdiRWxxcDhZWmFnRWdGX0YtMm5iUzdYNlFmcHkwZVg4SkNRU1BrTlBNekRZYzdKMk43TmlERmxpOWZNZ0J0RDNoZG5SMF9uOFNUTmtJQUNSM1FmZjhEM3pSekNTeG5kcHhIbllPMmJKTkl2bVRDOC1HRjM5NDk5TU80eWY1akpTaENaSlBwWWtzdk1qdmI3alRseDltWk84SGJmczNZZ0psV1Q2YnNOSW1zTXRlUDJGQ1V6dk8ydXlOQ1NFcHFybkVFN012djFKdjAtVHd0b2lwekVVTUs2c3daUkdZNmV1SmN6aTFYZEE?oc=5"
+        "name": "lequotidien.com.tn",
+        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOQ0JleDdzNkN4VjRWYS1qckNrWlV0OTJXejdqajM4b0hkUjZNVEVtSzhZaEhxWGFPY0M2cE5QYjF1TzJPbDlsMmd0T0IyZTFBSVdhOE13QnQzZzEzV0ZTZmp6U1ZGZ2lrSVJuekpuR1RBQzBEVjY4V0lXWlMxZTdrYW5TQTdvOG5QWjFpbEdYd3BWSXBJRTJIYkJhS3BGbzRxbWZEdw?oc=5"
       },
       "origin": "news"
     },
@@ -73,10 +62,21 @@
       },
       "origin": "cards"
     },
+    "usa-christian-pulisic": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Låt oss slappna av – USMNT-stjärnan ger uppdatering om Christian Pulisic frånvaro, skada",
+      "updated": "2026-07-03",
+      "source": {
+        "name": "MSN",
+        "url": "https://news.google.com/rss/articles/CBMinANBVV95cUxQVUhkUUpfUWNORXdCS2JaaUkxcE8tRWFyMm1VQy1fVzRtZXoxS3pNekduS2NNUTJvd2pDZVJBZEFGTnhqTGxYd0g0c0tVeVZMVFZKQy1MWDFwajN3cmltRlFQMGE2N0FteHlXVmlvNXNuaTRlQ1dKbWRnajU3UVMtaVRpeWlueDNOZ3NGeXhneTlaTHkzT1o4cW5tbWRORmROdzFJWGhyWUc0SDdwUXhBUks3X0oxNHJIT3otX1VsZVlWallhc2dMYi1PNmJqNnFCTFl3TjFRaDFyTU9obHozbkpmVGlCRzVicmo3bTBBMnJmMTIzalUtV2hEcWd5eF9SRmJTMzMwdFI1VnN0OTduRC04Nm9CUUllQ0NHMXQtV3lORElscW9kLWt2SnJxYTVQejU4Sy1FRXNuLWVhcGIxa3hyRUxSYzU0Qmt2bGV2R01kdW01NmIxNlg1VUVwREdIVVMzSGlfeHZjanZsblMtSzh5VTBiTG5od3lkSGg5LVYwc1kzZXJWU0pEckUxTklIMDZFbHFZdkNjQ1Zj?oc=5"
+      },
+      "origin": "news"
+    },
     "usa-malik-tillman": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Malik Tillman skadad men oskadd efter skrämmande incident i USMNT:s seger mot Bosnien",
+      "detail": "Malik Tillman skadad men oskadd efter skrämmande incident i USMNT:s seger över Bosnien",
       "updated": "2026-07-03",
       "source": {
         "name": "MSN",
@@ -132,11 +132,11 @@
     "col-jhon-cordoba": {
       "availability": "out",
       "kind": "injury",
-      "detail": "Dåliga nyheter för det colombianska landslaget: Jhon Córdoba missar VM 2026 på grund av en allvarlig skada",
+      "detail": "Colombia får de värsta nyheterna: Jhon Córdoba missar VM 2026 på grund av en allvarlig skada",
       "updated": "2026-07-05",
       "source": {
-        "name": "MARCA",
-        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQWXotZW5rWlUyYVlNMGtYb01kMlpYTGJmSjNrRVljNGYtZFlCUTJaMkl5dURsc1cxSm9yRVdXR0ZPczhCYkR6bzZFX281OFpnb1JXWHlmZW4zSGwyRWhteE52SzBwRWlvNkVjTkRFY1pxYW5GWk4zM28waUw3RVNHZWptME1qNkhRRjNNZllxWEVqM2d6ZmF1VmRxWVBBOFBxQUdqM2dZUThIc3BKQlJhWkxTQmpfMXhPUld5bldB0gG-AUFVX3lxTE95VmxyZ1IxQ3pDUmlvakpVc3ZPYUZpVklFa19TRDZFMFd5N3VKY3RXel8yZnZjbDV0bFB5QkNfb0VxV2dDdFZzX0lFb1ZKWUtfMjh5OVp3ejRaTlVLWjJoY0FISVlETVM2Y2E1UjRCQVBadXZLR1laWGdSMlNncmcxT3RpR01wMHl6SE8xdDJ2TC1ucEdUTmxDNEtYWXFPMUEtYzV4UkxwalE4V1dYZzhXZEpvLUZBb2ZFTDF3TkE?oc=5"
+        "name": "MARCA Usa",
+        "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPZUVQS1pFdVYtYlFTbndVMkJEb1l2R2pObHBtVXhYMGk2MUVLVm92Y3NXdWgyYzZYNmdEcldWVkJBeFc4Y0pEeG5EbG5UZThrMUoyZHB4Nkk1WERJVjI5blNVT0J2X3E5bEg2ZEtpWjRHemZURnBDc1RrOUNWdV9zZGV30gGHAUFVX3lxTE1nRnNyWEl4R3FSazV1anltMnp4OE0xbW9wYXFSTkFMTXNJM013YmJNRXJlSk9nU05FZWlWSEZFQzgxdXBzZ0tlLWtENjU0c3RGOHQ5YUR4ZDRuQUk4a2NDYUwySjB2dW5lVlJvenRUYzRMS0dydTBXeldTa0s1QnlCZEM0Y0JSWQ?oc=5"
       },
       "origin": "news"
     },
