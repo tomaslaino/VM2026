@@ -61,6 +61,10 @@ const PER_SOURCE_MATCH = 6;   // träffar per lokal sökning som även nämner m
 const PER_PREVIEW = 6;        // träffar ur den internationella förhandssökningen
 const PER_CONDITIONS = 4;     // träffar ur sökningen om spelavgörande förhållanden
 const FETCH_DELAY_MS = 180;   // paus mellan nätanropen – snällt mot Google
+const BODY_MAX_CHARS = 1500;  // hur mycket artikeltext som skickas med per källa
+const BODY_TIMEOUT = 12000;   // timeout för att lösa ut + hämta en artikel
+const BODY_CONCURRENCY = 4;    // hur många artiklar som hämtas parallellt
+const BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122 Safari/537.36";
 
 /* iso → { en (ESPN-namn), sv } för de 48 lagen. Används för namn i prompten och
    för relevansrankning av rubriker. */
@@ -208,6 +212,97 @@ function normTitle(t) {
   return String(t || "").toLowerCase().replace(/[^a-z0-9åäö]+/g, " ").trim();
 }
 
+/* ---------- Artikelbrödtext ---------- */
+
+async function fetchTextRaw(url, timeout, init) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeout || BODY_TIMEOUT);
+  try {
+    const r = await fetch(url, { signal: ctrl.signal, redirect: "follow",
+      headers: { "User-Agent": BROWSER_UA, ...(init && init.headers) }, ...(init || {}) });
+    if (!r.ok) return null;
+    return await r.text();
+  } catch { return null; } finally { clearTimeout(timer); }
+}
+
+/* Google Nyheter-länkarna är omdirigeringar. Lös ut den riktiga artikel-URL:en
+   via Googles batchexecute (samma flöde som webbläsaren använder). Bäst-möjligt:
+   går det inte returneras null och vi faller tillbaka på rubriken. */
+async function resolveGoogleNewsUrl(gnUrl) {
+  const m = /\/articles\/([^?]+)/.exec(gnUrl || "");
+  if (!m) return gnUrl && /^https?:/.test(gnUrl) ? gnUrl : null;   // redan direkt-URL
+  const token = m[1];
+  const page = await fetchTextRaw("https://news.google.com/rss/articles/" + token, BODY_TIMEOUT);
+  if (!page) return null;
+  const sg = /data-n-a-sg="([^"]+)"/.exec(page);
+  const ts = /data-n-a-ts="([^"]+)"/.exec(page);
+  const id = /data-n-a-id="([^"]+)"/.exec(page);
+  if (!sg || !ts) return null;
+  const inner = JSON.stringify(["garturlreq",
+    [["X", "X", ["X", "X"], null, null, 1, 1, "US:en", null, 1, null, null, null, null, null, 0, 1],
+      "X", "X", 1, [1, 1, 1], 1, 1, null, 0, 0, null, 0],
+    id ? id[1] : token, parseInt(ts[1], 10), sg[1]]);
+  const body = "f.req=" + encodeURIComponent(JSON.stringify([[["Fbv4je", inner]]]));
+  const resp = await fetchTextRaw("https://news.google.com/_/DotsSplashUi/data/batchexecute", BODY_TIMEOUT,
+    { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" }, body });
+  if (!resp) return null;
+  const um = /(https?:\/\/[^\s\\"]+)/.exec(resp.replace(/\\u003d/g, "=").replace(/\\u0026/g, "&").replace(/\\\//g, "/"));
+  return um ? um[1] : null;
+}
+
+function cleanParagraph(s) {
+  return s.replace(/<[^>]+>/g, "").replace(/&nbsp;/gi, " ").replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, '"').replace(/&#(\d+);/g, (x, n) => String.fromCodePoint(parseInt(n, 10)))
+    .replace(/&[a-z]+;/gi, " ").replace(/\s+/g, " ").trim();
+}
+
+/* Ser stycket ut som riktig brödtext (mening) och inte som en meny/navrad? */
+function looksLikeProse(p) {
+  if (p.length < 60) return false;
+  const words = p.split(/\s+/).filter(Boolean);
+  if (words.length < 10) return false;
+  if (!/[.!?…]/.test(p)) return false;                       // menyer är sällan meningar
+  const letters = (p.match(/[a-zåäöáéíóúñç]/gi) || []).length;
+  const upper = (p.match(/[A-ZÅÄÖÁÉÍÓÚÑÇ]/g) || []).length;
+  if (letters && upper / letters > 0.3) return false;        // CamelCase-navrader
+  if (words.filter((w) => w.length > 25).length / words.length > 0.1) return false; // hopklistrade navord
+  return true;
+}
+
+/* Plocka läsbar brödtext ur artikel-HTML: rensa bort skript/nav/sidhuvud,
+   föredra innehållet i <article> och behåll bara stycken som ser ut som prosa.
+   Ger för lite ren text tillbaka → tom sträng (då används rubriken i stället). */
+function extractArticleText(html, maxChars) {
+  if (!html) return "";
+  html = html.replace(/<script[\s\S]*?<\/script>/gi, "").replace(/<style[\s\S]*?<\/style>/gi, "")
+    .replace(/<nav[\s\S]*?<\/nav>/gi, "").replace(/<header[\s\S]*?<\/header>/gi, "")
+    .replace(/<footer[\s\S]*?<\/footer>/gi, "").replace(/<aside[\s\S]*?<\/aside>/gi, "");
+  const arts = [...html.matchAll(/<article[^>]*>([\s\S]*?)<\/article>/gi)].map((m) => m[1]);
+  const scope = arts.length ? arts.sort((a, b) => b.length - a.length)[0] : html;
+  const ps = [...scope.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].map((m) => cleanParagraph(m[1])).filter(looksLikeProse);
+  const text = ps.join(" ").replace(/\s+/g, " ").trim();
+  if (text.length < 200) return "";
+  return text.length > maxChars ? text.slice(0, maxChars) + " …" : text;
+}
+
+async function attachBody(ref) {
+  try {
+    const real = await resolveGoogleNewsUrl(ref.url);
+    if (!real) return;
+    ref.realUrl = real;
+    const text = extractArticleText(await fetchTextRaw(real, BODY_TIMEOUT), BODY_MAX_CHARS);
+    if (text && text.length >= 120) ref.body = text;
+  } catch { /* tyst – rubriken används i stället */ }
+}
+
+/* Hämta brödtext för alla referenser med begränsad parallellism. */
+async function attachBodies(refs) {
+  let i = 0, ok = 0;
+  const worker = async () => { while (i < refs.length) { const j = i++; await attachBody(refs[j]); if (refs[j].body) ok++; } };
+  await Promise.all(Array.from({ length: Math.min(BODY_CONCURRENCY, refs.length) }, worker));
+  return ok;
+}
+
 /* Poäng för en referens: färskhet (0–3) + relevans (lagnamn/nyckelord). */
 const RELEVANCE_WORDS = ["lineup","laguppst","startel","injur","skad","avstäng","suspend",
   "doubt","osäker","preview","inför","predict","odds","form","comeback","återvänd","tillbaka",
@@ -344,8 +439,11 @@ function nextStageLabel(no) {
 }
 
 function buildPrompt(match, refs) {
-  const list = refs.map((r, i) =>
-    `[${i + 1}]${r.avail ? " [AVBRÄCK]" : ""}${r.conditions ? " [FÖRHÅLLANDEN]" : ""} (${r.source || "okänd källa"}) ${r.title}`).join("\n");
+  const list = refs.map((r, i) => {
+    let s = `[${i + 1}]${r.avail ? " [AVBRÄCK]" : ""}${r.conditions ? " [FÖRHÅLLANDEN]" : ""} (${r.source || "okänd källa"}) ${r.title}`;
+    if (r.body) s += `\n    Utdrag: ${r.body}`;
+    return s;
+  }).join("\n\n");
   const next = nextStageLabel(match.no);
   const stakes = next
     ? `Utslagsspel: vinnaren går vidare till ${next}, förloraren är utslagen. Oavgjort efter full tid avgörs i förlängning och eventuellt straffar.`
@@ -360,7 +458,7 @@ MATCH
 - Betydelse: ${stakes}
 
 UNDERLAG
-Allt du skriver ska bygga på de numrerade källorna nedan (rubriker ur ländernas egna och internationella medier). [AVBRÄCK] = bekräftad skada/avstängning/osäker spelare. [FÖRHÅLLANDEN] = spelavgörande omständigheter (höjd, värme, plan m.m.).
+Allt du skriver ska bygga på de numrerade källorna nedan (ur ländernas egna och internationella medier). Under de flesta källor finns ett "Utdrag" ur själva artikeltexten – det kan vara på originalspråk (spanska, arabiska, portugisiska ...); läs det och återge på svenska. Hämta konkreta detaljer, citat och siffror ur utdragen, inte bara ur rubrikerna. [AVBRÄCK] = bekräftad skada/avstängning/osäker spelare. [FÖRHÅLLANDEN] = spelavgörande omständigheter (höjd, värme, plan m.m.).
 
 Leta i källorna efter de faktorer som faktiskt betyder något för just den här matchen – exempel på dimensioner:
 - Spel & status: trolig laguppställning/formation, skador, avstängningar, form, vila/slitage, förlängning i förra matchen.
@@ -504,6 +602,11 @@ async function main() {
     if (!force && !tierElapsed && !changed) {
       console.log(`${match.key}: oförändrat & ej dags (${match.hoursToKo.toFixed(0)} h kvar).`); continue;
     }
+
+    // Hämta artikelbrödtext (bäst-möjligt) så modellen får riktigt underlag,
+    // inte bara rubriker. Görs först här, efter att matchen passerat trappan.
+    const bodies = await attachBodies(refs);
+    console.log(`${match.key}: ${bodies}/${refs.length} källor med brödtext.`);
 
     const prompt = buildPrompt(match, refs);
     if (dryRun) {
