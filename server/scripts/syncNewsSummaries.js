@@ -54,14 +54,15 @@ const FALLBACK_MODEL = process.env.GEMINI_FALLBACK_MODEL || "gemini-2.0-flash";
 const API_KEY = process.env.GEMINI_API_KEY || "";
 
 const GEN_WINDOW_H = 144;     // hur långt före avspark en match börjar få artikel (6 dygn)
-const MAX_REFS = 16;          // tak på antal referenser per artikel
+const MAX_REFS = 18;          // tak på antal referenser per artikel
+const LOCAL_PER_TEAM = 6;     // minst så många hemmakällor per lag garanteras i urvalet
 const REF_MAX_AGE_DAYS = 12;  // äldre artiklar tas inte med som referens
-const PER_SOURCE_LOCAL = 8;   // träffar per allmän lokal lagsökning (landets media)
-const PER_SOURCE_MATCH = 6;   // träffar per lokal sökning som även nämner motståndaren
+const PER_SOURCE_LOCAL = 9;   // träffar per allmän lokal lagsökning (landets media)
+const PER_SOURCE_MATCH = 7;   // träffar per lokal sökning som även nämner motståndaren
 const PER_PREVIEW = 6;        // träffar ur den internationella förhandssökningen
 const PER_CONDITIONS = 4;     // träffar ur sökningen om spelavgörande förhållanden
 const FETCH_DELAY_MS = 180;   // paus mellan nätanropen – snällt mot Google
-const BODY_MAX_CHARS = 1500;  // hur mycket artikeltext som skickas med per källa
+const BODY_MAX_CHARS = 2000;  // hur mycket artikeltext som skickas med per källa
 const BODY_TIMEOUT = 12000;   // timeout för att lösa ut + hämta en artikel
 const BODY_CONCURRENCY = 4;    // hur många artiklar som hämtas parallellt
 const BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122 Safari/537.36";
@@ -185,7 +186,7 @@ function availItemsForMatch(match, avail) {
         title, title_sv: title, lang: "sv",   // redan svenska – ska ej översättas
         url: st.source.url,
         published: st.updated ? st.updated + "T12:00:00Z" : null,
-        avail: true
+        avail: true, team: iso
       });
     }
   }
@@ -338,6 +339,23 @@ function scoreRef(it, match, now) {
   return s;
 }
 
+/* Balanserat urval av de MAX_REFS bästa: garantera att BÅDA lagens hemmamedier
+   är representerade (minst LOCAL_PER_TEAM per lag) i stället för att låta det
+   mest produktiva/engelskspråkiga landet ta alla platser. Ordning: avbräck,
+   förhållanden, hemmakällor per lag, därefter bäst rankade. `scored` ska vara
+   sorterad fallande på poäng. */
+function selectBalanced(scored, match) {
+  const pick = [], used = new Set();
+  const take = (it) => { if (it && !used.has(it.url) && pick.length < MAX_REFS) { used.add(it.url); pick.push(it); } };
+  scored.filter((x) => x.avail).forEach(take);                       // alla avbräck
+  scored.filter((x) => x.conditions).slice(0, 2).forEach(take);     // topp 2 förhållanden
+  for (const iso of [match.homeIso, match.awayIso]) {               // minst N hemmakällor per lag
+    scored.filter((x) => x.local && x.team === iso).slice(0, LOCAL_PER_TEAM).forEach(take);
+  }
+  for (const it of scored) take(it);                                // fyll upp med bäst rankade
+  return pick;
+}
+
 /* Bygg referenslistan för en match: färska lokala + internationella träffar,
    dedupade, rankade, översatta. prevSv = url→svensk rubrik (återanvänds). */
 async function buildReferences(match, teamNews, prevSv, availItems) {
@@ -356,16 +374,16 @@ async function buildReferences(match, teamNews, prevSv, availItems) {
     if (cfg) {
       const lang = cfg.hl.split("-")[0];
       // 1) Allmän lagnyhet ur landets media (inför en match domineras flödet av matchbevakning).
-      push(tag(await fetchSearch(cfg, lang, PER_SOURCE_LOCAL), { local: true }));
+      push(tag(await fetchSearch(cfg, lang, PER_SOURCE_LOCAL), { local: true, team: iso }));
       await sleep(FETCH_DELAY_MS);
       // 2) Lokal bevakning som specifikt nämner motståndaren – mer matchkonkret.
       const matchCfg = { q: `${cfg.q} (${opp.en} OR ${opp.sv})`, hl: cfg.hl, gl: cfg.gl, ceid: cfg.ceid };
-      push(tag(await fetchSearch(matchCfg, lang, PER_SOURCE_MATCH), { local: true }));
+      push(tag(await fetchSearch(matchCfg, lang, PER_SOURCE_MATCH), { local: true, team: iso }));
       await sleep(FETCH_DELAY_MS);
     }
     // Redan översatta lokala nyheter ur team_news.json som extra underlag (även de lokala).
     const tn = teamNews && teamNews[iso];
-    if (tn && Array.isArray(tn.items)) push(tag(tn.items, { local: true }));
+    if (tn && Array.isArray(tn.items)) push(tag(tn.items, { local: true, team: iso }));
   }
   // Internationell förhandssökning på matchen (H2H/odds som komplement).
   const previewQ = `"${match.home.en}" "${match.away.en}" (World Cup OR Mundial OR "VM")`;
@@ -404,13 +422,14 @@ async function buildReferences(match, teamNews, prevSv, availItems) {
   }
 
   refs.sort((a, b) => scoreRef(b, match, now) - scoreRef(a, match, now));
-  return refs.slice(0, MAX_REFS).map((it) => ({
+  return selectBalanced(refs, match).map((it) => ({
     source: it.source || null,
     title: it.title_sv || it.title,
     url: it.url,
     published: it.published || null,
     avail: !!it.avail,
-    conditions: !!it.conditions
+    conditions: !!it.conditions,
+    local: !!it.local
   }));
 }
 
@@ -474,8 +493,9 @@ SKRIVKRAV
 - Var konkret: namn, siffror, exakta lägen. Undvik generiska fraser och floskler ("allt står på spel", "stämningen är på topp", "en match att minnas", retoriska slutfrågor).
 - Hitta INTE på fakta, namn, siffror eller citat. Saknas en uppgift i källorna – hoppa hellre över den än att spekulera.
 - Ren logistik utan betydelse för spelet (TV-kanal, biljetter, öppettider) hör inte hit.
+- Bygg i första hand på LÄNDERNAS EGNA MEDIER och ge båda lagens hemmaperspektiv – vad skrivs i respektive lands press om det egna laget (laguppställning, skadeläge, tränar-/spelarcitat, stämning). Använd internationella källor som komplement.
 - Ton: initierad, lite spetsig, journalistisk men inte överdriven. Målgrupp: fotbollsintresserade svenska VM-följare.
-- Längd: cirka 220–280 ord, fördelat på 3–4 stycken (paragraphs).
+- Längd: cirka 400–480 ord, fördelat på 4–6 stycken (paragraphs). VIKTIGT: mer text ska betyda MER konkret och relevant information (fler faktorer, mer djup) – aldrig utfyllnad, upprepning eller floskler för att nå längden.
 
 KÄLLHANTERING
 - Varje påstående som bygger på en källa ska ha en hänvisning direkt efter: [[3]] eller [[2,5]] (max 1–2 källor per påstående).
