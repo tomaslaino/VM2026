@@ -1,16 +1,16 @@
 {
   "meta": {
-    "updatedAt": "2026-07-05T17:43:24.151Z",
+    "updatedAt": "2026-07-05T18:44:49.254Z",
     "source": "365scores",
     "matchCount": 5
   },
   "lineups": {
     "k:91": {
-      "status": "probable",
+      "status": "confirmed",
       "gameId": 4750503,
       "kickoff": "2026-07-05T20:00Z",
       "h": {
-        "formation": "4-2-3-1",
+        "formation": "4-4-2",
         "starters": [
           {
             "name": "Alisson",
@@ -38,34 +38,34 @@
             "pos": "RB"
           },
           {
+            "name": "Gabriel Martinelli",
+            "jersey": "22",
+            "pos": "LM"
+          },
+          {
             "name": "Casemiro",
             "jersey": "5",
-            "pos": "DM"
+            "pos": "CM"
           },
           {
             "name": "Bruno Guimarães",
             "jersey": "8",
-            "pos": "DM"
-          },
-          {
-            "name": "Vinicius Júnior",
-            "jersey": "7",
-            "pos": "AM-L"
-          },
-          {
-            "name": "Gabriel Martinelli",
-            "jersey": "22",
-            "pos": "AM"
+            "pos": "CM"
           },
           {
             "name": "Rayan",
             "jersey": "26",
-            "pos": "AM-R"
+            "pos": "RM"
+          },
+          {
+            "name": "Vinicius Júnior",
+            "jersey": "7",
+            "pos": "LF"
           },
           {
             "name": "Matheus Cunha",
             "jersey": "9",
-            "pos": "ST"
+            "pos": "RF"
           }
         ],
         "bench": [
@@ -78,16 +78,16 @@
             "jersey": "23"
           },
           {
-            "name": "Bremer",
-            "jersey": "14"
+            "name": "Roger Ibanez",
+            "jersey": "24"
           },
           {
             "name": "Leo Pereira",
             "jersey": "15"
           },
           {
-            "name": "Roger Ibanez",
-            "jersey": "24"
+            "name": "Bremer",
+            "jersey": "14"
           },
           {
             "name": "Alex Sandro",
@@ -151,18 +151,18 @@
             "pos": "CB"
           },
           {
-            "name": "Marcus Pedersen",
-            "jersey": "16",
+            "name": "Julian Ryerson",
+            "jersey": "26",
             "pos": "RB"
-          },
-          {
-            "name": "Sander Berge",
-            "jersey": "8",
-            "pos": "LM"
           },
           {
             "name": "Patrick Berg",
             "jersey": "6",
+            "pos": "LM"
+          },
+          {
+            "name": "Sander Berge",
+            "jersey": "8",
             "pos": "CM"
           },
           {
@@ -188,36 +188,40 @@
         ],
         "bench": [
           {
-            "name": "Sander Tangvik",
-            "jersey": "12"
-          },
-          {
             "name": "Egil Selvik",
             "jersey": "13"
           },
           {
-            "name": "Leo Oestigaard",
-            "jersey": "4"
+            "name": "Sander Tangvik",
+            "jersey": "12"
           },
           {
             "name": "Sondre Langås",
             "jersey": "24"
           },
           {
+            "name": "Leo Oestigaard",
+            "jersey": "4"
+          },
+          {
             "name": "Henrik Falchener",
             "jersey": "25"
+          },
+          {
+            "name": "Marcus Pedersen",
+            "jersey": "16"
           },
           {
             "name": "Fredrik Bjørkan",
             "jersey": "15"
           },
           {
-            "name": "Morten Thorsby",
-            "jersey": "2"
-          },
-          {
             "name": "Fredrik Aursnes",
             "jersey": "14"
+          },
+          {
+            "name": "Morten Thorsby",
+            "jersey": "2"
           },
           {
             "name": "Kristian Thorstvedt",
@@ -232,12 +236,12 @@
             "jersey": "22"
           },
           {
-            "name": "Andreas Schjelderup",
-            "jersey": "21"
-          },
-          {
             "name": "Jens Hauge",
             "jersey": "23"
+          },
+          {
+            "name": "Andreas Schjelderup",
+            "jersey": "21"
           },
           {
             "name": "Jørgen Strand Larsen",
@@ -245,7 +249,7 @@
           }
         ]
       },
-      "updatedAt": "2026-07-05T14:05:52.459Z"
+      "updatedAt": "2026-07-05T18:44:45.975Z"
     },
     "k:92": {
       "status": "probable",
