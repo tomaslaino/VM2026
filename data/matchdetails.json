@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-05T20:03:29.941Z",
+    "updatedAt": "2026-07-05T21:16:42.509Z",
     "source": "espn"
   },
   "details": {
@@ -52075,7 +52075,7 @@
       "espnId": "760504",
       "fmt": 2,
       "status": "IN_PLAY",
-      "minute": 3,
+      "minute": 54,
       "utcDate": "2026-07-05T20:00Z",
       "duration": "REGULAR",
       "winner": null,
@@ -52084,14 +52084,30 @@
           "h": 0,
           "a": 0
         },
-        "ht": null,
+        "ht": {
+          "h": 0,
+          "a": 0
+        },
         "rt": null,
         "et": null,
         "pen": null
       },
       "goals": [],
       "bookings": [],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Oscar Bobb",
+          "out": "Alexander Sørloth"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Andreas Schjelderup",
+          "out": "Antonio Nusa"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -52100,12 +52116,19 @@
             {
               "name": "Alisson Becker",
               "jersey": "1",
-              "pos": "G"
+              "pos": "G",
+              "st": {
+                "sv": 2
+              }
             },
             {
               "name": "Danilo",
               "jersey": "13",
-              "pos": "RB"
+              "pos": "RB",
+              "st": {
+                "fc": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Douglas Santos",
@@ -52115,7 +52138,11 @@
             {
               "name": "Bruno Guimarães",
               "jersey": "8",
-              "pos": "CM-R"
+              "pos": "CM-R",
+              "st": {
+                "sg": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Marquinhos",
@@ -52130,27 +52157,48 @@
             {
               "name": "Rayan",
               "jersey": "26",
-              "pos": "RM"
+              "pos": "RM",
+              "st": {
+                "fc": 2,
+                "sh": 1
+              }
             },
             {
               "name": "Casemiro",
               "jersey": "5",
-              "pos": "CM-L"
+              "pos": "CM-L",
+              "st": {
+                "fc": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Vinícius Júnior",
               "jersey": "7",
-              "pos": "CF-L"
+              "pos": "CF-L",
+              "st": {
+                "fs": 1,
+                "sg": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Matheus Cunha",
               "jersey": "9",
-              "pos": "CF-R"
+              "pos": "CF-R",
+              "st": {
+                "fs": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Gabriel Martinelli",
               "jersey": "22",
-              "pos": "LM"
+              "pos": "LM",
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
             }
           ],
           "bench": [
@@ -52218,27 +52266,42 @@
             {
               "name": "Ørjan Nyland",
               "jersey": "1",
-              "pos": "G"
+              "pos": "G",
+              "st": {
+                "sv": 2
+              }
             },
             {
               "name": "Julian Ryerson",
               "jersey": "26",
-              "pos": "RB"
+              "pos": "RB",
+              "st": {
+                "fc": 2
+              }
             },
             {
               "name": "David Møller Wolfe",
               "jersey": "5",
-              "pos": "LB"
+              "pos": "LB",
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Sander Berge",
               "jersey": "8",
-              "pos": "CM"
+              "pos": "CM",
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Kristoffer Ajer",
               "jersey": "3",
-              "pos": "CD-R"
+              "pos": "CD-R",
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "Torbjørn Heggem",
@@ -52248,17 +52311,28 @@
             {
               "name": "Martin Ødegaard",
               "jersey": "10",
-              "pos": "RM"
+              "pos": "RM",
+              "st": {
+                "sg": 1,
+                "sh": 3
+              }
             },
             {
               "name": "Patrick Berg",
               "jersey": "6",
-              "pos": "LM"
+              "pos": "LM",
+              "st": {
+                "sh": 1
+              }
             },
             {
               "name": "Erling Haaland",
               "jersey": "9",
-              "pos": "F"
+              "pos": "F",
+              "st": {
+                "sg": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Alexander Sørloth",
@@ -52268,13 +52342,20 @@
             {
               "name": "Antonio Nusa",
               "jersey": "20",
-              "pos": "LF"
+              "pos": "LF",
+              "st": {
+                "fs": 1
+              }
             }
           ],
           "bench": [
             {
               "name": "Oscar Bobb",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true,
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Jørgen Strand Larsen",
@@ -52298,7 +52379,8 @@
             },
             {
               "name": "Andreas Schjelderup",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true
             },
             {
               "name": "Thelo Aasgaard",
@@ -52337,43 +52419,48 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "0%",
-          "a": "0%"
+          "h": "34%",
+          "a": "66%"
         },
         {
           "key": "totalShots",
-          "h": "0",
-          "a": "0"
+          "h": "8",
+          "a": "5"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "2"
         },
         {
           "key": "wonCorners",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "3"
         },
         {
           "key": "foulsCommitted",
-          "h": "0",
-          "a": "0"
+          "h": "5",
+          "a": "3"
         },
         {
           "key": "offsides",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "saves",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "2"
         },
         {
           "key": "totalPasses",
-          "h": "0",
-          "a": "0"
+          "h": "206",
+          "a": "411"
+        },
+        {
+          "key": "passPct",
+          "h": "85%",
+          "a": "91%"
         },
         {
           "key": "yellowCards",
@@ -52386,7 +52473,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-05T20:03:29.941Z"
+      "updatedAt": "2026-07-05T21:16:42.509Z"
     }
   }
 }
