@@ -57,6 +57,7 @@ const REF_MAX_AGE_DAYS = 12;  // äldre artiklar tas inte med som referens
 const PER_SOURCE_LOCAL = 8;   // träffar per allmän lokal lagsökning (landets media)
 const PER_SOURCE_MATCH = 6;   // träffar per lokal sökning som även nämner motståndaren
 const PER_PREVIEW = 6;        // träffar ur den internationella förhandssökningen
+const PER_CONDITIONS = 4;     // träffar ur sökningen om spelavgörande förhållanden
 const FETCH_DELAY_MS = 180;   // paus mellan nätanropen – snällt mot Google
 
 /* iso → { en (ESPN-namn), sv } för de 48 lagen. Används för namn i prompten och
@@ -208,7 +209,10 @@ function normTitle(t) {
 /* Poäng för en referens: färskhet (0–3) + relevans (lagnamn/nyckelord). */
 const RELEVANCE_WORDS = ["lineup","laguppst","startel","injur","skad","avstäng","suspend",
   "doubt","osäker","preview","inför","predict","odds","form","comeback","återvänd","tillbaka",
-  "avspark","kickoff","rött kort","red card","ban ","tactic","taktik","h2h","head-to-head"];
+  "avspark","kickoff","rött kort","red card","ban ","tactic","taktik","h2h","head-to-head",
+  // spelavgörande förhållanden räknas som relevant, inte fluff
+  "altitude","höjden","höjd över","meters höjd","värme","heat","väder","weather","hemmafördel",
+  "home advantage","home-field","pitch","planen"];
 
 /* Innehållslösa listningar (sändningstider, biljetter, kommunala storbilds-
    visningar, damlandslag m.m.) – lokala men utan konkret matchinfo. Straffas
@@ -222,6 +226,7 @@ const JUNK_WORDS = ["hur man tittar","hur man ser","hur du tittar","var man kan 
 function scoreRef(it, match, now) {
   let s = 0;
   if (it.avail) s += 5;                    // avbräck lyfts alltid högt
+  if (it.conditions) s += 4;               // spelavgörande förhållanden (höjd/värme/plan) säkras in
   if (it.local) s += 3;                    // ländernas egna medier prioriteras
   const ageH = it.published ? (now - Date.parse(it.published)) / 3600000 : 240;
   if (ageH < 24) s += 3; else if (ageH < 72) s += 2; else if (ageH < 168) s += 1;
@@ -269,6 +274,11 @@ async function buildReferences(match, teamNews, prevSv, availItems) {
   const previewQ = `"${match.home.en}" "${match.away.en}" (World Cup OR Mundial OR "VM")`;
   push(await fetchSearch({ q: previewQ, hl: "en-US", gl: "US", ceid: "US:en" }, "en", PER_PREVIEW));
   await sleep(FETCH_DELAY_MS);
+  // Spelavgörande förhållanden (höjd, värme, plan) – säkerställer att sådana
+  // källor finns i poolen så artikeln kan väva in dem konkret om de spelar roll.
+  const condQ = `"${match.home.en}" "${match.away.en}" (altitude OR "high altitude" OR heat OR weather OR humidity OR pitch OR conditions)`;
+  push(tag(await fetchSearch({ q: condQ, hl: "en-US", gl: "US", ceid: "US:en" }, "en", PER_CONDITIONS), { conditions: true }));
+  await sleep(FETCH_DELAY_MS);
 
   // Dedupa på url och på normaliserad rubrik (samma story via flera källor).
   const now = Date.now();
@@ -302,7 +312,8 @@ async function buildReferences(match, teamNews, prevSv, availItems) {
     title: it.title_sv || it.title,
     url: it.url,
     published: it.published || null,
-    avail: !!it.avail
+    avail: !!it.avail,
+    conditions: !!it.conditions
   }));
 }
 
@@ -323,7 +334,7 @@ function koLabelSv(koMs) {
 
 function buildPrompt(match, refs) {
   const list = refs.map((r, i) =>
-    `[${i + 1}]${r.avail ? " [AVBRÄCK]" : ""} (${r.source || "okänd källa"}) ${r.title}`).join("\n");
+    `[${i + 1}]${r.avail ? " [AVBRÄCK]" : ""}${r.conditions ? " [FÖRHÅLLANDEN]" : ""} (${r.source || "okänd källa"}) ${r.title}`).join("\n");
   return `Match: ${match.home.sv} – ${match.away.sv} (${match.round} i fotbolls-VM 2026, ${koLabelSv(match.koMs)}).
 
 Skriv en KONKRET, faktaspäckad svensk förhandsartikel inför matchen, ENBART utifrån de numrerade källorna nedan.
@@ -339,6 +350,7 @@ Konkret innehåll (det viktigaste):
 - UNDVIK bara floskler och tomma laddningsfraser (det är detta som är "fluff"). Skriv ALDRIG innehållslösa fraser som "en match att minnas", "allt står på spel", "stämningen är på topp", "monumental utmaning", "dramatik utlovas", "skyhöga insatser", "en riktig rysare", eller avsluta med en retorisk fråga. Skillnaden: en konkret uppgift om höjd/värme/publik är BRA; en svepande känslomening utan fakta är fluff. Tillför en mening ingen konkret uppgift – stryk den.
 - Ren logistik utan betydelse för spelet (TV-kanal, var man kan se, biljettpriser, öppettider) är inte relevant – hoppa över det.
 - Prioritera vad LÄNDERNAS EGNA MEDIER rapporterar (laguppställningar, skadeläge, tränar- och spelarcitat, lokala vinklar). Källor märkta [AVBRÄCK] är bekräftade skador/avstängningar/osäkra – väv in de relevanta för respektive lag.
+- Källor märkta [FÖRHÅLLANDEN] handlar om spelavgörande omständigheter (höjd, värme, plan, hemmaplan). Nämner de något som faktiskt påverkar just den här matchen ska du väva in det konkret (med hänvisning).
 
 Källhantering:
 - Bygg allt på källorna. Hitta INTE på fakta, namn, siffror eller citat. Är något osäkert i källan, skriv det inte.
