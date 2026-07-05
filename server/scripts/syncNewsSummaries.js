@@ -304,7 +304,8 @@ function buildPrompt(match, refs) {
 Skriv en kort, välskriven svensk förhandsartikel inför matchen, ENBART utifrån de numrerade källorna nedan.
 
 Krav:
-- 3 stycken (paragraphs), plus en rubrik (headline) och en ingress (lead, 1–2 meningar som lockar in läsaren).
+- 3 stycken (paragraphs), plus en rubrik (headline, REN TEXT utan markörer eller källhänvisningar) och en ingress (lead, 1–2 meningar som lockar in läsaren).
+- Klustra inte källor: som mest 1–2 hänvisningar efter ett påstående, inte långa listor som [[8,9,10]].
 - Korrekt, ledig och engagerande svenska. Journalistisk ton, som en riktig förhandsartikel.
 - ENDAST matchrelevant: laguppställningar, skador/avstängningar/osäkra, form, taktik, nyckelspelare, inbördes historik, odds/favoritskap och stämningen inför just den här matchen. Uteslut allt som inte rör matchen.
 - Bygg allt på källorna. Hitta INTE på fakta, namn eller citat. Varje påstående som bygger på en källa ska ha en hänvisning direkt efter påståendet med källans nummer inom dubbla hakparenteser: [[3]] eller [[2,5]] för flera. Överdriv inte – en hänvisning per påstående räcker.
@@ -370,7 +371,10 @@ function renumberCitations(art, refs) {
   const references = order.map((old) => refs[old - 1]).map((r) => ({
     source: r.source, title: r.title, url: r.url
   }));
-  return { headline: String(art.headline || "").trim(), lead, paragraphs, references };
+  // Rubriken renderas som ren text – rensa ev. markörer/citat modellen råkat lägga in.
+  const headline = String(art.headline || "")
+    .replace(/\[\[[^\]]*\]\]/g, "").replace(/\*+/g, "").replace(/\s+/g, " ").trim();
+  return { headline, lead, paragraphs, references };
 }
 
 /* ---------- Huvudflöde ---------- */
