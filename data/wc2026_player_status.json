@@ -1,13 +1,13 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-05T12:46:05.684Z",
+  "updated": "2026-07-05T14:56:46.946Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mex-roberto-alvarado": {
       "availability": "doubtful",
       "kind": "other",
-      "detail": "Alarm i El Tri: Piojo Alvarado är osäker mot England och Aguirre analyserar redan en ersättare",
+      "detail": "Larm i El Tri: Piojo Alvarado är osäker mot England och Aguirre analyserar redan en ersättare",
       "updated": "2026-07-04",
       "source": {
         "name": "debate.com.mx",
@@ -76,7 +76,7 @@
     "usa-malik-tillman": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Malik Tillman skadad men oskadd efter skrämmande incident i USMNT:s seger över Bosnien",
+      "detail": "Malik Tillman skadad men oskadd efter skrämmande incident i USMNT:s seger mot Bosnien",
       "updated": "2026-07-03",
       "source": {
         "name": "MSN",
@@ -84,14 +84,26 @@
       },
       "origin": "news"
     },
-    "esp-lamine-yamal": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Lamine Yamal avslöjar hur hon mår efter sin skada: \"Fortsätt ta hand om mig själv\"",
-      "updated": "2026-07-02",
+    "egy-yasser-ibrahim": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Andra gula kortet i turneringen (mot Iran och Australien)",
+      "updated": "2026-07-03",
       "source": {
-        "name": "El Desmarque",
-        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxORk9LRXZqdXZFb2szU05DdDVHN3NucnhBM3l4RmZ5MWx0S3pPenRuMXhqNFdYczVKaW9qUEptamM3ZFVITWpzR0UxVnVPTXNsSGJoSTZtSG1KR0RuTTRxdHN1UFdxa29iRXcwUEpNWlFrMUdmTE5rc3ZNMkVHVUl5NmNqenFiOENUQVFNeXhRQ0NWaXk5N3pkSXVBLVFNV1UyQnMteEpyLW9BOXlaVG9OTUFWN01jYnliN1dj?oc=5"
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760499"
+      },
+      "origin": "cards"
+    },
+    "fra-michael-olise": {
+      "availability": "doubtful",
+      "kind": "suspension",
+      "detail": "Frankrike-Paraguay: kan det mycket svåra gula kortet mot Michael Olise annulleras?",
+      "updated": "2026-07-05",
+      "source": {
+        "name": "Le Parisien",
+        "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxQM0FJS1dudzUtWmdoWUphZnhONHdHWHZFZ2hQd2xoakNFQzl3TkllQjNYMXJhLUNVRlp1UzMzVTZNdkpqLXc2LVpxX2lfMzY4T05kR3FEZHdwZFJHSlprLXdid2ozUXFlanBoNWoydGNGS2V6Z0wwQ1B6MHdxQU54Z05Xc25mRzFwZmtvYzZhSEdGelBZWG9jS1ZFUTB6TG9KWXJ4MWJrbXloUE9pYUozN2VmQ0FtSk0yaG1aR0NtVXVyWWVaVG8yQ0ZOeFZxUmNsRnlPZnBiSTgwS21veW5jRzcyLS02bUM3aVB1NnVyWHpUbjI0N0N1TTVOaE9IMS1SaGVOVnZzcmtQQnh2Tkxwcw?oc=5"
       },
       "origin": "news"
     },
@@ -120,11 +132,11 @@
     "col-jhon-cordoba": {
       "availability": "out",
       "kind": "injury",
-      "detail": "Det man fruktade bekräftades: Jhon Córdoba missar resten av VM med Colombia efter skadan han ådrog sig mot Ghana",
-      "updated": "2026-07-04",
+      "detail": "Dåliga nyheter för det colombianska landslaget: Jhon Córdoba missar VM 2026 på grund av en allvarlig skada",
+      "updated": "2026-07-05",
       "source": {
-        "name": "NTN24",
-        "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxOUUtpbVdvRUNSQzNjSVpUd000YzNaMlNMTGpsbFJXSGUxQ1RZcG9QeVdIY2Z5ZkFOM3pxMEE1VlVXa2d1QnVhQm9ueWlkOENNZGFiR3NBSTJmMEJINnJlRGJwQ1pXOGp1RFdsWTlBNkNndVEyYWR1cUdhNHlGZ0JuX3gtWEpQajdnQTlIT29HeFpZOXpJYkprM2dwYnN1VWtlX3hHVm1iUHN0Q3Z6eHAxUkZjU3hqWXR2S3FIVGpTYS04eW9GUkxvR0lnYWt3b1BRcV9GWi1BSF9qUU1FVGU4Sl9RZ0h5UzJ0OWtfdGk5Skd0bHZZck1mZVljcWVxVWlFTWfSAYICQVVfeXFMUDI4Y19DZUZGVTA3ZTJJS2w1Y0NFNC0tZm82ZU1nWlhhWm1QN0xoal96VG01UXV4Qk0tZWN4R0l2Wm9ZQTZfV1hzbEFPcnp3STBJa19KejQ4RVhHVEZ6ZW1uUmFGekZ5TjhEemNPQjJRUGo2bmhtamJUMnRkOEJCbjJzaEFWMWJiU21VWTBJUktaLWhDekN4U1I4WG1wMWhWQ29mQ3VQbm5zNVhhOU4yRldkT0paVkdVQ1JPN1FtRk01VXVIMVNDZkQ4Sjhmb0ZubzRFNm1EZng2Y0RKLVh3dG51SWczclBfa09CeThsUmtPWnNmSHFuMWhWWDU0UTF1b2h3?oc=5"
+        "name": "MARCA",
+        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQWXotZW5rWlUyYVlNMGtYb01kMlpYTGJmSjNrRVljNGYtZFlCUTJaMkl5dURsc1cxSm9yRVdXR0ZPczhCYkR6bzZFX281OFpnb1JXWHlmZW4zSGwyRWhteE52SzBwRWlvNkVjTkRFY1pxYW5GWk4zM28waUw3RVNHZWptME1qNkhRRjNNZllxWEVqM2d6ZmF1VmRxWVBBOFBxQUdqM2dZUThIc3BKQlJhWkxTQmpfMXhPUld5bldB0gG-AUFVX3lxTE95VmxyZ1IxQ3pDUmlvakpVc3ZPYUZpVklFa19TRDZFMFd5N3VKY3RXel8yZnZjbDV0bFB5QkNfb0VxV2dDdFZzX0lFb1ZKWUtfMjh5OVp3ejRaTlVLWjJoY0FISVlETVM2Y2E1UjRCQVBadXZLR1laWGdSMlNncmcxT3RpR01wMHl6SE8xdDJ2TC1ucEdUTmxDNEtYWXFPMUEtYzV4UkxwalE4V1dYZzhXZEpvLUZBb2ZFTDF3TkE?oc=5"
       },
       "origin": "news"
     },
@@ -159,18 +171,6 @@
       "source": {
         "name": "Matchfakta (ESPN)",
         "url": "https://www.espn.com/soccer/match/_/gameId/760487"
-      },
-      "origin": "cards"
-    },
-    "egy-yasser-ibrahim": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Andra gula kortet i turneringen (mot Iran och Australien)",
-      "updated": "2026-07-03",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760499"
       },
       "origin": "cards"
     }
