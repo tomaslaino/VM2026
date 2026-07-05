@@ -1354,15 +1354,44 @@
 
   /* ---------- Fliken "Senaste nytt" ---------- */
 
+  /* Inline-markup i sammanfattningarna (artikelstil). Texten skrivs för hand
+     med tre enkla markörer och renderas här:
+       **fet**         → nyckelnamn/avgörande fakta
+       *kursiv*        → direkta citat och smeknamn
+       [[3]] / [[3,4]] → upphöjd källhänvisning à la forskningsartikel; siffran
+                         länkar till referens nr 3 (respektive 3 och 4) i listan
+                         längst ner och öppnar artikeln i ny flik.
+     Escapar först (så handtexten aldrig kan injicera HTML), därefter appliceras
+     markörerna – de överlever escapingen eftersom * och [ inte escapas. */
+  function miInlineNews(text, refs) {
+    refs = refs || [];
+    var out = esc(text == null ? "" : String(text));
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    out = out.replace(/\[\[\s*([\d\s,]+?)\s*\]\]/g, function (m, nums) {
+      var links = nums.split(",").map(function (s) {
+        var i = parseInt(s, 10);
+        var r = i && refs[i - 1];
+        if (!r || !r.url) return null;
+        return '<a href="' + esc(r.url) + '" target="_blank" rel="noopener noreferrer" title="' +
+          esc("Källa: " + (r.source || "")) + '">' + i + "</a>";
+      }).filter(Boolean);
+      return links.length ? '<sup class="mi-cite">' + links.join('<span class="mi-cite-sep">,</span>') + "</sup>" : "";
+    });
+    return out;
+  }
+
   /* Löptextsammanfattningen: de viktigaste nyheterna och diskussionerna i
-     båda ländernas medier i berättande form, med numrerade källreferenser
-     längst ner (data/news_summaries.json). */
+     båda ländernas medier i artikelform (rubrik, ev. ingress, fet/kursiv och
+     upphöjda källhänvisningar), med den numrerade referenslistan längst ner
+     (data/news_summaries.json). */
   function newsSummaryHtml(sum) {
+    var refs = sum.references || [];
     var h = '<div class="mi-news-summary">';
     if (sum.headline) h += '<h3 class="mi-news-headline">' + esc(sum.headline) + "</h3>";
-    sum.paragraphs.forEach(function (p) { h += "<p>" + esc(p) + "</p>"; });
+    if (sum.lead) h += '<p class="mi-news-lead">' + miInlineNews(sum.lead, refs) + "</p>";
+    sum.paragraphs.forEach(function (p) { h += "<p>" + miInlineNews(p, refs) + "</p>"; });
     h += "</div>";
-    var refs = sum.references || [];
     if (refs.length) {
       h += '<div class="mi-news-refs">' +
         '<div class="mi-section-title">Referenser</div>' +

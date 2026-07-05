@@ -24,6 +24,7 @@ npm run sync:static # synka till data/results.json + data/matchdetails.json (Git
 npm run sync:availability # bygg spelartillgänglighet → data/wc2026_player_status.json (avstängningar ur matchdatan + skadenyheter ur ländernas medier, ingen nyckel)
 npm run sync:status # legacy: samma fil från API-Football /injuries (kräver API_FOOTBALL_KEY; workflowen kör numera sync:availability)
 npm run sync:news  # synka landslagsnyheter per land → data/team_news.json (Google Nyheter-RSS, ingen nyckel)
+npm run sync:summaries # skriv matchartiklarna automatiskt → data/news_summaries.json (Gemini skriver svensk förhandsartikel ur färska källor; kräver GEMINI_API_KEY). --dry-run testar utan nyckel
 npm run sync:lineups # synka troliga/bekräftade startelvor för kommande matcher → data/lineups_prelim.json (365Scores, ingen nyckel)
 npm run sync:metrics # synka betting-metrik per spelare → data/wc2026_player_metrics.json (marknadsvärde + porträtt från Transfermarkt, klubbform 2025/26 matcher+mål från Wikipedia, ingen nyckel)
 npm run sync:fotmob # synka FotMobs spelarbetyg per match → data/fotmob_ratings.json (Opta-baserade betyg för färdiga matcher, kopplas till ESPN-spelarnamn, ingen nyckel)
@@ -34,7 +35,7 @@ npm run sync:fotmob # synka FotMobs spelarbetyg per match → data/fotmob_rating
 |---|---|
 | `index.html` | Ingångspunkt, innehåller `window.VM_CONFIG` |
 | `assets/app.js` | Huvudlogik: tabeller, slutspelsträd, kalender |
-| `assets/matchinfo.js` | Matchmodal med detaljer/statistik + inför-snack ("Inför"-fliken) för ospelade matcher (data från `VMApp.matchPreview` i app.js) samt fliken "Senaste nytt": handskriven löptextsammanfattning per match ur `data/news_summaries.json` med källreferenser, annars rubriklista ur `data/team_news.json`. Överst i båda fallen "Avbräck & frågetecken" ur spelarstatusen |
+| `assets/matchinfo.js` | Matchmodal med detaljer/statistik + inför-snack ("Inför"-fliken) för ospelade matcher (data från `VMApp.matchPreview` i app.js) samt fliken "Senaste nytt": automatgenererad svensk förhandsartikel per match ur `data/news_summaries.json` (rubrik/ingress/fet/kursiv + upphöjda `[[n]]`-källhänvisningar, renderas av `miInlineNews`), annars rubriklista ur `data/team_news.json`. Överst i båda fallen "Avbräck & frågetecken" ur spelarstatusen |
 | `assets/r32engine.js` | Monte Carlo-motor: simulerar vem man möter i R32 utifrån odds (delas av huvudtråd + worker) |
 | `assets/r32worker.js` | Web Worker som kör `r32engine.js` utanför huvudtråden |
 | `data/odds.json` | Exakta resultat-odds för de återstående gruppmatcherna (indata till R32-motorn) |
@@ -47,7 +48,8 @@ npm run sync:fotmob # synka FotMobs spelarbetyg per match → data/fotmob_rating
 | `server/scripts/syncPlayerStatus.js` | Legacy: samma fil från API-Football `/injuries` (körs inte längre av workflow) |
 | `data/team_news.json` | Landslagsnyheter per lag från respektive lands egna medier (Google Nyheter-RSS, lokala sökfrågor) med svensk sammanfattning per rubrik (`title_sv`, gratis Google Translate-gtx) – driver fliken "Senaste nytt" i matchmodalen |
 | `server/scripts/syncTeamNews.js` | Synkar landslagsnyheterna (körs varannan timme av `sync-team-news.yml`) |
-| `data/news_summaries.json` | Handskrivna svenska löptextsammanfattningar per kommande match (`k:NN`) – de viktigaste nyheterna och diskussionerna i båda ländernas medier i berättande, artikelmässig form: valfri `headline` (rubrik) + `paragraphs` + numrerade `references` (källa+rubrik+url). Driver matchmodalens "Senaste nytt"-flik som förstahandsval; saknas matchen eller är `written` äldre än 5 dygn faller fliken tillbaka till rubriklistan ur `team_news.json`. Skrivs om för hand inför varje ny slutspelsomgång |
+| `data/news_summaries.json` | Svenska förhandsartiklar per kommande slutspelsmatch (`k:NN`) i artikelform: `headline` (rubrik) + `lead` (ingress) + `paragraphs` + numrerade `references` (källa+rubrik+url). **Skrivs numera automatiskt** av `syncNewsSummaries.js` (Gemini) ur färska källor. Texten använder tre markörer som `matchinfo.js` (`miInlineNews`) renderar: `**fet**` (nyckelnamn/fakta), `*kursiv*` (citat/smeknamn) och `[[3]]`/`[[3,4]]` (upphöjd källhänvisning à la forskningsartikel – siffran länkar till referens nr 3 i listan). Bara citerade källor hamnar i `references` (renumreras 1..N i citatordning). Poster med `manual: true` rörs aldrig (kan handskrivas); auto-poster får `generated: true` + `refsHash`. Driver matchmodalens "Senaste nytt"-flik som förstahandsval; saknas matchen eller är `written` äldre än 5 dygn faller fliken tillbaka till rubriklistan ur `team_news.json` |
+| `server/scripts/syncNewsSummaries.js` | Bygger matchartiklarna automatiskt. Läser kommande slutspelsmatcher ur `results.json` (fixtures, båda lag klara + avspark inom 6 dygn), samlar färska referenser (lokala medier för båda lagen via Google Nyheter-RSS + internationell förhandssökning "Lag A" "Lag B"; dedupas, åldersfiltreras, rankas på relevans+färskhet, översätts till svenska med gratis gtx), och låter Gemini skriva `{headline, lead, paragraphs}` med `[[n]]`-citat. **Trappa mot avspark**: regenererar glesare långt bort (var 24:e h) och tätare nära (ned till var 45:e min < 6 h kvar), och bara när referenserna ändrats (`refsHash`). Körs var 30:e min av `sync-news-summaries.yml`. Kräver `GEMINI_API_KEY`; `--dry-run`/`--force`/`--match k:NN` för test |
 | `data/lineups_prelim.json` | Troliga startelvor för kommande matcher (≤48 h) från 365Scores webb-API; `status` slår om `probable` → `confirmed` när de officiella elvorna släpps (~1 h före avspark). Visas i matchmodalens "Laguppställning"-flik tills ESPN:s officiella lineups tar över i `matchdetails.json`; spelare med skade-/avstängningsstatus får varningsprick |
 | `server/scripts/syncLineups.js` | Synkar troliga startelvor (körs var 15:e min av `sync-lineups.yml`; committar bara vid faktisk ändring). OBS: Sofascore ger 403 server-side – 365Scores är den öppna källan |
 | `assets/playerstats.js` | Spelarstatistik: Spelare/Lag/Region/Ligor. **Betyget är FotMobs Opta-baserade matchbetyg** (ur `data/fotmob_ratings.json`, kopplat på ESPN-lineupnamn i `addSideMatch`, minutviktat via ESPN-minuter i `rSum`/`rMin`) – fångar defensivt spel som ESPN:s gratisdata saknar. Samma betyg driver spelar-, lag-, regions- och ligasnitt samt Ligor-flikens ±Renommé/scatter (betyg ~ renommé-regression). Spelare utan FotMob-betyg visas som "–". (Det tidigare egna transparenta VM-betyget är borttaget – se git-historik om det behövs igen) |
@@ -78,6 +80,8 @@ All sannolikhet/odds på sidan kommer från **en** motor: `assets/bracketengine.
 ```
 DATABASE_URL=          # Neon Postgres (valfritt)
 API_FOOTBALL_KEY=      # Spelarstatistik (valfritt)
+GEMINI_API_KEY=        # Skriver matchartiklarna (sync:summaries). Gratis nyckel från Google AI Studio. I GitHub Actions läggs den som repo-secret GEMINI_API_KEY
+GEMINI_MODEL=          # Modell för artiklarna (default gemini-2.5-flash)
 FD_POLL_LIVE_SECONDS=  # Pollintervall live (default 120)
 FD_POLL_MATCHDAY_SECONDS= # Pollintervall matchdag (default 300)
 FD_POLL_IDLE_SECONDS=  # Pollintervall vila (default 900)

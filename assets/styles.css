@@ -4942,6 +4942,26 @@ span.pr-caps-debut.pr-caps-legend {
   margin: 0 0 13px; font-size: 13.5px; line-height: 1.75; color: var(--ink);
 }
 .mi-news-summary p:last-child { margin-bottom: 0; }
+/* Ingress: fetare, lite större inledning som drar in läsaren i artikeln. */
+.mi-news-lead {
+  font-size: 15px !important; line-height: 1.7 !important;
+  font-weight: 600; color: var(--ink) !important;
+  margin-bottom: 16px !important;
+}
+.mi-news-summary strong { font-weight: 750; color: var(--ink); }
+.mi-news-summary em { font-style: italic; color: color-mix(in srgb, var(--ink) 88%, var(--gold)); }
+/* Upphöjd källhänvisning (forskningsartikelstil): liten siffra efter påståendet
+   som länkar till motsvarande referens i listan längst ner. */
+.mi-cite {
+  font-size: 0.62em; line-height: 0; vertical-align: super;
+  margin-left: 1px; white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+.mi-cite a {
+  color: var(--usa-blue); text-decoration: none; font-weight: 800;
+  padding: 0 0.5px; transition: color .15s;
+}
+.mi-cite a:hover { color: color-mix(in srgb, var(--usa-blue) 60%, #fff); text-decoration: underline; }
+.mi-cite-sep { color: var(--ink-soft); margin: 0 1px; font-weight: 400; }
 .mi-news-refs { margin-top: 18px; }
 .mi-news-ref-list {
   margin-top: 8px;

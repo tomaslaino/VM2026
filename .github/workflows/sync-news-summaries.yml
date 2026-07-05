@@ -1,0 +1,63 @@
+name: Synka matchartiklar (Senaste nytt)
+
+# Skriver data/news_summaries.json automatiskt: en svensk förhandsartikel per
+# kommande slutspelsmatch, byggd ur färska källor och skriven av Gemini.
+#
+# Heartbeat var 30:e minut, men SJÄLVA skriptet avgör per match om det är dags
+# (trappa mot avspark: glesare långt bort, tätare nära) och skriver bara om när
+# referenserna faktiskt ändrats. Så de flesta körningar gör ingenting – de blir
+# billiga no-ops och committar inget.
+#
+# Kräver hemligheten GEMINI_API_KEY (gratis nyckel från Google AI Studio).
+# Saknas nyckeln loggar skriptet och avslutar utan fel.
+
+on:
+  schedule:
+    - cron: "13,43 * * * *"
+  workflow_dispatch: {} # Manuell körning från Actions-fliken.
+
+concurrency:
+  group: sync-news-summaries
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checka ut repo
+        uses: actions/checkout@v4
+
+      - name: Sätt upp Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Skriv/uppdatera matchartiklar
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node server/scripts/syncNewsSummaries.js
+
+      - name: Committa om något ändrats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/news_summaries.json
+          if git diff --staged --quiet; then
+            echo "Inga förändringar – hoppar över commit."
+            exit 0
+          fi
+          git commit -m "Auto-synk matchartiklar $(date -u +'%Y-%m-%d %H:%M UTC')"
+          # Andra synk-workflows pushar ofta till samma branch – rebase + retry.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "Push klar."
+              exit 0
+            fi
+            echo "Push avvisad (försök $i) – rebasar mot senaste main…"
+            git pull --rebase --autostash origin main || true
+          done
+          echo "Kunde inte pusha efter flera försök." >&2
+          exit 1
