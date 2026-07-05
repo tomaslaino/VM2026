@@ -49,6 +49,8 @@ const STATUS_FILE = path.join(__dir, "../../data/wc2026_player_status.json");
 const PLAYERS_FILE = path.join(__dir, "../../data/wc2026_players.json");
 
 const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+// Reservmodell (egen, separat gratiskvot) om primärmodellen slår i kvottaket (429).
+const FALLBACK_MODEL = process.env.GEMINI_FALLBACK_MODEL || "gemini-2.0-flash";
 const API_KEY = process.env.GEMINI_API_KEY || "";
 
 const GEN_WINDOW_H = 144;     // hur långt före avspark en match börjar få artikel (6 dygn)
@@ -372,8 +374,8 @@ const RESPONSE_SCHEMA = {
   required: ["headline", "lead", "paragraphs"]
 };
 
-async function callGemini(prompt) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
+async function callGemini(prompt, model) {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${API_KEY}`;
   const body = {
     contents: [{ role: "user", parts: [{ text: prompt }] }],
     generationConfig: {
@@ -484,22 +486,28 @@ async function main() {
       continue;
     }
 
+    // Testa primärmodellen; slår den i kvottaket (429) faller vi över till
+    // reservmodellen (egen gratiskvot). 503 = tillfälligt överbelastad → backa av.
+    const models = [MODEL, FALLBACK_MODEL].filter((m, i, a) => m && a.indexOf(m) === i);
     let art = null, lastErr = null;
-    for (let attempt = 1; attempt <= 3 && !art; attempt++) {
-      try { art = renumberCitations(await callGemini(prompt), refs); }
-      catch (e) {
-        lastErr = e;
-        console.warn(`${match.key}: försök ${attempt} misslyckades – ${e.message}`);
-        // 429 (kvot/hastighet) och 503 (överbelastad): backa av längre; annat: kort paus.
-        await sleep((e.status === 429 || e.status === 503) ? attempt * 5000 : 800);
+    for (const model of models) {
+      for (let attempt = 1; attempt <= 2 && !art; attempt++) {
+        try { art = renumberCitations(await callGemini(prompt, model), refs); }
+        catch (e) {
+          lastErr = e;
+          console.warn(`${match.key}: (${model}) försök ${attempt} misslyckades – ${e.message}`);
+          if (e.status === 429) break;              // kvot slut på denna modell → byt modell
+          await sleep(e.status === 503 ? attempt * 4000 : 800);
+        }
       }
+      if (art) break;
     }
     if (!art) {
       console.warn(`${match.key}: kunde inte generera – behåller ev. gammal post.`);
-      // Slut på Gemini-kvot: resten av matcherna skulle också 429:a – avbryt körningen
-      // i stället för att hamra API:t. Nästa schemalagda körning tar vid.
+      // Både primär- och reservmodell slut på kvot: resten skulle också 429:a –
+      // avbryt körningen i stället för att hamra API:t. Nästa körning tar vid.
       if (lastErr && lastErr.status === 429) {
-        console.warn("Gemini-kvoten är slut – avbryter resten av körningen, nästa körning fortsätter.");
+        console.warn("Gemini-kvoten är slut på båda modellerna – avbryter resten av körningen.");
         break;
       }
       continue;
