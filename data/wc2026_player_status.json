@@ -1,39 +1,28 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-04T22:25:21.007Z",
+  "updated": "2026-07-05T01:13:40.153Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mex-roberto-alvarado": {
       "availability": "doubtful",
       "kind": "other",
-      "detail": "Larm i El Tri: Piojo Alvarado är osäker mot England och Aguirre analyserar redan en ersättare",
+      "detail": "Alarm i El Tri: Piojo Alvarado är osäker mot England och Aguirre analyserar redan en ersättare",
       "updated": "2026-07-04",
       "source": {
         "name": "debate.com.mx",
-        "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQTTJQUC1NWEQ1V2hYY0xrR3lmLUlMcU0tZVFDa3Bta2JQR1BoYTYxT2xzYndRejFOdlhSSndYaWZzREF6S0EzdWpJUmFMY3NEbGd6ME1zQ0dMeGxrbWhER1FvdGx6R21jaTBlWGJoR2ZqRHBTXzRJRzdGaURpc1ltY2lxcURHU2lLZkVXSWQxWG9wdWtuajNsYjhiTUNETjdxUXE1ajZDc0poeTc4YjNDS05CRG5QdWhXZnRHLUV1LVl0aFhnSjJTZ2wwWmFQRmxybm9RYmlNNnM1cmxqeVE?oc=5"
-      },
-      "origin": "news"
-    },
-    "mex-gilberto-mora": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Är Gil Mora skadad? Det finns två spelare \"berörda\"; förvecklingar på grund av Mexiko vs schema England påverkar El Tri",
-      "updated": "2026-07-03",
-      "source": {
-        "name": "La Crónica de Hoy",
-        "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQMWx0QWpvOTJkTEMyUjZURFJuSTh4R3I3OGtxYm1ZM3pTRWNRaGhxNGNpUlRob0ZpMXpBWTEtLVNFOVdGX241Q1RGUzM4eGQ2dV9NZlZKS3RucW0xbnQ1NzRQdGpaempXOWF5Q0hHZjZyMENJUHU2Z3UtTFpCcFpzUTNwODFYTWJXay1OTER2aFozdnBTajV5WHVsTVh6czJFR1YxMW9SWXl6eER6XzhtYTh3NWFVRjhmelpScUJ0ZVVKLTlHa1JPVGVuQlVDcDRHcUY0RHpLM18ycXFVVHhDLWpTc2Z3RWJqWk92dw?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQUzFmSVdrVGN0UlNsTHR5YWZQZjd1ZEJKQVd0bFNIZHc2ZDJ0YUgxX01Hb3diSWFxaXRxWmNhYnJUbkgwbnFzWlg4S0pnOHZxMWV6Y3AtcHRxTEFpTTdDQ1BiZG4tVk1HTFNIcVQzYjlVWWlDcWQ1ZHFWRGZjcVdIemx4WDdlWWVFVHMzTWtqMXA1aGlsRVNUVF9mTG12XzRTNndOUVdSSjYyX0NHVjdMTDNJNGJGUGNSdmR5bmtWRXdCV3cxNVhOTVZBaUxtUkhFY201Um1RMDdBcURkM3VkdkZvbw?oc=5"
       },
       "origin": "news"
     },
     "bra-raphinha": {
-      "availability": "out",
+      "availability": "doubtful",
       "kind": "other",
-      "detail": "Raphinha fortsätter utan träning med grupp och missar Brasilien mot Norge",
-      "updated": "2026-07-02",
+      "detail": "Ancelotti bekräftar Raphinha på bänken och är fortfarande tveksam till landslaget: \"Vi har ingen som Paquetá\"",
+      "updated": "2026-07-04",
       "source": {
-        "name": "ge",
-        "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQN2NrYURGVVJmdDdoekVYNldQT3hvSEx5VmVHWVNsc3VNU0JJSkZuOHlwTi1lb2pmbDZXRmowOTlaR0t6SGlYdm9BVFI4Q01zdm5rY3l6VkFMYXlCTzQ4M1pqUUM3X0pGdlgyVklaU19MWEFETTVmYWt0QTlQYUI1bjJCQkJ2LS1qV0FvWjJtd1hnWFh1M0VrX3hGRlBNa3dtTC1fNGN2Wk5QWTV4b0tfTHRXZ2luNFhobjAtdUp2cW96SU5zWjRYT2ZEeDBRNTFrbzhn0gHiAUFVX3lxTE9DRDBXQjNoTzI4RmNKLW9aYzF0Vzc0V1BnU1JlaDNLd2FpOGVDbmNxVnVmUFJzOXp3VEs2SGxqNjRiVHkxbno1NVNnaGc5VW5yOW1ycDFlVjdpLUhsNGFsaTh4c2xEMV9oa0F4czd4cGFhTDZyYlRjM3hCVTNySjNwZUhJZ3hseFFCS2pENEpHWEdXQ3JYZHBRTGFqOEFhQVFHSGVyRlNab1NGSXkzSGNmQ0hJX29VZTNKdklGNHdjTTZGM0Zva2dnOWVLZ0hTZEtwUHdmRDJWLWtyTFA0M0VUNnc?oc=5"
+        "name": "ESPN Brasil",
+        "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxQV0c2cmUybm80cE1nWUNhMkZOd3VkTGJibHR6MERIU2RmZGRfVHVRRl96ckN3NFRYemM3bWtLT1lFcS1JQXJjbGJYT19SVHRWSzFMaC1ucXI5RWs5bU0xTGpiZGNQd3ctWFJHajlJajFic0J4M2RObFI4TnM2YzRyNVFnRExvODFrZk11UUZ5UFluSzNWaDdFbC11c3BEUlFCMERTalhWemZJRjZycEZVWW1NcHdGWTZBZlBLVnpZcDRvUVFwd0VuMU1DelNibzBrcnVDWG9VSTBObnJXVllmMFM4ZGNUb01PT0daa2F3bGVuSS1scEZZV1ltbVNLOWN3QzdpWXZiMlJyOHFQM1E?oc=5"
       },
       "origin": "news"
     },
@@ -51,11 +40,11 @@
     "mar-ismael-saibari": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Hårt slag för Marocko och Bayern München: Ismael Saibari skadad",
-      "updated": "2026-07-04",
+      "detail": "FOTBOLL (VM 2026): Marocko lätt vinnare av Kanada, förlorar Saibari till skada",
+      "updated": "2026-07-05",
       "source": {
-        "name": "Zamin.uz",
-        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNLW9sY2dQVjg2YmZCcWFkZ2lJRnVzOFdqZ2k0cmh1ZXF4eFJnend0Zm9od00zYnI0blVFNVBIUjdJek00SkR5eno0ak05eEl0S2FRWHJuRG54LWdvak5xYUNSaEx5SUZOcHZ1dUFrazIxc2xaeEt4dGk5VUZDQm85dmNQaG1CUTVZYU5KNUJTRThEUGNuaUxFRDJqa0xnWWJtWlNCVQ?oc=5"
+        "name": "Creusot Infos",
+        "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOYl82dUViU2twSUVaMkFLZHRLd3UyLWticlUxNXRFZXVGMUhaeHMwSW1IamhVVTFFRmRqU3ZDQzJJRHl3ZVNQMlZDOEpLQXBCZXdOWkpxYkpCYzRfOTlzWWQydFJxZkh1eXlUVFdPMzY0a0dreGROZWN0OW14anNtOFVQa0VNZTlMTVlad2VRTXlLbWtXTnZEQ0F5SzN5bGRfSjFFd25pbTg1TkctekhaWWRVVEJpUlBhUnlldmdKU2FtTHRUT1E2eXJvMXhOdGMwSWFOeEFzQ0MzcEpwNGxFY2NkSQ?oc=5"
       },
       "origin": "news"
     },
@@ -73,7 +62,7 @@
     "usa-malik-tillman": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Malik Tillman skadad men oskadd efter skrämmande incident i USMNT:s seger mot Bosnien",
+      "detail": "Malik Tillman skadad men oskadd efter skrämmande incident i USMNT:s seger över Bosnien",
       "updated": "2026-07-04",
       "source": {
         "name": "MSN",
@@ -185,11 +174,11 @@
     "eng-reece-james": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Reece James skadeuppdatering inför Englands avgörande världscupmatch mot Mexiko",
+      "detail": "Reece James skadeuppdatering när Chelsea-stjärnan möter Englands VM-verklighet",
       "updated": "2026-07-04",
       "source": {
-        "name": "CaughtOffside",
-        "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNejBseWw0R1RmRkZtd3VHd1hnMEhQWFhMb2FFdmZ2NDlUWUwxQk9wTlpEQ0FGT3FzQUlqSm5KbjViT1BvRjRFbnN5WnlzYnEwaFlIaG9BMkhqa2dPNU1TMWpuRmxIU214YVkzdDZrZk1XUUFNU08zSEVDQm9IaVJhV0o1em1CeGV2SHfSAY8BQVVfeXFMUGpDdUxDZUZzSENXdlhMcmliby1LX3Jqcll6Q3JicmI1cjk3T3RWVHNaZUstd25OM1lVVUR2Mi1JNlBPWUdzc0hGdElGUmgzYXlFWnRGZ3cyVHNURDhxUWk3aHA2Qk55WUFlVDFTTVhiMU9UUnBFVmdtekhnSTBBUml1V2RLZnhEdHhiUTBOZWM?oc=5"
+        "name": "Football London",
+        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPbmFUQjlUM09wQ2hJc1F0ZXZEckNtMjQtaWNPYjJlTl80N0xxeVF0TlNJQ09lM2ZPU096Z3h1RUItNTZVTEhsbkNBSmdwazBxaDJJWVRpRnNldDZVV2JnbDAwWlBFeHMwR0tBTFJ0ekFISWd6cmNjRmRDUnJtbWY0bmVCQngwWUNhSWxOUGNWaWJfUdIBkgFBVV95cUxPbmFUQjlUM09wQ2hJc1F0ZXZEckNtMjQtaWNPYjJlTl80N0xxeVF0TlNJQ09lM2ZPU096Z3h1RUItNTZVTEhsbkNBSmdwazBxaDJJWVRpRnNldDZVV2JnbDAwWlBFeHMwR0tBTFJ0ekFISWd6cmNjRmRDUnJtbWY0bmVCQngwWUNhSWxOUGNWaWJfUQ?oc=5"
       },
       "origin": "news"
     },
@@ -213,18 +202,6 @@
       "source": {
         "name": "Matchfakta (ESPN)",
         "url": "https://www.espn.com/soccer/match/_/gameId/760487"
-      },
-      "origin": "cards"
-    },
-    "par-matias-galarza": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Andra gula kortet i turneringen (mot Turkiet och Tyskland)",
-      "updated": "2026-06-29",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760489"
       },
       "origin": "cards"
     }
