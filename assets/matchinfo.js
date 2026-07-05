@@ -258,9 +258,9 @@
       VMAnalytics.trackEvent("match",
         (info.home.sv || info.home.name) + "–" + (info.away.sv || info.away.name));
     }
-    // Ej påbörjade matcher landar på inför-snacket; övriga på händelserna.
+    // Ej påbörjade matcher landar på redaktionens analys; övriga på händelserna.
     var upcoming = info && !info.live && !info.played && !info.spoiler;
-    activeTab = upcoming ? "preview" : "events";
+    activeTab = upcoming ? "news" : "events";
     pvRetryCount = 0;
     if (upcoming) {
       // Ladda underlaget till inför-snacket: odds/motor + landsnyheter.
@@ -1118,54 +1118,6 @@
       ' i ' + esc(String(pv.koNext.round).toLowerCase()) + '</div>';
   }
 
-  /* ---------- Avbräck & frågetecken (skador/avstängningar) ---------- */
-
-  function pvStatusItems(teamObj, sideCode) {
-    var vp = window.VMPlayers;
-    if (!teamObj || !teamObj.iso || !vp || !vp.isLoaded()) return null;
-    var t = vp.getTeamByIso(teamObj.iso);
-    if (!t) return [];
-    var out = [];
-    (t.players || []).forEach(function (p) {
-      var st = vp.getPlayerStatus ? vp.getPlayerStatus(p.id) : null;
-      if (!st) return;
-      out.push('<div class="mi-pv-item mi-pl-openable" data-mi-player="' + esc(p.id) +
-        '" data-mi-side="' + sideCode + '" role="button" tabindex="0" title="' + esc(st.text) + '">' +
-        '<span class="mi-pv-item-name">' + esc(p.name) + '</span>' +
-        '<span class="pstat pstat--' + esc(st.cls) + '"><span class="pstat-dot"></span>' + esc(st.label) + '</span>' +
-        '</div>');
-    });
-    return out;
-  }
-
-  function pvInjuriesHtml(info) {
-    var vp = window.VMPlayers;
-    if (!vp) return "";
-    if (!vp.isLoaded()) {
-      vp.load().then(function () { if (openKey) renderModal(); }).catch(function () {});
-      return "";
-    }
-    var hi = pvStatusItems(info.home, "h") || [];
-    var ai = pvStatusItems(info.away, "a") || [];
-    if (!hi.length && !ai.length) {
-      // Visa bara "inga avbräck" när statusdata över huvud taget finns.
-      if (!vp.statusCount || !vp.statusCount()) return "";
-      return '<div class="mi-section-title">Avbräck &amp; frågetecken</div>' +
-        '<div class="mi-pv-note">Inga kända skador eller avstängningar i något av lagen.</div>';
-    }
-    function col(items, teamObj, name) {
-      return '<div class="mi-pv-col">' +
-        '<div class="mi-pv-col-head">' + flagImg(teamObj && teamObj.iso) + '<span>' + esc(name) + '</span></div>' +
-        (items.length ? items.join("") : '<div class="mi-pv-note">Inga kända avbräck.</div>') +
-        '</div>';
-    }
-    return '<div class="mi-section-title">Avbräck &amp; frågetecken</div>' +
-      '<div class="mi-pv-cols">' +
-      col(hi, info.home, teamName(info.home, info.homeLabel)) +
-      col(ai, info.away, teamName(info.away, info.awayLabel)) +
-      '</div>';
-  }
-
   /* ---------- Spelare att hålla ögonen på (VM-statistik) ---------- */
 
   function pvKeyPlayers(teamObj, sideCode) {
@@ -1345,8 +1297,6 @@
         col(hi, info.home, teamName(info.home, info.homeLabel)) +
         col(ai, info.away, teamName(info.away, info.awayLabel)) +
         '</div>';
-      h += '<div class="mi-avail-note">Avstängningar beräknas ur officiell matchdata (kortlänken går till matchsidan). ' +
-        'Skade- och tveksamhetsuppgifter kommer ur ländernas egna medier – klicka på källan för hela artikeln.</div>';
     }
     h += '</div>';
     return h;
@@ -1433,20 +1383,18 @@
         .then(function () { if (openKey) renderModal(); });
       return '<div class="mi-pv-note mi-pv-loading">Hämtar nyheter från lägren …</div>';
     }
-    var avail = availSectionHtml(info);
     var sum = summaryOf(info.key);
     if (sum) {
       return '<div class="mi-news">' +
         '<div class="mi-news-intro">Redaktionens analys · läget i båda lägren + vår prognos</div>' +
-        avail + newsSummaryHtml(sum) + '</div>';
+        newsSummaryHtml(sum) + '</div>';
     }
-    if (!newsItemsOf(info.home).length && !newsItemsOf(info.away).length && !avail) {
+    if (!newsItemsOf(info.home).length && !newsItemsOf(info.away).length) {
       return '<div class="mi-empty">Inga färska nyheter om lagen hittades just nu.</div>';
     }
     var cols = matchColors(info.home && info.home.iso, info.away && info.away.iso);
     return '<div class="mi-news">' +
       '<div class="mi-news-intro">Ur ländernas egna medier · sammanfattat på svenska</div>' +
-      avail +
       '<div class="mi-news-cols">' +
       newsColHtml(info.home, teamName(info.home, info.homeLabel), cols.home) +
       newsColHtml(info.away, teamName(info.away, info.awayLabel), cols.away) +
@@ -1476,11 +1424,10 @@
     }
     h += pvOddsHtml(info, pv);
     h += pvKoNextHtml(pv);
+    h += availSectionHtml(info);
     h += pvFormHtml(info, pv);
     h += pvCompareHtml(info, pv);
-    h += pvInjuriesHtml(info);
     h += pvKeyPlayersHtml(info);
-    h += '<div class="mi-pv-foot">Sannolikheter: spelmarknadens odds + sajtens simuleringsmotor (samma som slutspelsträdet).</div>';
     h += '</div>';
     return h;
   }
@@ -1517,13 +1464,13 @@
     // de ersätts av inför-snacket + nyheterna från lägren. Pågående/spelade
     // visar de vanliga flikarna.
     var tabs = upcoming
-      ? [{ id: "preview", label: "Inför" },
-         { id: "news", label: "Redaktionens analys" },
+      ? [{ id: "news", label: "Redaktionens analys" },
+         { id: "preview", label: "Fakta & odds" },
          { id: "lineups", label: "Laguppställning" }]
       : TABS.slice();
     if (groupLetter) tabs.push({ id: "table", label: "Tabell" });
     // Säkerhetsnät: faller tillbaka till första fliken om aktiv flik saknas här
-    // (t.ex. när en kommande match går igång medan modalen står på "Inför").
+    // (t.ex. när en kommande match går igång medan modalen står på analysfliken).
     if (!tabs.some(function (t) { return t.id === activeTab; })) activeTab = tabs[0].id;
 
     var h = '<div class="mi-tabs" role="tablist">';
@@ -1535,11 +1482,11 @@
     h += '</div><div class="mi-tab-panels">';
 
     if (upcoming) {
-      h += '<div class="mi-tab-panel' + (activeTab === "preview" ? " active" : "") + '" data-mi-panel="preview">';
-      h += previewHtml(info);
-      h += "</div>";
       h += '<div class="mi-tab-panel' + (activeTab === "news" ? " active" : "") + '" data-mi-panel="news">';
       h += newsTabHtml(info);
+      h += "</div>";
+      h += '<div class="mi-tab-panel' + (activeTab === "preview" ? " active" : "") + '" data-mi-panel="preview">';
+      h += previewHtml(info);
       h += "</div>";
     } else {
       h += '<div class="mi-tab-panel' + (activeTab === "events" ? " active" : "") + '" data-mi-panel="events">';
