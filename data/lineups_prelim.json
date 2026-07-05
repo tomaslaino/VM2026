@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-07-05T18:44:49.254Z",
+    "updatedAt": "2026-07-05T20:58:37.546Z",
     "source": "365scores",
-    "matchCount": 5
+    "matchCount": 6
   },
   "lineups": {
     "k:91": {
@@ -208,10 +208,6 @@
             "jersey": "25"
           },
           {
-            "name": "Marcus Pedersen",
-            "jersey": "16"
-          },
-          {
             "name": "Fredrik Bjørkan",
             "jersey": "15"
           },
@@ -249,7 +245,7 @@
           }
         ]
       },
-      "updatedAt": "2026-07-05T18:44:45.975Z"
+      "updatedAt": "2026-07-05T20:58:33.510Z"
     },
     "k:92": {
       "status": "probable",
@@ -1222,6 +1218,252 @@
         ]
       },
       "updatedAt": "2026-07-05T16:41:01.393Z"
+    },
+    "k:96": {
+      "status": "probable",
+      "gameId": 4758753,
+      "kickoff": "2026-07-07T20:00Z",
+      "h": {
+        "formation": "4-2-3-1",
+        "starters": [
+          {
+            "name": "Gregor Kobel",
+            "jersey": "1",
+            "pos": "G"
+          },
+          {
+            "name": "Ricardo Rodriguez",
+            "jersey": "13",
+            "pos": "LB"
+          },
+          {
+            "name": "Manuel Akanji",
+            "jersey": "5",
+            "pos": "CB"
+          },
+          {
+            "name": "Nico Elvedi",
+            "jersey": "4",
+            "pos": "CB"
+          },
+          {
+            "name": "Denis Zakaria",
+            "jersey": "6",
+            "pos": "RB"
+          },
+          {
+            "name": "Granit Xhaka",
+            "jersey": "10",
+            "pos": "DM"
+          },
+          {
+            "name": "Remo Freuler",
+            "jersey": "8",
+            "pos": "DM"
+          },
+          {
+            "name": "Ruben Vargas",
+            "jersey": "17",
+            "pos": "AM-L"
+          },
+          {
+            "name": "Johan Manzambi",
+            "jersey": "9",
+            "pos": "AM"
+          },
+          {
+            "name": "Dan Ndoye",
+            "jersey": "11",
+            "pos": "AM-R"
+          },
+          {
+            "name": "Breel Embolo",
+            "jersey": "7",
+            "pos": "ST"
+          }
+        ],
+        "bench": [
+          {
+            "name": "Yvon Mvogo",
+            "jersey": "12"
+          },
+          {
+            "name": "Marvin Keller",
+            "jersey": "21"
+          },
+          {
+            "name": "Eray Cümart",
+            "jersey": "18"
+          },
+          {
+            "name": "Aurèle Amenda",
+            "jersey": "24"
+          },
+          {
+            "name": "Luca Jaquez",
+            "jersey": "25"
+          },
+          {
+            "name": "Silvan Widmer",
+            "jersey": "3"
+          },
+          {
+            "name": "Miro Muheim",
+            "jersey": "2"
+          },
+          {
+            "name": "Ardon Jashari",
+            "jersey": "14"
+          },
+          {
+            "name": "Djibril Sow",
+            "jersey": "15"
+          },
+          {
+            "name": "Michel Aebischer",
+            "jersey": "20"
+          },
+          {
+            "name": "Christian Fassnacht",
+            "jersey": "16"
+          },
+          {
+            "name": "Fabian Rieder",
+            "jersey": "22"
+          },
+          {
+            "name": "Noah Okafor",
+            "jersey": "19"
+          },
+          {
+            "name": "Zeki Amdouni",
+            "jersey": "23"
+          },
+          {
+            "name": "Cedric Itten",
+            "jersey": "26"
+          }
+        ]
+      },
+      "a": {
+        "formation": "4-3-3",
+        "starters": [
+          {
+            "name": "Camilo Vargas",
+            "jersey": "12",
+            "pos": "G"
+          },
+          {
+            "name": "Johan Mojica",
+            "jersey": "17",
+            "pos": "LB"
+          },
+          {
+            "name": "Jhon Lucumi",
+            "jersey": "3",
+            "pos": "CB"
+          },
+          {
+            "name": "Davinson Sanchez",
+            "jersey": "23",
+            "pos": "CB"
+          },
+          {
+            "name": "Daniel Munoz",
+            "jersey": "2",
+            "pos": "RB"
+          },
+          {
+            "name": "Jefferson Lerma",
+            "jersey": "16",
+            "pos": "LM"
+          },
+          {
+            "name": "Jhon Arias",
+            "jersey": "11",
+            "pos": "CM"
+          },
+          {
+            "name": "Gustavo Puerta",
+            "jersey": "14",
+            "pos": "RM"
+          },
+          {
+            "name": "Luis Diaz",
+            "jersey": "7",
+            "pos": "LF"
+          },
+          {
+            "name": "Luis Suarez",
+            "jersey": "25",
+            "pos": "ST"
+          },
+          {
+            "name": "James Rodriguez",
+            "jersey": "10",
+            "pos": "RF"
+          }
+        ],
+        "bench": [
+          {
+            "name": "David Ospina",
+            "jersey": "1"
+          },
+          {
+            "name": "Alvaro Montero",
+            "jersey": "24"
+          },
+          {
+            "name": "Yerry Mina",
+            "jersey": "13"
+          },
+          {
+            "name": "Willer Ditta",
+            "jersey": "18"
+          },
+          {
+            "name": "Santiago Arias",
+            "jersey": "4"
+          },
+          {
+            "name": "Deiver Machado",
+            "jersey": "22"
+          },
+          {
+            "name": "Kevin Castano",
+            "jersey": "5"
+          },
+          {
+            "name": "Richard Rios",
+            "jersey": "6"
+          },
+          {
+            "name": "Juan Portilla",
+            "jersey": "15"
+          },
+          {
+            "name": "Jorge Carrascal",
+            "jersey": "8"
+          },
+          {
+            "name": "Juan Fernando Quintero",
+            "jersey": "20"
+          },
+          {
+            "name": "Jaminton Campaz",
+            "jersey": "21"
+          },
+          {
+            "name": "Andres Gomez",
+            "jersey": "26"
+          },
+          {
+            "name": "Juan Camilo Hernandez",
+            "jersey": "19"
+          }
+        ]
+      },
+      "updatedAt": "2026-07-05T20:58:37.245Z"
     }
   }
 }
