@@ -1,13 +1,13 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-05T08:24:14.793Z",
+  "updated": "2026-07-05T11:17:40.176Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mex-roberto-alvarado": {
       "availability": "doubtful",
       "kind": "other",
-      "detail": "Larm i El Tri: Piojo Alvarado är osäker mot England och Aguirre analyserar redan en ersättare",
+      "detail": "Alarm i El Tri: Piojo Alvarado är osäker mot England och Aguirre analyserar redan en ersättare",
       "updated": "2026-07-04",
       "source": {
         "name": "debate.com.mx",
@@ -48,14 +48,25 @@
       },
       "origin": "news"
     },
-    "mar-azzedine-ounahi": {
+    "usa-malik-tillman": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Världscupen. Marocko eliminerar Kanada tack vare Ounahi men förlorar Saibari till skada",
+      "detail": "Malik Tillman skadad men oskadd efter skrämmande incident i USMNT:s seger över Bosnien",
       "updated": "2026-07-04",
       "source": {
-        "name": "africaradio.com",
-        "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNOEFuekN2Z1RKNTBwNEpDUnJvM2NxMVFONzlKYm1MZ2VHNG5MSWtYWFc1bWV3Z2N2enhBYWttOEVSWVd1dGdlMkdNS1BwTE9rWUhqWUNRUkpuRmppcmNhNTVvdVI3U1hkTi12akpWeUpvOXVLMmJIQzVYTWJSc01LeHVpYkZWZnpZc2JKS1Bid2hHcXlBT0tBRnhubTZMRWJLZndFVXRLdF9iMy1KbDFPRXd4cE5aLXNFQ0RZQ09BWFlyemlONmRRNERrODU?oc=5"
+        "name": "MSN",
+        "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPMVdxWEUtNDBpd1Y4ZGJMTWVoVjRwZ215T3BCUDAtem5RbklENGg4blc1SlZGeFM4WjJTdDU0d21UVVY5cEZTZ0Y5QnZ3ay1SZWdRRHAyTkdtMFo5MjhrZm41Y3k5SWJ0VmEyN3VHWDVDdExDYkhGYWFuUVU2NmxFZTc5dS1uOUpuOHJsU1I0bHBiY0I4dFUybHEtLTYwWVZmZTJURmhDdGd3YnNWdGIxWkExYkRZSEtaZHBZZWF5YkVDZzVTcjRxTTM5TU9yVTQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "usa-christian-pulisic": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Christian Pulisic skada: Framsteg, potentiellt returdatum för USMNT-stjärnan",
+      "updated": "2026-07-04",
+      "source": {
+        "name": "MSN",
+        "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxOM0l1dURGU3NPaDMwUUw1MmxYNUdiRWxxcDhZWmFnRWdGX0YtMm5iUzdYNlFmcHkwZVg4SkNRU1BrTlBNekRZYzdKMk43TmlERmxpOWZNZ0J0RDNoZG5SMF9uOFNUTmtJQUNSM1FmZjhEM3pSekNTeG5kcHhIbllPMmJKTkl2bVRDOC1HRjM5NDk5TU80eWY1akpTaENaSlBwWWtzdk1qdmI3alRseDltWk84SGJmczNZZ0psV1Q2YnNOSW1zTXRlUDJGQ1V6dk8ydXlOQ1NFcHFybkVFN012djFKdjAtVHd0b2lwekVVTUs2c3daUkdZNmV1SmN6aTFYZEE?oc=5"
       },
       "origin": "news"
     },
@@ -71,17 +82,6 @@
       },
       "origin": "cards"
     },
-    "usa-christian-pulisic": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Låt oss slappna av – USMNT-stjärnan ger uppdatering om Christian Pulisic frånvaro, skada",
-      "updated": "2026-07-03",
-      "source": {
-        "name": "MSN",
-        "url": "https://news.google.com/rss/articles/CBMinANBVV95cUxQVUhkUUpfUWNORXdCS2JaaUkxcE8tRWFyMm1VQy1fVzRtZXoxS3pNekduS2NNUTJvd2pDZVJBZEFGTnhqTGxYd0g0c0tVeVZMVFZKQy1MWDFwajN3cmltRlFQMGE2N0FteHlXVmlvNXNuaTRlQ1dKbWRnajU3UVMtaVRpeWlueDNOZ3NGeXhneTlaTHkzT1o4cW5tbWRORmROdzFJWGhyWUc0SDdwUXhBUks3X0oxNHJIT3otX1VsZVlWallhc2dMYi1PNmJqNnFCTFl3TjFRaDFyTU9obHozbkpmVGlCRzVicmo3bTBBMnJmMTIzalUtV2hEcWd5eF9SRmJTMzMwdFI1VnN0OTduRC04Nm9CUUllQ0NHMXQtV3lORElscW9kLWt2SnJxYTVQejU4Sy1FRXNuLWVhcGIxa3hyRUxSYzU0Qmt2bGV2R01kdW01NmIxNlg1VUVwREdIVVMzSGlfeHZjanZsblMtSzh5VTBiTG5od3lkSGg5LVYwc1kzZXJWU0pEckUxTklIMDZFbHFZdkNjQ1Zj?oc=5"
-      },
-      "origin": "news"
-    },
     "egy-yasser-ibrahim": {
       "availability": "out",
       "kind": "suspension",
@@ -93,17 +93,6 @@
         "url": "https://www.espn.com/soccer/match/_/gameId/760499"
       },
       "origin": "cards"
-    },
-    "egy-karim-hafez": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Efter hans klagomål om skadan.. Karim Hafez position på matchen mellan Egypten och Argentina (exklusivt)",
-      "updated": "2026-07-04",
-      "source": {
-        "name": "الوطن سبورت",
-        "url": "https://news.google.com/rss/articles/CBMi_wNBVV95cUxQNWktRWdGNnVvRThSMDVvZUZPZnk1aml0WTMxMW9ENHFmS3BXUE9Qbk9yQlFURmRsbS1GS19sa29jeXV0RHJGc0dJbkZiTDMwdW94RWdFQjJQeXhpOVpXUE5QUjV5VlE4cXpLc2VFM2J6SmxfMVAtOFU1NDFWMWF2ZkZOZTl4VWtac056UVdHUHV2enRzdTByY0V0djdpdlpUN1RqeEQ2cU1HcnYxTXozWVZVbE1VVW56ckhyakpZb1lHZlFLTHRtRV9LWnpNcUJHaEFib0NOMXAxNl85Z3F5Q290aGdnQjhrVi1HVHlGRi1OWXVmWkluZ0VHbElPa2NKQS11SFdNb25Pakx2dUxqUmN3MFBaQTNwWG5uTWJvQUt1c0l1Z3NjdC1NeVdzRHh5SzZOSlZXYlpuSkFYTXRaUm1Ec2R5MHFjd24zTEFqSTAwTWpfejFLQkhNREhJd05qdEJxV2IwRy1Uc255OWZzRm1wMU5aelVqdDdTR2R3clgybF8wb2hqazd0NWVSclhuNWVLVTdEQjg3eVhOWFNBVVBNWDA1MFFpc01tWVNLV3RVSFMwc0hkeWxDbFVkejhoTHJud2lJYjR1d1BtT3lMNlJRbVk1Tk9lVWpyZWtPRFpFYk9UdmUzTVVnc2x2cUFQX1pueFVxeFM3M2Zrc1o0?oc=5"
-      },
-      "origin": "news"
     },
     "esp-lamine-yamal": {
       "availability": "doubtful",
