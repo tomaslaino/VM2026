@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-06T21:02:12.110Z",
+    "updatedAt": "2026-07-06T22:23:01.670Z",
     "source": "espn"
   },
   "details": {
@@ -53259,11 +53259,11 @@
     "k:93": {
       "espnId": "760506",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 90,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-06T19:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 0,
@@ -53747,7 +53747,7 @@
       },
       "referee": "Anthony Taylor",
       "venue": "AT&T Stadium, Arlington, Texas",
-      "attendance": null,
+      "attendance": 70649,
       "stats": [
         {
           "key": "possessionPct",
@@ -53805,7 +53805,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-06T21:02:12.110Z"
+      "updatedAt": "2026-07-06T22:23:01.670Z"
     }
   }
 }

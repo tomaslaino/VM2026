@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-06T21:02:12.073Z",
+    "updatedAt": "2026-07-06T22:23:01.600Z",
     "source": "espn",
     "matchCount": 93,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -473,19 +473,10 @@
     "k:93": {
       "h": 0,
       "a": 1,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:93",
-      "status": "IN_PLAY",
-      "minute": 90,
-      "home": "Portugal",
-      "away": "Spain",
-      "score": "0-1"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -2055,7 +2046,7 @@
       "date": "2026-07-06",
       "time": "21:00",
       "utcDate": "2026-07-06T19:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Portugal",
       "away": "Spain",
@@ -2142,9 +2133,12 @@
       "utcDate": "2026-07-10T19:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Round of 16 5 Winner",
+      "home": "Spain",
       "away": "Round of 16 6 Winner",
-      "homeRef": null,
+      "homeRef": {
+        "group": "H",
+        "idx": 0
+      },
       "awayRef": null
     },
     "k:99": {
