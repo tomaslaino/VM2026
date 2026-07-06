@@ -1,17 +1,28 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-06T01:13:48.486Z",
+  "updated": "2026-07-06T05:45:44.675Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
+    "mex-santiago-gimenez": {
+      "availability": "doubtful",
+      "kind": "illness",
+      "detail": "De fruktar det värsta! Santiago Giménez och den fruktansvärda skadan som skickade honom till sjukhuset",
+      "updated": "2026-07-06",
+      "source": {
+        "name": "Récord",
+        "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQak94LVo5NkV5WWlVb2s4WkoxMnV6Y284NTVMUVJMRzhtZFNuOTRjbkVMSUhheU9EUHV6LVN5VTZ1alc0R1hUYlhFcHF2b0htNUhBVTZaelItd1I0WHRzN0FfODVNcGJkdjU5ejJOZ3g3dWlOdzYxWmJuZzNva051U255NkFETTUzLXk2a3hZUk4xVEdrNk1RcU1IdS1rVmZlakhGUWhLeWdoVEJEZDF1bGQzVXlwM1ZH?oc=5"
+      },
+      "origin": "news"
+    },
     "mex-cesar-montes": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Börjar César Montes mot England eller är han skadad? Detta är känt om han kommer att spela i åttondelsfinal med",
+      "detail": "Vad hände med César Montes: Skadad före Mexiko - England; tvivlet skingras",
       "updated": "2026-07-06",
       "source": {
-        "name": "TV Azteca",
-        "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNUzhQWF9uLV9oV3EzeUpmdG9kSFpiTWh0Y0RyRTVhWExUakw3cnp0dUpmYXRRT0RsazVNRWJIY0QzQkd0dXlJQjBJZ2VJRXFvc2tCSUJpdkxSaXQ2Y3lMRWxrTjc2QWFHZEwtcjZaZFhLWGhsQXpFZVhqTGVQSzg5blRHdVpSelNyTGNmVmVCZkxtczRvSmZ3N3dubXA0MVJZdTJ6NW9n0gGzAUFVX3lxTE9LMlVNaktCdFRnNHFHUWszb0dCeVdZdlE0YWhzQ0lfOFJpUlpkR2JIY3lGRmJEc2hJMkx5WlhaR0xkQzJZQ2duTE16OHZGdllsQURaYjhVcldBMjhoTzlKWkc0M24xenJyNnZiSnFSSWxnQkpKTnJxOHFOY01RNTF5NUlFUlYtclVQWTVfbWdsZmFtRXlQYmhqVXBJbmg2ZFQ3TUYxam5SZ0E5UXhCb2R2VnE4?oc=5"
+        "name": "MARCA",
+        "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQSzZOTXdZa0ZYRy1xRUpCOV82MlgxSlNuUnpRQnIzbV9sVXdNNTdTbUk3SE5mUG0xS1RPSVRaNWpvbXhHLXIyVEdTVElsMmt5R1pOcVBkRVo1cVFoTnp4bzJwV1JZSHZDNkZ1c2d5N2ZMVE82Y1RINHprSUp2VDVYVDJseGd2QUV6UUg2akdB0gGOAUFVX3lxTE9kcm9CWlVwZmFHc1c3MG5pUExvUnE2bWJReFJMbHM5M0xyN25oTC1EMzk5Rm9aQ0E4d0RIVmFpUWtlbnE3RGY1LTlGOGhhaFpSSnd6dXZKV3lRT25Vcy1OREFFa2NCQ2xjb1ZHNUs0QVhaMm1nc2hUSlhsdURnZTlFVkVYZ1Y1QWpnb2tYb1E?oc=5"
       },
       "origin": "news"
     },
@@ -38,18 +49,18 @@
       },
       "origin": "cards"
     },
-    "fra-michael-olise": {
-      "availability": "out",
+    "fra-manu-kone": {
+      "availability": "doubtful",
       "kind": "suspension",
-      "detail": "Frankrike - Marocko: Olise avstängd i händelse av en semifinal, FFF kliver upp på planen",
+      "detail": "Se upp för nästa kort: Michael Olise, Bradley Barcola och Manu Koné hotas av avstängning för den eventuella VM-semifinalen",
       "updated": "2026-07-05",
       "source": {
-        "name": "MSN",
-        "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQODlkVTJnWmFZZ2o2QlFmYWNkM3V1OExTMk9HbEdKUFRuWEZqWkFINzRZc0ZCY2MwLXhPS1NPb2tiT3VWcEpDVWlxSS0tNXlMcW44QmowR1pEdWlxTng4QWhRMWR5LVFldGVLUnJJR3Y1Ujc5OGkycVVkNGE2VldzOUpsZ0txajg2SmdTVGVrN3RyNEdOSHZBVkRfSC0yZnFxZzllUEJrVEFVUEtXemt3T0xPQXBpSzNXbGxwcHNtLWVBUkF4c1BzWUZPMA?oc=5"
+        "name": "L'Équipe",
+        "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxPcm9VVkhfcVM2ZXJQdXNUVmtzV1V6eVk3Mk1EQ0xXUTQ4ejRLZ1ZqMnh6ellqUjNxU1JpQTcxSzlobVhISlhjdWxGdURnb0gtQkg1VEtSSWJOXzFwRnpMWHRLbVdNZVZSR3VKUHkyQmNHV1BHWnp0ZDNBaURiUjQyM29teUZIaVphMGZSN0RBTm40R2hGTDZucmdHVnFuN1pOVlNfOHljVWtEUGdHemltaWpyR1pYaDIwYWhNSlRQYWpwVzVwSU1mdVU2X3pZY0I5RlQyUktyZzJzMHJJY09sRk8yU2ZBenp0NTdoMnN6N2s2LTRfd1hFeUpaa1hMZGt4MU01TDllaXlWVElONnRYazVkaG4zZjMtVWhXRFBvV0U4cEM4RHdfQ3FNbTMxZw?oc=5"
       },
       "origin": "news"
     },
-    "fra-manu-kone": {
+    "fra-michael-olise": {
       "availability": "doubtful",
       "kind": "suspension",
       "detail": "Se upp för nästa kort: Michael Olise, Bradley Barcola och Manu Koné hotas av avstängning för den eventuella VM-semifinalen",
@@ -96,33 +107,22 @@
     "col-jhon-cordoba": {
       "availability": "out",
       "kind": "injury",
-      "detail": "Colombia får de värsta nyheterna: Jhon Córdoba missar VM 2026 på grund av en allvarlig skada",
-      "updated": "2026-07-05",
-      "source": {
-        "name": "MARCA Usa",
-        "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPZUVQS1pFdVYtYlFTbndVMkJEb1l2R2pObHBtVXhYMGk2MUVLVm92Y3NXdWgyYzZYNmdEcldWVkJBeFc4Y0pEeG5EbG5UZThrMUoyZHB4Nkk1WERJVjI5blNVT0J2X3E5bEg2ZEtpWjRHemZURnBDc1RrOUNWdV9zZGV30gGHAUFVX3lxTE1nRnNyWEl4R3FSazV1anltMnp4OE0xbW9wYXFSTkFMTXNJM013YmJNRXJlSk9nU05FZWlWSEZFQzgxdXBzZ0tlLWtENjU0c3RGOHQ5YUR4ZDRuQUk4a2NDYUwySjB2dW5lVlJvenRUYzRMS0dydTBXeldTa0s1QnlCZEM0Y0JSWQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-djed-spence": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Djed Spence: England drabbats av ett nytt skadeproblem bara timmar innan Mexiko möter",
-      "updated": "2026-07-05",
-      "source": {
-        "name": "GB News",
-        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9NZE5iLXQxdjFERlBvaDRmZFpfX2ZWWDBtRlJPdHlJUk1TOFVZLTAyMm51R1ZoSDktWXVZUy1KY25XUm55TlI5d2o1cHRqVWNxVTRCWTQ0LUFJaWZnM2ZzdlM1RWx5Q0RzQnJuaDBKZTVKZ0hmUmZOXzlETQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-reece-james": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Reece James skadeuppdatering när Chelsea-stjärnan möter Englands VM-verklighet",
+      "detail": "Jhon Córdoba missar resten av världscupen på grund av skada",
       "updated": "2026-07-04",
       "source": {
-        "name": "Football London",
-        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPbmFUQjlUM09wQ2hJc1F0ZXZEckNtMjQtaWNPYjJlTl80N0xxeVF0TlNJQ09lM2ZPU096Z3h1RUItNTZVTEhsbkNBSmdwazBxaDJJWVRpRnNldDZVV2JnbDAwWlBFeHMwR0tBTFJ0ekFISWd6cmNjRmRDUnJtbWY0bmVCQngwWUNhSWxOUGNWaWJfUdIBkgFBVV95cUxPbmFUQjlUM09wQ2hJc1F0ZXZEckNtMjQtaWNPYjJlTl80N0xxeVF0TlNJQ09lM2ZPU096Z3h1RUItNTZVTEhsbkNBSmdwazBxaDJJWVRpRnNldDZVV2JnbDAwWlBFeHMwR0tBTFJ0ekFISWd6cmNjRmRDUnJtbWY0bmVCQngwWUNhSWxOUGNWaWJfUQ?oc=5"
+        "name": "asatunews.co.id",
+        "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8zN3FMQ2tBVHNybmpaM09iWldpTkd3YmJoMFpnTkRhT1BQbk5iaWE5RzBSZTF4NG01R0wzVmVKTDlDZ3VoZUJwbkxzaDl4WHZjYW9OTHFNNmtteFhCRnpoYmd6dE9DQ3VfZUp3MjNzQTVreGNTdEE?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-jordan-henderson": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Englands Jordan Henderson lider av \"allvarlig skada\" efter matchen i Mexiko",
+      "updated": "2026-07-06",
+      "source": {
+        "name": "Sportsnet.ca",
+        "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOdlNIOFBoOHplN01aLTN4RmgzZzJfY0NGZlZpQllTYU96TVZmZlh5QjBaR0ppcTBpbC16UE1hcF9EQXhULTh5UXpncEwyUDdhY1k1RWdnWmhfWnFDOEg3Tk9OTmluSmxyTkxoUlJsdmUzejk0VldZdkw0N0lYLVg0d2x1ODUtZUdKWHNTOXBaT1FHaUFVMF9XNzlXTy1sbkZiUFAzLU1CRUxTMzJRQU4xaWFzdGF4UQ?oc=5"
       },
       "origin": "news"
     },
