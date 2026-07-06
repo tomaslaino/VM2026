@@ -489,7 +489,7 @@ function buildPrompt(match, refs, lessons) {
   const stakes = next
     ? `Utslagsspel: vinnaren går vidare till ${next}, förloraren är utslagen. Oavgjort efter full tid avgörs i förlängning och eventuellt straffar.`
     : `Utslagsspel: oavgjort efter full tid avgörs i förlängning och eventuellt straffar.`;
-  return `Du skriver "Redaktionens analys" inför en VM-match: en fyllig, källbelagd analysartikel som väger samman läget i båda lägren och SLUTAR MED EN KONKRET PROGNOS (troligt slutresultat) som du argumenterar för. Skriv på svenska.
+  return `Du skriver "Redaktionens analys" inför en VM-match: en källbelagd, kompakt analysartikel som väger samman läget i båda lägren och SLUTAR MED EN KONKRET PROGNOS (troligt slutresultat) som du argumenterar för. Skriv på svenska.
 
 MATCH
 - Lag A: ${match.home.sv}
@@ -516,7 +516,7 @@ SKRIVKRAV (ARTIKELN)
 - Ren logistik utan betydelse för spelet (TV-kanal, biljetter, öppettider) hör inte hit.
 - Bygg brett på LÄNDERNAS EGNA MEDIER och ge BÅDA lagens hemmaperspektiv – vad skrivs i respektive lands press om det egna laget (laguppställning, skadeläge, tränar-/spelarcitat, stämning, förväntan). Väv ihop hemmakällor från båda länderna och komplettera med internationella källor.
 - Ton: initierad, lite spetsig, journalistisk men inte överdriven. Målgrupp: fotbollsintresserade svenska VM-följare.
-- Längd: cirka 450–560 ord, fördelat på 5–7 stycken (paragraphs) – håll det stramt och tätt. De 1–2 SISTA styckena ska knyta ihop analysen och bygga argumentet för din prognos (favoritskap, avbräck, form, taktisk matchbild, yttre förhållanden – väg för och emot). VIKTIGT: ta bara med de faktorer som mest avgör slutresultatet och skär bort resten – varje mening ska tillföra konkret information; hellre färre, tätare poänger än utfyllnad, upprepning eller floskler för att fylla ut.
+- Längd: cirka 315–395 ord, fördelat på 4–5 stycken (paragraphs) – håll det stramt och tätt. De 1–2 SISTA styckena ska knyta ihop analysen och bygga argumentet för din prognos (favoritskap, avbräck, form, taktisk matchbild, yttre förhållanden – väg för och emot). VIKTIGT: ta bara med de faktorer som mest avgör slutresultatet och skär bort resten – varje mening ska tillföra konkret information; hellre färre, tätare poänger än utfyllnad, upprepning eller floskler för att fylla ut.
 
 PROGNOS (avslut) – DETTA ÄR HALVA POÄNGEN, HOPPA INTE ÖVER DET
 - Redan i ingressen (lead) ska du antyda din slutsats, och det ALLRA SISTA stycket ska vara en tydlig "Slutsats:" som uttryckligen säger VEM DU TROR VINNER (eller att det går till förlängning/straffar), MED VILKET RESULTAT, och pekar ut den/de avgörande faktorerna. Väg för och emot först, men landa sedan bestämt – vela inte, gardera dig inte.
@@ -527,7 +527,7 @@ PROGNOS (avslut) – DETTA ÄR HALVA POÄNGEN, HOPPA INTE ÖVER DET
 KÄLLHANTERING
 - Varje påstående som bygger på en källa ska ha en hänvisning direkt efter: [[3]] eller [[2,5]] (max 1–2 källor per påstående). Citaten gäller ARTIKELTEXTEN (lead + paragraphs), inte prediction/predictionNote.
 - **fet** för nyckelnamn och avgörande fakta, *kursiv* för direkta citat och smeknamn.
-- Använd bara källnummer som finns i listan; du måste inte använda alla, men använd gärna MÅNGA olika källor.
+- Använd bara källnummer som finns i listan. Texten ska vara kort men källtät: citera MÅNGA olika källor (sikta på minst 8–12 unika i artikeln) – korta, faktabaserade satser med täta [[n]]-hänvisningar hellre än långa utläggningar.
 
 Svara ENDAST med JSON: {"headline": "...", "lead": "...", "paragraphs": ["...","..."], "prediction": "...", "predictionNote": "..."}.
 

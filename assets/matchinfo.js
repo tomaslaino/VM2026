@@ -1416,9 +1416,7 @@
     }
     var sum = summaryOf(info.key);
     if (sum) {
-      return '<div class="mi-news">' +
-        '<div class="mi-news-intro">Redaktionens analys · läget i båda lägren + vår prognos</div>' +
-        newsSummaryHtml(sum) + '</div>';
+      return '<div class="mi-news">' + newsSummaryHtml(sum) + '</div>';
     }
     if (!newsItemsOf(info.home).length && !newsItemsOf(info.away).length) {
       return '<div class="mi-empty">Inga färska nyheter om lagen hittades just nu.</div>';
@@ -1605,7 +1603,7 @@
     // de ersätts av inför-snacket + nyheterna från lägren. Pågående/spelade
     // visar de vanliga flikarna.
     var tabs = upcoming
-      ? [{ id: "news", label: "Redaktionens analys" },
+      ? [{ id: "news", label: "Analys" },
          { id: "preview", label: "Fakta & odds" },
          { id: "lineups", label: "Laguppställning" }]
       : TABS.slice();
