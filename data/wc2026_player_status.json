@@ -1,17 +1,17 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-06T11:11:06.563Z",
+  "updated": "2026-07-06T14:41:09.483Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mar-ismael-saibari": {
       "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Marocko-Frankrike: Ismael Saibari, skadad, svår att återhämta sig",
-      "updated": "2026-07-05",
+      "kind": "other",
+      "detail": "Frankrike – Marocko: Saibari osäker mot Blues",
+      "updated": "2026-07-06",
       "source": {
-        "name": "lequotidien.com.tn",
-        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOQ0JleDdzNkN4VjRWYS1qckNrWlV0OTJXejdqajM4b0hkUjZNVEVtSzhZaEhxWGFPY0M2cE5QYjF1TzJPbDlsMmd0T0IyZTFBSVdhOE13QnQzZzEzV0ZTZmp6U1ZGZ2lrSVJuekpuR1RBQzBEVjY4V0lXWlMxZTdrYW5TQTdvOG5QWjFpbEdYd3BWSXBJRTJIYkJhS3BGbzRxbWZEdw?oc=5"
+        "name": "AfricaFootUnited",
+        "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPVEdYVkw0ZzFpYWd4RWlzQTBIdEdFdnE2Umo3MEpNeDJUcFdQQlByRjlxSGtwMnN0eDd0OXVCTHYxNFltY0VEZnNrTEd4WUtRUlAxQlloc0txaEdGU2hyOFNyVjJoUlZ0UXVlamIteXlGN3dVb0k1WFIxSHNWUjB3d29QNNIBgwFBVV95cUxPVEdYVkw0ZzFpYWd4RWlzQTBIdEdFdnE2Umo3MEpNeDJUcFdQQlByRjlxSGtwMnN0eDd0OXVCTHYxNFltY0VEZnNrTEd4WUtRUlAxQlloc0txaEdGU2hyOFNyVjJoUlZ0UXVlamIteXlGN3dVb0k1WFIxSHNWUjB3d29QNA?oc=5"
       },
       "origin": "news"
     },
@@ -61,38 +61,26 @@
       "origin": "news"
     },
     "col-jhon-cordoba": {
-      "availability": "out",
+      "availability": "doubtful",
       "kind": "injury",
-      "detail": "Colombia får de värsta nyheterna: Jhon Córdoba missar VM 2026 på grund av en allvarlig skada",
-      "updated": "2026-07-05",
+      "detail": "Kan det colombianska landslaget kalla in ytterligare en forward efter Jhon Córdobas skada?",
+      "updated": "2026-07-06",
       "source": {
-        "name": "MARCA Usa",
-        "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPZUVQS1pFdVYtYlFTbndVMkJEb1l2R2pObHBtVXhYMGk2MUVLVm92Y3NXdWgyYzZYNmdEcldWVkJBeFc4Y0pEeG5EbG5UZThrMUoyZHB4Nkk1WERJVjI5blNVT0J2X3E5bEg2ZEtpWjRHemZURnBDc1RrOUNWdV9zZGV30gGHAUFVX3lxTE1nRnNyWEl4R3FSazV1anltMnp4OE0xbW9wYXFSTkFMTXNJM013YmJNRXJlSk9nU05FZWlWSEZFQzgxdXBzZ0tlLWtENjU0c3RGOHQ5YUR4ZDRuQUk4a2NDYUwySjB2dW5lVlJvenRUYzRMS0dydTBXeldTa0s1QnlCZEM0Y0JSWQ?oc=5"
+        "name": "deportesrcn.com",
+        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPd3RqWHhuMWpXNlVXVUxjbEU2QkxwbHFTbVFPTXlmSEkxdXhXX0VjZlJMdEhWQzllNktiVzZCVzN1alY3Y3NPUWtZNVVvdm8xVU1QOThYN1VtUmVpR2lyc0Ixd2t1SVFUQ1BUb1B5VE5oXzNPNkZENnVJUmV5Z1JOYV9FRE9nd0JBa0xwd0NiQW9hT05TWGfSAZYBQVVfeXFMUHJxRDNiUmM3T1JpNG5ONjRxenBtR1NPaEx5bW1UUFFfanBkS3NVdUc1V3lIUlE0YmU0aUIwb2lWaWQ5S2lVSFF4VUswakhUTkZpWnRnc2dpT0tWR0lpQUQtYXpjekVvalNTNU1zVWtvSmcwbWlHTWFLc1ZhdlZmYkU1ZnJYbEo4QVdBTG9SSlIyejd6V0Nn?oc=5"
       },
       "origin": "news"
     },
     "eng-jordan-henderson": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Jordan Hendersons skada stör Englands dramatiska världscupseger",
+      "detail": "Jordan Hendersons skadehistorik inklusive Englands stjärnans operation och VM-slag",
       "updated": "2026-07-06",
       "source": {
-        "name": "news.bet365.com",
-        "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOdFBkR3hXNjZ3SUFYQTRreS1JYnpEaGgySUFnSFMwUFc3Zlk0b2lMOG85TG54bm5iOEZMNHAxSFBqQVVVNDlKekxfdDhXR1d3aThPaVZUSXljeXgyOXNsX2xsVWwwcldyZWxrNTg2c0dCdTJGTGRkQmMyVEpoRTN0VFZFa1hUeFJqV3k1OFBkZVBGcDkybWVxcWdmcjBnQ0pEcmVzM3pMS29QUldnWm1mbHlNVGN2SjJxYUJGTkdyNA?oc=5"
+        "name": "Manchester Evening News",
+        "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQa2NxY1VnQVY2X3J5R19YWGFqZnhvN1dVaUFqdm44TTVGRVg4MnFXSmJsMFhicWk2MHlWdjUxUTVmSExDN1pYcGdEUVRMWHRiN1UyYW5lN0FOMnV2Y0p4RDJoTkhIWlhVQ0N3bGNPTE03MDNWcEstXzM1cFJhX2xVb1FIbjd1SElKUW5LN19jMTY5QVFvc2pkVlV5RlFETmJyRi0tSkdORUdHaF9MZjZqZnIwMzJzSEk?oc=5"
       },
       "origin": "news"
-    },
-    "egy-yasser-ibrahim": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Andra gula kortet i turneringen (mot Iran och Australien)",
-      "updated": "2026-07-03",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760499"
-      },
-      "origin": "cards"
     },
     "eng-declan-rice": {
       "availability": "out",
@@ -103,6 +91,18 @@
       "source": {
         "name": "Matchfakta (ESPN)",
         "url": "https://www.espn.com/soccer/match/_/gameId/760505"
+      },
+      "origin": "cards"
+    },
+    "egy-yasser-ibrahim": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Andra gula kortet i turneringen (mot Iran och Australien)",
+      "updated": "2026-07-03",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760499"
       },
       "origin": "cards"
     },
