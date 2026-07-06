@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-06T17:17:43.230Z",
+    "updatedAt": "2026-07-06T19:11:11.210Z",
     "source": "espn"
   },
   "details": {
@@ -53255,6 +53255,352 @@
         }
       ],
       "updatedAt": "2026-07-06T05:55:00.164Z"
+    },
+    "k:93": {
+      "espnId": "760506",
+      "fmt": 2,
+      "status": "IN_PLAY",
+      "minute": 11,
+      "utcDate": "2026-07-06T19:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Diogo Costa",
+              "jersey": "1",
+              "pos": "G",
+              "st": {
+                "sv": 1
+              }
+            },
+            {
+              "name": "João Cancelo",
+              "jersey": "20",
+              "pos": "RB",
+              "st": {
+                "sh": 1
+              }
+            },
+            {
+              "name": "Nuno Mendes",
+              "jersey": "25",
+              "pos": "LB"
+            },
+            {
+              "name": "João Neves",
+              "jersey": "15",
+              "pos": "LM",
+              "st": {
+                "fs": 1
+              }
+            },
+            {
+              "name": "Rúben Dias",
+              "jersey": "3",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Renato Veiga",
+              "jersey": "13",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Pedro Neto",
+              "jersey": "18",
+              "pos": "AM-R"
+            },
+            {
+              "name": "Vitinha",
+              "jersey": "23",
+              "pos": "RM"
+            },
+            {
+              "name": "Cristiano Ronaldo",
+              "jersey": "7",
+              "pos": "F"
+            },
+            {
+              "name": "Bruno Fernandes",
+              "jersey": "8",
+              "pos": "AM"
+            },
+            {
+              "name": "João Félix",
+              "jersey": "11",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Gonçalo Inácio",
+              "jersey": "14"
+            },
+            {
+              "name": "Gonçalo Guedes",
+              "jersey": "19"
+            },
+            {
+              "name": "Matheus Nunes",
+              "jersey": "6"
+            },
+            {
+              "name": "Diogo Dalot",
+              "jersey": "5"
+            },
+            {
+              "name": "José Sá",
+              "jersey": "12"
+            },
+            {
+              "name": "Bernardo Silva",
+              "jersey": "10"
+            },
+            {
+              "name": "Nélson Semedo",
+              "jersey": "2"
+            },
+            {
+              "name": "Francisco Conceição",
+              "jersey": "26"
+            },
+            {
+              "name": "Gonçalo Ramos",
+              "jersey": "9"
+            },
+            {
+              "name": "Rafael Leão",
+              "jersey": "17"
+            },
+            {
+              "name": "Rui Silva",
+              "jersey": "22"
+            },
+            {
+              "name": "Tomás Araújo",
+              "jersey": "4"
+            },
+            {
+              "name": "Samú Costa",
+              "jersey": "24"
+            },
+            {
+              "name": "Francisco Trincão",
+              "jersey": "16"
+            },
+            {
+              "name": "Rúben Neves",
+              "jersey": "21"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Unai Simón",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Pedro Porro",
+              "jersey": "12",
+              "pos": "RB"
+            },
+            {
+              "name": "Marc Cucurella",
+              "jersey": "24",
+              "pos": "LB"
+            },
+            {
+              "name": "Pedri",
+              "jersey": "20",
+              "pos": "LM"
+            },
+            {
+              "name": "Pau Cubarsí",
+              "jersey": "22",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Aymeric Laporte",
+              "jersey": "14",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Lamine Yamal",
+              "jersey": "19",
+              "pos": "AM-R",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Rodri",
+              "jersey": "16",
+              "pos": "RM"
+            },
+            {
+              "name": "Mikel Oyarzabal",
+              "jersey": "21",
+              "pos": "F",
+              "st": {
+                "sg": 1,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Dani Olmo",
+              "jersey": "10",
+              "pos": "AM"
+            },
+            {
+              "name": "Álex Baena",
+              "jersey": "15",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Mikel Merino",
+              "jersey": "6"
+            },
+            {
+              "name": "Eric García",
+              "jersey": "4"
+            },
+            {
+              "name": "Borja Iglesias",
+              "jersey": "26"
+            },
+            {
+              "name": "David Raya",
+              "jersey": "1"
+            },
+            {
+              "name": "Nico Williams",
+              "jersey": "17"
+            },
+            {
+              "name": "Martín Zubimendi",
+              "jersey": "18"
+            },
+            {
+              "name": "Marc Pubill",
+              "jersey": "2"
+            },
+            {
+              "name": "Ferran Torres",
+              "jersey": "7"
+            },
+            {
+              "name": "Marcos Llorente",
+              "jersey": "5"
+            },
+            {
+              "name": "Alejandro Grimaldo",
+              "jersey": "3"
+            },
+            {
+              "name": "Víctor Muñoz",
+              "jersey": "25"
+            },
+            {
+              "name": "Gavi",
+              "jersey": "9"
+            },
+            {
+              "name": "Yéremy Pino",
+              "jersey": "11"
+            },
+            {
+              "name": "Joan García",
+              "jersey": "13"
+            },
+            {
+              "name": "Fabián Ruiz",
+              "jersey": "8"
+            }
+          ]
+        }
+      },
+      "referee": "Anthony Taylor",
+      "venue": "AT&T Stadium, Arlington, Texas",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "45%",
+          "a": "55%"
+        },
+        {
+          "key": "totalShots",
+          "h": "1",
+          "a": "2"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "47",
+          "a": "59"
+        },
+        {
+          "key": "passPct",
+          "h": "85%",
+          "a": "86%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-06T19:11:11.210Z"
     }
   }
 }
