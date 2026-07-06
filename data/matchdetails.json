@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-06T19:11:11.210Z",
+    "updatedAt": "2026-07-06T21:02:12.110Z",
     "source": "espn"
   },
   "details": {
@@ -53260,23 +53260,113 @@
       "espnId": "760506",
       "fmt": 2,
       "status": "IN_PLAY",
-      "minute": 11,
+      "minute": 90,
       "utcDate": "2026-07-06T19:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
           "h": 0,
+          "a": 1
+        },
+        "ht": {
+          "h": 0,
           "a": 0
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
-      "bookings": [],
-      "subs": [],
+      "goals": [
+        {
+          "minute": 90,
+          "injuryTime": 1,
+          "team": "a",
+          "scorer": "Mikel Merino",
+          "assist": "Ferran Torres",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 89,
+          "team": "h",
+          "player": "Bernardo Silva",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Renato Veiga",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Ferran Torres",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 56,
+          "team": "h",
+          "in": "Nélson Semedo",
+          "out": "Nuno Mendes"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Diogo Dalot",
+          "out": "João Cancelo"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Rafael Leão",
+          "out": "João Félix"
+        },
+        {
+          "minute": 75,
+          "team": "a",
+          "in": "Ferran Torres",
+          "out": "Álex Baena"
+        },
+        {
+          "minute": 83,
+          "team": "h",
+          "in": "Francisco Conceição",
+          "out": "Pedro Neto"
+        },
+        {
+          "minute": 83,
+          "team": "h",
+          "in": "Bernardo Silva",
+          "out": "Vitinha"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Fabián Ruiz",
+          "out": "Pedri"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Mikel Merino",
+          "out": "Dani Olmo"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Borja Iglesias",
+          "out": "Mikel Oyarzabal"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -53287,7 +53377,8 @@
               "jersey": "1",
               "pos": "G",
               "st": {
-                "sv": 1
+                "gc": 1,
+                "sv": 5
               }
             },
             {
@@ -53295,56 +53386,94 @@
               "jersey": "20",
               "pos": "RB",
               "st": {
+                "fc": 1,
                 "sh": 1
               }
             },
             {
               "name": "Nuno Mendes",
               "jersey": "25",
-              "pos": "LB"
+              "pos": "LB",
+              "st": {
+                "fs": 1,
+                "sh": 1
+              }
             },
             {
               "name": "João Neves",
               "jersey": "15",
               "pos": "LM",
               "st": {
-                "fs": 1
+                "fs": 1,
+                "gc": 1,
+                "sh": 1
               }
             },
             {
               "name": "Rúben Dias",
               "jersey": "3",
-              "pos": "CD-R"
+              "pos": "CD-R",
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Renato Veiga",
               "jersey": "13",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Pedro Neto",
               "jersey": "18",
-              "pos": "AM-R"
+              "pos": "AM-R",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Vitinha",
               "jersey": "23",
-              "pos": "RM"
+              "pos": "RM",
+              "st": {
+                "sh": 1
+              }
             },
             {
               "name": "Cristiano Ronaldo",
               "jersey": "7",
-              "pos": "F"
+              "pos": "F",
+              "st": {
+                "fs": 2,
+                "gc": 1,
+                "sg": 2,
+                "sh": 3
+              }
             },
             {
               "name": "Bruno Fernandes",
               "jersey": "8",
-              "pos": "AM"
+              "pos": "AM",
+              "st": {
+                "fs": 1,
+                "gc": 1,
+                "sh": 1
+              }
             },
             {
               "name": "João Félix",
               "jersey": "11",
-              "pos": "AM-L"
+              "pos": "AM-L",
+              "st": {
+                "fc": 2,
+                "fs": 4
+              }
             }
           ],
           "bench": [
@@ -53362,7 +53491,11 @@
             },
             {
               "name": "Diogo Dalot",
-              "jersey": "5"
+              "jersey": "5",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "José Sá",
@@ -53370,15 +53503,32 @@
             },
             {
               "name": "Bernardo Silva",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true,
+              "st": {
+                "fc": 2,
+                "gc": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Nélson Semedo",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Francisco Conceição",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true,
+              "st": {
+                "fs": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Gonçalo Ramos",
@@ -53386,7 +53536,11 @@
             },
             {
               "name": "Rafael Leão",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Rui Silva",
@@ -53416,12 +53570,20 @@
             {
               "name": "Unai Simón",
               "jersey": "23",
-              "pos": "G"
+              "pos": "G",
+              "st": {
+                "sv": 2
+              }
             },
             {
               "name": "Pedro Porro",
               "jersey": "12",
-              "pos": "RB"
+              "pos": "RB",
+              "st": {
+                "fc": 1,
+                "fs": 2,
+                "sh": 1
+              }
             },
             {
               "name": "Marc Cucurella",
@@ -53431,30 +53593,47 @@
             {
               "name": "Pedri",
               "jersey": "20",
-              "pos": "LM"
+              "pos": "LM",
+              "st": {
+                "fc": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Pau Cubarsí",
               "jersey": "22",
-              "pos": "CD-R"
+              "pos": "CD-R",
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "Aymeric Laporte",
               "jersey": "14",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "Lamine Yamal",
               "jersey": "19",
               "pos": "AM-R",
               "st": {
-                "fc": 1
+                "fc": 5,
+                "fs": 2,
+                "sg": 2,
+                "sh": 3
               }
             },
             {
               "name": "Rodri",
               "jersey": "16",
-              "pos": "RM"
+              "pos": "RM",
+              "st": {
+                "fc": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Mikel Oyarzabal",
@@ -53468,18 +53647,36 @@
             {
               "name": "Dani Olmo",
               "jersey": "10",
-              "pos": "AM"
+              "pos": "AM",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Álex Baena",
               "jersey": "15",
-              "pos": "AM-L"
+              "pos": "AM-L",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "sg": 2,
+                "sh": 3
+              }
             }
           ],
           "bench": [
             {
               "name": "Mikel Merino",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true,
+              "st": {
+                "fs": 2,
+                "sg": 1,
+                "g": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Eric García",
@@ -53487,7 +53684,8 @@
             },
             {
               "name": "Borja Iglesias",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "David Raya",
@@ -53507,7 +53705,13 @@
             },
             {
               "name": "Ferran Torres",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "a": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Marcos Llorente",
@@ -53535,7 +53739,8 @@
             },
             {
               "name": "Fabián Ruiz",
-              "jersey": "8"
+              "jersey": "8",
+              "in": true
             }
           ]
         }
@@ -53547,52 +53752,52 @@
         {
           "key": "possessionPct",
           "h": "45%",
-          "a": "55%"
+          "a": "56%"
         },
         {
           "key": "totalShots",
-          "h": "1",
-          "a": "2"
+          "h": "10",
+          "a": "15"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "1"
+          "h": "2",
+          "a": "6"
         },
         {
           "key": "wonCorners",
-          "h": "1",
-          "a": "0"
+          "h": "3",
+          "a": "7"
         },
         {
           "key": "foulsCommitted",
-          "h": "0",
-          "a": "1"
+          "h": "9",
+          "a": "13"
         },
         {
           "key": "offsides",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "1"
         },
         {
           "key": "saves",
-          "h": "1",
-          "a": "0"
+          "h": "5",
+          "a": "2"
         },
         {
           "key": "totalPasses",
-          "h": "47",
-          "a": "59"
+          "h": "426",
+          "a": "531"
         },
         {
           "key": "passPct",
-          "h": "85%",
-          "a": "86%"
+          "h": "84%",
+          "a": "88%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -53600,7 +53805,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-06T19:11:11.210Z"
+      "updatedAt": "2026-07-06T21:02:12.110Z"
     }
   }
 }
