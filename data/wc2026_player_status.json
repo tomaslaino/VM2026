@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-06T21:53:44.603Z",
+  "updated": "2026-07-06T23:35:09.010Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mar-ismael-saibari": {
@@ -60,36 +60,14 @@
       },
       "origin": "news"
     },
-    "arg-facundo-medina": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "En skada på Facundo Medina som oroar Argentina",
-      "updated": "2026-07-04",
-      "source": {
-        "name": "Radio Dos Corrientes",
-        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQQ0NBQy12SGhYWVMtWlZXYzJzYTdkei1idklEeXZYR3J3NUhGdkpMdkhIemZQY1VzWFpKUVVLZWpoc1htOGdjNVg3czUwNzIzbl9JT1NCYlJxZXZ0T3lpbDg3TFNkY2ZlaDMyajdjSVh5RTlpR2Z4dXNzR0pzWlFmeTZrX21mYmJ2emZjVDhLUS1Jdw?oc=5"
-      },
-      "origin": "news"
-    },
-    "por-nuno-mendes": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Larm i landslaget: Nuno Mendes lämnar skadad",
-      "updated": "2026-07-06",
-      "source": {
-        "name": "SAPO",
-        "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOZDlwMWpOcWFNM0pnRGhLSWNoTUh6aVBTQ1UtQmtNMDJNbmtDYUlkZExRRUdHYTRYNWJyY011RW9Da3VibTNXWmRqOVlYV2VmU1lCQnlVZFRLcElMaWZ0TTg1OTlxVE1RbEV1cFpzS28yRzd3dTNkWXBoWjhuS3VWOVdGWk5nSWhkM3Z0dUx5QzNBMkZydkwxSThLa3N6ZzdoeWc?oc=5"
-      },
-      "origin": "news"
-    },
     "col-jhon-cordoba": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Kan det colombianska landslaget kalla in ytterligare en forward efter Jhon Córdobas skada?",
+      "detail": "Colombianska landslaget, ledsen över Jhon Córdobas skada",
       "updated": "2026-07-06",
       "source": {
-        "name": "deportesrcn.com",
-        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPd3RqWHhuMWpXNlVXVUxjbEU2QkxwbHFTbVFPTXlmSEkxdXhXX0VjZlJMdEhWQzllNktiVzZCVzN1alY3Y3NPUWtZNVVvdm8xVU1QOThYN1VtUmVpR2lyc0Ixd2t1SVFUQ1BUb1B5VE5oXzNPNkZENnVJUmV5Z1JOYV9FRE9nd0JBa0xwd0NiQW9hT05TWGfSAZYBQVVfeXFMUHJxRDNiUmM3T1JpNG5ONjRxenBtR1NPaEx5bW1UUFFfanBkS3NVdUc1V3lIUlE0YmU0aUIwb2lWaWQ5S2lVSFF4VUswakhUTkZpWnRnc2dpT0tWR0lpQUQtYXpjekVvalNTNU1zVWtvSmcwbWlHTWFLc1ZhdlZmYkU1ZnJYbEo4QVdBTG9SSlIyejd6V0Nn?oc=5"
+        "name": "Milenio",
+        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQUzUzN010SGQ2OGQ4Qm1MSThDNnk0Q0h2WndkcVQwUkgzZlNEMFE2T2pWZktLZTZ1MzAtUzlVZG96QXdpc0lBZTZNNWRWejRsbGpycFRvUnFTUlcwWWJEQ21NOEJwVnpWQVR4NVVkVHdmRWY1N0ktbFY0WjExS1ZjaUZzb0VVYkIycUkyaS1ESU1aVy14OEdINlViX3FBVUNOUzl2MElrSGVKZTNMY1FjQzJn0gGyAUFVX3lxTFB4N2txRDhFMDBXQnVDOWtrODVUanhZM1QwZi1GR3RKWlBNM1I3MHlfcEhYUVhaMWRUU2VsOEMxNzBfWTBUSVdvRkx3ZTVvamVIMGFObGdSeEd1a0lRdnlsT2xweVVpVnVtTjlldTZSTFYtRy1DSUV0MmJrZzBMOHJVbzJyWmhoRHIxVHgyUjh4T0hrZzZVTlV6aXhZNTVvWVZSaTgxbW9qblhpTlpqU0FxVUE?oc=5"
       },
       "origin": "news"
     },
@@ -100,7 +78,7 @@
       "updated": "2026-07-06",
       "source": {
         "name": "Daily Express",
-        "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQTm9rUmNDa2VCTnZGM1Zfc0gteHZCbkdfX0c0S04xY1pUclpSc2tmSlBaOUJNVk9NUUZFcy03S3R4M3pYWmJmZzhzSVlvdE5rNlJMSTNwUXlqNG1nUllYV3Y0bHBJMU9ORjRtMDdwMGM5MW9COUROVnE0NU03S3pCSW9tZGk4V1Nnbl83ZWJPdlh1R3NtLXZ1aTZUMjVucnPSAaQBQVVfeXFMTW9lc2xicDNZNWFIQ25xQjV6OWZTSkNicEVnWmlpTVRBNkt2Z3AxN2NLd2x0OE9rNExHMGRudFlaU3FsSFduZmxuaGpoMUN3X19xMjA5WUE2MEliYUFCZUVvR2F1ZWN4MGJfOVBoRzVweTg1NWFaV0Z6dS1BX0NQM0o5Sm5TWWhMa1RUelJ6NnpkZGh0bjg0Q3F5NVlPd2ZBVFZ1N3M?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNb2VzbGJwM1k1YUhDbnFCNXo5ZlNKQ2JwRWdaaWlNVEE2S3ZncDE3Y0t3bHQ4T2s0TEcwZG50WVpTcWxIV25mbG5oamgxQ3dfX3EyMDlZQTYwSWJhQUJlRW9HYXVlY3gwYl85UGhHNXB5ODU1YVpXRnp1LUFfQ1AzSjlKblNZaExrVFR6Uno2emRkaHRuODRDcXk1WU93ZkFUVnU3c9IBpAFBVV95cUxNb2VzbGJwM1k1YUhDbnFCNXo5ZlNKQ2JwRWdaaWlNVEE2S3ZncDE3Y0t3bHQ4T2s0TEcwZG50WVpTcWxIV25mbG5oamgxQ3dfX3EyMDlZQTYwSWJhQUJlRW9HYXVlY3gwYl85UGhHNXB5ODU1YVpXRnp1LUFfQ1AzSjlKblNZaExrVFR6Uno2emRkaHRuODRDcXk1WU93ZkFUVnU3cw?oc=5"
       },
       "origin": "news"
     },
