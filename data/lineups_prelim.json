@@ -1,12 +1,12 @@
 {
   "meta": {
-    "updatedAt": "2026-07-06T09:40:49.033Z",
+    "updatedAt": "2026-07-06T18:29:47.539Z",
     "source": "365scores",
     "matchCount": 4
   },
   "lineups": {
     "k:93": {
-      "status": "probable",
+      "status": "confirmed",
       "gameId": 4757064,
       "kickoff": "2026-07-06T19:00Z",
       "h": {
@@ -48,8 +48,8 @@
             "pos": "DM"
           },
           {
-            "name": "Rafael Leão",
-            "jersey": "17",
+            "name": "João Félix",
+            "jersey": "11",
             "pos": "AM-L"
           },
           {
@@ -70,20 +70,20 @@
         ],
         "bench": [
           {
-            "name": "José Sá",
-            "jersey": "12"
-          },
-          {
             "name": "Rui Silva",
             "jersey": "22"
           },
           {
-            "name": "Tomás Araújo",
-            "jersey": "4"
+            "name": "José Sá",
+            "jersey": "12"
           },
           {
             "name": "Goncalo Inacio",
             "jersey": "14"
+          },
+          {
+            "name": "Tomás Araújo",
+            "jersey": "4"
           },
           {
             "name": "Nelson Semedo",
@@ -106,12 +106,12 @@
             "jersey": "21"
           },
           {
-            "name": "Bernardo Silva",
-            "jersey": "10"
-          },
-          {
             "name": "Francisco Trincão",
             "jersey": "16"
+          },
+          {
+            "name": "Bernardo Silva",
+            "jersey": "10"
           },
           {
             "name": "Francisco Conceição",
@@ -122,8 +122,8 @@
             "jersey": "19"
           },
           {
-            "name": "João Félix",
-            "jersey": "11"
+            "name": "Rafael Leão",
+            "jersey": "17"
           },
           {
             "name": "Gonçalo Ramos",
@@ -160,13 +160,13 @@
             "pos": "RB"
           },
           {
-            "name": "Pedri",
-            "jersey": "20",
+            "name": "Rodri Hernández",
+            "jersey": "16",
             "pos": "DM"
           },
           {
-            "name": "Rodri Hernández",
-            "jersey": "16",
+            "name": "Pedri",
+            "jersey": "20",
             "pos": "DM"
           },
           {
@@ -192,20 +192,20 @@
         ],
         "bench": [
           {
-            "name": "David Raya",
-            "jersey": "1"
-          },
-          {
             "name": "Joan García",
             "jersey": "13"
           },
           {
-            "name": "Marc Pubill",
-            "jersey": "2"
+            "name": "David Raya",
+            "jersey": "1"
           },
           {
             "name": "Eric Garcia",
             "jersey": "4"
+          },
+          {
+            "name": "Marc Pubill",
+            "jersey": "2"
           },
           {
             "name": "Marcos Llorente",
@@ -224,12 +224,12 @@
             "jersey": "6"
           },
           {
-            "name": "Fabián Ruiz",
-            "jersey": "8"
-          },
-          {
             "name": "Gavi",
             "jersey": "9"
+          },
+          {
+            "name": "Fabián Ruiz",
+            "jersey": "8"
           },
           {
             "name": "Yeremy Pino",
@@ -240,16 +240,20 @@
             "jersey": "25"
           },
           {
-            "name": "Ferran Torres",
-            "jersey": "7"
+            "name": "Nico Williams",
+            "jersey": "17"
           },
           {
             "name": "Borja Iglesias",
             "jersey": "26"
+          },
+          {
+            "name": "Ferran Torres",
+            "jersey": "7"
           }
         ]
       },
-      "updatedAt": "2026-07-06T09:40:46.576Z"
+      "updatedAt": "2026-07-06T18:29:45.288Z"
     },
     "k:94": {
       "status": "probable",
@@ -530,8 +534,8 @@
             "pos": "RB"
           },
           {
-            "name": "Thiago Almada",
-            "jersey": "16",
+            "name": "Alexis Mac Allister",
+            "jersey": "20",
             "pos": "LM"
           },
           {
@@ -540,8 +544,8 @@
             "pos": "CM"
           },
           {
-            "name": "Alexis Mac Allister",
-            "jersey": "20",
+            "name": "Leandro Paredes",
+            "jersey": "5",
             "pos": "CM"
           },
           {
@@ -550,8 +554,8 @@
             "pos": "RM"
           },
           {
-            "name": "Lautaro Martinez",
-            "jersey": "22",
+            "name": "Julian Alvarez",
+            "jersey": "9",
             "pos": "LF"
           },
           {
@@ -586,10 +590,6 @@
             "jersey": "4"
           },
           {
-            "name": "Leandro Paredes",
-            "jersey": "5"
-          },
-          {
             "name": "Valentin Barco",
             "jersey": "8"
           },
@@ -614,12 +614,16 @@
             "jersey": "15"
           },
           {
-            "name": "Julian Alvarez",
-            "jersey": "9"
+            "name": "Thiago Almada",
+            "jersey": "16"
           },
           {
             "name": "Jose Manuel Lopez",
             "jersey": "21"
+          },
+          {
+            "name": "Lautaro Martinez",
+            "jersey": "22"
           }
         ]
       },
@@ -733,7 +737,7 @@
           }
         ]
       },
-      "updatedAt": "2026-07-05T16:41:01.393Z"
+      "updatedAt": "2026-07-06T18:29:46.592Z"
     },
     "k:96": {
       "status": "probable",
