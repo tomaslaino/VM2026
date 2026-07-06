@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-05T23:37:53.855Z",
+    "updatedAt": "2026-07-06T01:23:12.041Z",
     "source": "espn"
   },
   "details": {
@@ -52623,6 +52623,384 @@
         }
       ],
       "updatedAt": "2026-07-05T22:27:04.070Z"
+    },
+    "k:92": {
+      "espnId": "760505",
+      "fmt": 2,
+      "status": "IN_PLAY",
+      "minute": 23,
+      "utcDate": "2026-07-06T01:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [
+        {
+          "minute": 1,
+          "team": "a",
+          "player": "Declan Rice",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Raúl Rangel",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Jorge Sánchez",
+              "jersey": "2",
+              "pos": "RB",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Jesús Gallardo",
+              "jersey": "23",
+              "pos": "LB",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Érik Lira",
+              "jersey": "6",
+              "pos": "CM",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "César Montes",
+              "jersey": "3",
+              "pos": "CD-R",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Johan Vásquez",
+              "jersey": "5",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Gilberto Mora",
+              "jersey": "19",
+              "pos": "RM",
+              "st": {
+                "fc": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Luis Romo",
+              "jersey": "7",
+              "pos": "LM",
+              "st": {
+                "fs": 1
+              }
+            },
+            {
+              "name": "Raúl Jiménez",
+              "jersey": "9",
+              "pos": "F",
+              "st": {
+                "sg": 1,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Roberto Alvarado",
+              "jersey": "25",
+              "pos": "RF"
+            },
+            {
+              "name": "Julián Quiñones",
+              "jersey": "16",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Guillermo Ochoa",
+              "jersey": "13"
+            },
+            {
+              "name": "Mateo Chávez",
+              "jersey": "20"
+            },
+            {
+              "name": "Armando González",
+              "jersey": "14"
+            },
+            {
+              "name": "Álvaro Fidalgo",
+              "jersey": "8"
+            },
+            {
+              "name": "Carlos Acevedo",
+              "jersey": "12"
+            },
+            {
+              "name": "Obed Vargas",
+              "jersey": "18"
+            },
+            {
+              "name": "César Huerta",
+              "jersey": "21"
+            },
+            {
+              "name": "Alexis Vega",
+              "jersey": "10"
+            },
+            {
+              "name": "Israel Reyes",
+              "jersey": "15"
+            },
+            {
+              "name": "Santiago Gimenez",
+              "jersey": "11"
+            },
+            {
+              "name": "Brian Gutiérrez",
+              "jersey": "26"
+            },
+            {
+              "name": "Edson Álvarez",
+              "jersey": "4"
+            },
+            {
+              "name": "Orbelín Pineda",
+              "jersey": "17"
+            },
+            {
+              "name": "Guillermo Martínez",
+              "jersey": "22"
+            },
+            {
+              "name": "Luis Chávez",
+              "jersey": "24"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Jordan Pickford",
+              "jersey": "1",
+              "pos": "G",
+              "st": {
+                "sv": 1
+              }
+            },
+            {
+              "name": "Jarell Quansah",
+              "jersey": "26",
+              "pos": "RB"
+            },
+            {
+              "name": "Nico O'Reilly",
+              "jersey": "3",
+              "pos": "LB"
+            },
+            {
+              "name": "Elliot Anderson",
+              "jersey": "8",
+              "pos": "LM"
+            },
+            {
+              "name": "Ezri Konsa",
+              "jersey": "2",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Marc Guéhi",
+              "jersey": "6",
+              "pos": "CD-L",
+              "st": {
+                "fs": 1
+              }
+            },
+            {
+              "name": "Bukayo Saka",
+              "jersey": "7",
+              "pos": "AM-R",
+              "st": {
+                "fs": 1
+              }
+            },
+            {
+              "name": "Declan Rice",
+              "jersey": "4",
+              "pos": "RM",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Harry Kane",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Jude Bellingham",
+              "jersey": "10",
+              "pos": "AM",
+              "st": {
+                "fs": 2
+              }
+            },
+            {
+              "name": "Anthony Gordon",
+              "jersey": "18",
+              "pos": "AM-L",
+              "st": {
+                "fs": 1
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "John Stones",
+              "jersey": "5"
+            },
+            {
+              "name": "Ollie Watkins",
+              "jersey": "19"
+            },
+            {
+              "name": "Jordan Henderson",
+              "jersey": "14"
+            },
+            {
+              "name": "Noni Madueke",
+              "jersey": "20"
+            },
+            {
+              "name": "Dan Burn",
+              "jersey": "15"
+            },
+            {
+              "name": "Trevoh Chalobah",
+              "jersey": "12"
+            },
+            {
+              "name": "Kobbie Mainoo",
+              "jersey": "16"
+            },
+            {
+              "name": "James Trafford",
+              "jersey": "23"
+            },
+            {
+              "name": "Marcus Rashford",
+              "jersey": "11"
+            },
+            {
+              "name": "Djed Spence",
+              "jersey": "25"
+            },
+            {
+              "name": "Eberechi Eze",
+              "jersey": "21"
+            },
+            {
+              "name": "Morgan Rogers",
+              "jersey": "17"
+            },
+            {
+              "name": "Reece James",
+              "jersey": "24"
+            },
+            {
+              "name": "Dean Henderson",
+              "jersey": "13"
+            },
+            {
+              "name": "Ivan Toney",
+              "jersey": "22"
+            }
+          ]
+        }
+      },
+      "referee": "Alireza Faghani",
+      "venue": "Estadio Banorte, Mexico City",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "53%",
+          "a": "47%"
+        },
+        {
+          "key": "totalShots",
+          "h": "3",
+          "a": "0"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "2",
+          "a": "2"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "5",
+          "a": "1"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "104",
+          "a": "92"
+        },
+        {
+          "key": "passPct",
+          "h": "92%",
+          "a": "85%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-06T01:23:12.041Z"
     }
   }
 }

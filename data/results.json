@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-05T23:37:53.844Z",
+    "updatedAt": "2026-07-06T01:23:12.006Z",
     "source": "espn",
-    "matchCount": 91,
-    "liveCount": 0,
+    "matchCount": 92,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -464,9 +464,23 @@
       "h": 1,
       "a": 2,
       "status": "FINISHED"
+    },
+    "k:92": {
+      "h": 0,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:92",
+      "status": "IN_PLAY",
+      "minute": 23,
+      "home": "Mexico",
+      "away": "England",
+      "score": "0-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -2019,7 +2033,7 @@
       "date": "2026-07-06",
       "time": "03:00",
       "utcDate": "2026-07-06T01:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Mexico",
       "away": "England",
