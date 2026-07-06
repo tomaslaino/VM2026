@@ -509,14 +509,14 @@ Leta i källorna efter de faktorer som faktiskt betyder något för just den hä
 - Statistik: form, mål/xG, försvarsdata, oddsläge/favoritskap – om det finns i källorna.${lessonsSection(lessons)}
 
 SKRIVKRAV (ARTIKELN)
-- Slagkraftig rubrik (headline, REN TEXT utan markörer eller källhänvisningar) och en ingress (lead) som slår an artikelns huvudtes.
+- Slagkraftig rubrik (headline, REN TEXT utan markörer eller källhänvisningar) och en ingress (lead, cirka 35–50 ord) som slår an artikelns huvudtes och antyder slutsatsen.
 - Prioritera stenhårt den information som mest avgör slutresultatet: väg in flera källor och perspektiv, men bara det som faktiskt påverkar utgången, och förklara VARFÖR var och en spelar roll. Analys, inte uppräkning – välj bort det perifera.
 - Var konkret: namn, siffror, exakta lägen, citat. Undvik generiska fraser och floskler ("allt står på spel", "stämningen är på topp", "en match att minnas", retoriska slutfrågor).
 - Hitta INTE på fakta, namn, siffror eller citat. Saknas en uppgift i källorna – hoppa hellre över den än att spekulera.
 - Ren logistik utan betydelse för spelet (TV-kanal, biljetter, öppettider) hör inte hit.
 - Bygg brett på LÄNDERNAS EGNA MEDIER och ge BÅDA lagens hemmaperspektiv – vad skrivs i respektive lands press om det egna laget (laguppställning, skadeläge, tränar-/spelarcitat, stämning, förväntan). Väv ihop hemmakällor från båda länderna och komplettera med internationella källor.
 - Ton: initierad, lite spetsig, journalistisk men inte överdriven. Målgrupp: fotbollsintresserade svenska VM-följare.
-- Längd: cirka 450–560 ord, fördelat på 5–7 stycken (paragraphs) – håll det stramt och tätt. De 1–2 SISTA styckena ska knyta ihop analysen och bygga argumentet för din prognos (favoritskap, avbräck, form, taktisk matchbild, yttre förhållanden – väg för och emot). VIKTIGT: ta bara med de faktorer som mest avgör slutresultatet och skär bort resten – varje mening ska tillföra konkret information; hellre färre, tätare poänger än utfyllnad, upprepning eller floskler för att fylla ut.
+- Längd: cirka 315–390 ord totalt (ingress + paragraphs), fördelat på 4–5 stycken (paragraphs) – håll det stramt och tätt. De 1–2 SISTA styckena ska knyta ihop analysen och bygga argumentet för din prognos (favoritskap, avbräck, form, taktisk matchbild, yttre förhållanden – väg för och emot). VIKTIGT: ta bara med de faktorer som mest avgör slutresultatet och skär bort resten – varje mening ska tillföra konkret information; hellre färre, tätare poänger än utfyllnad, upprepning eller floskler för att fylla ut.
 
 PROGNOS (avslut) – DETTA ÄR HALVA POÄNGEN, HOPPA INTE ÖVER DET
 - Redan i ingressen (lead) ska du antyda din slutsats, och det ALLRA SISTA stycket ska vara en tydlig "Slutsats:" som uttryckligen säger VEM DU TROR VINNER (eller att det går till förlängning/straffar), MED VILKET RESULTAT, och pekar ut den/de avgörande faktorerna. Väg för och emot först, men landa sedan bestämt – vela inte, gardera dig inte.
