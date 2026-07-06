@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-06T01:23:12.006Z",
+    "updatedAt": "2026-07-06T05:55:00.117Z",
     "source": "espn",
     "matchCount": 92,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -466,21 +466,12 @@
       "status": "FINISHED"
     },
     "k:92": {
-      "h": 0,
-      "a": 0,
-      "status": "IN_PLAY"
+      "h": 2,
+      "a": 3,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:92",
-      "status": "IN_PLAY",
-      "minute": 23,
-      "home": "Mexico",
-      "away": "England",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -2033,7 +2024,7 @@
       "date": "2026-07-06",
       "time": "03:00",
       "utcDate": "2026-07-06T01:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Mexico",
       "away": "England",
@@ -2149,12 +2140,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Norway",
-      "away": "Round of 16 4 Winner",
+      "away": "England",
       "homeRef": {
         "group": "I",
         "idx": 2
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "L",
+        "idx": 0
+      }
     },
     "k:100": {
       "date": "2026-07-12",

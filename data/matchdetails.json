@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-06T01:23:12.041Z",
+    "updatedAt": "2026-07-06T05:55:00.164Z",
     "source": "espn"
   },
   "details": {
@@ -52627,31 +52627,186 @@
     "k:92": {
       "espnId": "760505",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 23,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-06T01:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
-          "h": 0,
-          "a": 0
+          "h": 2,
+          "a": 3
         },
-        "ht": null,
+        "ht": {
+          "h": 1,
+          "a": 2
+        },
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
+      "goals": [
+        {
+          "minute": 36,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Jude Bellingham",
+          "assist": "Bukayo Saka",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        },
+        {
+          "minute": 38,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Jude Bellingham",
+          "assist": "Harry Kane",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 2
+          }
+        },
+        {
+          "minute": 42,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Julián Quiñones",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 2
+          }
+        },
+        {
+          "minute": 60,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Harry Kane",
+          "assist": null,
+          "type": "PENALTY",
+          "score": {
+            "h": 1,
+            "a": 3
+          }
+        },
+        {
+          "minute": 69,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Raúl Jiménez",
+          "assist": null,
+          "type": "PENALTY",
+          "score": {
+            "h": 2,
+            "a": 3
+          }
+        }
+      ],
       "bookings": [
         {
           "minute": 1,
           "team": "a",
           "player": "Declan Rice",
           "card": "YELLOW"
+        },
+        {
+          "minute": 54,
+          "team": "a",
+          "player": "Jarell Quansah",
+          "card": "RED"
+        },
+        {
+          "minute": 68,
+          "team": "a",
+          "player": "Marc Guéhi",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "player": "Jorge Sánchez",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 72,
+          "team": "a",
+          "player": "Nico O'Reilly",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Johan Vásquez",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Jordan Henderson",
+          "card": "YELLOW"
         }
       ],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Edson Álvarez",
+          "out": "César Montes"
+        },
+        {
+          "minute": 57,
+          "team": "a",
+          "in": "John Stones",
+          "out": "Bukayo Saka"
+        },
+        {
+          "minute": 61,
+          "team": "h",
+          "in": "Santiago Gimenez",
+          "out": "Gilberto Mora"
+        },
+        {
+          "minute": 61,
+          "team": "h",
+          "in": "Brian Gutiérrez",
+          "out": "Luis Romo"
+        },
+        {
+          "minute": 74,
+          "team": "a",
+          "in": "Djed Spence",
+          "out": "Nico O'Reilly"
+        },
+        {
+          "minute": 75,
+          "team": "a",
+          "in": "Dan Burn",
+          "out": "Elliot Anderson"
+        },
+        {
+          "minute": 79,
+          "team": "h",
+          "in": "Álvaro Fidalgo",
+          "out": "Jorge Sánchez"
+        },
+        {
+          "minute": 81,
+          "team": "h",
+          "in": "Guillermo Martínez",
+          "out": "Julián Quiñones"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Morgan Rogers",
+          "out": "Harry Kane"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -52660,14 +52815,20 @@
             {
               "name": "Raúl Rangel",
               "jersey": "1",
-              "pos": "G"
+              "pos": "G",
+              "st": {
+                "fc": 1,
+                "gc": 3,
+                "sv": 2
+              }
             },
             {
               "name": "Jorge Sánchez",
               "jersey": "2",
               "pos": "RB",
               "st": {
-                "fc": 1
+                "fc": 2,
+                "gc": 3
               }
             },
             {
@@ -52675,7 +52836,10 @@
               "jersey": "23",
               "pos": "LB",
               "st": {
-                "fc": 1
+                "fc": 2,
+                "fs": 2,
+                "gc": 3,
+                "sh": 1
               }
             },
             {
@@ -52683,7 +52847,9 @@
               "jersey": "6",
               "pos": "CM",
               "st": {
-                "fc": 1
+                "fc": 1,
+                "fs": 1,
+                "gc": 3
               }
             },
             {
@@ -52691,20 +52857,25 @@
               "jersey": "3",
               "pos": "CD-R",
               "st": {
-                "fc": 1
+                "fc": 1,
+                "gc": 2
               }
             },
             {
               "name": "Johan Vásquez",
               "jersey": "5",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "gc": 3
+              }
             },
             {
               "name": "Gilberto Mora",
               "jersey": "19",
               "pos": "RM",
               "st": {
-                "fc": 1,
+                "fc": 2,
+                "gc": 3,
                 "sh": 1
               }
             },
@@ -52713,7 +52884,9 @@
               "jersey": "7",
               "pos": "LM",
               "st": {
-                "fs": 1
+                "fs": 1,
+                "gc": 3,
+                "sh": 1
               }
             },
             {
@@ -52721,19 +52894,32 @@
               "jersey": "9",
               "pos": "F",
               "st": {
-                "sg": 1,
-                "sh": 2
+                "fc": 3,
+                "gc": 3,
+                "sg": 3,
+                "g": 1,
+                "sh": 8
               }
             },
             {
               "name": "Roberto Alvarado",
               "jersey": "25",
-              "pos": "RF"
+              "pos": "RF",
+              "st": {
+                "fs": 1,
+                "gc": 3
+              }
             },
             {
               "name": "Julián Quiñones",
               "jersey": "16",
-              "pos": "LF"
+              "pos": "LF",
+              "st": {
+                "gc": 3,
+                "sg": 1,
+                "g": 1,
+                "sh": 3
+              }
             }
           ],
           "bench": [
@@ -52751,7 +52937,12 @@
             },
             {
               "name": "Álvaro Fidalgo",
-              "jersey": "8"
+              "jersey": "8",
+              "in": true,
+              "st": {
+                "sg": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Carlos Acevedo",
@@ -52775,15 +52966,31 @@
             },
             {
               "name": "Santiago Gimenez",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true,
+              "st": {
+                "sh": 1
+              }
             },
             {
               "name": "Brian Gutiérrez",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Edson Álvarez",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "gc": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Orbelín Pineda",
@@ -52791,7 +52998,8 @@
             },
             {
               "name": "Guillermo Martínez",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "Luis Chávez",
@@ -52807,35 +53015,53 @@
               "jersey": "1",
               "pos": "G",
               "st": {
-                "sv": 1
+                "gc": 2,
+                "sv": 3
               }
             },
             {
               "name": "Jarell Quansah",
               "jersey": "26",
-              "pos": "RB"
+              "pos": "RB",
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Nico O'Reilly",
               "jersey": "3",
-              "pos": "LB"
+              "pos": "LB",
+              "st": {
+                "fs": 1,
+                "gc": 2,
+                "sh": 1
+              }
             },
             {
               "name": "Elliot Anderson",
               "jersey": "8",
-              "pos": "LM"
+              "pos": "LM",
+              "st": {
+                "gc": 2
+              }
             },
             {
               "name": "Ezri Konsa",
               "jersey": "2",
-              "pos": "CD-R"
+              "pos": "CD-R",
+              "st": {
+                "fs": 3,
+                "gc": 2
+              }
             },
             {
               "name": "Marc Guéhi",
               "jersey": "6",
               "pos": "CD-L",
               "st": {
-                "fs": 1
+                "fs": 1,
+                "gc": 2
               }
             },
             {
@@ -52843,7 +53069,10 @@
               "jersey": "7",
               "pos": "AM-R",
               "st": {
-                "fs": 1
+                "fc": 2,
+                "fs": 1,
+                "gc": 1,
+                "a": 1
               }
             },
             {
@@ -52851,20 +53080,35 @@
               "jersey": "4",
               "pos": "RM",
               "st": {
-                "fc": 1
+                "fc": 1,
+                "gc": 2
               }
             },
             {
               "name": "Harry Kane",
               "jersey": "9",
-              "pos": "F"
+              "pos": "F",
+              "st": {
+                "fc": 2,
+                "fs": 1,
+                "gc": 2,
+                "a": 1,
+                "sg": 1,
+                "g": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Jude Bellingham",
               "jersey": "10",
               "pos": "AM",
               "st": {
-                "fs": 2
+                "fc": 1,
+                "fs": 2,
+                "gc": 2,
+                "sg": 3,
+                "g": 2,
+                "sh": 3
               }
             },
             {
@@ -52872,14 +53116,21 @@
               "jersey": "18",
               "pos": "AM-L",
               "st": {
-                "fs": 1
+                "fs": 4,
+                "gc": 2,
+                "sg": 1,
+                "sh": 1
               }
             }
           ],
           "bench": [
             {
               "name": "John Stones",
-              "jersey": "5"
+              "jersey": "5",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Ollie Watkins",
@@ -52895,7 +53146,8 @@
             },
             {
               "name": "Dan Burn",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true
             },
             {
               "name": "Trevoh Chalobah",
@@ -52915,7 +53167,8 @@
             },
             {
               "name": "Djed Spence",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Eberechi Eze",
@@ -52923,7 +53176,8 @@
             },
             {
               "name": "Morgan Rogers",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Reece James",
@@ -52942,65 +53196,65 @@
       },
       "referee": "Alireza Faghani",
       "venue": "Estadio Banorte, Mexico City",
-      "attendance": null,
+      "attendance": 80824,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "53%",
-          "a": "47%"
+          "h": "67%",
+          "a": "33%"
         },
         {
           "key": "totalShots",
-          "h": "3",
-          "a": "0"
+          "h": "20",
+          "a": "6"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
-          "a": "0"
+          "h": "5",
+          "a": "5"
         },
         {
           "key": "wonCorners",
-          "h": "2",
+          "h": "12",
           "a": "2"
         },
         {
           "key": "foulsCommitted",
-          "h": "5",
-          "a": "1"
+          "h": "14",
+          "a": "7"
         },
         {
           "key": "offsides",
-          "h": "0",
+          "h": "1",
           "a": "0"
         },
         {
           "key": "saves",
-          "h": "0",
-          "a": "1"
+          "h": "2",
+          "a": "3"
         },
         {
           "key": "totalPasses",
-          "h": "104",
-          "a": "92"
+          "h": "455",
+          "a": "244"
         },
         {
           "key": "passPct",
           "h": "92%",
-          "a": "85%"
+          "a": "80%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
-          "a": "1"
+          "h": "2",
+          "a": "4"
         },
         {
           "key": "redCards",
           "h": "0",
-          "a": "0"
+          "a": "1"
         }
       ],
-      "updatedAt": "2026-07-06T01:23:12.041Z"
+      "updatedAt": "2026-07-06T05:55:00.164Z"
     }
   }
 }
