@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-06T21:12:40.173Z",
+    "updatedAt": "2026-07-06T22:38:53.745Z",
     "source": "svt+tv4",
     "matchCount": 94
   },
@@ -2052,11 +2052,23 @@
       }
     },
     "k:93": {
+      "SVT": {
+        "short": {
+          "url": "https://www.svtplay.se/klipp/eZx7pzk/hojdpunkter-portugal-spanien",
+          "title": "Höjdpunkter: Portugal – Spanien",
+          "until": "2026-09-19T05:30:00+02:00"
+        }
+      },
       "TV4": {
         "full": {
           "url": "https://www.tv4play.se/video/227892ce254f9ffb0f49/portugal-spanien",
           "title": "Portugal - Spanien",
           "until": "2026-08-05T18:00:00Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/e76a5917a3138ed947f2/video-hojdpunkter-portugal-spanien",
+          "title": "Höjdpunkter: Portugal - Spanien",
+          "until": null
         }
       }
     },
@@ -2066,7 +2078,7 @@
           "url": "https://www.tv4play.se/video/f6abce41732548ba521a/usa-belgien",
           "title": "USA - Belgien",
           "until": "2026-08-05T23:45:00Z",
-          "from": "2026-07-06T23:45:22Z"
+          "from": "2026-07-06T23:45:01Z"
         }
       }
     },
