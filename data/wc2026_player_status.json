@@ -1,17 +1,17 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-05T22:28:57.710Z",
+  "updated": "2026-07-06T01:13:48.486Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
-    "mex-roberto-alvarado": {
+    "mex-cesar-montes": {
       "availability": "doubtful",
-      "kind": "other",
-      "detail": "Alarm i El Tri: Piojo Alvarado är osäker mot England och Aguirre analyserar redan en ersättare",
-      "updated": "2026-07-04",
+      "kind": "injury",
+      "detail": "Börjar César Montes mot England eller är han skadad? Detta är känt om han kommer att spela i åttondelsfinal med",
+      "updated": "2026-07-06",
       "source": {
-        "name": "debate.com.mx",
-        "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQTTJQUC1NWEQ1V2hYY0xrR3lmLUlMcU0tZVFDa3Bta2JQR1BoYTYxT2xzYndRejFOdlhSSndYaWZzREF6S0EzdWpJUmFMY3NEbGd6ME1zQ0dMeGxrbWhER1FvdGx6R21jaTBlWGJoR2ZqRHBTXzRJRzdGaURpc1ltY2lxcURHU2lLZkVXSWQxWG9wdWtuajNsYjhiTUNETjdxUXE1ajZDc0poeTc4YjNDS05CRG5QdWhXZnRHLUV1LVl0aFhnSjJTZ2wwWmFQRmxybm9RYmlNNnM1cmxqeVE?oc=5"
+        "name": "TV Azteca",
+        "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNUzhQWF9uLV9oV3EzeUpmdG9kSFpiTWh0Y0RyRTVhWExUakw3cnp0dUpmYXRRT0RsazVNRWJIY0QzQkd0dXlJQjBJZ2VJRXFvc2tCSUJpdkxSaXQ2Y3lMRWxrTjc2QWFHZEwtcjZaZFhLWGhsQXpFZVhqTGVQSzg5blRHdVpSelNyTGNmVmVCZkxtczRvSmZ3N3dubXA0MVJZdTJ6NW9n0gGzAUFVX3lxTE9LMlVNaktCdFRnNHFHUWszb0dCeVdZdlE0YWhzQ0lfOFJpUlpkR2JIY3lGRmJEc2hJMkx5WlhaR0xkQzJZQ2duTE16OHZGdllsQURaYjhVcldBMjhoTzlKWkc0M24xenJyNnZiSnFSSWxnQkpKTnJxOHFOY01RNTF5NUlFUlYtclVQWTVfbWdsZmFtRXlQYmhqVXBJbmg2ZFQ3TUYxam5SZ0E5UXhCb2R2VnE4?oc=5"
       },
       "origin": "news"
     },
@@ -38,18 +38,18 @@
       },
       "origin": "cards"
     },
-    "fra-manu-kone": {
-      "availability": "doubtful",
+    "fra-michael-olise": {
+      "availability": "out",
       "kind": "suspension",
-      "detail": "Se upp för nästa kort: Michael Olise, Bradley Barcola och Manu Koné hotas av avstängning för den eventuella VM-semifinalen",
+      "detail": "Frankrike - Marocko: Olise avstängd i händelse av en semifinal, FFF kliver upp på planen",
       "updated": "2026-07-05",
       "source": {
-        "name": "L'Équipe",
-        "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxPcm9VVkhfcVM2ZXJQdXNUVmtzV1V6eVk3Mk1EQ0xXUTQ4ejRLZ1ZqMnh6ellqUjNxU1JpQTcxSzlobVhISlhjdWxGdURnb0gtQkg1VEtSSWJOXzFwRnpMWHRLbVdNZVZSR3VKUHkyQmNHV1BHWnp0ZDNBaURiUjQyM29teUZIaVphMGZSN0RBTm40R2hGTDZucmdHVnFuN1pOVlNfOHljVWtEUGdHemltaWpyR1pYaDIwYWhNSlRQYWpwVzVwSU1mdVU2X3pZY0I5RlQyUktyZzJzMHJJY09sRk8yU2ZBenp0NTdoMnN6N2s2LTRfd1hFeUpaa1hMZGt4MU01TDllaXlWVElONnRYazVkaG4zZjMtVWhXRFBvV0U4cEM4RHdfQ3FNbTMxZw?oc=5"
+        "name": "MSN",
+        "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQODlkVTJnWmFZZ2o2QlFmYWNkM3V1OExTMk9HbEdKUFRuWEZqWkFINzRZc0ZCY2MwLXhPS1NPb2tiT3VWcEpDVWlxSS0tNXlMcW44QmowR1pEdWlxTng4QWhRMWR5LVFldGVLUnJJR3Y1Ujc5OGkycVVkNGE2VldzOUpsZ0txajg2SmdTVGVrN3RyNEdOSHZBVkRfSC0yZnFxZzllUEJrVEFVUEtXemt3T0xPQXBpSzNXbGxwcHNtLWVBUkF4c1BzWUZPMA?oc=5"
       },
       "origin": "news"
     },
-    "fra-michael-olise": {
+    "fra-manu-kone": {
       "availability": "doubtful",
       "kind": "suspension",
       "detail": "Se upp för nästa kort: Michael Olise, Bradley Barcola och Manu Koné hotas av avstängning för den eventuella VM-semifinalen",
@@ -112,6 +112,17 @@
       "source": {
         "name": "GB News",
         "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9NZE5iLXQxdjFERlBvaDRmZFpfX2ZWWDBtRlJPdHlJUk1TOFVZLTAyMm51R1ZoSDktWXVZUy1KY25XUm55TlI5d2o1cHRqVWNxVTRCWTQ0LUFJaWZnM2ZzdlM1RWx5Q0RzQnJuaDBKZTVKZ0hmUmZOXzlETQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-reece-james": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Reece James skadeuppdatering när Chelsea-stjärnan möter Englands VM-verklighet",
+      "updated": "2026-07-04",
+      "source": {
+        "name": "Football London",
+        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPbmFUQjlUM09wQ2hJc1F0ZXZEckNtMjQtaWNPYjJlTl80N0xxeVF0TlNJQ09lM2ZPU096Z3h1RUItNTZVTEhsbkNBSmdwazBxaDJJWVRpRnNldDZVV2JnbDAwWlBFeHMwR0tBTFJ0ekFISWd6cmNjRmRDUnJtbWY0bmVCQngwWUNhSWxOUGNWaWJfUdIBkgFBVV95cUxPbmFUQjlUM09wQ2hJc1F0ZXZEckNtMjQtaWNPYjJlTl80N0xxeVF0TlNJQ09lM2ZPU096Z3h1RUItNTZVTEhsbkNBSmdwazBxaDJJWVRpRnNldDZVV2JnbDAwWlBFeHMwR0tBTFJ0ekFISWd6cmNjRmRDUnJtbWY0bmVCQngwWUNhSWxOUGNWaWJfUQ?oc=5"
       },
       "origin": "news"
     },
