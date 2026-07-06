@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-06T20:19:53.223Z",
+  "updated": "2026-07-06T21:53:44.603Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mar-ismael-saibari": {
@@ -27,6 +27,39 @@
       },
       "origin": "cards"
     },
+    "egy-haissem-hassan": {
+      "availability": "doubtful",
+      "kind": "other",
+      "detail": "Bildandet av det egyptiska landslaget mot Argentina. Haitham Hassan närmar sig på bekostnad av Marmoush",
+      "updated": "2026-07-06",
+      "source": {
+        "name": "كل الكورة",
+        "url": "https://news.google.com/rss/articles/CBMixAJBVV95cUxOS0JvX0pkdjVpRkdOaDdETmlvWjNvTHFBd0RJVXdvczZBeHY3Y1N5U2VES0VlNTJFLUptNVdELU5pTXRQWDY3dUk0RG9Qa2wyeGxYOTFYbVd6bDhFRFI2UVVTRUZFNTVvdzNmTERydzBBYjQ5a1d3WS1DTGRsSXRVbHVpdlhhSVcyTnNocEZKckxhVXhMQzFtVy1pS1NsWTAxUnl2NmxRbm01NTlXb05MQk9LNEFRNHNGaXNXTS1VUVNKZ1NTV25LX25aX0gwamM0YVVLOW9tS2lVR3NKVktZajlnQWcwRmZKNndjcjFBZi1PdHZodlc0ekMyRnc3Sms0VVlxQkZmbXp2akhWcnZlT2xqcGNFUDV2RS1HaXZXclVycE5sQXhZZWx3akNLOGpmeEl3Q3l4Q2dkQlcxcDI3bUpCM2c?oc=5"
+      },
+      "origin": "news"
+    },
+    "egy-omar-marmoush": {
+      "availability": "doubtful",
+      "kind": "other",
+      "detail": "Bildandet av det egyptiska landslaget mot Argentina. Haitham Hassan närmar sig på bekostnad av Marmoush",
+      "updated": "2026-07-06",
+      "source": {
+        "name": "كل الكورة",
+        "url": "https://news.google.com/rss/articles/CBMixAJBVV95cUxOS0JvX0pkdjVpRkdOaDdETmlvWjNvTHFBd0RJVXdvczZBeHY3Y1N5U2VES0VlNTJFLUptNVdELU5pTXRQWDY3dUk0RG9Qa2wyeGxYOTFYbVd6bDhFRFI2UVVTRUZFNTVvdzNmTERydzBBYjQ5a1d3WS1DTGRsSXRVbHVpdlhhSVcyTnNocEZKckxhVXhMQzFtVy1pS1NsWTAxUnl2NmxRbm01NTlXb05MQk9LNEFRNHNGaXNXTS1VUVNKZ1NTV25LX25aX0gwamM0YVVLOW9tS2lVR3NKVktZajlnQWcwRmZKNndjcjFBZi1PdHZodlc0ekMyRnc3Sms0VVlxQkZmbXp2akhWcnZlT2xqcGNFUDV2RS1HaXZXclVycE5sQXhZZWx3akNLOGpmeEl3Q3l4Q2dkQlcxcDI3bUpCM2c?oc=5"
+      },
+      "origin": "news"
+    },
+    "fra-aurelien-tchouameni": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Franska laget: \"Det är sant att vi är ikapp i tid\", förklarar Guy Stéphan om Aurélien Tchouamenis skada",
+      "updated": "2026-07-06",
+      "source": {
+        "name": "franceinfo",
+        "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxQaGIycFJEeDVzbW9RMENibGlzS0JvNzhtWEZyZmFiTHJuVlFWQ3JxZFlwTllfM3ZVREttNzdCeHBsRHptdEowSEpuSjMzYTVDWU55c0wtUG1nMWZxV01MVDVOY1dvOGlnMjFJRkpXWmJDTXI3ekRGbnFIWGdReUZUNmc5LVBHTmZobnNEdEhQMUVxMVF1VHRlOU16STlJUjBxMzZSTHktNDM2bXFhVlhxbHFOM0RMRkgzRWJpOWJzSC1La2ZadzZLX1JxZnV5R1NGQi1RM0wxbUtLZk9RTnRwaWpXeDdWUmRORElUX1Q0UzVqenNadmdzeElPcTFSY1hISXdHTHVB?oc=5"
+      },
+      "origin": "news"
+    },
     "arg-facundo-medina": {
       "availability": "doubtful",
       "kind": "injury",
@@ -35,6 +68,17 @@
       "source": {
         "name": "Radio Dos Corrientes",
         "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQQ0NBQy12SGhYWVMtWlZXYzJzYTdkei1idklEeXZYR3J3NUhGdkpMdkhIemZQY1VzWFpKUVVLZWpoc1htOGdjNVg3czUwNzIzbl9JT1NCYlJxZXZ0T3lpbDg3TFNkY2ZlaDMyajdjSVh5RTlpR2Z4dXNzR0pzWlFmeTZrX21mYmJ2emZjVDhLUS1Jdw?oc=5"
+      },
+      "origin": "news"
+    },
+    "por-nuno-mendes": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Larm i landslaget: Nuno Mendes lämnar skadad",
+      "updated": "2026-07-06",
+      "source": {
+        "name": "SAPO",
+        "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOZDlwMWpOcWFNM0pnRGhLSWNoTUh6aVBTQ1UtQmtNMDJNbmtDYUlkZExRRUdHYTRYNWJyY011RW9Da3VibTNXWmRqOVlYV2VmU1lCQnlVZFRLcElMaWZ0TTg1OTlxVE1RbEV1cFpzS28yRzd3dTNkWXBoWjhuS3VWOVdGWk5nSWhkM3Z0dUx5QzNBMkZydkwxSThLa3N6ZzdoeWc?oc=5"
       },
       "origin": "news"
     },
