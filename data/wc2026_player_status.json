@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-06T17:57:26.399Z",
+  "updated": "2026-07-06T20:19:53.223Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mar-ismael-saibari": {
@@ -11,7 +11,7 @@
       "updated": "2026-07-06",
       "source": {
         "name": "AfricaFootUnited",
-        "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPYjk2VDBmUF9mVWtPZFNXeFJjNXZveElZY2p3TWdRSzJCTUZrWjRod3p0Wl9MTlRkM3RoNVhyZUdZVzR1cU9LbVc1aWczWmdBd1NjSVR4M1RlNXB5bmJUbkVEZUtSQkFUeFFydzMtcGVlUU1HMHlpSGl3VXo3QVBOOWlNTEd4d05OSFpj0gGLAUFVX3lxTE9iOTZUMGZQX2ZVa09kU1d4UmM1dm94SVljandNZ1FLMkJNRmtaNGh3enRaX0xOVGQzdGg1WHJlR1lXNHVxT0ttVzVpZzNaZ0F3U2NJVHgzVGU1cHluYlRuRURlS1JCQVR4UXJ3My1wZWVRTUcweWlIaXdVejdBUE45aU1MR3h3Tk5IWmM?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPVEdYVkw0ZzFpYWd4RWlzQTBIdEdFdnE2Umo3MEpNeDJUcFdQQlByRjlxSGtwMnN0eDd0OXVCTHYxNFltY0VEZnNrTEd4WUtRUlAxQlloc0txaEdGU2hyOFNyVjJoUlZ0UXVlamIteXlGN3dVb0k1WFIxSHNWUjB3d29QNNIBgwFBVV95cUxPVEdYVkw0ZzFpYWd4RWlzQTBIdEdFdnE2Umo3MEpNeDJUcFdQQlByRjlxSGtwMnN0eDd0OXVCTHYxNFltY0VEZnNrTEd4WUtRUlAxQlloc0txaEdGU2hyOFNyVjJoUlZ0UXVlamIteXlGN3dVb0k1WFIxSHNWUjB3d29QNA?oc=5"
       },
       "origin": "news"
     },
