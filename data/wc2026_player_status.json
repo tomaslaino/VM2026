@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-06T14:41:09.483Z",
+  "updated": "2026-07-06T17:57:26.399Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mar-ismael-saibari": {
@@ -11,7 +11,7 @@
       "updated": "2026-07-06",
       "source": {
         "name": "AfricaFootUnited",
-        "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPVEdYVkw0ZzFpYWd4RWlzQTBIdEdFdnE2Umo3MEpNeDJUcFdQQlByRjlxSGtwMnN0eDd0OXVCTHYxNFltY0VEZnNrTEd4WUtRUlAxQlloc0txaEdGU2hyOFNyVjJoUlZ0UXVlamIteXlGN3dVb0k1WFIxSHNWUjB3d29QNNIBgwFBVV95cUxPVEdYVkw0ZzFpYWd4RWlzQTBIdEdFdnE2Umo3MEpNeDJUcFdQQlByRjlxSGtwMnN0eDd0OXVCTHYxNFltY0VEZnNrTEd4WUtRUlAxQlloc0txaEdGU2hyOFNyVjJoUlZ0UXVlamIteXlGN3dVb0k1WFIxSHNWUjB3d29QNA?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPYjk2VDBmUF9mVWtPZFNXeFJjNXZveElZY2p3TWdRSzJCTUZrWjRod3p0Wl9MTlRkM3RoNVhyZUdZVzR1cU9LbVc1aWczWmdBd1NjSVR4M1RlNXB5bmJUbkVEZUtSQkFUeFFydzMtcGVlUU1HMHlpSGl3VXo3QVBOOWlNTEd4d05OSFpj0gGLAUFVX3lxTE9iOTZUMGZQX2ZVa09kU1d4UmM1dm94SVljandNZ1FLMkJNRmtaNGh3enRaX0xOVGQzdGg1WHJlR1lXNHVxT0ttVzVpZzNaZ0F3U2NJVHgzVGU1cHluYlRuRURlS1JCQVR4UXJ3My1wZWVRTUcweWlIaXdVejdBUE45aU1MR3h3Tk5IWmM?oc=5"
       },
       "origin": "news"
     },
@@ -27,17 +27,6 @@
       },
       "origin": "cards"
     },
-    "fra-aurelien-tchouameni": {
-      "availability": "doubtful",
-      "kind": "other",
-      "detail": "Blues: Tchouaméni mer osäker än någonsin inför kvartsfinalen mot Marocko: Sport - Orange",
-      "updated": "2026-07-06",
-      "source": {
-        "name": "Sports - Orange",
-        "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNeWg3T2FFakc3TVJWc1VTWGpiTllwS2pQOTFqaTVjaXlVbWs2cDdibkdaaEhHWUJRZWEyNXRfRHR5TmdCZWpTUmh2XzRTQ3BQQU5Bd0tzYzBja2hPdW1YZWFsWDBJcDh5c1c3My1ZdmM1cTZ4cktCemVTUWFwcUQtamtmaU1rU1hVS2d2Ym1vWGxHWXAyQUE0RDk5MV9uYW91MzhzRm5xN0x1S205VTVIaGxXcHpzOWhaTklhZTdTMjhsY253bHNRdkhuOFJUUDJJREpMX29VNGJ6VGl4N0lQLU94RjJ3eF9TUF81Q0l3Z3dOYlBOWldYdEJaVi15d2to0gH_AUFVX3lxTFBXUDJUYVZseU42bWVOdGlOaEZZRlZZN1FZUlp1M1M2Z1JwZm1QaEpicFN0TTJ3cU03Uzh5VEw5OEJsWkVQalN1blVibkxWWW5aMjJmZ1lkSnBYTGRDM3hxNVFZQ052Q2JhT3kyejRuZFBlSzMtT19hVjAxLVFKNVl5b2pSVUJ2bGk2U3VSbFpUbTRZTGZCU284RURrMUlrMklKVFc5bm9oWnVMWTJQcWtJbjM4T3Q1YU51WVYySXlHYjl5NEd4N3plb1Z3bWE0ejBVQUF4RVRfckNENUEySzFKN0d1MWpUMUw5NHJDVFdzZ1I1amswQmJZQkxMSzBWVQ?oc=5"
-      },
-      "origin": "news"
-    },
     "arg-facundo-medina": {
       "availability": "doubtful",
       "kind": "injury",
@@ -46,17 +35,6 @@
       "source": {
         "name": "Radio Dos Corrientes",
         "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQQ0NBQy12SGhYWVMtWlZXYzJzYTdkei1idklEeXZYR3J3NUhGdkpMdkhIemZQY1VzWFpKUVVLZWpoc1htOGdjNVg3czUwNzIzbl9JT1NCYlJxZXZ0T3lpbDg3TFNkY2ZlaDMyajdjSVh5RTlpR2Z4dXNzR0pzWlFmeTZrX21mYmJ2emZjVDhLUS1Jdw?oc=5"
-      },
-      "origin": "news"
-    },
-    "arg-lisandro-martinez": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Lisandro Martínez bröt ihop när han kom ihåg sin skada: \"Det var väldigt jobbigt\"",
-      "updated": "2026-07-04",
-      "source": {
-        "name": "Diario El Debate Pregón",
-        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPaElsZXVnQlRLTGlaUWoxRFRjU3Z4YmFwV09DS2pBd2JidzIwUlF2Y19JTExqMFY2T21FT1Y3Uy0yS1pQT3VnbDZPNFppOGp0MkZpWDJWVjRFV0h1djUyTUlHRmlZSXBEQkFiTVUxN1lzTjZ1QkR5SGVselN2YUN6cGRjRFdNN0JZN0xFcWNSMU9lSG9oN0lmYmhCdFo4TDdHRGVGTGpEY0tVUQ?oc=5"
       },
       "origin": "news"
     },
@@ -72,13 +50,13 @@
       "origin": "news"
     },
     "eng-jordan-henderson": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Jordan Hendersons skadehistorik inklusive Englands stjärnans operation och VM-slag",
+      "availability": "out",
+      "kind": "illness",
+      "detail": "Jordan Henderson ska opereras på grund av en illamående skada efter att Englands stjärna lades in på sjukhus",
       "updated": "2026-07-06",
       "source": {
-        "name": "Manchester Evening News",
-        "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQa2NxY1VnQVY2X3J5R19YWGFqZnhvN1dVaUFqdm44TTVGRVg4MnFXSmJsMFhicWk2MHlWdjUxUTVmSExDN1pYcGdEUVRMWHRiN1UyYW5lN0FOMnV2Y0p4RDJoTkhIWlhVQ0N3bGNPTE03MDNWcEstXzM1cFJhX2xVb1FIbjd1SElKUW5LN19jMTY5QVFvc2pkVlV5RlFETmJyRi0tSkdORUdHaF9MZjZqZnIwMzJzSEk?oc=5"
+        "name": "Daily Express",
+        "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQTm9rUmNDa2VCTnZGM1Zfc0gteHZCbkdfX0c0S04xY1pUclpSc2tmSlBaOUJNVk9NUUZFcy03S3R4M3pYWmJmZzhzSVlvdE5rNlJMSTNwUXlqNG1nUllYV3Y0bHBJMU9ORjRtMDdwMGM5MW9COUROVnE0NU03S3pCSW9tZGk4V1Nnbl83ZWJPdlh1R3NtLXZ1aTZUMjVucnPSAaQBQVVfeXFMTW9lc2xicDNZNWFIQ25xQjV6OWZTSkNicEVnWmlpTVRBNkt2Z3AxN2NLd2x0OE9rNExHMGRudFlaU3FsSFduZmxuaGpoMUN3X19xMjA5WUE2MEliYUFCZUVvR2F1ZWN4MGJfOVBoRzVweTg1NWFaV0Z6dS1BX0NQM0o5Sm5TWWhMa1RUelJ6NnpkZGh0bjg0Q3F5NVlPd2ZBVFZ1N3M?oc=5"
       },
       "origin": "news"
     },
