@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-07T14:04:39.870Z",
+    "updatedAt": "2026-07-07T16:41:00.153Z",
     "source": "espn"
   },
   "details": {
@@ -54406,6 +54406,417 @@
         }
       ],
       "updatedAt": "2026-07-07T05:36:04.793Z"
+    },
+    "k:95": {
+      "espnId": "760509",
+      "fmt": 2,
+      "status": "IN_PLAY",
+      "minute": 39,
+      "utcDate": "2026-07-07T16:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 1
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 15,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Yasser Ibrahim",
+          "assist": "Marawan Attia",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-1-3-2",
+          "starters": [
+            {
+              "name": "Emiliano Martínez",
+              "jersey": "23",
+              "pos": "G",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Nahuel Molina",
+              "jersey": "26",
+              "pos": "RB",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Nicolás Tagliafico",
+              "jersey": "3",
+              "pos": "LB",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Leandro Paredes",
+              "jersey": "5",
+              "pos": "SW",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Cristian Romero",
+              "jersey": "13",
+              "pos": "CD-R",
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Lisandro Martínez",
+              "jersey": "6",
+              "pos": "CD-L",
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Rodrigo De Paul",
+              "jersey": "7",
+              "pos": "RM",
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Alexis Mac Allister",
+              "jersey": "20",
+              "pos": "CM",
+              "st": {
+                "fs": 1,
+                "gc": 1,
+                "sg": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Lionel Messi",
+              "jersey": "10",
+              "pos": "CF-R",
+              "st": {
+                "gc": 1,
+                "sg": 1,
+                "sh": 3
+              }
+            },
+            {
+              "name": "Julián Álvarez",
+              "jersey": "9",
+              "pos": "CF-L",
+              "st": {
+                "fs": 2,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Enzo Fernández",
+              "jersey": "24",
+              "pos": "LM",
+              "st": {
+                "fc": 2,
+                "gc": 1,
+                "sh": 1
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Gerónimo Rulli",
+              "jersey": "12"
+            },
+            {
+              "name": "Giuliano Simeone",
+              "jersey": "17"
+            },
+            {
+              "name": "Giovani Lo Celso",
+              "jersey": "11"
+            },
+            {
+              "name": "Thiago Almada",
+              "jersey": "16"
+            },
+            {
+              "name": "Exequiel Palacios",
+              "jersey": "14"
+            },
+            {
+              "name": "Juan Musso",
+              "jersey": "1"
+            },
+            {
+              "name": "Valentín Barco",
+              "jersey": "8"
+            },
+            {
+              "name": "José Manuel López",
+              "jersey": "21"
+            },
+            {
+              "name": "Lautaro Martínez",
+              "jersey": "22"
+            },
+            {
+              "name": "Nico Paz",
+              "jersey": "18"
+            },
+            {
+              "name": "Facundo Medina",
+              "jersey": "25"
+            },
+            {
+              "name": "Gonzalo Montiel",
+              "jersey": "4"
+            },
+            {
+              "name": "Marcos Senesi",
+              "jersey": "2"
+            },
+            {
+              "name": "Nicolás Otamendi",
+              "jersey": "19"
+            },
+            {
+              "name": "Nico González",
+              "jersey": "15"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Mostafa Shoubir",
+              "jersey": "23",
+              "pos": "G",
+              "st": {
+                "sv": 2
+              }
+            },
+            {
+              "name": "Mohamed Hany",
+              "jersey": "3",
+              "pos": "RB"
+            },
+            {
+              "name": "Karim Hafez",
+              "jersey": "15",
+              "pos": "LB",
+              "st": {
+                "fs": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Mohanad Lashin",
+              "jersey": "17",
+              "pos": "CM-R",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Yasser Ibrahim",
+              "jersey": "2",
+              "pos": "CD-R",
+              "st": {
+                "fc": 1,
+                "sg": 1,
+                "g": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Ramy Rabia",
+              "jersey": "5",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Haissem Hassan",
+              "jersey": "12",
+              "pos": "RM",
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Marawan Attia",
+              "jersey": "19",
+              "pos": "CM-L",
+              "st": {
+                "fc": 1,
+                "a": 1
+              }
+            },
+            {
+              "name": "Mostafa Zico",
+              "jersey": "11",
+              "pos": "CF-L"
+            },
+            {
+              "name": "Mohamed Salah",
+              "jersey": "10",
+              "pos": "CF-R",
+              "st": {
+                "fs": 2
+              }
+            },
+            {
+              "name": "Emam Ashour",
+              "jersey": "8",
+              "pos": "LM",
+              "st": {
+                "fs": 2
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Trézéguet",
+              "jersey": "7"
+            },
+            {
+              "name": "Mohamed Alaa",
+              "jersey": "26"
+            },
+            {
+              "name": "Zizo",
+              "jersey": "25"
+            },
+            {
+              "name": "Hossam Abdelmaguid",
+              "jersey": "4"
+            },
+            {
+              "name": "Hamza Abdelkarim",
+              "jersey": "9"
+            },
+            {
+              "name": "Hamdy Fathy",
+              "jersey": "14"
+            },
+            {
+              "name": "Mohamed El Shenawy",
+              "jersey": "1"
+            },
+            {
+              "name": "Mahmoud Saber",
+              "jersey": "21"
+            },
+            {
+              "name": "Omar Marmoush",
+              "jersey": "22"
+            },
+            {
+              "name": "Ibrahim Adel",
+              "jersey": "20"
+            },
+            {
+              "name": "Mahdy Soliman",
+              "jersey": "16"
+            },
+            {
+              "name": "Nabil Donga",
+              "jersey": "18"
+            },
+            {
+              "name": "Tarek Alaa",
+              "jersey": "24"
+            }
+          ]
+        }
+      },
+      "referee": "Francois Letexier",
+      "venue": "Mercedes-Benz Stadium, Atlanta, Georgia",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "57%",
+          "a": "43%"
+        },
+        {
+          "key": "totalShots",
+          "h": "5",
+          "a": "2"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "6",
+          "a": "4"
+        },
+        {
+          "key": "offsides",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "2"
+        },
+        {
+          "key": "totalPasses",
+          "h": "219",
+          "a": "159"
+        },
+        {
+          "key": "passPct",
+          "h": "88%",
+          "a": "89%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-07T16:41:00.153Z"
     }
   }
 }
