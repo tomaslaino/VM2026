@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-07T18:50:55.910Z",
+    "updatedAt": "2026-07-07T20:46:39.206Z",
     "source": "espn",
-    "matchCount": 95,
-    "liveCount": 0,
+    "matchCount": 96,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -484,9 +484,23 @@
       "h": 3,
       "a": 2,
       "status": "FINISHED"
+    },
+    "k:96": {
+      "h": 0,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:96",
+      "status": "IN_PLAY",
+      "minute": 45,
+      "home": "Switzerland",
+      "away": "Colombia",
+      "score": "0-0"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -2107,7 +2121,7 @@
       "date": "2026-07-07",
       "time": "22:00",
       "utcDate": "2026-07-07T20:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Switzerland",
       "away": "Colombia",
