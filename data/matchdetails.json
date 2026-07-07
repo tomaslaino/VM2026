@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-07T01:23:20.942Z",
+    "updatedAt": "2026-07-07T05:36:04.794Z",
     "source": "espn"
   },
   "details": {
@@ -53810,15 +53810,15 @@
     "k:94": {
       "espnId": "760507",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 59,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-07T00:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 1,
-          "a": 3
+          "a": 4
         },
         "ht": {
           "h": 1,
@@ -53864,6 +53864,15 @@
           "assist": "Charles De Ketelaere",
           "type": "REGULAR",
           "score": null
+        },
+        {
+          "minute": 90,
+          "injuryTime": 3,
+          "team": "a",
+          "scorer": "Romelu Lukaku",
+          "assist": "Hans Vanaken",
+          "type": "REGULAR",
+          "score": null
         }
       ],
       "bookings": [
@@ -53871,6 +53880,12 @@
           "minute": 35,
           "team": "h",
           "player": "Weston McKennie",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 69,
+          "team": "h",
+          "player": "Malik Tillman",
           "card": "YELLOW"
         }
       ],
@@ -53892,6 +53907,48 @@
           "team": "h",
           "in": "Sebastian Berhalter",
           "out": "Christian Pulisic"
+        },
+        {
+          "minute": 67,
+          "team": "a",
+          "in": "Jérémy Doku",
+          "out": "Dodi Lukébakio"
+        },
+        {
+          "minute": 67,
+          "team": "a",
+          "in": "Romelu Lukaku",
+          "out": "Charles De Ketelaere"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Ricardo Pepi",
+          "out": "Tyler Adams"
+        },
+        {
+          "minute": 89,
+          "team": "a",
+          "in": "Alexis Saelemaekers",
+          "out": "Leandro Trossard"
+        },
+        {
+          "minute": 89,
+          "team": "a",
+          "in": "Axel Witsel",
+          "out": "Nicolas Raskin"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Max Arfsten",
+          "out": "Antonee Robinson"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Haji Wright",
+          "out": "Folarin Balogun"
         }
       ],
       "penalties": [],
@@ -53904,7 +53961,7 @@
               "jersey": "24",
               "pos": "G",
               "st": {
-                "gc": 3,
+                "gc": 4,
                 "sv": 3
               }
             },
@@ -53913,8 +53970,8 @@
               "jersey": "16",
               "pos": "RB",
               "st": {
-                "gc": 3,
-                "sh": 1
+                "gc": 4,
+                "sh": 2
               }
             },
             {
@@ -53922,7 +53979,7 @@
               "jersey": "5",
               "pos": "LB",
               "st": {
-                "fc": 1,
+                "fc": 2,
                 "gc": 3
               }
             },
@@ -53942,7 +53999,7 @@
               "pos": "CD-R",
               "st": {
                 "fc": 1,
-                "gc": 3
+                "gc": 4
               }
             },
             {
@@ -53950,7 +54007,7 @@
               "jersey": "13",
               "pos": "CD-L",
               "st": {
-                "gc": 3
+                "gc": 4
               }
             },
             {
@@ -53958,9 +54015,9 @@
               "jersey": "8",
               "pos": "RM",
               "st": {
-                "fc": 1,
+                "fc": 2,
                 "fs": 1,
-                "gc": 3
+                "gc": 4
               }
             },
             {
@@ -53968,8 +54025,9 @@
               "jersey": "17",
               "pos": "LM",
               "st": {
-                "fs": 2,
-                "gc": 3,
+                "fc": 2,
+                "fs": 4,
+                "gc": 4,
                 "sg": 1,
                 "g": 1,
                 "sh": 1
@@ -53982,7 +54040,8 @@
               "st": {
                 "fs": 1,
                 "gc": 3,
-                "sh": 1
+                "sg": 1,
+                "sh": 3
               }
             },
             {
@@ -54010,7 +54069,12 @@
             },
             {
               "name": "Ricardo Pepi",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true,
+              "st": {
+                "fs": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Timothy Weah",
@@ -54018,7 +54082,11 @@
             },
             {
               "name": "Max Arfsten",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Matt Turner",
@@ -54037,7 +54105,7 @@
               "jersey": "7",
               "in": true,
               "st": {
-                "gc": 1
+                "gc": 2
               }
             },
             {
@@ -54058,12 +54126,22 @@
             },
             {
               "name": "Haji Wright",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Sebastian Berhalter",
               "jersey": "14",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 2,
+                "fs": 1,
+                "gc": 1,
+                "sh": 1
+              }
             }
           ]
         },
@@ -54075,7 +54153,8 @@
               "jersey": "1",
               "pos": "G",
               "st": {
-                "gc": 1
+                "gc": 1,
+                "sv": 1
               }
             },
             {
@@ -54083,6 +54162,8 @@
               "jersey": "21",
               "pos": "RB",
               "st": {
+                "fc": 2,
+                "fs": 1,
                 "gc": 1,
                 "sg": 1,
                 "sh": 1
@@ -54102,7 +54183,7 @@
               "jersey": "23",
               "pos": "LM",
               "st": {
-                "fc": 2,
+                "fc": 3,
                 "fs": 1,
                 "gc": 1,
                 "a": 1,
@@ -54115,6 +54196,7 @@
               "jersey": "25",
               "pos": "CD-R",
               "st": {
+                "fc": 1,
                 "gc": 1
               }
             },
@@ -54162,6 +54244,7 @@
               "pos": "AM",
               "st": {
                 "fc": 1,
+                "fs": 1,
                 "gc": 1,
                 "sh": 2
               }
@@ -54173,14 +54256,20 @@
               "st": {
                 "gc": 1,
                 "a": 1,
-                "sh": 2
+                "sh": 4
               }
             }
           ],
           "bench": [
             {
               "name": "Romelu Lukaku",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true,
+              "st": {
+                "sg": 1,
+                "g": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Diego Moreira",
@@ -54188,7 +54277,8 @@
             },
             {
               "name": "Alexis Saelemaekers",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "Matias Fernandez-Pardo",
@@ -54203,8 +54293,9 @@
               "jersey": "20",
               "in": true,
               "st": {
-                "fs": 1,
+                "fs": 2,
                 "gc": 1,
+                "a": 1,
                 "sg": 1,
                 "g": 1,
                 "sh": 1
@@ -54216,7 +54307,11 @@
             },
             {
               "name": "Jérémy Doku",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true,
+              "st": {
+                "fs": 3
+              }
             },
             {
               "name": "Kevin De Bruyne",
@@ -54224,7 +54319,8 @@
             },
             {
               "name": "Axel Witsel",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true
             },
             {
               "name": "Mike Penders",
@@ -54251,32 +54347,32 @@
       },
       "referee": "Adham Mohammad",
       "venue": "Lumen Field, Seattle, Washington",
-      "attendance": null,
+      "attendance": 66925,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "51%",
-          "a": "49%"
+          "h": "56%",
+          "a": "44%"
         },
         {
           "key": "totalShots",
-          "h": "3",
-          "a": "12"
+          "h": "7",
+          "a": "15"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
-          "a": "6"
+          "h": "2",
+          "a": "7"
         },
         {
           "key": "wonCorners",
-          "h": "1",
-          "a": "4"
+          "h": "3",
+          "a": "5"
         },
         {
           "key": "foulsCommitted",
-          "h": "5",
-          "a": "5"
+          "h": "11",
+          "a": "9"
         },
         {
           "key": "offsides",
@@ -54286,21 +54382,21 @@
         {
           "key": "saves",
           "h": "3",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "totalPasses",
-          "h": "297",
-          "a": "282"
+          "h": "527",
+          "a": "414"
         },
         {
           "key": "passPct",
-          "h": "86%",
-          "a": "83%"
+          "h": "87%",
+          "a": "81%"
         },
         {
           "key": "yellowCards",
-          "h": "1",
+          "h": "2",
           "a": "0"
         },
         {
@@ -54309,7 +54405,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-07T01:23:20.942Z"
+      "updatedAt": "2026-07-07T05:36:04.793Z"
     }
   }
 }
