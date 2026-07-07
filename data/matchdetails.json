@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-07T16:41:00.153Z",
+    "updatedAt": "2026-07-07T18:50:56.006Z",
     "source": "espn"
   },
   "details": {
@@ -54410,17 +54410,20 @@
     "k:95": {
       "espnId": "760509",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 39,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-07T16:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
+          "h": 3,
+          "a": 2
+        },
+        "ht": {
           "h": 0,
           "a": 1
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
@@ -54437,10 +54440,138 @@
             "h": 0,
             "a": 1
           }
+        },
+        {
+          "minute": 67,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Mostafa Zico",
+          "assist": "Haissem Hassan",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 2
+          }
+        },
+        {
+          "minute": 79,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Cristian Romero",
+          "assist": "Lionel Messi",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 2
+          }
+        },
+        {
+          "minute": 83,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Lionel Messi",
+          "assist": "Gonzalo Montiel",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 2
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 2,
+          "team": "h",
+          "scorer": "Enzo Fernández",
+          "assist": "Lautaro Martínez",
+          "type": "REGULAR",
+          "score": {
+            "h": 3,
+            "a": 2
+          }
         }
       ],
-      "bookings": [],
-      "subs": [],
+      "bookings": [
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Mostafa Shoubir",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Hamdy Fathy",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Marawan Attia",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Haissem Hassan",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Hamdy Fathy",
+          "out": "Emam Ashour"
+        },
+        {
+          "minute": 66,
+          "team": "h",
+          "in": "Nico González",
+          "out": "Nicolás Tagliafico"
+        },
+        {
+          "minute": 66,
+          "team": "h",
+          "in": "Lautaro Martínez",
+          "out": "Rodrigo De Paul"
+        },
+        {
+          "minute": 73,
+          "team": "h",
+          "in": "Gonzalo Montiel",
+          "out": "Nahuel Molina"
+        },
+        {
+          "minute": 73,
+          "team": "a",
+          "in": "Trézéguet",
+          "out": "Haissem Hassan"
+        },
+        {
+          "minute": 80,
+          "team": "a",
+          "in": "Omar Marmoush",
+          "out": "Mostafa Zico"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Facundo Medina",
+          "out": "Julián Álvarez"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Nicolás Otamendi",
+          "out": "Cristian Romero"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Zizo",
+          "out": "Mohanad Lashin"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -54451,7 +54582,7 @@
               "jersey": "23",
               "pos": "G",
               "st": {
-                "gc": 1
+                "gc": 2
               }
             },
             {
@@ -54459,7 +54590,7 @@
               "jersey": "26",
               "pos": "RB",
               "st": {
-                "gc": 1
+                "gc": 2
               }
             },
             {
@@ -54467,7 +54598,7 @@
               "jersey": "3",
               "pos": "LB",
               "st": {
-                "fc": 1,
+                "fc": 2,
                 "fs": 1,
                 "gc": 1
               }
@@ -54477,7 +54608,9 @@
               "jersey": "5",
               "pos": "SW",
               "st": {
-                "gc": 1
+                "fs": 1,
+                "gc": 2,
+                "sh": 2
               }
             },
             {
@@ -54486,7 +54619,10 @@
               "pos": "CD-R",
               "st": {
                 "fc": 1,
-                "gc": 1
+                "gc": 2,
+                "sg": 1,
+                "g": 1,
+                "sh": 1
               }
             },
             {
@@ -54494,8 +54630,10 @@
               "jersey": "6",
               "pos": "CD-L",
               "st": {
-                "fc": 1,
-                "gc": 1
+                "fc": 2,
+                "fs": 2,
+                "gc": 2,
+                "sh": 1
               }
             },
             {
@@ -54504,7 +54642,9 @@
               "pos": "RM",
               "st": {
                 "fc": 1,
-                "gc": 1
+                "gc": 1,
+                "sg": 1,
+                "sh": 1
               }
             },
             {
@@ -54513,9 +54653,9 @@
               "pos": "CM",
               "st": {
                 "fs": 1,
-                "gc": 1,
+                "gc": 2,
                 "sg": 1,
-                "sh": 1
+                "sh": 2
               }
             },
             {
@@ -54523,9 +54663,12 @@
               "jersey": "10",
               "pos": "CF-R",
               "st": {
-                "gc": 1,
-                "sg": 1,
-                "sh": 3
+                "fs": 2,
+                "gc": 2,
+                "a": 1,
+                "sg": 2,
+                "g": 1,
+                "sh": 5
               }
             },
             {
@@ -54533,8 +54676,11 @@
               "jersey": "9",
               "pos": "CF-L",
               "st": {
+                "fc": 3,
                 "fs": 2,
-                "gc": 1
+                "gc": 2,
+                "sg": 1,
+                "sh": 2
               }
             },
             {
@@ -54543,8 +54689,10 @@
               "pos": "LM",
               "st": {
                 "fc": 2,
-                "gc": 1,
-                "sh": 1
+                "gc": 2,
+                "sg": 1,
+                "g": 1,
+                "sh": 2
               }
             }
           ],
@@ -54583,7 +54731,14 @@
             },
             {
               "name": "Lautaro Martínez",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true,
+              "st": {
+                "fs": 2,
+                "gc": 1,
+                "a": 1,
+                "sh": 3
+              }
             },
             {
               "name": "Nico Paz",
@@ -54591,11 +54746,16 @@
             },
             {
               "name": "Facundo Medina",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Gonzalo Montiel",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true,
+              "st": {
+                "a": 1
+              }
             },
             {
               "name": "Marcos Senesi",
@@ -54603,11 +54763,17 @@
             },
             {
               "name": "Nicolás Otamendi",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Nico González",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true,
+              "st": {
+                "fc": 2,
+                "gc": 1
+              }
             }
           ]
         },
@@ -54619,20 +54785,27 @@
               "jersey": "23",
               "pos": "G",
               "st": {
-                "sv": 2
+                "fs": 1,
+                "gc": 3,
+                "sv": 4
               }
             },
             {
               "name": "Mohamed Hany",
               "jersey": "3",
-              "pos": "RB"
+              "pos": "RB",
+              "st": {
+                "gc": 3
+              }
             },
             {
               "name": "Karim Hafez",
               "jersey": "15",
               "pos": "LB",
               "st": {
+                "fc": 1,
                 "fs": 1,
+                "gc": 3,
                 "sh": 1
               }
             },
@@ -54641,7 +54814,8 @@
               "jersey": "17",
               "pos": "CM-R",
               "st": {
-                "fc": 1
+                "fc": 1,
+                "gc": 3
               }
             },
             {
@@ -54650,6 +54824,7 @@
               "pos": "CD-R",
               "st": {
                 "fc": 1,
+                "gc": 3,
                 "sg": 1,
                 "g": 1,
                 "sh": 1
@@ -54658,7 +54833,11 @@
             {
               "name": "Ramy Rabia",
               "jersey": "5",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "fs": 1,
+                "gc": 3
+              }
             },
             {
               "name": "Haissem Hassan",
@@ -54666,7 +54845,8 @@
               "pos": "RM",
               "st": {
                 "fc": 1,
-                "fs": 1
+                "fs": 2,
+                "a": 1
               }
             },
             {
@@ -54674,21 +54854,30 @@
               "jersey": "19",
               "pos": "CM-L",
               "st": {
-                "fc": 1,
+                "fc": 4,
+                "gc": 3,
                 "a": 1
               }
             },
             {
               "name": "Mostafa Zico",
               "jersey": "11",
-              "pos": "CF-L"
+              "pos": "CF-L",
+              "st": {
+                "gc": 1,
+                "sg": 1,
+                "g": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Mohamed Salah",
               "jersey": "10",
               "pos": "CF-R",
               "st": {
-                "fs": 2
+                "fc": 2,
+                "fs": 4,
+                "gc": 3
               }
             },
             {
@@ -54703,7 +54892,12 @@
           "bench": [
             {
               "name": "Trézéguet",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true,
+              "st": {
+                "gc": 3,
+                "sh": 2
+              }
             },
             {
               "name": "Mohamed Alaa",
@@ -54711,7 +54905,11 @@
             },
             {
               "name": "Zizo",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true,
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Hossam Abdelmaguid",
@@ -54723,7 +54921,12 @@
             },
             {
               "name": "Hamdy Fathy",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "gc": 3
+              }
             },
             {
               "name": "Mohamed El Shenawy",
@@ -54735,7 +54938,12 @@
             },
             {
               "name": "Omar Marmoush",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true,
+              "st": {
+                "fs": 1,
+                "gc": 2
+              }
             },
             {
               "name": "Ibrahim Adel",
@@ -54758,57 +54966,57 @@
       },
       "referee": "Francois Letexier",
       "venue": "Mercedes-Benz Stadium, Atlanta, Georgia",
-      "attendance": null,
+      "attendance": 68239,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "57%",
-          "a": "43%"
+          "h": "64%",
+          "a": "36%"
         },
         {
           "key": "totalShots",
-          "h": "5",
-          "a": "2"
+          "h": "19",
+          "a": "5"
         },
         {
           "key": "shotsOnTarget",
-          "h": "2",
-          "a": "1"
+          "h": "7",
+          "a": "2"
         },
         {
           "key": "wonCorners",
-          "h": "0",
+          "h": "6",
           "a": "1"
         },
         {
           "key": "foulsCommitted",
-          "h": "6",
-          "a": "4"
+          "h": "13",
+          "a": "11"
         },
         {
           "key": "offsides",
-          "h": "1",
+          "h": "3",
           "a": "0"
         },
         {
           "key": "saves",
           "h": "0",
-          "a": "2"
+          "a": "4"
         },
         {
           "key": "totalPasses",
-          "h": "219",
-          "a": "159"
+          "h": "602",
+          "a": "349"
         },
         {
           "key": "passPct",
-          "h": "88%",
-          "a": "89%"
+          "h": "90%",
+          "a": "83%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "0"
+          "a": "4"
         },
         {
           "key": "redCards",
@@ -54816,7 +55024,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-07T16:41:00.153Z"
+      "updatedAt": "2026-07-07T18:50:56.005Z"
     }
   }
 }

@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-07T16:41:00.090Z",
+    "updatedAt": "2026-07-07T18:50:55.910Z",
     "source": "espn",
     "matchCount": 95,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -481,21 +481,12 @@
       "status": "FINISHED"
     },
     "k:95": {
-      "h": 0,
-      "a": 1,
-      "status": "IN_PLAY"
+      "h": 3,
+      "a": 2,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:95",
-      "status": "IN_PLAY",
-      "minute": 22,
-      "home": "Argentina",
-      "away": "Egypt",
-      "score": "0-1"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -2099,7 +2090,7 @@
       "date": "2026-07-07",
       "time": "18:00",
       "utcDate": "2026-07-07T16:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Argentina",
       "away": "Egypt",
@@ -2186,9 +2177,12 @@
       "utcDate": "2026-07-12T01:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Round of 16 7 Winner",
+      "home": "Argentina",
       "away": "Round of 16 8 Winner",
-      "homeRef": null,
+      "homeRef": {
+        "group": "J",
+        "idx": 0
+      },
       "awayRef": null
     },
     "k:101": {
