@@ -327,8 +327,8 @@ KÄLLOR (matchrapporter, spelarbetyg, reaktioner ur medierna)
 ${list}
 
 SKRIVKRAV
-- Slagkraftig rubrik (headline, REN TEXT). En ingress (lead) som slår fast hur väl prognosen höll.
-- 4–6 stycken (paragraphs), cirka 300–450 ord TOTALT. Var konkret: koppla utfallet till DET VI SA INNAN – vad vi fick rätt i, vad vi missade, och VARFÖR (avgörande spelare, taktik, avbräck, förhållanden, tur/domslut). Använd fakta och siffror ur FACIT och citat/omdömen ur källorna.
+- Slagkraftig, kort rubrik (headline, REN TEXT). Kort ingress (lead, ~20–30 ord) som slår fast hur väl prognosen höll.
+- 2–4 stycken (paragraphs), cirka 180–270 ord TOTALT (lead + paragraphs). Var konkret men stram: koppla utfallet till DET VI SA INNAN – vad vi fick rätt i, vad vi missade, och VARFÖR (avgörande spelare, taktik, avbräck, förhållanden, tur/domslut). Använd fakta och siffror ur FACIT och högst 1–2 korta citat/omdömen ur källorna. Undvik upprepningar och utfyllnad.
 - Hitta INTE på fakta, namn, siffror eller citat. Håll dig till FACIT och källorna.
 - **fet** för nyckelnamn/avgörande fakta, *kursiv* för citat. Varje påstående ur en källa får en hänvisning direkt efter: [[3]] eller [[2,5]] (max 1–2 per påstående). Fakta ur FACIT behöver ingen hänvisning.
 - Ton: initierad, självkritisk där det behövs, inte skrytsam. Erkänn misar öppet.
