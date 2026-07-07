@@ -1,9 +1,31 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-06T23:35:09.010Z",
+  "updated": "2026-07-07T04:30:36.842Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
+    "sui-johan-manzambi": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Fotbolls-VM 2026: Manzambi och Vargas skadade – kommer de att saknas i landslaget mot Colombia?",
+      "updated": "2026-07-07",
+      "source": {
+        "name": "Aargauer Zeitung",
+        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNSUtfSVVlNWFzd3VsWjFvX2hobTYxYy1IM1Yxd2ZHeHhRU2xZU3k0ZjM3U1Z0M2RTMmcyV2tuNVdLeDAzNmsyMm82SHc0NWE0LTZ2cVZZYlBILVpaeXVVRi1WRGNvM1NpRkVVTE51Skk0cEUwdDN1MnhNb0p5QW1VWHJESHBIcTNVUTAxU0NIc3lJalI0T2o5d1VnbTEycEJZTFRzcDBGWVAtS1RqUTEtTlJpV3BUR0lTSWdWX2pkTC0?oc=5"
+      },
+      "origin": "news"
+    },
+    "sui-ruben-vargas": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Fotbolls-VM 2026: Manzambi och Vargas skadade – kommer de att saknas i landslaget mot Colombia?",
+      "updated": "2026-07-07",
+      "source": {
+        "name": "Aargauer Zeitung",
+        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNSUtfSVVlNWFzd3VsWjFvX2hobTYxYy1IM1Yxd2ZHeHhRU2xZU3k0ZjM3U1Z0M2RTMmcyV2tuNVdLeDAzNmsyMm82SHc0NWE0LTZ2cVZZYlBILVpaeXVVRi1WRGNvM1NpRkVVTE51Skk0cEUwdDN1MnhNb0p5QW1VWHJESHBIcTNVUTAxU0NIc3lJalI0T2o5d1VnbTEycEJZTFRzcDBGWVAtS1RqUTEtTlJpV3BUR0lTSWdWX2pkTC0?oc=5"
+      },
+      "origin": "news"
+    },
     "mar-ismael-saibari": {
       "availability": "doubtful",
       "kind": "other",
@@ -15,17 +37,27 @@
       },
       "origin": "news"
     },
-    "usa-folarin-balogun": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Rött kort i sextondelsfinalen mot Bosnien-Hercegovina",
-      "updated": "2026-07-02",
+    "usa-christian-pulisic": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Mauricio Pochettino levererar preliminär skadeuppdatering om Christian Pulisic efter USMNT-nederlag mot Belgien",
+      "updated": "2026-07-07",
       "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760494"
+        "name": "World Soccer Talk",
+        "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPSkxrXzBnTjhnUE1Rd0NQTVdrOExDWjRONlZ3ZVg1QU9RRkpqOWJORlBSandpUmh5LW54SHlQcm1zREJsUi1QMk82ODdNbVUtWXZSdzVhWUtic0dZRllUVlVJeVBmTER4eDBwTktYSzc4bFNCVnBjUzNwV053YVhUNnVxQ0RTaXlMOW1QcVY1WEVUaWlMYVo1NWFuWktteFF5elF1Vll0N3lkR2xFWExtbXZNYTNmamxDM190OGQwLUlKVFpReEp0S2JaNHFMUGcxZWdFUmd0eWlHQkpCYzBZd3FB0gHiAUFVX3lxTE9KTGtfMGdOOGdQTVF3Q1BNV2s4TENaNE42VndlWDVBT1FGSmo5Yk5GUFJqd2lSaHktbnhIeVBybXNEQmxSLVAyTzY4N01tVS1ZdlJ3NWFZS2JzR1lGWVRWVUl5UGZMRHh4MHBOS1hLNzhsU0JWcGNTM3BXTndhWFQ2dXFDRFNpeUw5bVBxVjVYRVRpaUxhWjU1YW5aS214UXl6UXVWWXQ3eWRHbEVYTG1tdk1hM2ZqbEMzX3Q4ZDAtSUpUWlF4SnRLYlo0cUxQZzFlZ0VSZ3R5aUdCSkJjMFl3cUE?oc=5"
       },
-      "origin": "cards"
+      "origin": "news"
+    },
+    "usa-matt-freese": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "USMNT:s världscupdrömmar tar slut med Christian Pulisic-skada och Matt Freese-misstag",
+      "updated": "2026-07-07",
+      "source": {
+        "name": "Yahoo Sports",
+        "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQdWp1dzBSNThEN1J1ZnUxZkloUGFxNndsNjNDSC0wd01ILWVyXzVLSDRRX2k5NG5Kbkc2X1hLWERIZDNibTZkalZYWFRYVUZBb0RsYXl2TDNuSnpUS255UDFjZlNVTFNUUElGbXJQWVB5MFMwR0s5Z3B5LXFtR0JOUjVVanpsRk0?oc=5"
+      },
+      "origin": "news"
     },
     "egy-haissem-hassan": {
       "availability": "doubtful",
@@ -60,6 +92,17 @@
       },
       "origin": "news"
     },
+    "arg-leandro-paredes": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Scaloni antydde vilken roll han avsåg för Paredes och förtydligade: \"Han kom skadad.\"",
+      "updated": "2026-07-06",
+      "source": {
+        "name": "Planeta Boca Juniors",
+        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNVXBqdGlsY0Y0QXk2a2ZqeDgzN1ZNMTc0NUczSTRlaEt2ODU5TUxWNXlXcGNfTWhJcUNLWE9paXBGeExDeVNRWTB5MmZNZTRsR2g3V0dVVUsyOVhTU3NlNWlEc2Zrb09aX3FMTTR0bkRlek5ZNEJzX0JiUlZMSHFIbG5FaWppUjNOVFpGUlZEYU1wZmJ3ak1FX2c0QmVmMklPTjdOSUVISFNmZ2Y2ckQ5TEhSdTFkZ0xiWUU40gG_AUFVX3lxTE5QYWJWYU1zemstd3BJSEtTeTROTDdpZWpzN050MWRqQUxhc0pSNXp1YXE0X2gwMEFjMmtGTWROdFczMFVXN1VfVjJJeURlMkpENi1hM0Y2ZDl3Tjh2Q1ZKU1VtYW96NGJ5ZjRlRndwNFlhZWJ5WUV5cDdKV0xDUWpZalg0SHd3b2FpWUQwRHBEWkFzOVF5Q3NTMHBaeVpnMDhjR004bWUtRFgweWJTQmFDYklQc21JODF1NExfRVBF?oc=5"
+      },
+      "origin": "news"
+    },
     "col-jhon-cordoba": {
       "availability": "doubtful",
       "kind": "injury",
@@ -91,6 +134,18 @@
       "source": {
         "name": "Matchfakta (ESPN)",
         "url": "https://www.espn.com/soccer/match/_/gameId/760505"
+      },
+      "origin": "cards"
+    },
+    "usa-folarin-balogun": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Rött kort i sextondelsfinalen mot Bosnien-Hercegovina",
+      "updated": "2026-07-02",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760494"
       },
       "origin": "cards"
     },
