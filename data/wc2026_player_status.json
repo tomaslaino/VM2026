@@ -1,17 +1,17 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-07T04:30:36.842Z",
+  "updated": "2026-07-07T08:48:20.479Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Fotbolls-VM 2026: Manzambi och Vargas skadade – kommer de att saknas i landslaget mot Colombia?",
+      "detail": "Johan Manzambi: Skadkock inför åttondelsfinalen i världscupen",
       "updated": "2026-07-07",
       "source": {
-        "name": "Aargauer Zeitung",
-        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNSUtfSVVlNWFzd3VsWjFvX2hobTYxYy1IM1Yxd2ZHeHhRU2xZU3k0ZjM3U1Z0M2RTMmcyV2tuNVdLeDAzNmsyMm82SHc0NWE0LTZ2cVZZYlBILVpaeXVVRi1WRGNvM1NpRkVVTE51Skk0cEUwdDN1MnhNb0p5QW1VWHJESHBIcTNVUTAxU0NIc3lJalI0T2o5d1VnbTEycEJZTFRzcDBGWVAtS1RqUTEtTlJpV3BUR0lTSWdWX2pkTC0?oc=5"
+        "name": "Blick",
+        "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOY1VYMnRpOGpxeEVYQnhLOHV4WHMtWFBmbmFwby1YYnhJdm55WGlxVTY3eXlhUGtKajNpbDVoMUJZcWItdUMzOXR6TEpBdkxMWUtqeUdkLW9veXlOSXhJMnpMVzFMOUN0ZkZ6OFNLSzhiV0hqNFBvemNmOUJHUnFldTJ1V1dJbGp4NWRDdjBQUXJGMWtDSnUzSExXYXpOWUM4WGg1U0hhTE00eUJfc1JWVHRnQXptUQ?oc=5"
       },
       "origin": "news"
     },
@@ -37,47 +37,36 @@
       },
       "origin": "news"
     },
-    "usa-christian-pulisic": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Mauricio Pochettino levererar preliminär skadeuppdatering om Christian Pulisic efter USMNT-nederlag mot Belgien",
-      "updated": "2026-07-07",
-      "source": {
-        "name": "World Soccer Talk",
-        "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPSkxrXzBnTjhnUE1Rd0NQTVdrOExDWjRONlZ3ZVg1QU9RRkpqOWJORlBSandpUmh5LW54SHlQcm1zREJsUi1QMk82ODdNbVUtWXZSdzVhWUtic0dZRllUVlVJeVBmTER4eDBwTktYSzc4bFNCVnBjUzNwV053YVhUNnVxQ0RTaXlMOW1QcVY1WEVUaWlMYVo1NWFuWktteFF5elF1Vll0N3lkR2xFWExtbXZNYTNmamxDM190OGQwLUlKVFpReEp0S2JaNHFMUGcxZWdFUmd0eWlHQkpCYzBZd3FB0gHiAUFVX3lxTE9KTGtfMGdOOGdQTVF3Q1BNV2s4TENaNE42VndlWDVBT1FGSmo5Yk5GUFJqd2lSaHktbnhIeVBybXNEQmxSLVAyTzY4N01tVS1ZdlJ3NWFZS2JzR1lGWVRWVUl5UGZMRHh4MHBOS1hLNzhsU0JWcGNTM3BXTndhWFQ2dXFDRFNpeUw5bVBxVjVYRVRpaUxhWjU1YW5aS214UXl6UXVWWXQ3eWRHbEVYTG1tdk1hM2ZqbEMzX3Q4ZDAtSUpUWlF4SnRLYlo0cUxQZzFlZ0VSZ3R5aUdCSkJjMFl3cUE?oc=5"
-      },
-      "origin": "news"
-    },
-    "usa-matt-freese": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "USMNT:s världscupdrömmar tar slut med Christian Pulisic-skada och Matt Freese-misstag",
-      "updated": "2026-07-07",
-      "source": {
-        "name": "Yahoo Sports",
-        "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQdWp1dzBSNThEN1J1ZnUxZkloUGFxNndsNjNDSC0wd01ILWVyXzVLSDRRX2k5NG5Kbkc2X1hLWERIZDNibTZkalZYWFRYVUZBb0RsYXl2TDNuSnpUS255UDFjZlNVTFNUUElGbXJQWVB5MFMwR0s5Z3B5LXFtR0JOUjVVanpsRk0?oc=5"
-      },
-      "origin": "news"
-    },
-    "egy-haissem-hassan": {
+    "bel-amadou-onana": {
       "availability": "doubtful",
       "kind": "other",
-      "detail": "Bildandet av det egyptiska landslaget mot Argentina. Haitham Hassan närmar sig på bekostnad av Marmoush",
-      "updated": "2026-07-06",
+      "detail": "Oro för Amadou Onana på Red Devils: \"Det är allvarliga, inte goda nyheter\"",
+      "updated": "2026-07-07",
       "source": {
-        "name": "كل الكورة",
-        "url": "https://news.google.com/rss/articles/CBMixAJBVV95cUxOS0JvX0pkdjVpRkdOaDdETmlvWjNvTHFBd0RJVXdvczZBeHY3Y1N5U2VES0VlNTJFLUptNVdELU5pTXRQWDY3dUk0RG9Qa2wyeGxYOTFYbVd6bDhFRFI2UVVTRUZFNTVvdzNmTERydzBBYjQ5a1d3WS1DTGRsSXRVbHVpdlhhSVcyTnNocEZKckxhVXhMQzFtVy1pS1NsWTAxUnl2NmxRbm01NTlXb05MQk9LNEFRNHNGaXNXTS1VUVNKZ1NTV25LX25aX0gwamM0YVVLOW9tS2lVR3NKVktZajlnQWcwRmZKNndjcjFBZi1PdHZodlc0ekMyRnc3Sms0VVlxQkZmbXp2akhWcnZlT2xqcGNFUDV2RS1HaXZXclVycE5sQXhZZWx3akNLOGpmeEl3Q3l4Q2dkQlcxcDI3bUpCM2c?oc=5"
+        "name": "VoetbalPrimeur.be",
+        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPaE5SMkV1ZzI5RnJvRDcwUTliRDRNeW53M0o0UnBRRG9TM2N3YlZqRllTSG54cmNDUWtjSXp0ZVYwQWdBcFBPTTc0cFAtZDFZNkdMRGpOcllPdHVFbmpBb0xPQXdyRnhfb1NGZlFvZkdSbTRFdXJYT3FPNFpfZ2dYaldTZXZxUlRuTDRWRVFFeDJNTGpLZG1heDZvSzVYNHV0b1lvN3RpNGVMdEtfdlBUd2JZaUprczBwc1liSGhySlRrUQ?oc=5"
       },
       "origin": "news"
     },
-    "egy-omar-marmoush": {
+    "egy-karim-hafez": {
       "availability": "doubtful",
-      "kind": "other",
-      "detail": "Bildandet av det egyptiska landslaget mot Argentina. Haitham Hassan närmar sig på bekostnad av Marmoush",
-      "updated": "2026-07-06",
+      "kind": "injury",
+      "detail": "Yalla Koura avslöjar karaktären på Karim Hafez skada och hans ställning till att delta mot Argentina",
+      "updated": "2026-07-04",
       "source": {
-        "name": "كل الكورة",
-        "url": "https://news.google.com/rss/articles/CBMixAJBVV95cUxOS0JvX0pkdjVpRkdOaDdETmlvWjNvTHFBd0RJVXdvczZBeHY3Y1N5U2VES0VlNTJFLUptNVdELU5pTXRQWDY3dUk0RG9Qa2wyeGxYOTFYbVd6bDhFRFI2UVVTRUZFNTVvdzNmTERydzBBYjQ5a1d3WS1DTGRsSXRVbHVpdlhhSVcyTnNocEZKckxhVXhMQzFtVy1pS1NsWTAxUnl2NmxRbm01NTlXb05MQk9LNEFRNHNGaXNXTS1VUVNKZ1NTV25LX25aX0gwamM0YVVLOW9tS2lVR3NKVktZajlnQWcwRmZKNndjcjFBZi1PdHZodlc0ekMyRnc3Sms0VVlxQkZmbXp2akhWcnZlT2xqcGNFUDV2RS1HaXZXclVycE5sQXhZZWx3akNLOGpmeEl3Q3l4Q2dkQlcxcDI3bUpCM2c?oc=5"
+        "name": "MSN",
+        "url": "https://news.google.com/rss/articles/CBMi1AVBVV95cUxOblJhU2Eza1V1Tkx6SDF6S1lITzE2Q0xtY3djaDdzRUZLWEJmTUhuLVRDZndFcUw1SFAwa25HOEhOUTJBeXpFQ1M1eURBSkZ3YW1lcGt6ZDRKZXFRaUVOWHZSQV9wVDRZN2VqeDFxUEIzMzZCMXBIbkZxQzA5c3kwVHVpdXpXUWwxTjBhSmZGdUJ4RnNmMjJOTzA0ZnV5Wk1NTzFLcDk0V3VOeFpoTEs3YTJVS0dISERveWlHMk9WN3dNRF8tOTlzT1UwNzE0b2gxTnlOWXFITmJZaVVZTlBFUGwxeUJ1MlRxdXJwRlZaVkZoSlJsVFloaTBuRXZNMVBnaTBCMko1TFZQaVN5WWtEWmhQLUMzSHlEWk9IdFQxdWZuM1FfYnFuX3Q2MjVTSnJVem1xQXJpeGYzX2hpcFBvQW40T1o5bDRLTXg1dG8yR09UN09SOVNwSXlfS1NoeUZDNVFlUkhRem5WbUxJLU05ZXVXblZ6LWxaQXNnd1lVaWdSN1dTTWxNWTJ6UXhjN1h1Z3d6OUV3Q1BpQ2VTczhyLXZIQmw5c1BBVWpiYlNUSUcyOFplV3RvSDZJaDhweC1LSzNmRk9STlRhV2RKajRHNGlYQjB2QUQtOEMtNktrTVRBRFpUUEVwb2RrR09VUHJ4SHBwVlZ5VzJaODFSTU5rcVNVRTZXZDhqdDZ0NlJXdUtaOGJLbFFGTUxobGVZRS1xYTh1c0U0azBlRnBxVVFtVGtBLThTZ3cxR1pNVXAwTEhaUUxjQTZMU29FVzAyTVlCLVdkZ3J0M0Jtc0dSSnkwTllKaVBOQXVVMGFqSnBTaXRuVlppNFBUMFA1VHBBS1dLSmxlZ1RYVUdhSHlOdTh6Z2RCQm1Vam9WbnI5aWNVTE1hc3kyelJvSEtJMTBFckIxeWRSWlItN0p5d1daZFM3azdvLTAxcm5ISUtNZjBHZFhTR2h2?oc=5"
+      },
+      "origin": "news"
+    },
+    "esp-nico-williams": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Nico Williams, skadad: vad är det för fel på honom, vilken skada han har, hur länge han kommer att vara borta och vilka matcher han kommer att missa med Athletic och det …",
+      "updated": "2026-07-07",
+      "source": {
+        "name": "DAZN",
+        "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPRjM2REpYb09NaHpBRzJyTENhQTdIeU9EaDg3akp4NzlhajkxNm9salhDelJvQjEwTHVubS12eVJqYUQ5SXhCX19OSFRqcG02ZFB0SDhiQWY1NUdNV1gyLWVoWTFuc01aamZuRDByREMtNDYwY1FySU9pTi1LMHBkQV9UTmhzdGZvSV9xUHlISnFiUlFFb0pSbU5xNThWbzA3SFRFOXBWdi1hcmNYcGJocXc1VXBFVVVfY19Pb3ViYVByWV9mUm5QWkJka0w5RHJkQ1dnblpybVZFNVllOTdEVVBJVHg3X0wwdU42U212SQ?oc=5"
       },
       "origin": "news"
     },
@@ -134,18 +123,6 @@
       "source": {
         "name": "Matchfakta (ESPN)",
         "url": "https://www.espn.com/soccer/match/_/gameId/760505"
-      },
-      "origin": "cards"
-    },
-    "usa-folarin-balogun": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Rött kort i sextondelsfinalen mot Bosnien-Hercegovina",
-      "updated": "2026-07-02",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760494"
       },
       "origin": "cards"
     },
