@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-07-07T15:16:18.927Z",
+    "updatedAt": "2026-07-07T17:26:37.015Z",
     "source": "svt+tv4",
-    "matchCount": 95
+    "matchCount": 96
   },
   "byKey": {
     "g:A:2": {
@@ -2093,13 +2093,21 @@
         }
       }
     },
+    "k:96": {
+      "SVT": {
+        "live": {
+          "url": "https://www.svtplay.se/video/jgWWr7N/fifa-fotbolls-vm-2026/schweiz-colombia",
+          "title": "FIFA Fotbolls-VM 2026",
+          "until": "2026-08-06T23:59:59+02:00"
+        }
+      }
+    },
     "k:95": {
       "TV4": {
-        "live": {
+        "full": {
           "url": "https://www.tv4play.se/video/1068cb6840220e90bff6/argentina-egypten",
           "title": "Argentina - Egypten",
-          "until": "2026-08-06T15:00:00Z",
-          "from": "2026-07-07T15:00:01Z"
+          "until": "2026-08-06T15:00:00Z"
         }
       }
     },
