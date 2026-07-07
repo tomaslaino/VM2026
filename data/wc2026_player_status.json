@@ -1,31 +1,9 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-07T17:33:12.798Z",
+  "updated": "2026-07-07T20:21:19.362Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
-    "sui-johan-manzambi": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Johan Manzambi: Skadkock inför åttondelsfinalen i världscupen",
-      "updated": "2026-07-07",
-      "source": {
-        "name": "Blick",
-        "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOY1VYMnRpOGpxeEVYQnhLOHV4WHMtWFBmbmFwby1YYnhJdm55WGlxVTY3eXlhUGtKajNpbDVoMUJZcWItdUMzOXR6TEpBdkxMWUtqeUdkLW9veXlOSXhJMnpMVzFMOUN0ZkZ6OFNLSzhiV0hqNFBvemNmOUJHUnFldTJ1V1dJbGp4NWRDdjBQUXJGMWtDSnUzSExXYXpOWUM4WGg1U0hhTE00eUJfc1JWVHRnQXptUQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "sui-ruben-vargas": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Fotbolls-VM 2026: Manzambi och Vargas skadade – kommer de att saknas i landslaget mot Colombia?",
-      "updated": "2026-07-07",
-      "source": {
-        "name": "Aargauer Zeitung",
-        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNSUtfSVVlNWFzd3VsWjFvX2hobTYxYy1IM1Yxd2ZHeHhRU2xZU3k0ZjM3U1Z0M2RTMmcyV2tuNVdLeDAzNmsyMm82SHc0NWE0LTZ2cVZZYlBILVpaeXVVRi1WRGNvM1NpRkVVTE51Skk0cEUwdDN1MnhNb0p5QW1VWHJESHBIcTNVUTAxU0NIc3lJalI0T2o5d1VnbTEycEJZTFRzcDBGWVAtS1RqUTEtTlJpV3BUR0lTSWdWX2pkTC0?oc=5"
-      },
-      "origin": "news"
-    },
     "mar-ismael-saibari": {
       "availability": "doubtful",
       "kind": "other",
@@ -48,17 +26,6 @@
       },
       "origin": "news"
     },
-    "egy-emam-ashour": {
-      "availability": "doubtful",
-      "kind": "other",
-      "detail": "En muskelskada oroar det egyptiska landslaget. Imam Ashour lämnar matchen i Argentina och tester avgör hans position",
-      "updated": "2026-07-07",
-      "source": {
-        "name": "alyaum",
-        "url": "https://news.google.com/rss/articles/CBMijgZBVV95cUxNNjNma2VBN3BYMmMwXzZmY2Utc3dmQ2N5WjBicTUtY24yVU9KZlZ3dmdrbnJFbU1rV3o4cl82YkdsX2tiMmhlSTVlMERUZ0c4c2FSTHlGV0JWU01VeFBpUnBnd2tseEN6N09MVEd3enhQNWpEMU9GTlh6VnFOcWwzb25FME9IZlUtWEVud2J5bGV1aDZNR0hFSjg4S21SN3RjM0E0ZHkwZGRQTDJQMkhVaGhzLXVyemh5aUt6X1pCYkdkWDdsVWotalVnWjlMRDYyUVlCRnRNRVpVaHl5dWNFZzVUWGZFeUJudlBiMk1GNEhrbE5sS3NYS2UyQ3pJZThzVjBMQWkwVk13Rk1FVTdNeUJBVDEzankxem02UlR4U1FuNTdMQU12UXFYM2ZvdmdBaHd2b1lGUkgxb0t2M1p3emtGdk5JQnVQX2pJOEZTUmtEbGN0Q09kemFjRlpya0hvczJBajBNejNJYlMwNlJYdnowY3pqeWV6WVhJQnhBVGxUeVZ5ZTkzT1NHUXV6cFNDRDhPcVpidGx2QThXZ0IwMWhuUUdCOE5LTkgyLTJNcjlrN2xROUh4VjRQWEtMTzJXYktkS1FzOGVYWHRLQThJYW9YaG5TSFp6NVRNZm5ya200bktRcG5ham40WTNpZmN3aVJGX2xpaWg2NFhPT3BmMTZGNFBHbTFtMFN4RmI4SWkzcWVHbU0ybnAzT2JzWjJKVnJXOGIzZUxDUkxUWUxVYWg4aWRXLTRBYUVBWjdLbEgxVkRIS1JCdmgzN1o5Y3BsYWIzRTFsZ2MzWkJYem9mZFRGekNMb2szNDQ3enlLakNpMEhNNGhEN1ZFNDJtRWRaMXR0OVFHOWdNaWhCWTFUUEZKSDd2VHRiWUl2dE51azhnbmU0aWpNWjVrdnJEaG9uLW53cmxjNHdXZm1vUGgyWnFtcm1FTTdkRzl3UmRERVM3cDA0a3VNTlgwY21SdXhtcFFNajdjTWJ5N2dLYjNHY29PcnRhN1lObmJtaGhNbkROdVZQckVHV3FGR0prUdIBU0FVX3lxTE5NZDRhNVNPbXpNMExfS0R5QnQ3ZVpNNHJrU0pyZjBlOUx5LWduMXhXWDA4Z0oyeFhEUmJqSEh5MWt1QVN3dlY4WkhLMkx4YzZVQVZj?oc=5"
-      },
-      "origin": "news"
-    },
     "esp-nico-williams": {
       "availability": "doubtful",
       "kind": "injury",
@@ -67,17 +34,6 @@
       "source": {
         "name": "DAZN",
         "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPRjM2REpYb09NaHpBRzJyTENhQTdIeU9EaDg3akp4NzlhajkxNm9salhDelJvQjEwTHVubS12eVJqYUQ5SXhCX19OSFRqcG02ZFB0SDhiQWY1NUdNV1gyLWVoWTFuc01aamZuRDByREMtNDYwY1FySU9pTi1LMHBkQV9UTmhzdGZvSV9xUHlISnFiUlFFb0pSbU5xNThWbzA3SFRFOXBWdi1hcmNYcGJocXc1VXBFVVVfY19Pb3ViYVByWV9mUm5QWkJka0w5RHJkQ1dnblpybVZFNVllOTdEVVBJVHg3X0wwdU42U212SQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "arg-leandro-paredes": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Scaloni antydde vilken roll han avsåg för Paredes och förtydligade: \"Han kom skadad.\"",
-      "updated": "2026-07-06",
-      "source": {
-        "name": "Planeta Boca Juniors",
-        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNVXBqdGlsY0Y0QXk2a2ZqeDgzN1ZNMTc0NUczSTRlaEt2ODU5TUxWNXlXcGNfTWhJcUNLWE9paXBGeExDeVNRWTB5MmZNZTRsR2g3V0dVVUsyOVhTU3NlNWlEc2Zrb09aX3FMTTR0bkRlek5ZNEJzX0JiUlZMSHFIbG5FaWppUjNOVFpGUlZEYU1wZmJ3ak1FX2c0QmVmMklPTjdOSUVISFNmZ2Y2ckQ5TEhSdTFkZ0xiWUU40gG_AUFVX3lxTE5QYWJWYU1zemstd3BJSEtTeTROTDdpZWpzN050MWRqQUxhc0pSNXp1YXE0X2gwMEFjMmtGTWROdFczMFVXN1VfVjJJeURlMkpENi1hM0Y2ZDl3Tjh2Q1ZKU1VtYW96NGJ5ZjRlRndwNFlhZWJ5WUV5cDdKV0xDUWpZalg0SHd3b2FpWUQwRHBEWkFzOVF5Q3NTMHBaeVpnMDhjR004bWUtRFgweWJTQmFDYklQc21JODF1NExfRVBF?oc=5"
       },
       "origin": "news"
     },
@@ -99,21 +55,9 @@
       "updated": "2026-07-06",
       "source": {
         "name": "Daily Express",
-        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNb2VzbGJwM1k1YUhDbnFCNXo5ZlNKQ2JwRWdaaWlNVEE2S3ZncDE3Y0t3bHQ4T2s0TEcwZG50WVpTcWxIV25mbG5oamgxQ3dfX3EyMDlZQTYwSWJhQUJlRW9HYXVlY3gwYl85UGhHNXB5ODU1YVpXRnp1LUFfQ1AzSjlKblNZaExrVFR6Uno2emRkaHRuODRDcXk1WU93ZkFUVnU3c9IBpAFBVV95cUxNb2VzbGJwM1k1YUhDbnFCNXo5ZlNKQ2JwRWdaaWlNVEE2S3ZncDE3Y0t3bHQ4T2s0TEcwZG50WVpTcWxIV25mbG5oamgxQ3dfX3EyMDlZQTYwSWJhQUJlRW9HYXVlY3gwYl85UGhHNXB5ODU1YVpXRnp1LUFfQ1AzSjlKblNZaExrVFR6Uno2emRkaHRuODRDcXk1WU93ZkFUVnU3cw?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQTm9rUmNDa2VCTnZGM1Zfc0gteHZCbkdfX0c0S04xY1pUclpSc2tmSlBaOUJNVk9NUUZFcy03S3R4M3pYWmJmZzhzSVlvdE5rNlJMSTNwUXlqNG1nUllYV3Y0bHBJMU9ORjRtMDdwMGM5MW9COUROVnE0NU03S3pCSW9tZGk4V1Nnbl83ZWJPdlh1R3NtLXZ1aTZUMjVucnPSAaQBQVVfeXFMTW9lc2xicDNZNWFIQ25xQjV6OWZTSkNicEVnWmlpTVRBNkt2Z3AxN2NLd2x0OE9rNExHMGRudFlaU3FsSFduZmxuaGpoMUN3X19xMjA5WUE2MEliYUFCZUVvR2F1ZWN4MGJfOVBoRzVweTg1NWFaV0Z6dS1BX0NQM0o5Sm5TWWhMa1RUelJ6NnpkZGh0bjg0Q3F5NVlPd2ZBVFZ1N3M?oc=5"
       },
       "origin": "news"
-    },
-    "egy-yasser-ibrahim": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Andra gula kortet i turneringen (mot Iran och Australien)",
-      "updated": "2026-07-03",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760499"
-      },
-      "origin": "cards"
     },
     "eng-declan-rice": {
       "availability": "out",
