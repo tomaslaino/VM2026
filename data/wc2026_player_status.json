@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-07T21:52:16.009Z",
+  "updated": "2026-07-07T23:27:13.138Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "mar-ayyoub-bouaddi": {
@@ -10,7 +10,7 @@
       "detail": "Frankrike - Marocko: Bouaddi, skadan på Tchouaméni, Deschamps... Guy Stéphan talar inför kvartsfinalen",
       "updated": "2026-07-06",
       "source": {
-        "name": "90min.com",
+        "name": "90Min.com",
         "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNNkUzNDBCYm13UTdOcXZKLTdBdWFhV1R2NVQteGJzbWwtQk9IdWpVWWFMVTVxZXlFa2plREtfZTdDV3RaLUNyTjBtZE9rM1FvN1pRY0RoWWNiR3pnc3lkOHhsSUx0TXNZQk1tLWhMdGVleVZIa3dya09zZm41X1NsX084cWlMNzBKNDRPWnhaTUplWHBEZlY2UzlVM2VYVjh6elZ3TmZGUFRGU2wwdDZMSUVTSnZCc240SFFCTno4OEpBb2xIbVE?oc=5"
       },
       "origin": "news"
@@ -28,34 +28,23 @@
     },
     "bel-amadou-onana": {
       "availability": "doubtful",
-      "kind": "injury",
-      "detail": "VIDEO. Även den skadade Onana deltog: Red Devils gör Trump-dansen igen i omklädningsrummet",
+      "kind": "other",
+      "detail": "Oro för Amadou Onana på Red Devils: \"Det är allvarliga, inte goda nyheter\"",
       "updated": "2026-07-07",
       "source": {
-        "name": "HBVL",
-        "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQcEJwV2xxWExiZ21zcUFYSE1vekhRNVNnNngwM1ZFN3R1Y0lOLTVNNTZ4MndQN0pGYUZhRmFZaXFYQlNMNVlOR04zMG9RSUM5SzZMQnp5RjJ2a1NnaEtjdTNfUmFDVXZfTXBLbjNVbDBuTUQyTklqSGJwMVF6RzUzVDJleGlaeFFvNnhIcGZiMjZISkw4Zm9NQkFoSWNhaGZyQlJLLTYtSGtJOFdYSEdkZzRGeG0wYldMQ0tRaU9nOGVpa29fYmZhdXVIVzYtUmhRY0R2TGM5MGtvLWVkOTlhQVRKbmdNNmFxVmc?oc=5"
+        "name": "VoetbalPrimeur.be",
+        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPaE5SMkV1ZzI5RnJvRDcwUTliRDRNeW53M0o0UnBRRG9TM2N3YlZqRllTSG54cmNDUWtjSXp0ZVYwQWdBcFBPTTc0cFAtZDFZNkdMRGpOcllPdHVFbmpBb0xPQXdyRnhfb1NGZlFvZkdSbTRFdXJYT3FPNFpfZ2dYaldTZXZxUlRuTDRWRVFFeDJNTGpLZG1heDZvSzVYNHV0b1lvN3RpNGVMdEtfdlBUd2JZaUprczBwc1liSGhySlRrUQ?oc=5"
       },
       "origin": "news"
     },
     "esp-nico-williams": {
       "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Nico Williams, skadad: vad är det för fel på honom, vilken skada han har, hur länge han kommer att vara borta och vilka matcher han kommer att missa med Athletic och det …",
+      "kind": "other",
+      "detail": "Nico Williams: \"Innan jag lämnade Lezama och jag tränade inte längre. Jag tillbringade eftermiddagen med min flickvän, mina vänner eller lekte på lekplatsen. Nu är det …",
       "updated": "2026-07-07",
       "source": {
-        "name": "DAZN",
-        "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPRjM2REpYb09NaHpBRzJyTENhQTdIeU9EaDg3akp4NzlhajkxNm9salhDelJvQjEwTHVubS12eVJqYUQ5SXhCX19OSFRqcG02ZFB0SDhiQWY1NUdNV1gyLWVoWTFuc01aamZuRDByREMtNDYwY1FySU9pTi1LMHBkQV9UTmhzdGZvSV9xUHlISnFiUlFFb0pSbU5xNThWbzA3SFRFOXBWdi1hcmNYcGJocXc1VXBFVVVfY19Pb3ViYVByWV9mUm5QWkJka0w5RHJkQ1dnblpybVZFNVllOTdEVVBJVHg3X0wwdU42U212SQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "col-luis-diaz": {
-      "availability": "out",
-      "kind": "injury",
-      "detail": "Vem är Johan Manzambi, \"schweizeren Luis Díaz\" som missar matchen mot Colombia på grund av skada?",
-      "updated": "2026-07-07",
-      "source": {
-        "name": "La FM",
-        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOZmdFVEI1WERlZXI0RzBjOTdmRFI2UzFXQkgtSkRTd19KS1ZmWnJYOFI3MWdxTk1VYlZUV0FBbWQwVDhRT1lvYXRBMndnR20ySVJEWDdHcFNrSjg4cm1HcXZRcGpkUnROdDdJd2Ywd0JoRWtfUGNZX3Uxd3lLMVZPTjVxenlCYkFKYm5uZnpQMHhqTkFseHfSAZYBQVVfeXFMUGxieENOR2RBSldoTHNLaTNBR1lmS1Jzd0x5MG8ycF84LW9OTnBRV2dudURTUEtQU245WjRBakJkbWQtSGJiVzE0ejJza3Y5TXVORGpmTjkxQUphdHZZeFBhbE9QYmpaZW52eXlHZzZzZ1R0NE5nbGNERXRWc0Y4T0tqc3Nib3k0Y1hMdFMxY294LUVtZExR?oc=5"
+        "name": "Lecturas",
+        "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQQ3lhbk0zV3FodWlpNlB1bzVPNDFiRHp1NlQ2SnhwRHdpRzhjUXVEbWJGMWY5alZpSW5YQlhKVVZtTHNuZmxPbUllMl81WEVId0d5YlB2UlppY1pDLTdfcHVSU1V0TzUtcWJWanc2YVBEOHU5VUh6NUM4UWI3R1ZmZWdSSzdyY0xCdmhWcDZ3VmhpaEUtbXBsdk1UXzlKUTh1VEJmcENNTEJ1WnJRMWNTYXVac3Y4WGVic2xVWGJxbWRJVHNRVXVNUFJNU2h6X1VGRTN3WmpsalEwVHNlYVRXY0RJUWNacy1VWG93MGp0MXFiR1RrVDQweQ?oc=5"
       },
       "origin": "news"
     },
@@ -66,9 +55,33 @@
       "updated": "2026-07-06",
       "source": {
         "name": "Daily Express",
-        "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQTm9rUmNDa2VCTnZGM1Zfc0gteHZCbkdfX0c0S04xY1pUclpSc2tmSlBaOUJNVk9NUUZFcy03S3R4M3pYWmJmZzhzSVlvdE5rNlJMSTNwUXlqNG1nUllYV3Y0bHBJMU9ORjRtMDdwMGM5MW9COUROVnE0NU03S3pCSW9tZGk4V1Nnbl83ZWJPdlh1R3NtLXZ1aTZUMjVucnPSAaQBQVVfeXFMTW9lc2xicDNZNWFIQ25xQjV6OWZTSkNicEVnWmlpTVRBNkt2Z3AxN2NLd2x0OE9rNExHMGRudFlaU3FsSFduZmxuaGpoMUN3X19xMjA5WUE2MEliYUFCZUVvR2F1ZWN4MGJfOVBoRzVweTg1NWFaV0Z6dS1BX0NQM0o5Sm5TWWhMa1RUelJ6NnpkZGh0bjg0Q3F5NVlPd2ZBVFZ1N3M?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNb2VzbGJwM1k1YUhDbnFCNXo5ZlNKQ2JwRWdaaWlNVEE2S3ZncDE3Y0t3bHQ4T2s0TEcwZG50WVpTcWxIV25mbG5oamgxQ3dfX3EyMDlZQTYwSWJhQUJlRW9HYXVlY3gwYl85UGhHNXB5ODU1YVpXRnp1LUFfQ1AzSjlKblNZaExrVFR6Uno2emRkaHRuODRDcXk1WU93ZkFUVnU3c9IBpAFBVV95cUxNb2VzbGJwM1k1YUhDbnFCNXo5ZlNKQ2JwRWdaaWlNVEE2S3ZncDE3Y0t3bHQ4T2s0TEcwZG50WVpTcWxIV25mbG5oamgxQ3dfX3EyMDlZQTYwSWJhQUJlRW9HYXVlY3gwYl85UGhHNXB5ODU1YVpXRnp1LUFfQ1AzSjlKblNZaExrVFR6Uno2emRkaHRuODRDcXk1WU93ZkFUVnU3cw?oc=5"
       },
       "origin": "news"
+    },
+    "sui-granit-xhaka": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Andra gula kortet i turneringen (mot Kanada och Colombia)",
+      "updated": "2026-07-07",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760508"
+      },
+      "origin": "cards"
+    },
+    "sui-denis-zakaria": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Andra gula kortet i turneringen (mot Qatar och Colombia)",
+      "updated": "2026-07-07",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760508"
+      },
+      "origin": "cards"
     },
     "eng-declan-rice": {
       "availability": "out",
