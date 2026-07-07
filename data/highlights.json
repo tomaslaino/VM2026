@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-07T01:47:39.838Z",
+    "updatedAt": "2026-07-07T05:56:01.660Z",
     "source": "svt+tv4",
     "matchCount": 94
   },
@@ -2073,11 +2073,23 @@
       }
     },
     "k:94": {
+      "SVT": {
+        "short": {
+          "url": "https://www.svtplay.se/klipp/jvvaVEY/attondelsfinal-usa-belgien",
+          "title": "Åttondelsfinal: USA – Belgien",
+          "until": "2026-09-19T05:30:00+02:00"
+        }
+      },
       "TV4": {
         "full": {
           "url": "https://www.tv4play.se/video/f6abce41732548ba521a/usa-belgien",
           "title": "USA - Belgien",
           "until": "2026-08-05T23:45:00Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/f4e87b20d50da4469856/video-hojdpunkter-usa-belgien",
+          "title": "Höjdpunkter: USA - Belgien",
+          "until": null
         }
       }
     },
