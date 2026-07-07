@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-07T15:49:42.928Z",
+    "updatedAt": "2026-07-07T17:50:40.062Z",
     "source": "365scores",
     "matchCount": 2
   },
@@ -10,7 +10,7 @@
       "gameId": 4758736,
       "kickoff": "2026-07-07T16:00Z",
       "h": {
-        "formation": "4-4-2",
+        "formation": "4-1-3-2",
         "starters": [
           {
             "name": "Emiliano Martinez",
@@ -38,24 +38,24 @@
             "pos": "RB"
           },
           {
-            "name": "Enzo Fernandez",
-            "jersey": "24",
-            "pos": "LM"
-          },
-          {
             "name": "Leandro Paredes",
             "jersey": "5",
-            "pos": "CM"
+            "pos": "DM"
+          },
+          {
+            "name": "Enzo Fernandez",
+            "jersey": "24",
+            "pos": "AM-L"
           },
           {
             "name": "Alexis Mac Allister",
             "jersey": "20",
-            "pos": "CM"
+            "pos": "AM"
           },
           {
             "name": "Rodrigo De Paul",
             "jersey": "7",
-            "pos": "RM"
+            "pos": "AM-R"
           },
           {
             "name": "Julian Alvarez",
@@ -69,6 +69,18 @@
           }
         ],
         "bench": [
+          {
+            "name": "Gonzalo Montiel",
+            "jersey": "4"
+          },
+          {
+            "name": "Nicolas Gonzalez",
+            "jersey": "15"
+          },
+          {
+            "name": "Lautaro Martinez",
+            "jersey": "22"
+          },
           {
             "name": "Juan Musso",
             "jersey": "1"
@@ -88,10 +100,6 @@
           {
             "name": "Marcos Senesi",
             "jersey": "2"
-          },
-          {
-            "name": "Gonzalo Montiel",
-            "jersey": "4"
           },
           {
             "name": "Valentin Barco",
@@ -118,16 +126,8 @@
             "jersey": "16"
           },
           {
-            "name": "Nicolas Gonzalez",
-            "jersey": "15"
-          },
-          {
             "name": "Jose Manuel Lopez",
             "jersey": "21"
-          },
-          {
-            "name": "Lautaro Martinez",
-            "jersey": "22"
           }
         ]
       },
@@ -160,14 +160,9 @@
             "pos": "RB"
           },
           {
-            "name": "Haissem Hassan",
-            "jersey": "12",
+            "name": "Emam Ashour",
+            "jersey": "8",
             "pos": "LM"
-          },
-          {
-            "name": "Mohanad Lasheen",
-            "jersey": "17",
-            "pos": "CM"
           },
           {
             "name": "Marwan Ateya",
@@ -175,8 +170,13 @@
             "pos": "CM"
           },
           {
-            "name": "Emam Ashour",
-            "jersey": "8",
+            "name": "Mohanad Lasheen",
+            "jersey": "17",
+            "pos": "CM"
+          },
+          {
+            "name": "Haissem Hassan",
+            "jersey": "12",
             "pos": "RM"
           },
           {
@@ -191,6 +191,18 @@
           }
         ],
         "bench": [
+          {
+            "name": "Hamdy Fathy",
+            "jersey": "14"
+          },
+          {
+            "name": "Mahmoud Trézéguet",
+            "jersey": "7"
+          },
+          {
+            "name": "Omar Marmoush",
+            "jersey": "22"
+          },
           {
             "name": "Mohamed Alaa",
             "jersey": "26"
@@ -212,10 +224,6 @@
             "jersey": "24"
           },
           {
-            "name": "Hamdy Fathy",
-            "jersey": "14"
-          },
-          {
             "name": "Nabil Emad Dunga",
             "jersey": "18"
           },
@@ -228,16 +236,8 @@
             "jersey": "25"
           },
           {
-            "name": "Mahmoud Trézéguet",
-            "jersey": "7"
-          },
-          {
             "name": "Ibrahim Adel",
             "jersey": "20"
-          },
-          {
-            "name": "Omar Marmoush",
-            "jersey": "22"
           },
           {
             "name": "Hamza Abdelkarim",
@@ -245,7 +245,7 @@
           }
         ]
       },
-      "updatedAt": "2026-07-07T15:49:41.929Z"
+      "updatedAt": "2026-07-07T17:50:39.134Z"
     },
     "k:96": {
       "status": "probable",
