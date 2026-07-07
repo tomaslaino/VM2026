@@ -1,9 +1,20 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-07T20:21:19.362Z",
+  "updated": "2026-07-07T21:52:16.009Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
+    "mar-ayyoub-bouaddi": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Frankrike - Marocko: Bouaddi, skadan på Tchouaméni, Deschamps... Guy Stéphan talar inför kvartsfinalen",
+      "updated": "2026-07-06",
+      "source": {
+        "name": "90min.com",
+        "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNNkUzNDBCYm13UTdOcXZKLTdBdWFhV1R2NVQteGJzbWwtQk9IdWpVWWFMVTVxZXlFa2plREtfZTdDV3RaLUNyTjBtZE9rM1FvN1pRY0RoWWNiR3pnc3lkOHhsSUx0TXNZQk1tLWhMdGVleVZIa3dya09zZm41X1NsX084cWlMNzBKNDRPWnhaTUplWHBEZlY2UzlVM2VYVjh6elZ3TmZGUFRGU2wwdDZMSUVTSnZCc240SFFCTno4OEpBb2xIbVE?oc=5"
+      },
+      "origin": "news"
+    },
     "mar-ismael-saibari": {
       "availability": "doubtful",
       "kind": "other",
