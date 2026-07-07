@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-07T20:46:39.248Z",
+    "updatedAt": "2026-07-07T22:01:39.571Z",
     "source": "espn"
   },
   "details": {
@@ -55030,23 +55030,103 @@
       "espnId": "760508",
       "fmt": 2,
       "status": "IN_PLAY",
-      "minute": 45,
+      "minute": 91,
       "utcDate": "2026-07-07T20:00Z",
-      "duration": "REGULAR",
+      "duration": "EXTRA_TIME",
       "winner": null,
       "score": {
         "ft": {
           "h": 0,
           "a": 0
         },
-        "ht": null,
+        "ht": {
+          "h": 0,
+          "a": 0
+        },
         "rt": null,
-        "et": null,
+        "et": {
+          "h": 0,
+          "a": 0
+        },
         "pen": null
       },
       "goals": [],
-      "bookings": [],
-      "subs": [],
+      "bookings": [
+        {
+          "minute": 51,
+          "team": "h",
+          "player": "Granit Xhaka",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 59,
+          "team": "h",
+          "player": "Denis Zakaria",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 60,
+          "team": "a",
+          "player": "Luis Suárez",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Djibril Sow",
+          "out": "Ardon Jashari"
+        },
+        {
+          "minute": 66,
+          "team": "a",
+          "in": "Juan Fernando Quintero",
+          "out": "James Rodríguez"
+        },
+        {
+          "minute": 66,
+          "team": "a",
+          "in": "Jáminton Campaz",
+          "out": "Jhon Arias"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Miro Muheim",
+          "out": "Ricardo Rodríguez"
+        },
+        {
+          "minute": 82,
+          "team": "a",
+          "in": "Richard Ríos",
+          "out": "Jefferson Lerma"
+        },
+        {
+          "minute": 82,
+          "team": "a",
+          "in": "Cucho Hernández",
+          "out": "Luis Suárez"
+        },
+        {
+          "minute": 87,
+          "team": "h",
+          "in": "Silvan Widmer",
+          "out": "Denis Zakaria"
+        },
+        {
+          "minute": 87,
+          "team": "h",
+          "in": "Cedric Itten",
+          "out": "Breel Embolo"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Rubén Vargas",
+          "out": "Dan Ndoye"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -55057,13 +55137,17 @@
               "jersey": "1",
               "pos": "G",
               "st": {
-                "sv": 1
+                "fs": 1,
+                "sv": 2
               }
             },
             {
               "name": "Denis Zakaria",
               "jersey": "6",
-              "pos": "RB"
+              "pos": "RB",
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "Ricardo Rodríguez",
@@ -55075,6 +55159,7 @@
               "jersey": "10",
               "pos": "LM",
               "st": {
+                "fc": 1,
                 "fs": 3
               }
             },
@@ -55084,13 +55169,17 @@
               "pos": "CD-R",
               "st": {
                 "fc": 1,
-                "fs": 1
+                "fs": 2
               }
             },
             {
               "name": "Manuel Akanji",
               "jersey": "5",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "fc": 2,
+                "fs": 1
+              }
             },
             {
               "name": "Fabian Rieder",
@@ -55098,8 +55187,9 @@
               "pos": "AM-R",
               "st": {
                 "fc": 1,
+                "fs": 2,
                 "sg": 1,
-                "sh": 1
+                "sh": 3
               }
             },
             {
@@ -55113,7 +55203,10 @@
             {
               "name": "Breel Embolo",
               "jersey": "7",
-              "pos": "F"
+              "pos": "F",
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "Ardon Jashari",
@@ -55128,10 +55221,10 @@
               "jersey": "11",
               "pos": "AM-L",
               "st": {
-                "fc": 1,
-                "fs": 1,
+                "fc": 2,
+                "fs": 5,
                 "sg": 1,
-                "sh": 1
+                "sh": 2
               }
             }
           ],
@@ -55154,7 +55247,11 @@
             },
             {
               "name": "Rubén Vargas",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true,
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "Eray Cömert",
@@ -55162,7 +55259,8 @@
             },
             {
               "name": "Cedric Itten",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Christian Fassnacht",
@@ -55170,15 +55268,25 @@
             },
             {
               "name": "Silvan Widmer",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true,
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "Miro Muheim",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             },
             {
               "name": "Djibril Sow",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true,
+              "st": {
+                "fs": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Aurèle Amenda",
@@ -55202,7 +55310,7 @@
               "jersey": "2",
               "pos": "RB",
               "st": {
-                "fc": 1
+                "fc": 3
               }
             },
             {
@@ -55218,7 +55326,7 @@
               "jersey": "16",
               "pos": "CM-R",
               "st": {
-                "fc": 1
+                "fc": 3
               }
             },
             {
@@ -55226,7 +55334,8 @@
               "jersey": "23",
               "pos": "CD-R",
               "st": {
-                "fc": 1
+                "fc": 2,
+                "fs": 1
               }
             },
             {
@@ -55248,6 +55357,7 @@
               "pos": "CM-L",
               "st": {
                 "fc": 1,
+                "fs": 1,
                 "sg": 1,
                 "sh": 2
               }
@@ -55257,9 +55367,9 @@
               "jersey": "25",
               "pos": "F",
               "st": {
-                "fc": 1,
-                "fs": 1,
-                "sh": 1
+                "fc": 2,
+                "fs": 2,
+                "sh": 2
               }
             },
             {
@@ -55275,9 +55385,10 @@
               "jersey": "7",
               "pos": "LM",
               "st": {
-                "fc": 1,
-                "fs": 1,
-                "sh": 1
+                "fc": 2,
+                "fs": 3,
+                "sg": 1,
+                "sh": 2
               }
             }
           ],
@@ -55292,15 +55403,28 @@
             },
             {
               "name": "Richard Ríos",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
             },
             {
               "name": "Cucho Hernández",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true,
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Jáminton Campaz",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true,
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "Kevin Castaño",
@@ -55324,7 +55448,8 @@
             },
             {
               "name": "Juan Fernando Quintero",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Álvaro Montero",
@@ -55351,53 +55476,53 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "48%",
-          "a": "52%"
+          "h": "52%",
+          "a": "48%"
         },
         {
           "key": "totalShots",
-          "h": "2",
-          "a": "5"
+          "h": "6",
+          "a": "7"
         },
         {
           "key": "shotsOnTarget",
           "h": "2",
-          "a": "1"
+          "a": "2"
         },
         {
           "key": "wonCorners",
-          "h": "1",
+          "h": "3",
           "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "6",
-          "a": "6"
+          "h": "14",
+          "a": "15"
         },
         {
           "key": "offsides",
-          "h": "1",
-          "a": "1"
+          "h": "4",
+          "a": "4"
         },
         {
           "key": "saves",
-          "h": "1",
+          "h": "2",
           "a": "2"
         },
         {
           "key": "totalPasses",
-          "h": "242",
-          "a": "256"
+          "h": "492",
+          "a": "464"
         },
         {
           "key": "passPct",
-          "h": "88%",
-          "a": "85%"
+          "h": "87%",
+          "a": "83%"
         },
         {
           "key": "yellowCards",
-          "h": "0",
-          "a": "0"
+          "h": "2",
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -55405,7 +55530,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-07T20:46:39.248Z"
+      "updatedAt": "2026-07-07T22:01:39.571Z"
     }
   }
 }
