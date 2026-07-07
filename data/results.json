@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-06T23:37:10.305Z",
+    "updatedAt": "2026-07-07T01:23:20.913Z",
     "source": "espn",
-    "matchCount": 93,
-    "liveCount": 0,
+    "matchCount": 94,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -474,9 +474,23 @@
       "h": 0,
       "a": 1,
       "status": "FINISHED"
+    },
+    "k:94": {
+      "h": 1,
+      "a": 3,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:94",
+      "status": "IN_PLAY",
+      "minute": 58,
+      "home": "United States",
+      "away": "Belgium",
+      "score": "1-3"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -2063,7 +2077,7 @@
       "date": "2026-07-07",
       "time": "02:00",
       "utcDate": "2026-07-07T00:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "United States",
       "away": "Belgium",

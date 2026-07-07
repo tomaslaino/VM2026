@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-06T23:37:10.322Z",
+    "updatedAt": "2026-07-07T01:23:20.942Z",
     "source": "espn"
   },
   "details": {
@@ -53806,6 +53806,510 @@
         }
       ],
       "updatedAt": "2026-07-06T22:23:01.670Z"
+    },
+    "k:94": {
+      "espnId": "760507",
+      "fmt": 2,
+      "status": "IN_PLAY",
+      "minute": 59,
+      "utcDate": "2026-07-07T00:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 3
+        },
+        "ht": {
+          "h": 1,
+          "a": 2
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 9,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Charles De Ketelaere",
+          "assist": "Nicolas Raskin",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 31,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Malik Tillman",
+          "assist": null,
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 33,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Charles De Ketelaere",
+          "assist": "Leandro Trossard",
+          "type": "REGULAR",
+          "score": null
+        },
+        {
+          "minute": 57,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Hans Vanaken",
+          "assist": "Charles De Ketelaere",
+          "type": "REGULAR",
+          "score": null
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 35,
+          "team": "h",
+          "player": "Weston McKennie",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 21,
+          "team": "a",
+          "in": "Hans Vanaken",
+          "out": "Amadou Onana"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Giovanni Reyna",
+          "out": "Sergiño Dest"
+        },
+        {
+          "minute": 59,
+          "team": "h",
+          "in": "Sebastian Berhalter",
+          "out": "Christian Pulisic"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Matt Freese",
+              "jersey": "24",
+              "pos": "G",
+              "st": {
+                "gc": 3,
+                "sv": 3
+              }
+            },
+            {
+              "name": "Alex Freeman",
+              "jersey": "16",
+              "pos": "RB",
+              "st": {
+                "gc": 3,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Antonee Robinson",
+              "jersey": "5",
+              "pos": "LB",
+              "st": {
+                "fc": 1,
+                "gc": 3
+              }
+            },
+            {
+              "name": "Tyler Adams",
+              "jersey": "4",
+              "pos": "CM",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "gc": 3
+              }
+            },
+            {
+              "name": "Chris Richards",
+              "jersey": "3",
+              "pos": "CD-R",
+              "st": {
+                "fc": 1,
+                "gc": 3
+              }
+            },
+            {
+              "name": "Tim Ream",
+              "jersey": "13",
+              "pos": "CD-L",
+              "st": {
+                "gc": 3
+              }
+            },
+            {
+              "name": "Weston McKennie",
+              "jersey": "8",
+              "pos": "RM",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "gc": 3
+              }
+            },
+            {
+              "name": "Malik Tillman",
+              "jersey": "17",
+              "pos": "LM",
+              "st": {
+                "fs": 2,
+                "gc": 3,
+                "sg": 1,
+                "g": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Folarin Balogun",
+              "jersey": "20",
+              "pos": "F",
+              "st": {
+                "fs": 1,
+                "gc": 3,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Sergiño Dest",
+              "jersey": "2",
+              "pos": "RF",
+              "st": {
+                "fc": 1,
+                "gc": 2
+              }
+            },
+            {
+              "name": "Christian Pulisic",
+              "jersey": "10",
+              "pos": "LF",
+              "st": {
+                "gc": 3
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Miles Robinson",
+              "jersey": "12"
+            },
+            {
+              "name": "Ricardo Pepi",
+              "jersey": "9"
+            },
+            {
+              "name": "Timothy Weah",
+              "jersey": "21"
+            },
+            {
+              "name": "Max Arfsten",
+              "jersey": "18"
+            },
+            {
+              "name": "Matt Turner",
+              "jersey": "1"
+            },
+            {
+              "name": "Brenden Aaronson",
+              "jersey": "11"
+            },
+            {
+              "name": "Alejandro Zendejas",
+              "jersey": "26"
+            },
+            {
+              "name": "Giovanni Reyna",
+              "jersey": "7",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Joe Scally",
+              "jersey": "23"
+            },
+            {
+              "name": "Chris Brady",
+              "jersey": "25"
+            },
+            {
+              "name": "Auston Trusty",
+              "jersey": "6"
+            },
+            {
+              "name": "Mark McKenzie",
+              "jersey": "22"
+            },
+            {
+              "name": "Haji Wright",
+              "jersey": "19"
+            },
+            {
+              "name": "Sebastian Berhalter",
+              "jersey": "14",
+              "in": true
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Thibaut Courtois",
+              "jersey": "1",
+              "pos": "G",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Timothy Castagne",
+              "jersey": "21",
+              "pos": "RB",
+              "st": {
+                "gc": 1,
+                "sg": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Maxim De Cuyper",
+              "jersey": "5",
+              "pos": "LB",
+              "st": {
+                "fs": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Nicolas Raskin",
+              "jersey": "23",
+              "pos": "LM",
+              "st": {
+                "fc": 2,
+                "fs": 1,
+                "gc": 1,
+                "a": 1,
+                "sg": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Nathan Ngoy",
+              "jersey": "25",
+              "pos": "CD-R",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Brandon Mechele",
+              "jersey": "4",
+              "pos": "CD-L",
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Dodi Lukébakio",
+              "jersey": "14",
+              "pos": "AM-R",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "gc": 1,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Amadou Onana",
+              "jersey": "24",
+              "pos": "RM"
+            },
+            {
+              "name": "Charles De Ketelaere",
+              "jersey": "17",
+              "pos": "F",
+              "st": {
+                "fs": 1,
+                "gc": 1,
+                "a": 1,
+                "sg": 3,
+                "g": 2,
+                "sh": 3
+              }
+            },
+            {
+              "name": "Youri Tielemans",
+              "jersey": "8",
+              "pos": "AM",
+              "st": {
+                "fc": 1,
+                "gc": 1,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Leandro Trossard",
+              "jersey": "10",
+              "pos": "AM-L",
+              "st": {
+                "gc": 1,
+                "a": 1,
+                "sh": 2
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Romelu Lukaku",
+              "jersey": "9"
+            },
+            {
+              "name": "Diego Moreira",
+              "jersey": "19"
+            },
+            {
+              "name": "Alexis Saelemaekers",
+              "jersey": "22"
+            },
+            {
+              "name": "Matias Fernandez-Pardo",
+              "jersey": "26"
+            },
+            {
+              "name": "Thomas Meunier",
+              "jersey": "15"
+            },
+            {
+              "name": "Hans Vanaken",
+              "jersey": "20",
+              "in": true,
+              "st": {
+                "fs": 1,
+                "gc": 1,
+                "sg": 1,
+                "g": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Senne Lammens",
+              "jersey": "12"
+            },
+            {
+              "name": "Jérémy Doku",
+              "jersey": "11"
+            },
+            {
+              "name": "Kevin De Bruyne",
+              "jersey": "7"
+            },
+            {
+              "name": "Axel Witsel",
+              "jersey": "6"
+            },
+            {
+              "name": "Mike Penders",
+              "jersey": "13"
+            },
+            {
+              "name": "Arthur Theate",
+              "jersey": "3"
+            },
+            {
+              "name": "Joaquin Seys",
+              "jersey": "18"
+            },
+            {
+              "name": "Zeno Debast",
+              "jersey": "2"
+            },
+            {
+              "name": "Koni De Winter",
+              "jersey": "16"
+            }
+          ]
+        }
+      },
+      "referee": "Adham Mohammad",
+      "venue": "Lumen Field, Seattle, Washington",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "51%",
+          "a": "49%"
+        },
+        {
+          "key": "totalShots",
+          "h": "3",
+          "a": "12"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "1",
+          "a": "6"
+        },
+        {
+          "key": "wonCorners",
+          "h": "1",
+          "a": "4"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "5",
+          "a": "5"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "3",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "297",
+          "a": "282"
+        },
+        {
+          "key": "passPct",
+          "h": "86%",
+          "a": "83%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-07T01:23:20.942Z"
     }
   }
 }
