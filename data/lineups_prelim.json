@@ -1,12 +1,12 @@
 {
   "meta": {
-    "updatedAt": "2026-07-07T10:44:43.672Z",
+    "updatedAt": "2026-07-07T15:49:42.928Z",
     "source": "365scores",
     "matchCount": 2
   },
   "lineups": {
     "k:95": {
-      "status": "probable",
+      "status": "confirmed",
       "gameId": 4758736,
       "kickoff": "2026-07-07T16:00Z",
       "h": {
@@ -38,18 +38,18 @@
             "pos": "RB"
           },
           {
-            "name": "Alexis Mac Allister",
-            "jersey": "20",
-            "pos": "LM"
-          },
-          {
             "name": "Enzo Fernandez",
             "jersey": "24",
-            "pos": "CM"
+            "pos": "LM"
           },
           {
             "name": "Leandro Paredes",
             "jersey": "5",
+            "pos": "CM"
+          },
+          {
+            "name": "Alexis Mac Allister",
+            "jersey": "20",
             "pos": "CM"
           },
           {
@@ -78,16 +78,16 @@
             "jersey": "12"
           },
           {
-            "name": "Marcos Senesi",
-            "jersey": "2"
+            "name": "Facundo Medina",
+            "jersey": "25"
           },
           {
             "name": "Nicolas Otamendi",
             "jersey": "19"
           },
           {
-            "name": "Facundo Medina",
-            "jersey": "25"
+            "name": "Marcos Senesi",
+            "jersey": "2"
           },
           {
             "name": "Gonzalo Montiel",
@@ -114,12 +114,12 @@
             "jersey": "17"
           },
           {
-            "name": "Nicolas Gonzalez",
-            "jersey": "15"
-          },
-          {
             "name": "Thiago Almada",
             "jersey": "16"
+          },
+          {
+            "name": "Nicolas Gonzalez",
+            "jersey": "15"
           },
           {
             "name": "Jose Manuel Lopez",
@@ -132,7 +132,7 @@
         ]
       },
       "a": {
-        "formation": "4-2-3-1",
+        "formation": "4-4-2",
         "starters": [
           {
             "name": "Mostafa Shobeir Oufa",
@@ -140,18 +140,18 @@
             "pos": "G"
           },
           {
+            "name": "Karim Hafez",
+            "jersey": "15",
+            "pos": "LB"
+          },
+          {
             "name": "Rami Rabia",
             "jersey": "5",
-            "pos": "LB"
+            "pos": "CB"
           },
           {
             "name": "Yasser Ibrahim",
             "jersey": "2",
-            "pos": "CB"
-          },
-          {
-            "name": "Hamdy Fathy",
-            "jersey": "14",
             "pos": "CB"
           },
           {
@@ -160,37 +160,41 @@
             "pos": "RB"
           },
           {
-            "name": "Marwan Ateya",
-            "jersey": "19",
-            "pos": "DM"
+            "name": "Haissem Hassan",
+            "jersey": "12",
+            "pos": "LM"
           },
           {
             "name": "Mohanad Lasheen",
             "jersey": "17",
-            "pos": "DM"
+            "pos": "CM"
           },
           {
-            "name": "Mostafa Ziko",
-            "jersey": "11",
-            "pos": "AM-L"
-          },
-          {
-            "name": "Mohamed Salah",
-            "jersey": "10",
-            "pos": "AM"
+            "name": "Marwan Ateya",
+            "jersey": "19",
+            "pos": "CM"
           },
           {
             "name": "Emam Ashour",
             "jersey": "8",
-            "pos": "AM-R"
+            "pos": "RM"
           },
           {
-            "name": "Omar Marmoush",
-            "jersey": "22",
-            "pos": "ST"
+            "name": "Mostafa Ziko",
+            "jersey": "11",
+            "pos": "LF"
+          },
+          {
+            "name": "Mohamed Salah",
+            "jersey": "10",
+            "pos": "RF"
           }
         ],
         "bench": [
+          {
+            "name": "Mohamed Alaa",
+            "jersey": "26"
+          },
           {
             "name": "Mohamed El Shenawy",
             "jersey": "1"
@@ -198,10 +202,6 @@
           {
             "name": "Mahdi Soliman",
             "jersey": "16"
-          },
-          {
-            "name": "Mohamed Alaa",
-            "jersey": "26"
           },
           {
             "name": "Hossam Abdelmaguid",
@@ -212,16 +212,16 @@
             "jersey": "24"
           },
           {
+            "name": "Hamdy Fathy",
+            "jersey": "14"
+          },
+          {
             "name": "Nabil Emad Dunga",
             "jersey": "18"
           },
           {
             "name": "Mahmoud Saber",
             "jersey": "21"
-          },
-          {
-            "name": "Haissem Hassan",
-            "jersey": "12"
           },
           {
             "name": "Ahmed Sayed Zizo",
@@ -236,12 +236,16 @@
             "jersey": "20"
           },
           {
+            "name": "Omar Marmoush",
+            "jersey": "22"
+          },
+          {
             "name": "Hamza Abdelkarim",
             "jersey": "9"
           }
         ]
       },
-      "updatedAt": "2026-07-06T18:29:46.592Z"
+      "updatedAt": "2026-07-07T15:49:41.929Z"
     },
     "k:96": {
       "status": "probable",
