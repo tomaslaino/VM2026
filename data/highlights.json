@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-07T17:26:37.015Z",
+    "updatedAt": "2026-07-07T19:23:12.820Z",
     "source": "svt+tv4",
     "matchCount": 96
   },
@@ -2093,21 +2093,33 @@
         }
       }
     },
+    "k:95": {
+      "SVT": {
+        "short": {
+          "url": "https://www.svtplay.se/klipp/KDvaVQW/attondelsfinal-argentina-egypten",
+          "title": "Åttondelsfinal: Argentina – Egypten",
+          "until": "2026-10-19T05:30:00+02:00"
+        }
+      },
+      "TV4": {
+        "full": {
+          "url": "https://www.tv4play.se/video/1068cb6840220e90bff6/argentina-egypten",
+          "title": "Argentina - Egypten",
+          "until": "2026-08-06T15:00:00Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/db30ab1566440a64b4c0/video-hojdpunkter-argentina-egypten",
+          "title": "Höjdpunkter: Argentina - Egypten",
+          "until": null
+        }
+      }
+    },
     "k:96": {
       "SVT": {
         "live": {
           "url": "https://www.svtplay.se/video/jgWWr7N/fifa-fotbolls-vm-2026/schweiz-colombia",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-08-06T23:59:59+02:00"
-        }
-      }
-    },
-    "k:95": {
-      "TV4": {
-        "full": {
-          "url": "https://www.tv4play.se/video/1068cb6840220e90bff6/argentina-egypten",
-          "title": "Argentina - Egypten",
-          "until": "2026-08-06T15:00:00Z"
         }
       }
     },
