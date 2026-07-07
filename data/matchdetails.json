@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-07T22:01:39.571Z",
+    "updatedAt": "2026-07-07T23:12:03.332Z",
     "source": "espn"
   },
   "details": {
@@ -55029,11 +55029,11 @@
     "k:96": {
       "espnId": "760508",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 91,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-07T20:00Z",
-      "duration": "EXTRA_TIME",
-      "winner": null,
+      "duration": "PENALTY_SHOOTOUT",
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
           "h": 0,
@@ -55048,7 +55048,10 @@
           "h": 0,
           "a": 0
         },
-        "pen": null
+        "pen": {
+          "h": 4,
+          "a": 3
+        }
       },
       "goals": [],
       "bookings": [
@@ -55068,6 +55071,18 @@
           "minute": 60,
           "team": "a",
           "player": "Luis Suárez",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 95,
+          "team": "a",
+          "player": "Davinson Sánchez",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 105,
+          "team": "h",
+          "player": "Miro Muheim",
           "card": "YELLOW"
         }
       ],
@@ -55125,6 +55140,18 @@
           "team": "h",
           "in": "Rubén Vargas",
           "out": "Dan Ndoye"
+        },
+        {
+          "minute": 103,
+          "team": "h",
+          "in": "Zeki Amdouni",
+          "out": "Fabian Rieder"
+        },
+        {
+          "minute": 119,
+          "team": "a",
+          "in": "Yerry Mina",
+          "out": "Jhon Lucumí"
         }
       ],
       "penalties": [],
@@ -55137,8 +55164,8 @@
               "jersey": "1",
               "pos": "G",
               "st": {
-                "fs": 1,
-                "sv": 2
+                "fs": 2,
+                "sv": 3
               }
             },
             {
@@ -55160,7 +55187,8 @@
               "pos": "LM",
               "st": {
                 "fc": 1,
-                "fs": 3
+                "fs": 3,
+                "sh": 1
               }
             },
             {
@@ -55168,8 +55196,8 @@
               "jersey": "4",
               "pos": "CD-R",
               "st": {
-                "fc": 1,
-                "fs": 2
+                "fc": 2,
+                "fs": 3
               }
             },
             {
@@ -55239,7 +55267,11 @@
             },
             {
               "name": "Zeki Amdouni",
-              "jersey": "23"
+              "jersey": "23",
+              "in": true,
+              "st": {
+                "fc": 3
+              }
             },
             {
               "name": "Noah Okafor",
@@ -55250,7 +55282,8 @@
               "jersey": "17",
               "in": true,
               "st": {
-                "fc": 1
+                "fc": 1,
+                "fs": 2
               }
             },
             {
@@ -55260,7 +55293,11 @@
             {
               "name": "Cedric Itten",
               "jersey": "26",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 3,
+                "fs": 1
+              }
             },
             {
               "name": "Christian Fassnacht",
@@ -55277,7 +55314,11 @@
             {
               "name": "Miro Muheim",
               "jersey": "2",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
             },
             {
               "name": "Djibril Sow",
@@ -55310,7 +55351,7 @@
               "jersey": "2",
               "pos": "RB",
               "st": {
-                "fc": 3
+                "fc": 4
               }
             },
             {
@@ -55318,7 +55359,7 @@
               "jersey": "17",
               "pos": "LB",
               "st": {
-                "fs": 2
+                "fs": 3
               }
             },
             {
@@ -55334,14 +55375,19 @@
               "jersey": "23",
               "pos": "CD-R",
               "st": {
-                "fc": 2,
-                "fs": 1
+                "fc": 3,
+                "fs": 2,
+                "sh": 1
               }
             },
             {
               "name": "Jhon Lucumí",
               "jersey": "3",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "fc": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Jhon Arias",
@@ -55385,10 +55431,10 @@
               "jersey": "7",
               "pos": "LM",
               "st": {
-                "fc": 2,
-                "fs": 3,
+                "fc": 3,
+                "fs": 4,
                 "sg": 1,
-                "sh": 2
+                "sh": 3
               }
             }
           ],
@@ -55406,8 +55452,9 @@
               "jersey": "6",
               "in": true,
               "st": {
-                "fc": 1,
-                "fs": 1
+                "fc": 2,
+                "fs": 1,
+                "sh": 1
               }
             },
             {
@@ -55415,7 +55462,8 @@
               "jersey": "19",
               "in": true,
               "st": {
-                "fs": 1
+                "fs": 1,
+                "sh": 1
               }
             },
             {
@@ -55423,7 +55471,10 @@
               "jersey": "21",
               "in": true,
               "st": {
-                "fc": 1
+                "fc": 2,
+                "fs": 2,
+                "sg": 1,
+                "sh": 2
               }
             },
             {
@@ -55449,7 +55500,11 @@
             {
               "name": "Juan Fernando Quintero",
               "jersey": "20",
-              "in": true
+              "in": true,
+              "st": {
+                "fs": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Álvaro Montero",
@@ -55457,7 +55512,11 @@
             },
             {
               "name": "Yerry Mina",
-              "jersey": "13"
+              "jersey": "13",
+              "in": true,
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Juan Portilla",
@@ -55472,47 +55531,47 @@
       },
       "referee": "Iván Arcides Barton Cisneros",
       "venue": "BC Place, Vancouver",
-      "attendance": null,
+      "attendance": 52497,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "52%",
-          "a": "48%"
+          "h": "53%",
+          "a": "47%"
         },
         {
           "key": "totalShots",
-          "h": "6",
-          "a": "7"
+          "h": "7",
+          "a": "15"
         },
         {
           "key": "shotsOnTarget",
           "h": "2",
-          "a": "2"
+          "a": "3"
         },
         {
           "key": "wonCorners",
           "h": "3",
-          "a": "4"
+          "a": "7"
         },
         {
           "key": "foulsCommitted",
-          "h": "14",
-          "a": "15"
+          "h": "22",
+          "a": "21"
         },
         {
           "key": "offsides",
-          "h": "4",
+          "h": "5",
           "a": "4"
         },
         {
           "key": "saves",
-          "h": "2",
+          "h": "3",
           "a": "2"
         },
         {
           "key": "totalPasses",
-          "h": "492",
-          "a": "464"
+          "h": "626",
+          "a": "548"
         },
         {
           "key": "passPct",
@@ -55521,8 +55580,8 @@
         },
         {
           "key": "yellowCards",
-          "h": "2",
-          "a": "1"
+          "h": "3",
+          "a": "2"
         },
         {
           "key": "redCards",
@@ -55530,7 +55589,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-07T22:01:39.571Z"
+      "updatedAt": "2026-07-07T23:12:03.332Z"
     }
   }
 }

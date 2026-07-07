@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-07T22:01:39.526Z",
+    "updatedAt": "2026-07-07T23:12:03.292Z",
     "source": "espn",
     "matchCount": 96,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -488,19 +488,11 @@
     "k:96": {
       "h": 0,
       "a": 0,
-      "status": "IN_PLAY"
+      "status": "FINISHED",
+      "pw": "h"
     }
   },
-  "live": [
-    {
-      "key": "k:96",
-      "status": "IN_PLAY",
-      "minute": 91,
-      "home": "Switzerland",
-      "away": "Colombia",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -2121,7 +2113,7 @@
       "date": "2026-07-07",
       "time": "22:00",
       "utcDate": "2026-07-07T20:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Switzerland",
       "away": "Colombia",
@@ -2192,12 +2184,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Argentina",
-      "away": "Round of 16 8 Winner",
+      "away": "Switzerland",
       "homeRef": {
         "group": "J",
         "idx": 0
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "B",
+        "idx": 1
+      }
     },
     "k:101": {
       "date": "2026-07-14",
