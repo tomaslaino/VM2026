@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-07T15:23:08.423Z",
+  "updated": "2026-07-07T17:33:12.798Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -39,34 +39,23 @@
     },
     "bel-amadou-onana": {
       "availability": "doubtful",
-      "kind": "other",
-      "detail": "Oro för Amadou Onana på Red Devils: \"Det är allvarliga, inte goda nyheter\"",
+      "kind": "injury",
+      "detail": "VIDEO. Även den skadade Onana deltog: Red Devils gör Trump-dansen igen i omklädningsrummet",
       "updated": "2026-07-07",
       "source": {
-        "name": "VoetbalPrimeur.be",
-        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPaE5SMkV1ZzI5RnJvRDcwUTliRDRNeW53M0o0UnBRRG9TM2N3YlZqRllTSG54cmNDUWtjSXp0ZVYwQWdBcFBPTTc0cFAtZDFZNkdMRGpOcllPdHVFbmpBb0xPQXdyRnhfb1NGZlFvZkdSbTRFdXJYT3FPNFpfZ2dYaldTZXZxUlRuTDRWRVFFeDJNTGpLZG1heDZvSzVYNHV0b1lvN3RpNGVMdEtfdlBUd2JZaUprczBwc1liSGhySlRrUQ?oc=5"
+        "name": "HBVL",
+        "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQcEJwV2xxWExiZ21zcUFYSE1vekhRNVNnNngwM1ZFN3R1Y0lOLTVNNTZ4MndQN0pGYUZhRmFZaXFYQlNMNVlOR04zMG9RSUM5SzZMQnp5RjJ2a1NnaEtjdTNfUmFDVXZfTXBLbjNVbDBuTUQyTklqSGJwMVF6RzUzVDJleGlaeFFvNnhIcGZiMjZISkw4Zm9NQkFoSWNhaGZyQlJLLTYtSGtJOFdYSEdkZzRGeG0wYldMQ0tRaU9nOGVpa29fYmZhdXVIVzYtUmhRY0R2TGM5MGtvLWVkOTlhQVRKbmdNNmFxVmc?oc=5"
       },
       "origin": "news"
     },
-    "egy-haissem-hassan": {
+    "egy-emam-ashour": {
       "availability": "doubtful",
       "kind": "other",
-      "detail": "Bildandet av det egyptiska landslaget mot Argentina. Haitham Hassan närmar sig på bekostnad av Marmoush",
-      "updated": "2026-07-06",
+      "detail": "En muskelskada oroar det egyptiska landslaget. Imam Ashour lämnar matchen i Argentina och tester avgör hans position",
+      "updated": "2026-07-07",
       "source": {
-        "name": "كل الكورة",
-        "url": "https://news.google.com/rss/articles/CBMixAJBVV95cUxOS0JvX0pkdjVpRkdOaDdETmlvWjNvTHFBd0RJVXdvczZBeHY3Y1N5U2VES0VlNTJFLUptNVdELU5pTXRQWDY3dUk0RG9Qa2wyeGxYOTFYbVd6bDhFRFI2UVVTRUZFNTVvdzNmTERydzBBYjQ5a1d3WS1DTGRsSXRVbHVpdlhhSVcyTnNocEZKckxhVXhMQzFtVy1pS1NsWTAxUnl2NmxRbm01NTlXb05MQk9LNEFRNHNGaXNXTS1VUVNKZ1NTV25LX25aX0gwamM0YVVLOW9tS2lVR3NKVktZajlnQWcwRmZKNndjcjFBZi1PdHZodlc0ekMyRnc3Sms0VVlxQkZmbXp2akhWcnZlT2xqcGNFUDV2RS1HaXZXclVycE5sQXhZZWx3akNLOGpmeEl3Q3l4Q2dkQlcxcDI3bUpCM2c?oc=5"
-      },
-      "origin": "news"
-    },
-    "egy-omar-marmoush": {
-      "availability": "doubtful",
-      "kind": "other",
-      "detail": "Bildandet av det egyptiska landslaget mot Argentina. Haitham Hassan närmar sig på bekostnad av Marmoush",
-      "updated": "2026-07-06",
-      "source": {
-        "name": "كل الكورة",
-        "url": "https://news.google.com/rss/articles/CBMixAJBVV95cUxOS0JvX0pkdjVpRkdOaDdETmlvWjNvTHFBd0RJVXdvczZBeHY3Y1N5U2VES0VlNTJFLUptNVdELU5pTXRQWDY3dUk0RG9Qa2wyeGxYOTFYbVd6bDhFRFI2UVVTRUZFNTVvdzNmTERydzBBYjQ5a1d3WS1DTGRsSXRVbHVpdlhhSVcyTnNocEZKckxhVXhMQzFtVy1pS1NsWTAxUnl2NmxRbm01NTlXb05MQk9LNEFRNHNGaXNXTS1VUVNKZ1NTV25LX25aX0gwamM0YVVLOW9tS2lVR3NKVktZajlnQWcwRmZKNndjcjFBZi1PdHZodlc0ekMyRnc3Sms0VVlxQkZmbXp2akhWcnZlT2xqcGNFUDV2RS1HaXZXclVycE5sQXhZZWx3akNLOGpmeEl3Q3l4Q2dkQlcxcDI3bUpCM2c?oc=5"
+        "name": "alyaum",
+        "url": "https://news.google.com/rss/articles/CBMijgZBVV95cUxNNjNma2VBN3BYMmMwXzZmY2Utc3dmQ2N5WjBicTUtY24yVU9KZlZ3dmdrbnJFbU1rV3o4cl82YkdsX2tiMmhlSTVlMERUZ0c4c2FSTHlGV0JWU01VeFBpUnBnd2tseEN6N09MVEd3enhQNWpEMU9GTlh6VnFOcWwzb25FME9IZlUtWEVud2J5bGV1aDZNR0hFSjg4S21SN3RjM0E0ZHkwZGRQTDJQMkhVaGhzLXVyemh5aUt6X1pCYkdkWDdsVWotalVnWjlMRDYyUVlCRnRNRVpVaHl5dWNFZzVUWGZFeUJudlBiMk1GNEhrbE5sS3NYS2UyQ3pJZThzVjBMQWkwVk13Rk1FVTdNeUJBVDEzankxem02UlR4U1FuNTdMQU12UXFYM2ZvdmdBaHd2b1lGUkgxb0t2M1p3emtGdk5JQnVQX2pJOEZTUmtEbGN0Q09kemFjRlpya0hvczJBajBNejNJYlMwNlJYdnowY3pqeWV6WVhJQnhBVGxUeVZ5ZTkzT1NHUXV6cFNDRDhPcVpidGx2QThXZ0IwMWhuUUdCOE5LTkgyLTJNcjlrN2xROUh4VjRQWEtMTzJXYktkS1FzOGVYWHRLQThJYW9YaG5TSFp6NVRNZm5ya200bktRcG5ham40WTNpZmN3aVJGX2xpaWg2NFhPT3BmMTZGNFBHbTFtMFN4RmI4SWkzcWVHbU0ybnAzT2JzWjJKVnJXOGIzZUxDUkxUWUxVYWg4aWRXLTRBYUVBWjdLbEgxVkRIS1JCdmgzN1o5Y3BsYWIzRTFsZ2MzWkJYem9mZFRGekNMb2szNDQ3enlLakNpMEhNNGhEN1ZFNDJtRWRaMXR0OVFHOWdNaWhCWTFUUEZKSDd2VHRiWUl2dE51azhnbmU0aWpNWjVrdnJEaG9uLW53cmxjNHdXZm1vUGgyWnFtcm1FTTdkRzl3UmRERVM3cDA0a3VNTlgwY21SdXhtcFFNajdjTWJ5N2dLYjNHY29PcnRhN1lObmJtaGhNbkROdVZQckVHV3FGR0prUdIBU0FVX3lxTE5NZDRhNVNPbXpNMExfS0R5QnQ3ZVpNNHJrU0pyZjBlOUx5LWduMXhXWDA4Z0oyeFhEUmJqSEh5MWt1QVN3dlY4WkhLMkx4YzZVQVZj?oc=5"
       },
       "origin": "news"
     },
@@ -81,17 +70,6 @@
       },
       "origin": "news"
     },
-    "fra-aurelien-tchouameni": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Franska laget: \"Det är sant att vi är ikapp i tid\", förklarar Guy Stéphan om Aurélien Tchouamenis skada",
-      "updated": "2026-07-06",
-      "source": {
-        "name": "franceinfo",
-        "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxQaGIycFJEeDVzbW9RMENibGlzS0JvNzhtWEZyZmFiTHJuVlFWQ3JxZFlwTllfM3ZVREttNzdCeHBsRHptdEowSEpuSjMzYTVDWU55c0wtUG1nMWZxV01MVDVOY1dvOGlnMjFJRkpXWmJDTXI3ekRGbnFIWGdReUZUNmc5LVBHTmZobnNEdEhQMUVxMVF1VHRlOU16STlJUjBxMzZSTHktNDM2bXFhVlhxbHFOM0RMRkgzRWJpOWJzSC1La2ZadzZLX1JxZnV5R1NGQi1RM0wxbUtLZk9RTnRwaWpXeDdWUmRORElUX1Q0UzVqenNadmdzeElPcTFSY1hISXdHTHVB?oc=5"
-      },
-      "origin": "news"
-    },
     "arg-leandro-paredes": {
       "availability": "doubtful",
       "kind": "injury",
@@ -100,6 +78,17 @@
       "source": {
         "name": "Planeta Boca Juniors",
         "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNVXBqdGlsY0Y0QXk2a2ZqeDgzN1ZNMTc0NUczSTRlaEt2ODU5TUxWNXlXcGNfTWhJcUNLWE9paXBGeExDeVNRWTB5MmZNZTRsR2g3V0dVVUsyOVhTU3NlNWlEc2Zrb09aX3FMTTR0bkRlek5ZNEJzX0JiUlZMSHFIbG5FaWppUjNOVFpGUlZEYU1wZmJ3ak1FX2c0QmVmMklPTjdOSUVISFNmZ2Y2ckQ5TEhSdTFkZ0xiWUU40gG_AUFVX3lxTE5QYWJWYU1zemstd3BJSEtTeTROTDdpZWpzN050MWRqQUxhc0pSNXp1YXE0X2gwMEFjMmtGTWROdFczMFVXN1VfVjJJeURlMkpENi1hM0Y2ZDl3Tjh2Q1ZKU1VtYW96NGJ5ZjRlRndwNFlhZWJ5WUV5cDdKV0xDUWpZalg0SHd3b2FpWUQwRHBEWkFzOVF5Q3NTMHBaeVpnMDhjR004bWUtRFgweWJTQmFDYklQc21JODF1NExfRVBF?oc=5"
+      },
+      "origin": "news"
+    },
+    "col-luis-diaz": {
+      "availability": "out",
+      "kind": "injury",
+      "detail": "Vem är Johan Manzambi, \"schweizeren Luis Díaz\" som missar matchen mot Colombia på grund av skada?",
+      "updated": "2026-07-07",
+      "source": {
+        "name": "La FM",
+        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOZmdFVEI1WERlZXI0RzBjOTdmRFI2UzFXQkgtSkRTd19KS1ZmWnJYOFI3MWdxTk1VYlZUV0FBbWQwVDhRT1lvYXRBMndnR20ySVJEWDdHcFNrSjg4cm1HcXZRcGpkUnROdDdJd2Ywd0JoRWtfUGNZX3Uxd3lLMVZPTjVxenlCYkFKYm5uZnpQMHhqTkFseHfSAZYBQVVfeXFMUGxieENOR2RBSldoTHNLaTNBR1lmS1Jzd0x5MG8ycF84LW9OTnBRV2dudURTUEtQU245WjRBakJkbWQtSGJiVzE0ejJza3Y5TXVORGpmTjkxQUphdHZZeFBhbE9QYmpaZW52eXlHZzZzZ1R0NE5nbGNERXRWc0Y4T0tqc3Nib3k0Y1hMdFMxY294LUVtZExR?oc=5"
       },
       "origin": "news"
     },
