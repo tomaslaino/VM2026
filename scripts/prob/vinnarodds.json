@@ -1,15 +1,23 @@
 {
-  "updated": "2026-07-06T19:30:27.886457+00:00",
+  "updated": "2026-07-07T01:55:18.165320+00:00",
   "source": "the-odds-api.com",
   "market": "VM-vinnare (outright)",
   "teams": [
     {
       "team": "France",
-      "bestOdds": 2.98,
+      "bestOdds": 3.0,
       "bestBook": "Betfair",
-      "avgOdds": 2.81,
+      "avgOdds": 2.92,
       "books": 3,
-      "impliedPct": 35.6
+      "impliedPct": 34.2
+    },
+    {
+      "team": "Spain",
+      "bestOdds": 5.1,
+      "bestBook": "Betfair",
+      "avgOdds": 5.07,
+      "books": 3,
+      "impliedPct": 19.7
     },
     {
       "team": "Argentina",
@@ -28,36 +36,20 @@
       "impliedPct": 15.2
     },
     {
-      "team": "Spain",
-      "bestOdds": 7.4,
-      "bestBook": "Betfair",
-      "avgOdds": 7.2,
-      "books": 3,
-      "impliedPct": 13.9
-    },
-    {
-      "team": "Portugal",
-      "bestOdds": 18.0,
-      "bestBook": "Betfair",
-      "avgOdds": 15.83,
-      "books": 3,
-      "impliedPct": 6.3
-    },
-    {
       "team": "Norway",
-      "bestOdds": 22.0,
+      "bestOdds": 21.0,
       "bestBook": "Betfair",
-      "avgOdds": 20.33,
+      "avgOdds": 19.67,
       "books": 3,
-      "impliedPct": 4.9
+      "impliedPct": 5.1
     },
     {
       "team": "Colombia",
-      "bestOdds": 29.0,
+      "bestOdds": 28.0,
       "bestBook": "Betfair",
-      "avgOdds": 28.0,
+      "avgOdds": 27.33,
       "books": 3,
-      "impliedPct": 3.6
+      "impliedPct": 3.7
     },
     {
       "team": "Morocco",
@@ -68,28 +60,28 @@
       "impliedPct": 3.0
     },
     {
-      "team": "USA",
-      "bestOdds": 34.0,
-      "bestBook": "Betfair",
-      "avgOdds": 34.0,
-      "books": 3,
-      "impliedPct": 2.9
-    },
-    {
       "team": "Belgium",
-      "bestOdds": 75.0,
+      "bestOdds": 36.0,
       "bestBook": "Betfair",
-      "avgOdds": 63.67,
+      "avgOdds": 33.67,
       "books": 3,
-      "impliedPct": 1.6
+      "impliedPct": 3.0
     },
     {
       "team": "Switzerland",
-      "bestOdds": 80.0,
+      "bestOdds": 100.0,
       "bestBook": "Betfair",
-      "avgOdds": 75.67,
+      "avgOdds": 89.0,
       "books": 3,
-      "impliedPct": 1.3
+      "impliedPct": 1.1
+    },
+    {
+      "team": "USA",
+      "bestOdds": 250.0,
+      "bestBook": "Betfair",
+      "avgOdds": 200.33,
+      "books": 3,
+      "impliedPct": 0.5
     },
     {
       "team": "Egypt",
@@ -341,6 +333,14 @@
     },
     {
       "team": "Jordan",
+      "bestOdds": 921.0,
+      "bestBook": "—",
+      "avgOdds": 921.0,
+      "books": 0,
+      "impliedPct": 0.1
+    },
+    {
+      "team": "Portugal",
       "bestOdds": 921.0,
       "bestBook": "—",
       "avgOdds": 921.0,
