@@ -1,17 +1,17 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-07T23:27:13.138Z",
+  "updated": "2026-07-08T03:52:08.898Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
-    "mar-ayyoub-bouaddi": {
+    "sui-johan-manzambi": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Frankrike - Marocko: Bouaddi, skadan på Tchouaméni, Deschamps... Guy Stéphan talar inför kvartsfinalen",
-      "updated": "2026-07-06",
+      "detail": "Skadade Manzambi kommer till stadion med en Lego World Cup-trofé",
+      "updated": "2026-07-07",
       "source": {
-        "name": "90Min.com",
-        "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNNkUzNDBCYm13UTdOcXZKLTdBdWFhV1R2NVQteGJzbWwtQk9IdWpVWWFMVTVxZXlFa2plREtfZTdDV3RaLUNyTjBtZE9rM1FvN1pRY0RoWWNiR3pnc3lkOHhsSUx0TXNZQk1tLWhMdGVleVZIa3dya09zZm41X1NsX084cWlMNzBKNDRPWnhaTUplWHBEZlY2UzlVM2VYVjh6elZ3TmZGUFRGU2wwdDZMSUVTSnZCc240SFFCTno4OEpBb2xIbVE?oc=5"
+        "name": "Blick",
+        "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxONnBtMnVfZHNoNldSdlRYdmtwdklJZ1hDTmQxV1VYdlo3SG9Nc2ZxWTJoWFBvUXI3bDhFZnVxOXZFTUVRV1RXTGduZHJ2ajZsbTN6WUhhMHNiSHdlVVh2c3pTXy1qUHVzcWlONGhzTVpabjE3WnVmVGN2YWNOSzRmdEt1RlhpUXFFNTc2SkZKWUFnR1pJRVlCc2xBMkwybGpyYmdsSnVZZ0VaUktRN201bW1LZk5mQlVINm8tb0kydFBkWFU5SGhSTDdzSDRlUW56?oc=5"
       },
       "origin": "news"
     },
@@ -49,13 +49,24 @@
       "origin": "news"
     },
     "eng-jordan-henderson": {
-      "availability": "out",
-      "kind": "illness",
-      "detail": "Jordan Henderson ska opereras på grund av en illamående skada efter att Englands stjärna lades in på sjukhus",
-      "updated": "2026-07-06",
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Jordan Henderson talar ut när Englands lagkamrat ger uppdateringar om \"läskig\" VM-skada",
+      "updated": "2026-07-07",
       "source": {
-        "name": "Daily Express",
-        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNb2VzbGJwM1k1YUhDbnFCNXo5ZlNKQ2JwRWdaaWlNVEE2S3ZncDE3Y0t3bHQ4T2s0TEcwZG50WVpTcWxIV25mbG5oamgxQ3dfX3EyMDlZQTYwSWJhQUJlRW9HYXVlY3gwYl85UGhHNXB5ODU1YVpXRnp1LUFfQ1AzSjlKblNZaExrVFR6Uno2emRkaHRuODRDcXk1WU93ZkFUVnU3c9IBpAFBVV95cUxNb2VzbGJwM1k1YUhDbnFCNXo5ZlNKQ2JwRWdaaWlNVEE2S3ZncDE3Y0t3bHQ4T2s0TEcwZG50WVpTcWxIV25mbG5oamgxQ3dfX3EyMDlZQTYwSWJhQUJlRW9HYXVlY3gwYl85UGhHNXB5ODU1YVpXRnp1LUFfQ1AzSjlKblNZaExrVFR6Uno2emRkaHRuODRDcXk1WU93ZkFUVnU3cw?oc=5"
+        "name": "Metro.co.uk",
+        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNcVRKdVZaQy1nM0c4RnBxV2d6T1gzMlNYb2gwYVJDcmVSNlFNV3dpNEd5T3cyVmlkaS05eTlSOVZKa1FxeFpheGk2MkdiNUpLWDRoRHlEWHdfd2dFRzVIcmdfQmxCc0VPZy16bzVKYml2VW50TllvYzJXc0VOazBLRG9UYWN1SnQzcUxibWszdnF2QmVGVTAxOFI5SEpNZ0ZkVXdjdFR5MXpHZWxkaGppYXNBd3FucGZXamFoeS1B0gHDAUFVX3lxTE1WS3c4Y2FyTjV4SFhrM3RqdnE2bkZWRUpBM2wzYjBwYXlBQkRnaWt4aG94bU9lQ0tBaTYyQnBQaktBd3RWMU1TOWJjWDFzT2JxYUtrV2ZVSnlpeHlIX01LLUdFV1FacUpmeFQyM3BUb055RDFENkxKa1NIcVNLNTlqbWZXZC04M2xpdTdKdHRMRUV5M1FOQ2FTc1FjaEZySjNTajF5UWphWDZkVjdnaTlvd1pOVGZrb1pDbEdKTHhwNGhpQQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-jude-bellingham": {
+      "availability": "doubtful",
+      "kind": "suspension",
+      "detail": "Jude Bellingham en av fyra Englandsstjärnor som riskerar att få VM-semifinalavstängning",
+      "updated": "2026-07-07",
+      "source": {
+        "name": "The Sun",
+        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPSlY4Qm52OTZJMmxuMWluVXVoS1NTcUdrLVNVQ2pRTUFrR2ZoV0VvMnZEQXI2ZndDVWdLaWgwTnZILVhaYk5FM3BjVWUyVktyaXRXWlcxV19haDN2QnF2WHd1WVREZjZkU0VzckZLcHNBWUx5bVl3NVI5UlZMUGVpRjNwTjNZVEZNMVZlamd3d3pHaXQ3UVdRLThSckF6UQ?oc=5"
       },
       "origin": "news"
     },
