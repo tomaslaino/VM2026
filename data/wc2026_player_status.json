@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-08T16:55:01.348Z",
+  "updated": "2026-07-08T18:52:16.731Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -45,6 +45,17 @@
       "source": {
         "name": "Lecturas",
         "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQQ3lhbk0zV3FodWlpNlB1bzVPNDFiRHp1NlQ2SnhwRHdpRzhjUXVEbWJGMWY5alZpSW5YQlhKVVZtTHNuZmxPbUllMl81WEVId0d5YlB2UlppY1pDLTdfcHVSU1V0TzUtcWJWanc2YVBEOHU5VUh6NUM4UWI3R1ZmZWdSSzdyY0xCdmhWcDZ3VmhpaEUtbXBsdk1UXzlKUTh1VEJmcENNTEJ1WnJRMWNTYXVac3Y4WGVic2xVWGJxbWRJVHNRVXVNUFJNU2h6X1VGRTN3WmpsalEwVHNlYVRXY0RJUWNacy1VWG93MGp0MXFiR1RrVDQweQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "fra-michael-olise": {
+      "availability": "doubtful",
+      "kind": "suspension",
+      "detail": "Frankrike-Marocko: dåliga nyheter för Michael Olise, som inte vinner sitt fall för sitt gula kort före Frankrike-Marocko",
+      "updated": "2026-07-08",
+      "source": {
+        "name": "RMC Sport",
+        "url": "https://news.google.com/rss/articles/CBMinwJBVV95cUxPVlZJMlVvTXkxTjFrTG9KRmdvT1dId1FPUGkwZE1lVy01Y0pxMFBsY1pQR05adktxR3VxcHJDeDZjbVlqYUZ4aUdldlliZnRXaUpZWGhuU1Ryd1ZNU3VYeXBhdHlvWEZFOXFkV29ka3lyak1iV2dwUlZMdDY4LURDYmtPNnFSV2s2Rmo2Q0piajJBN2dUX015c1NLYW0zTUdhNDZ0SGdVMld0MkI5VWllay1WbUZnSnlheW9KVmR5c3BBWG5iYjhuLWFEZUp6UW5ycTMwZ0QxMGhyVUF6bjNPWnRxUnVldC1HUUs1VXU3Zzc1eFFRMzYzdklUOGJqTXQwQjhudWQ3cjBweWt1cUxWdUVOSzl2bnQ1TzlSWnR2Zw?oc=5"
       },
       "origin": "news"
     },
