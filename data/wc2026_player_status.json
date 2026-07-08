@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-08T06:43:51.208Z",
+  "updated": "2026-07-08T09:43:09.242Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -15,10 +15,21 @@
       },
       "origin": "news"
     },
+    "mar-ismael-saibari": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Frankrike-Marocko: en oroande ledtråd om Ismael Saibaris skada?",
+      "updated": "2026-07-08",
+      "source": {
+        "name": "Afrik-Foot",
+        "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPQlA5N0ZUajY1WTRIU05DU2RhU3kwZm1FeUJnUHYtNC15a1IxRFFObV9wejJLakJWMUJCU1poOGx2elRlc1RoNjRaYUJVQWVPRWx0YVhMMUJtOTBzd2ExbmpvNnhuU1VHa2lkSkdRN0lEX1hIN3BWZjdBR0ZHLXZVTGo5UDNETDl5NmFyeWR0ZXVOWHpJMHU0?oc=5"
+      },
+      "origin": "news"
+    },
     "bel-amadou-onana": {
       "availability": "doubtful",
       "kind": "other",
-      "detail": "Oro för Amadou Onana vid Red Devils: \"Det är allvarliga, inte goda nyheter\"",
+      "detail": "Oro för Amadou Onana på Red Devils: \"Det är allvarliga, inte goda nyheter\"",
       "updated": "2026-07-07",
       "source": {
         "name": "VoetbalPrimeur.be",
@@ -41,10 +52,21 @@
       "availability": "doubtful",
       "kind": "other",
       "detail": "VM 2026: Aurélien Tchouameni mycket osäker för Frankrike-Marocko",
-      "updated": "2026-07-07",
+      "updated": "2026-07-08",
       "source": {
         "name": "Le Figaro",
         "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQZDFCdE9ZSHcyVnRaOHZQSTFFVW90MUlJd1hfSHVremVaTkRpYTBUX0d4djFBYjh1Tkd2SGhTdm91WjlDSTM1MmtVaTR4NHdmUXVQU1RyX0ZNSFV0TWlzQmhQTkxLc2gwRlo2c3BDdlVBX1ZOUEhzeGJRWmJ6RHBfUk8yc1VPeWhPUFR6c2FDaXhHUXN6WnNGd20yMEdPeW5idERyTGVuUUVyWEpYV09XSGh0dHpLM1hIX3M1QTd3LW94dTNJM1E?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-jordan-henderson": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Jordan Henderson talar ut när Englands lagkamrat ger uppdateringar om \"läskig\" VM-skada",
+      "updated": "2026-07-07",
+      "source": {
+        "name": "Metro.co.uk",
+        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNcVRKdVZaQy1nM0c4RnBxV2d6T1gzMlNYb2gwYVJDcmVSNlFNV3dpNEd5T3cyVmlkaS05eTlSOVZKa1FxeFpheGk2MkdiNUpLWDRoRHlEWHdfd2dFRzVIcmdfQmxCc0VPZy16bzVKYml2VW50TllvYzJXc0VOazBLRG9UYWN1SnQzcUxibWszdnF2QmVGVTAxOFI5SEpNZ0ZkVXdjdFR5MXpHZWxkaGppYXNBd3FucGZXamFoeS1B0gHDAUFVX3lxTE1WS3c4Y2FyTjV4SFhrM3RqdnE2bkZWRUpBM2wzYjBwYXlBQkRnaWt4aG94bU9lQ0tBaTYyQnBQaktBd3RWMU1TOWJjWDFzT2JxYUtrV2ZVSnlpeHlIX01LLUdFV1FacUpmeFQyM3BUb055RDFENkxKa1NIcVNLNTlqbWZXZC04M2xpdTdKdHRMRUV5M1FOQ2FTc1FjaEZySjNTajF5UWphWDZkVjdnaTlvd1pOVGZrb1pDbEdKTHhwNGhpQQ?oc=5"
       },
       "origin": "news"
     },
@@ -56,17 +78,6 @@
       "source": {
         "name": "The Sun",
         "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPSlY4Qm52OTZJMmxuMWluVXVoS1NTcUdrLVNVQ2pRTUFrR2ZoV0VvMnZEQXI2ZndDVWdLaWgwTnZILVhaYk5FM3BjVWUyVktyaXRXWlcxV19haDN2QnF2WHd1WVREZjZkU0VzckZLcHNBWUx5bVl3NVI5UlZMUGVpRjNwTjNZVEZNMVZlamd3d3pHaXQ3UVdRLThSckF6UQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-jordan-henderson": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Wayne Rooney skickar ett meddelande till Jordan Henderson efter en uppdatering av Englands skada",
-      "updated": "2026-07-07",
-      "source": {
-        "name": "The Mirror",
-        "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNbDdrVVctSkFuU01DOTVnaDFXWElsbVBfVEZKNjU0NEo3VWNHMUw1dldlX2NtTS02RFNIMFNJcDhKSHJ2SVE1alExSXI1a0Y4X2JZMkhvX0N2OVlfeV92a1JkT0wtMy15R1NmX2g0Unk1TDJyWVctdnQzd2R3VEdzbEdReXFsNmRFYVhwMHA0aTJ1VXk5UkJ30gGcAUFVX3lxTE5CZlpjN1hLUHFtSUU0WXgzOFZDckR5U0NLbWg5TFg5WTVsNURMSG5OcUhWaHdWbm5rMHJjUC1FYWwyb1pCZjF3cllNRGZZQkpjSEJiR1VxVHYzNEdWTGdHcXhiSUMwNDlhNkV2THZSMkpVWG5BMTY2TXJOUmpYSk9zMG56QWtGU0RXY0hHQ2Z1ZU1kTXE3SmNsWVM2Rg?oc=5"
       },
       "origin": "news"
     },
