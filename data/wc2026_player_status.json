@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-08T14:45:33.297Z",
+  "updated": "2026-07-08T16:55:01.348Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -29,7 +29,7 @@
     "bel-amadou-onana": {
       "availability": "doubtful",
       "kind": "other",
-      "detail": "Oro för Amadou Onana på Red Devils: \"Det är allvarliga, inte goda nyheter\"",
+      "detail": "Oro för Amadou Onana vid Red Devils: \"Det är allvarliga, inte goda nyheter\"",
       "updated": "2026-07-07",
       "source": {
         "name": "VoetbalPrimeur.be",
@@ -62,13 +62,36 @@
     "eng-jordan-henderson": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Jordan Henderson talar ut när Englands lagkamrat ger uppdateringar om \"läskig\" VM-skada",
-      "updated": "2026-07-07",
+      "detail": "Jordan Henderson återvänder till Englands läger efter en handledsoperation efter en freak-skada i Mexiko",
+      "updated": "2026-07-08",
       "source": {
-        "name": "Metro.co.uk",
-        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNcVRKdVZaQy1nM0c4RnBxV2d6T1gzMlNYb2gwYVJDcmVSNlFNV3dpNEd5T3cyVmlkaS05eTlSOVZKa1FxeFpheGk2MkdiNUpLWDRoRHlEWHdfd2dFRzVIcmdfQmxCc0VPZy16bzVKYml2VW50TllvYzJXc0VOazBLRG9UYWN1SnQzcUxibWszdnF2QmVGVTAxOFI5SEpNZ0ZkVXdjdFR5MXpHZWxkaGppYXNBd3FucGZXamFoeS1B0gHDAUFVX3lxTE1WS3c4Y2FyTjV4SFhrM3RqdnE2bkZWRUpBM2wzYjBwYXlBQkRnaWt4aG94bU9lQ0tBaTYyQnBQaktBd3RWMU1TOWJjWDFzT2JxYUtrV2ZVSnlpeHlIX01LLUdFV1FacUpmeFQyM3BUb055RDFENkxKa1NIcVNLNTlqbWZXZC04M2xpdTdKdHRMRUV5M1FOQ2FTc1FjaEZySjNTajF5UWphWDZkVjdnaTlvd1pOVGZrb1pDbEdKTHhwNGhpQQ?oc=5"
+        "name": "The Washington Post",
+        "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOT0trb05CT01xVGxZU0I5M2xOY2g1NTIyZy1mZWt1dmQyeVo0UzZ0eVRRVENHeE5Cenh5Q1FEWEVjRGppbUQwaU9TZWw4RDlfOEh4VUpFWTdoakNZVWlIa2xweGNDMUJTeWNLMFRweE4ydVRTQURpbW9TSXVBc01vakgwR0pPcDR4ckRvdW9WN0RzVE41OFZVc01adkxjNUtHbFZtZTFnZjk5aHl4RWZYZm9NNmk1VE9IOW42bGVnUF82eS1Bd3E3Q1pEQlYtLWV3SjRnbkJn?oc=5"
       },
       "origin": "news"
+    },
+    "eng-reece-james": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Englands skadestängningslista och returdatum för världscupmatchen i Norge: Reece James, Jarell Quansah, Jordan Henderson",
+      "updated": "2026-07-08",
+      "source": {
+        "name": "Sports Mole",
+        "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOWDJnMTFJRDF4NFpnSHN0c0owOVZwQTFYSVRVcXdsX2xsYW4yWEIzV1lyRlptMHV3cW52RFR1TlhEbHFmajRKZnpUa080N05QNDhDM21ZVUZvOWxpeFZrUV9QcTF0VDFxbE1nQ01IVjhmem1MVXo1Q2FnTTdnd0lEVEd5RGtXVndyR3Vua0k3WG43Mk8zMTZzbkVOSm1OSkljcHVnV0poVjdQQ21VY2ctNGNxaEpFeENMYUxFR3NXOXotejNFUU1PUmtPaG91NkZNQkhDTTZEQmlZN08xNW5XMnZMbzFOZnJtb0kzWWJGcTBIRUVRNHRobkxn?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-jarell-quansah": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Rött kort i åttondelsfinalen mot Mexiko",
+      "updated": "2026-07-06",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760505"
+      },
+      "origin": "cards"
     },
     "eng-jude-bellingham": {
       "availability": "doubtful",
@@ -78,17 +101,6 @@
       "source": {
         "name": "The Sun",
         "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPSlY4Qm52OTZJMmxuMWluVXVoS1NTcUdrLVNVQ2pRTUFrR2ZoV0VvMnZEQXI2ZndDVWdLaWgwTnZILVhaYk5FM3BjVWUyVktyaXRXWlcxV19haDN2QnF2WHd1WVREZjZkU0VzckZLcHNBWUx5bVl3NVI5UlZMUGVpRjNwTjNZVEZNMVZlamd3d3pHaXQ3UVdRLThSckF6UQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-harry-kane": {
-      "availability": "doubtful",
-      "kind": "suspension",
-      "detail": "Jude Bellingham riskerade VM-avstängning i galna Mexiko-firande efter Harry Kanes ledning",
-      "updated": "2026-07-06",
-      "source": {
-        "name": "talkSPORT",
-        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQWGlBRWh6bXpnLXFhQjVVbWc1a29LOTNxWDZ5RWY4RTVxUS1fZzVwOXljcFhuRlJRdmRpMlpiVjVZdWV6aF93aVBUSHYyLTdfdUVRa0pjekV0MGlLSXBicTFHR09nemc0VGFTWElUT2oyN0xzRm53M3EtTlJiN0NWZkZDMmtucTNRc3hBbTBTUWhCd09mQUpBV3Y1OHQ2Y29PT2o0azdOYjV2ZFNOVERrV1JxUnV5WFVaT2UwcEhHa1Y1dw?oc=5"
       },
       "origin": "news"
     },
@@ -121,18 +133,6 @@
       "kind": "suspension",
       "label": "Avstängd",
       "detail": "Andra gula kortet i turneringen (mot Ghana och Mexiko)",
-      "updated": "2026-07-06",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760505"
-      },
-      "origin": "cards"
-    },
-    "eng-jarell-quansah": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Rött kort i åttondelsfinalen mot Mexiko",
       "updated": "2026-07-06",
       "source": {
         "name": "Matchfakta (ESPN)",
