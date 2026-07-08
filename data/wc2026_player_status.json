@@ -1,17 +1,17 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-08T12:00:36.034Z",
+  "updated": "2026-07-08T14:45:33.297Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Skadade Manzambi kommer till stadion med en Lego World Cup-trofé",
-      "updated": "2026-07-07",
+      "detail": "World Cup 2026: Skadade Manzambi har redan en hand på (Lego) World Cup-trofén!",
+      "updated": "2026-07-08",
       "source": {
-        "name": "Blick",
-        "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxONnBtMnVfZHNoNldSdlRYdmtwdklJZ1hDTmQxV1VYdlo3SG9Nc2ZxWTJoWFBvUXI3bDhFZnVxOXZFTUVRV1RXTGduZHJ2ajZsbTN6WUhhMHNiSHdlVVh2c3pTXy1qUHVzcWlONGhzTVpabjE3WnVmVGN2YWNOSzRmdEt1RlhpUXFFNTc2SkZKWUFnR1pJRVlCc2xBMkwybGpyYmdsSnVZZ0VaUktRN201bW1LZk5mQlVINm8tb0kydFBkWFU5SGhSTDdzSDRlUW56?oc=5"
+        "name": "Nau",
+        "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNUThKeFhFUWhqcmNuSXhEQnk1SjZERUx3aDhBclRZQThhM2pNQWlyTElJT25fQWl4ZFlVd3owVEpfbTJ3Ml9lSTJLV0d2VXpyaFI0ODFiVlpaa2ZLVktJNlgtSUVBTVRLSzBDNnhiVDBTWF9lMlFORVpqYmY3cHcwTjJxTzZFYmxsSFVVN3JXLXFTSU1jSTZCOTlma1J2N1BaZ25JbXZxUG1qV28?oc=5"
       },
       "origin": "news"
     },
@@ -48,10 +48,21 @@
       },
       "origin": "news"
     },
+    "fra-aurelien-tchouameni": {
+      "availability": "doubtful",
+      "kind": "other",
+      "detail": "VM 2026: Aurélien Tchouameni mycket osäker för Frankrike-Marocko",
+      "updated": "2026-07-07",
+      "source": {
+        "name": "Le Figaro",
+        "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQZDFCdE9ZSHcyVnRaOHZQSTFFVW90MUlJd1hfSHVremVaTkRpYTBUX0d4djFBYjh1Tkd2SGhTdm91WjlDSTM1MmtVaTR4NHdmUXVQU1RyX0ZNSFV0TWlzQmhQTkxLc2gwRlo2c3BDdlVBX1ZOUEhzeGJRWmJ6RHBfUk8yc1VPeWhPUFR6c2FDaXhHUXN6WnNGd20yMEdPeW5idERyTGVuUUVyWEpYV09XSGh0dHpLM1hIX3M1QTd3LW94dTNJM1E?oc=5"
+      },
+      "origin": "news"
+    },
     "eng-jordan-henderson": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Jordan Henderson talar ut när Englands lagkamrat ger uppdatering om \"läskig\" VM-skada",
+      "detail": "Jordan Henderson talar ut när Englands lagkamrat ger uppdateringar om \"läskig\" VM-skada",
       "updated": "2026-07-07",
       "source": {
         "name": "Metro.co.uk",
@@ -67,6 +78,17 @@
       "source": {
         "name": "The Sun",
         "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPSlY4Qm52OTZJMmxuMWluVXVoS1NTcUdrLVNVQ2pRTUFrR2ZoV0VvMnZEQXI2ZndDVWdLaWgwTnZILVhaYk5FM3BjVWUyVktyaXRXWlcxV19haDN2QnF2WHd1WVREZjZkU0VzckZLcHNBWUx5bVl3NVI5UlZMUGVpRjNwTjNZVEZNMVZlamd3d3pHaXQ3UVdRLThSckF6UQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-harry-kane": {
+      "availability": "doubtful",
+      "kind": "suspension",
+      "detail": "Jude Bellingham riskerade VM-avstängning i galna Mexiko-firande efter Harry Kanes ledning",
+      "updated": "2026-07-06",
+      "source": {
+        "name": "talkSPORT",
+        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQWGlBRWh6bXpnLXFhQjVVbWc1a29LOTNxWDZ5RWY4RTVxUS1fZzVwOXljcFhuRlJRdmRpMlpiVjVZdWV6aF93aVBUSHYyLTdfdUVRa0pjekV0MGlLSXBicTFHR09nemc0VGFTWElUT2oyN0xzRm53M3EtTlJiN0NWZkZDMmtucTNRc3hBbTBTUWhCd09mQUpBV3Y1OHQ2Y29PT2o0azdOYjV2ZFNOVERrV1JxUnV5WFVaT2UwcEhHa1Y1dw?oc=5"
       },
       "origin": "news"
     },
