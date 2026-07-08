@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-08T20:40:39.212Z",
+  "updated": "2026-07-08T22:30:08.272Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -29,7 +29,7 @@
     "bel-amadou-onana": {
       "availability": "doubtful",
       "kind": "other",
-      "detail": "Oro för Amadou Onana vid Red Devils: \"Det är allvarliga, inte goda nyheter\"",
+      "detail": "Oro för Amadou Onana på Red Devils: \"Det är allvarliga, inte goda nyheter\"",
       "updated": "2026-07-07",
       "source": {
         "name": "VoetbalPrimeur.be",
@@ -39,12 +39,12 @@
     },
     "esp-nico-williams": {
       "availability": "doubtful",
-      "kind": "other",
-      "detail": "Nico Williams: \"Innan jag lämnade Lezama och jag tränade inte längre. Jag tillbringade eftermiddagen med min flickvän, mina vänner eller lekte på lekplatsen. Nu är det …",
-      "updated": "2026-07-07",
+      "kind": "injury",
+      "detail": "Nico Williams ökar sin entusiasm efter skadan: \"Väntar på möjligheten\"",
+      "updated": "2026-07-08",
       "source": {
-        "name": "Lecturas",
-        "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQQ3lhbk0zV3FodWlpNlB1bzVPNDFiRHp1NlQ2SnhwRHdpRzhjUXVEbWJGMWY5alZpSW5YQlhKVVZtTHNuZmxPbUllMl81WEVId0d5YlB2UlppY1pDLTdfcHVSU1V0TzUtcWJWanc2YVBEOHU5VUh6NUM4UWI3R1ZmZWdSSzdyY0xCdmhWcDZ3VmhpaEUtbXBsdk1UXzlKUTh1VEJmcENNTEJ1WnJRMWNTYXVac3Y4WGVic2xVWGJxbWRJVHNRVXVNUFJNU2h6X1VGRTN3WmpsalEwVHNlYVRXY0RJUWNacy1VWG93MGp0MXFiR1RrVDQweQ?oc=5"
+        "name": "El Desmarque",
+        "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPWk9GaVdYeTBXVTktdUtDa0I0ZUx5a2FxUWRibDJWZWRpWWs0RkJaaW1zSHhEQmNmRld3MkxtRVk1NW54ZzMyeDFQelVGNjFRZ2lUVzJ4czlfS2VBVjYyX3dxYW15a01hMDZpSUxwWUdKWnNza1h2dW5aZ2g3czdQNTd4T2ZSWnJ6eTd5cFdpTTNVTVU5ZkN6U2RSMTBuVmZtLUM0ZHA4TXZZUktFZW05T1FTNzliMlRKUklOSzJpZF9GUGc?oc=5"
       },
       "origin": "news"
     },
@@ -67,6 +67,17 @@
       "source": {
         "name": "Le Figaro",
         "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQZDFCdE9ZSHcyVnRaOHZQSTFFVW90MUlJd1hfSHVremVaTkRpYTBUX0d4djFBYjh1Tkd2SGhTdm91WjlDSTM1MmtVaTR4NHdmUXVQU1RyX0ZNSFV0TWlzQmhQTkxLc2gwRlo2c3BDdlVBX1ZOUEhzeGJRWmJ6RHBfUk8yc1VPeWhPUFR6c2FDaXhHUXN6WnNGd20yMEdPeW5idERyTGVuUUVyWEpYV09XSGh0dHpLM1hIX3M1QTd3LW94dTNJM1E?oc=5"
+      },
+      "origin": "news"
+    },
+    "arg-cristian-romero": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Goda nyheter för Argentina: Cuti Romero ådrog sig ingen skada och kommer att spela mot Schweiz",
+      "updated": "2026-07-08",
+      "source": {
+        "name": "infodelestero.com",
+        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPWld6WnBqVjBxUXNUMTZ5aG1kZUxLNEVvTHVxWjNqM3dzYUdqbVZGeE1lRXFUYmhNc0tlQ3V1QmxybkpxcnBhbldiczN5NzQ0Si1WWURkeGZuTkpqd0RnaGdtekNLN0RrNkotU2c3NnBuUjRUdFhaNTgtYUdXZUYxRXlCQjlEblQ5eVN4TlVQWXhPcU1GUTQxQUhHOFJYN3g1bnlhOUhpVTh6WGE0cU1qVHNxLVg5ek1RU0JhNXVn?oc=5"
       },
       "origin": "news"
     },
