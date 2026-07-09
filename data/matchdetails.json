@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-09T18:55:08.407Z",
+    "updatedAt": "2026-07-09T20:49:17.903Z",
     "source": "espn"
   },
   "details": {
@@ -55590,6 +55590,398 @@
         }
       ],
       "updatedAt": "2026-07-07T23:12:03.332Z"
+    },
+    "k:97": {
+      "espnId": "760510",
+      "fmt": 2,
+      "status": "IN_PLAY",
+      "minute": 45,
+      "utcDate": "2026-07-09T20:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Mike Maignan",
+              "jersey": "16",
+              "pos": "G"
+            },
+            {
+              "name": "Jules Koundé",
+              "jersey": "5",
+              "pos": "RB",
+              "st": {
+                "sh": 1
+              }
+            },
+            {
+              "name": "Lucas Digne",
+              "jersey": "3",
+              "pos": "LB",
+              "st": {
+                "fc": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Adrien Rabiot",
+              "jersey": "14",
+              "pos": "LM",
+              "st": {
+                "fs": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Dayot Upamecano",
+              "jersey": "4",
+              "pos": "CD-R",
+              "st": {
+                "fc": 1,
+                "sg": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "William Saliba",
+              "jersey": "17",
+              "pos": "CD-L",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Ousmane Dembélé",
+              "jersey": "7",
+              "pos": "AM-R",
+              "st": {
+                "sh": 3
+              }
+            },
+            {
+              "name": "Manu Koné",
+              "jersey": "6",
+              "pos": "RM",
+              "st": {
+                "fs": 2,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Kylian Mbappé",
+              "jersey": "10",
+              "pos": "F",
+              "st": {
+                "fs": 1,
+                "sg": 1,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Michael Olise",
+              "jersey": "11",
+              "pos": "AM",
+              "st": {
+                "fs": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Désiré Doué",
+              "jersey": "20",
+              "pos": "AM-L",
+              "st": {
+                "fc": 2,
+                "sg": 1,
+                "sh": 2
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "N'Golo Kanté",
+              "jersey": "13"
+            },
+            {
+              "name": "Ibrahima Konaté",
+              "jersey": "15"
+            },
+            {
+              "name": "Robin Risser",
+              "jersey": "23"
+            },
+            {
+              "name": "Rayan Cherki",
+              "jersey": "24"
+            },
+            {
+              "name": "Theo Hernández",
+              "jersey": "19"
+            },
+            {
+              "name": "Lucas Hernández",
+              "jersey": "21"
+            },
+            {
+              "name": "Bradley Barcola",
+              "jersey": "12"
+            },
+            {
+              "name": "Marcus Thuram",
+              "jersey": "9"
+            },
+            {
+              "name": "Brice Samba",
+              "jersey": "1"
+            },
+            {
+              "name": "Maxence Lacroix",
+              "jersey": "26"
+            },
+            {
+              "name": "Maghnes Akliouche",
+              "jersey": "25"
+            },
+            {
+              "name": "Aurélien Tchouaméni",
+              "jersey": "8"
+            },
+            {
+              "name": "Warren Zaïre-Emery",
+              "jersey": "18"
+            },
+            {
+              "name": "Jean-Philippe Mateta",
+              "jersey": "22"
+            },
+            {
+              "name": "Malo Gusto",
+              "jersey": "2"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Yassine Bounou",
+              "jersey": "1",
+              "pos": "G",
+              "st": {
+                "sv": 3
+              }
+            },
+            {
+              "name": "Achraf Hakimi",
+              "jersey": "2",
+              "pos": "RB",
+              "st": {
+                "fs": 1
+              }
+            },
+            {
+              "name": "Anass Salah-Eddine",
+              "jersey": "26",
+              "pos": "LB"
+            },
+            {
+              "name": "Neil El Aynaoui",
+              "jersey": "24",
+              "pos": "LM",
+              "st": {
+                "fc": 4
+              }
+            },
+            {
+              "name": "Issa Diop",
+              "jersey": "14",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Noussair Mazraoui",
+              "jersey": "3",
+              "pos": "CD-L",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Brahim Díaz",
+              "jersey": "10",
+              "pos": "AM-R",
+              "st": {
+                "fs": 2
+              }
+            },
+            {
+              "name": "Ayyoub Bouaddi",
+              "jersey": "6",
+              "pos": "RM"
+            },
+            {
+              "name": "Bilal El Khannouss",
+              "jersey": "23",
+              "pos": "F",
+              "st": {
+                "fs": 1
+              }
+            },
+            {
+              "name": "Azzedine Ounahi",
+              "jersey": "8",
+              "pos": "AM",
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Chemsdine Talbi",
+              "jersey": "7",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Ahmed Reda Tagnaouti",
+              "jersey": "22"
+            },
+            {
+              "name": "Youssef Belammari",
+              "jersey": "19"
+            },
+            {
+              "name": "Samir El Mourabet",
+              "jersey": "15"
+            },
+            {
+              "name": "Redouane Halhal",
+              "jersey": "25"
+            },
+            {
+              "name": "Gessime Yassine",
+              "jersey": "16"
+            },
+            {
+              "name": "Marwane Saadane",
+              "jersey": "5"
+            },
+            {
+              "name": "Ismael Saibari",
+              "jersey": "11"
+            },
+            {
+              "name": "Sofyan Amrabat",
+              "jersey": "4"
+            },
+            {
+              "name": "Chadi Riad",
+              "jersey": "18"
+            },
+            {
+              "name": "Soufiane Rahimi",
+              "jersey": "9"
+            },
+            {
+              "name": "Amine Sbaï",
+              "jersey": "17"
+            },
+            {
+              "name": "Munir El Kajoui",
+              "jersey": "12"
+            },
+            {
+              "name": "Ayoube Amaimouni",
+              "jersey": "21"
+            },
+            {
+              "name": "Zakaria El Ouahdi",
+              "jersey": "13"
+            },
+            {
+              "name": "Ayoub El Kaabi",
+              "jersey": "20"
+            }
+          ]
+        }
+      },
+      "referee": "Facundo Tello",
+      "venue": "Gillette Stadium, Foxborough, Massachusetts",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "50%",
+          "a": "50%"
+        },
+        {
+          "key": "totalShots",
+          "h": "13",
+          "a": "0"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "3",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "3",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "5",
+          "a": "6"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "3"
+        },
+        {
+          "key": "totalPasses",
+          "h": "261",
+          "a": "260"
+        },
+        {
+          "key": "passPct",
+          "h": "90%",
+          "a": "86%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-09T20:49:17.903Z"
     }
   }
 }
