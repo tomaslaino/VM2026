@@ -20,6 +20,7 @@
   var SUMMARY_URL = CFG.staticNewsSummaries || "data/news_summaries.json";
   var PRELIM_URL = CFG.staticLineups || "data/lineups_prelim.json";
   var REVIEWS_URL = CFG.staticMatchReviews || "data/match_reviews.json";
+  var XG_URL = CFG.fotmobRatings || "data/fotmob_ratings.json";
   var POLL_MS = 45000;
 
   var details = {};        // key -> detaljobjekt
@@ -35,6 +36,8 @@
   var matchReviews = null;  // key -> facit-post (data/match_reviews.json)
   var reviewsAccuracy = null; // { graded, winner, score } – redaktionens träffsäkerhet
   var reviewsLast = 0;
+  var fotmobXg = null;      // key -> { xg: {h,a}, ... } (data/fotmob_ratings.json)
+  var fotmobXgLast = 0;
   var openKey = null;      // öppen match (resultatnyckel) eller null
   var pollTimer = null;
   var pvRetryTimer = null; // inför-snacket: rita om när odds/motor blir klara
@@ -180,6 +183,31 @@
     return e && e.h && e.a ? e : null;
   }
 
+  /* xG per spelad match (data/fotmob_ratings.json, skrivs av GitHub Actions):
+     FotMobs Opta-baserade förväntade mål per lag – driver xG-kolumnerna i
+     inför-snackets "Formen i VM". Uppdateras var 30:e min av workflowen. */
+  function fetchFotmobXg() {
+    var now = Date.now();
+    if (fotmobXg && now - fotmobXgLast < 600000) return Promise.resolve(fotmobXg);
+    fotmobXgLast = now;
+    return fetch(XG_URL + (XG_URL.indexOf("?") === -1 ? "?" : "&") + "t=" + now,
+      { headers: { Accept: "application/json" }, cache: "no-store" })
+      .then(function (r) { return r && r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (data && data.matches) fotmobXg = data.matches;
+        return fotmobXg;
+      })
+      .catch(function () { return fotmobXg; });
+  }
+
+  /* xG för/emot i en spelad match, orienterad efter lagets sida. */
+  function xgOf(key, side) {
+    var m = key && fotmobXg ? fotmobXg[key] : null;
+    var x = m && m.xg ? m.xg : null;
+    if (!x || x.h == null || x.a == null) return null;
+    return side === "h" ? { f: x.h, a: x.a } : { f: x.a, a: x.h };
+  }
+
   /* Facit (data/match_reviews.json, skrivs av GitHub Actions): efteranalys per
      spelad slutspelsmatch som jämför förhandsprognosen med utfallet. Cachas en
      stund mellan öppningar. reviewsAccuracy = redaktionens totala träffsäkerhet. */
@@ -296,6 +324,7 @@
       }
       fetchTeamNews().then(function () { if (openKey) renderModal(); });
       fetchNewsSummaries().then(function () { if (openKey) renderModal(); });
+      fetchFotmobXg().then(function () { if (openKey) renderModal(); }); // xG-form i Fakta & odds
     }
     if (!info || !info.played) {
       // Trolig/bekräftad startelva för matcher som inte är färdigspelade –
@@ -1050,23 +1079,79 @@
     }).join("");
   }
 
+  /* xG-siffror med svenskt decimalkomma (2 decimaler per match, 1 i snitt). */
+  function fmtXg(v, dec) {
+    return v.toFixed(dec == null ? 2 : dec).replace(".", ",");
+  }
+  function fmtXgSigned(v, dec) {
+    return (v >= 0 ? "+" : "−") + fmtXg(Math.abs(v), dec);
+  }
+
+  /* xGscore-inspirerad formlista: senaste matcherna med resultat OCH xG
+     för/emot (FotMob/Opta), plus snitt och effektivitet (mål − xG) i botten.
+     Returnerar null när xG-underlag saknas – då används pvFormRecent. */
+  function pvXgList(side) {
+    var items = ((side && side.form) || []).filter(function (it) { return xgOf(it.key, it.side); });
+    if (!items.length) return null;
+    var rows = items.slice(-5).reverse().map(function (it) {
+      var x = xgOf(it.key, it.side);
+      var tip = it.res + " " + it.gf + "–" + it.ga + (it.pen ? " (straffar)" : "") +
+        " mot " + (it.opp ? it.opp.sv : "?") + " · " + it.label +
+        " · xG " + fmtXg(x.f) + "–" + fmtXg(x.a);
+      return '<span class="mi-pv-form-line" title="' + esc(tip) + '">' +
+        '<span class="mi-pv-form-score ' + (it.res === "V" ? "v" : it.res === "F" ? "f" : "o") + '">' +
+          it.gf + "–" + it.ga + '</span> ' +
+        flagImg(it.opp && it.opp.iso) + '<span class="mi-pv-form-opp">' + esc(it.opp ? it.opp.sv : "?") + '</span>' +
+        '<span class="mi-pv-xg">xG <strong>' + fmtXg(x.f) + '</strong><span class="mi-pv-xg-sep">–</span>' + fmtXg(x.a) + '</span>' +
+        '</span>';
+    }).join("");
+    var gf = 0, ga = 0, xf = 0, xa = 0;
+    items.forEach(function (it) {
+      var x = xgOf(it.key, it.side);
+      gf += it.gf; ga += it.ga; xf += x.f; xa += x.a;
+    });
+    var n = items.length;
+    var d = gf - xf; // mål − xG: positivt = gör mer än chanserna borde ge
+    var effCls = d > 0.5 ? " pos" : d < -0.5 ? " neg" : "";
+    var foot = '<div class="mi-pv-xg-foot">' +
+      '<span>Snitt: <strong>' + fmtXg(gf / n, 1) + '</strong> mål (' + fmtXg(xf / n, 1) + ' xG) · ' +
+        fmtXg(ga / n, 1) + ' insläppta (' + fmtXg(xa / n, 1) + ' xGA)</span>' +
+      '<span class="mi-pv-xg-eff' + effCls + '" title="Mål minus xG över matcherna ovan – ' +
+        'positivt = kliniskt lag som gör mer av sina chanser än förväntat">' +
+        'Effektivitet ' + fmtXgSigned(d, 1) + ' mål mot xG</span>' +
+      '</div>';
+    return { rows: rows, foot: foot };
+  }
+
+  function pvFormCol(teamRef, label, side, cls) {
+    var xg = pvXgList(side);
+    return '<div class="mi-pv-form-col ' + cls + '">' +
+      '<div class="mi-pv-form-head">' + flagImg(teamRef && teamRef.iso) +
+        '<span>' + esc(label) + '</span></div>' +
+      '<div class="mi-pv-pills">' + pvFormPills(side) + '</div>' +
+      '<div class="mi-pv-form-list">' + (xg ? xg.rows : pvFormRecent(side)) + '</div>' +
+      (xg ? xg.foot : '') +
+      '</div>';
+  }
+
   function pvFormHtml(info, pv) {
     if (!pv.home && !pv.away) return "";
+    // xG:t laddas asynkront första gången – rita om när det landat.
+    if (!fotmobXg) {
+      fetchFotmobXg().then(function () {
+        if (openKey && activeTab === "preview" && fotmobXg) renderModal();
+      });
+    }
+    var hCol = pvFormCol(info.home, teamName(info.home, info.homeLabel), pv.home, "home");
+    var aCol = pvFormCol(info.away, teamName(info.away, info.awayLabel), pv.away, "away");
+    var anyXg = hCol.indexOf("mi-pv-xg-foot") !== -1 || aCol.indexOf("mi-pv-xg-foot") !== -1;
     return '<div class="mi-section-title">Formen i VM</div>' +
-      '<div class="mi-pv-form">' +
-      '<div class="mi-pv-form-col home">' +
-        '<div class="mi-pv-form-head">' + flagImg(info.home && info.home.iso) +
-          '<span>' + esc(teamName(info.home, info.homeLabel)) + '</span></div>' +
-        '<div class="mi-pv-pills">' + pvFormPills(pv.home) + '</div>' +
-        '<div class="mi-pv-form-list">' + pvFormRecent(pv.home) + '</div>' +
-      '</div>' +
-      '<div class="mi-pv-form-col away">' +
-        '<div class="mi-pv-form-head">' + flagImg(info.away && info.away.iso) +
-          '<span>' + esc(teamName(info.away, info.awayLabel)) + '</span></div>' +
-        '<div class="mi-pv-pills">' + pvFormPills(pv.away) + '</div>' +
-        '<div class="mi-pv-form-list">' + pvFormRecent(pv.away) + '</div>' +
-      '</div>' +
-      '</div>';
+      '<div class="mi-pv-form">' + hCol + aCol + '</div>' +
+      (anyXg
+        ? '<div class="mi-pv-xg-note">xG = förväntade mål utifrån chansernas kvalitet (Opta via FotMob), ' +
+          'visat som skapat–insläppt per match. Ett lag kan skapa få chanser men ändå vinna på hög ' +
+          'effektivitet – och tvärtom.</div>'
+        : '');
   }
 
   /* ---------- Lagen i siffror (speglade jämförelserader) ----------

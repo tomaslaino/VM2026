@@ -3122,6 +3122,7 @@
         var gf = isHome ? r.h : r.a, ga = isHome ? r.a : r.h;
         items.push({
           date: fx.date, edt: fx.edt || "",
+          key: fx.key, side: isHome ? "h" : "a",
           opp: opp, gf: gf, ga: ga, pen: false,
           res: gf > ga ? "V" : gf < ga ? "F" : "O",
           label: "Grupp " + gp.letter
@@ -3146,6 +3147,7 @@
       }
       items.push({
         date: res.match.date, edt: res.match.edt || "",
+        key: "k:" + mt.m, side: isHome ? "h" : "a",
         opp: opp, gf: gf, ga: ga, pen: pen,
         res: resLetter, label: koRoundLabel(res.match)
       });

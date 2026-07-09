@@ -5,11 +5,15 @@
     • Spelare – sorterbar/filtrerbar tabell över alla spelare i trupperna,
       berikad med VM-statistik som samlas in från matchhändelserna
       (data/matchdetails.json via app.js): matcher, spelade minuter, mål,
-      assist, poäng, mål/90, assist/90, straffmål, självmål, gula/röda kort
-      samt ett matchbetyg (FotMob, se nedan).
+      assist, poäng, mål/90, assist/90, straffmål, självmål, gula/röda kort,
+      ett matchbetyg (FotMob, se nedan) samt xG och ±xG (mål − xG,
+      avslutseffektivitet) ur FotMobs skottdata (data/fotmob_ratings.json).
     • Lag – aggregerad tabell per lag: matcher, vinster/oavgjort/förlust,
       poäng, gjorda/insläppta mål, målskillnad, mål per match, hållna
-      nollor och kort.
+      nollor och kort – plus xG/±xG (skapar laget chanser? gör det mer än
+      chanserna borde ge?) och xGA/±xGA (samma sak bakåt) ur samma
+      FotMob-data. Det fångar lag som Marocko/Norge-arketypen: få chanser
+      men sjukt effektiva.
     • Region – samma aggregat per konfederation/världsdel.
     • Ligor – klubbligornas VM: spelarna grupperas på vilken liga (land +
       division, data/club_leagues.json) deras klubb spelar i, med minut-
@@ -205,6 +209,8 @@
       min: 0, apps: 0,
       sh: 0, sg: 0, sv: 0, fc: 0, fs: 0,   // boxscore: skott/på mål/räddningar/fouls
       rSum: 0, rMin: 0,                     // FotMob-betyg: Σ(betyg × min) och Σ(min över matcher med betyg)
+      xg: 0, xgot: 0, xgShots: 0,           // FotMob-xG: summerade skott-xG (straffläggning/självmål exkl.)
+      xgGoals: 0, xgApps: 0,                // mål + matcher i matcher MED xG-data (för ärlig mål−xG-diff)
       log: []                               // per-match-rader (spelarmodalens matchlogg)
     });
   }
@@ -338,7 +344,7 @@
         min: mins, on: pin, off: pout, full: full, starter: !!pl.starter,
         g: o.g, pen: o.pen, og: o.og, a: o.a, y: o.y, yr: o.yr, rd: o.rd,
         sv: st ? (st.sv || 0) : 0,
-        rating: null
+        rating: null, xg: null
       };
       b.log.push(entry);
 
@@ -356,6 +362,25 @@
         entry.rating = fmR;
         b.rSum += fmR * mins;
         b.rMin += mins;
+      }
+
+      /* xG per spelare = summan av skottens xG i matchen (FotMob/Opta, samma
+         källa som betyget). En spelare utan skott har 0.00 xG i matchen –
+         det är data, inte databrist – så täckningen räknas per match med
+         xG-underlag (xgApps). Målen ur samma underlag ger en ärlig mål−xG-
+         diff även om ESPN- och FotMob-datan skulle glappa om en match. */
+      var xgSide = fotmobRatings && fotmobRatings[key] && fotmobRatings[key].playerXg
+        ? fotmobRatings[key].playerXg[side] : null;
+      if (xgSide) {
+        b.xgApps += 1;
+        var xe = xgSide[k];
+        if (xe) {
+          entry.xg = xe.xg;
+          b.xg += xe.xg || 0;
+          b.xgot += xe.xgot || 0;
+          b.xgShots += xe.shots || 0;
+          b.xgGoals += xe.goals || 0;
+        }
       }
     });
   }
@@ -468,7 +493,8 @@
 
   function makePlayerRow(te, p, st, fallbackName) {
     st = st || { goals: 0, pens: 0, og: 0, assists: 0, y: 0, r: 0, min: 0, apps: 0,
-                 sh: 0, sg: 0, sv: 0, fc: 0, fs: 0, rSum: 0, rMin: 0, log: [] };
+                 sh: 0, sg: 0, sv: 0, fc: 0, fs: 0, rSum: 0, rMin: 0,
+                 xg: 0, xgot: 0, xgShots: 0, xgGoals: 0, xgApps: 0, log: [] };
     var goals = st.goals, assists = st.assists, min = st.min || 0;
     var avail = (p && window.VMPlayers && VMPlayers.getPlayerStatus) ? VMPlayers.getPlayerStatus(p.id) : null;
     var met = (p && window.VMPlayers && VMPlayers.getPlayerMetrics) ? VMPlayers.getPlayerMetrics(p.id) : null;
@@ -501,6 +527,13 @@
       gi90: per90(goals + assists, min),
       sh: st.sh || 0, sg: st.sg || 0, sv: st.sv || 0, fc: st.fc || 0, fs: st.fs || 0,
       rSum: st.rSum || 0, rMin: st.rMin || 0,
+      /* xG (FotMob/Opta): null = inget xG-underlag för spelarens matcher ännu.
+         xgd = mål − xG ur samma underlag: positivt = klinisk avslutare som
+         gör mer av sina chanser än förväntat (Marocko/Norge-effekten). */
+      xg: (st.xgApps || 0) > 0 ? st.xg : null,
+      xgGoals: st.xgGoals || 0,
+      xgShots: st.xgShots || 0,
+      xgd: (st.xgApps || 0) > 0 ? (st.xgGoals || 0) - st.xg : null,
       /* Matchlogg i kronologisk ordning (datum, sedan nyckel som stabil backup). */
       log: (st.log || []).slice().sort(function (a, b) {
         var ad = a.date || "", bd = b.date || "";
@@ -524,7 +557,10 @@
         letter: te.letter, teamObj: te.team,
         conf: confOf(te.iso), region: confLabel(confOf(te.iso)),
         played: 0, w: 0, d: 0, l: 0, pts: 0,
-        gf: 0, ga: 0, gd: 0, y: 0, r: 0, cs: 0, fp: 0
+        gf: 0, ga: 0, gd: 0, y: 0, r: 0, cs: 0, fp: 0,
+        /* xG (FotMob/Opta): summeras bara över matcher med xG-underlag; xgGf/
+           xgGa = mål i samma matcher så mål−xG-diffen jämför äpplen med äpplen. */
+        xg: 0, xga: 0, xgGf: 0, xgGa: 0, xgM: 0
       };
     });
 
@@ -548,6 +584,15 @@
       else if (ft.h < ft.a) { ar.w++; hr.l++; ar.pts += 3; }
       else { hr.d++; ar.d++; hr.pts++; ar.pts++; }
 
+      var fmx = fotmobRatings && fotmobRatings[key] ? fotmobRatings[key].xg : null;
+      if (fmx && fmx.h != null && fmx.a != null) {
+        hr.xg += fmx.h; hr.xga += fmx.a;
+        ar.xg += fmx.a; ar.xga += fmx.h;
+        hr.xgGf += ft.h; hr.xgGa += ft.a;
+        ar.xgGf += ft.a; ar.xgGa += ft.h;
+        hr.xgM++; ar.xgM++;
+      }
+
       (det.bookings || []).forEach(function (bk) {
         var r = bk.team === "h" ? hr : bk.team === "a" ? ar : null;
         if (!r) return;
@@ -568,6 +613,13 @@
       r.rpm = r.played > 0 ? r.r / r.played : 0;
       r.fppm = r.played > 0 ? r.fp / r.played : 0;
       r.played0 = r.played === 0;
+      /* xG-effektivitet: ±xG = mål − xG (positivt = kliniska avslut, gör mer
+         än chanserna "borde" ge); ±xGA = xGA − insläppta (positivt = släpper
+         in färre än motståndarnas chanser borde ge – försvar/målvakt). */
+      r.hasXg = r.xgM > 0;
+      r.xgpm = r.xgM > 0 ? r.xg / r.xgM : 0;
+      r.xgd = r.hasXg ? r.xgGf - r.xg : null;
+      r.xgad = r.hasXg ? r.xga - r.xgGa : null;
       return r;
     });
     teamRowsCache = rows;
@@ -804,6 +856,8 @@
     g90:     { type: "num", qual: true, get: function (r) { return r.g90; } },
     a90:     { type: "num", qual: true, get: function (r) { return r.a90; } },
     rating:  { type: "num", qual: "rating", get: function (r) { return r.rating; } },
+    xg:      { type: "num", get: function (r) { return r.xg; } },
+    xgd:     { type: "num", get: function (r) { return r.xgd; } },
     y:       { type: "num", get: function (r) { return r.y; } },
     r:       { type: "num", get: function (r) { return r.r; } },
     mv:      { type: "num", get: function (r) { return r.mv; } },
@@ -823,6 +877,10 @@
     ga:      { type: "num", get: function (r) { return r.ga; } },
     gd:      { type: "num", get: function (r) { return r.gd; } },
     gpm:     { type: "num", get: function (r) { return r.gpm; } },
+    xg:      { type: "num", get: function (r) { return r.hasXg ? r.xg : null; } },
+    xgd:     { type: "num", get: function (r) { return r.hasXg ? r.xgd : null; } },
+    xga:     { type: "num", get: function (r) { return r.hasXg ? r.xga : null; } },
+    xgad:    { type: "num", get: function (r) { return r.hasXg ? r.xgad : null; } },
     y:       { type: "num", get: function (r) { return r.y; } },
     r:       { type: "num", get: function (r) { return r.r; } },
     ypm:     { type: "num", get: function (r) { return r.ypm; } },
@@ -1152,6 +1210,12 @@
           rateFn: function (r) { return r.gf + "–" + r.ga; }
         },
         {
+          id: "txgd", kind: "teams", title: "Kliniska lag (mål − xG)", icon: "🎯", rows: trows,
+          valFn: function (r) { return r.hasXg && r.xgd > 0 ? r.xgd : 0; },
+          mainFn: function (r) { return fmtSigned(r.xgd); },
+          rateFn: function (r) { return r.xgGf + " mål på " + fmt2(r.xg) + " xG"; }
+        },
+        {
           id: "tcards", kind: "teams", title: "Flest kort", icon: "🟨", rows: trows,
           valFn: function (r) { return r.y + 3 * r.r; },
           mainFn: function (r) { return cardsLine(r.y, r.r); },
@@ -1180,6 +1244,12 @@
         valFn: function (r) { return r.ratingQ && r.rating != null ? r.rating : 0; },
         mainFn: function (r) { return fmtRating(r.rating); },
         rateFn: function (r) { return r.min + " min · " + r.apps + (r.apps === 1 ? " match" : " matcher"); }
+      },
+      {
+        id: "pxgd", kind: "players", title: "Kliniska avslutare (mål − xG)", icon: "🎯", rows: prows,
+        valFn: function (r) { return r.xg != null && r.xgd > 0 ? r.xgd : 0; },
+        mainFn: function (r) { return fmtSigned(r.xgd); },
+        rateFn: function (r) { return r.xgGoals + " mål på " + fmt2(r.xg) + " xG (" + r.xgShots + " skott)"; }
       }
     ];
   }
@@ -1535,6 +1605,14 @@
     return v ? '<span class="ps-num' + (hot ? " hot" : "") + '">' + v + "</span>" : '<span class="ps-zero">–</span>';
   }
 
+  /* Signerad xG-diff-cell: grönt = överprestation, rött = underprestation. */
+  function xgdCell(v, title) {
+    if (v == null || !isFinite(v)) return '<span class="ps-zero">–</span>';
+    var cls = v > 0.05 ? " ps-xgd-pos" : v < -0.05 ? " ps-xgd-neg" : "";
+    return '<span class="ps-num' + cls + '"' + (title ? ' title="' + esc(title) + '"' : "") + ">" +
+      fmtSigned(v) + "</span>";
+  }
+
   function playerRowHtml(r, i) {
     var posTitle = r.posSv || "Position saknas";
     var goalsTitle = [];
@@ -1570,6 +1648,11 @@
       '<td class="c-stat ps-rating">' + (r.rating == null ? '<span class="ps-zero" title="FotMob har inte satt betyg (t.ex. sena inhopp eller namn som inte kunnat kopplas)">–</span>'
         : r.ratingQ ? '<span class="ps-num">' + fmtRating(r.rating) + "</span>"
         : '<span class="ps-zero" title="Under ' + RATING_QUAL_MIN + ' spelade minuter – osäkert betyg">' + fmtRating(r.rating) + "</span>") + "</td>" +
+      '<td class="c-stat ps-rate">' + (r.xg == null
+        ? '<span class="ps-zero" title="xG-underlag saknas för spelarens matcher">–</span>'
+        : '<span title="' + esc(fmt2(r.xg) + " xG på " + r.xgShots + " skott") + '">' + fmt2(r.xg) + "</span>") + "</td>" +
+      '<td class="c-stat ps-rate">' + xgdCell(r.xgd, r.xg == null ? null
+        : r.xgGoals + " mål på " + fmt2(r.xg) + " förväntade (xG)") + "</td>" +
       '<td class="c-stat ps-rate">' + g90 + "</td>" +
       '<td class="c-stat ps-rate">' + a90 + "</td>" +
       '<td class="c-stat">' + cardsCell(r.y, "y") + "</td>" +
@@ -1596,6 +1679,8 @@
       thSort("assists", "Ass", "", "Assist i VM 2026") +
       thSort("points", "P", "", "Poäng = mål + assist") +
       thSort("rating", "Betyg", "", "FotMobs matchbetyg (10-gradigt, minutviktat över matcherna). Bygger på Opta-liknande händelsedata och fångar hela spelet – även tacklingar, brytningar, passningar och positionsspel. Kräver " + RATING_QUAL_MIN + " min för rankning; saknas för spelare FotMob inte betygsatt.") +
+      thSort("xg", "xG", "", "Förväntade mål (Opta via FotMob): summan av chansernas kvalitet över spelarens VM-matcher. Straffar under matchen ingår; straffläggning gör det inte.") +
+      thSort("xgd", "±xG", "", "Effektivitet framför mål: VM-mål minus xG. Positivt = gör mer av sina chanser än förväntat (klinisk avslutare), negativt = bränner lägen.") +
       thSort("g90", "Mål/90", "", "Mål per 90 spelade minuter (kräver minst " + QUAL_MIN + " min)") +
       thSort("a90", "Ass/90", "", "Assist per 90 spelade minuter (kräver minst " + QUAL_MIN + " min)") +
       thSort("y", "Gul", "", "Gula kort") +
@@ -1604,7 +1689,7 @@
       thSort("min", "Min", "", "Spelade minuter i VM 2026") +
       "</tr></thead><tbody>";
     if (!shown.length) {
-      h += '<tr><td class="ps-empty" colspan="19">Inga spelare matchar filtren.</td></tr>';
+      h += '<tr><td class="ps-empty" colspan="21">Inga spelare matchar filtren.</td></tr>';
     } else {
       shown.forEach(function (r, i) { h += playerRowHtml(r, i); });
     }
@@ -1634,6 +1719,16 @@
       '<td class="c-stat">' + (r.played ? r.ga : '<span class="ps-zero">–</span>') + "</td>" +
       '<td class="c-stat ps-num">' + (r.played ? (r.gd > 0 ? "+" + r.gd : r.gd) : '<span class="ps-zero">–</span>') + "</td>" +
       '<td class="c-stat ps-rate">' + (r.played ? fmt2(r.gpm) : '<span class="ps-zero">–</span>') + "</td>" +
+      '<td class="c-stat ps-rate">' + (r.hasXg
+        ? '<span title="' + esc(fmt2(r.xg) + " xG på " + r.xgM + " matcher (" + fmt2(r.xgpm) + "/match)") + '">' + fmt2(r.xg) + "</span>"
+        : '<span class="ps-zero" title="xG-underlag saknas ännu">–</span>') + "</td>" +
+      '<td class="c-stat ps-rate">' + xgdCell(r.xgd, r.hasXg
+        ? r.xgGf + " mål på " + fmt2(r.xg) + " förväntade – positivt = kliniska avslut" : null) + "</td>" +
+      '<td class="c-stat ps-rate">' + (r.hasXg
+        ? '<span title="' + esc("Motståndarnas samlade chanskvalitet: " + fmt2(r.xga) + " xGA") + '">' + fmt2(r.xga) + "</span>"
+        : '<span class="ps-zero">–</span>') + "</td>" +
+      '<td class="c-stat ps-rate">' + xgdCell(r.xgad, r.hasXg
+        ? r.xgGa + " insläppta mot " + fmt2(r.xga) + " förväntade – positivt = försvar/målvakt räddar mer än väntat" : null) + "</td>" +
       '<td class="c-stat">' + cardsCell(r.y, "y") + "</td>" +
       '<td class="c-stat">' + cardsCell(r.r, "r") + "</td>" +
       '<td class="c-stat ps-rate">' + cardsRateCell(r.ypm, r.played, "y") + "</td>" +
@@ -1661,6 +1756,10 @@
       thSort("ga", "IM", "", "Insläppta mål") +
       thSort("gd", "MS", "", "Målskillnad") +
       thSort("gpm", "Mål/M", "", "Mål per match") +
+      thSort("xg", "xG", "", "Förväntade mål (Opta via FotMob): summan av lagets chanskvalitet över VM-matcherna. Ett lag med högt xG skapar mycket – oavsett om bollen gått in.") +
+      thSort("xgd", "±xG", "", "Effektivitet framför mål: gjorda mål minus xG. Positivt = gör mer än chanserna borde ge (kliniskt lag), negativt = bränner lägen. Lag som Marocko/Norge kan skapa lite men ändå vinna på hög effektivitet.") +
+      thSort("xga", "xGA", "", "Förväntade insläppta mål: motståndarnas samlade chanskvalitet. Lågt xGA = släpper inte till chanser.") +
+      thSort("xgad", "±xGA", "", "Effektivitet bakåt: xGA minus insläppta mål. Positivt = släpper in färre än motståndarnas chanser borde ge (försvar/målvakt räddar mer än väntat).") +
       thSort("y", "Gul", "", "Gula kort") +
       thSort("r", "Röd", "", "Röda kort") +
       thSort("ypm", "Gul/M", "", "Gula kort per match") +
@@ -1671,7 +1770,7 @@
       thSort("pts", "P", "", "Poäng") +
       "</tr></thead><tbody>";
     if (!shown.length) {
-      h += '<tr><td class="ps-empty" colspan="20">Inga lag matchar filtren.</td></tr>';
+      h += '<tr><td class="ps-empty" colspan="24">Inga lag matchar filtren.</td></tr>';
     } else {
       shown.forEach(function (r, i) { h += teamRowHtml(r, i); });
     }

@@ -1,18 +1,25 @@
 /*
   Bygger data/fotmob_ratings.json: FotMobs spelarbetyg (0–10) per spelare och
   match för färdigspelade VM-matcher, hämtade från FotMobs öppna webb-API
-  (ingen nyckel).
+  (ingen nyckel) – samt xG (förväntade mål) per lag och spelare.
 
   Varför? Det egna VM-betyget (assets/playerstats.js) räknas ur ESPN:s
   gratisdata, som SAKNAR defensiva aktioner (tacklingar, brytningar, passningar,
   dueller) per spelare. Därför får en bollstädande mittback/sexa som inte gör
   mål ett tunt betyg. FotMobs betyg bygger på Opta-liknande händelsedata och
   fångar även försvarsspel – det visas i statistiken bredvid det egna betyget.
+  xG-datan (samma Opta-underlag) driver xG-form i matchmodalens "Fakta & odds"
+  och effektivitetsmåtten (mål − xG) i statistikens spelar-/lagtabeller.
 
   Källa: https://www.fotmob.com/api/data/matches?date=YYYYMMDD ger dagens
   matcher grupperade per liga; VM 2026 känns igen på parentLeagueId === 77.
   https://www.fotmob.com/api/data/matchDetails?matchId=<id> ger laguppställning
-  med content.lineup.{homeTeam,awayTeam}.{starters,subs}[].performance.rating.
+  med content.lineup.{homeTeam,awayTeam}.{starters,subs}[].performance.rating,
+  lag-xG i content.stats (key "expected_goals"/"expected_goals_on_target") och
+  skott-för-skott-xG i content.shotmap.shots (expectedGoals per skott, med
+  playerName/teamId). Spelar-xG = summan av spelarens skott-xG i matchen
+  (straffläggning efter förlängning och självmål räknas inte; straffar under
+  matchen ingår, precis som i lag-xG:t).
 
   Matchning mot appens nycklar (g:A:2, k:73 …) sker via data/results.json
   fixtures (datum + engelska lagnamn), samma round-robin-ordning som resten av
@@ -25,9 +32,10 @@
   exakt. Spelare FotMob inte betygsatt (sena inhopp) saknas; det är väntat.
 
   Inkrementell och resumbar: en färdig match betygsätts en gång och behålls
-  sedan (betygen är slutgiltiga), så bara nytillkomna matcher hämtas. Ändras
-  ingenting skrivs filen inte om, så workflowen committar bara vid faktisk
-  förändring.
+  sedan (betygen är slutgiltiga), så bara nytillkomna matcher hämtas. Matcher
+  sparade före xG-stödet (utan xg-fält) hämtas om en gång så xG:t backfillas.
+  Ändras ingenting skrivs filen inte om, så workflowen committar bara vid
+  faktisk förändring.
 
   Körs av .github/workflows/sync-fotmob-ratings.yml. Kan köras manuellt:
     node server/scripts/syncFotmobRatings.js
@@ -106,7 +114,7 @@ const subsetOf = (small, big) => {
   return small.size > 0;
 };
 
-/** FotMob-sida (homeTeam/awayTeam) → [{ name, norm, rating }] för spelade. */
+/** FotMob-sida (homeTeam/awayTeam) → [{ name, norm, val: betyg }] för spelade. */
 function fmSideRatings(team) {
   const list = [];
   if (!team) return list;
@@ -116,15 +124,16 @@ function fmSideRatings(team) {
     const rating = Math.round(Number(r) * 10) / 10;
     if (!Number.isFinite(rating)) continue;
     const nn = norm(p.name);
-    if (nn) list.push({ name: p.name, norm: nn, rating });
+    if (nn) list.push({ name: p.name, norm: nn, val: rating });
   }
   return list;
 }
 
 /**
- * Koppla FotMob-betygen (fmList) till ESPN-namnen (espnNorms) greedy:
- * exakt → sorterad token-mängd → token-subset. Returnerar { espnNorm: rating }.
- * Claimade FotMob-poster tas bort mellan stegen så en post bara används en gång.
+ * Koppla FotMob-värden (fmList: [{ norm, val }]) till ESPN-namnen (espnNorms)
+ * greedy: exakt → sorterad token-mängd → token-subset. Returnerar
+ * { espnNorm: val }. Claimade FotMob-poster tas bort mellan stegen så en post
+ * bara används en gång. Används för både betyg (val = tal) och xG (val = objekt).
  */
 function joinToEspn(espnNorms, fmList) {
   const out = {};
@@ -135,7 +144,7 @@ function joinToEspn(espnNorms, fmList) {
     for (const e of pool) {
       if (e.used) continue;
       if (matcher(t, e)) {
-        out[t.norm] = e.rating;
+        out[t.norm] = e.val;
         e.used = true;
         return true;
       }
@@ -153,11 +162,71 @@ function joinToEspn(espnNorms, fmList) {
       (e) => !e.used && (subsetOf(e.toks, t.toks) || subsetOf(t.toks, e.toks))
     );
     if (cand.length === 1) {
-      out[t.norm] = cand[0].rating;
+      out[t.norm] = cand[0].val;
       cand[0].used = true;
     }
   }
   return out;
+}
+
+/* ---------- xG ur FotMob-datan ---------- */
+
+const r2dec = (v) => Math.round(v * 100) / 100;
+
+/** Lagstatistik { h, a } (FotMobs hemma/borta-ordning) för given stat-key. */
+function fmTeamStat(detail, key) {
+  const all = detail.content && detail.content.stats && detail.content.stats.Periods
+    && detail.content.stats.Periods.All;
+  for (const grp of (all && all.stats) || []) {
+    for (const s of grp.stats || []) {
+      if (s.key !== key || !Array.isArray(s.stats)) continue;
+      const h = Number(s.stats[0]);
+      const a = Number(s.stats[1]);
+      if (Number.isFinite(h) && Number.isFinite(a)) return { h, a };
+    }
+  }
+  return null;
+}
+
+/**
+ * Spelar-xG ur shotmap, per FotMob-sida (h = FotMobs hemmalag). Straffläggning
+ * efter förlängning (period "PenaltyShootout") och självmål räknas inte;
+ * straffar under matchen ingår (som i lag-xG:t). Returnerar även lagsummor
+ * som reserv om lagstatistiken saknas.
+ */
+function fmShotXg(detail, fmHomeId) {
+  const shots = detail.content && detail.content.shotmap && detail.content.shotmap.shots;
+  const players = { h: new Map(), a: new Map() };
+  const totals = { h: { xg: 0, xgot: 0 }, a: { xg: 0, xgot: 0 } };
+  let any = false;
+  for (const s of Array.isArray(shots) ? shots : []) {
+    if (!s || s.period === "PenaltyShootout" || s.isOwnGoal) continue;
+    const side = s.teamId === fmHomeId ? "h" : "a";
+    const xg = Number(s.expectedGoals) || 0;
+    const xgot = Number(s.expectedGoalsOnTarget) || 0;
+    totals[side].xg += xg;
+    totals[side].xgot += xgot;
+    any = true;
+    const name = s.fullName || s.playerName;
+    const nn = norm(name);
+    if (!nn) continue;
+    const cur = players[side].get(nn) || { name, norm: nn, xg: 0, xgot: 0, shots: 0, goals: 0 };
+    cur.xg += xg;
+    cur.xgot += xgot;
+    cur.shots += 1;
+    if (s.eventType === "Goal") cur.goals += 1;
+    players[side].set(nn, cur);
+  }
+  const toList = (m) => [...m.values()].map((p) => ({
+    name: p.name, norm: p.norm,
+    val: { xg: r2dec(p.xg), xgot: r2dec(p.xgot), shots: p.shots, goals: p.goals },
+  }));
+  return {
+    any,
+    players: { h: toList(players.h), a: toList(players.a) },
+    totals: { h: { xg: r2dec(totals.h.xg), xgot: r2dec(totals.h.xgot) },
+              a: { xg: r2dec(totals.a.xg), xgot: r2dec(totals.a.xgot) } },
+  };
 }
 
 /* ---------- Huvudflöde ---------- */
@@ -248,8 +317,10 @@ async function syncFotmobRatings() {
   for (const { key, fx } of targets) {
     const label = `${fx.home}–${fx.away}`;
 
-    // Redan betygsatt → behåll (färdiga matchers betyg ändras inte).
-    if (prevMatches[key] && prevMatches[key].players) {
+    // Redan betygsatt → behåll (färdiga matchers betyg ändras inte). Poster
+    // sparade före xG-stödet (xg-fältet saknas helt) hämtas om en gång så
+    // xG:t backfillas; xg: null betyder "kollat, FotMob har inget".
+    if (prevMatches[key] && prevMatches[key].players && prevMatches[key].xg !== undefined) {
       out[key] = prevMatches[key];
       continue;
     }
@@ -281,8 +352,8 @@ async function syncFotmobRatings() {
       const fmA = fmSideRatings(ourAway);
 
       // Utan ESPN-lineup (ovanligt): nyckla på FotMobs egna normaliserade namn.
-      const h = espnH.length ? joinToEspn(espnH, fmH) : Object.fromEntries(fmH.map((e) => [e.norm, e.rating]));
-      const a = espnA.length ? joinToEspn(espnA, fmA) : Object.fromEntries(fmA.map((e) => [e.norm, e.rating]));
+      const h = espnH.length ? joinToEspn(espnH, fmH) : Object.fromEntries(fmH.map((e) => [e.norm, e.val]));
+      const a = espnA.length ? joinToEspn(espnA, fmA) : Object.fromEntries(fmA.map((e) => [e.norm, e.val]));
       const nJoined = Object.keys(h).length + Object.keys(a).length;
       if (!nJoined) {
         console.log(`[fotmob] ${key} ${label}: inga betyg satta ännu.`);
@@ -293,19 +364,44 @@ async function syncFotmobRatings() {
       joined += nJoined;
       unmatched += Math.max(0, miss);
 
+      /* xG: lagsiffror ur matchstatistiken (Opta), spelarsiffror ur shotmap.
+         FotMobs hemma/borta reorienteras till appens fasta ordning som ovan. */
+      const fmHomeId =
+        (detail.header && detail.header.teams && detail.header.teams[0] && detail.header.teams[0].id) ??
+        (game.home && game.home.id);
+      const swap = (o) => (homeIsHome ? o : { h: o.a, a: o.h });
+      const statXg = fmTeamStat(detail, "expected_goals");
+      const statXgot = fmTeamStat(detail, "expected_goals_on_target");
+      const shot = fmShotXg(detail, fmHomeId);
+      const shotOur = { players: swap(shot.players), totals: swap(shot.totals) };
+      // Lagstatistiken är facit; skottsummorna är reserv om den saknas.
+      const xg = statXg ? swap(statXg)
+        : shot.any ? { h: shotOur.totals.h.xg, a: shotOur.totals.a.xg } : null;
+      const xgot = statXgot ? swap(statXgot)
+        : shot.any ? { h: shotOur.totals.h.xgot, a: shotOur.totals.a.xgot } : null;
+      const pxH = espnH.length ? joinToEspn(espnH, shotOur.players.h)
+        : Object.fromEntries(shotOur.players.h.map((e) => [e.norm, e.val]));
+      const pxA = espnA.length ? joinToEspn(espnA, shotOur.players.a)
+        : Object.fromEntries(shotOur.players.a.map((e) => [e.norm, e.val]));
+      const playerXg = shot.any ? { h: pxH, a: pxA } : null;
+
       out[key] = {
         fotmobId: game.id,
         teamRating: {
           h: ourHome.rating != null ? Number(ourHome.rating) : null,
           a: ourAway.rating != null ? Number(ourAway.rating) : null,
         },
+        xg,
+        xgot,
         players: { h, a },
+        playerXg,
         updatedAt: new Date().toISOString(),
       };
       fetched++;
       console.log(
         `[fotmob] ${key} ${label}: ${nJoined} kopplade betyg (FotMob #${game.id}` +
-          `${miss > 0 ? `, ${miss} omatchade` : ""}).`
+          `${miss > 0 ? `, ${miss} omatchade` : ""}` +
+          `${xg ? `, xG ${xg.h.toFixed(2)}–${xg.a.toFixed(2)}` : ", xG saknas"}).`
       );
       await sleep(DELAY_MS);
     } catch (e) {

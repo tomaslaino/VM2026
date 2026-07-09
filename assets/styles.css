@@ -4880,6 +4880,24 @@ span.pr-caps-debut.pr-caps-legend {
 .mi-pv-form-score.f { background: rgba(232,38,74,.14); color: #ff8a95; }
 .mi-pv-form-pen { flex: none; font-size: 10.5px; font-style: italic; opacity: .8; }
 
+/* xG i formlistan (skapat–insläppt per match, FotMob/Opta) + snitt-fot. */
+.mi-pv-xg {
+  margin-left: auto; flex: none; font-size: 11px; color: var(--ink-soft);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.mi-pv-xg strong { color: var(--ink); font-weight: 750; }
+.mi-pv-xg-sep { margin: 0 1px; }
+.mi-pv-xg-foot {
+  display: flex; flex-direction: column; gap: 3px; margin-top: 8px; padding-top: 7px;
+  border-top: 1px dashed color-mix(in srgb, var(--ink-soft) 30%, transparent);
+  font-size: 11.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums;
+}
+.mi-pv-xg-foot strong { color: var(--ink); }
+.mi-pv-xg-eff { font-weight: 750; cursor: help; }
+.mi-pv-xg-eff.pos { color: color-mix(in srgb, #2db87a 70%, var(--ink)); }
+.mi-pv-xg-eff.neg { color: color-mix(in srgb, #e8264a 55%, var(--ink)); }
+.mi-pv-xg-note { margin-top: 8px; font-size: 11.5px; color: var(--ink-soft); line-height: 1.45; }
+
 /* Placering i gruppen under jämförelsen. */
 .mi-pv-posline {
   display: flex; align-items: center; justify-content: center; gap: 7px;
@@ -5330,6 +5348,9 @@ a.mi-avail-src:hover { border-color: var(--usa-blue); background: rgba(61, 109, 
 }
 .ps-pts { font-weight: 800; }
 .ps-fp { color: color-mix(in srgb, var(--usa-red) 55%, var(--ink)); }
+/* xG-effektivitet (mål − xG): grönt = över förväntan, rött = under. */
+.ps-xgd-pos { color: color-mix(in srgb, #2db87a 70%, var(--ink)); font-weight: 700; }
+.ps-xgd-neg { color: color-mix(in srgb, #e8264a 55%, var(--ink)); }
 tr.ps-has-stats td { background: color-mix(in srgb, var(--usa-blue) 7%, transparent); }
 tr.ps-openable { cursor: pointer; }
 tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, transparent); }
