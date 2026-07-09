@@ -12,8 +12,10 @@
       poäng, gjorda/insläppta mål, målskillnad, mål per match, hållna
       nollor och kort – plus xG/±xG (skapar laget chanser? gör det mer än
       chanserna borde ge?) och xGA/±xGA (samma sak bakåt) ur samma
-      FotMob-data. Det fångar lag som Marocko/Norge-arketypen: få chanser
-      men sjukt effektiva.
+      FotMob-data, samt kvoterna Mål/xG och IM/xGA som normaliserar
+      över-/underprestationen mot volymen (2 mål över förväntan är mer
+      anmärkningsvärt på 2 xG än på 25). Det fångar lag som Marocko/
+      Norge-arketypen: få chanser men sjukt effektiva.
     • Region – samma aggregat per konfederation/världsdel.
     • Ligor – klubbligornas VM: spelarna grupperas på vilken liga (land +
       division, data/club_leagues.json) deras klubb spelar i, med minut-
@@ -616,11 +618,16 @@
       r.played0 = r.played === 0;
       /* xG-effektivitet: ±xG = mål − xG (positivt = kliniska avslut, gör mer
          än chanserna "borde" ge); ±xGA = xGA − insläppta (positivt = släpper
-         in färre än motståndarnas chanser borde ge – försvar/målvakt). */
+         in färre än motståndarnas chanser borde ge – försvar/målvakt).
+         Kvoterna (mål/xG resp. insläppta/xGA) normaliserar mot volymen:
+         4 insläppta på 2 förväntade (2.00) är en annan sak än 27 på 25
+         (1.08) fast differensen är −2 i båda fallen. */
       r.hasXg = r.xgM > 0;
       r.xgpm = r.xgM > 0 ? r.xg / r.xgM : 0;
       r.xgd = r.hasXg ? r.xgGf - r.xg : null;
       r.xgad = r.hasXg ? r.xga - r.xgGa : null;
+      r.xgr = r.hasXg && r.xg > 0 ? r.xgGf / r.xg : null;
+      r.xgar = r.hasXg && r.xga > 0 ? r.xgGa / r.xga : null;
       return r;
     });
     teamRowsCache = rows;
@@ -910,8 +917,10 @@
     gpm:     { type: "num", get: function (r) { return r.gpm; } },
     xg:      { type: "num", get: function (r) { return r.hasXg ? r.xg : null; } },
     xgd:     { type: "num", get: function (r) { return r.hasXg ? r.xgd : null; } },
+    xgr:     { type: "num", get: function (r) { return r.xgr; } },
     xga:     { type: "num", get: function (r) { return r.hasXg ? r.xga : null; } },
     xgad:    { type: "num", get: function (r) { return r.hasXg ? r.xgad : null; } },
+    xgar:    { type: "num", get: function (r) { return r.xgar; } },
     y:       { type: "num", get: function (r) { return r.y; } },
     r:       { type: "num", get: function (r) { return r.r; } },
     ypm:     { type: "num", get: function (r) { return r.ypm; } },
@@ -1678,6 +1687,16 @@
       fmtSigned(v) + "</span>";
   }
 
+  /* xG-kvotcell: neutralpunkten är 1.00 (utfall = förväntan). invert för
+     kvoter där högt är dåligt (insläppta/xGA). */
+  function xgRatioCell(v, invert, title) {
+    if (v == null || !isFinite(v)) return '<span class="ps-zero">–</span>';
+    var d = invert ? 1 - v : v - 1;
+    var cls = d > 0.05 ? " ps-xgd-pos" : d < -0.05 ? " ps-xgd-neg" : "";
+    return '<span class="ps-num' + cls + '"' + (title ? ' title="' + esc(title) + '"' : "") + ">" +
+      fmt2(v) + "</span>";
+  }
+
   function playerRowHtml(r, i) {
     var posTitle = r.posSv || "Position saknas";
     var goalsTitle = [];
@@ -1789,11 +1808,15 @@
         : '<span class="ps-zero" title="xG-underlag saknas ännu">–</span>') + "</td>" +
       '<td class="c-stat ps-rate">' + xgdCell(r.xgd, r.hasXg
         ? r.xgGf + " mål på " + fmt2(r.xg) + " förväntade – positivt = kliniska avslut" : null) + "</td>" +
+      '<td class="c-stat ps-rate">' + xgRatioCell(r.xgr, false, r.xgr != null
+        ? r.xgGf + " mål ÷ " + fmt2(r.xg) + " xG = " + fmt2(r.xgr) + "× förväntat antal mål" : null) + "</td>" +
       '<td class="c-stat ps-rate">' + (r.hasXg
         ? '<span title="' + esc("Motståndarnas samlade chanskvalitet: " + fmt2(r.xga) + " xGA") + '">' + fmt2(r.xga) + "</span>"
         : '<span class="ps-zero">–</span>') + "</td>" +
       '<td class="c-stat ps-rate">' + xgdCell(r.xgad, r.hasXg
         ? r.xgGa + " insläppta mot " + fmt2(r.xga) + " förväntade – positivt = försvar/målvakt räddar mer än väntat" : null) + "</td>" +
+      '<td class="c-stat ps-rate">' + xgRatioCell(r.xgar, true, r.xgar != null
+        ? r.xgGa + " insläppta ÷ " + fmt2(r.xga) + " xGA = " + fmt2(r.xgar) + "× förväntat antal insläppta" : null) + "</td>" +
       '<td class="c-stat">' + cardsCell(r.y, "y") + "</td>" +
       '<td class="c-stat">' + cardsCell(r.r, "r") + "</td>" +
       '<td class="c-stat ps-rate">' + cardsRateCell(r.ypm, r.played, "y") + "</td>" +
@@ -1823,8 +1846,10 @@
       thSort("gpm", "Mål/M", "", "Mål per match") +
       thSort("xg", "xG", "", "Förväntade mål (Opta via FotMob): summan av lagets chanskvalitet över VM-matcherna. Ett lag med högt xG skapar mycket – oavsett om bollen gått in.") +
       thSort("xgd", "±xG", "", "Effektivitet framför mål: gjorda mål minus xG. Positivt = gör mer än chanserna borde ge (kliniskt lag), negativt = bränner lägen. Lag som Marocko/Norge kan skapa lite men ändå vinna på hög effektivitet.") +
+      thSort("xgr", "Mål/xG", "", "Utväxling framåt: gjorda mål delat med xG. 1.00 = precis som förväntat, 2.00 = dubbelt så många mål som chanserna borde ge. Till skillnad från ±xG tar kvoten hänsyn till volymen: +2 mål mot 2 förväntade är mer anmärkningsvärt än +2 mot 25.") +
       thSort("xga", "xGA", "", "Förväntade insläppta mål: motståndarnas samlade chanskvalitet. Lågt xGA = släpper inte till chanser.") +
       thSort("xgad", "±xGA", "", "Effektivitet bakåt: xGA minus insläppta mål. Positivt = släpper in färre än motståndarnas chanser borde ge (försvar/målvakt räddar mer än väntat).") +
+      thSort("xgar", "IM/xGA", "", "Utväxling bakåt: insläppta mål delat med xGA. 1.00 = precis som förväntat, 2.00 = dubbelt så många insläppta som motståndarnas chanser borde ge (grönt under 1, rött över). Till skillnad från ±xGA tar kvoten hänsyn till volymen: 4 insläppta mot 2 förväntade är värre än 27 mot 25.") +
       thSort("y", "Gul", "", "Gula kort") +
       thSort("r", "Röd", "", "Röda kort") +
       thSort("ypm", "Gul/M", "", "Gula kort per match") +
@@ -1835,7 +1860,7 @@
       thSort("pts", "P", "", "Poäng") +
       "</tr></thead><tbody>";
     if (!shown.length) {
-      h += '<tr><td class="ps-empty" colspan="24">Inga lag matchar filtren.</td></tr>';
+      h += '<tr><td class="ps-empty" colspan="26">Inga lag matchar filtren.</td></tr>';
     } else {
       shown.forEach(function (r, i) { h += teamRowHtml(r, i); });
     }
