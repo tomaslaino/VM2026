@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-09T18:15:27.499Z",
+  "updated": "2026-07-09T20:14:02.268Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -70,6 +70,18 @@
       },
       "origin": "news"
     },
+    "eng-jarell-quansah": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Rött kort i åttondelsfinalen mot Mexiko",
+      "updated": "2026-07-06",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760505"
+      },
+      "origin": "cards"
+    },
     "eng-jordan-henderson": {
       "availability": "doubtful",
       "kind": "injury",
@@ -91,18 +103,6 @@
         "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOWDJnMTFJRDF4NFpnSHN0c0owOVZwQTFYSVRVcXdsX2xsYW4yWEIzV1lyRlptMHV3cW52RFR1TlhEbHFmajRKZnpUa080N05QNDhDM21ZVUZvOWxpeFZrUV9QcTF0VDFxbE1nQ01IVjhmem1MVXo1Q2FnTTdnd0lEVEd5RGtXVndyR3Vua0k3WG43Mk8zMTZzbkVOSm1OSkljcHVnV0poVjdQQ21VY2ctNGNxaEpFeENMYUxFR3NXOXotejNFUU1PUmtPaG91NkZNQkhDTTZEQmlZN08xNW5XMnZMbzFOZnJtb0kzWWJGcTBIRUVRNHRobkxn?oc=5"
       },
       "origin": "news"
-    },
-    "eng-jarell-quansah": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Rött kort i åttondelsfinalen mot Mexiko",
-      "updated": "2026-07-06",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760505"
-      },
-      "origin": "cards"
     },
     "eng-jude-bellingham": {
       "availability": "doubtful",
