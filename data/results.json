@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-09T20:49:17.862Z",
+    "updatedAt": "2026-07-09T22:11:12.376Z",
     "source": "espn",
     "matchCount": 97,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -492,21 +492,12 @@
       "pw": "h"
     },
     "k:97": {
-      "h": 0,
+      "h": 2,
       "a": 0,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:97",
-      "status": "IN_PLAY",
-      "minute": 45,
-      "home": "France",
-      "away": "Morocco",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -2144,7 +2135,7 @@
       "date": "2026-07-09",
       "time": "22:00",
       "utcDate": "2026-07-09T20:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "France",
       "away": "Morocco",
@@ -2214,9 +2205,12 @@
       "utcDate": "2026-07-14T19:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Quarterfinal 1 Winner",
+      "home": "France",
       "away": "Quarterfinal 2 Winner",
-      "homeRef": null,
+      "homeRef": {
+        "group": "I",
+        "idx": 0
+      },
       "awayRef": null
     },
     "k:102": {

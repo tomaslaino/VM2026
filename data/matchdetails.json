@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-09T20:49:17.903Z",
+    "updatedAt": "2026-07-09T22:11:12.440Z",
     "source": "espn"
   },
   "details": {
@@ -55594,24 +55594,114 @@
     "k:97": {
       "espnId": "760510",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 45,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-09T20:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
+          "h": 2,
+          "a": 0
+        },
+        "ht": {
           "h": 0,
           "a": 0
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
-      "bookings": [],
-      "subs": [],
+      "goals": [
+        {
+          "minute": 60,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Kylian Mbappé",
+          "assist": "Désiré Doué",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        },
+        {
+          "minute": 66,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Ousmane Dembélé",
+          "assist": "Kylian Mbappé",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 0
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 63,
+          "team": "a",
+          "player": "Issa Diop",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 62,
+          "team": "a",
+          "in": "Soufiane Rahimi",
+          "out": "Bilal El Khannouss"
+        },
+        {
+          "minute": 62,
+          "team": "a",
+          "in": "Sofyan Amrabat",
+          "out": "Ayyoub Bouaddi"
+        },
+        {
+          "minute": 71,
+          "team": "h",
+          "in": "Warren Zaïre-Emery",
+          "out": "Manu Koné"
+        },
+        {
+          "minute": 74,
+          "team": "a",
+          "in": "Zakaria El Ouahdi",
+          "out": "Anass Salah-Eddine"
+        },
+        {
+          "minute": 74,
+          "team": "a",
+          "in": "Gessime Yassine",
+          "out": "Brahim Díaz"
+        },
+        {
+          "minute": 77,
+          "team": "h",
+          "in": "Jean-Philippe Mateta",
+          "out": "Kylian Mbappé"
+        },
+        {
+          "minute": 77,
+          "team": "h",
+          "in": "Bradley Barcola",
+          "out": "Désiré Doué"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "in": "Amine Sbaï",
+          "out": "Chemsdine Talbi"
+        },
+        {
+          "minute": 87,
+          "team": "h",
+          "in": "Malo Gusto",
+          "out": "Jules Koundé"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -55620,13 +55710,17 @@
             {
               "name": "Mike Maignan",
               "jersey": "16",
-              "pos": "G"
+              "pos": "G",
+              "st": {
+                "sv": 1
+              }
             },
             {
               "name": "Jules Koundé",
               "jersey": "5",
               "pos": "RB",
               "st": {
+                "fc": 2,
                 "sh": 1
               }
             },
@@ -55644,6 +55738,7 @@
               "jersey": "14",
               "pos": "LM",
               "st": {
+                "fc": 2,
                 "fs": 1,
                 "sh": 1
               }
@@ -55671,7 +55766,9 @@
               "jersey": "7",
               "pos": "AM-R",
               "st": {
-                "sh": 3
+                "sg": 1,
+                "g": 1,
+                "sh": 4
               }
             },
             {
@@ -55688,9 +55785,11 @@
               "jersey": "10",
               "pos": "F",
               "st": {
-                "fs": 1,
-                "sg": 1,
-                "sh": 2
+                "fs": 2,
+                "a": 1,
+                "sg": 2,
+                "g": 1,
+                "sh": 4
               }
             },
             {
@@ -55698,8 +55797,8 @@
               "jersey": "11",
               "pos": "AM",
               "st": {
-                "fs": 1,
-                "sh": 1
+                "fs": 4,
+                "sh": 3
               }
             },
             {
@@ -55708,8 +55807,10 @@
               "pos": "AM-L",
               "st": {
                 "fc": 2,
-                "sg": 1,
-                "sh": 2
+                "fs": 1,
+                "a": 1,
+                "sg": 2,
+                "sh": 3
               }
             }
           ],
@@ -55740,7 +55841,13 @@
             },
             {
               "name": "Bradley Barcola",
-              "jersey": "12"
+              "jersey": "12",
+              "in": true,
+              "st": {
+                "fs": 1,
+                "sg": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Marcus Thuram",
@@ -55764,15 +55871,25 @@
             },
             {
               "name": "Warren Zaïre-Emery",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true,
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "Jean-Philippe Mateta",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true,
+              "st": {
+                "sg": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Malo Gusto",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true
             }
           ]
         },
@@ -55784,7 +55901,8 @@
               "jersey": "1",
               "pos": "G",
               "st": {
-                "sv": 3
+                "gc": 2,
+                "sv": 6
               }
             },
             {
@@ -55792,33 +55910,46 @@
               "jersey": "2",
               "pos": "RB",
               "st": {
-                "fs": 1
+                "fc": 1,
+                "fs": 2,
+                "gc": 2,
+                "sh": 1
               }
             },
             {
               "name": "Anass Salah-Eddine",
               "jersey": "26",
-              "pos": "LB"
+              "pos": "LB",
+              "st": {
+                "gc": 2
+              }
             },
             {
               "name": "Neil El Aynaoui",
               "jersey": "24",
               "pos": "LM",
               "st": {
-                "fc": 4
+                "fc": 4,
+                "gc": 2,
+                "sh": 1
               }
             },
             {
               "name": "Issa Diop",
               "jersey": "14",
-              "pos": "CD-R"
+              "pos": "CD-R",
+              "st": {
+                "fc": 1,
+                "gc": 2
+              }
             },
             {
               "name": "Noussair Mazraoui",
               "jersey": "3",
               "pos": "CD-L",
               "st": {
-                "fc": 1
+                "fc": 1,
+                "gc": 2
               }
             },
             {
@@ -55826,20 +55957,27 @@
               "jersey": "10",
               "pos": "AM-R",
               "st": {
-                "fs": 2
+                "fs": 2,
+                "gc": 2,
+                "sh": 1
               }
             },
             {
               "name": "Ayyoub Bouaddi",
               "jersey": "6",
-              "pos": "RM"
+              "pos": "RM",
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Bilal El Khannouss",
               "jersey": "23",
               "pos": "F",
               "st": {
-                "fs": 1
+                "fs": 1,
+                "gc": 1
               }
             },
             {
@@ -55848,13 +55986,19 @@
               "pos": "AM",
               "st": {
                 "fc": 1,
-                "fs": 1
+                "fs": 1,
+                "gc": 2,
+                "sg": 1,
+                "sh": 1
               }
             },
             {
               "name": "Chemsdine Talbi",
               "jersey": "7",
-              "pos": "AM-L"
+              "pos": "AM-L",
+              "st": {
+                "gc": 2
+              }
             }
           ],
           "bench": [
@@ -55876,7 +56020,13 @@
             },
             {
               "name": "Gessime Yassine",
-              "jersey": "16"
+              "jersey": "16",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Marwane Saadane",
@@ -55888,7 +56038,11 @@
             },
             {
               "name": "Sofyan Amrabat",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Chadi Riad",
@@ -55896,11 +56050,19 @@
             },
             {
               "name": "Soufiane Rahimi",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Amine Sbaï",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true,
+              "st": {
+                "fc": 2
+              }
             },
             {
               "name": "Munir El Kajoui",
@@ -55912,7 +56074,12 @@
             },
             {
               "name": "Zakaria El Ouahdi",
-              "jersey": "13"
+              "jersey": "13",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
             },
             {
               "name": "Ayoub El Kaabi",
@@ -55923,32 +56090,32 @@
       },
       "referee": "Facundo Tello",
       "venue": "Gillette Stadium, Foxborough, Massachusetts",
-      "attendance": null,
+      "attendance": 63811,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "50%",
-          "a": "50%"
+          "h": "48%",
+          "a": "52%"
         },
         {
           "key": "totalShots",
-          "h": "13",
-          "a": "0"
+          "h": "22",
+          "a": "5"
         },
         {
           "key": "shotsOnTarget",
-          "h": "3",
-          "a": "0"
-        },
-        {
-          "key": "wonCorners",
-          "h": "3",
+          "h": "8",
           "a": "1"
         },
         {
-          "key": "foulsCommitted",
+          "key": "wonCorners",
           "h": "5",
-          "a": "6"
+          "a": "5"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "10",
+          "a": "13"
         },
         {
           "key": "offsides",
@@ -55957,23 +56124,23 @@
         },
         {
           "key": "saves",
-          "h": "0",
-          "a": "3"
+          "h": "1",
+          "a": "6"
         },
         {
           "key": "totalPasses",
-          "h": "261",
-          "a": "260"
+          "h": "485",
+          "a": "524"
         },
         {
           "key": "passPct",
-          "h": "90%",
+          "h": "89%",
           "a": "86%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -55981,7 +56148,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-09T20:49:17.903Z"
+      "updatedAt": "2026-07-09T22:11:12.440Z"
     }
   }
 }
