@@ -1088,8 +1088,15 @@
   }
 
   /* xGscore-inspirerad formlista: senaste matcherna med resultat OCH xG
-     för/emot (FotMob/Opta), plus snitt och effektivitet (mål − xG) i botten.
+     för/emot (FotMob/Opta) som mikrostapel (grönt = skapat, rött = insläppt),
+     plus snitt och effektivitet (mål − xG) i botten.
      Returnerar null när xG-underlag saknas – då används pvFormRecent. */
+  function pvXgBar(f, a) {
+    var tot = f + a;
+    var w = tot > 0 ? (f / tot) * 100 : 50;
+    return '<span class="mi-pv-xgbar" aria-hidden="true">' +
+      '<span style="width:' + w.toFixed(1) + '%"></span></span>';
+  }
   function pvXgList(side) {
     var items = ((side && side.form) || []).filter(function (it) { return xgOf(it.key, it.side); });
     if (!items.length) return null;
@@ -1097,12 +1104,13 @@
       var x = xgOf(it.key, it.side);
       var tip = it.res + " " + it.gf + "–" + it.ga + (it.pen ? " (straffar)" : "") +
         " mot " + (it.opp ? it.opp.sv : "?") + " · " + it.label +
-        " · xG " + fmtXg(x.f) + "–" + fmtXg(x.a);
+        " · skapade " + fmtXg(x.f) + " xG, släppte till " + fmtXg(x.a);
       return '<span class="mi-pv-form-line" title="' + esc(tip) + '">' +
         '<span class="mi-pv-form-score ' + (it.res === "V" ? "v" : it.res === "F" ? "f" : "o") + '">' +
           it.gf + "–" + it.ga + '</span> ' +
         flagImg(it.opp && it.opp.iso) + '<span class="mi-pv-form-opp">' + esc(it.opp ? it.opp.sv : "?") + '</span>' +
-        '<span class="mi-pv-xg">xG <strong>' + fmtXg(x.f) + '</strong><span class="mi-pv-xg-sep">–</span>' + fmtXg(x.a) + '</span>' +
+        '<span class="mi-pv-xg">xG <strong>' + fmtXg(x.f) + '</strong>' + pvXgBar(x.f, x.a) +
+          '<span class="against">' + fmtXg(x.a) + '</span></span>' +
         '</span>';
     }).join("");
     var gf = 0, ga = 0, xf = 0, xa = 0;
@@ -1114,11 +1122,15 @@
     var d = gf - xf; // mål − xG: positivt = gör mer än chanserna borde ge
     var effCls = d > 0.5 ? " pos" : d < -0.5 ? " neg" : "";
     var foot = '<div class="mi-pv-xg-foot">' +
-      '<span>Snitt: <strong>' + fmtXg(gf / n, 1) + '</strong> mål (' + fmtXg(xf / n, 1) + ' xG) · ' +
-        fmtXg(ga / n, 1) + ' insläppta (' + fmtXg(xa / n, 1) + ' xGA)</span>' +
+      '<span class="mi-pv-xg-avglbl">Snitt per match</span>' +
+      '<div class="mi-pv-xg-avgline">Anfall <strong>' + fmtXg(gf / n, 1) + '</strong> mål · ' +
+        '<strong>' + fmtXg(xf / n, 1) + '</strong> xG</div>' +
+      '<div class="mi-pv-xg-avgline">Försvar <strong>' + fmtXg(ga / n, 1) + '</strong> insläppta · ' +
+        '<strong>' + fmtXg(xa / n, 1) + '</strong> xGA</div>' +
       '<span class="mi-pv-xg-eff' + effCls + '" title="Mål minus xG över matcherna ovan – ' +
         'positivt = kliniskt lag som gör mer av sina chanser än förväntat">' +
-        'Effektivitet ' + fmtXgSigned(d, 1) + ' mål mot xG</span>' +
+        'Effektivitet ' + fmtXgSigned(d, 1) +
+        '<span class="mi-pv-xg-eff-sub">mål mot xG</span></span>' +
       '</div>';
     return { rows: rows, foot: foot };
   }
@@ -1148,9 +1160,9 @@
     return '<div class="mi-section-title">Formen i VM</div>' +
       '<div class="mi-pv-form">' + hCol + aCol + '</div>' +
       (anyXg
-        ? '<div class="mi-pv-xg-note">xG = förväntade mål utifrån chansernas kvalitet (Opta via FotMob), ' +
-          'visat som skapat–insläppt per match. Ett lag kan skapa få chanser men ändå vinna på hög ' +
-          'effektivitet – och tvärtom.</div>'
+        ? '<div class="mi-pv-xg-note">xG = förväntade mål utifrån chansernas kvalitet (Opta via FotMob). ' +
+          'Stapeln visar skapat (<span class="for">grönt</span>) mot insläppt (<span class="against">rött</span>) per match. ' +
+          'Ett lag kan skapa få chanser men ändå vinna på hög effektivitet – och tvärtom.</div>'
         : '');
   }
 
@@ -1551,11 +1563,35 @@
     var badges = reviewBadge(v.winner, "Rätt vinnare", "Fel vinnare") +
       reviewBadge(v.score, "Rätt resultat", "Fel resultat");
     if (badges) h += '<div class="mi-fx-badges">' + badges + "</div>";
-    // Matchens xG (om synken hunnit hämta det): speglade resultatet spelet?
+    // Matchens xG (om synken hunnit hämta det): duellstapel i lagens färger
+    // + en kort uträknad tolkning – speglade resultatet spelet?
     if (act.xg && act.xg.h != null && act.xg.a != null) {
+      var xh = act.xg.h, xa = act.xg.a;
+      var xw = xh + xa > 0 ? (xh / (xh + xa)) * 100 : 50;
+      var cols = matchColors(info.home && info.home.iso, info.away && info.away.iso);
+      var lead = xh - xa;
+      var ledName = teamName(lead >= 0 ? info.home : info.away,
+        lead >= 0 ? info.homeLabel : info.awayLabel);
+      var verdict;
+      if (Math.abs(lead) < 0.35) verdict = "Chansmässigt en jämn match.";
+      else if (act.h == null || act.a == null) verdict = ledName + " skapade klart mest.";
+      else if (act.h === act.a) verdict = ledName + " skapade klart mest utan att få full utdelning.";
+      else if ((act.h > act.a) === (lead > 0)) verdict = ledName + " vann och skapade också mest – resultatet speglar spelet.";
+      else verdict = ledName + " skapade klart mest – resultatet gick emot spelet.";
       h += '<div class="mi-fx-xg" title="Förväntade mål (xG, Opta via FotMob) utifrån chansernas kvalitet – ' +
-        'jämför med slutresultatet för att se om resultatet speglade spelet">Matchens xG: <strong>' +
-        fmtXg(act.xg.h) + "–" + fmtXg(act.xg.a) + "</strong></div>";
+        'jämför med slutresultatet för att se om resultatet speglade spelet">' +
+        '<span class="mi-fx-lbl">Matchens xG</span>' +
+        '<div class="mi-fx-xg-duel">' +
+          flagImg(info.home && info.home.iso) +
+          '<span class="mi-fx-xg-num">' + fmtXg(xh) + '</span>' +
+          '<span class="mi-fx-xgbar" aria-hidden="true">' +
+            '<span style="width:' + xw.toFixed(1) + '%;background:' + cols.home + '"></span>' +
+            '<span style="width:' + (100 - xw).toFixed(1) + '%;background:' + cols.away + '"></span></span>' +
+          '<span class="mi-fx-xg-num">' + fmtXg(xa) + '</span>' +
+          flagImg(info.away && info.away.iso) +
+        '</div>' +
+        '<span class="mi-fx-xg-verdict">' + esc(verdict) + '</span>' +
+        '</div>';
     }
     return h;
   }
