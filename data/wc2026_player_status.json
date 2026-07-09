@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-09T01:07:39.115Z",
+  "updated": "2026-07-09T05:19:57.181Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -18,7 +18,7 @@
     "bel-amadou-onana": {
       "availability": "doubtful",
       "kind": "other",
-      "detail": "Oro för Amadou Onana på Red Devils: \"Det är allvarliga, inte goda nyheter\"",
+      "detail": "Oro för Amadou Onana vid Red Devils: \"Det är allvarliga, inte goda nyheter\"",
       "updated": "2026-07-07",
       "source": {
         "name": "VoetbalPrimeur.be",
@@ -40,11 +40,11 @@
     "esp-nico-williams": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Nico Williams ökar sin entusiasm efter skadan: \"Väntar på möjligheten\"",
+      "detail": "Nico Williams ökar sin entusiasm efter sin skada: \"Väntar på möjligheten\"",
       "updated": "2026-07-08",
       "source": {
         "name": "El Desmarque",
-        "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPWk9GaVdYeTBXVTktdUtDa0I0ZUx5a2FxUWRibDJWZWRpWWs0RkJaaW1zSHhEQmNmRld3MkxtRVk1NW54ZzMyeDFQelVGNjFRZ2lUVzJ4czlfS2VBVjYyX3dxYW15a01hMDZpSUxwWUdKWnNza1h2dW5aZ2g3czdQNTd4T2ZSWnJ6eTd5cFdpTTNVTVU5ZkN6U2RSMTBuVmZtLUM0ZHA4TXZZUktFZW05T1FTNzliMlRKUklOSzJpZF9GUGc?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOSFVYYUppZndmeDhPVnZDeFNrQl92ZHVGZkNsTWY1NEhCSXdQUEJWeGNRWWs3dndhNjFzclkzcnVBN2dGd1BONzdIS0xaNDNWZ212SXpuSmhRXzExRkRDZkg4cmN4SWFrakFydFlwVGpfc3hzQVVndUNyTHNhaS1KM284TEtnakF5Y1RPY2tObXg4ckRQS0RDNUc1cHRqdkVIc3F2eURLd2pIeUp1TU1jNGRuQ3lIMEE?oc=5"
       },
       "origin": "news"
     },
