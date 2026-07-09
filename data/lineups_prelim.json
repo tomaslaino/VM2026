@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-07-09T20:14:18.410Z",
+    "updatedAt": "2026-07-09T21:44:47.402Z",
     "source": "365scores",
-    "matchCount": 2
+    "matchCount": 3
   },
   "lineups": {
     "k:97": {
@@ -70,6 +70,18 @@
         ],
         "bench": [
           {
+            "name": "Warren Zaire-Emery",
+            "jersey": "18"
+          },
+          {
+            "name": "Bradley Barcola",
+            "jersey": "12"
+          },
+          {
+            "name": "Jean Philippe Mateta",
+            "jersey": "22"
+          },
+          {
             "name": "Robin Risser",
             "jersey": "23"
           },
@@ -106,24 +118,12 @@
             "jersey": "8"
           },
           {
-            "name": "Warren Zaire-Emery",
-            "jersey": "18"
-          },
-          {
             "name": "Rayan Cherki",
             "jersey": "24"
           },
           {
             "name": "Maghnes Akliouche",
             "jersey": "25"
-          },
-          {
-            "name": "Bradley Barcola",
-            "jersey": "12"
-          },
-          {
-            "name": "Jean Philippe Mateta",
-            "jersey": "22"
           },
           {
             "name": "Marcus Thuram",
@@ -192,6 +192,22 @@
         ],
         "bench": [
           {
+            "name": "Zakaria El Ouahdi",
+            "jersey": "13"
+          },
+          {
+            "name": "Sofyan Amrabat",
+            "jersey": "4"
+          },
+          {
+            "name": "Gessime Yassine",
+            "jersey": "16"
+          },
+          {
+            "name": "Soufiane Rahimi",
+            "jersey": "9"
+          },
+          {
             "name": "Munir El Kajoui",
             "jersey": "12"
           },
@@ -212,16 +228,8 @@
             "jersey": "5"
           },
           {
-            "name": "Zakaria El Ouahdi",
-            "jersey": "13"
-          },
-          {
             "name": "Youssef Belammari",
             "jersey": "19"
-          },
-          {
-            "name": "Sofyan Amrabat",
-            "jersey": "4"
           },
           {
             "name": "Samir El Mourabet",
@@ -230,14 +238,6 @@
           {
             "name": "Ayoube Amaimouni-Echghouyab",
             "jersey": "21"
-          },
-          {
-            "name": "Gessime Yassine",
-            "jersey": "16"
-          },
-          {
-            "name": "Soufiane Rahimi",
-            "jersey": "9"
           },
           {
             "name": "Amine Sbaï",
@@ -253,7 +253,7 @@
           }
         ]
       },
-      "updatedAt": "2026-07-09T20:14:17.452Z"
+      "updatedAt": "2026-07-09T21:44:45.653Z"
     },
     "k:98": {
       "status": "probable",
@@ -500,6 +500,252 @@
         ]
       },
       "updatedAt": "2026-07-08T19:55:11.795Z"
+    },
+    "k:99": {
+      "status": "probable",
+      "gameId": 4760721,
+      "kickoff": "2026-07-11T21:00Z",
+      "h": {
+        "formation": "4-3-3",
+        "starters": [
+          {
+            "name": "Örjan Nyland",
+            "jersey": "1",
+            "pos": "G"
+          },
+          {
+            "name": "David Moller Wolfe",
+            "jersey": "5",
+            "pos": "LB"
+          },
+          {
+            "name": "Torbjörn Heggem",
+            "jersey": "17",
+            "pos": "CB"
+          },
+          {
+            "name": "Kristoffer Ajer",
+            "jersey": "3",
+            "pos": "CB"
+          },
+          {
+            "name": "Julian Ryerson",
+            "jersey": "26",
+            "pos": "RB"
+          },
+          {
+            "name": "Patrick Berg",
+            "jersey": "6",
+            "pos": "LM"
+          },
+          {
+            "name": "Sander Berge",
+            "jersey": "8",
+            "pos": "CM"
+          },
+          {
+            "name": "Martin Odegaard",
+            "jersey": "10",
+            "pos": "RM"
+          },
+          {
+            "name": "Antonio Nusa",
+            "jersey": "20",
+            "pos": "LF"
+          },
+          {
+            "name": "Erling Haaland",
+            "jersey": "9",
+            "pos": "ST"
+          },
+          {
+            "name": "Alexander Sorloth",
+            "jersey": "7",
+            "pos": "RF"
+          }
+        ],
+        "bench": [
+          {
+            "name": "Sander Tangvik",
+            "jersey": "12"
+          },
+          {
+            "name": "Egil Selvik",
+            "jersey": "13"
+          },
+          {
+            "name": "Leo Oestigaard",
+            "jersey": "4"
+          },
+          {
+            "name": "Sondre Langås",
+            "jersey": "24"
+          },
+          {
+            "name": "Henrik Falchener",
+            "jersey": "25"
+          },
+          {
+            "name": "Marcus Pedersen",
+            "jersey": "16"
+          },
+          {
+            "name": "Fredrik Bjørkan",
+            "jersey": "15"
+          },
+          {
+            "name": "Morten Thorsby",
+            "jersey": "2"
+          },
+          {
+            "name": "Fredrik Aursnes",
+            "jersey": "14"
+          },
+          {
+            "name": "Kristian Thorstvedt",
+            "jersey": "18"
+          },
+          {
+            "name": "Thelo Aasgaard",
+            "jersey": "19"
+          },
+          {
+            "name": "Oscar Bobb",
+            "jersey": "22"
+          },
+          {
+            "name": "Andreas Schjelderup",
+            "jersey": "21"
+          },
+          {
+            "name": "Jens Hauge",
+            "jersey": "23"
+          },
+          {
+            "name": "Jørgen Strand Larsen",
+            "jersey": "11"
+          }
+        ]
+      },
+      "a": {
+        "formation": "4-2-3-1",
+        "starters": [
+          {
+            "name": "Jordan Pickford",
+            "jersey": "1",
+            "pos": "G"
+          },
+          {
+            "name": "Nico O'Reilly",
+            "jersey": "3",
+            "pos": "LB"
+          },
+          {
+            "name": "Marc Guéhi",
+            "jersey": "6",
+            "pos": "CB"
+          },
+          {
+            "name": "Ezri Konsa",
+            "jersey": "2",
+            "pos": "CB"
+          },
+          {
+            "name": "Djed Spence",
+            "jersey": "25",
+            "pos": "RB"
+          },
+          {
+            "name": "Declan Rice",
+            "jersey": "4",
+            "pos": "DM"
+          },
+          {
+            "name": "Elliot Anderson",
+            "jersey": "8",
+            "pos": "DM"
+          },
+          {
+            "name": "Anthony Gordon",
+            "jersey": "18",
+            "pos": "AM-L"
+          },
+          {
+            "name": "Jude Bellingham",
+            "jersey": "10",
+            "pos": "AM"
+          },
+          {
+            "name": "Bukayo Saka",
+            "jersey": "7",
+            "pos": "AM-R"
+          },
+          {
+            "name": "Harry Kane",
+            "jersey": "9",
+            "pos": "ST"
+          }
+        ],
+        "bench": [
+          {
+            "name": "Dean Henderson",
+            "jersey": "13"
+          },
+          {
+            "name": "James Trafford",
+            "jersey": "23"
+          },
+          {
+            "name": "John Stones",
+            "jersey": "5"
+          },
+          {
+            "name": "Trevoh Chalobah",
+            "jersey": "12"
+          },
+          {
+            "name": "Dan Burn",
+            "jersey": "15"
+          },
+          {
+            "name": "Reece James",
+            "jersey": "24"
+          },
+          {
+            "name": "Jordan Henderson",
+            "jersey": "14"
+          },
+          {
+            "name": "Kobbie Mainoo",
+            "jersey": "16"
+          },
+          {
+            "name": "Morgan Rogers",
+            "jersey": "17"
+          },
+          {
+            "name": "Eberechi Eze",
+            "jersey": "21"
+          },
+          {
+            "name": "Noni Madueke",
+            "jersey": "20"
+          },
+          {
+            "name": "Marcus Rashford",
+            "jersey": "11"
+          },
+          {
+            "name": "Ollie Watkins",
+            "jersey": "19"
+          },
+          {
+            "name": "Ivan Toney",
+            "jersey": "22"
+          }
+        ]
+      },
+      "updatedAt": "2026-07-09T21:44:47.101Z"
     }
   }
 }
