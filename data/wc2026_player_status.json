@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-09T05:19:57.181Z",
+  "updated": "2026-07-09T08:50:24.049Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -15,14 +15,25 @@
       },
       "origin": "news"
     },
-    "bel-amadou-onana": {
+    "bel-diego-moreira": {
       "availability": "doubtful",
-      "kind": "other",
-      "detail": "Oro för Amadou Onana vid Red Devils: \"Det är allvarliga, inte goda nyheter\"",
-      "updated": "2026-07-07",
+      "kind": "injury",
+      "detail": "Moreira om Onanas allvarliga skada: \"Vi måste vara där för honom nu\"",
+      "updated": "2026-07-09",
       "source": {
         "name": "VoetbalPrimeur.be",
-        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPaE5SMkV1ZzI5RnJvRDcwUTliRDRNeW53M0o0UnBRRG9TM2N3YlZqRllTSG54cmNDUWtjSXp0ZVYwQWdBcFBPTTc0cFAtZDFZNkdMRGpOcllPdHVFbmpBb0xPQXdyRnhfb1NGZlFvZkdSbTRFdXJYT3FPNFpfZ2dYaldTZXZxUlRuTDRWRVFFeDJNTGpLZG1heDZvSzVYNHV0b1lvN3RpNGVMdEtfdlBUd2JZaUprczBwc1liSGhySlRrUQ?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPSzA1MVQ1UUxmYm5YU1Q3eDlmdFhzN3lwZ1ktX0lSNnF5VU81dENwVU9sUXpjMU5UalpoMi05TnU2VU1jcTcyUWIzMUxXVzAxZmVOTUhRcElZb29UaDJLSEl4YUFzdkI3Zi16aFZVY29Lam94ZENYdnBWM29PSVZJaThicmNnVDVzbXoxNUNoS0VYN0pMZHA4N2dCNThQemJ3cFdETUlUUk41TXV4N01SRktjWXZyeVczcEpvOWRR?oc=5"
+      },
+      "origin": "news"
+    },
+    "bel-amadou-onana": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Moreira om Onanas allvarliga skada: \"Vi måste vara där för honom nu\"",
+      "updated": "2026-07-09",
+      "source": {
+        "name": "VoetbalPrimeur.be",
+        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPSzA1MVQ1UUxmYm5YU1Q3eDlmdFhzN3lwZ1ktX0lSNnF5VU81dENwVU9sUXpjMU5UalpoMi05TnU2VU1jcTcyUWIzMUxXVzAxZmVOTUhRcElZb29UaDJLSEl4YUFzdkI3Zi16aFZVY29Lam94ZENYdnBWM29PSVZJaThicmNnVDVzbXoxNUNoS0VYN0pMZHA4N2dCNThQemJ3cFdETUlUUk41TXV4N01SRktjWXZyeVczcEpvOWRR?oc=5"
       },
       "origin": "news"
     },
@@ -48,17 +59,6 @@
       },
       "origin": "news"
     },
-    "fra-michael-olise": {
-      "availability": "doubtful",
-      "kind": "suspension",
-      "detail": "Frankrike-Marocko: dåliga nyheter för Michael Olise, som inte vinner sitt fall för sitt gula kort före Frankrike-Marocko",
-      "updated": "2026-07-08",
-      "source": {
-        "name": "RMC Sport",
-        "url": "https://news.google.com/rss/articles/CBMinwJBVV95cUxPVlZJMlVvTXkxTjFrTG9KRmdvT1dId1FPUGkwZE1lVy01Y0pxMFBsY1pQR05adktxR3VxcHJDeDZjbVlqYUZ4aUdldlliZnRXaUpZWGhuU1Ryd1ZNU3VYeXBhdHlvWEZFOXFkV29ka3lyak1iV2dwUlZMdDY4LURDYmtPNnFSV2s2Rmo2Q0piajJBN2dUX015c1NLYW0zTUdhNDZ0SGdVMld0MkI5VWllay1WbUZnSnlheW9KVmR5c3BBWG5iYjhuLWFEZUp6UW5ycTMwZ0QxMGhyVUF6bjNPWnRxUnVldC1HUUs1VXU3Zzc1eFFRMzYzdklUOGJqTXQwQjhudWQ3cjBweWt1cUxWdUVOSzl2bnQ1TzlSWnR2Zw?oc=5"
-      },
-      "origin": "news"
-    },
     "arg-cristian-romero": {
       "availability": "doubtful",
       "kind": "injury",
@@ -72,12 +72,12 @@
     },
     "eng-jordan-henderson": {
       "availability": "doubtful",
-      "kind": "other",
-      "detail": "Jordan Henderson återvänder till Englands läger efter en handledsoperation",
-      "updated": "2026-07-08",
+      "kind": "injury",
+      "detail": "Jordan Henderson återvänder till Englands läger efter en handledsoperation efter en freak-skada i Mexiko",
+      "updated": "2026-07-09",
       "source": {
-        "name": "Sportsnet.ca",
-        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQS2VPcXY1ay1WanBMajZBZmFhTUstR2Joc0h3QnpRWGRmS0ZyWlR2bnNBVDFKZXpSbDE4T3hBaUhjeTJaRU9zck5qWG9WQnNDa2hrUGppeG1lM0ZtM25oWGhIcHo5LU9FaEozcnpxM0VnUmc5cXdkQlo0MGd1YWZGZGw5MWhiS2hYOTVCM1IyMnl6UmJaOGNWWXAxTTZzenp6WlFnQnBiYXBiWXZsVWc?oc=5"
+        "name": "The Washington Post",
+        "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOT0trb05CT01xVGxZU0I5M2xOY2g1NTIyZy1mZWt1dmQyeVo0UzZ0eVRRVENHeE5Cenh5Q1FEWEVjRGppbUQwaU9TZWw4RDlfOEh4VUpFWTdoakNZVWlIa2xweGNDMUJTeWNLMFRweE4ydVRTQURpbW9TSXVBc01vakgwR0pPcDR4ckRvdW9WN0RzVE41OFZVc01adkxjNUtHbFZtZTFnZjk5aHl4RWZYZm9NNmk1VE9IOW42bGVnUF82eS1Bd3E3Q1pEQlYtLWV3SjRnbkJn?oc=5"
       },
       "origin": "news"
     },
