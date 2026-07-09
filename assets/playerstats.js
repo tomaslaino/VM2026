@@ -563,7 +563,8 @@
         gf: 0, ga: 0, gd: 0, y: 0, r: 0, cs: 0, fp: 0,
         /* xG (FotMob/Opta): summeras bara över matcher med xG-underlag; xgGf/
            xgGa = mål i samma matcher så mål−xG-diffen jämför äpplen med äpplen. */
-        xg: 0, xga: 0, xgGf: 0, xgGa: 0, xgM: 0
+        xg: 0, xga: 0, xgGf: 0, xgGa: 0, xgM: 0,
+        matches: []   // per-match-logg (motstånd + mål + xG) för motståndsjusteringen
       };
     });
 
@@ -596,6 +597,15 @@
         hr.xgM++; ar.xgM++;
       }
 
+      /* Per-match-logg för motståndsjusteringen (Motst/jMål/M/jIM/M nedan). */
+      var mh = { key: key, opp: sides.a.iso, gf: ft.h, ga: ft.a, xgf: null, xga: null };
+      var ma = { key: key, opp: sides.h.iso, gf: ft.a, ga: ft.h, xgf: null, xga: null };
+      if (fmx && fmx.h != null && fmx.a != null) {
+        mh.xgf = fmx.h; mh.xga = fmx.a;
+        ma.xgf = fmx.a; ma.xga = fmx.h;
+      }
+      hr.matches.push(mh); ar.matches.push(ma);
+
       (det.bookings || []).forEach(function (bk) {
         var r = bk.team === "h" ? hr : bk.team === "a" ? ar : null;
         if (!r) return;
@@ -605,6 +615,52 @@
 
       var fp = fairPlayForMatch(det);
       hr.fp += fp.h; ar.fp += fp.a;
+    });
+
+    /* ---- Motståndsjustering: vem har målen gjorts mot? ----
+       10 mål mot Tunisien är inte 10 mål mot Spanien. Varje motståndares nivå
+       mäts i deras ÖVRIGA matcher (mötet med det egna laget räknas bort, annars
+       skulle en storseger sänka motståndarens försvarssiffra i just den
+       jämförelsen): anfall = (mål + xG)/2 per match, försvar = (insläppta +
+       xGA)/2 per match; utan xG-underlag används målen rakt av. Nivån krymps
+       mot VM-snittet med SOS_PRIOR pseudomatcher så tidiga extremresultat inte
+       slår igenom fullt ut, och viktningen begränsas till [1/3, 3].
+         jMål/M = Σ mål_i × (VM-snitt / motståndarens försvarsnivå_i) / M
+         jIM/M  = Σ insläppta_i × (VM-snitt / motståndarens anfallsnivå_i) / M
+         Motst  = snitt av motståndarstyrkan (anfall/VM-snitt + VM-snitt/försvar)/2 */
+    var SOS_PRIOR = 2;
+    function sosAtt(m) { return m.xgf != null ? (m.gf + m.xgf) / 2 : m.gf; }
+    function sosDef(m) { return m.xga != null ? (m.ga + m.xga) / 2 : m.ga; }
+    function sosClamp(w) { return Math.min(3, Math.max(1 / 3, w)); }
+    var lamSum = 0, lamN = 0;
+    Object.keys(byIso).forEach(function (iso) {
+      byIso[iso].matches.forEach(function (m) { lamSum += sosAtt(m); lamN++; });
+    });
+    var lam = lamN > 0 ? lamSum / lamN : 0;
+    /* Motståndarens nivå i sina övriga matcher, krympt mot VM-snittet. */
+    function sosRate(oppIso, key, fn) {
+      var list = byIso[oppIso] ? byIso[oppIso].matches : [];
+      var s = 0, n = 0;
+      list.forEach(function (om) { if (om.key !== key) { s += fn(om); n++; } });
+      return (s + SOS_PRIOR * lam) / (n + SOS_PRIOR);
+    }
+    Object.keys(byIso).forEach(function (iso) {
+      var r = byIso[iso];
+      var adjGf = 0, adjGa = 0, qSum = 0, det = [];
+      r.matches.forEach(function (m) {
+        var oDef = sosRate(m.opp, m.key, sosDef);
+        var oAtt = sosRate(m.opp, m.key, sosAtt);
+        var q = lam > 0 ? (oAtt / lam + lam / oDef) / 2 : 1;
+        adjGf += m.gf * (lam > 0 ? sosClamp(lam / oDef) : 1);
+        adjGa += m.ga * (lam > 0 ? sosClamp(lam / oAtt) : 1);
+        qSum += q;
+        det.push((byIso[m.opp] ? byIso[m.opp].short : m.opp) + " " + fmt2(q));
+      });
+      var n = r.matches.length;
+      r.sos = n > 0 ? qSum / n : null;
+      r.jgpm = n > 0 ? adjGf / n : null;
+      r.jgapm = n > 0 ? adjGa / n : null;
+      r.sosDetail = det.join(" · ");
     });
 
     var rows = Object.keys(byIso).map(function (iso) {
@@ -921,6 +977,9 @@
     xga:     { type: "num", get: function (r) { return r.hasXg ? r.xga : null; } },
     xgad:    { type: "num", get: function (r) { return r.hasXg ? r.xgad : null; } },
     xgar:    { type: "num", get: function (r) { return r.xgar; } },
+    sos:     { type: "num", get: function (r) { return r.sos; } },
+    jgpm:    { type: "num", get: function (r) { return r.jgpm; } },
+    jgapm:   { type: "num", get: function (r) { return r.jgapm; } },
     y:       { type: "num", get: function (r) { return r.y; } },
     r:       { type: "num", get: function (r) { return r.r; } },
     ypm:     { type: "num", get: function (r) { return r.ypm; } },
@@ -1817,6 +1876,15 @@
         ? r.xgGa + " insläppta mot " + fmt2(r.xga) + " förväntade – positivt = försvar/målvakt räddar mer än väntat" : null) + "</td>" +
       '<td class="c-stat ps-rate">' + xgRatioCell(r.xgar, true, r.xgar != null
         ? r.xgGa + " insläppta ÷ " + fmt2(r.xga) + " xGA = " + fmt2(r.xgar) + "× förväntat antal insläppta" : null) + "</td>" +
+      '<td class="c-stat ps-rate">' + (r.sos != null
+        ? '<span class="ps-num" title="' + esc("Motståndets styrka per match (1.00 = genomsnittligt VM-lag): " + r.sosDetail) + '">' + fmt2(r.sos) + "</span>"
+        : '<span class="ps-zero">–</span>') + "</td>" +
+      '<td class="c-stat ps-rate">' + (r.jgpm != null
+        ? '<span title="' + esc(fmt2(r.gpm) + " mål/match rått → " + fmt2(r.jgpm) + " justerat: varje matchs mål viktade efter hur svårt motståndet är att göra mål på") + '">' + fmt2(r.jgpm) + "</span>"
+        : '<span class="ps-zero">–</span>') + "</td>" +
+      '<td class="c-stat ps-rate">' + (r.jgapm != null
+        ? '<span title="' + esc(fmt2(r.gapm) + " insläppta/match rått → " + fmt2(r.jgapm) + " justerat: varje matchs insläppta viktade efter motståndarens anfallsstyrka") + '">' + fmt2(r.jgapm) + "</span>"
+        : '<span class="ps-zero">–</span>') + "</td>" +
       '<td class="c-stat">' + cardsCell(r.y, "y") + "</td>" +
       '<td class="c-stat">' + cardsCell(r.r, "r") + "</td>" +
       '<td class="c-stat ps-rate">' + cardsRateCell(r.ypm, r.played, "y") + "</td>" +
@@ -1850,6 +1918,9 @@
       thSort("xga", "xGA", "", "Förväntade insläppta mål: motståndarnas samlade chanskvalitet. Lågt xGA = släpper inte till chanser.") +
       thSort("xgad", "±xGA", "", "Effektivitet bakåt: xGA minus insläppta mål. Positivt = släpper in färre än motståndarnas chanser borde ge (försvar/målvakt räddar mer än väntat).") +
       thSort("xgar", "IM/xGA", "", "Utväxling bakåt: insläppta mål delat med xGA. 1.00 = precis som förväntat, 2.00 = dubbelt så många insläppta som motståndarnas chanser borde ge (grönt under 1, rött över). Till skillnad från ±xGA tar kvoten hänsyn till volymen: 4 insläppta mot 2 förväntade är värre än 27 mot 25.") +
+      thSort("sos", "Motst", "", "Motståndsindex: snittstyrkan på lagen man mött. 1.00 = genomsnittligt VM-lag, högre = tuffare spelschema. Varje motståndares styrka mäts som anfall (mål+xG) och försvar (insläppta+xGA) per match i deras ÖVRIGA matcher – mötet med det egna laget räknas bort – och krymps mot VM-snittet vid få matcher.") +
+      thSort("jgpm", "jMål/M", "", "Motståndsjusterade mål per match: varje matchs mål viktas efter hur svårt motståndet är att göra mål på (deras insläppta mål+xGA per match mot andra lag). Tio mål mot Tunisien viktas ned, två mot Spanien viktas upp. Jämför med Mål/M: högre justerat än rått = målen har gjorts mot tufft motstånd.") +
+      thSort("jgapm", "jIM/M", "", "Motståndsjusterade insläppta per match: varje matchs insläppta viktas efter motståndarens anfallsstyrka (deras mål+xG per match mot andra lag). Tre insläppta mot Spanien är inte lika illa som tre mot Jordanien. Lägre = bättre.") +
       thSort("y", "Gul", "", "Gula kort") +
       thSort("r", "Röd", "", "Röda kort") +
       thSort("ypm", "Gul/M", "", "Gula kort per match") +
@@ -1860,7 +1931,7 @@
       thSort("pts", "P", "", "Poäng") +
       "</tr></thead><tbody>";
     if (!shown.length) {
-      h += '<tr><td class="ps-empty" colspan="26">Inga lag matchar filtren.</td></tr>';
+      h += '<tr><td class="ps-empty" colspan="29">Inga lag matchar filtren.</td></tr>';
     } else {
       shown.forEach(function (r, i) { h += teamRowHtml(r, i); });
     }
