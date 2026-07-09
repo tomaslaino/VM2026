@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-09T08:50:24.049Z",
+  "updated": "2026-07-09T12:24:06.053Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -15,25 +15,14 @@
       },
       "origin": "news"
     },
-    "bel-diego-moreira": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Moreira om Onanas allvarliga skada: \"Vi måste vara där för honom nu\"",
-      "updated": "2026-07-09",
-      "source": {
-        "name": "VoetbalPrimeur.be",
-        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPSzA1MVQ1UUxmYm5YU1Q3eDlmdFhzN3lwZ1ktX0lSNnF5VU81dENwVU9sUXpjMU5UalpoMi05TnU2VU1jcTcyUWIzMUxXVzAxZmVOTUhRcElZb29UaDJLSEl4YUFzdkI3Zi16aFZVY29Lam94ZENYdnBWM29PSVZJaThicmNnVDVzbXoxNUNoS0VYN0pMZHA4N2dCNThQemJ3cFdETUlUUk41TXV4N01SRktjWXZyeVczcEpvOWRR?oc=5"
-      },
-      "origin": "news"
-    },
     "bel-amadou-onana": {
       "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Moreira om Onanas allvarliga skada: \"Vi måste vara där för honom nu\"",
-      "updated": "2026-07-09",
+      "kind": "other",
+      "detail": "Oro för Amadou Onana vid Red Devils: \"Det är allvarliga, inte goda nyheter\"",
+      "updated": "2026-07-07",
       "source": {
         "name": "VoetbalPrimeur.be",
-        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPSzA1MVQ1UUxmYm5YU1Q3eDlmdFhzN3lwZ1ktX0lSNnF5VU81dENwVU9sUXpjMU5UalpoMi05TnU2VU1jcTcyUWIzMUxXVzAxZmVOTUhRcElZb29UaDJLSEl4YUFzdkI3Zi16aFZVY29Lam94ZENYdnBWM29PSVZJaThicmNnVDVzbXoxNUNoS0VYN0pMZHA4N2dCNThQemJ3cFdETUlUUk41TXV4N01SRktjWXZyeVczcEpvOWRR?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPaE5SMkV1ZzI5RnJvRDcwUTliRDRNeW53M0o0UnBRRG9TM2N3YlZqRllTSG54cmNDUWtjSXp0ZVYwQWdBcFBPTTc0cFAtZDFZNkdMRGpOcllPdHVFbmpBb0xPQXdyRnhfb1NGZlFvZkdSbTRFdXJYT3FPNFpfZ2dYaldTZXZxUlRuTDRWRVFFeDJNTGpLZG1heDZvSzVYNHV0b1lvN3RpNGVMdEtfdlBUd2JZaUprczBwc1liSGhySlRrUQ?oc=5"
       },
       "origin": "news"
     },
