@@ -5481,7 +5481,7 @@ tr.ps-openable:hover td { background: color-mix(in srgb, var(--usa-blue) 14%, tr
 tr.ps-league-unq td { opacity: .62; }
 .ps-rating { font-variant-numeric: tabular-nums; }
 
-/* Scatter: VM-betyg mot renommé (mellan verktygsraden och ligatabellen).
+/* Scatter: VM-betyg mot marknadsvärde, log-skala (mellan verktygsraden och ligatabellen).
    Punktfärgerna är validerade mot kortytan (#122238) för CVD-separation och
    kontrast – de ligger medvetet nära tabellens --adv/--live men är egna steg. */
 #psScatterBox { padding: 14px 16px 10px; border-bottom: 1px solid var(--line); }

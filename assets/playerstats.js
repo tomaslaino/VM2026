@@ -18,8 +18,9 @@
     • Ligor – klubbligornas VM: spelarna grupperas på vilken liga (land +
       division, data/club_leagues.json) deras klubb spelar i, med minut-
       viktat FotMob-betyg, produktion och två överprestationsmått:
-        ±Renommé (betyg mot förväntat betyg utifrån ligans renommé – viktad
-        regression över kvalificerade ligor, visualiserad i en scatter-graf)
+        ±Prislapp (betyg mot förväntat betyg utifrån spelarnas marknads-
+        värden – minutviktad regression betyg ~ log(marknadsvärde) på
+        spelarnivå, visualiserad i en scatter-graf med logaritmisk x-axel)
         samt Δ Förväntan (landslagens utveckling mot turneringsstartens
         slutspelsförväntan, data/bracket_probs_pre.json vs
         bracket_probs.json). En hopfällbar "Vad betyder siffrorna?" under
@@ -88,7 +89,7 @@
       players: { key: "points", dir: -1 },
       teams:   { key: "points", dir: -1 },
       regions: { key: "ppm",    dir: -1 },
-      leagues: { key: "oprep",  dir: -1 }
+      leagues: { key: "opmv",   dir: -1 }
     }
   };
 
@@ -682,12 +683,19 @@
        • ±Snitt – ligans minutviktade betyg minus hela turneringens
          minutviktade snittbetyg. Positivt = ligans spelare har presterat
          bättre än VM-snittet på planen.
-       • ±Renommé – ligans betyg minus det betyg man kan förvänta sig av
-         en liga med dess renommé (rep 0–100 i club_leagues.json). Förväntat
-         betyg kommer ur en minutviktad linjär regression betyg ~ renommé
-         över de kvalificerade ligorna; residualen är överprestationen.
-         Lutningen klipps vid 0 så att ett brant "omvänt" samband i små
-         urval inte belönar hög-renommé-ligor med låga förväntningar.
+       • ±Prislapp – ligans betyg minus det betyg man kan förvänta sig av
+         spelarnas marknadsvärden (Transfermarkt, wc2026_player_metrics).
+         Förväntat betyg sätts PER SPELARE ur en minutviktad regression
+         betyg ~ ln(marknadsvärde) över alla betygsatta VM-spelare med
+         känt värde – logaritmen fångar att pengar ger avtagande avkastning
+         (en dubbelt så dyr spelare är inte dubbelt så bra). Ligans värde
+         är det minutviktade snittet av spelarnas egna residualer: varje
+         spelare jämförs med spelare i samma prisklass var de än spelar,
+         så en liga vars VM-spelare kommer från ett par dominanta stor-
+         klubbar (Celtic/Rangers-fallet) bedöms efter de spelarnas pris-
+         lappar, inte efter ligans genomsnittsstandard. Negativ lutning
+         klipps till 0 så små/tidiga urval inte ger dyra ligor lägre
+         förväntningar.
        • Δ Förväntan – hur landslagen som ligans spelare spelar i har
          utvecklats mot turneringsstartens slutspelsförväntan. För varje
          landslag: (förväntade avancemang nu) − (förväntade avancemang vid
@@ -774,32 +782,45 @@
       if (!lg) return; // klubb utan mappning (t.ex. efter truppuppdatering)
       var b = by[lid] || (by[lid] = {
         id: lid, country: lg.country, name: lg.name, tier: lg.tier || 1,
-        rep: lg.rep != null ? lg.rep : null,
         iso: lg.iso || null, flag: lg.flag || "",
         label: lg.country + " – " + lg.name,
         labelN: norm(lg.country + " " + lg.name),
-        players: 0, active: 0, teamIsos: {}, min: 0,
+        players: 0, active: 0, teamIsos: {}, clubSet: {}, min: 0,
         goals: 0, assists: 0, y: 0, r: 0,
-        rSum: 0, rMin: 0, tMin: {}
+        rSum: 0, rMin: 0, tMin: {},
+        mvRSum: 0, mvRMin: 0, mvLogSum: 0
       });
       b.players++;
       if (r.min > 0) b.active++;
       b.teamIsos[r.teamIso] = true;
+      b.clubSet[r.club] = true;
       b.min += r.min;
       b.goals += r.goals; b.assists += r.assists;
       b.y += r.y; b.r += r.r;
       b.rSum += r.rSum; b.rMin += r.rMin;
       b.tMin[r.teamIso] = (b.tMin[r.teamIso] || 0) + r.min;
+      /* Prislapps-underlaget: bara spelare med både betygsatta minuter och
+         känt marknadsvärde (ln-summan bär regressionens x-värde). */
+      if (r.mv > 0 && r.rMin > 0) {
+        b.mvRSum += r.rSum; b.mvRMin += r.rMin;
+        b.mvLogSum += r.rMin * Math.log(r.mv);
+      }
     });
 
     var rows = Object.keys(by).map(function (lid) {
       var b = by[lid];
       b.teams = Object.keys(b.teamIsos).length;
+      b.clubCount = Object.keys(b.clubSet).length;
       b.points = b.goals + b.assists;
       b.gi90 = per90(b.points, b.min);
       b.rating = b.rMin > 0 ? b.rSum / b.rMin : null;
       b.ratingQ = b.rMin >= LEAGUE_QUAL_MIN;
       b.op = b.rating != null && globalRating != null ? b.rating - globalRating : null;
+      /* Prislapps-siffrorna: minutviktat geometriskt snittvärde + betyget
+         över samma spelarurval (så att ± exakt blir snittresidualen). */
+      b.mvAvg = b.mvRMin > 0 ? Math.exp(b.mvLogSum / b.mvRMin) : null;
+      b.mvRating = b.mvRMin > 0 ? b.mvRSum / b.mvRMin : null;
+      b.mvQ = b.mvRMin >= LEAGUE_QUAL_MIN;
 
       /* Δ Förväntan: fördela lagens delta på ligans minutandel per lag. */
       var d = 0, dOk = false;
@@ -813,27 +834,37 @@
       return b;
     });
 
-    /* ±Renommé: minutviktad regression betyg ~ renommé över kvalificerade
-       ligor ger "förväntat betyg" per liga; residualen är överprestationen.
-       Negativ lutning klipps till 0 (= jämför mot viktade snittet) så att
-       små/tidiga urval inte ger hög-renommé-ligor lägre förväntningar. */
+    /* ±Prislapp: minutviktad regression betyg ~ ln(marknadsvärde) på
+       SPELARNIVÅ (alla betygsatta spelare med känt värde, vikt = betygsatta
+       minuter). Ligans förväntade betyg = regressionen i ligans viktade
+       ln-snittvärde, så residualen blir exakt det minutviktade snittet av
+       spelarnas egna residualer: varje spelare jämförs med spelare i samma
+       prisklass oavsett liga – en liga kan inte se överpresterande ut bara
+       för att dess VM-spelare kommer från ligans storklubbar. Negativ
+       lutning klipps till 0 (= jämför mot viktade snittet) i små urval. */
     var reg = null;
-    var pts = rows.filter(function (r) { return r.ratingQ && r.rating != null && r.rep != null; });
-    if (pts.length >= 3) {
-      var W = 0, mx = 0, my = 0;
-      pts.forEach(function (r) { W += r.rMin; mx += r.rMin * r.rep; my += r.rMin * r.rating; });
+    var W = 0, mx = 0, my = 0, nP = 0;
+    prows.forEach(function (r) {
+      if (!(r.mv > 0) || !(r.rMin > 0)) return;
+      nP++; W += r.rMin;
+      mx += r.rMin * Math.log(r.mv);
+      my += r.rSum;
+    });
+    if (nP >= 8 && W > 0) {
       mx /= W; my /= W;
       var sxx = 0, sxy = 0;
-      pts.forEach(function (r) {
-        sxx += r.rMin * (r.rep - mx) * (r.rep - mx);
-        sxy += r.rMin * (r.rep - mx) * (r.rating - my);
+      prows.forEach(function (r) {
+        if (!(r.mv > 0) || !(r.rMin > 0)) return;
+        var dx = Math.log(r.mv) - mx, dy = r.rSum / r.rMin - my;
+        sxx += r.rMin * dx * dx;
+        sxy += r.rMin * dx * dy;
       });
       var slope = sxx > 0 ? Math.max(0, sxy / sxx) : 0;
       reg = { b: slope, a: my - slope * mx };
     }
     rows.forEach(function (r) {
-      r.expRating = reg && r.rep != null ? reg.a + reg.b * r.rep : null;
-      r.oprep = r.expRating != null && r.rating != null ? r.rating - r.expRating : null;
+      r.expRating = reg && r.mvAvg != null ? reg.a + reg.b * Math.log(r.mvAvg) : null;
+      r.opmv = r.expRating != null && r.mvRating != null ? r.mvRating - r.expRating : null;
     });
 
     rows.regression = reg;
@@ -920,9 +951,9 @@
     goals:   { type: "num", get: function (r) { return r.goals; } },
     assists: { type: "num", get: function (r) { return r.assists; } },
     min:     { type: "num", get: function (r) { return r.min; } },
-    rep:     { type: "num", get: function (r) { return r.rep; } },
+    mv:      { type: "num", get: function (r) { return r.mvAvg; } },
     rating:  { type: "num", qual: true, get: function (r) { return r.rating; } },
-    oprep:   { type: "num", qual: true, get: function (r) { return r.oprep; } },
+    opmv:    { type: "num", qual: "mv", get: function (r) { return r.opmv; } },
     dexp:    { type: "num", get: function (r) { return r.dexp; } }
   };
 
@@ -1042,10 +1073,11 @@
     if (s.type === "num") {
       var an = av == null ? -Infinity : av;
       var bn = bv == null ? -Infinity : bv;
-      /* Betygsbaserade kolumner kräver LEAGUE_QUAL_MIN spelade minuter. */
+      /* Betygsbaserade kolumner kräver LEAGUE_QUAL_MIN spelade minuter
+         ("mv" = samma krav men räknat på spelare med känt marknadsvärde). */
       if (s.qual) {
-        if (!a.ratingQ) an = -Infinity;
-        if (!b.ratingQ) bn = -Infinity;
+        if (!(s.qual === "mv" ? a.mvQ : a.ratingQ)) an = -Infinity;
+        if (!(s.qual === "mv" ? b.mvQ : b.ratingQ)) bn = -Infinity;
       }
       d = an - bn;
     } else {
@@ -1142,6 +1174,16 @@
     return (v > 0 ? "+" : "") + s;
   }
 
+  /* Marknadsvärde i euro → kompakt etikett ("4.5 M€", "600 k€"). */
+  function fmtMv(v) {
+    if (v == null || !isFinite(v) || v <= 0) return "–";
+    if (v >= 950e3) {
+      var m = v / 1e6;
+      return (m >= 20 ? String(Math.round(m)) : m.toFixed(1)) + " M€";
+    }
+    return Math.round(v / 1e3) + " k€";
+  }
+
   /* Returnerar konfig för de tre topplistorna i aktuellt läge. */
   function leaderConfigs() {
     if (stateUi.mode === "leagues") {
@@ -1160,10 +1202,10 @@
           rateFn: function (r) { return r.teams + " landslag · " + r.min + " min"; }
         },
         {
-          id: "loprep", kind: "leagues", title: "Över sitt renommé", icon: "💎", rows: lrows,
-          valFn: function (r) { return r.ratingQ && r.oprep != null && r.oprep > 0 ? r.oprep : 0; },
-          mainFn: function (r) { return fmtSigned(r.oprep); },
-          rateFn: function (r) { return "betyg " + fmtRating(r.rating) + " · förväntat " + fmtRating(r.expRating); }
+          id: "lopmv", kind: "leagues", title: "Över sin prislapp", icon: "💎", rows: lrows,
+          valFn: function (r) { return r.mvQ && r.opmv != null && r.opmv > 0 ? r.opmv : 0; },
+          mainFn: function (r) { return fmtSigned(r.opmv); },
+          rateFn: function (r) { return "betyg " + fmtRating(r.mvRating) + " · förväntat " + fmtRating(r.expRating); }
         }
       ];
     }
@@ -1419,26 +1461,29 @@
         "</div>";
     }).join("");
     var facts = [];
-    if (lg.rep != null) facts.push("Renommé <strong>" + lg.rep + "</strong>");
+    if (lg.mvAvg != null) facts.push("Marknadsvärde/spelare <strong>" + fmtMv(lg.mvAvg) + "</strong>");
     if (lg.ratingQ && lg.rating != null) facts.push("ligabetyg <strong>" + fmtRating(lg.rating) + "</strong>");
-    if (lg.ratingQ && lg.oprep != null) facts.push("±Renommé <strong>" + fmtSigned(lg.oprep) + "</strong>");
+    if (lg.mvQ && lg.opmv != null) facts.push("±Prislapp <strong>" + fmtSigned(lg.opmv) + "</strong>");
     var m = ensureModal();
     m.querySelector(".ps-modal-card").innerHTML =
       '<button class="ps-modal-close" title="Stäng">×</button>' +
       '<div class="ps-modal-head"><span class="ps-modal-icon">' + leagueFlag(lg) + "</span>" +
         "<h3>" + esc(lg.label) + "</h3>" +
-        '<span class="ps-modal-sub">' + lg.players + " spelare · " + lg.teams + " landslag</span></div>" +
+        '<span class="ps-modal-sub">' + lg.players + " spelare · " + lg.clubCount +
+          (lg.clubCount === 1 ? " klubb" : " klubbar") + " · " + lg.teams + " landslag</span></div>" +
       '<div class="ps-top-list">' + (rows || '<div class="ps-empty">Inga spelare.</div>') + "</div>" +
       '<div class="ps-modal-note">' + (facts.length ? facts.join(" · ") + ". " : "") +
         "Minuter, mål+assist och betyg avser VM 2026. Klicka på en spelare för full profil.</div>";
     m.classList.add("open");
   }
 
-  /* ---------- Scatter: FotMob-betyg mot renommé (Ligor-läget) ----------
-     Varje punkt är en kvalificerad liga (≥ LEAGUE_QUAL_MIN min). Den streckade
-     linjen är regressionens förväntade betyg; avståndet till linjen är exakt
-     tabellens ±Renommé. Byggs efter render (behöver containerns bredd) och
-     återbyggs vid fönsterresize. */
+  /* ---------- Scatter: FotMob-betyg mot marknadsvärde (Ligor-läget) ----------
+     Varje punkt är en kvalificerad liga (≥ LEAGUE_QUAL_MIN betygsatta minuter
+     av spelare med känt marknadsvärde). X-axeln är ligans typiska marknads-
+     värde per spelare på LOGARITMISK skala – pengar ger avtagande avkastning,
+     så förväntanslinjen (spelarregressionen betyg ~ ln(värde)) blir rak här.
+     Avståndet till linjen är exakt tabellens ±Prislapp. Byggs efter render
+     (behöver containerns bredd) och återbyggs vid fönsterresize. */
 
   function renderLeagueScatter() {
     var box = document.getElementById("psScatterBox");
@@ -1446,7 +1491,7 @@
     var rows = stateUi.mode === "leagues" && leagueLoad >= 2 ? buildLeagueRows() : [];
     var reg = rows.regression;
     var pts = rows.filter ? rows.filter(function (r) {
-      return r.ratingQ && r.rating != null && r.rep != null;
+      return r.mvQ && r.mvRating != null && r.mvAvg > 0;
     }) : [];
     if (!reg || pts.length < 3) { box.innerHTML = ""; box.style.display = "none"; return; }
     box.style.display = "";
@@ -1455,15 +1500,19 @@
     var H = 300, mL = 48, mR = 14, mT = 14, mB = 36;
     var iw = W - mL - mR, ih = H - mT - mB;
 
-    /* Domäner: renommé fast 0–100, betyg efter data + regressionens ändpunkter. */
-    var repMin = Infinity, repMax = -Infinity, yMin = Infinity, yMax = -Infinity;
+    /* Domäner: marknadsvärde log-skalat med luft i kanterna, betyg efter
+       data + förväntanslinjens ändpunkter. */
+    var vMin = Infinity, vMax = -Infinity, yMin = Infinity, yMax = -Infinity;
     pts.forEach(function (r) {
-      if (r.rep < repMin) repMin = r.rep;
-      if (r.rep > repMax) repMax = r.rep;
-      if (r.rating < yMin) yMin = r.rating;
-      if (r.rating > yMax) yMax = r.rating;
+      if (r.mvAvg < vMin) vMin = r.mvAvg;
+      if (r.mvAvg > vMax) vMax = r.mvAvg;
+      if (r.mvRating < yMin) yMin = r.mvRating;
+      if (r.mvRating > yMax) yMax = r.mvRating;
     });
-    [reg.a + reg.b * repMin, reg.a + reg.b * repMax].forEach(function (v) {
+    var x0 = vMin / 1.3, x1 = vMax * 1.3;
+    if (x1 <= x0) x1 = x0 * 10;
+    var lx0 = Math.log(x0), lx1 = Math.log(x1);
+    [reg.a + reg.b * lx0, reg.a + reg.b * lx1].forEach(function (v) {
       if (v < yMin) yMin = v;
       if (v > yMax) yMax = v;
     });
@@ -1471,35 +1520,51 @@
     var y1 = Math.ceil((yMax + 0.1) * 2) / 2;
     if (y1 <= y0) y1 = y0 + 1;
     var yStep = (y1 - y0) / 0.5 > 7 ? 1 : 0.5;
-    function X(v) { return mL + (v / 100) * iw; }
+    function X(v) { return mL + ((Math.log(v) - lx0) / (lx1 - lx0)) * iw; }
     function Y(v) { return mT + ((y1 - v) / (y1 - y0)) * ih; }
 
+    /* Skalstreck på log-axeln: 1–2–5-serie inom domänen (10 k€ – 1 000 M€);
+       blir det trångt glesas de ut till 1- och 5-stegen. */
+    var ticks = [];
+    for (var ex = 4; ex <= 9; ex++) {
+      [1, 2, 5].forEach(function (mant) {
+        var v = mant * Math.pow(10, ex);
+        if (v >= x0 && v <= x1) ticks.push(v);
+      });
+    }
+    if (ticks.length > Math.max(4, Math.floor(iw / 55))) {
+      ticks = ticks.filter(function (v) {
+        var mant = v / Math.pow(10, Math.floor(Math.log(v) / Math.LN10 + 1e-9));
+        return mant < 1.5 || (mant > 4 && mant < 6);
+      });
+    }
+
     var s = '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + " " + H +
-      '" style="width:100%;height:auto" role="img" aria-label="Punktdiagram: ligornas FotMob-betyg mot renommé">';
+      '" style="width:100%;height:auto" role="img" aria-label="Punktdiagram: ligornas FotMob-betyg mot spelarnas marknadsvärde (logaritmisk skala)">';
     /* Rutnät + axelvärden (hårfina linjer, dämpad text). */
     for (var yv = y0; yv <= y1 + 1e-9; yv += yStep) {
       s += '<line class="grid" x1="' + mL + '" y1="' + Y(yv) + '" x2="' + (W - mR) + '" y2="' + Y(yv) + '"></line>' +
         '<text class="axis-text" x="' + (mL - 7) + '" y="' + (Y(yv) + 3.5) + '" text-anchor="end">' + fmtRating(yv) + "</text>";
     }
-    for (var xv = 0; xv <= 100; xv += 20) {
-      s += '<line class="grid" x1="' + X(xv) + '" y1="' + mT + '" x2="' + X(xv) + '" y2="' + (mT + ih) + '"></line>' +
-        '<text class="axis-text" x="' + X(xv) + '" y="' + (mT + ih + 15) + '" text-anchor="middle">' + xv + "</text>";
-    }
-    s += '<text class="axis-title" x="' + (mL + iw / 2) + '" y="' + (H - 4) + '" text-anchor="middle">Renommé (0–100)</text>';
+    ticks.forEach(function (tv) {
+      s += '<line class="grid" x1="' + X(tv) + '" y1="' + mT + '" x2="' + X(tv) + '" y2="' + (mT + ih) + '"></line>' +
+        '<text class="axis-text" x="' + X(tv) + '" y="' + (mT + ih + 15) + '" text-anchor="middle">' + (tv / 1e6) + "</text>";
+    });
+    s += '<text class="axis-title" x="' + (mL + iw / 2) + '" y="' + (H - 4) + '" text-anchor="middle">Marknadsvärde per spelare (M€ · log-skala)</text>';
     s += '<text class="axis-title" transform="rotate(-90)" x="' + (-(mT + ih / 2)) + '" y="13" text-anchor="middle">FotMob-betyg</text>';
-    /* Regressionslinjen över datats renommé-spann. */
-    s += '<line class="reg" x1="' + X(repMin) + '" y1="' + Y(reg.a + reg.b * repMin) +
-      '" x2="' + X(repMax) + '" y2="' + Y(reg.a + reg.b * repMax) + '"></line>';
+    /* Förväntanslinjen (rak på log-skalan) över hela domänen. */
+    s += '<line class="reg" x1="' + X(x0) + '" y1="' + Y(reg.a + reg.b * lx0) +
+      '" x2="' + X(x1) + '" y2="' + Y(reg.a + reg.b * lx1) + '"></line>';
 
-    /* Selektiva direktetiketter: extremerna i ±Renommé + högst renommé.
+    /* Selektiva direktetiketter: extremerna i ±Prislapp + dyrast liga.
        Landsnamn (kort, unikt) – liganamn först om två ligor delar land. */
-    var byOp = pts.slice().sort(function (a, b) { return b.oprep - a.oprep; });
+    var byOp = pts.slice().sort(function (a, b) { return b.opmv - a.opmv; });
     var labelSet = {};
     [byOp[0], byOp[1], byOp[byOp.length - 1], byOp[byOp.length - 2]].forEach(function (r) {
       if (r) labelSet[r.id] = true;
     });
-    var topRep = pts.reduce(function (m2, r) { return r.rep > m2.rep ? r : m2; }, pts[0]);
-    labelSet[topRep.id] = true;
+    var topMv = pts.reduce(function (m2, r) { return r.mvAvg > m2.mvAvg ? r : m2; }, pts[0]);
+    labelSet[topMv.id] = true;
     var countryCount = {};
     pts.forEach(function (r) {
       if (labelSet[r.id]) countryCount[r.country] = (countryCount[r.country] || 0) + 1;
@@ -1508,12 +1573,12 @@
 
     var dots = "", hits = "", labels = "";
     pts.forEach(function (r, i) {
-      var cx = X(r.rep), cy = Y(r.rating);
-      var dir = r.oprep >= 0 ? "up" : "down";
+      var cx = X(r.mvAvg), cy = Y(r.mvRating);
+      var dir = r.opmv >= 0 ? "up" : "down";
       dots += '<circle class="pt ' + dir + '" data-i="' + i + '" cx="' + cx + '" cy="' + cy + '" r="5"></circle>';
       hits += '<circle class="hit" data-i="' + i + '" data-ps-league="' + esc(r.id) + '" cx="' + cx + '" cy="' + cy +
-        '" r="13" tabindex="0" role="button" aria-label="' + esc(r.label + ": betyg " + fmtRating(r.rating) +
-        ", renommé " + r.rep + ", ±renommé " + fmtSigned(r.oprep)) + '"></circle>';
+        '" r="13" tabindex="0" role="button" aria-label="' + esc(r.label + ": betyg " + fmtRating(r.mvRating) +
+        ", marknadsvärde " + fmtMv(r.mvAvg) + " per spelare, ±prislapp " + fmtSigned(r.opmv)) + '"></circle>';
       if (labelSet[r.id]) {
         /* Hoppa över etiketter som skulle krocka med en redan placerad. */
         var collide = placed.some(function (p) { return Math.abs(p.y - cy) < 13 && Math.abs(p.x - cx) < 100; });
@@ -1531,8 +1596,8 @@
     box.innerHTML =
       '<div class="ps-scatter">' +
         '<div class="ps-scat-head">' +
-          "<h4>Presterar ligorna över sitt renommé?</h4>" +
-          '<p>Varje punkt är en liga. Ligor <span class="ps-up">över</span> den streckade linjen presterar bättre än renommét, <span class="ps-down">under</span> sämre.</p>' +
+          "<h4>Presterar ligorna över sin prislapp?</h4>" +
+          '<p>Varje punkt är en liga, placerad efter VM-spelarnas typiska marknadsvärde (logaritmisk skala – pengar ger avtagande avkastning). Ligor <span class="ps-up">över</span> den streckade linjen presterar bättre än vad spelare i den prisklassen brukar, <span class="ps-down">under</span> sämre.</p>' +
         "</div>" +
         '<div class="ps-scat-legend">' +
           '<span class="ps-scat-key"><span class="k-dot up"></span>Över förväntat</span>' +
@@ -1560,10 +1625,10 @@
       var name = document.createElement("span");
       name.className = "t-name"; name.textContent = r.label;
       tip.appendChild(name);
-      tip.appendChild(tipRow("FotMob-betyg", fmtRating(r.rating)));
+      tip.appendChild(tipRow("FotMob-betyg", fmtRating(r.mvRating)));
       tip.appendChild(tipRow("Förväntat", fmtRating(r.expRating)));
-      tip.appendChild(tipRow("±Renommé", fmtSigned(r.oprep)));
-      tip.appendChild(tipRow("Renommé", String(r.rep)));
+      tip.appendChild(tipRow("±Prislapp", fmtSigned(r.opmv)));
+      tip.appendChild(tipRow("MV/spelare", fmtMv(r.mvAvg)));
       tip.appendChild(tipRow("Speltid", r.min + "' · " + r.players + " spelare"));
       tip.classList.add("on");
       var cx = +hit.getAttribute("cx"), cy = +hit.getAttribute("cy");
@@ -1855,10 +1920,10 @@
     var ratingCell = r.rating == null ? dash
       : unq ? '<span class="ps-zero" title="Under ' + LEAGUE_QUAL_MIN + ' spelade minuter – osäkert snitt">' + fmtRating(r.rating) + "</span>"
       : '<span class="ps-num">' + fmtRating(r.rating) + "</span>";
-    var oprepCell = r.oprep == null ? dash
-      : '<span class="' + (unq ? "ps-zero" : r.oprep >= 0 ? "ps-up" : "ps-down") + '"' +
-        (r.expRating != null ? ' title="Förväntat betyg av renommét: ' + fmtRating(r.expRating) + '"' : "") + ">" +
-        fmtSigned(r.oprep) + "</span>";
+    var opmvCell = r.opmv == null ? dash
+      : '<span class="' + (!r.mvQ ? "ps-zero" : r.opmv >= 0 ? "ps-up" : "ps-down") + '"' +
+        (r.expRating != null ? ' title="Förväntat betyg av prislappen: ' + fmtRating(r.expRating) + '"' : "") + ">" +
+        fmtSigned(r.opmv) + "</span>";
     var dexpCell = r.dexp == null || r.min <= 0 ? dash
       : '<span class="' + (r.dexp >= 0 ? "ps-up" : "ps-down") + '">' + fmtSigned(r.dexp) + "</span>";
     /* Divisionsnivån vävs in i liganamnet (bara när den inte är högsta serien)
@@ -1873,9 +1938,9 @@
       '<td class="c-stat ps-num' + (r.goals ? " hot" : "") + '">' + (r.goals || dash) + "</td>" +
       '<td class="c-stat ps-num' + (r.assists ? " hot" : "") + '">' + (r.assists || dash) + "</td>" +
       '<td class="c-stat">' + (r.min ? '<span class="ps-num">' + r.min + "'</span>" : dash) + "</td>" +
-      '<td class="c-stat">' + (r.rep != null ? '<span class="ps-num">' + r.rep + "</span>" : dash) + "</td>" +
+      '<td class="c-stat">' + (r.mvAvg != null ? '<span class="ps-num">' + fmtMv(r.mvAvg) + "</span>" : dash) + "</td>" +
       '<td class="c-stat ps-rating">' + ratingCell + "</td>" +
-      '<td class="c-stat">' + oprepCell + "</td>" +
+      '<td class="c-stat">' + opmvCell + "</td>" +
       '<td class="c-stat">' + dexpCell + "</td>" +
       "</tr>";
   }
@@ -1896,9 +1961,9 @@
       thSort("goals", "Mål", "", "Mål av ligans spelare i VM") +
       thSort("assists", "Ass", "", "Assist av ligans spelare i VM") +
       thSort("min", "Min", "", "Spelade minuter totalt i VM") +
-      thSort("rep", "Renommé", "", "Ligans styrka inför VM på en 0–100-skala (100 = Premier League). Fryst under turneringen.") +
+      thSort("mv", "Marknadsvärde", "", "Typiskt marknadsvärde (Transfermarkt) för ligans VM-spelare: minutviktat geometriskt snitt.") +
       thSort("rating", "Betyg", "", "Minutviktat FotMob-betyg 1–10 för ligans spelare (kräver " + LEAGUE_QUAL_MIN + " spelade minuter).") +
-      thSort("oprep", "±Renommé", "", "Betyg minus förväntat betyg av renommét. Plus = ligan presterar över sitt renommé.") +
+      thSort("opmv", "±Prislapp", "", "Betyg minus förväntat betyg utifrån spelarnas marknadsvärden. Plus = ligans spelare presterar bättre än spelare i samma prisklass brukar.") +
       thSort("dexp", "Δ Förv.", "", "Landslagens utveckling mot slutspelsförväntan vid VM-start. Plus = ligans landslag går bättre än väntat.") +
       "</tr></thead><tbody>";
     if (!shown.length) {
@@ -2000,13 +2065,13 @@
      hopfällbar kolumnnyckel. Ersätter de tidigare utspridda hjälptexterna. */
   function leagueExplainerHtml() {
     return '<div class="ps-explain">' +
-      '<p class="ps-explain-lead">Varje rad är en <strong>klubbliga</strong>. Måttet i fokus är hur ligans VM-spelare presterar mot vad ligans renommé förväntar sig.</p>' +
+      '<p class="ps-explain-lead">Varje rad är en <strong>klubbliga</strong>. Måttet i fokus är hur ligans VM-spelare presterar mot vad deras <strong>marknadsvärden</strong> förväntar sig.</p>' +
       '<details class="ps-explain-more">' +
         "<summary>Vad betyder kolumnerna?</summary>" +
         "<dl>" +
-          "<dt>Renommé</dt><dd>Ligans styrka inför VM på en skala 0–100 (100 = Premier League). Fryst under turneringen.</dd>" +
+          "<dt>Marknadsvärde</dt><dd>Typiskt marknadsvärde (Transfermarkt) för ligans VM-spelare – minutviktat geometriskt snitt. I grafen på logaritmisk skala: pengar ger avtagande avkastning, en dubbelt så dyr spelare är inte dubbelt så bra.</dd>" +
           "<dt>Betyg</dt><dd>FotMobs snittbetyg 1–10 för ligans spelare i VM hittills, viktat efter speltid.</dd>" +
-          '<dt>±Renommé</dt><dd><span class="ps-up">Plus</span> = presterar över sitt renommé, <span class="ps-down">minus</span> = under. Samma sak som avståndet till linjen i grafen.</dd>' +
+          '<dt>±Prislapp</dt><dd><span class="ps-up">Plus</span> = ligans spelare presterar bättre än spelare i samma prisklass brukar, <span class="ps-down">minus</span> = sämre. Förväntat betyg sätts <strong>per spelare</strong> utifrån spelarens eget marknadsvärde, inte utifrån ligans standard – en liga vars VM-spelare kommer från ett par dominanta storklubbar (tänk Celtic/Rangers) bedöms efter de spelarnas prislappar och ser inte överpresterande ut bara för att resten av ligan är svag. Samma sak som avståndet till linjen i grafen.</dd>' +
           "<dt>Δ Förv.</dt><dd>Hur ligans landslag har över- eller underpresterat mot slutspelsförväntan vid VM-start.</dd>" +
         "</dl>" +
         '<p class="ps-explain-note">Gråa rader har spelat för lite (under ' + LEAGUE_QUAL_MIN + ' min) för ett rättvist betyg. Klicka på en liga för dess VM-spelare.</p>' +
