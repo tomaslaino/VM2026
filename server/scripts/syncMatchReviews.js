@@ -1,9 +1,12 @@
 /*
   Bygger data/match_reviews.json AUTOMATISKT: "Facit" per SPELAD slutspelsmatch –
   en efteranalys som jämför redaktionens FÖRHANDSPROGNOS (ur news_summaries.json)
-  med hur matchen FAKTISKT gick, väger in statistik (matchdetails, FotMob-betyg)
-  och färska matchrapporter/reaktioner ur medierna, och avslutar med ett självbetyg
-  och 1–3 LÄRDOMAR som matas tillbaka in i kommande förhandsanalyser.
+  med hur matchen FAKTISKT gick, väger in statistik (matchdetails, FotMob-betyg
+  och matchens xG – lag-xG + största spelar-xG, så texten kan avgöra om resultatet
+  speglade spelet: förtjänt seger, stulen vinst eller brända lägen) och färska
+  matchrapporter/reaktioner ur medierna, och avslutar med ett självbetyg och 1–3
+  LÄRDOMAR (gärna xG-grundade) som matas tillbaka in i kommande förhandsanalyser.
+  Matchens xG sparas även i posten (actual.xg) och visas i Facit-fliken.
 
   Pipeline per spelad match:
     1. Läs spelade slutspelsmatcher ur results.json (status FINISHED) som HAR en
@@ -250,9 +253,11 @@ function scoreRef(it, match, now) {
   return s;
 }
 
-function sourceHashOf(refs, actual) {
+function sourceHashOf(refs, actual, xg) {
+  // xg ingår så facit skrivs om ifall xG-datan backfillas efter första körningen.
   const basis = refs.map((r) => r.url).sort().join("\n") +
-    "|" + [actual.h, actual.a, actual.viaPens, actual.viaEt, actual.winnerIso].join(",");
+    "|" + [actual.h, actual.a, actual.viaPens, actual.viaEt, actual.winnerIso].join(",") +
+    "|" + (xg && xg.h != null ? `${xg.h}-${xg.a}` : "");
   return crypto.createHash("sha1").update(basis).digest("hex").slice(0, 16);
 }
 
@@ -265,7 +270,7 @@ function scoreLineSv(actual, match) {
   return base;
 }
 
-function factsBlock(match, det, actual, ratings) {
+function factsBlock(match, det, actual, ratings, fm) {
   const lines = [];
   const winName = actual.winnerIso ? (TEAM_NAMES[actual.winnerIso] || {}).sv : null;
   lines.push(`- Slutresultat: ${scoreLineSv(actual, match)}${winName ? ` (${winName} vidare)` : ""}.`);
@@ -282,6 +287,26 @@ function factsBlock(match, det, actual, ratings) {
   if (sot) sbits.push(`skott på mål ${sot}`);
   if (corn) sbits.push(`hörnor ${corn}`);
   if (sbits.length) lines.push(`- Statistik (${match.home.sv}–${match.away.sv}): ${sbits.join(", ")}.`);
+  /* Matchens xG (Opta via FotMob): lag-xG + spelaren med störst xG per lag.
+     Låter texten avgöra om resultatet speglade spelet – förtjänt seger, stulen
+     vinst eller brända lägen – i stället för att bara läsa slutsiffrorna. */
+  if (fm && fm.xg && fm.xg.h != null && fm.xg.a != null) {
+    const n = (v) => Number(v).toFixed(2).replace(".", ",");
+    let s = `- xG (förväntade mål, Opta): ${n(fm.xg.h)}–${n(fm.xg.a)}`;
+    if (fm.xgot && fm.xgot.h != null && fm.xgot.a != null) s += ` (xG på mål: ${n(fm.xgot.h)}–${n(fm.xgot.a)})`;
+    lines.push(s + ` – att jämföra med målen ${actual.h}–${actual.a}.`);
+    const top = (side) => {
+      const px = fm.playerXg && fm.playerXg[side];
+      const best = px && Object.entries(px).sort((x, y) => (y[1].xg || 0) - (x[1].xg || 0))[0];
+      if (!best || !(best[1].xg >= 0.3)) return null;
+      return `${titleCaseName(best[0])} ${n(best[1].xg)} xG på ${best[1].shots} skott (${best[1].goals} mål)`;
+    };
+    const th = top("h"), ta = top("a");
+    if (th || ta) {
+      lines.push(`- Störst xG i matchen: ${[th && `${match.home.sv} – ${th}`, ta && `${match.away.sv} – ${ta}`]
+        .filter(Boolean).join(" · ")}.`);
+    }
+  }
   const reds = (det.bookings || []).filter((b) => b.card === "RED" || b.card === "YELLOW_RED")
     .map((b) => `${b.player || "?"} (${b.minute || "?"}')`);
   if (reds.length) lines.push(`- Utvisningar: ${reds.join(", ")}.`);
@@ -329,6 +354,7 @@ ${list}
 SKRIVKRAV
 - Slagkraftig, kort rubrik (headline, REN TEXT). Kort ingress (lead, ~20–30 ord) som slår fast hur väl prognosen höll.
 - 2–4 stycken (paragraphs), cirka 180–270 ord TOTALT (lead + paragraphs). Var konkret men stram: koppla utfallet till DET VI SA INNAN – vad vi fick rätt i, vad vi missade, och VARFÖR (avgörande spelare, taktik, avbräck, förhållanden, tur/domslut). Använd fakta och siffror ur FACIT och högst 1–2 korta citat/omdömen ur källorna. Undvik upprepningar och utfyllnad.
+- Finns xG-siffror i FACIT: använd dem för att bedöma om RESULTATET SPEGLADE SPELET – förtjänt seger, stulen vinst (vann trots klart lägre xG) eller brända lägen (förlorade trots klart högre xG) – och därmed om prognosen missade på grund av felbedömning eller marginaler/tur. Skilj på de fallen; det påverkar både texten och lärdomarna.
 - Hitta INTE på fakta, namn, siffror eller citat. Håll dig till FACIT och källorna.
 - **fet** för nyckelnamn/avgörande fakta, *kursiv* för citat. Varje påstående ur en källa får en hänvisning direkt efter: [[3]] eller [[2,5]] (max 1–2 per påstående). Fakta ur FACIT behöver ingen hänvisning.
 - Ton: initierad, självkritisk där det behövs, inte skrytsam. Erkänn misar öppet.
@@ -339,6 +365,7 @@ SJÄLVBETYG (grade)
 
 LÄRDOMAR (lessons) – VIKTIGAST FÖR FRAMTIDEN
 - 1–3 KORTA, GENERELLA lärdomar (ren text, en mening var) som kan göra KOMMANDE förhandsanalyser bättre. Formulera dem så de går att tillämpa på andra matcher, inte bara denna (t.ex. "Övervärdera inte hemmalagets höjdfördel när motståndaren redan är höjdvan." eller "Väg in att lag som spelat förlängning i förra matchen ofta startar trött."). Undvik banaliteter.
+- När xG-siffrorna motiverar det: gör gärna EN lärdom statistisk, t.ex. hur lag som länge över-/underpresterat mot xG ska bedömas, eller när en prognosmiss berodde på marginaler snarare än fel matchbild (och alltså inte ska överkorrigeras).
 
 Svara ENDAST med JSON: {"headline":"...","lead":"...","paragraphs":["...","..."],"grade":{"verdict":"...","score":3},"lessons":["...","..."]}.`;
 }
@@ -463,8 +490,9 @@ async function main() {
     const pred = parsePrediction(match.summary.prediction, match);
     const verdict = gradePrediction(pred, actual);
 
+    const fm = (fotmob.matches || {})[match.key] || null;
     const refs = await buildReferences(match, teamNews, prevSv);
-    const hash = sourceHashOf(refs, actual);
+    const hash = sourceHashOf(refs, actual, fm && fm.xg);
     const already = existing && existing.sourceHash === hash;
     const settled = match.hoursSinceKo > REVIEW_WINDOW_H;   // gammalt facit uppdateras inte i onödan
     if (!force && existing && (already || settled)) {
@@ -472,7 +500,7 @@ async function main() {
     }
 
     const ratings = topRatings(fotmob, match.key, match);
-    const facts = factsBlock(match, det, actual, ratings);
+    const facts = factsBlock(match, det, actual, ratings, fm);
     const bodies = refs.length ? await attachBodies(refs) : 0;
     const prompt = buildPrompt(match, refs, facts, verdict, pred);
 
@@ -493,7 +521,8 @@ async function main() {
       headline: art.headline, lead: art.lead, paragraphs: art.paragraphs,
       references: art.references, grade: art.grade, lessons: art.lessons,
       predicted: { text: pred.raw, a: pred.a, b: pred.b, winnerIso: pred.winnerIso, viaPens: pred.viaPens, viaEt: pred.viaEt },
-      actual: { h: actual.h, a: actual.a, winnerIso: actual.winnerIso, viaPens: actual.viaPens, viaEt: actual.viaEt, pen: actual.pen },
+      actual: { h: actual.h, a: actual.a, winnerIso: actual.winnerIso, viaPens: actual.viaPens, viaEt: actual.viaEt, pen: actual.pen,
+        xg: fm && fm.xg && fm.xg.h != null ? fm.xg : null },
       verdict,
       written: new Date().toISOString(), sourceHash: hash, generated: true
     };

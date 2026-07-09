@@ -12,6 +12,12 @@
        per lands utgåva, samma frågor som syncTeamNews) + en internationell
        förhandssökning på "Lag A" "Lag B". Dedupas, åldersfiltreras, rankas på
        relevans + färskhet och översätts till svenska (gratis gtx, ingen nyckel).
+       Dessutom byggs ett deterministiskt xG-UNDERLAG per lag ur
+       data/fotmob_ratings.json (mål/xG, insläppta/xGA, effektivitet, senaste
+       matcherna) som matas in i prompten – så prognosen väger vem som faktiskt
+       skapar chanser mot vem som bara gör mer/mindre än chanserna borde ge.
+       xG-fingeravtrycket ingår i refsHash så artikeln regenereras när nytt
+       xG-underlag landat (t.ex. efter lagets senaste match).
     3. Trappa: ju närmare avspark, desto tätare regenerering. Artikeln skrivs bara
        om när referenserna faktiskt ändrats (refsHash) eller trappans intervall
        löpt ut – annars hoppas matchen över (spar API-anrop).
@@ -54,6 +60,9 @@ const PLAYERS_FILE = path.join(__dir, "../../data/wc2026_players.json");
 // Lärdomskorpus från post-match-facit (syncMatchReviews.js): matas in i prompten
 // så prognoserna lär av tidigare träffar/missar. Valfri – saknas den, ingen sektion.
 const LESSONS_FILE = path.join(__dir, "../../data/analysis_lessons.json");
+// FotMob-xG per spelad match (syncFotmobRatings.js): deterministiskt statistik-
+// underlag till prompten. Valfri – saknas den, ingen xG-sektion.
+const FOTMOB_FILE = path.join(__dir, "../../data/fotmob_ratings.json");
 
 const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 // Reservmodell (egen, separat gratiskvot) om primärmodellen slår i kvottaket (429).
@@ -440,8 +449,9 @@ async function buildReferences(match, teamNews, prevSv, availItems) {
   }));
 }
 
-function refsHashOf(refs) {
-  return crypto.createHash("sha1").update(refs.map((r) => r.url).sort().join("\n")).digest("hex").slice(0, 16);
+function refsHashOf(refs, extra) {
+  const basis = refs.map((r) => r.url).sort().join("\n") + (extra ? "|" + extra : "");
+  return crypto.createHash("sha1").update(basis).digest("hex").slice(0, 16);
 }
 
 /* ---------- Prompt + Gemini ---------- */
@@ -479,7 +489,79 @@ function lessonsSection(lessons) {
   return `\n\nLÄRDOMAR FRÅN TIDIGARE FACIT (redaktionens egna efteranalyser – väg in dessa så du inte upprepar gamla misstag)\n${items.join("\n")}${rate ? "\n" + rate : ""}`;
 }
 
-function buildPrompt(match, refs, lessons) {
+/* ---------- xG-underlag (data/fotmob_ratings.json) ----------
+
+   Deterministisk lagprofil ur alla SPELADE VM-matcher med xG-data: mål och xG
+   framåt/bakåt, effektivitet (mål − xG resp. xGA − insläppta) och de senaste
+   matcherna match för match. Matas in i prompten som facit-siffror så modellen
+   kan väga VEM SOM FAKTISKT SKAPAR CHANSER mot vem som bara över-/under-
+   presterar mot sina lägen – utan att hitta på statistik. */
+
+const svNum = (v, dec = 2) => v.toFixed(dec).replace(".", ",");
+const svSigned = (v, dec = 2) => (v >= 0 ? "+" : "−") + svNum(Math.abs(v), dec);
+
+function loadXgProfiles() {
+  let fixtures = {}, results = {}, fot = {};
+  try {
+    const raw = JSON.parse(fs.readFileSync(RESULTS_FILE, "utf8"));
+    fixtures = raw.fixtures || {};
+    results = raw.results || {};
+  } catch { return null; }
+  try { fot = JSON.parse(fs.readFileSync(FOTMOB_FILE, "utf8")).matches || {}; } catch { return null; }
+
+  const rows = [];
+  for (const [key, fx] of Object.entries(fixtures)) {
+    if ((fx.status || "").toUpperCase() !== "FINISHED") continue;
+    const r = results[key];
+    const x = fot[key] && fot[key].xg;
+    if (!r || r.h == null || r.a == null || !x || x.h == null || x.a == null) continue;
+    const hIso = isoOf(fx.home), aIso = isoOf(fx.away);
+    if (!hIso || !aIso) continue;
+    rows.push({ key, date: fx.utcDate || "", hIso, aIso, r, x });
+  }
+  rows.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+
+  const prof = {};
+  const add = (iso, oppIso, gf, ga, xf, xa) => {
+    const p = prof[iso] || (prof[iso] = { n: 0, gf: 0, ga: 0, xg: 0, xga: 0, recent: [] });
+    p.n++; p.gf += gf; p.ga += ga; p.xg += xf; p.xga += xa;
+    p.recent.push({ oppIso, gf, ga, xf, xa });
+  };
+  for (const row of rows) {
+    add(row.hIso, row.aIso, row.r.h, row.r.a, row.x.h, row.x.a);
+    add(row.aIso, row.hIso, row.r.a, row.r.h, row.x.a, row.x.h);
+  }
+  return prof;
+}
+
+function xgTeamLine(iso, p) {
+  const name = (TEAM_NAMES[iso] || {}).sv || iso;
+  const recent = p.recent.slice(-3).reverse().map((m) => {
+    const opp = (TEAM_NAMES[m.oppIso] || {}).sv || m.oppIso;
+    return `${m.gf}–${m.ga} mot ${opp} (xG ${svNum(m.xf)}–${svNum(m.xa)})`;
+  }).join(", ");
+  return `- ${name} (${p.n} VM-matcher): ${p.gf} mål på ${svNum(p.xg)} xG (${svSigned(p.gf - p.xg)} mot förväntat), ` +
+    `${p.ga} insläppta på ${svNum(p.xga)} xGA (${svSigned(p.xga - p.ga)} = försvar/målvakt mot förväntat). ` +
+    `Senaste: ${recent}.`;
+}
+
+function xgSection(match, prof) {
+  const h = prof && prof[match.homeIso];
+  const a = prof && prof[match.awayIso];
+  if (!h && !a) return "";
+  const lines = [h && xgTeamLine(match.homeIso, h), a && xgTeamLine(match.awayIso, a)].filter(Boolean);
+  return `\n\nSTATISTISKT UNDERLAG – xG I TURNERINGEN (Opta via FotMob; redaktionens egna facit-siffror – hitta inte på andra)
+${lines.join("\n")}
+Tolkning: xG mäter chansernas kvalitet. Mål − xG över noll = laget gör mer än chanserna borde ge (kliniska avslut – eller tur som tenderar att falla tillbaka, avgör själv utifrån källorna); under noll = skapar mer än det får betalt för och kan vara bättre än resultaten antyder. xGA − insläppta över noll = försvar/målvakt räddar mer än väntat. Väg in vad xG:t säger om det verkliga styrkeförhållandet i din prognos och referera gärna siffrorna i texten – de behöver INGEN källhänvisning (redaktionens egna data).`;
+}
+
+/* Kompakt xG-fingeravtryck för refsHash: ändras när nytt xG-underlag landat. */
+function xgFingerprint(match, prof) {
+  const f = (p) => (p ? `${p.n}:${p.xg.toFixed(2)}:${p.xga.toFixed(2)}` : "0");
+  return `xg:${f(prof && prof[match.homeIso])}|${f(prof && prof[match.awayIso])}`;
+}
+
+function buildPrompt(match, refs, lessons, xg) {
   const list = refs.map((r, i) => {
     let s = `[${i + 1}]${r.avail ? " [AVBRÄCK]" : ""}${r.conditions ? " [FÖRHÅLLANDEN]" : ""} (${r.source || "okänd källa"}) ${r.title}`;
     if (r.body) s += `\n    Utdrag: ${r.body}`;
@@ -506,7 +588,7 @@ Leta i källorna efter de faktorer som faktiskt betyder något för just den hä
 - Taktik: nyckeldueller, presspel, omställningar, fasta situationer, en möjlig planändring.
 - Yttre faktorer: höjd, väder, plan, hemmapublik, resande, domarprofil.
 - Narrativ: press på lagen, tränar-/spelarcitat, inbördes historik, rivalitet, interna problem.
-- Statistik: form, mål/xG, försvarsdata, oddsläge/favoritskap – om det finns i källorna.${lessonsSection(lessons)}
+- Statistik: form, mål/xG, försvarsdata, oddsläge/favoritskap – ur källorna OCH ur det statistiska xG-underlaget nedan.${xg || ""}${lessonsSection(lessons)}
 
 SKRIVKRAV (ARTIKELN)
 - Slagkraftig rubrik (headline, REN TEXT utan markörer eller källhänvisningar) och en ingress (lead, cirka 35–50 ord) som slår an artikelns huvudtes och antyder slutsatsen.
@@ -628,6 +710,7 @@ async function main() {
     ? (JSON.parse(fs.readFileSync(TEAM_NEWS_FILE, "utf8")).teams || {}) : {};
   const avail = loadAvailability();
   const lessons = loadLessons();   // lärdomar/träffsäkerhet ur tidigare facit (valfritt)
+  const xgProfiles = loadXgProfiles(); // xG-lagprofiler ur fotmob_ratings (valfritt)
 
   // url→svensk rubrik ur tidigare referenser (spar översättningsanrop).
   const prevSv = new Map();
@@ -676,7 +759,7 @@ async function main() {
 
     const refs = await buildReferences(match, teamNews, prevSv, availItemsForMatch(match, avail));
     if (refs.length < 3) { console.log(`${match.key}: för få referenser (${refs.length}).`); continue; }
-    const hash = refsHashOf(refs);
+    const hash = refsHashOf(refs, xgFingerprint(match, xgProfiles));
     const tierMs = tierIntervalH(match.hoursToKo) * 3600000;
     const tierElapsed = !writtenMs || now - writtenMs >= tierMs;
     const changed = !existing || existing.refsHash !== hash;
@@ -689,7 +772,7 @@ async function main() {
     const bodies = await attachBodies(refs);
     console.log(`${match.key}: ${bodies}/${refs.length} källor med brödtext.`);
 
-    const prompt = buildPrompt(match, refs, lessons);
+    const prompt = buildPrompt(match, refs, lessons, xgSection(match, xgProfiles));
     if (dryRun) {
       console.log(`\n===== ${match.key} ${match.home.sv}–${match.away.sv} (${refs.length} ref) =====`);
       console.log(prompt);

@@ -1551,6 +1551,12 @@
     var badges = reviewBadge(v.winner, "Rätt vinnare", "Fel vinnare") +
       reviewBadge(v.score, "Rätt resultat", "Fel resultat");
     if (badges) h += '<div class="mi-fx-badges">' + badges + "</div>";
+    // Matchens xG (om synken hunnit hämta det): speglade resultatet spelet?
+    if (act.xg && act.xg.h != null && act.xg.a != null) {
+      h += '<div class="mi-fx-xg" title="Förväntade mål (xG, Opta via FotMob) utifrån chansernas kvalitet – ' +
+        'jämför med slutresultatet för att se om resultatet speglade spelet">Matchens xG: <strong>' +
+        fmtXg(act.xg.h) + "–" + fmtXg(act.xg.a) + "</strong></div>";
+    }
     return h;
   }
 
