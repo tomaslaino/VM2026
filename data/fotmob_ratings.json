@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-07-09T17:16:40.134Z",
+    "updatedAt": "2026-07-09T22:23:18.935Z",
     "source": "fotmob",
-    "matchCount": 96
+    "matchCount": 97
   },
   "matches": {
     "g:A:2": {
@@ -13019,6 +13019,152 @@
         }
       },
       "updatedAt": "2026-07-09T17:16:39.722Z"
+    },
+    "k:97": {
+      "fotmobId": 4653851,
+      "teamRating": {
+        "h": 7.5,
+        "a": 6.3
+      },
+      "xg": {
+        "h": 3.05,
+        "a": 0.14
+      },
+      "xgot": {
+        "h": 2.62,
+        "a": 0.07
+      },
+      "players": {
+        "h": {
+          "mike maignan": 7.5,
+          "jules kounde": 7.5,
+          "lucas digne": 7.7,
+          "adrien rabiot": 7.7,
+          "dayot upamecano": 7.4,
+          "william saliba": 7.3,
+          "ousmane dembele": 8.3,
+          "kylian mbappe": 8.6,
+          "michael olise": 7.8,
+          "desire doue": 8.4,
+          "bradley barcola": 6.7,
+          "warren zaire emery": 6.2,
+          "jean philippe mateta": 6.1
+        },
+        "a": {
+          "yassine bounou": 7.5,
+          "achraf hakimi": 6.6,
+          "anass salah eddine": 6.2,
+          "neil el aynaoui": 6.1,
+          "issa diop": 6,
+          "noussair mazraoui": 5.5,
+          "brahim diaz": 6.8,
+          "ayyoub bouaddi": 6,
+          "bilal el khannouss": 6.5,
+          "azzedine ounahi": 6.7,
+          "chemsdine talbi": 6.2,
+          "gessime yassine": 6,
+          "sofyan amrabat": 6.5,
+          "soufiane rahimi": 5.9,
+          "zakaria el ouahdi": 6
+        }
+      },
+      "playerXg": {
+        "h": {
+          "jules kounde": {
+            "xg": 0.05,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "lucas digne": {
+            "xg": 0.02,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "adrien rabiot": {
+            "xg": 0.05,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "dayot upamecano": {
+            "xg": 0.44,
+            "xgot": 0.21,
+            "shots": 1,
+            "goals": 0
+          },
+          "ousmane dembele": {
+            "xg": 0.23,
+            "xgot": 0.16,
+            "shots": 4,
+            "goals": 1
+          },
+          "kylian mbappe": {
+            "xg": 1.3,
+            "xgot": 1.33,
+            "shots": 4,
+            "goals": 1
+          },
+          "michael olise": {
+            "xg": 0.17,
+            "xgot": 0,
+            "shots": 3,
+            "goals": 0
+          },
+          "desire doue": {
+            "xg": 0.32,
+            "xgot": 0.54,
+            "shots": 3,
+            "goals": 0
+          },
+          "bradley barcola": {
+            "xg": 0.05,
+            "xgot": 0.24,
+            "shots": 1,
+            "goals": 0
+          },
+          "jean philippe mateta": {
+            "xg": 0.35,
+            "xgot": 0.15,
+            "shots": 2,
+            "goals": 0
+          }
+        },
+        "a": {
+          "achraf hakimi": {
+            "xg": 0.04,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "neil el aynaoui": {
+            "xg": 0.03,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "brahim diaz": {
+            "xg": 0.04,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "azzedine ounahi": {
+            "xg": 0.02,
+            "xgot": 0.07,
+            "shots": 1,
+            "goals": 0
+          },
+          "gessime yassine": {
+            "xg": 0.01,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          }
+        }
+      },
+      "updatedAt": "2026-07-09T22:23:18.532Z"
     }
   }
 }
