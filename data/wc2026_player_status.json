@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-09T20:14:02.268Z",
+  "updated": "2026-07-09T21:54:02.171Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -101,17 +101,6 @@
       "source": {
         "name": "Sports Mole",
         "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOWDJnMTFJRDF4NFpnSHN0c0owOVZwQTFYSVRVcXdsX2xsYW4yWEIzV1lyRlptMHV3cW52RFR1TlhEbHFmajRKZnpUa080N05QNDhDM21ZVUZvOWxpeFZrUV9QcTF0VDFxbE1nQ01IVjhmem1MVXo1Q2FnTTdnd0lEVEd5RGtXVndyR3Vua0k3WG43Mk8zMTZzbkVOSm1OSkljcHVnV0poVjdQQ21VY2ctNGNxaEpFeENMYUxFR3NXOXotejNFUU1PUmtPaG91NkZNQkhDTTZEQmlZN08xNW5XMnZMbzFOZnJtb0kzWWJGcTBIRUVRNHRobkxn?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-jude-bellingham": {
-      "availability": "doubtful",
-      "kind": "suspension",
-      "detail": "Jude Bellingham en av fyra Englandsstjärnor som riskerar att få VM-semifinalavstängning",
-      "updated": "2026-07-07",
-      "source": {
-        "name": "The Sun",
-        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPSlY4Qm52OTZJMmxuMWluVXVoS1NTcUdrLVNVQ2pRTUFrR2ZoV0VvMnZEQXI2ZndDVWdLaWgwTnZILVhaYk5FM3BjVWUyVktyaXRXWlcxV19haDN2QnF2WHd1WVREZjZkU0VzckZLcHNBWUx5bVl3NVI5UlZMUGVpRjNwTjNZVEZNMVZlamd3d3pHaXQ3UVdRLThSckF6UQ?oc=5"
       },
       "origin": "news"
     },
