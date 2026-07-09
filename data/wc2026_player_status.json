@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-09T15:39:52.724Z",
+  "updated": "2026-07-09T18:15:27.499Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -23,6 +23,17 @@
       "source": {
         "name": "VoetbalPrimeur.be",
         "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPaE5SMkV1ZzI5RnJvRDcwUTliRDRNeW53M0o0UnBRRG9TM2N3YlZqRllTSG54cmNDUWtjSXp0ZVYwQWdBcFBPTTc0cFAtZDFZNkdMRGpOcllPdHVFbmpBb0xPQXdyRnhfb1NGZlFvZkdSbTRFdXJYT3FPNFpfZ2dYaldTZXZxUlRuTDRWRVFFeDJNTGpLZG1heDZvSzVYNHV0b1lvN3RpNGVMdEtfdlBUd2JZaUprczBwc1liSGhySlRrUQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "esp-pedri": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Lara Ferreiro, psykolog: \"Pedri kunde ha pressat sin kropp och sinne till det yttersta i flera år. Hans största rädsla är inte skada, utan att sluta känna sig nödvändig.\"",
+      "updated": "2026-07-09",
+      "source": {
+        "name": "Semana",
+        "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPc29fa2gyR0MtQ19zTWtIODVZemRyd0JaQ2MxQ2NWbldLUkxxaXhGRzNXTzVGLUc1dURWTjB4djZmLXlYMzg2V1NzNFZ1XzNIQzY3RFVTWTA3S3Zhc1I4ZkJWeHFOQ2l5bHJ4LXF3dVFqRE5ZQWZsOGhYckFFazZHTTZhVFJqT2t3QWtla2dvVWE2enEzcUhjUi1YSWJpeWtXeVF0NmJjMTlmUzAwUXp1VnllbU52SkNiRDlHME1lc29mQmpoRTBWWGFFSFhQM1cwdjBoeUkwZUZGaTFnYkpJQnBBMjhFVUl0MGtqM0tVRHdIa09SQ01ib3MteENSRVU2TDc2MVN0WlBncFE?oc=5"
       },
       "origin": "news"
     },
@@ -62,11 +73,11 @@
     "eng-jordan-henderson": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Englands skadestängningslista och returdatum för världscupmatchen i Norge: Reece James, Jarell Quansah, Jordan Henderson",
-      "updated": "2026-07-08",
+      "detail": "Jordan Henderson återvänder till Englands läger efter en handledsoperation efter en freak-skada i Mexiko",
+      "updated": "2026-07-09",
       "source": {
-        "name": "Sports Mole",
-        "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOWDJnMTFJRDF4NFpnSHN0c0owOVZwQTFYSVRVcXdsX2xsYW4yWEIzV1lyRlptMHV3cW52RFR1TlhEbHFmajRKZnpUa080N05QNDhDM21ZVUZvOWxpeFZrUV9QcTF0VDFxbE1nQ01IVjhmem1MVXo1Q2FnTTdnd0lEVEd5RGtXVndyR3Vua0k3WG43Mk8zMTZzbkVOSm1OSkljcHVnV0poVjdQQ21VY2ctNGNxaEpFeENMYUxFR3NXOXotejNFUU1PUmtPaG91NkZNQkhDTTZEQmlZN08xNW5XMnZMbzFOZnJtb0kzWWJGcTBIRUVRNHRobkxn?oc=5"
+        "name": "The Washington Post",
+        "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOT0trb05CT01xVGxZU0I5M2xOY2g1NTIyZy1mZWt1dmQyeVo0UzZ0eVRRVENHeE5Cenh5Q1FEWEVjRGppbUQwaU9TZWw4RDlfOEh4VUpFWTdoakNZVWlIa2xweGNDMUJTeWNLMFRweE4ydVRTQURpbW9TSXVBc01vakgwR0pPcDR4ckRvdW9WN0RzVE41OFZVc01adkxjNUtHbFZtZTFnZjk5aHl4RWZYZm9NNmk1VE9IOW42bGVnUF82eS1Bd3E3Q1pEQlYtLWV3SjRnbkJn?oc=5"
       },
       "origin": "news"
     },
