@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-10T18:54:28.450Z",
+  "updated": "2026-07-10T20:47:22.955Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -12,6 +12,17 @@
       "source": {
         "name": "SRF",
         "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNZ2VJY2g3enFGMGlvbXowS3lfYkdKSHE2NUFmbTVaSGZfV2NtUmhwR2tOWFowbFNETEhOd0ltQmdBWkw0Um04VDFXT0pkb2FSbkpyNmZDTTd6bDJDRHlSNkZkejJrWTJNX1NmQVJ5YVJfWlRtazFmT0ttVklMY1Z2MldKRHhqeHhDeVlMd0xFbmY0VnhQU3VweVFsWEQyRlFsU3RTQTVrd0piWXQ3VzZQckdQRFZnbmtZYUkyU3dwZlQzdw?oc=5"
+      },
+      "origin": "news"
+    },
+    "bel-thibaut-courtois": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Katastrof för de röda djävlarna: Thibaut Courtois lämnar planen gråtande med en skada mot Spanien",
+      "updated": "2026-07-10",
+      "source": {
+        "name": "Circus Daily",
+        "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQOWVKTWViMkpaX3RPU3Z4T0VHUUhWUXl1eWpVejlzSjB6cWU4ZHg2NW5GbTh4Y24wbDNjZFNzNDZLdHo5b3Bnakc3OUp6ejJKbXpmdzB0ZTFIbWFuamhFaGJWamQtZk5tcVdkaUJlVXVCMllDSjVrNnU3WW5CZHI3SmpFaV9qWG1JbVVZOUN3SmhNRXFoc2tTVXN2a2JxYWFOMF9PeG56OVRiUWtxeHloR2lmc2tOTUNUQzlERUprWFFlSHMyWE1kR2FR?oc=5"
       },
       "origin": "news"
     },
@@ -70,36 +81,14 @@
       },
       "origin": "news"
     },
-    "esp-mikel-merino": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Mikel Merino, på stöd av De la Fuente under sin skada: \"Det är svårt att hitta en tränare som visar dig så mycket förtroende\"",
-      "updated": "2026-07-09",
-      "source": {
-        "name": "Cadena SER",
-        "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOSE9BMVRITVBoUG5DZ1dlODl4eWJCMVpUYk1WU2QwMDhfTF9GUUpWU1ZwMVhpb3U5cjBWWmY1UmJEaHZYMGljRUtGNVdhcUZqNWswUWN5RWNqLTdTZlhBaGxZV0t0aXVCdWNpdlNSUHFFVUhpVjRqbmZIUHJJLU5SMVhyV2xPYWZZVGQ4RE1Xd0swNzltU1A3T2dBTlppc29xYnpibERmNlhIby1FZ01kZlV0Uy0yX2tfbUFJUlh0TnAwTUdPcnFSRUpqeWloZ21HdWFIZXZxU1hKZmdZRjVXekdGY2ZNSTl3WTNRZEU2bVg0VF9UODEtanNtblBDOWRmdmdqTV9PRlMtOVlOVDFIYdIBpAJBVV95cUxNM0pfbGJZTVlhMmxWOHM3MUUxRFVqMFhpV3pqb1diUjYxNi10QlZna21ROVVuZndSRHNWQURZcnhQcmxEcHJULXVKZmZhWW1NeUgxQjJmaWVWSFFmQXE0YU5SeTBRQ1Q2UnJobmRSMjFMeVE2dE1QekhGclBjcVZSQ2VVXy15NXFWTnFVbkhmYldxNVlGYTVaZHVlMDNiSDhOX3hKaVViTlVhTGZKdGIyNXJfUTZTcGdrdTI3RFJxeVNjWjE1bFZYT19WNkRTN0RjdTFXb1RoZ3hyclVrYnMtaGdnRE1mdm9fdkZLOVdvVWc1ZTJaSjB6YllKR3ZYYjBYd2lIZnFwMEtMdnFhRF9xOUxaT0tsTUlkTEF1U2FZYnlGbjFK?oc=5"
-      },
-      "origin": "news"
-    },
-    "esp-pedri": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Lara Ferreiro, psykolog: \"Pedri kunde ha pressat sin kropp och sinne till det yttersta i flera år. Hans största rädsla är inte skada, utan att sluta känna sig nödvändig.\"",
-      "updated": "2026-07-09",
-      "source": {
-        "name": "Semana",
-        "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPc29fa2gyR0MtQ19zTWtIODVZemRyd0JaQ2MxQ2NWbldLUkxxaXhGRzNXTzVGLUc1dURWTjB4djZmLXlYMzg2V1NzNFZ1XzNIQzY3RFVTWTA3S3Zhc1I4ZkJWeHFOQ2l5bHJ4LXF3dVFqRE5ZQWZsOGhYckFFazZHTTZhVFJqT2t3QWtla2dvVWE2enEzcUhjUi1YSWJpeWtXeVF0NmJjMTlmUzAwUXp1VnllbU52SkNiRDlHME1lc29mQmpoRTBWWGFFSFhQM1cwdjBoeUkwZUZGaTFnYkpJQnBBMjhFVUl0MGtqM0tVRHdIa09SQ01ib3MteENSRVU2TDc2MVN0WlBncFE?oc=5"
-      },
-      "origin": "news"
-    },
     "fra-kylian-mbappe": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Kylian Mbappé skadad i fotleden: ska vi vara oroliga för spelarens hälsotillstånd?",
+      "detail": "Franska laget: inga bekymmer för Kylian Mbappé trots en svullen fotled",
       "updated": "2026-07-10",
       "source": {
-        "name": "Doctissimo",
-        "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPQndQWmlkcWpyOVk3czVsUmMzZ1FoWFd3X1U5ME85QV9haWhXZ3pZUnRjTTlGN1J3X3JoY2E3WGd0OXI1RFFtQUF0M2t5ZkYyOE9wWjhhQ3A3S0tEWDRRc2hWZF81NEdsN2l4a0Yybko0R0Q2X29sdVg4TU0wcDRQUEt2bmh2RVhIVmVrYkhkdlJpQUJtMElBWDFQT25iMkItaWtlZEtWMjRyS2h0TlFSRXdKY0dRTDVpQ2dITk1zQzNlOGlFSkVkTS1HZHlnaDF4?oc=5"
+        "name": "Le Parisien",
+        "url": "https://news.google.com/rss/articles/CBMiigJBVV95cUxQX2JkMWp2X1Nzcm8zcy1LcjNmc2l5ZGZJZVVtWmlKM282OVR1cmg2VkQwOVZlSUF2dGlrbm1hM0cwYnRIVlZ0clQtNk5NUUxURGlIdzloV1N0REp6d0xMd1FwWDRXUUZfVDlsRGloQ0pBUjJ0VXFTVUZyZnNCcW1uOHh0SVZfX0lOU1B4SWRYeUU4aUVzcWYwbDNLQUdCclhrZEw5Q1h6YjRfUFNLdldCTzA0SENSRVhzbzNVd0xPNEZjVGgwNGtlNG5MNy1ndzVvbzJiRlg5QkxSMHpvMXNVaERpck45eE43X251a2QzNXhDamxBbmdhZE1kS3dHaTBjM0RuZ2E4TkZ3UQ?oc=5"
       },
       "origin": "news"
     },
