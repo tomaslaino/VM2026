@@ -334,6 +334,8 @@
     if (info && info.played) {
       // Facit (efteranalys som jämför prognos med utfall) för spelade slutspelsmatcher.
       fetchMatchReviews().then(function () { if (openKey) renderModal(); });
+      // Match-xG till statistikflikens xG + xG-effektivitet.
+      fetchFotmobXg().then(function () { if (openKey) renderModal(); });
     }
     var m = ensureModal();
     m.classList.add("open");
@@ -629,8 +631,8 @@
       if (b.player) ensure(b.player).cards.push(b.card);
     });
     (det.subs || []).forEach(function (s) {
-      if (s.out) ensure(s.out).subOut = true;
-      if (s.in) ensure(s.in).subIn = true;
+      if (s.out) { var eo = ensure(s.out); eo.subOut = true; if (s.minute != null) eo.subOutMin = s.minute; }
+      if (s.in) { var ei = ensure(s.in); ei.subIn = true; if (s.minute != null) ei.subInMin = s.minute; }
     });
     return map;
   }
@@ -717,6 +719,14 @@
     return '<div class="mi-pitch"><div class="mi-pitch-lines" aria-hidden="true"></div>' + markers + '</div>';
   }
 
+  /* Bytesmarkör med byteminut (klockslag) – samma i gräsplanen och listan. */
+  function subBadgeHtml(dir, arrow, label, min) {
+    var hasMin = min != null && min !== "";
+    var title = label + (hasMin ? " " + min + "’" : "");
+    return '<span class="mi-pl-ic sub ' + dir + '" title="' + esc(title) + '">' + arrow +
+      (hasMin ? '<span class="mi-sub-min">' + esc(min) + '’</span>' : "") + "</span>";
+  }
+
   function playerBadgesHtml(events) {
     if (!events) return "";
     var parts = [];
@@ -732,8 +742,8 @@
       var cls = CARD_CLS[c] || "yellow";
       parts.push('<span class="mi-pl-ic card ' + cls + '" title="' + esc(CARD_TXT[c] || "Kort") + '"></span>');
     });
-    if (events.subOut) parts.push('<span class="mi-pl-ic sub out" title="Utbytt">▼</span>');
-    if (events.subIn) parts.push('<span class="mi-pl-ic sub in" title="Inbytt">▲</span>');
+    if (events.subOut) parts.push(subBadgeHtml("out", "▼", "Utbytt", events.subOutMin));
+    if (events.subIn) parts.push(subBadgeHtml("in", "▲", "Inbytt", events.subInMin));
     if (!parts.length) return "";
     return '<span class="mi-pl-badges">' + parts.join("") + "</span>";
   }
@@ -884,14 +894,64 @@
     redCards: "Röda kort"
   };
 
+  /* En statistikrad (värde · etikett · värde + proportionell stapel). hNum/aNum
+     styr stapeldelningen; hDisp/aDisp är de visade texterna. */
+  function miStatBarHtml(label, hDisp, aDisp, hNum, aNum, cols) {
+    var hv = isFinite(hNum) ? hNum : 0;
+    var av = isFinite(aNum) ? aNum : 0;
+    var pct = hv + av > 0 ? Math.round((hv / (hv + av)) * 100) : 50;
+    return '<div class="mi-stat">' +
+      '<div class="mi-stat-row">' +
+        '<span class="mi-stat-val">' + esc(hDisp) + '</span>' +
+        '<span class="mi-stat-lbl">' + esc(label) + '</span>' +
+        '<span class="mi-stat-val">' + esc(aDisp) + '</span>' +
+      '</div>' +
+      '<div class="mi-stat-bar">' +
+        '<span class="home" style="width:' + pct + '%;background:' + cols.home + '"></span>' +
+        '<span class="away" style="width:' + (100 - pct) + '%;background:' + cols.away + '"></span>' +
+      '</div>' +
+      '</div>';
+  }
+
+  /* Faktiskt gjorda mål (till xG-effektivitet): efter ev. förlängning, men
+     inte straffläggning. */
+  function goalsForXg(det) {
+    var s = det && det.score;
+    if (!s) return null;
+    var x = s.et || s.ft || s.rt;
+    return x && typeof x.h === "number" && typeof x.a === "number" ? x : null;
+  }
+
+  /* Match-xG + xG-effektivitet (mål per xG) ur FotMob-datan (fotmobXg) – ESPN:s
+     gratisdata saknar xG. Visas bara när FotMob-xG finns för matchen. */
+  function xgRowsHtml(det, info, cols) {
+    var m = info && info.key && fotmobXg ? fotmobXg[info.key] : null;
+    var xg = m && m.xg;
+    if (!xg || xg.h == null || xg.a == null) return "";
+    var xh = isFinite(xg.h) ? xg.h : 0;
+    var xa = isFinite(xg.a) ? xg.a : 0;
+    var h = miStatBarHtml("Förväntade mål (xG)", fmtXg(xh), fmtXg(xa), xh, xa, cols);
+    var g = goalsForXg(det);
+    if (g) {
+      var effH = xh > 0 ? g.h / xh : null;
+      var effA = xa > 0 ? g.a / xa : null;
+      var dispH = effH == null ? "–" : Math.round(effH * 100) + " %";
+      var dispA = effA == null ? "–" : Math.round(effA * 100) + " %";
+      h += miStatBarHtml("xG-effektivitet", dispH, dispA, effH || 0, effA || 0, cols);
+    }
+    return h;
+  }
+
   function statsHtml(det, info, noTitle) {
     var stats = (det && det.stats) || [];
-    if (!stats.length) return "";
     var hIso = info && info.home && info.home.iso;
     var aIso = info && info.away && info.away.iso;
     var cols = matchColors(hIso, aIso);
+    var xgRows = xgRowsHtml(det, info, cols);
+    if (!stats.length && !xgRows) return "";
     var h = noTitle ? '<div class="mi-stats">' :
       '<div class="mi-section-title">Statistik</div><div class="mi-stats">';
+    h += xgRows;
     stats.forEach(function (s) {
       var label = STAT_LABELS[s.key];
       if (!label) return;
@@ -899,19 +959,7 @@
       var av = parseFloat(s.a);
       if (!isFinite(hv)) hv = 0;
       if (!isFinite(av)) av = 0;
-      var pct = hv + av > 0 ? Math.round((hv / (hv + av)) * 100) : 50;
-      var awayPct = 100 - pct;
-      h += '<div class="mi-stat">' +
-        '<div class="mi-stat-row">' +
-          '<span class="mi-stat-val">' + esc(s.h) + '</span>' +
-          '<span class="mi-stat-lbl">' + esc(label) + '</span>' +
-          '<span class="mi-stat-val">' + esc(s.a) + '</span>' +
-        '</div>' +
-        '<div class="mi-stat-bar">' +
-          '<span class="home" style="width:' + pct + '%;background:' + cols.home + '"></span>' +
-          '<span class="away" style="width:' + awayPct + '%;background:' + cols.away + '"></span>' +
-        '</div>' +
-        '</div>';
+      h += miStatBarHtml(label, s.h, s.a, hv, av, cols);
     });
     h += "</div>";
     return h;
@@ -1786,7 +1834,8 @@
 
     if (!upcoming) {
       h += '<div class="mi-tab-panel' + (activeTab === "stats" ? " active" : "") + '" data-mi-panel="stats">';
-      if (det && det.stats && det.stats.length) h += statsHtml(det, info, true);
+      var statsBody = statsHtml(det, info, true);
+      if (statsBody) h += statsBody;
       else h += emptyHintForTab("stats", info);
       h += "</div>";
     }

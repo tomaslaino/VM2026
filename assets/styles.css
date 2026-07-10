@@ -4607,9 +4607,15 @@ span.pr-caps-debut.pr-caps-legend {
   width: 9px; height: 12px; border-radius: 2px;
   background: linear-gradient(160deg, #ff6a5c, #d63425);
 }
-.mi-pl-ic.sub { font-size: 9px; font-weight: 800; }
+.mi-pl-ic.sub { font-size: 9px; font-weight: 800; display: inline-flex; align-items: center; }
 .mi-pl-ic.sub.in { color: var(--adv, #2e9e6b); }
 .mi-pl-ic.sub.out { color: #d63425; }
+/* Byteminut (klockslag) intill bytespilen – syns i både gräsplanen och listan. */
+.mi-sub-min {
+  font-size: 8.5px; font-weight: 800; font-variant-numeric: tabular-nums;
+  color: #fff; background: rgba(8,15,26,.72); border-radius: 4px;
+  padding: 0 3px; margin-left: 2px; line-height: 1.45;
+}
 /* Varningsprick i troliga elvor: spelare med skade-/avstängningsstatus.
    Samma färgspråk som spelarprofilens statusrad (pm-status). */
 .mi-pl-ic.warn {
