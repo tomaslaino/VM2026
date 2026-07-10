@@ -1,109 +1,9 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-09T23:42:16.084Z",
+  "updated": "2026-07-10T04:31:01.112Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
-    "sui-johan-manzambi": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "World Cup 2026: Skadade Manzambi har redan en hand på (Lego) World Cup-trofén!",
-      "updated": "2026-07-08",
-      "source": {
-        "name": "Nau",
-        "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNUThKeFhFUWhqcmNuSXhEQnk1SjZERUx3aDhBclRZQThhM2pNQWlyTElJT25fQWl4ZFlVd3owVEpfbTJ3Ml9lSTJLV0d2VXpyaFI0ODFiVlpaa2ZLVktJNlgtSUVBTVRLSzBDNnhiVDBTWF9lMlFORVpqYmY3cHcwTjJxTzZFYmxsSFVVN3JXLXFTSU1jSTZCOTlma1J2N1BaZ25JbXZxUG1qV28?oc=5"
-      },
-      "origin": "news"
-    },
-    "esp-pedri": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Lara Ferreiro, psykolog: \"Pedri kunde ha pressat sin kropp och sinne till det yttersta i flera år. Hans största rädsla är inte skada, utan att sluta känna sig nödvändig.\"",
-      "updated": "2026-07-09",
-      "source": {
-        "name": "Semana",
-        "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPc29fa2gyR0MtQ19zTWtIODVZemRyd0JaQ2MxQ2NWbldLUkxxaXhGRzNXTzVGLUc1dURWTjB4djZmLXlYMzg2V1NzNFZ1XzNIQzY3RFVTWTA3S3Zhc1I4ZkJWeHFOQ2l5bHJ4LXF3dVFqRE5ZQWZsOGhYckFFazZHTTZhVFJqT2t3QWtla2dvVWE2enEzcUhjUi1YSWJpeWtXeVF0NmJjMTlmUzAwUXp1VnllbU52SkNiRDlHME1lc29mQmpoRTBWWGFFSFhQM1cwdjBoeUkwZUZGaTFnYkpJQnBBMjhFVUl0MGtqM0tVRHdIa09SQ01ib3MteENSRVU2TDc2MVN0WlBncFE?oc=5"
-      },
-      "origin": "news"
-    },
-    "esp-mikel-merino": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Mikel Merino, på stöd av De la Fuente under sin skada: \"Det är svårt att hitta en tränare som visar dig så mycket förtroende\"",
-      "updated": "2026-07-08",
-      "source": {
-        "name": "Cadena SER",
-        "url": "https://news.google.com/rss/articles/CBMipAJBVV95cUxNM0pfbGJZTVlhMmxWOHM3MUUxRFVqMFhpV3pqb1diUjYxNi10QlZna21ROVVuZndSRHNWQURZcnhQcmxEcHJULXVKZmZhWW1NeUgxQjJmaWVWSFFmQXE0YU5SeTBRQ1Q2UnJobmRSMjFMeVE2dE1QekhGclBjcVZSQ2VVXy15NXFWTnFVbkhmYldxNVlGYTVaZHVlMDNiSDhOX3hKaVViTlVhTGZKdGIyNXJfUTZTcGdrdTI3RFJxeVNjWjE1bFZYT19WNkRTN0RjdTFXb1RoZ3hyclVrYnMtaGdnRE1mdm9fdkZLOVdvVWc1ZTJaSjB6YllKR3ZYYjBYd2lIZnFwMEtMdnFhRF9xOUxaT0tsTUlkTEF1U2FZYnlGbjFK0gGkAkFVX3lxTE0zSl9sYllNWWEybFY4czcxRTFEVWowWGlXempvV2JSNjE2LXRCVmdrbVE5VW5md1JEc1ZBRFlyeFBybERwclQtdUpmZmFZbU15SDFCMmZpZVZIUWZBcTRhTlJ5MFFDVDZScmhuZFIyMUx5UTZ0TVB6SEZyUGNxVlJDZVVfLXk1cVZOcVVuSGZiV3E1WUZhNVpkdWUwM2JIOE5feEppVWJOVWFMZkp0YjI1cl9RNlNwZ2t1MjdEUnF5U2NaMTVsVlhPX1Y2RFM3RGN1MVdvVGhneHJyVWticy1oZ2dETWZ2b192Rks5V29VZzVlMlpKMHpiWUpHdlhiMFh3aUhmcXAwS0x2cWFEX3E5TFpPS2xNSWRMQXVTYVlieUZuMUo?oc=5"
-      },
-      "origin": "news"
-    },
-    "esp-nico-williams": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Nico Williams ökar sin entusiasm efter sin skada: \"Väntar på möjligheten\"",
-      "updated": "2026-07-08",
-      "source": {
-        "name": "El Desmarque",
-        "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOSFVYYUppZndmeDhPVnZDeFNrQl92ZHVGZkNsTWY1NEhCSXdQUEJWeGNRWWs3dndhNjFzclkzcnVBN2dGd1BONzdIS0xaNDNWZ212SXpuSmhRXzExRkRDZkg4cmN4SWFrakFydFlwVGpfc3hzQVVndUNyTHNhaS1KM284TEtnakF5Y1RPY2tObXg4ckRQS0RDNUc1cHRqdkVIc3F2eURLd2pIeUp1TU1jNGRuQ3lIMEE?oc=5"
-      },
-      "origin": "news"
-    },
-    "fra-kylian-mbappe": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Frankrike-Marocko (2-0): \"Det är fotleden\", liten oro för Kylian Mbappé, kvar med en skada i slutet av matchen",
-      "updated": "2026-07-09",
-      "source": {
-        "name": "Le Parisien",
-        "url": "https://news.google.com/rss/articles/CBMirAJBVV95cUxQcXJheGViU2FUSkdsclFYajNvbFcwRmU0NkdGZFBRZGNma2liam82NWJtT1c4SVRkcXV6andWQzNEZVotSjVVcHFUeUh6T1NmblA2Tk96SFhiWGtlcWtnbTJ0eEY5WlJYWnYyRW1fUW12N2xTamdpVHNobDNXSGVjVlBwVE4xLUZQRXNNMnRCc29qcXFhT0E5RUlJVDh4Wl9iV1I5LVJkNUNqZlpmaHdDZklWOEwyWkZUb1RVbWxtVDRvOXdJZXJ4azAxbzBZZl9sNGhsekp2UXlFdC1lZHFPV2kwYVM3Q1ZvUG9wVDhnZGlFZnBNT211RWdWbHVnQThZbDd1SVkyRGVURHZ6eEN5TVpmdmtoTE1OSlI5RDAzTnBHcUFyc2lGUEEyZkg?oc=5"
-      },
-      "origin": "news"
-    },
-    "arg-cristian-romero": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Goda nyheter för Argentina: Cuti Romero ådrog sig ingen skada och kommer att spela mot Schweiz",
-      "updated": "2026-07-08",
-      "source": {
-        "name": "infodelestero.com",
-        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPWld6WnBqVjBxUXNUMTZ5aG1kZUxLNEVvTHVxWjNqM3dzYUdqbVZGeE1lRXFUYmhNc0tlQ3V1QmxybkpxcnBhbldiczN5NzQ0Si1WWURkeGZuTkpqd0RnaGdtekNLN0RrNkotU2c3NnBuUjRUdFhaNTgtYUdXZUYxRXlCQjlEblQ5eVN4TlVQWXhPcU1GUTQxQUhHOFJYN3g1bnlhOUhpVTh6WGE0cU1qVHNxLVg5ek1RU0JhNXVn?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-jarell-quansah": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Rött kort i åttondelsfinalen mot Mexiko",
-      "updated": "2026-07-06",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760505"
-      },
-      "origin": "cards"
-    },
-    "eng-jordan-henderson": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Jordan Henderson återvänder till Englands läger efter en handledsoperation efter en freak-skada i Mexiko",
-      "updated": "2026-07-09",
-      "source": {
-        "name": "The Washington Post",
-        "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOT0trb05CT01xVGxZU0I5M2xOY2g1NTIyZy1mZWt1dmQyeVo0UzZ0eVRRVENHeE5Cenh5Q1FEWEVjRGppbUQwaU9TZWw4RDlfOEh4VUpFWTdoakNZVWlIa2xweGNDMUJTeWNLMFRweE4ydVRTQURpbW9TSXVBc01vakgwR0pPcDR4ckRvdW9WN0RzVE41OFZVc01adkxjNUtHbFZtZTFnZjk5aHl4RWZYZm9NNmk1VE9IOW42bGVnUF82eS1Bd3E3Q1pEQlYtLWV3SjRnbkJn?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-reece-james": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Englands skadestängningslista och returdatum för världscupmatchen i Norge: Reece James, Jarell Quansah, Jordan Henderson",
-      "updated": "2026-07-08",
-      "source": {
-        "name": "Sports Mole",
-        "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOWDJnMTFJRDF4NFpnSHN0c0owOVZwQTFYSVRVcXdsX2xsYW4yWEIzV1lyRlptMHV3cW52RFR1TlhEbHFmajRKZnpUa080N05QNDhDM21ZVUZvOWxpeFZrUV9QcTF0VDFxbE1nQ01IVjhmem1MVXo1Q2FnTTdnd0lEVEd5RGtXVndyR3Vua0k3WG43Mk8zMTZzbkVOSm1OSkljcHVnV0poVjdQQ21VY2ctNGNxaEpFeENMYUxFR3NXOXotejNFUU1PUmtPaG91NkZNQkhDTTZEQmlZN08xNW5XMnZMbzFOZnJtb0kzWWJGcTBIRUVRNHRobkxn?oc=5"
-      },
-      "origin": "news"
-    },
     "sui-granit-xhaka": {
       "availability": "out",
       "kind": "suspension",
@@ -133,6 +33,18 @@
       "kind": "suspension",
       "label": "Avstängd",
       "detail": "Andra gula kortet i turneringen (mot Ghana och Mexiko)",
+      "updated": "2026-07-06",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760505"
+      },
+      "origin": "cards"
+    },
+    "eng-jarell-quansah": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Rött kort i åttondelsfinalen mot Mexiko",
       "updated": "2026-07-06",
       "source": {
         "name": "Matchfakta (ESPN)",
