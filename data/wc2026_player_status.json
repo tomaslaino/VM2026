@@ -1,20 +1,9 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-10T12:11:47.023Z",
+  "updated": "2026-07-10T15:07:41.920Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
-    "sui-johan-manzambi": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "World Cup 2026: Skadade Manzambi har redan en hand på (Lego) World Cup-trofén!",
-      "updated": "2026-07-08",
-      "source": {
-        "name": "Nau",
-        "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNUThKeFhFUWhqcmNuSXhEQnk1SjZERUx3aDhBclRZQThhM2pNQWlyTElJT25fQWl4ZFlVd3owVEpfbTJ3Ml9lSTJLV0d2VXpyaFI0ODFiVlpaa2ZLVktJNlgtSUVBTVRLSzBDNnhiVDBTWF9lMlFORVpqYmY3cHcwTjJxTzZFYmxsSFVVN3JXLXFTSU1jSTZCOTlma1J2N1BaZ25JbXZxUG1qV28?oc=5"
-      },
-      "origin": "news"
-    },
     "bel-zeno-debast": {
       "availability": "out",
       "kind": "other",
@@ -51,11 +40,11 @@
     "fra-kylian-mbappe": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "\"Jag låter mig distraheras\": Kylian Mbappé skyller sin missade straff mot Marocko på ett ögonblick av förvirring och avfärdar alla skadeproblem, när Frankrike …",
+      "detail": "Didier Deschamps bekräftar farhågor angående Kylian Mbappés skada: den franske tränaren förklarar bytet av sin stjärnanfallare mot Marocko",
       "updated": "2026-07-10",
       "source": {
-        "name": "goal.com",
-        "url": "https://news.google.com/rss/articles/CBMisgNBVV95cUxNWGpncmZNMmdXdExUb2RLLUlheUI1VnZTRmlvUVUxbmhlSllwU0xieWtvRnVidkYzdXFRejd3NnRYMGhxT0pYNGVZbDF3eU5ncDlMZWJ1QzFFMFNVcGEtRTZqY24zdkhUNUsyZnpWR3BXNnpXWlVWbms2YTFGc1V0QThmai0zNmlzeHhzVURkQzl6RjdMSnJFMGlseEJmLXVzMGw0eTN3RTNSNEJ4dTB5NXlVMVQzUGZjRmh0eHduVkFwanR1WXR5LW9fekxxUlNyb1pBZmIydWtaeW0wOEpKc0lFWko2U3NtTGtWUDdmREhjR1I0RDI0aldVcF9DRDEwSG9vdGxiZkQwN3hjNFZDUWV6dzZOeVp5ZW5zaXlaS3h1bUFZb3VLSE1uQlpES1kxaDlnQWowNmFXTk5FckVNWVJGRmlnck03bDd4QlFoR3gwUDhWVE1Dd25rbGdMYkgwTTNYZDJoV3VXOG9HczM0OXJxOWxmQzJreHNjQzZFbWlYLTR5LU40RkdLSlRIUEt4UUlGbk9rNUNSSWZhWmIwZFV2aElEcUs5UnJtb1E2X2g3Zw?oc=5"
+        "name": "Goal.com",
+        "url": "https://news.google.com/rss/articles/CBMiwAJBVV95cUxQQThIc0h3MW44aXV4bzY1M1pBd1B3UG83ZTFMWEg0Xzk2MTZ6Ukkwd29qV01Qd2Fya2ZVMzJ3LWJXWWEyM3NBcUI4QXREYzFVM0tSUVc1Ry1meWs5aUswNU1WQUhkYWhQUUE5TWo5S09EVnNNWEFvV3NSN083WlJmNlM2RkhMZ3U3M1ZIWUVySDNnSUlqVzJCYmNXbF84aUVldXlZVEppUUEtM2NyeE5lTkdwVzZPUXg0QzMtcjd3SzlUTXdUU1NMajY4d29TYnRMZUhBRDdGSVhHYjZZZ0lQdVVjeWtseHBUV2RKS3UyUHlqb1JfQjhjbnlUY0NMUVY4WnBxajdMVjhBZFlPa3QxVEljMHJ4aDVERGxFc1dhT2otMFJ1d256UGlZTmZIemNPY1FfNVdlZk1nY2ZVU01kUQ?oc=5"
       },
       "origin": "news"
     },
@@ -70,34 +59,11 @@
       },
       "origin": "news"
     },
-    "arg-cristian-romero": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Goda nyheter för Argentina: Cuti Romero ådrog sig ingen skada och kommer att spela mot Schweiz",
-      "updated": "2026-07-08",
-      "source": {
-        "name": "infodelestero.com",
-        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPWld6WnBqVjBxUXNUMTZ5aG1kZUxLNEVvTHVxWjNqM3dzYUdqbVZGeE1lRXFUYmhNc0tlQ3V1QmxybkpxcnBhbldiczN5NzQ0Si1WWURkeGZuTkpqd0RnaGdtekNLN0RrNkotU2c3NnBuUjRUdFhaNTgtYUdXZUYxRXlCQjlEblQ5eVN4TlVQWXhPcU1GUTQxQUhHOFJYN3g1bnlhOUhpVTh6WGE0cU1qVHNxLVg5ek1RU0JhNXVn?oc=5"
-      },
-      "origin": "news"
-    },
     "eng-declan-rice": {
       "availability": "out",
       "kind": "suspension",
       "label": "Avstängd",
       "detail": "Andra gula kortet i turneringen (mot Ghana och Mexiko)",
-      "updated": "2026-07-06",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760505"
-      },
-      "origin": "cards"
-    },
-    "eng-jarell-quansah": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Rött kort i åttondelsfinalen mot Mexiko",
       "updated": "2026-07-06",
       "source": {
         "name": "Matchfakta (ESPN)",
@@ -137,6 +103,18 @@
       "source": {
         "name": "Matchfakta (ESPN)",
         "url": "https://www.espn.com/soccer/match/_/gameId/760508"
+      },
+      "origin": "cards"
+    },
+    "eng-jarell-quansah": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Rött kort i åttondelsfinalen mot Mexiko",
+      "updated": "2026-07-06",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760505"
       },
       "origin": "cards"
     },
