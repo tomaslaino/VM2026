@@ -1,9 +1,20 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-10T15:07:41.920Z",
+  "updated": "2026-07-10T17:14:27.758Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
+    "sui-johan-manzambi": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "VM 2026: Bitter Nati nyheter - Manzambi är också skadad mot Argentina",
+      "updated": "2026-07-10",
+      "source": {
+        "name": "SRF",
+        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNZ2VJY2g3enFGMGlvbXowS3lfYkdKSHE2NUFmbTVaSGZfV2NtUmhwR2tOWFowbFNETEhOd0ltQmdBWkw0Um04VDFXT0pkb2FSbkpyNmZDTTd6bDJDRHlSNkZkejJrWTJNX1NmQVJ5YVJfWlRtazFmT0ttVklMY1Z2MldKRHhqeHhDeVlMd0xFbmY0VnhQU3VweVFsWEQyRlFsU3RTQTVrd0piWXQ3VzZQckdQRFZnbmtZYUkyU3dwZlQzdw?oc=5"
+      },
+      "origin": "news"
+    },
     "bel-zeno-debast": {
       "availability": "out",
       "kind": "other",
@@ -12,6 +23,17 @@
       "source": {
         "name": "VoetbalPrimeur.be",
         "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNdDlwV2doOG9uSXJpenF1c3B1S2VjSVNUcVlIUVJqV1hlSzJqT3dOa2RHUUxPMHByTXpVSmVfR3Y4TWlZQjkxQmRUcVRYZVVKLVlUMUt6d2liazlBWDdyQzhJbDdxc3AwSy10Q2doaktwVU15a29oWjlJQ1dna2ZaX19pemhLazM0VFR1bWJ1Vk1CQ3JpSzlzTmJ2dVJXcDFhUUptZU5wUlNialNjOFg1Y0ZZeWZDb0doN1BrYWJreTR6dlY3VUk1b3hB?oc=5"
+      },
+      "origin": "news"
+    },
+    "esp-rodri": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Rodri Hernández personliga liv och flickvän: ålder, hans föräldrar, hans skada och lagen där han har spelat",
+      "updated": "2026-07-10",
+      "source": {
+        "name": "OkDiario",
+        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOR083bzhMZzJDcXJNLVBaR1AwSDJNOUV5QmxUWDMwNTVTLWV1Ukltak1CR1ZRazllbHRVd05EbUJQMkVLNzZrdGliVVdYV3k2VUxyV0NPeHVzVGtpTjhqYkNodXI3MXFYeENjRHpCMW1QRjFuTzRHVUY0X0I0LTNRS2xqTzJHWFZUNEpubHRYS2VoYU5hc2FBZmpOX3dFeE5XeDFScTJvYUkyNHBwaGtJU0dn0gG3AUFVX3lxTE5xR2hMLTRieTlaTjVGbkhEWndySFBPQmRsS1hvc2JiOV95enBtMHNvNzRKcFh3YmE1Y0lIMzJ5bkpmUW4xd0dTZ2hFWnlLMWd4RG5sMGszb0dsRnpzY2RBaGJjbThiOG5NVTJqelY4SFdkNXZKdFh6SHZHUF9zV2hEYmZsN3ZvTnVKMGM4REQ2dUtLd0RRSXNMTExwQzdCUGVCRDE2T2gxWDVLb2h6RVRFaEJoMmFHdw?oc=5"
       },
       "origin": "news"
     },
@@ -70,17 +92,6 @@
         "url": "https://www.espn.com/soccer/match/_/gameId/760505"
       },
       "origin": "cards"
-    },
-    "eng-jordan-henderson": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Jordan Henderson återvänder till Englands läger efter en handledsoperation efter en freak-skada i Mexiko",
-      "updated": "2026-07-09",
-      "source": {
-        "name": "The Washington Post",
-        "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOT0trb05CT01xVGxZU0I5M2xOY2g1NTIyZy1mZWt1dmQyeVo0UzZ0eVRRVENHeE5Cenh5Q1FEWEVjRGppbUQwaU9TZWw4RDlfOEh4VUpFWTdoakNZVWlIa2xweGNDMUJTeWNLMFRweE4ydVRTQURpbW9TSXVBc01vakgwR0pPcDR4ckRvdW9WN0RzVE41OFZVc01adkxjNUtHbFZtZTFnZjk5aHl4RWZYZm9NNmk1VE9IOW42bGVnUF82eS1Bd3E3Q1pEQlYtLWV3SjRnbkJn?oc=5"
-      },
-      "origin": "news"
     },
     "sui-granit-xhaka": {
       "availability": "out",
