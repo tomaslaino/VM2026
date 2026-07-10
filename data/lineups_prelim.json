@@ -1,12 +1,12 @@
 {
   "meta": {
-    "updatedAt": "2026-07-10T10:29:10.650Z",
+    "updatedAt": "2026-07-10T18:45:12.692Z",
     "source": "365scores",
     "matchCount": 3
   },
   "lineups": {
     "k:98": {
-      "status": "probable",
+      "status": "confirmed",
       "gameId": 4761484,
       "kickoff": "2026-07-10T19:00Z",
       "h": {
@@ -38,13 +38,13 @@
             "pos": "RB"
           },
           {
-            "name": "Rodri Hernández",
-            "jersey": "16",
+            "name": "Fabián Ruiz",
+            "jersey": "8",
             "pos": "DM"
           },
           {
-            "name": "Pedri",
-            "jersey": "20",
+            "name": "Rodri Hernández",
+            "jersey": "16",
             "pos": "DM"
           },
           {
@@ -70,20 +70,20 @@
         ],
         "bench": [
           {
-            "name": "David Raya",
-            "jersey": "1"
-          },
-          {
             "name": "Joan García",
             "jersey": "13"
           },
           {
-            "name": "Marc Pubill",
-            "jersey": "2"
+            "name": "David Raya",
+            "jersey": "1"
           },
           {
             "name": "Eric Garcia",
             "jersey": "4"
+          },
+          {
+            "name": "Marc Pubill",
+            "jersey": "2"
           },
           {
             "name": "Marcos Llorente",
@@ -98,12 +98,12 @@
             "jersey": "18"
           },
           {
-            "name": "Mikel Merino",
-            "jersey": "6"
+            "name": "Pedri",
+            "jersey": "20"
           },
           {
-            "name": "Fabián Ruiz",
-            "jersey": "8"
+            "name": "Mikel Merino",
+            "jersey": "6"
           },
           {
             "name": "Gavi",
@@ -114,25 +114,25 @@
             "jersey": "11"
           },
           {
-            "name": "Nico Williams",
-            "jersey": "17"
-          },
-          {
             "name": "Víctor Muñoz",
             "jersey": "25"
           },
           {
-            "name": "Ferran Torres",
-            "jersey": "7"
+            "name": "Nico Williams",
+            "jersey": "17"
           },
           {
             "name": "Borja Iglesias",
             "jersey": "26"
+          },
+          {
+            "name": "Ferran Torres",
+            "jersey": "7"
           }
         ]
       },
       "a": {
-        "formation": "4-3-3",
+        "formation": "4-2-3-1",
         "starters": [
           {
             "name": "Thibaut Courtois",
@@ -145,13 +145,13 @@
             "pos": "LB"
           },
           {
-            "name": "Nathan Ngoy",
-            "jersey": "25",
+            "name": "Brandon Mechele",
+            "jersey": "4",
             "pos": "CB"
           },
           {
-            "name": "Brandon Mechele",
-            "jersey": "4",
+            "name": "Nathan Ngoy",
+            "jersey": "25",
             "pos": "CB"
           },
           {
@@ -160,34 +160,34 @@
             "pos": "RB"
           },
           {
-            "name": "Youri Tielemans",
-            "jersey": "8",
-            "pos": "LM"
-          },
-          {
-            "name": "Kevin De Bruyne",
-            "jersey": "7",
-            "pos": "CM"
+            "name": "Nicolas Raskin",
+            "jersey": "23",
+            "pos": "DM"
           },
           {
             "name": "Hans Vanaken",
             "jersey": "20",
-            "pos": "RM"
+            "pos": "DM"
+          },
+          {
+            "name": "Jeremy Doku",
+            "jersey": "11",
+            "pos": "AM-L"
+          },
+          {
+            "name": "Kevin De Bruyne",
+            "jersey": "7",
+            "pos": "AM"
           },
           {
             "name": "Leandro Trossard",
             "jersey": "10",
-            "pos": "LF"
+            "pos": "AM-R"
           },
           {
             "name": "Charles de Ketelaere",
             "jersey": "17",
             "pos": "ST"
-          },
-          {
-            "name": "Jeremy Doku",
-            "jersey": "11",
-            "pos": "RF"
           }
         ],
         "bench": [
@@ -200,12 +200,12 @@
             "jersey": "13"
           },
           {
-            "name": "Arthur Theate",
-            "jersey": "3"
-          },
-          {
             "name": "Koni De Winter",
             "jersey": "16"
+          },
+          {
+            "name": "Arthur Theate",
+            "jersey": "3"
           },
           {
             "name": "Thomas Meunier",
@@ -220,10 +220,6 @@
             "jersey": "6"
           },
           {
-            "name": "Nicolas Raskin",
-            "jersey": "23"
-          },
-          {
             "name": "Alexis Saelemaekers",
             "jersey": "22"
           },
@@ -236,16 +232,16 @@
             "jersey": "14"
           },
           {
-            "name": "Romelu Lukaku",
-            "jersey": "9"
-          },
-          {
             "name": "Matias Fernandez-Pardo",
             "jersey": "26"
+          },
+          {
+            "name": "Romelu Lukaku",
+            "jersey": "9"
           }
         ]
       },
-      "updatedAt": "2026-07-10T10:29:08.797Z"
+      "updatedAt": "2026-07-10T18:45:10.705Z"
     },
     "k:99": {
       "status": "probable",
