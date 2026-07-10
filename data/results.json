@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-10T17:57:39.045Z",
+    "updatedAt": "2026-07-10T19:45:41.308Z",
     "source": "espn",
-    "matchCount": 97,
-    "liveCount": 0,
+    "matchCount": 98,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -495,9 +495,23 @@
       "h": 2,
       "a": 0,
       "status": "FINISHED"
+    },
+    "k:98": {
+      "h": 1,
+      "a": 1,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:98",
+      "status": "IN_PLAY",
+      "minute": 41,
+      "home": "Spain",
+      "away": "Belgium",
+      "score": "1-1"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -2152,7 +2166,7 @@
       "date": "2026-07-10",
       "time": "21:00",
       "utcDate": "2026-07-10T19:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Spain",
       "away": "Belgium",
