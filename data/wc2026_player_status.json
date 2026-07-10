@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-10T20:47:22.955Z",
+  "updated": "2026-07-10T22:29:42.470Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -12,72 +12,6 @@
       "source": {
         "name": "SRF",
         "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNZ2VJY2g3enFGMGlvbXowS3lfYkdKSHE2NUFmbTVaSGZfV2NtUmhwR2tOWFowbFNETEhOd0ltQmdBWkw0Um04VDFXT0pkb2FSbkpyNmZDTTd6bDJDRHlSNkZkejJrWTJNX1NmQVJ5YVJfWlRtazFmT0ttVklMY1Z2MldKRHhqeHhDeVlMd0xFbmY0VnhQU3VweVFsWEQyRlFsU3RTQTVrd0piWXQ3VzZQckdQRFZnbmtZYUkyU3dwZlQzdw?oc=5"
-      },
-      "origin": "news"
-    },
-    "bel-thibaut-courtois": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Katastrof för de röda djävlarna: Thibaut Courtois lämnar planen gråtande med en skada mot Spanien",
-      "updated": "2026-07-10",
-      "source": {
-        "name": "Circus Daily",
-        "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQOWVKTWViMkpaX3RPU3Z4T0VHUUhWUXl1eWpVejlzSjB6cWU4ZHg2NW5GbTh4Y24wbDNjZFNzNDZLdHo5b3Bnakc3OUp6ejJKbXpmdzB0ZTFIbWFuamhFaGJWamQtZk5tcVdkaUJlVXVCMllDSjVrNnU3WW5CZHI3SmpFaV9qWG1JbVVZOUN3SmhNRXFoc2tTVXN2a2JxYWFOMF9PeG56OVRiUWtxeHloR2lmc2tOTUNUQzlERUprWFFlSHMyWE1kR2FR?oc=5"
-      },
-      "origin": "news"
-    },
-    "bel-kevin-de-bruyne": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Med Kevin De Bruyne och Jeremy Doku, men utan skadade Youri Tielemans: det här är de elva röda djävlarna mot Spanien",
-      "updated": "2026-07-10",
-      "source": {
-        "name": "HBVL",
-        "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNaUJjUC11TTIwMERaLTA0djlZeExfSzJqNkdGN2Z3Z09TRThSelpOSVZ3WWJ4aEZLZ1ZpSUEzM2FXVEpLcTk4YnpzSDYyRHRha2ZPRTE0RUhhR1BlcWlsN3lreS1LMHBoZDlRbWw5M05KWHpvTEZFR2ZnbmVMVEVUc0V6bWppSlZRRjFDaTBEM09xdzlNczNfQ2MtZjRJMGxUbFFxa1poc1FZV0tBekJEZFZQVjN4UmkyTTB5ZHVuT0doaWcyYlpjS1BoLUVBSERMVVlZLWJEWGNvaVlNbTA4Q3NDTktNSF9sTjd1elZFVm5QcW5ZTTNfS1V3?oc=5"
-      },
-      "origin": "news"
-    },
-    "bel-youri-tielemans": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Med Kevin De Bruyne och Jeremy Doku, men utan skadade Youri Tielemans: det här är de elva röda djävlarna mot Spanien",
-      "updated": "2026-07-10",
-      "source": {
-        "name": "HBVL",
-        "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNaUJjUC11TTIwMERaLTA0djlZeExfSzJqNkdGN2Z3Z09TRThSelpOSVZ3WWJ4aEZLZ1ZpSUEzM2FXVEpLcTk4YnpzSDYyRHRha2ZPRTE0RUhhR1BlcWlsN3lreS1LMHBoZDlRbWw5M05KWHpvTEZFR2ZnbmVMVEVUc0V6bWppSlZRRjFDaTBEM09xdzlNczNfQ2MtZjRJMGxUbFFxa1poc1FZV0tBekJEZFZQVjN4UmkyTTB5ZHVuT0doaWcyYlpjS1BoLUVBSERMVVlZLWJEWGNvaVlNbTA4Q3NDTktNSF9sTjd1elZFVm5QcW5ZTTNfS1V3?oc=5"
-      },
-      "origin": "news"
-    },
-    "bel-jeremy-doku": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Med Kevin De Bruyne och Jeremy Doku, men utan skadade Youri Tielemans: det här är de elva röda djävlarna mot Spanien",
-      "updated": "2026-07-10",
-      "source": {
-        "name": "HBVL",
-        "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNaUJjUC11TTIwMERaLTA0djlZeExfSzJqNkdGN2Z3Z09TRThSelpOSVZ3WWJ4aEZLZ1ZpSUEzM2FXVEpLcTk4YnpzSDYyRHRha2ZPRTE0RUhhR1BlcWlsN3lreS1LMHBoZDlRbWw5M05KWHpvTEZFR2ZnbmVMVEVUc0V6bWppSlZRRjFDaTBEM09xdzlNczNfQ2MtZjRJMGxUbFFxa1poc1FZV0tBekJEZFZQVjN4UmkyTTB5ZHVuT0doaWcyYlpjS1BoLUVBSERMVVlZLWJEWGNvaVlNbTA4Q3NDTktNSF9sTjd1elZFVm5QcW5ZTTNfS1V3?oc=5"
-      },
-      "origin": "news"
-    },
-    "bel-zeno-debast": {
-      "availability": "out",
-      "kind": "other",
-      "detail": "\"Konflikt mellan Sporting och Red Devils, Debast missar också matchen mot Spanien\"",
-      "updated": "2026-07-10",
-      "source": {
-        "name": "VoetbalPrimeur.be",
-        "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNdDlwV2doOG9uSXJpenF1c3B1S2VjSVNUcVlIUVJqV1hlSzJqT3dOa2RHUUxPMHByTXpVSmVfR3Y4TWlZQjkxQmRUcVRYZVVKLVlUMUt6d2liazlBWDdyQzhJbDdxc3AwSy10Q2doaktwVU15a29oWjlJQ1dna2ZaX19pemhLazM0VFR1bWJ1Vk1CQ3JpSzlzTmJ2dVJXcDFhUUptZU5wUlNialNjOFg1Y0ZZeWZDb0doN1BrYWJreTR6dlY3VUk1b3hB?oc=5"
-      },
-      "origin": "news"
-    },
-    "esp-rodri": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Rodri Hernández personliga liv och flickvän: ålder, hans föräldrar, hans skada och lagen där han har spelat",
-      "updated": "2026-07-10",
-      "source": {
-        "name": "OkDiario",
-        "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOcUdoTC00Ynk5Wk41Rm5IRFp3ckhQT0JkbEtYb3NiYjlfeXpwbTBzbzc0SnBYd2JhNWNJSDMyeW5KZlFuMXdHU2doRVp5SzFneERubDBrM29HbEZ6c2NkQWhiY204YjhuTVUyanpWOEhXZDV2SnRYekh2R1Bfc1doRGJmbDd2b051SjBjOERENnVLS3dEUUlzTExMcEM3QlBlQkQxNk9oMVg1S29oekVURWhCaDJhR3fSAbcBQVVfeXFMTnFHaEwtNGJ5OVpONUZuSERad3JIUE9CZGxLWG9zYmI5X3l6cG0wc283NEpwWHdiYTVjSUgzMnluSmZRbjF3R1NnaEVaeUsxZ3hEbmwwazNvR2xGenNjZEFoYmNtOGI4bk1VMmp6VjhIV2Q1dkp0WHpIdkdQX3NXaERiZmw3dm9OdUowYzhERDZ1S0t3RFFJc0xMTHBDN0JQZUJEMTZPaDFYNUtvaHpFVEVoQmgyYUd3?oc=5"
       },
       "origin": "news"
     },
