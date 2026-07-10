@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-10T19:45:41.351Z",
+    "updatedAt": "2026-07-10T20:55:52.099Z",
     "source": "espn"
   },
   "details": {
@@ -56154,16 +56154,19 @@
       "espnId": "760511",
       "fmt": 2,
       "status": "IN_PLAY",
-      "minute": 45,
+      "minute": 90,
       "utcDate": "2026-07-10T19:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
+          "h": 2,
+          "a": 1
+        },
+        "ht": {
           "h": 1,
           "a": 1
         },
-        "ht": null,
         "rt": null,
         "et": null,
         "pen": null
@@ -56192,6 +56195,18 @@
             "h": 1,
             "a": 1
           }
+        },
+        {
+          "minute": 88,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Mikel Merino",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 1
+          }
         }
       ],
       "bookings": [
@@ -56200,9 +56215,76 @@
           "team": "h",
           "player": "Pau Cubarsí",
           "card": "YELLOW"
+        },
+        {
+          "minute": 85,
+          "team": "a",
+          "player": "Kevin De Bruyne",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "player": "Aymeric Laporte",
+          "card": "YELLOW"
         }
       ],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 55,
+          "team": "h",
+          "in": "Ferran Torres",
+          "out": "Álex Baena"
+        },
+        {
+          "minute": 55,
+          "team": "h",
+          "in": "Pedri",
+          "out": "Fabián Ruiz"
+        },
+        {
+          "minute": 60,
+          "team": "a",
+          "in": "Romelu Lukaku",
+          "out": "Hans Vanaken"
+        },
+        {
+          "minute": 60,
+          "team": "a",
+          "in": "Axel Witsel",
+          "out": "Leandro Trossard"
+        },
+        {
+          "minute": 61,
+          "team": "a",
+          "in": "Joaquin Seys",
+          "out": "Maxim De Cuyper"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Senne Lammens",
+          "out": "Thibaut Courtois"
+        },
+        {
+          "minute": 79,
+          "team": "h",
+          "in": "Nico Williams",
+          "out": "Mikel Oyarzabal"
+        },
+        {
+          "minute": 86,
+          "team": "a",
+          "in": "Alexis Saelemaekers",
+          "out": "Kevin De Bruyne"
+        },
+        {
+          "minute": 86,
+          "team": "h",
+          "in": "Mikel Merino",
+          "out": "Dani Olmo"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -56213,7 +56295,8 @@
               "jersey": "23",
               "pos": "G",
               "st": {
-                "gc": 1
+                "gc": 1,
+                "sv": 1
               }
             },
             {
@@ -56221,9 +56304,10 @@
               "jersey": "12",
               "pos": "RB",
               "st": {
-                "fc": 1,
-                "fs": 1,
-                "gc": 1
+                "fc": 4,
+                "fs": 2,
+                "gc": 1,
+                "sh": 1
               }
             },
             {
@@ -56231,6 +56315,7 @@
               "jersey": "24",
               "pos": "LB",
               "st": {
+                "fc": 1,
                 "gc": 1
               }
             },
@@ -56239,10 +56324,11 @@
               "jersey": "8",
               "pos": "LM",
               "st": {
+                "fs": 1,
                 "gc": 1,
                 "sg": 1,
                 "g": 1,
-                "sh": 1
+                "sh": 2
               }
             },
             {
@@ -56251,7 +56337,10 @@
               "pos": "CD-R",
               "st": {
                 "fc": 1,
-                "gc": 1
+                "fs": 1,
+                "gc": 1,
+                "sg": 1,
+                "sh": 1
               }
             },
             {
@@ -56267,11 +56356,11 @@
               "jersey": "19",
               "pos": "AM-R",
               "st": {
-                "fc": 1,
+                "fc": 2,
                 "fs": 4,
                 "gc": 1,
-                "sg": 1,
-                "sh": 3
+                "sg": 2,
+                "sh": 6
               }
             },
             {
@@ -56288,8 +56377,11 @@
               "jersey": "21",
               "pos": "F",
               "st": {
+                "fc": 1,
                 "fs": 1,
-                "gc": 1
+                "gc": 1,
+                "sg": 1,
+                "sh": 1
               }
             },
             {
@@ -56297,9 +56389,10 @@
               "jersey": "10",
               "pos": "AM",
               "st": {
+                "fs": 2,
                 "gc": 1,
                 "sg": 1,
-                "sh": 1
+                "sh": 2
               }
             },
             {
@@ -56308,6 +56401,7 @@
               "pos": "AM-L",
               "st": {
                 "fc": 2,
+                "fs": 1,
                 "gc": 1,
                 "sh": 1
               }
@@ -56316,7 +56410,8 @@
           "bench": [
             {
               "name": "Nico Williams",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true
             },
             {
               "name": "Yéremy Pino",
@@ -56332,7 +56427,14 @@
             },
             {
               "name": "Mikel Merino",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "sg": 1,
+                "g": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Joan García",
@@ -56360,7 +56462,11 @@
             },
             {
               "name": "Pedri",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true,
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Martín Zubimendi",
@@ -56368,7 +56474,11 @@
             },
             {
               "name": "Ferran Torres",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true,
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Marcos Llorente",
@@ -56385,7 +56495,7 @@
               "pos": "G",
               "st": {
                 "gc": 1,
-                "sv": 2
+                "sv": 4
               }
             },
             {
@@ -56394,7 +56504,7 @@
               "pos": "RB",
               "st": {
                 "fs": 1,
-                "gc": 1,
+                "gc": 2,
                 "a": 1
               }
             },
@@ -56403,8 +56513,9 @@
               "jersey": "5",
               "pos": "LB",
               "st": {
-                "fc": 1,
-                "gc": 1
+                "fc": 2,
+                "gc": 1,
+                "sh": 1
               }
             },
             {
@@ -56412,8 +56523,9 @@
               "jersey": "23",
               "pos": "LM",
               "st": {
-                "fc": 1,
-                "gc": 1
+                "fc": 4,
+                "fs": 2,
+                "gc": 2
               }
             },
             {
@@ -56422,7 +56534,7 @@
               "pos": "CD-R",
               "st": {
                 "fc": 1,
-                "gc": 1
+                "gc": 2
               }
             },
             {
@@ -56430,8 +56542,9 @@
               "jersey": "4",
               "pos": "CD-L",
               "st": {
+                "fc": 1,
                 "fs": 1,
-                "gc": 1
+                "gc": 2
               }
             },
             {
@@ -56440,6 +56553,7 @@
               "pos": "AM-R",
               "st": {
                 "fc": 1,
+                "fs": 1,
                 "gc": 1
               }
             },
@@ -56456,7 +56570,7 @@
               "jersey": "17",
               "pos": "F",
               "st": {
-                "gc": 1,
+                "gc": 2,
                 "sg": 1,
                 "g": 1,
                 "sh": 2
@@ -56467,7 +56581,11 @@
               "jersey": "7",
               "pos": "AM",
               "st": {
-                "gc": 1
+                "fc": 2,
+                "fs": 1,
+                "gc": 1,
+                "sg": 1,
+                "sh": 2
               }
             },
             {
@@ -56475,16 +56593,20 @@
               "jersey": "11",
               "pos": "AM-L",
               "st": {
-                "fc": 1,
-                "fs": 1,
-                "gc": 1
+                "fc": 3,
+                "fs": 4,
+                "gc": 2
               }
             }
           ],
           "bench": [
             {
               "name": "Alexis Saelemaekers",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Koni De Winter",
@@ -56492,7 +56614,11 @@
             },
             {
               "name": "Joaquin Seys",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Diego Moreira",
@@ -56500,7 +56626,12 @@
             },
             {
               "name": "Senne Lammens",
-              "jersey": "12"
+              "jersey": "12",
+              "in": true,
+              "st": {
+                "gc": 1,
+                "sv": 1
+              }
             },
             {
               "name": "Dodi Lukébakio",
@@ -56520,7 +56651,13 @@
             },
             {
               "name": "Axel Witsel",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Mike Penders",
@@ -56528,7 +56665,11 @@
             },
             {
               "name": "Romelu Lukaku",
-              "jersey": "9"
+              "jersey": "9",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             }
           ]
         }
@@ -56539,53 +56680,53 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "61%",
-          "a": "39%"
+          "h": "68%",
+          "a": "32%"
         },
         {
           "key": "totalShots",
+          "h": "16",
+          "a": "5"
+        },
+        {
+          "key": "shotsOnTarget",
           "h": "7",
           "a": "2"
         },
         {
-          "key": "shotsOnTarget",
+          "key": "wonCorners",
+          "h": "5",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "12",
+          "a": "15"
+        },
+        {
+          "key": "offsides",
           "h": "3",
           "a": "1"
         },
         {
-          "key": "wonCorners",
+          "key": "saves",
           "h": "1",
-          "a": "0"
-        },
-        {
-          "key": "foulsCommitted",
-          "h": "5",
           "a": "5"
         },
         {
-          "key": "offsides",
-          "h": "1",
-          "a": "1"
-        },
-        {
-          "key": "saves",
-          "h": "0",
-          "a": "2"
-        },
-        {
           "key": "totalPasses",
-          "h": "280",
-          "a": "173"
+          "h": "639",
+          "a": "305"
         },
         {
           "key": "passPct",
-          "h": "88%",
-          "a": "83%"
+          "h": "91%",
+          "a": "79%"
         },
         {
           "key": "yellowCards",
           "h": "1",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "redCards",
@@ -56593,7 +56734,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-10T19:45:41.351Z"
+      "updatedAt": "2026-07-10T20:55:52.099Z"
     }
   }
 }
