@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-10T17:14:27.758Z",
+  "updated": "2026-07-10T18:54:28.450Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -12,6 +12,39 @@
       "source": {
         "name": "SRF",
         "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNZ2VJY2g3enFGMGlvbXowS3lfYkdKSHE2NUFmbTVaSGZfV2NtUmhwR2tOWFowbFNETEhOd0ltQmdBWkw0Um04VDFXT0pkb2FSbkpyNmZDTTd6bDJDRHlSNkZkejJrWTJNX1NmQVJ5YVJfWlRtazFmT0ttVklMY1Z2MldKRHhqeHhDeVlMd0xFbmY0VnhQU3VweVFsWEQyRlFsU3RTQTVrd0piWXQ3VzZQckdQRFZnbmtZYUkyU3dwZlQzdw?oc=5"
+      },
+      "origin": "news"
+    },
+    "bel-kevin-de-bruyne": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Med Kevin De Bruyne och Jeremy Doku, men utan skadade Youri Tielemans: det här är de elva röda djävlarna mot Spanien",
+      "updated": "2026-07-10",
+      "source": {
+        "name": "HBVL",
+        "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNaUJjUC11TTIwMERaLTA0djlZeExfSzJqNkdGN2Z3Z09TRThSelpOSVZ3WWJ4aEZLZ1ZpSUEzM2FXVEpLcTk4YnpzSDYyRHRha2ZPRTE0RUhhR1BlcWlsN3lreS1LMHBoZDlRbWw5M05KWHpvTEZFR2ZnbmVMVEVUc0V6bWppSlZRRjFDaTBEM09xdzlNczNfQ2MtZjRJMGxUbFFxa1poc1FZV0tBekJEZFZQVjN4UmkyTTB5ZHVuT0doaWcyYlpjS1BoLUVBSERMVVlZLWJEWGNvaVlNbTA4Q3NDTktNSF9sTjd1elZFVm5QcW5ZTTNfS1V3?oc=5"
+      },
+      "origin": "news"
+    },
+    "bel-youri-tielemans": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Med Kevin De Bruyne och Jeremy Doku, men utan skadade Youri Tielemans: det här är de elva röda djävlarna mot Spanien",
+      "updated": "2026-07-10",
+      "source": {
+        "name": "HBVL",
+        "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNaUJjUC11TTIwMERaLTA0djlZeExfSzJqNkdGN2Z3Z09TRThSelpOSVZ3WWJ4aEZLZ1ZpSUEzM2FXVEpLcTk4YnpzSDYyRHRha2ZPRTE0RUhhR1BlcWlsN3lreS1LMHBoZDlRbWw5M05KWHpvTEZFR2ZnbmVMVEVUc0V6bWppSlZRRjFDaTBEM09xdzlNczNfQ2MtZjRJMGxUbFFxa1poc1FZV0tBekJEZFZQVjN4UmkyTTB5ZHVuT0doaWcyYlpjS1BoLUVBSERMVVlZLWJEWGNvaVlNbTA4Q3NDTktNSF9sTjd1elZFVm5QcW5ZTTNfS1V3?oc=5"
+      },
+      "origin": "news"
+    },
+    "bel-jeremy-doku": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Med Kevin De Bruyne och Jeremy Doku, men utan skadade Youri Tielemans: det här är de elva röda djävlarna mot Spanien",
+      "updated": "2026-07-10",
+      "source": {
+        "name": "HBVL",
+        "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNaUJjUC11TTIwMERaLTA0djlZeExfSzJqNkdGN2Z3Z09TRThSelpOSVZ3WWJ4aEZLZ1ZpSUEzM2FXVEpLcTk4YnpzSDYyRHRha2ZPRTE0RUhhR1BlcWlsN3lreS1LMHBoZDlRbWw5M05KWHpvTEZFR2ZnbmVMVEVUc0V6bWppSlZRRjFDaTBEM09xdzlNczNfQ2MtZjRJMGxUbFFxa1poc1FZV0tBekJEZFZQVjN4UmkyTTB5ZHVuT0doaWcyYlpjS1BoLUVBSERMVVlZLWJEWGNvaVlNbTA4Q3NDTktNSF9sTjd1elZFVm5QcW5ZTTNfS1V3?oc=5"
       },
       "origin": "news"
     },
@@ -33,7 +66,7 @@
       "updated": "2026-07-10",
       "source": {
         "name": "OkDiario",
-        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOR083bzhMZzJDcXJNLVBaR1AwSDJNOUV5QmxUWDMwNTVTLWV1Ukltak1CR1ZRazllbHRVd05EbUJQMkVLNzZrdGliVVdYV3k2VUxyV0NPeHVzVGtpTjhqYkNodXI3MXFYeENjRHpCMW1QRjFuTzRHVUY0X0I0LTNRS2xqTzJHWFZUNEpubHRYS2VoYU5hc2FBZmpOX3dFeE5XeDFScTJvYUkyNHBwaGtJU0dn0gG3AUFVX3lxTE5xR2hMLTRieTlaTjVGbkhEWndySFBPQmRsS1hvc2JiOV95enBtMHNvNzRKcFh3YmE1Y0lIMzJ5bkpmUW4xd0dTZ2hFWnlLMWd4RG5sMGszb0dsRnpzY2RBaGJjbThiOG5NVTJqelY4SFdkNXZKdFh6SHZHUF9zV2hEYmZsN3ZvTnVKMGM4REQ2dUtLd0RRSXNMTExwQzdCUGVCRDE2T2gxWDVLb2h6RVRFaEJoMmFHdw?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOcUdoTC00Ynk5Wk41Rm5IRFp3ckhQT0JkbEtYb3NiYjlfeXpwbTBzbzc0SnBYd2JhNWNJSDMyeW5KZlFuMXdHU2doRVp5SzFneERubDBrM29HbEZ6c2NkQWhiY204YjhuTVUyanpWOEhXZDV2SnRYekh2R1Bfc1doRGJmbDd2b051SjBjOERENnVLS3dEUUlzTExMcEM3QlBlQkQxNk9oMVg1S29oekVURWhCaDJhR3fSAbcBQVVfeXFMTnFHaEwtNGJ5OVpONUZuSERad3JIUE9CZGxLWG9zYmI5X3l6cG0wc283NEpwWHdiYTVjSUgzMnluSmZRbjF3R1NnaEVaeUsxZ3hEbmwwazNvR2xGenNjZEFoYmNtOGI4bk1VMmp6VjhIV2Q1dkp0WHpIdkdQX3NXaERiZmw3dm9OdUowYzhERDZ1S0t3RFFJc0xMTHBDN0JQZUJEMTZPaDFYNUtvaHpFVEVoQmgyYUd3?oc=5"
       },
       "origin": "news"
     },
@@ -62,11 +95,11 @@
     "fra-kylian-mbappe": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Didier Deschamps bekräftar farhågor angående Kylian Mbappés skada: den franske tränaren förklarar bytet av sin stjärnanfallare mot Marocko",
+      "detail": "Kylian Mbappé skadad i fotleden: ska vi vara oroliga för spelarens hälsotillstånd?",
       "updated": "2026-07-10",
       "source": {
-        "name": "Goal.com",
-        "url": "https://news.google.com/rss/articles/CBMiwAJBVV95cUxQQThIc0h3MW44aXV4bzY1M1pBd1B3UG83ZTFMWEg0Xzk2MTZ6Ukkwd29qV01Qd2Fya2ZVMzJ3LWJXWWEyM3NBcUI4QXREYzFVM0tSUVc1Ry1meWs5aUswNU1WQUhkYWhQUUE5TWo5S09EVnNNWEFvV3NSN083WlJmNlM2RkhMZ3U3M1ZIWUVySDNnSUlqVzJCYmNXbF84aUVldXlZVEppUUEtM2NyeE5lTkdwVzZPUXg0QzMtcjd3SzlUTXdUU1NMajY4d29TYnRMZUhBRDdGSVhHYjZZZ0lQdVVjeWtseHBUV2RKS3UyUHlqb1JfQjhjbnlUY0NMUVY4WnBxajdMVjhBZFlPa3QxVEljMHJ4aDVERGxFc1dhT2otMFJ1d256UGlZTmZIemNPY1FfNVdlZk1nY2ZVU01kUQ?oc=5"
+        "name": "Doctissimo",
+        "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPQndQWmlkcWpyOVk3czVsUmMzZ1FoWFd3X1U5ME85QV9haWhXZ3pZUnRjTTlGN1J3X3JoY2E3WGd0OXI1RFFtQUF0M2t5ZkYyOE9wWjhhQ3A3S0tEWDRRc2hWZF81NEdsN2l4a0Yybko0R0Q2X29sdVg4TU0wcDRQUEt2bmh2RVhIVmVrYkhkdlJpQUJtMElBWDFQT25iMkItaWtlZEtWMjRyS2h0TlFSRXdKY0dRTDVpQ2dITk1zQzNlOGlFSkVkTS1HZHlnaDF4?oc=5"
       },
       "origin": "news"
     },
