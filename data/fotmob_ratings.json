@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-07-09T22:23:18.935Z",
+    "updatedAt": "2026-07-10T22:30:02.511Z",
     "source": "fotmob",
-    "matchCount": 97
+    "matchCount": 98
   },
   "matches": {
     "g:A:2": {
@@ -13165,6 +13165,141 @@
         }
       },
       "updatedAt": "2026-07-09T22:23:18.532Z"
+    },
+    "k:98": {
+      "fotmobId": 4653853,
+      "teamRating": {
+        "h": 7.1,
+        "a": 6.4
+      },
+      "xg": {
+        "h": 2.04,
+        "a": 0.36
+      },
+      "xgot": {
+        "h": 2.6,
+        "a": 0.58
+      },
+      "players": {
+        "h": {
+          "unai simon": 6.5,
+          "pedro porro": 7.6,
+          "marc cucurella": 7.1,
+          "fabian ruiz": 7.6,
+          "pau cubarsi": 7.5,
+          "aymeric laporte": 7.1,
+          "lamine yamal": 7.8,
+          "rodri": 7.8,
+          "mikel oyarzabal": 7.4,
+          "dani olmo": 7.7,
+          "alex baena": 6.5,
+          "nico williams": 6.3,
+          "pedri": 6.6,
+          "ferran torres": 6
+        },
+        "a": {
+          "thibaut courtois": 7,
+          "timothy castagne": 6.9,
+          "maxim de cuyper": 6.5,
+          "nicolas raskin": 6.6,
+          "nathan ngoy": 6.4,
+          "brandon mechele": 6.5,
+          "leandro trossard": 5.4,
+          "hans vanaken": 6.2,
+          "charles de ketelaere": 7.4,
+          "kevin de bruyne": 6.7,
+          "jeremy doku": 6.8,
+          "joaquin seys": 6.5,
+          "senne lammens": 5.1,
+          "axel witsel": 5.9,
+          "romelu lukaku": 5.7
+        }
+      },
+      "playerXg": {
+        "h": {
+          "pedro porro": {
+            "xg": 0.03,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "marc cucurella": {
+            "xg": 0.04,
+            "xgot": 0.05,
+            "shots": 1,
+            "goals": 0
+          },
+          "fabian ruiz": {
+            "xg": 0.51,
+            "xgot": 0.64,
+            "shots": 2,
+            "goals": 1
+          },
+          "pau cubarsi": {
+            "xg": 0.03,
+            "xgot": 0.09,
+            "shots": 1,
+            "goals": 0
+          },
+          "lamine yamal": {
+            "xg": 0.29,
+            "xgot": 0.18,
+            "shots": 6,
+            "goals": 0
+          },
+          "rodri": {
+            "xg": 0.13,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "mikel oyarzabal": {
+            "xg": 0.07,
+            "xgot": 0.34,
+            "shots": 1,
+            "goals": 0
+          },
+          "dani olmo": {
+            "xg": 0.25,
+            "xgot": 0.34,
+            "shots": 2,
+            "goals": 0
+          },
+          "alex baena": {
+            "xg": 0.1,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "mikel merino": {
+            "xg": 0.69,
+            "xgot": 0.96,
+            "shots": 1,
+            "goals": 1
+          }
+        },
+        "a": {
+          "maxim de cuyper": {
+            "xg": 0.08,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "charles de ketelaere": {
+            "xg": 0.17,
+            "xgot": 0.44,
+            "shots": 2,
+            "goals": 1
+          },
+          "kevin de bruyne": {
+            "xg": 0.11,
+            "xgot": 0.14,
+            "shots": 2,
+            "goals": 0
+          }
+        }
+      },
+      "updatedAt": "2026-07-10T22:30:02.109Z"
     }
   }
 }
