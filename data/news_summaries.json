@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-09T23:52:23.466Z",
+  "updated": "2026-07-10T04:15:27.665Z",
   "note": "Handskrivna svenska löptextsammanfattningar per kommande match till matchmodalens ”Senaste nytt”-flik. Underlag: ländernas egna medier (samma artiklar som i team_news.json) + internationella förhandsartiklar. Skrivs om inför varje ny omgång; saknas en match faller fliken tillbaka till rubriklistan.",
   "matches": {
     "k:89": {
@@ -649,30 +649,76 @@
         "no",
         "gb-eng"
       ],
-      "headline": "Lejonen mot Vikingarna: Kaos i Miami när Haaland utmanar Englands dröm",
-      "lead": "Kvartsfinalen mellan Norge och England i Miami lovar dramatik. Med extrema väderförhållanden och tunga avbräck ställs Englands nyvunna självförtroende på prov mot ett hyperkliniskt Norge lett av ostoppbare Erling Haaland. Räkna med en tät match där Norges anfallseffektivitet kan bli avgörande.",
+      "headline": "Het kvartsfinal i Miami: Haalands Norge utmanar favoriten England",
+      "lead": "När Norge och England drabbar samman i VM-kvartsfinalen i Miami står en semifinalplats på spel. Med stjärnor i toppform och en pressande hetta utlovas en dramatisk match där marginalerna kommer att bli avgörande, trots Englands favoritskap.",
       "paragraphs": [
-        "Norge har överraskat stort i VM och nått sin första kvartsfinal någonsin, inte minst tack vare en *devastating* **Erling Haaland** som med sju mål är delad skytteligaledare [[7], [9], [15]]. Laget slog ut Brasil med 2–1, ett resultat där Norges 2 mål kom på endast 1,05 xG, vilket visar på en extrem klinisk effektivitet (+2,63 mot förväntat). Försvarsmässigt har man släppt in 9 mål på 8,12 xGA, vilket indikerar att målvakten och försvaret presterar bättre än förväntat (−0,88). Trots rykten om en *sickness bug* i truppen har lagläkare **Ola Sand** och kapten **Martin Ødegaard** tonat ner oron, med **Sand** som bekräftar att *alla spelare är friska nu* [[4], [11]]. Förbundskapten **Ståle Solbakken** har hyllats för sin *brave* taktik och att han *gjort allt rätt* under turneringen, inklusive att byta ut yttrar mot Brasil vilket fick *stor inverkan* [[10], [15]].",
-        "England kommer från en *magical* och *chaotic* 3–2-seger mot Mexiko, en match där de spelade stora delar med tio man efter **Jarell Quansahs** röda kort, vilket nu innebär en två matcher lång avstängning för försvararen [[1], [3], [14], [16]]. Segern, driven av mål från **Jude Bellingham** (fyra mål i VM) och **Harry Kane** (sex mål i VM), har gett laget ett enormt psykologiskt lyft [[7], [12], [13], [14]]. Trots detta är det tydligt att England inte *blown a team away* med stora marginaler [[1]]. Laget har gjort 11 mål på 9,89 xG (+1,11), vilket visar på god effektivitet, och släppt in 5 mål på 4,18 xGA (−0,82), vilket pekar på ett stabilt försvar och målvakt. Utöver **Quansahs** avstängning är **Jordan Henderson** borta resten av turneringen med en handledsskada, och **Reece James** är *touch-and-go* med en hamstringskada [[1], [2], [12]].",
-        "Matchen spelas under extrema förhållanden i Miami, där temperaturer upp emot 35°C och en *feels like* temperatur på 44°C förväntas, tillsammans med risk för *severe thunderstorms* och *dangerous lightning* [[4], [5], [18]]. Tidigare matcher har försenats med upp till en timme på grund av vädret, och en liknande situation kan uppstå här [[5], [14], [18]]. Denna osäkerhet och de fysiskt krävande förhållandena kan gynna det lag som är bäst förberett mentalt och fysiskt. **Gary Neville** har varnat för **Haalands** förmåga att vara *anonymous* men *explosive*, en utmaning för Englands försvar [[2]].",
-        "Englands avbräck i försvaret, särskilt **Quansahs** avstängning och osäkerheten kring **James**, skapar sårbarhet mot ett så kliniskt och Haaland-beroende anfall. Norges förmåga att göra mål på få chanser (hög mål/xG-kvot på +2,63) är en nyckelfaktor, och i kombination med den extrema hettan och risken för avbrott kan det skapa en kaotisk matchbild där en enskild prestation kan avgöra. England har visat mental styrka men har inte övertygat fullt ut i spelet, trots att de är favoriter enligt **Gary Neville** [[2]]. Norges momentum och **Haalands** oöverträffade målform i kombination med **Solbakkens** taktiska skicklighet är tillräckligt för att rubba de engelska lejonen i en förlängningsrysare. Slutsats: Norge vinner en jämn match."
+        "Norge kommer till kvartsfinalen med ett enormt självförtroende efter att ha slagit ut Brasilien med 2–1 i åttondelsfinalen, en match där de trots ett xG på endast 1,05 mot Brasiliens 2,61 visade en brutal effektivitet. Denna historiska seger, landets första i en VM-kvartsfinal, drevs av **Erling Braut Haalands** dubbla mål, vilket placerar honom som delad skytteligaledare med sju fullträffar [[1,2,3]]. Rykten om en sjukdomsbärare i truppen har avfärdats av både lagläkare **Ola Sand** och förbundskapten **Ståle Solbakken**, som menar att *”alla spelare är friska nu”* och att det hela är *”starkt överdrivet”* [[4,5]].",
+        "England säkrade sin plats efter en *”magisk”* och *”kaotisk”* 3–2-seger mot Mexiko, där de tvingades spela större delen av andra halvlek med tio man efter **Jarell Quansahs** utvisning, som nu är avstängd i två matcher [[6,7,8,9]]. Laget har visat prov på stark offensiv med **Jude Bellingham** och **Harry Kane** i spetsen; **Bellingham** har fyra mål och en assist i turneringen, medan **Kane** har sex mål på fem matcher och totalt 73 mål på 63 matcher sedan augusti [[1,9]]. Defensivt är **Jordan Henderson** borta resten av turneringen med en handledsskada, och **Reece James** är osäker med en hamstringskada [[6,10,2]].",
+        "Den taktiska duellen mellan **Haaland** och Englands försvar blir central. **Gary Neville** varnar för att **Haaland** kan vara *”anonym i matcher”* men *”explosiv”* och *”svår att stoppa i 90 eller 120 minuter”* [[3]]. En annan avgörande faktor är de extrema väderförhållandena i Miami. Prognosen talar om åskväder och temperaturer som på planen kan *kännas som en straffande 44°C* vid avspark, vilket tvingar FIFA att aktivera obligatoriska kylpauser [[11]]. Detta kan påverka spelarnas uthållighet och matchbilden avsevärt, särskilt i ett öppet stadion utan luftkonditionering [[1]].",
+        "Norges förmåga att överprestera sitt xG (+2,63 mål mot förväntat) tyder på en klinisk effektivitet som kan utmana Englands mer balanserade +1,11. Båda lagen har målvakter och försvar som underpresterar sitt xGA, vilket indikerar att de räddar mer än förväntat. Trots Englands skadeavbräck och avstängningar besitter de en bredare trupp och individuell briljans hos spelare som **Bellingham** och **Kane** som kan övervinna taktiska nackdelar. Den extrema hettan kan dock jämna ut förutsättningarna och gynna det lag som bäst hanterar slitage och koncentration under press.",
+        "Slutsats: England är favoriter, men Norges momentum och **Haalands** förmåga att avgöra matcher med få chanser, kombinerat med den extrema hettan, gör detta till en mycket oviss match. Englands bredd och erfarenhet i utslagsmatcher, samt den individuella skickligheten hos **Kane** och **Bellingham**, kommer dock att fälla avgörandet."
       ],
       "references": [
         {
-          "source": "Sports Mole",
-          "title": "Norge vs England: Tre lejon har en fantastisk chans att avsluta decennier av skada vid VM 2026",
-          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOaktQRFNWanBiWmJWWkNQTnZLM2FJOExTM3VzMUdmNThDNk5aalFBdVFLMkVhNTl5bGF6UVZ2M1E0Z0FPMDN4UThwWkw1QWg4aGc5NDIwaFhTeXNzNm56Rzc3YzM1MHROSjdBOFFBbEtuOGJ3S0dCUWE4NHNDNVRybHVDZFREcnRlUU5ycy1XX0J1bjlCcTN0VDVvVlpvanRmX1IzRlBXLUpUSV9Wbmx5WEIwT2pydUwySnVhcHJiNU01eDlCUGxGckc0dHA5RlU0Qjd3?oc=5"
+          "source": "VG",
+          "title": "Norgeäventyret tar inte slut: Möter England",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQTmJwekJjZkxHWDhhNkRQWlpDcG9IbWtybnNXRHB2aFV0MFkzZURwVGlTM1oxdEQ5RmFFRzFZY09aQ0pMR3pURkVyR0FrRkt3SlpLdkkydjhyaTRwdjFUSG1nN1VUN2I5Y0lkLTVGb0VHWnV4cS1NQkV5cUp4RzFpUmJOTTdTSF9jN1p2WmFBQ2FjV2RMS3I5YnUwd3dBLXpRT21nVWpROTlLYXg1VUNvYjJhclZRM2NRcTdr?oc=5"
+        },
+        {
+          "source": "London Evening Standard",
+          "title": "England vs Norge: Förutsägelse, avsparkstid, lagnyheter, odds, h2h",
+          "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxOblFyNG5TcXhpR1NSeTlGbjRtVEtzaXNFVDdSbGZsUjkyd1ktVXp3bU01N2lBYVVwWUw0Q1JsNS1wMXBoNW94VDZWcVJCT1NVUGxLRVJTOS1mV2hqSlhWRU5zNkRWeGxRV0toc3dFUTk2VUZzbnpXRHc1OC1PQktOTk1YYnhoQklLZE1Mc2JEWGEyTlA5SlBWQS1QUEhvMWRkSXo5VmhIT3RHdmRWVm13X3FQWnozdHZHeWV2NmljeTBvbk9feE4wYWxjRzVyNmszRjJySUpteThWcU1NOThiRWdwcU82cHBnZEYxZFluMThwdzFKNmgyTEFib2oxMkE?oc=5"
         },
         {
           "source": "Sky Sports",
           "title": "Englands VM 2026: Gary Neville säger att Three Lions är favoriter mot Norge men manar till försiktighet mot Erling Haaland i kvartsfinal",
           "url": "https://news.google.com/rss/articles/CBMipAJBVV95cUxQVlFkb20wdnc0UTBIa1c4OWg2TlAwSlBUVkVVWXlza2RXeEJJbVdNNGF1R2E1WGZZaGpkb2l0Q0YxRkVIQlQwN0VKbkI2ZGo2S3NWVmdjQWVjNFBucld5R3prR0VPUGhROXNFeUZUc2VqTThFd215bjRaS1dyRlYtUGE2OUxLdDRncW01UTY5QzU4YkFrejhnMGx3eDhSUzE4UjdYVEZyRkhxX3Nyd1E0T2s0VDdKdnE0TER6VnVvOGNTOTNhWWNZTzJYelRyVWNTZzNfbUM0aXgxajVpNVp4cU1CWDk1T1JkTURjY3oyeXFnbDFxdWVrdmgxWnUxZ3BHTmdLWEJtMTNLemVfeXFmeVh6QU1IeDg1amE1WERlOFBwRmxF?oc=5"
+        },
+        {
+          "source": "FOX Sports",
+          "title": "Norge Team Doctor ger uppdatering om \"Sjukdomsbugg\" inför England Matchup",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOclk0MExzU2ZQSGpPa1lLZW02SkdYQlFrd0Z3d3VaS0pfWkpNUmNVSEhCeUN6RkRyZWtDQkFGVTJuX0hya0hCYWo3X20yWGxxZW03ZDZUY2dhOUJPWVhxa3ZnRUZIY252SUxjdFhsRzlFMFVJVVh2dGNfYlhKdTVBelczcFZnMVM2bjZhOHNyazdmUzBPWjg3dkMwbld1OF9ORS11eGhQYXPSAagBQVVfeXFMTXg5MF9mR3N3YkE2SXlLSERBY3pMbi1veUJaMVhxTGRKZ1lndW8xWUZvbWo5YzVrYVByZDVtTlhCNGhRV3doTjczbDMwSmt6dkJuZ2hNSjRpRUhiaS1yWml2Y25DVDZ4bXp4NjItMG56cGtEZnp2UGFURjMtTFpWMkNnRkc5U0tpenBsQTVqV21zSEN1WmZEUjdKX3F5TG9kT084NEdjWkVO?oc=5"
+        },
+        {
+          "source": "NRK",
+          "title": "Fotbolls-VM: Martin Ødegaard om Norges sjukdom",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNOGZmQjEzMEJrOFZ4ZThIWlJyX1dKWjdydGFTNWw1NTJidmRhQVNXZTlTR0ZXREU0N3hOZFVuc3hFQ044MFJxcGwtSlczRnNEMEJlbXNuV0tkZlhVcUtsQXZpRlA1V0xXX1V2azN6bWExRjFyNUFOUmRoSl9JYWF1MU53aVJsS1FSR3gzSllpTjg?oc=5"
+        },
+        {
+          "source": "Sports Mole",
+          "title": "Reece James (England) – osäker: Englands skadestängningslista och returdatum för världscupmatchen i Norge: Reece James, Jarell Quansah, Jordan Henderson",
+          "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOWDJnMTFJRDF4NFpnSHN0c0owOVZwQTFYSVRVcXdsX2xsYW4yWEIzV1lyRlptMHV3cW52RFR1TlhEbHFmajRKZnpUa080N05QNDhDM21ZVUZvOWxpeFZrUV9QcTF0VDFxbE1nQ01IVjhmem1MVXo1Q2FnTTdnd0lEVEd5RGtXVndyR3Vua0k3WG43Mk8zMTZzbkVOSm1OSkljcHVnV0poVjdQQ21VY2ctNGNxaEpFeENMYUxFR3NXOXotejNFUU1PUmtPaG91NkZNQkhDTTZEQmlZN08xNW5XMnZMbzFOZnJtb0kzWWJGcTBIRUVRNHRobkxn?oc=5"
+        },
+        {
+          "source": "Matchfakta (ESPN)",
+          "title": "Jarell Quansah (England) – borta: Rött kort i åttondelsfinalen mot Mexiko",
+          "url": "https://www.espn.com/soccer/match/_/gameId/760505"
+        },
+        {
+          "source": "London Evening Standard",
+          "title": "England vs Norge väderprognos: Kommer stormar att försena VM-matchen?",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOT3FnUU15X1UyY0VYMVJlUnhDLVhVTWtvT0NVM3lpb2R4V1N2T25VZkstV2FYNy1yQ0pncGJNTnRhWjBRZ0ZFZVFfRTdKaXc2LTdCY2Y0MkNYeklSbDJLZ3dJcHBkS05Sdkc5eGtUd29OMHRuS0gwdFVNMWRQeG53bmdJejJneWtHVnVQNmpXSEZHUVlCdV9JTlJiOTdzTGJMS3V0UnR1YnpFN2NyZlpNYnJ3LUFrV3Mw?oc=5"
+        },
+        {
+          "source": "Sports Mole",
+          "title": "Norge vs England: Tre lejon kommer att försöka hämta inspiration från \"magisk\" och \"kaotisk\" vinst över Mexiko",
+          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxOdGN1eWtjYlhBME1rUm1yaGpuM2dtclVHcUpKQ1IxV0dTZFlTWEluWjVwV3NKVEJOLU14RXpYZ2czZnAwbVZSVDJ2bW9ER0QwaDBEaEZPUW01a0NZRzBHYjZ3UU84VXFJS2dmZl9zanQ0VVZ6THNVVGJpUDlZSVFZcUVINkFzNTNpLUVNczlyR29aOUJPXzh0dzJVeF9SOVUybEc1VEptWGEwRDhYZk9UMERUZTZtdHI4ZVdGOFo3MXpIeFdRUXk5bEVqcktGVUpkQUw2RXVPNUtVYl9yM2dwMkdoY0JRNUJ2N1dCUi1mWGdzUQ?oc=5"
+        },
+        {
+          "source": "The Washington Post",
+          "title": "Jordan Henderson (England) – osäker: Jordan Henderson återvänder till Englands läger efter en handledsoperation efter en freak-skada i Mexiko",
+          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOT0trb05CT01xVGxZU0I5M2xOY2g1NTIyZy1mZWt1dmQyeVo0UzZ0eVRRVENHeE5Cenh5Q1FEWEVjRGppbUQwaU9TZWw4RDlfOEh4VUpFWTdoakNZVWlIa2xweGNDMUJTeWNLMFRweE4ydVRTQURpbW9TSXVBc01vakgwR0pPcDR4ckRvdW9WN0RzVE41OFZVc01adkxjNUtHbFZtZTFnZjk5aHl4RWZYZm9NNmk1VE9IOW42bGVnUF82eS1Bd3E3Q1pEQlYtLWV3SjRnbkJn?oc=5"
+        },
+        {
+          "source": "Yahoo Sports",
+          "title": "Chansen att England mot Norge skjuts upp som extremväder förutspått",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOSFhUR2Y0djJvNm5OajB1QW9YdHBUU3VMME5vREpSRXdzLUhvTXVfRU84RllRTk9HQTQyRFIwdW1ndHlycmEzQ0Fpci1KTjF3b3gxUzBmNzY1ZkltRmt0bXZrcERId25hVHFZT01wZWR3MmpEWjdtbGRpank1TzVTcWl2Z1c3UQ?oc=5"
         }
       ],
-      "prediction": "2–1 Norge efter förlängning",
-      "predictionNote": "Osäkerheten kring väderförhållandena och eventuella avbrott kan störa matchrytmen och gynna det mer opportunistiska laget.",
-      "written": "2026-07-09T22:44:00.575Z",
-      "refsHash": "8fda337fee76cfd4",
+      "prediction": "1–2 England",
+      "predictionNote": "Den extrema hettan och Haalands förmåga att avgöra på egen hand utgör den största osäkerheten för England.",
+      "written": "2026-07-10T04:14:15.734Z",
+      "refsHash": "d624b8369f17a492",
       "generated": true
     },
     "k:98": {
@@ -680,15 +726,19 @@
         "es",
         "be"
       ],
-      "headline": "Spaniens mur möter Belgiens kliniska anfall i kvartsfinalen",
-      "lead": "I en kvartsfinal som lovar spänning ställs Spaniens ogenomträngliga försvar mot Belgiens formstarka och kliniska anfall. Spanien, som ännu inte släppt in ett mål i turneringen, är favoriter, men Belgien har visat en imponerande förmåga att överlista motståndarna, vilket bäddar för en tät drabbning.",
+      "headline": "Spaniens ogenomträngliga mur möter Belgiens kliniska anfall i kvartsfinalrysare",
+      "lead": "Spanien, obesegrat och med noll insläppta mål, ställs mot ett formstarkt Belgien i VM-kvartsfinalen. Med en historia av dramatiska möten och en belgisk trupp fylld av revanschlusta, väntar en tät drabbning där Spaniens defensiva styrka utmanas av Belgiens effektiva offensiv.",
       "paragraphs": [
-        "Spanien har imponerat stort med sin defensiva stabilitet och har hållit nollan i samtliga fem VM-matcher, vilket understryks av att de endast släppt in bollar värda 1,49 xGA. Förbundskapten **Luis de la Fuente** har valt att behålla den framgångsrika startelvan, där **Rodri** utgör lagets balanspunkt tillsammans med **Pedri** och **Dani Olmo** på mittfältet [[1]]. Trots att **Pedri** har dragits med psykologisk press och en rädsla för att inte känna sig nödvändig, förväntas han starta [[2,1]]. Återvändande **Mikel Merino**, som nyligen gjorde mål mot Portugal efter en lång skadeperiod, är en nyckelspelare som åtnjuter stort förtroende från De la Fuente [[3]]. Offensivt har Spanien underpresterat sitt xG något med 9 mål på 9,75 xG, men har ändå säkrat segrar.",
-        "Belgien, å andra sidan, har visat upp en formidabel offensiv med 13 mål på 10,53 xG, vilket indikerar en exceptionell klinisk effektivitet [[4]]. Anfallsduon **Charles de Ketelaere** och **Romelu Lukaku** har varit avgörande, där **De Ketelaere** gjorde två mål mot USA och **Lukaku** säkrade segern [[4,5]]. Trots interna dispyter med FIFA gällande träningsanläggningar och **Folarin Balogun**-fallet, har belgarna visat mental styrka genom att besegra USA med 4–1 [[6,7,5,8]]. Målvakten **Thibaut Courtois** är självsäker och menar att *\"Vi kan skada Spanien\"* [[9]]. Dock har Belgien släppt in 5 mål på 6,15 xGA, vilket indikerar en viss sårbarhet bakåt.",
-        "Matchen har även en historisk dimension, då Spanien försöker utplåna ett 40 år gammalt sår från VM 1986, då Belgien slog ut dem i kvartsfinalen efter straffar [[10,11,12]]. Även om Spanien har vunnit de fem senaste mötena, senast 2016, har fem belgiska spelare från den matchen – **Courtois**, **Meunier**, **Witsel**, **De Bruyne** och **Lukaku** – fortfarande en plats i truppen, vilket ger dem värdefull erfarenhet [[12]]. Den taktiska kampen kommer att stå mellan Spaniens kontrollerade possession och defensiva disciplin mot Belgiens snabba omställningar och kliniska avslut, där yttre faktorer som Belgiens klagomål på träningsförhållandena i Los Angeles kan ha spelat in, även om de hittills hanterat det väl [[6]].",
-        "Med tanke på Spaniens enastående defensiva statistik, där de inte släppt in ett enda mål, och deras förmåga att kontrollera mittfältet, har de en pålitlig grund att stå på. Belgien har visserligen en imponerande offensiv effektivitet, men Spaniens försvar är det starkaste i turneringen. Det kommer att bli en match där små marginaler avgör. Spaniens förmåga att neutralisera Belgiens nyckelspelare i anfallet, samtidigt som de själva hittar vägar framåt, blir avgörande. Även om Belgien har visat sig kliniska, är det svårt att se dem bryta Spaniens försvarsmur mer än en gång under ordinarie tid."
+        "Spanien har imponerat med fem raka matcher utan insläppta mål, trots att offensiven med 9 mål på 9,75 xG varit något under förväntan [[1]]. Förbundskapten Luis de la Fuente förlitar sig på beprövade stjärnor som målvakten Unai Simón, som ännu inte har blivit överlistad [[1,2]]. Mittfältaren Pedri är dock en osäkerhetsfaktor; psykologen Lara Ferreiro menar att han kan ha pressat sig till det yttersta och OkDiario kräver att han *måste förbättra sin prestation* [[3,2]]. Belgien kommer med en stark offensiv, 13 mål på 10,53 xG, vilket indikerar anmärkningsvärd klinisk effektivitet [[4]]. De har visat stark moral genom att vända underläge, som 4–1 mot USA, men mittfältaren Amadou Onana tvingades utgå med en allvarlig knäskada [[4]].",
+        "Matchen bär på historisk tyngd för Spanien, som vill *stänga ett 40-årigt sår* efter förlusten mot Belgien i VM-kvartsfinalen 1986, en match som avgjordes på straffar [[5,6,7]]. Senast lagen möttes 2016 vann Spanien med 2–0 [[5,7]]. Spanien förväntas bibehålla bollinnehav och kontrollerat spel, medan Belgien sannolikt förlitar sig på snabba omställningar och kliniska avslutare. Belgiens förbund har uttryckt starkt missnöje med FIFA gällande Folarin Baloguns avstängning och träningsfaciliteterna [[4,8]]. Denna känsla av att vara orättvist behandlade kan fungera som en stark motivationsfaktor för de *återfödda Röda djävlarna* [[9]]. Målvakten Thibaut Courtois har uttalat att *vi kan skada Spanien* [[10]].",
+        "Spanien har visat sällsynt defensiv stabilitet, med försvar och målvakt som presterat långt över förväntat xGA (+1.49), avgörande i utslagsmatcher. Samtidigt har Belgien anmärkningsvärd effektivitet framåt, där de gör fler mål än chanserna borde ge (+2.47 xG). Denna förmåga att *stjäla* segrar med få chanser, kombinerat med psykologisk effekt av orättvisa, gör dem farliga. Pedris tveksamma form och Onanas skada kan påverka mittfältskampen, men Spaniens bredd och De la Fuentes förtroende är starkt. Trots Belgiens kliniska avslut och motivation är Spaniens kollektiva defensiva styrka och förmåga att kontrollera matchbilden en för stor fördel. De kommer att neutralisera Belgiens stjärnor och utnyttja sin egen kvalitet, om än med få marginaler."
       ],
       "references": [
+        {
+          "source": "Sports Illustrated",
+          "title": "Spaniens laguppställning vs Belgien: VM-kvartsfinal",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQaXJmX2hGVjVPRG5ManNiZWMwMHNtZjJDSF9mMXZPekp3LV9DRHIzSEdHMHBGWTFpNFJSUnlqRzJNQTNaRm5ZOS16amk5MThkNThRdGZENDdCWWxWVktOdmE5RjJMLWV5Zmc4ZmU1UmhwNVRtbFE3d3RxM0dpMzBLSlJXdDlHelB2b2tQVW9yTDdTM0p5?oc=5"
+        },
         {
           "source": "OkDiario",
           "title": "Spaniens laguppställning mot Belgien: De la Fuente behåller det som fungerar",
@@ -700,39 +750,9 @@
           "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPc29fa2gyR0MtQ19zTWtIODVZemRyd0JaQ2MxQ2NWbldLUkxxaXhGRzNXTzVGLUc1dURWTjB4djZmLXlYMzg2V1NzNFZ1XzNIQzY3RFVTWTA3S3Zhc1I4ZkJWeHFOQ2l5bHJ4LXF3dVFqRE5ZQWZsOGhYckFFazZHTTZhVFJqT2t3QWtla2dvVWE2enEzcUhjUi1YSWJpeWtXeVF0NmJjMTlmUzAwUXp1VnllbU52SkNiRDlHME1lc29mQmpoRTBWWGFFSFhQM1cwdjBoeUkwZUZGaTFnYkpJQnBBMjhFVUl0MGtqM0tVRHdIa09SQ01ib3MteENSRVU2TDc2MVN0WlBncFE?oc=5"
         },
         {
-          "source": "Cadena SER",
-          "title": "Mikel Merino (Spanien) – osäker: Mikel Merino, på stöd av De la Fuente under sin skada: \"Det är svårt att hitta en tränare som visar dig så mycket förtroende\"",
-          "url": "https://news.google.com/rss/articles/CBMipAJBVV95cUxNM0pfbGJZTVlhMmxWOHM3MUUxRFVqMFhpV3pqb1diUjYxNi10QlZna21ROVVuZndSRHNWQURZcnhQcmxEcHJULXVKZmZhWW1NeUgxQjJmaWVWSFFmQXE0YU5SeTBRQ1Q2UnJobmRSMjFMeVE2dE1QekhGclBjcVZSQ2VVXy15NXFWTnFVbkhmYldxNVlGYTVaZHVlMDNiSDhOX3hKaVViTlVhTGZKdGIyNXJfUTZTcGdrdTI3RFJxeVNjWjE1bFZYT19WNkRTN0RjdTFXb1RoZ3hyclVrYnMtaGdnRE1mdm9fdkZLOVdvVWc1ZTJaSjB6YllKR3ZYYjBYd2lIZnFwMEtMdnFhRF9xOUxaT0tsTUlkTEF1U2FZYnlGbjFK0gGkAkFVX3lxTE0zSl9sYllNWWEybFY4czcxRTFEVWowWGlXempvV2JSNjE2LXRCVmdrbVE5VW5md1JEc1ZBRFlyeFBybERwclQtdUpmZmFZbU15SDFCMmZpZVZIUWZBcTRhTlJ5MFFDVDZScmhuZFIyMUx5UTZ0TVB6SEZyUGNxVlJDZVVfLXk1cVZOcVVuSGZiV3E1WUZhNVpkdWUwM2JIOE5feEppVWJOVWFMZkp0YjI1cl9RNlNwZ2t1MjdEUnF5U2NaMTVsVlhPX1Y2RFM3RGN1MVdvVGhneHJyVWticy1oZ2dETWZ2b192Rks5V29VZzVlMlpKMHpiWUpHdlhiMFh3aUhmcXAwS0x2cWFEX3E5TFpPS2xNSWRMQXVTYVlieUZuMUo?oc=5"
-        },
-        {
-          "source": "El Mundo",
-          "title": "Från Ketelaere och Lukaku, elev och lärare i Belgien: den näst bästa attacken hotar Spaniens nollan",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQeVdMYUJUbllHZjZTaHVEajZHU2xQWmppaXNpaGhWRGVXN2I4UlhxYTdQMzBDV0NPOTFJWmpBQ3d2SzRCYWl4V0lGa0o1SXVUWnBBNnlQNXBPaDh5X2lMWWhfbktaNEFxdGVfTVJFYnZTV3lPS0Z2aVRzRFlObDhpOGQ2UUhxWVBNMG5UaUlyVzl3UDZyV1NCUEZ4b0tWZ9IBngFBVV95cUxQMkJQMy1fSWhnb3R3dzY5c0dka3VoWlAwRkxyOThFbERoVDRmWFRsQjVEUXlJREpwdTQweDJpT1hmTjFUVWREOHkxVHN0cEk5UW1xQTM0MWdGcE1FdFBqcEQ4WF9IU0xRX24tMlg0TkcxT3NxVjZWQ0YtQVZPTjJZc3lJUmkxRUtMcWR6SENrRm80WU11bWduOVBRckhyUQ?oc=5"
-        },
-        {
-          "source": "Cadena SER",
-          "title": "USA 1-4 Belgien: sammanfattning, resultat och mål för åttondelsfinalen i VM 2026",
-          "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQeHNqenFxT01ZLW92ZFpBNUcxRDZON0UxRmlfOVFqdGl6WERIWU5qa19YVVJ6Qzd3cEtjaV9PSHY1cDhkMmFlNm5GSXpSYkxodk5ZbFVkdkFFbnJvUElJakJQQUxibWRseHZkWnhYNXcyY3M2cHI1cmVwVTdvelFHaWt0Nzl2MF9hOEJNOFdwTHJmOC1uV2hCTnNsZjI4MF9oMW1SVnFJMFM0ay14VXo1ajk5Y2YxZ2J4MnNTTzFFcnROUFVCXzFiUHlXV1N5VVFUaUdEb2ZjZXVmdzU5WWNrYXlzN0dsOURocklV0gH_AUFVX3lxTFA0V0V0UFA0emJlcVNhcmsyNlo4RURNZ21RTmhQQkQwY01mT1lvejMzcTYtLWJvWEFzWlFXQjByYTZvcE5NNXlnSk9lVkozMUZ5emJ4ODV4d0hnRHh6NG55NkxjQVV3a2VWMm9SRHYtd250eDU5anhKQzh2MXFyTGpGbjg3NXh2WWEyMkE5M0twTzhxT1pLNHpmbGNrMHBRVEZQNmxCSWpLaXFWZTRUb2dxTFcxNnZNSjIwT2p5c015Z1hHSjhaa0RrRFotNFo4MXFPcG9hc1paWkFXLUVscmtNQjljQUxRcjBOSVpabFdubEo5SlZYc2NDWlcwZWpjYw?oc=5"
-        },
-        {
-          "source": "Yahoo Sports",
-          "title": "Belgien lämnar in FIFA-klagomål över träningsanläggningar för VM inför Spaniens kvartsfinal",
-          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNMkhoalFvT0VrVnh6cV9pUlRiR3dnZzlCQXdqcDhpRDhVM0RwNnhxa2hvQld4amxyYjkxRFByZmZ2LWdtUmtnZGtQdzZYaWptV1dLd0N1d2JkMGFLcldvQTRlM3lNczNYZHhZUDcyNm1YQU5QZ2Y4ZmlpYnQ3REFaSTg3bWk5OXV2UWc?oc=5"
-        },
-        {
           "source": "RTVE.es",
           "title": "Spanien har redan en rival: Belgien gör slut på den amerikanska drömmen och är redan i kvartsfinal",
           "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOWER2X1docTI2NllwY0puUkNkamVGNzV2ai1wZVg4ZkV5OHpsRl9KRHhKQVdxYjBPTGw5Q3BDdHE4X2tDbkNlOWplU0VYYTM1RjlWa2w4ODliLXphemJlQ3c1d2tJRzV2VS1zbHpheElxa2J2aE02R3ljNEVXWTljYXMxd1A5N2FjVkZiRWFhMzJ5ZzVLdmFmWjZ4c1JWZDd1dlJ0VnE3QQ?oc=5"
-        },
-        {
-          "source": "De Morgen",
-          "title": "Inget annat än beröm för återfödda Red Devils i utländsk press: \"Belgien har precis börjat spela fotboll, som om Trump och Infantino var luft\"",
-          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPNWFZTjVEV1JVZUNualZCTGstWjRVRXZpSEFVYllXaFB6OFQtazljUzE1MXR2NHZMTUpOZ0ZSSVlFX3hkUS01aG9jaGs0Nmx2MW01S2IyYXozbkZMVkdUT2JYUHBxMEcydWQ5aUR0VDkzRjJ5WW5RRFhRM3VNMGJYSlRNQ0pKZEpTS1dUNmZHci15d2xMRWVMNDhvWkU0V3NYUGx3VFJKNVJrRmc5YnM4T0RuYl8wVG1HUzBIeS0yd29FWVNTNGpKTGRaRHFFMkdxY2xpUkw1VS1ySklKLXlfNnEwZTJwYS1fYVBIQ0dhdGJwN3k2SXRpOEZSTWMxZU9SX25z?oc=5"
-        },
-        {
-          "source": "Nieuwsblad",
-          "title": "Thibaut Courtois vill bli VM-överraskningen med Röda djävlarna: \"Vi kan skada Spanien\"",
-          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNbWtNNFVCS1N5ZHZlTy0tWm0xY0xaVUFlUnJpNWJfVFhHSlMzczQtX1VBeW1XQ3BwZWpJaXo4UzMxYUhaMVpYX2FYU2JsQmItZVhpa3p3WWpjM2IwUk1KaWQ5Sjc0ZXlwR2lsQk1COHUzdnFiSVlrSDZ2Qk1sT0JoN1ZhMExEbEg5WUplSVoxenVxWlR3YzlHU3BudnYyTk5JMGllSVkyM3JTTjZELTJOM0VEdVhZUzdLR3JFSnhETVExaXVJR3BURVVabWJQaktJZXFLUFdpQnlGZms?oc=5"
         },
         {
           "source": "Notimérica",
@@ -748,12 +768,27 @@
           "source": "sporza.be",
           "title": "Hopp, besvikelse och det där ett mirakel: den blygsamma belgiska historien mot Spanien, med en enorm avvikare",
           "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQV1lMZEF4WDZvQ19TOEpTQ3ZwZmNOTFdHbWNWVHA2MlE0bGYxUHJQUmlaakpnd0JyQk1WY2NLdDlXQ3VRYnEtWndISFdURUlqNXo5SGMzLWdFMTU1YUtuaks2R2g2dDA2MEk1Vl9FU3NaQWlFUDJQWDVkODM1c3NIMlRwWFZIYWxLYzZIQkYzWlJ3OE1HaXpFWkxXQ1dLNll5S2FKb2pjTkV6WVJ3NGtTWGlTWlVmLWgwcWRZNHRBQ2F5WUozcjdSNmVDcHllYmtjTFA4R3BubF9RYXFnbE9RUjlzT05vck9PRXl5SGhrSlgwUGNYaGk0UQ?oc=5"
+        },
+        {
+          "source": "Yahoo Sports",
+          "title": "Belgien lämnar in FIFA-klagomål över träningsanläggningar för VM inför Spaniens kvartsfinal",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNMkhoalFvT0VrVnh6cV9pUlRiR3dnZzlCQXdqcDhpRDhVM0RwNnhxa2hvQld4amxyYjkxRFByZmZ2LWdtUmtnZGtQdzZYaWptV1dLd0N1d2JkMGFLcldvQTRlM3lNczNYZHhZUDcyNm1YQU5QZ2Y4ZmlpYnQ3REFaSTg3bWk5OXV2UWc?oc=5"
+        },
+        {
+          "source": "De Morgen",
+          "title": "Inget annat än beröm för återfödda Red Devils i utländsk press: \"Belgien har precis börjat spela fotboll, som om Trump och Infantino var luft\"",
+          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPNWFZTjVEV1JVZUNualZCTGstWjRVRXZpSEFVYllXaFB6OFQtazljUzE1MXR2NHZMTUpOZ0ZSSVlFX3hkUS01aG9jaGs0Nmx2MW01S2IyYXozbkZMVkdUT2JYUHBxMEcydWQ5aUR0VDkzRjJ5WW5RRFhRM3VNMGJYSlRNQ0pKZEpTS1dUNmZHci15d2xMRWVMNDhvWkU0V3NYUGx3VFJKNVJrRmc5YnM4T0RuYl8wVG1HUzBIeS0yd29FWVNTNGpKTGRaRHFFMkdxY2xpUkw1VS1ySklKLXlfNnEwZTJwYS1fYVBIQ0dhdGJwN3k2SXRpOEZSTWMxZU9SX25z?oc=5"
+        },
+        {
+          "source": "Nieuwsblad",
+          "title": "Thibaut Courtois vill bli VM-överraskningen med Röda djävlarna: \"Vi kan skada Spanien\"",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNbWtNNFVCS1N5ZHZlTy0tWm0xY0xaVUFlUnJpNWJfVFhHSlMzczQtX1VBeW1XQ3BwZWpJaXo4UzMxYUhaMVpYX2FYU2JsQmItZVhpa3p3WWpjM2IwUk1KaWQ5Sjc0ZXlwR2lsQk1COHUzdnFiSVlrSDZ2Qk1sT0JoN1ZhMExEbEg5WUplSVoxenVxWlR3YzlHU3BudnYyTk5JMGllSVkyM3JTTjZELTJOM0VEdVhZUzdLR3JFSnhETVExaXVJR3BURVVabWJQaktJZXFLUFdpQnlGZms?oc=5"
         }
       ],
-      "prediction": "2–1 Spanien",
-      "predictionNote": "Belgiens exceptionella kliniska effektivitet kan överraska Spaniens annars ogenomträngliga försvar, vilket gör att matchen kan bli jämnare än väntat.",
-      "written": "2026-07-09T23:52:23.465Z",
-      "refsHash": "89a25d8826855ee0",
+      "prediction": "1–0 Spanien",
+      "predictionNote": "Om Belgiens anfallare har en exceptionellt klinisk dag kan de överlista Spaniens försvar trots få chanser.",
+      "written": "2026-07-10T04:13:12.826Z",
+      "refsHash": "1754484adb903299",
       "generated": true
     },
     "k:100": {
@@ -761,20 +796,15 @@
         "ar",
         "ch"
       ],
-      "headline": "Messi mot muren: Xhakas frånvaro avgör kvartsfinalen",
-      "lead": "Världsmästarna Argentina, med en hyperklinisk Lionel Messi, ställs mot ett defensivt starkt Schweiz i kvartsfinalen. Men med kapten Granit Xhaka avstängd och en historik av argentinsk dominans, pekar mycket mot att favoriten tar sig vidare, trots sin sårbarhet.",
+      "headline": "Messis magi mot schweizisk mur – men nyckelavbräck kan fälla alpnationen",
+      "lead": "I kvartsfinalen mellan Argentina och Schweiz ställs världsmästarnas individuella briljans mot en välorganiserad defensiv. Trots Argentinas offensiva styrka har de visat sårbarhet, men Schweiz tvingas hantera tunga avbräck som kan tippa vågskålen till Sydamerikas fördel.",
       "paragraphs": [
-        "Argentina har visat en otrolig effektivitet framåt under turneringen, med hela 14 mål på 10,85 xG, vilket är +3,15 över förväntat. De har dock släppt in 5 mål på 2,97 xGA, vilket indikerar en viss defensiv sårbarhet. Deras väg till kvartsfinalen har varit dramatisk, med en historisk vändning från 0–2 mot Egypten i åttondelsfinalen [[1,2]] och en liknande upphämtning mot Kap Verde [[2]]. Försvarsgeneralen **Cristian \"Cuti\" Romero** är dock bekräftad att starta, efter att ha drabbats av kramp i förra matchen [[3]].",
-        "Schweiz har å sin sida byggt sin framgång på en stabil defensiv, med endast 3 insläppta mål trots 4,32 xGA, vilket tyder på starkt målvaktsspel och försvarsarbete. De tog sig vidare efter straffar mot Colombia i en mållös åttondelsfinal [[4]]. Men de drabbas av ett tungt avbräck då kapten och mittfältsmotor **Granit Xhaka** är avstängd efter två gula kort [[5]]. Även **Johan Manzambi** missar troligen matchen på grund av en knäskada, vilket tränare **Murat Yakin** bekräftat [[6]].",
-        "Argentinas beroende av **Lionel Messi** är tydligt, med åtta mål och en assist. Ingen annan spelare har gjort mer än ett mål [[2]]. Detta är en sårbarhet som Schweiz normalt skulle kunna utnyttja med sin organisation, men **Xhaka**s frånvaro är kritisk för att störa Argentinas mittfält och Messis ytor. Historiskt sett har Schweiz aldrig besegrat Argentina på sju försök, inklusive en förlust i förlängning i VM 2014 [[7]]. Matchen spelas dessutom på Kansas City Stadium, en arena där Argentina känner sig hemma efter två gruppspelssegrar [[8]].",
-        "Trots Argentinas defensiva brister och Messis tunga börda, är **Granit Xhaka**s avstängning ett för stort avbräck för Schweiz. Deras förmåga att stå emot Argentinas kliniska anfall kommer att minska avsevärt utan sin kapten. Argentina har visat mental styrka i pressade lägen, och deras anfallsförmåga, även om den är Messi-centrerad, är för stark. Schweiz har överpresterat defensivt, men Argentinas förmåga att skapa chanser (hög xG) och förvalta dem (hög mål/xG-kvot) kommer att bli avgörande. Denna kombination av argentinsk effektivitet och schweiziska avbräck fäller avgörandet."
+        "Argentina, jagandes sin andra raka VM-titel, har visat klinisk effektivitet framåt med 14 mål på 10,85 xG. **Lionel Messis** avgörande insatser är centrala, då ingen annan gjort mer än ett mål [[1]]. Defensivt finns brister; 5 insläppta mål på 2,97 xGA är 2,03 mål mer än förväntat. Detta blev tydligt mot Egypten, där de vände 0–2 till 3–2 [[2,1]]. **Cristian \"Cuti\" Romero** är dock bekräftad startklar efter kramp [[2]].",
+        "Schweiz har tagit sig till sin första kvartsfinal sedan 1954, drivna av en stark kollektiv defensiv [[3,1]]. De har endast släppt in 3 mål på 4,32 xGA, vilket är 1,32 mål färre än förväntat. Åttondelsfinalen mot Colombia vanns på straffar efter 0–0, trots att de var chansmässigt underlägsna (xG 0,39–1,09) [[3]]. Tunga avbräck för alpnationen: kapten **Granit Xhaka** är avstängd, och anfallaren **Johan Manzambi** förväntas inte hinna bli spelklar [[4,5,6]].",
+        "Schweiziska avbräcken är betydande. **Xhakas** frånvaro kommer att märkas djupt i mittfältet, där hans ledarskap och spelfördelning är vitala. Argentina är stabilare; **Scaloni** förväntas behålla stommen från Egypten-matchen, med endast frågetecken på högerbacken och anfallet [[7,8]]. Matchen spelas i Kansas City Stadium, en arena där Argentina redan vunnit två gruppspelsmatcher, vilket kan ge en psykologisk fördel [[9,7]]. Detta är en repris på VM 2014, då Argentina slog ut Schweiz med 1–0 efter förlängning [[9]].",
+        "Slutsats: Argentina går vidare till semifinal. Trots Schweiz välorganiserade, starka defensiv, är avsaknaden av **Granit Xhaka** ett för stort tapp. Argentinas offensiva spets, ledd av en formstark **Lionel Messi** som kan avgöra matcher nästan på egen hand, kommer att hitta vägar genom det försvagade schweiziska försvaret. Argentinas förmåga att överprestera sitt xG framåt, kombinerat med \"hemmafördelen\", blir avgörande."
       ],
       "references": [
-        {
-          "source": "TyC Sports",
-          "title": "Vad är känt om bildandet av Argentina två dagar från Schweiz",
-          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNSUhNNWpmRy13WEZGZHNRZDdqazFUbElpdDhGS25zSF9oem9jeWNDWVRiREFIcVFoeWlPUV9Ib2lYeEEzZDZpbmMtTjRodFRva2tvanRJSUh6OXROMTdneE5VNHA1eFpYc0FzeExSek9oeUhrYkI4VXdHdUhHMzdDZTlCZVJRZ2V6NVhwZnl2OW9SbXlvMk56MUdVZDAya0JpNTBieE5pS2gybHp2ZDUzZGhJLUY4SzVHUGNlcg?oc=5"
-        },
         {
           "source": "Watson",
           "title": "Och sedan säger Murat Yakin om kvartsfinalmotståndarna Argentina: \"Vi är förberedda.\"",
@@ -791,19 +821,29 @@
           "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQaW1FeUptVkI4QmU1WXFKdG54YzV1TzVmUzBwQWFGR2xLT2ZtWFpWZXlLbUppeFFKRmFGeEUtcU5XNTQyNXlsTy01VzhZNUZrSkxpbHhDR250TVBTUTNZU3VEemNSa3Y3YllwRTRSdWN6YnpUeEprM3JrdHpMTm1KVnJmdGhPenE0UFlOajVnNC12N3oySG9xZmk0M1hoWHVKZWVINmFrY205QkZ1YkdVLUR2Q0hONUxjOW10cQ?oc=5"
         },
         {
-          "source": "Matchfakta (ESPN)",
-          "title": "Granit Xhaka (Schweiz) – borta: Andra gula kortet i turneringen (mot Kanada och Colombia)",
-          "url": "https://www.espn.com/soccer/match/_/gameId/760508"
-        },
-        {
           "source": "Nau",
           "title": "Johan Manzambi (Schweiz) – osäker: World Cup 2026: Skadade Manzambi har redan en hand på (Lego) World Cup-trofén!",
           "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNUThKeFhFUWhqcmNuSXhEQnk1SjZERUx3aDhBclRZQThhM2pNQWlyTElJT25fQWl4ZFlVd3owVEpfbTJ3Ml9lSTJLV0d2VXpyaFI0ODFiVlpaa2ZLVktJNlgtSUVBTVRLSzBDNnhiVDBTWF9lMlFORVpqYmY3cHcwTjJxTzZFYmxsSFVVN3JXLXFTSU1jSTZCOTlma1J2N1BaZ25JbXZxUG1qV28?oc=5"
         },
         {
-          "source": "Nau",
-          "title": "VM 2026: Så gick de senaste nationella duellerna mot Argentina",
-          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPbXMxanJpcGtDZTZXQWRSOTQtZEZIdTRqWVFpZklTaEE5cWY2UnlEOGU4cnhqSWtoWE5QX1RVWkcxaGdieHV1UWQ1eDA5QkdHcnNWRHRLb3pCQWd0TUd4Ykh6bGllN1NkSFNhaUU0YlRvUEtfX0haeDd0QWxhR0w3WDB1cHVqNG5NbVVLeEdHdlJPN3JRYkljMXd4ZFBlQUVfUE5YSQ?oc=5"
+          "source": "Matchfakta (ESPN)",
+          "title": "Granit Xhaka (Schweiz) – borta: Andra gula kortet i turneringen (mot Kanada och Colombia)",
+          "url": "https://www.espn.com/soccer/match/_/gameId/760508"
+        },
+        {
+          "source": "Blick",
+          "title": "Manzambis kapplöpning mot tiden – passar Argentina?",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxORTFRcXdvR0cyNGh5QmhfYTZwMnZHc3BBTEFhS2ZFWklHa1RrYXdPRjlpMmNWOFlJbkIxTGRnd1ZoX0RPZTVjeXJPYUN3c3FzTHd0cmFYcGxGZGR3S0xtODdGdUtXMExINjZwQ2JEbjd3MlRoWDl5STVSdnVFcWoyYzFkXzhtSGNJMjlrUG1ZbGtJX1BtR0NGdXIzZkhuYVNqMVJPMnRvcUhKeHA3dDREczRzcW13ZnAwX3lr?oc=5"
+        },
+        {
+          "source": "El Intransigente",
+          "title": "VM 2026: Scalonis två tvivel mot Argentina vs. Schweiz",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNM1A5QVpqQlFDZlROZk9YR2E0SnJzVFZBYW9USWgtU0xMZUJsdkUydUFvVHZXQ3JfUXRyTjJNVjRReW45eklsTEUxUVJ4Qk42bzA1X3BTYW0wSkhyS0FaaTNuSFhCdW5JcGFDSVFZTUhob1NWeEtlUTMya0JSRlVnVFQyZ1Iwc19JaXA0R19vdG05ejZ1Zk04d0ZjYy1PYnk5OENPQnVn?oc=5"
+        },
+        {
+          "source": "TyC Sports",
+          "title": "Vad är känt om bildandet av Argentina två dagar från Schweiz",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNSUhNNWpmRy13WEZGZHNRZDdqazFUbElpdDhGS25zSF9oem9jeWNDWVRiREFIcVFoeWlPUV9Ib2lYeEEzZDZpbmMtTjRodFRva2tvanRJSUh6OXROMTdneE5VNHA1eFpYc0FzeExSek9oeUhrYkI4VXdHdUhHMzdDZTlCZVJRZ2V6NVhwZnl2OW9SbXlvMk56MUdVZDAya0JpNTBieE5pS2gybHp2ZDUzZGhJLUY4SzVHUGNlcg?oc=5"
         },
         {
           "source": "bolavip.com",
@@ -812,9 +852,9 @@
         }
       ],
       "prediction": "2–0 Argentina",
-      "predictionNote": "Om Schweiz lyckas neutralisera Messi utan Xhaka kan matchen bli betydligt jämnare.",
-      "written": "2026-07-09T22:44:47.732Z",
-      "refsHash": "32cf01f4f3e214f9",
+      "predictionNote": "Om Schweiz lyckas neutralisera Messi helt och hållet kan en målsnål match med förlängning inte uteslutas.",
+      "written": "2026-07-10T04:15:27.664Z",
+      "refsHash": "51644cf2840bff23",
       "generated": true
     }
   }
