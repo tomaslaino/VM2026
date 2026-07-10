@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-10T20:55:52.099Z",
+    "updatedAt": "2026-07-10T22:10:27.113Z",
     "source": "espn"
   },
   "details": {
@@ -56153,11 +56153,11 @@
     "k:98": {
       "espnId": "760511",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 90,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-10T19:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
           "h": 2,
@@ -56227,6 +56227,12 @@
           "team": "h",
           "player": "Aymeric Laporte",
           "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Axel Witsel",
+          "card": "YELLOW"
         }
       ],
       "subs": [
@@ -56295,6 +56301,7 @@
               "jersey": "23",
               "pos": "G",
               "st": {
+                "fs": 1,
                 "gc": 1,
                 "sv": 1
               }
@@ -56316,7 +56323,9 @@
               "pos": "LB",
               "st": {
                 "fc": 1,
-                "gc": 1
+                "gc": 1,
+                "sg": 1,
+                "sh": 1
               }
             },
             {
@@ -56348,6 +56357,7 @@
               "jersey": "14",
               "pos": "CD-L",
               "st": {
+                "fc": 1,
                 "gc": 1
               }
             },
@@ -56368,6 +56378,7 @@
               "jersey": "16",
               "pos": "RM",
               "st": {
+                "fs": 1,
                 "gc": 1,
                 "sh": 1
               }
@@ -56431,6 +56442,7 @@
               "in": true,
               "st": {
                 "fc": 1,
+                "fs": 1,
                 "sg": 1,
                 "g": 1,
                 "sh": 1
@@ -56523,7 +56535,7 @@
               "jersey": "23",
               "pos": "LM",
               "st": {
-                "fc": 4,
+                "fc": 5,
                 "fs": 2,
                 "gc": 2
               }
@@ -56594,7 +56606,7 @@
               "pos": "AM-L",
               "st": {
                 "fc": 3,
-                "fs": 4,
+                "fs": 5,
                 "gc": 2
               }
             }
@@ -56630,7 +56642,7 @@
               "in": true,
               "st": {
                 "gc": 1,
-                "sv": 1
+                "sv": 2
               }
             },
             {
@@ -56654,7 +56666,7 @@
               "jersey": "6",
               "in": true,
               "st": {
-                "fc": 1,
+                "fc": 2,
                 "fs": 1,
                 "gc": 1
               }
@@ -56668,6 +56680,7 @@
               "jersey": "9",
               "in": true,
               "st": {
+                "fc": 1,
                 "gc": 1
               }
             }
@@ -56676,7 +56689,7 @@
       },
       "referee": "Michael Oliver",
       "venue": "SoFi Stadium, Inglewood, California",
-      "attendance": null,
+      "attendance": 70492,
       "stats": [
         {
           "key": "possessionPct",
@@ -56685,12 +56698,12 @@
         },
         {
           "key": "totalShots",
-          "h": "16",
+          "h": "17",
           "a": "5"
         },
         {
           "key": "shotsOnTarget",
-          "h": "7",
+          "h": "8",
           "a": "2"
         },
         {
@@ -56700,8 +56713,8 @@
         },
         {
           "key": "foulsCommitted",
-          "h": "12",
-          "a": "15"
+          "h": "13",
+          "a": "18"
         },
         {
           "key": "offsides",
@@ -56711,22 +56724,22 @@
         {
           "key": "saves",
           "h": "1",
-          "a": "5"
+          "a": "6"
         },
         {
           "key": "totalPasses",
-          "h": "639",
-          "a": "305"
+          "h": "665",
+          "a": "314"
         },
         {
           "key": "passPct",
-          "h": "91%",
-          "a": "79%"
+          "h": "90%",
+          "a": "78%"
         },
         {
           "key": "yellowCards",
-          "h": "1",
-          "a": "1"
+          "h": "2",
+          "a": "2"
         },
         {
           "key": "redCards",
@@ -56734,7 +56747,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-10T20:55:52.099Z"
+      "updatedAt": "2026-07-10T22:10:27.113Z"
     }
   }
 }
