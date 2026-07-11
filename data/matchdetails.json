@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-11T21:29:26.488Z",
+    "updatedAt": "2026-07-11T22:27:09.849Z",
     "source": "espn"
   },
   "details": {
@@ -56753,23 +56753,70 @@
       "espnId": "760512",
       "fmt": 2,
       "status": "IN_PLAY",
-      "minute": 28,
+      "minute": 65,
       "utcDate": "2026-07-11T21:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
-          "h": 0,
-          "a": 0
+          "h": 1,
+          "a": 1
         },
-        "ht": null,
+        "ht": {
+          "h": 1,
+          "a": 1
+        },
         "rt": null,
         "et": null,
         "pen": null
       },
-      "goals": [],
+      "goals": [
+        {
+          "minute": 36,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Andreas Schjelderup",
+          "assist": "Martin Ødegaard",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        },
+        {
+          "minute": 45,
+          "injuryTime": 2,
+          "team": "a",
+          "scorer": "Jude Bellingham",
+          "assist": "Anthony Gordon",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        }
+      ],
       "bookings": [],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Bukayo Saka",
+          "out": "Noni Madueke"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Eberechi Eze",
+          "out": "Declan Rice"
+        },
+        {
+          "minute": 60,
+          "team": "h",
+          "in": "Fredrik Aursnes",
+          "out": "Julian Ryerson"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -56778,24 +56825,37 @@
             {
               "name": "Ørjan Nyland",
               "jersey": "1",
-              "pos": "G"
+              "pos": "G",
+              "st": {
+                "gc": 1,
+                "sv": 1
+              }
             },
             {
               "name": "Julian Ryerson",
               "jersey": "26",
-              "pos": "RB"
+              "pos": "RB",
+              "st": {
+                "fc": 2,
+                "fs": 1,
+                "gc": 1
+              }
             },
             {
               "name": "David Møller Wolfe",
               "jersey": "5",
-              "pos": "LB"
+              "pos": "LB",
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Sander Berge",
               "jersey": "8",
               "pos": "CM",
               "st": {
-                "fc": 1
+                "fc": 2,
+                "gc": 1
               }
             },
             {
@@ -56803,38 +56863,67 @@
               "jersey": "3",
               "pos": "CD-R",
               "st": {
-                "fc": 1
+                "fc": 1,
+                "gc": 1
               }
             },
             {
               "name": "Torbjørn Heggem",
               "jersey": "17",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Martin Ødegaard",
               "jersey": "10",
-              "pos": "RM"
+              "pos": "RM",
+              "st": {
+                "gc": 1,
+                "a": 1,
+                "sg": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Patrick Berg",
               "jersey": "6",
-              "pos": "LM"
+              "pos": "LM",
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Erling Haaland",
               "jersey": "9",
-              "pos": "F"
+              "pos": "F",
+              "st": {
+                "gc": 1,
+                "sg": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Alexander Sørloth",
               "jersey": "7",
-              "pos": "RF"
+              "pos": "RF",
+              "st": {
+                "fc": 1,
+                "gc": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Andreas Schjelderup",
               "jersey": "21",
-              "pos": "LF"
+              "pos": "LF",
+              "st": {
+                "gc": 1,
+                "sg": 1,
+                "g": 1,
+                "sh": 1
+              }
             }
           ],
           "bench": [
@@ -56848,7 +56937,8 @@
             },
             {
               "name": "Fredrik Aursnes",
-              "jersey": "14"
+              "jersey": "14",
+              "in": true
             },
             {
               "name": "Antonio Nusa",
@@ -56906,50 +56996,80 @@
             {
               "name": "Jordan Pickford",
               "jersey": "1",
-              "pos": "G"
+              "pos": "G",
+              "st": {
+                "gc": 1,
+                "sv": 2
+              }
             },
             {
               "name": "Ezri Konsa",
               "jersey": "2",
-              "pos": "RB"
+              "pos": "RB",
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Nico O'Reilly",
               "jersey": "3",
-              "pos": "LB"
+              "pos": "LB",
+              "st": {
+                "fs": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Elliot Anderson",
               "jersey": "8",
-              "pos": "LM"
+              "pos": "LM",
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "John Stones",
               "jersey": "5",
-              "pos": "CD-R"
+              "pos": "CD-R",
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Marc Guéhi",
               "jersey": "6",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Noni Madueke",
               "jersey": "20",
               "pos": "AM-R",
               "st": {
-                "fc": 1
+                "fc": 1,
+                "gc": 1
               }
             },
             {
               "name": "Declan Rice",
               "jersey": "4",
-              "pos": "RM"
+              "pos": "RM",
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Harry Kane",
               "jersey": "9",
-              "pos": "F"
+              "pos": "F",
+              "st": {
+                "fs": 1,
+                "gc": 1,
+                "sg": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Jude Bellingham",
@@ -56957,13 +57077,23 @@
               "pos": "AM",
               "st": {
                 "fc": 1,
-                "fs": 2
+                "fs": 2,
+                "gc": 1,
+                "sg": 1,
+                "g": 1,
+                "sh": 2
               }
             },
             {
               "name": "Anthony Gordon",
               "jersey": "18",
-              "pos": "AM-L"
+              "pos": "AM-L",
+              "st": {
+                "fc": 1,
+                "fs": 2,
+                "gc": 1,
+                "a": 1
+              }
             }
           ],
           "bench": [
@@ -56981,7 +57111,11 @@
             },
             {
               "name": "Eberechi Eze",
-              "jersey": "21"
+              "jersey": "21",
+              "in": true,
+              "st": {
+                "sh": 1
+              }
             },
             {
               "name": "Ollie Watkins",
@@ -57017,7 +57151,11 @@
             },
             {
               "name": "Bukayo Saka",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true,
+              "st": {
+                "sh": 1
+              }
             },
             {
               "name": "Reece James",
@@ -57032,48 +57170,48 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "29%",
-          "a": "72%"
+          "h": "40%",
+          "a": "60%"
         },
         {
           "key": "totalShots",
-          "h": "0",
-          "a": "1"
+          "h": "6",
+          "a": "6"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "0"
-        },
-        {
-          "key": "wonCorners",
-          "h": "0",
-          "a": "1"
-        },
-        {
-          "key": "foulsCommitted",
-          "h": "2",
+          "h": "3",
           "a": "2"
         },
         {
+          "key": "wonCorners",
+          "h": "3",
+          "a": "2"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "6",
+          "a": "3"
+        },
+        {
           "key": "offsides",
-          "h": "0",
-          "a": "1"
+          "h": "1",
+          "a": "3"
         },
         {
           "key": "saves",
-          "h": "0",
-          "a": "0"
+          "h": "1",
+          "a": "2"
         },
         {
           "key": "totalPasses",
-          "h": "99",
-          "a": "245"
+          "h": "257",
+          "a": "385"
         },
         {
           "key": "passPct",
-          "h": "82%",
-          "a": "95%"
+          "h": "85%",
+          "a": "94%"
         },
         {
           "key": "yellowCards",
@@ -57086,7 +57224,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-11T21:29:26.488Z"
+      "updatedAt": "2026-07-11T22:27:09.849Z"
     }
   }
 }
