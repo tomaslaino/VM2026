@@ -2,7 +2,7 @@
   "tournament": "FIFA World Cup 2026",
   "source": "Marknadsvärde/klubb/porträtt från Transfermarkt (spelarprofilen); klubbform (matcher och mål, liga + totalt) för säsongen 2025/26 från spelarens Wikipedia-artikel (Career statistics). Ingen API-nyckel.",
   "note": "Betting-relevant spelardata som saknas i övriga datalager. market_value_eur = Transfermarkts marknadsvärde (proxy för kvalitet). season = klubbform 2025/26: league/total {apps, goals} + gpa (mål per match). Assist, minuter och skott ingår inte (finns inte robust gratis). tm_id/wiki_title cachas för att slippa söka om. Poster med manual: true bevaras.",
-  "updated": "2026-07-10T06:54:10.326Z",
+  "updated": "2026-07-11T05:48:27.475Z",
   "players": {
     "cze-matej-kovar": {
       "name": "Matěj Kovář",
