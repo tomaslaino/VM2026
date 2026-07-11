@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-11T22:27:09.849Z",
+    "updatedAt": "2026-07-11T23:31:16.355Z",
     "source": "espn"
   },
   "details": {
@@ -56753,21 +56753,24 @@
       "espnId": "760512",
       "fmt": 2,
       "status": "IN_PLAY",
-      "minute": 65,
+      "minute": 107,
       "utcDate": "2026-07-11T21:00Z",
-      "duration": "REGULAR",
+      "duration": "EXTRA_TIME",
       "winner": null,
       "score": {
         "ft": {
           "h": 1,
-          "a": 1
+          "a": 2
         },
         "ht": {
           "h": 1,
           "a": 1
         },
         "rt": null,
-        "et": null,
+        "et": {
+          "h": 1,
+          "a": 2
+        },
         "pen": null
       },
       "goals": [
@@ -56794,6 +56797,18 @@
             "h": 1,
             "a": 1
           }
+        },
+        {
+          "minute": 93,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Jude Bellingham",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 2
+          }
         }
       ],
       "bookings": [],
@@ -56815,6 +56830,54 @@
           "team": "h",
           "in": "Fredrik Aursnes",
           "out": "Julian Ryerson"
+        },
+        {
+          "minute": 68,
+          "team": "h",
+          "in": "Oscar Bobb",
+          "out": "Alexander Sørloth"
+        },
+        {
+          "minute": 68,
+          "team": "h",
+          "in": "Antonio Nusa",
+          "out": "Andreas Schjelderup"
+        },
+        {
+          "minute": 71,
+          "team": "a",
+          "in": "Reece James",
+          "out": "Anthony Gordon"
+        },
+        {
+          "minute": 86,
+          "team": "a",
+          "in": "Djed Spence",
+          "out": "Nico O'Reilly"
+        },
+        {
+          "minute": 89,
+          "team": "a",
+          "in": "Morgan Rogers",
+          "out": "Ezri Konsa"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Marcus Holmgren Pedersen",
+          "out": "David Møller Wolfe"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Leo Østigard",
+          "out": "Torbjørn Heggem"
+        },
+        {
+          "minute": 105,
+          "team": "h",
+          "in": "Jørgen Strand Larsen",
+          "out": "Erling Haaland"
         }
       ],
       "penalties": [],
@@ -56827,8 +56890,8 @@
               "jersey": "1",
               "pos": "G",
               "st": {
-                "gc": 1,
-                "sv": 1
+                "gc": 2,
+                "sv": 3
               }
             },
             {
@@ -56854,8 +56917,8 @@
               "jersey": "8",
               "pos": "CM",
               "st": {
-                "fc": 2,
-                "gc": 1
+                "fc": 3,
+                "gc": 2
               }
             },
             {
@@ -56864,7 +56927,8 @@
               "pos": "CD-R",
               "st": {
                 "fc": 1,
-                "gc": 1
+                "gc": 2,
+                "sh": 1
               }
             },
             {
@@ -56880,7 +56944,7 @@
               "jersey": "10",
               "pos": "RM",
               "st": {
-                "gc": 1,
+                "gc": 2,
                 "a": 1,
                 "sg": 1,
                 "sh": 1
@@ -56891,7 +56955,8 @@
               "jersey": "6",
               "pos": "LM",
               "st": {
-                "gc": 1
+                "fc": 1,
+                "gc": 2
               }
             },
             {
@@ -56899,7 +56964,7 @@
               "jersey": "9",
               "pos": "F",
               "st": {
-                "gc": 1,
+                "gc": 2,
                 "sg": 1,
                 "sh": 2
               }
@@ -56938,11 +57003,22 @@
             {
               "name": "Fredrik Aursnes",
               "jersey": "14",
-              "in": true
+              "in": true,
+              "st": {
+                "fs": 2,
+                "gc": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Antonio Nusa",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true,
+              "st": {
+                "gc": 1,
+                "sg": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Henrik Falchener",
@@ -56950,7 +57026,8 @@
             },
             {
               "name": "Jørgen Strand Larsen",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Sondre Langas",
@@ -56958,11 +57035,19 @@
             },
             {
               "name": "Leo Østigard",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Oscar Bobb",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Kristian Thorstvedt",
@@ -56974,7 +57059,12 @@
             },
             {
               "name": "Marcus Holmgren Pedersen",
-              "jersey": "16"
+              "jersey": "16",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Sander Tangvik",
@@ -56999,7 +57089,7 @@
               "pos": "G",
               "st": {
                 "gc": 1,
-                "sv": 2
+                "sv": 3
               }
             },
             {
@@ -57065,10 +57155,11 @@
               "jersey": "9",
               "pos": "F",
               "st": {
+                "fc": 1,
                 "fs": 1,
                 "gc": 1,
-                "sg": 1,
-                "sh": 2
+                "sg": 2,
+                "sh": 3
               }
             },
             {
@@ -57077,11 +57168,11 @@
               "pos": "AM",
               "st": {
                 "fc": 1,
-                "fs": 2,
+                "fs": 3,
                 "gc": 1,
-                "sg": 1,
-                "g": 1,
-                "sh": 2
+                "sg": 2,
+                "g": 2,
+                "sh": 5
               }
             },
             {
@@ -57107,13 +57198,20 @@
             },
             {
               "name": "Morgan Rogers",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true,
+              "st": {
+                "sg": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Eberechi Eze",
               "jersey": "21",
               "in": true,
               "st": {
+                "fc": 1,
+                "fs": 1,
                 "sh": 1
               }
             },
@@ -57139,7 +57237,8 @@
             },
             {
               "name": "Djed Spence",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Jordan Henderson",
@@ -57154,12 +57253,14 @@
               "jersey": "7",
               "in": true,
               "st": {
+                "fs": 1,
                 "sh": 1
               }
             },
             {
               "name": "Reece James",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             }
           ]
         }
@@ -57170,48 +57271,48 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "40%",
-          "a": "60%"
+          "h": "45%",
+          "a": "56%"
         },
         {
           "key": "totalShots",
-          "h": "6",
-          "a": "6"
+          "h": "10",
+          "a": "11"
         },
         {
           "key": "shotsOnTarget",
-          "h": "3",
-          "a": "2"
+          "h": "4",
+          "a": "5"
         },
         {
           "key": "wonCorners",
-          "h": "3",
-          "a": "2"
+          "h": "6",
+          "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "6",
-          "a": "3"
+          "h": "9",
+          "a": "5"
         },
         {
           "key": "offsides",
           "h": "1",
-          "a": "3"
+          "a": "4"
         },
         {
           "key": "saves",
-          "h": "1",
-          "a": "2"
+          "h": "3",
+          "a": "3"
         },
         {
           "key": "totalPasses",
-          "h": "257",
-          "a": "385"
+          "h": "478",
+          "a": "588"
         },
         {
           "key": "passPct",
           "h": "85%",
-          "a": "94%"
+          "a": "92%"
         },
         {
           "key": "yellowCards",
@@ -57224,7 +57325,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-11T22:27:09.849Z"
+      "updatedAt": "2026-07-11T23:31:16.355Z"
     }
   }
 }

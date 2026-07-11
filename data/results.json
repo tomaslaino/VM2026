@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-11T22:27:09.791Z",
+    "updatedAt": "2026-07-11T23:31:16.314Z",
     "source": "espn",
     "matchCount": 99,
     "liveCount": 1,
@@ -503,18 +503,18 @@
     },
     "k:99": {
       "h": 1,
-      "a": 1,
-      "status": "IN_PLAY"
+      "a": 2,
+      "status": "PAUSED"
     }
   },
   "live": [
     {
       "key": "k:99",
-      "status": "IN_PLAY",
-      "minute": 64,
+      "status": "PAUSED",
+      "minute": 105,
       "home": "Norway",
       "away": "England",
-      "score": "1-1"
+      "score": "1-2"
     }
   ],
   "fixtures": {
@@ -2188,7 +2188,7 @@
       "date": "2026-07-11",
       "time": "23:00",
       "utcDate": "2026-07-11T21:00Z",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "matchday": null,
       "home": "Norway",
       "away": "England",
