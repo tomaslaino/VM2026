@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-11T03:49:18.448Z",
+  "updated": "2026-07-11T06:31:53.638Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -12,17 +12,6 @@
       "source": {
         "name": "SRF",
         "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNZ2VJY2g3enFGMGlvbXowS3lfYkdKSHE2NUFmbTVaSGZfV2NtUmhwR2tOWFowbFNETEhOd0ltQmdBWkw0Um04VDFXT0pkb2FSbkpyNmZDTTd6bDJDRHlSNkZkejJrWTJNX1NmQVJ5YVJfWlRtazFmT0ttVklMY1Z2MldKRHhqeHhDeVlMd0xFbmY0VnhQU3VweVFsWEQyRlFsU3RTQTVrd0piWXQ3VzZQckdQRFZnbmtZYUkyU3dwZlQzdw?oc=5"
-      },
-      "origin": "news"
-    },
-    "fra-kylian-mbappe": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Franska laget: inga bekymmer för Kylian Mbappé trots en svullen fotled",
-      "updated": "2026-07-10",
-      "source": {
-        "name": "Le Parisien",
-        "url": "https://news.google.com/rss/articles/CBMiigJBVV95cUxQX2JkMWp2X1Nzcm8zcy1LcjNmc2l5ZGZJZVVtWmlKM282OVR1cmg2VkQwOVZlSUF2dGlrbm1hM0cwYnRIVlZ0clQtNk5NUUxURGlIdzloV1N0REp6d0xMd1FwWDRXUUZfVDlsRGloQ0pBUjJ0VXFTVUZyZnNCcW1uOHh0SVZfX0lOU1B4SWRYeUU4aUVzcWYwbDNLQUdCclhrZEw5Q1h6YjRfUFNLdldCTzA0SENSRVhzbzNVd0xPNEZjVGgwNGtlNG5MNy1ndzVvbzJiRlg5QkxSMHpvMXNVaERpck45eE43X251a2QzNXhDamxBbmdhZE1kS3dHaTBjM0RuZ2E4TkZ3UQ?oc=5"
       },
       "origin": "news"
     },
