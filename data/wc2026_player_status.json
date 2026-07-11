@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-11T00:15:25.279Z",
+  "updated": "2026-07-11T03:49:18.448Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "sui-johan-manzambi": {
@@ -34,6 +34,17 @@
       "source": {
         "name": "NRK",
         "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNOGZmQjEzMEJrOFZ4ZThIWlJyX1dKWjdydGFTNWw1NTJidmRhQVNXZTlTR0ZXREU0N3hOZFVuc3hFQ044MFJxcGwtSlczRnNEMEJlbXNuV0tkZlhVcUtsQXZpRlA1V0xXX1V2azN6bWExRjFyNUFOUmRoSl9JYWF1MU53aVJsS1FSR3gzSllpTjg?oc=5"
+      },
+      "origin": "news"
+    },
+    "arg-leandro-paredes": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Scalonis avslöjande om Paredes skada och Schweiz analys",
+      "updated": "2026-07-11",
+      "source": {
+        "name": "TyC Sports",
+        "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPOFAxOERRMHZ3ZmtBRmQ1ZmFfZTBUTkp1WEpZbWp1eHBVMUw0WWpkbVhvb2pKalJ4bUl4U0R4eTBHREpmS0h2WmlrbEdvTmRJTDBuZFZ3c3dVR09kX0U3SHZDQ0V6amVObVQwX2pjNlJGcW1nLS1vNzlQempsM3lEcXdsUVE2ZExVcXBRX2g4SlhOeVJoYUtKcUE3YXVLS1dySk1QQl9fMFFXZjJkSjEzeXdIZXp0TWE2TUVyNXpjM2NhQzF6WVd0YmFRNEhRNEUyRlBUZjZwQQ?oc=5"
       },
       "origin": "news"
     },
