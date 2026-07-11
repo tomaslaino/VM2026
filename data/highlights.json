@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-07-11T16:39:55.631Z",
+    "updatedAt": "2026-07-11T17:38:39.144Z",
     "source": "svt+tv4",
-    "matchCount": 98
+    "matchCount": 99
   },
   "byKey": {
     "g:A:2": {
@@ -14,11 +14,6 @@
         }
       },
       "TV4": {
-        "full": {
-          "url": "https://www.tv4play.se/video/e99c23f01724d859eba7/mexiko-sydafrika",
-          "title": "Mexiko - Sydafrika",
-          "until": "2026-07-11T17:30:00Z"
-        },
         "short": {
           "url": "https://www.tv4play.se/klipp/c6adb1275d9dbbb13e87/video-hojdpunkter-mexiko-sydafrika",
           "title": "Höjdpunkter: Mexiko - Sydafrika",
@@ -2184,6 +2179,16 @@
           "url": "https://www.tv4play.se/klipp/b72ce1565a6d0b2b9cd1/video-hojdpunkter-spanien-belgien",
           "title": "Höjdpunkter: Spanien - Belgien",
           "until": null
+        }
+      }
+    },
+    "k:99": {
+      "TV4": {
+        "live": {
+          "url": "https://www.tv4play.se/video/42e0beb52c064550b590/norge-england",
+          "title": "Norge - England",
+          "until": "2026-08-10T20:00:00Z",
+          "from": "2026-07-11T20:00:32Z"
         }
       }
     },
