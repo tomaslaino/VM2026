@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-11T20:32:21.062Z",
+    "updatedAt": "2026-07-11T21:29:26.488Z",
     "source": "espn"
   },
   "details": {
@@ -56748,6 +56748,345 @@
         }
       ],
       "updatedAt": "2026-07-10T22:10:27.113Z"
+    },
+    "k:99": {
+      "espnId": "760512",
+      "fmt": 2,
+      "status": "IN_PLAY",
+      "minute": 28,
+      "utcDate": "2026-07-11T21:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-3-3",
+          "starters": [
+            {
+              "name": "Ørjan Nyland",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Julian Ryerson",
+              "jersey": "26",
+              "pos": "RB"
+            },
+            {
+              "name": "David Møller Wolfe",
+              "jersey": "5",
+              "pos": "LB"
+            },
+            {
+              "name": "Sander Berge",
+              "jersey": "8",
+              "pos": "CM",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Kristoffer Ajer",
+              "jersey": "3",
+              "pos": "CD-R",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Torbjørn Heggem",
+              "jersey": "17",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Martin Ødegaard",
+              "jersey": "10",
+              "pos": "RM"
+            },
+            {
+              "name": "Patrick Berg",
+              "jersey": "6",
+              "pos": "LM"
+            },
+            {
+              "name": "Erling Haaland",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Alexander Sørloth",
+              "jersey": "7",
+              "pos": "RF"
+            },
+            {
+              "name": "Andreas Schjelderup",
+              "jersey": "21",
+              "pos": "LF"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Thelo Aasgaard",
+              "jersey": "19"
+            },
+            {
+              "name": "Jens Petter Hauge",
+              "jersey": "23"
+            },
+            {
+              "name": "Fredrik Aursnes",
+              "jersey": "14"
+            },
+            {
+              "name": "Antonio Nusa",
+              "jersey": "20"
+            },
+            {
+              "name": "Henrik Falchener",
+              "jersey": "25"
+            },
+            {
+              "name": "Jørgen Strand Larsen",
+              "jersey": "11"
+            },
+            {
+              "name": "Sondre Langas",
+              "jersey": "24"
+            },
+            {
+              "name": "Leo Østigard",
+              "jersey": "4"
+            },
+            {
+              "name": "Oscar Bobb",
+              "jersey": "22"
+            },
+            {
+              "name": "Kristian Thorstvedt",
+              "jersey": "18"
+            },
+            {
+              "name": "Morten Thorsby",
+              "jersey": "2"
+            },
+            {
+              "name": "Marcus Holmgren Pedersen",
+              "jersey": "16"
+            },
+            {
+              "name": "Sander Tangvik",
+              "jersey": "12"
+            },
+            {
+              "name": "Egil Selvik",
+              "jersey": "13"
+            },
+            {
+              "name": "Fredrik André Bjørkan",
+              "jersey": "15"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Jordan Pickford",
+              "jersey": "1",
+              "pos": "G"
+            },
+            {
+              "name": "Ezri Konsa",
+              "jersey": "2",
+              "pos": "RB"
+            },
+            {
+              "name": "Nico O'Reilly",
+              "jersey": "3",
+              "pos": "LB"
+            },
+            {
+              "name": "Elliot Anderson",
+              "jersey": "8",
+              "pos": "LM"
+            },
+            {
+              "name": "John Stones",
+              "jersey": "5",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Marc Guéhi",
+              "jersey": "6",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Noni Madueke",
+              "jersey": "20",
+              "pos": "AM-R",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Declan Rice",
+              "jersey": "4",
+              "pos": "RM"
+            },
+            {
+              "name": "Harry Kane",
+              "jersey": "9",
+              "pos": "F"
+            },
+            {
+              "name": "Jude Bellingham",
+              "jersey": "10",
+              "pos": "AM",
+              "st": {
+                "fc": 1,
+                "fs": 2
+              }
+            },
+            {
+              "name": "Anthony Gordon",
+              "jersey": "18",
+              "pos": "AM-L"
+            }
+          ],
+          "bench": [
+            {
+              "name": "Dean Henderson",
+              "jersey": "13"
+            },
+            {
+              "name": "Marcus Rashford",
+              "jersey": "11"
+            },
+            {
+              "name": "Morgan Rogers",
+              "jersey": "17"
+            },
+            {
+              "name": "Eberechi Eze",
+              "jersey": "21"
+            },
+            {
+              "name": "Ollie Watkins",
+              "jersey": "19"
+            },
+            {
+              "name": "Dan Burn",
+              "jersey": "15"
+            },
+            {
+              "name": "James Trafford",
+              "jersey": "23"
+            },
+            {
+              "name": "Trevoh Chalobah",
+              "jersey": "12"
+            },
+            {
+              "name": "Ivan Toney",
+              "jersey": "22"
+            },
+            {
+              "name": "Djed Spence",
+              "jersey": "25"
+            },
+            {
+              "name": "Jordan Henderson",
+              "jersey": "14"
+            },
+            {
+              "name": "Kobbie Mainoo",
+              "jersey": "16"
+            },
+            {
+              "name": "Bukayo Saka",
+              "jersey": "7"
+            },
+            {
+              "name": "Reece James",
+              "jersey": "24"
+            }
+          ]
+        }
+      },
+      "referee": "Clément Turpin",
+      "venue": "Hard Rock Stadium, Miami Gardens, Florida",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "29%",
+          "a": "72%"
+        },
+        {
+          "key": "totalShots",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "2",
+          "a": "2"
+        },
+        {
+          "key": "offsides",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "99",
+          "a": "245"
+        },
+        {
+          "key": "passPct",
+          "h": "82%",
+          "a": "95%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-11T21:29:26.488Z"
     }
   }
 }
