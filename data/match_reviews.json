@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-11T07:00:20.707Z",
+  "updated": "2026-07-11T09:00:32.661Z",
   "note": "Facit per spelad slutspelsmatch – automatgenererat av server/scripts/syncMatchReviews.js (jämför förhandsprognos mot utfall). Poster med manual:true rörs ej.",
   "accuracy": {
     "graded": 8,
@@ -12,19 +12,13 @@
         "br",
         "no"
       ],
-      "headline": "Facit: xG-kross men Norge chockar Brasilien",
-      "lead": "Vår prognos om brasiliansk seger med 2–1 föll platt. Norge stod för en sensationell vändning, trots att Brasilien skapade betydligt fler och bättre chanser.",
+      "headline": "Prognosen blåste bort: Norge chockade Brasilien i åttondelsfinalen",
+      "lead": "Vår förhandsprognos om brasiliansk seger med 2–1 visade sig vara helt fel. Istället blev det en dramatisk 1–2-förlust mot Norge, där Seleção misslyckades med att förvalta sina chanser.",
       "paragraphs": [
-        "Vår förhandsprognos missade helt vinnaren i åttondelsfinalen mellan Brasilien och Norge. Istället för en brasiliansk seger fick vi se Norge triumfera med 2–1, vilket förlängde det historiska norska övertaget mot Seleção – *igen* [[1]]. Vi hade varnat för ett revanschsuget Norge och potentiellt stökigt väder, men det var **Erling Haaland** som med två sena mål, inklusive segermålet i 90:e minuten, blev den avgörande faktorn och fick ett FotMob-betyg på hela 8.8.",
-        "Matchens statistik målar upp en bild av ett Brasilien som dominerade chansskapandet men inte resultattavlan. Med ett xG på 2.61 mot Norges 1.05 borde Brasilien ha vunnit klart. De hade 14 skott mot Norges 9, och **Bruno Guimaraes** stod ensam för 0.81 xG på sina två skott utan att göra mål. Detta tyder på att Norge stal segern, eller snarare att Brasilien brände sina lägen. Norge var kliniska och lyckades konvertera sina få chanser, medan Brasilien saknade skärpa i avgörande ögonblick.",
-        "Anledningen till Brasiliens kollaps, trots överlägsen xG, verkar ligga i interna problem. Vi nämnde tunga avbräck och ett \"klimat utanför fotbolls-VM\" i vår analys, och källorna bekräftar att bristen på samspel i laget var påtaglig, även utanför planen. *\"Ett av motiven är bristen på samspel i laget på planen, vilket också återspeglas i sociala medier\"* [[2]]. Enligt en undersökning citerades just bristen på samspel som en förklaring till elimineringen [[3]]. Detta, i kombination med Norges effektivitet och **Haalands** individuella briljans, blev för mycket för ett splittrat Brasilien. Vår brasklapp om väderavbrott visade sig inte vara den avgörande faktorn, utan snarare Brasiliens oförmåga att förvalta sina chanser och interna friktioner."
+        "Vi förutspådde en jämn match med väderkaos som potentiell faktor, men utfallet blev en total missbedömning av vinnaren och resultatet. Trots att Brasilien dominerade bollinnehavet (67%–34%) och skapade betydligt fler kvalificerade chanser med ett xG på 2,61 mot Norges 1,05, var det Norge som stod som segrare med 2–1. Detta indikerar att Brasilien brände mängder av lägen, medan Norge var kliniska i sina få chanser. **Bruno Guimaraes** hade Brasiliens största xG (0,81 på två skott) utan att göra mål, vilket exemplifierar lagets ineffektivitet.",
+        "Norges seger var i stor utsträckning **Erling Haalands** förtjänst, som med två sena mål (79' och 90') vände matchen och fick det högsta FotMob-betyget (8.8). Brasilien lyckades bara reducera på straff genom **Neymar** i 90:e minuten. Vår brasklapp om väderavbrott visade sig inte vara den avgörande faktorn, men de tunga avbräcken för *Seleção* och en bristande laganda kan ha spelat in. Medierapporter efter matchen pekade på en *brist på samspel i laget* som även syntes i sociala medier [[1]] och en utbredd *pessimism* bland fansen [[2]]. Detta kan ha bidragit till att Brasilien inte kunde omvandla sitt spelövertag till mål."
       ],
       "references": [
-        {
-          "source": "Avisen Minerva",
-          "title": "Bråket om etnicitet i norsk idrott och landslaget",
-          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNX2tkRGZxNUNWYWl2bE9BbG4zX0pmR0dJZDdFM3M2dW1ldTBTc3J4U2w3UjdmRlU0NlluNTRsUnFseF85X0FVME1IM1dHc0FyY2I5eTBDZU9uTm4ybUxiZk5UNC1Sa21ZMkdYMVlEZ2tLVXNDOWtBRVA1c3lWRWxNNTdsWQ?oc=5"
-        },
         {
           "source": "VEJA",
           "title": "Brasilianska landslagsspelare som inte följer varandra på nätet: klimat utanför fotbolls-VM",
@@ -37,13 +31,13 @@
         }
       ],
       "grade": {
-        "verdict": "Fel vinnare och fel slutresultat, trots att vi identifierade en del underliggande problem som bidrog till Brasiliens fall.",
+        "verdict": "Prognosen missade helt vinnaren och slutresultatet, trots att matchbilden indikerade att Brasilien skapade fler chanser.",
         "score": 1
       },
       "lessons": [
-        "Värdera lagens förmåga att förvalta sina chanser, särskilt när xG och faktiska mål avviker kraftigt, då detta kan vara en indikator på antingen otur eller bristande klinisk skärpa.",
-        "Underskatta inte den psykologiska effekten av interna konflikter och bristande laganda, då detta kan övertrumfa individuell talang och förväntade matchbilder.",
-        "Ett historiskt övertag eller 'spöke' kan ibland väga tyngre än rent statistiska prognoser, särskilt i avgörande knockoutmatcher."
+        "Underskatta inte ett lags förmåga att överprestera sitt xG när det har en världsklassanfallare i toppform.",
+        "Var uppmärksam på interna rapporter om bristande lagkemi och moral, då detta kan påverka ett lags effektivitet framför mål trots goda speldata.",
+        "När ett lag förlorar trots betydligt högre xG, bör analysen fokusera på effektivitet och individuella prestationer snarare än en total felbedömning av matchbilden."
       ],
       "predicted": {
         "text": "2–1 Brasilien",
@@ -69,8 +63,8 @@
         "winner": "miss",
         "score": "miss"
       },
-      "written": "2026-07-11T04:29:48.056Z",
-      "sourceHash": "29b24550193385d0",
+      "written": "2026-07-11T09:00:32.661Z",
+      "sourceHash": "e764604deb3626f0",
       "generated": true
     },
     "k:92": {
@@ -78,27 +72,27 @@
         "mx",
         "gb-eng"
       ],
-      "headline": "Prognosen föll på målsnöret: England trotsade höjden och rött kort",
-      "lead": "Vår förhandsprognos om mexikansk seger på hemmaplan visade sig vara helt fel. England stod för en imponerande vändning och säkrade avancemang till kvartsfinalen, trots att de spelade med tio man under stora delar av andra halvlek.",
+      "headline": "Höjden fällde inte England – total miss i prognosen",
+      "lead": "Vår förhandsprognos var helt felaktig. England besegrade Mexiko med 3–2 och avancerade till kvartsfinal, trots att vi förutspådde en mexikansk seger baserad på höjdfördelen.",
       "paragraphs": [
-        "Vår analys underskattade Englands motståndskraft och kliniska avslut. Vi betonade Mexikos hemmafördel på hög höjd och förutspådde en knapp 1–0-seger. Facit blev dock en dramatisk 2–3-förlust för Mexiko, där England visade exceptionell effektivitet. Trots att Mexiko dominerade bollinnehavet (67%) och sköt hela 20 skott mot Englands 6, lyckades de inte omsätta sin dominans. Englands **Jude Bellingham** var matchens gigant med två snabba mål, och **Harry Kane** säkrade segern på straff [[1]].",
-        "Vår tes om höjdfaktorn som avgörande höll inte. England visade att individuell skicklighet och förmåga att ta vara på chanser kan övervinna yttre faktorer. Mexikos xG på 1,88 mot Englands 1,61 indikerar fler skapade chanser totalt sett för hemmalaget, men Englands xG på mål (2,98 mot Mexikos 1,82) visar att de hade betydligt farligare avslut på mål. Detta understryker Englands kliniska effektivitet, vilket vår prognos missade. Den avgörande straffen, orsakad av en *”rush of blood”* från Mexikos målvakt **Raúl Rangel**, var en vändpunkt [[1]]. Än mer anmärkningsvärt är att England säkrade segern efter att **Jarell Quansah** visats ut i den 54:e minuten, vilket gjorde att de spelade med en man mindre i nästan 40 minuter."
+        "Vår huvudtes om att **höjden** skulle fälla England visade sig vara en grov felbedömning. Mexiko dominerade visserligen bollinnehavet (67%) och skapade betydligt fler skott (20–6), vilket kan tyda på att de orkade hålla tempot bättre i den tunna luften. Dock lyckades England, anförda av en formidabel **Jude Bellingham** som stod för två snabba mål (36', 38'), vara dödligt effektiva. Deras få skott var av hög kvalitet, vilket framgår av att Englands xG på mål (2.98) var markant högre än Mexikos (1.82), trots lägre total xG (1.61 mot Mexikos 1.88).",
+        "Den avgörande faktorn blev inte höjden, utan Englands kliniska avslut och Mexikos oförmåga att omvandla sin dominans. Trots att England fick **Jarell Quansah** utvisad i den 54:e minuten, och **Harry Kane** satte en straff efteråt (60'), lyckades Mexiko inte dra full nytta av sitt numerära överläge. **Raúl Jiménez** hade hela 1.18 xG på åtta skott men gjorde bara ett straffmål, vilket understryker Mexikos bristande effektivitet. England visade en imponerande mental styrka och förmåga att hantera motgångar, något vi helt missade i vår analys. *”Folk är stolta över vad jag gjorde”*, sade **Julián Quiñones** efter matchen, men det räckte inte för avancemang [[1]]."
       ],
       "references": [
         {
-          "source": "The Guardian",
-          "title": "Mexiko 2-3 England: World Cup senaste 16 spelarbetyg",
-          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxObWhmc0UtV2RLcDl5alJwUG4wMDBxTlprS0hNb3dIbzZhOHZhS2E4UUR4TTREX1RLaVBXLU9IdkNyTlJ0NHViVlVYWS1FcUlhZFEyeTNweUM4TThGSl9OY3BEbzhJTjhfTlAxNHRSQWJWak1jS3d0VDBhTXJFTUI3YkZWT2YxckR0cDFoVEhldjFCRzExTXFJNGFfa08?oc=5"
+          "source": "MARCA",
+          "title": "\"Folk är stolta över vad jag gjorde\": Julián Quiñones är uppriktig efter att det mexikanska landslaget slogs ut från VM 2026",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQX2FSeElnc2YtSE5IdkNOWmtFNGJNVHdYaTRFQTRtTUoyTnBpOEV4V1NJc1BOeU1nSU92OWVJLXhsMHJFb3lkREhuTnFMUG1nd3l5LXh0VWJRUEdhS2cweVVDVHdkSWNLRlh1NmlvX21xYnlzSV9BcGE2aWtsXzBWMVpmcVFWWnpjNk5jWThB0gGOAUFVX3lxTE5rN1lqR0FhZWUyeGkzb3REdWFLVDBxS2VNQmxTRElGT1hKQUpBbHhLX2xuYUxJc01kanJSVGNZTkZMcDFsdGVpMEZqeHZic2x2R3IxVWRfQmtRVHVpSDd2TERLOEpBODlINHBObmttRWZ6NFF6SmRmUFlLeXRpa1dfc1Fja3pzOFRhTTlvU3c?oc=5"
         }
       ],
       "grade": {
-        "verdict": "Vår prognos missade både vinnare och slutresultat, trots att vi identifierade en potentiell matchvinnare i Kane.",
-        "score": 1
+        "verdict": "Vår förhandsprognos missade helt både vinnare och slutresultat, samt underskattade Englands förmåga att hantera förutsättningarna.",
+        "score": 0
       },
       "lessons": [
-        "Underskatta aldrig individuella spelares förmåga att avgöra matcher, även under svåra förhållanden eller med numerärt underläge.",
-        "Fokusera mer på xG på mål (xGOT) än total xG för att bedöma lagens faktiska förmåga att skapa och förvalta farliga chanser.",
-        "Väg in att ett rött kort kan paradoxalt nog ibland stärka ett lag defensivt och tvinga fram en mer effektiv spelstil."
+        "Övervärdera inte en enskild miljöfaktor som höjd; lagets taktiska disciplin och individuella skicklighet kan övertrumfa den.",
+        "Analysera xG på mål utöver total xG för att bättre bedöma ett lags verkliga hot och effektivitet i avslutslägen.",
+        "Inkludera en bedömning av lagens mentalitet och förmåga att hantera motgångar (t.ex. utvisningar) i prognosen."
       ],
       "predicted": {
         "text": "1–0 Mexiko",
@@ -124,8 +118,8 @@
         "winner": "miss",
         "score": "miss"
       },
-      "written": "2026-07-11T07:00:13.465Z",
-      "sourceHash": "b6884cd07a728340",
+      "written": "2026-07-11T08:59:59.539Z",
+      "sourceHash": "afb0fe348821f5b9",
       "generated": true
     },
     "k:93": {
@@ -133,32 +127,37 @@
         "pt",
         "es"
       ],
-      "headline": "Spanien utmanövrerade Portugal: Prognosen rätt om vinnaren, fel om marginalerna",
-      "lead": "Vår förhandsprognos pekade på spansk seger, och så blev det också. Däremot missade vi marginalerna i det iberiska derbyt, där Spanien vann med minsta möjliga marginal efter ett sent avgörande.",
+      "headline": "Spanien avgjorde sent – Ronaldo ut ur VM",
+      "lead": "Vår förhandsprognos prickade rätt vinnare i det iberiska derbyt, men missade det snåla slutresultatet. Spanien visade sin defensiva styrka och skickade ut Cristiano Ronaldo ur hans sista VM.",
       "paragraphs": [
-        "Vår prognos om 2–1 till Spanien, med en brasklapp för individuell briljans, prickade rätt vinnare men missade det knappa slutresultatet. Spanien visade upp sin stabilitet och defensiva styrka, dominerade bollinnehavet (56% mot Portugals 45%) och skapade fler chanser (15 skott, 6 på mål, mot Portugals 10 skott, 2 på mål). Portugals förlitande på individuell briljans, särskilt från en åldrande **Cristiano Ronaldo** i vad som kan ha varit hans sista VM-match, uteblev helt. *Jorge Jesus har tidigare uttryckt att Ronaldo är \"en symbol för portugisisk fotboll\" men att hans framtid i landslaget beror på hans prestationer\" [[1]]*, vilket blev tydligt.",
-        "Matchens xG-siffror (Portugal 0,63 – Spanien 1,69) bekräftar att Spanien var det klart bättre laget och förtjänade segern. Att slutresultatet blev 0–1 istället för 2–1 berodde snarare på att Spanien inte förvaltade sina chanser fullt ut – **Mikel Oyarzabal** hade exempelvis matchens högsta xG på 0,65 utan att göra mål – och att Portugals få chanser inte räckte till. Den avgörande skillnaden kom sent, när **Mikel Merino** slog till i den 90:e minuten. Merino har visat sig vara en specialist på sena avgöranden, *”återigen Mikel Merino i slutet av matchen skulle säkra segermålet för Spanien”* [[2]]. Även målvakten **Unai Simon** bidrog starkt med sitt höga FotMob-betyg på 8.4, vilket säkrade nollan för Spanien."
+        "Vår förhandsprognos pekade på en spansk seger med 2–1, och även om slutresultatet blev snålare, 0–1, var vinnaren den rätta. Spanien levde upp till förväntningarna om sin *stabilitet och defensiva styrka* [[1]], och lyckades neutralisera Portugals offensiv nästan helt. Med endast 0,63 i förväntade mål (xG) och två skott på mål, hade Portugal svårt att skapa farligheter. Detta bekräftar att vår brasklapp om en avgörande individuell prestation från **Cristiano Ronaldo** eller **Nuno Mendes** aldrig infriades. Ronaldo, i vad som förmodligen var hans sista VM-match [[2]], kunde inte lyfta laget.",
+        "Spanien dominerade matchbilden med 56% bollinnehav och ett betydligt högre antal skott (15 mot 10) samt skott på mål (6 mot 2). Deras xG på 1,69, jämfört med Portugals 0,63, visar tydligt att segern var välförtjänt och att de skapade de klart bättre chanserna. Att segermålet dröjde till 90:e minuten genom **Mikel Merino** [[3]] speglar inte en stulen vinst, utan snarare en ihärdig spansk jakt på mål som till slut gav utdelning. **Mikel Oyarzabal** hade matchens högsta individuella xG på 0,65, vilket indikerar att Spanien kunde ha avgjort tidigare. Målvakten **Unai Simon** och mittfältaren **Rodri** fick höga FotMob-betyg, vilket understryker Spaniens starka centrala axel."
       ],
       "references": [
         {
-          "source": "Rádio Itatiaia",
-          "title": "Jorge Jesus är direkt om Cristiano Ronaldos framtid i det portugisiska landslaget",
-          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPT0Z6djNhdmxVYk1ta0lOLW5KVXJJZUwzX3NaMDR3a1R3SUpfcHE2emhqOU40NGwzN3lQZE5qa3RHVnVQMUUyUVcxMkF1UmtSYm1MdzNqaFliaTJXZm9JTTRjdnNYckxsSW1SdEJQdjRKMW5uakdiejIzQnFWWmpBaGpHX1ZRT1d1c3Zza2wtR3BhQWhzeVlJYmxCU1RpeUpJUFV1UmhIR0VmM2o5NUhTVHZRN095YVFRakxPUFNmVnQ1dHNPSkExc04zVHJSUzhFUDUyVUNfZ2ZyQU1w?oc=5"
+          "source": "Diário de Notícias",
+          "title": "1928. En olympisk mottagning för laget som samlade tusentals i Lissabon i väntan på resultatet",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNUGUxalZxeDNUY1ZsVEEtSHZZS29KWjROMWNQUkR5WlBtUEx2cTdxSUc0TTl2bjRLa25PRWl5dHRIeFlPOVVDYzQ3M0xaVUxPX3NZem9LRkhueklfelpZQzJmRWZMRUtuZHRyXzdXUHlMVGFPZEJqcUxHcVViZkRBVWo0cE45UTNnbnlIcWhGelp0QndxbVI5dktHUmtnbWx0ek5IZzVUN0o5QQ?oc=5"
         },
         {
-          "source": "RTVE.es",
-          "title": "Spanien - Belgien: se hela kvartsfinalmatchen vid VM 2026",
-          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQWGUtejhPWUcwbTdPVVFiWFhNLTRaeHlRaV9aYTZycGtfX2c0Nm5RSUd4T0plUGxQSEM2YlpMRFVEQ1dOTkJrZWx1WUNLbXZBdDlmeHkzRjBuS2ZZRmN4WXE5NG1XOWY5ZVFBS2g1bFQ1YlI2bW1WVTdRVVVsTkpHWTFEUVl2VFR6RzJyUGtSTVJ5SmNvV2I2S1BBSGs3NFlTakY0dDQ1TjcycmIzWVZZ?oc=5"
+          "source": "Jornal SOL",
+          "title": "10 år efter \"vi är Europamästare\": var är landslaget, huvudpersonen i den största kvällen i portugisisk fotboll?",
+          "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxQQ0lnZGpSZXNodWdVWjJwaTJ0UE01MC00SUhaSzdhcUpZUWJfbXc4MjZncFUxWmJhMWtmb3FtSlNEN29sUDZXckhGSHVVLXBXYWlvZ2tOd1J3czczd1BMRlBEclk2WHJTZ2V1R0NVMXR6RGFqYWh1SEMwaDV6bGpSS1R4amZKYks0UkIzckswbnpLeldEZHpUdmFNcjdDb0lkeTNMWU5idUlraEtpbE5lOVJfbXZJZnpPeTFKRHZmWEhYVWJTRTlGRktQamxrSmd0bW1ZOHpBUVRMeDZnRVZFMTJSWG9XUGt2YU00UHVPLVZMdFFWaDB5ZHd5ZDlDaEVMcnR4YlN3?oc=5"
+        },
+        {
+          "source": "DAZN",
+          "title": "\"Mikel Merino är väldigt komplett, det är orättvist att han inte spelar\": Luis de la Fuentes fras som sammanfattar hans inverkan på det spanska landslaget",
+          "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPQnY2bElzSC1MUnNyRm1HU3NNaE83NFFyY3BWUDM0Um16NUdwNUhPT01KODZkSGRwM2tHZUxQbERkQVJUNy1yMHF5aXJhWjFBSm1kci0wWklvVDFfeXB3NnpSSDRYU3lrS205V0s4WjJtTEp6ZE9ZcjZtUk5sN1UyWnZTYjl4UDVUYTdkQmVzQk1Dd2NCLVlLWnNZWjJnakhVZ3BzX0xXZ0Nadk40RUU1YXcwZlFnZFlualU5LVI2N0hBTGpyNkVCZmxGVkJOOC1sSVJZTFJuOVRXY0NESW44UnhEWVB5ejZiTlJPSFNFa2NqeHpiNW9BRm9RVjhLaUIz?oc=5"
         }
       ],
       "grade": {
-        "verdict": "Rätt vinnare men fel slutresultat.",
+        "verdict": "Prognosen prickade rätt vinnare men missade det snåla slutresultatet, trots att Spanien förtjänade segern sett till matchbilden.",
         "score": 3
       },
       "lessons": [
-        "När xG-siffror tydligt pekar på ett lag som förtjänt vinnare trots ett knappt slutresultat, bör prognosen ses som korrekt gällande matchbilden, men med missade marginaler snarare än en felaktig bedömning av styrkeförhållanden.",
-        "Övervärdera inte potentiell individuell briljans från åldrande stjärnor i utslagsmatcher; lagets kollektiva styrka och organisation är ofta mer avgörande.",
-        "Väg in förekomsten av 'late-game specialists' som kan avgöra matcher i slutminuterna, då detta kan förklara avvikelser från förväntade resultat baserade på tidigare matchbild."
+        "Var försiktig med att övervärdera en åldrande stjärnas individuella förmåga i avgörande matcher, särskilt när laget är beroende av den.",
+        "När ett lag visar en tydlig övervikt i xG men ändå vinner med liten marginal, bör man inte överkorrigera prognosen för nästa match baserat på det snåla resultatet, då matchbilden var korrekt bedömd.",
+        "Ett lags defensiva stabilitet kan ibland vara så pass stark att det leder till betydligt snålare resultat än vad en prognos med \"säker\" vinnare förutspår, även om vinnaren är korrekt."
       ],
       "predicted": {
         "text": "2–1 Spanien",
@@ -184,8 +183,8 @@
         "winner": "hit",
         "score": "miss"
       },
-      "written": "2026-07-11T06:59:34.831Z",
-      "sourceHash": "a0b1662a75e16f9f",
+      "written": "2026-07-11T08:59:33.244Z",
+      "sourceHash": "fd7c63e93fe3631a",
       "generated": true
     },
     "k:94": {
@@ -193,37 +192,32 @@
         "us",
         "be"
       ],
-      "headline": "Belgien krossade USA – Balogun-gate överskuggade inte belgisk dominans",
-      "lead": "Vår förhandsprognos pekade på belgisk seger, men slutresultatet blev betydligt mer övertygande än väntat. Belgien dominerade åttondelsfinalen mot USA, som trots hemmapubliken inte räckte till.",
+      "headline": "Belgien krossade USA – Balogun-gate glömdes bort",
+      "lead": "Vår förhandsprognos prickade rätt vinnare i åttondelsfinalen mellan USA och Belgien, men underskattade Belgiens överlägsenhet. De röda djävlarna dominerade och krossade USA:s hemmahopp med klara 4–1.",
       "paragraphs": [
-        "Vi hade rätt om vinnaren, men missbedömde marginalerna. Vår osäkerhet kring **Folarin Balogun**-kontroversen visade sig obefogad; Belgien var helt fokuserade. **Charles De Ketelaere** levererade två mål tidigt, varav det första i 9:e minuten, och fick ett imponerande FotMob-betyg på **9.4**. USA kvitterade visserligen genom **Malik Tillman** i den 31:a minuten, men **De Ketelaere** slog till igen två minuter senare. Belgien visade klinisk effektivitet och ingen trötthet, vilket resulterade i en övertygande 1–4-seger.",
-        "Trots en publik på **66 925** och stor uppmärksamhet – *USMNT’s World Cup exit was most-watched American telecast since Super Bowl* [[1]] – kunde USA inte utnyttja hemmafördelen. Statistiken talar sitt tydliga språk: Belgien hade fler skott (**15–7**) och betydligt fler skott på mål (**7–2**). xG-siffrorna, **0.63–2.01** till Belgiens fördel, bekräftar att segern var välförtjänt, även om Belgien var överraskande effektiva och gjorde fler mål än förväntat. För USA var det en match av brända chanser, särskilt för **Folarin Balogun** som, trots USA:s högsta xG (**0.43** på tre skott), inte lyckades näta. Detta bidrog till den *sura smaken från prestationen, värre än själva resultatet* [[2]], och att *USMNT kommer att se tillbaka på VM 2026 som ett missat tillfälle* [[3]]."
+        "Vår förhandsprognos pekade på en knapp seger för Belgien med 2–1, med en brasklapp för **Folarin Baloguns** kontrovers och USA:s hemmapublik. Facit visade att vi hade rätt om vinnaren, men underskattade Belgiens överlägsenhet. Slutresultatet 4–1 till Belgien var en tydlig indikation på att de röda djävlarna var numret större. Trots att USA hade mer bollinnehav (56%), var det Belgien som skapade de farligaste chanserna med 15 skott mot USA:s 7, och hela 7 skott på mål jämfört med USA:s 2. Den förväntade målstatistiken (xG) bekräftar detta: USA:s 0,63 xG mot Belgiens 2,01 xG visar att segern var välförtjänt och att Belgien skapade betydligt fler kvalificerade målchanser.",
+        "Den största faktorn bakom Belgiens dominans var **Charles De Ketelaere**, som med sina två mål och ett FotMob-betyg på hela **9.4** var matchens gigant. Han omvandlade sina 1.11 xG till två mål, vilket visar på klinisk effektivitet. Även **Hans Vanaken** (8.4 FotMob, 1 mål) bidrog starkt. USA:s hemmafördel och det momentum vi spekulerade om räckte inte. **Folarin Balogun**, som var i fokus inför matchen, lyckades inte hitta nätet trots att han stod för USA:s största xG (0.43 på 3 skott). USA:s enda mål kom från **Malik Tillman**, men det var en kortvarig glädje. Matchen blev ett *missat tillfälle* för USMNT [[1]], som nu får se tillbaka på en *disappointing 4-1 loss* [[2]]. Vår oro för Balogun-kontroversens påverkan på Belgien visade sig vara obefogad; laget visade snarare en imponerande mental styrka."
       ],
       "references": [
-        {
-          "source": "The Guardian",
-          "title": "USMNT:s VM-avgång var mest sedda amerikansk TV-sändning sedan Super Bowl",
-          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNNl92dmxJTWZULVpMLU12RDcyV0lBdHU1SzJ2eHgycHNtVmtHRUdISThhUmJURVB6Z25DczNWMEk1N05BcDhqMU9neW81aGRYbDczSnNkMjN3VXJZbDQ5cEYyS1J1WW5LdElXR1g0WHhiQ3FKMTgzVUw3WFlsdE5QSUh5VGk4YTlxME9vRW83UQ?oc=5"
-        },
-        {
-          "source": "The New York Times",
-          "title": "USMNT's 30 for 2030: The Holdover-stjärnor och nya spelare i ram för nästa världscup - The Athletic",
-          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQNXpqSG9RUGpDV3JTTnE2Tm1NbVN5UVJNc2RWakhaS2tzZHNobDBBUlpLNG56bERKdkUwc1hIT1F0VEpTM1N3WGwyNDdfLVdad0dSZHhUbEV4dzFqa0UyTmNMUXVrQ3ZVZHF1b1dfazZCaElSQjFVcXYzLVZpZTVZd2NwNTlDOS02MWlETTNxM3o?oc=5"
-        },
         {
           "source": "ESPN",
           "title": "USMNT kommer att se tillbaka på VM 2026 som ett missat tillfälle",
           "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOQ2tBY1N3QmZVZnpodnl1MHJfNXVyYlpQeWMxRDhxQzhaTzhOM2YwengwVzd2c0pDMGJvaWIyYVZDNktXbXpvVFdCTG9vc1B4TTc0QkIxYl81SEhjU1ZNN284Q2pwb29QanVzR05VOVhsWXRINnZfaFNGVnZaT0JmMTMxUzJxVmpXbjh2SlJEYlhnZUptdnVJQm9vTFI0dw?oc=5"
+        },
+        {
+          "source": "Yahoo Sports",
+          "title": "Amerikas andra favoritlag: Vem ska man rota efter nu när USMNT är ute ur VM",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOWUZESmNndWFMVENuNzhEbHJfQXFHYUZuUUJpcGd3QUtjOHd4R3c0cEs0cFJrNmtxYUNLVmlZTWhOYW9HYXBwdWNKZGJZR0xEOV9zMk1zVFY5clFzdnN5TWljQzA5T0xBbXF3cXV3SWpPMEIxenZHbm1LOFRnY29Tbl84SU10MWZXbV9uZHFsREpjMDhiZ25zd2tOVlM3bUhWd1UycGJxZnlJSmpONHNLWE1VX1V6bG81dGRSWXRjTHEwSmxLVFBaQ056WG9nSXk1NDZWaUxoRXlOM2c?oc=5"
         }
       ],
       "grade": {
-        "verdict": "Rätt vinnare, men slutresultatet och Belgiens dominans underskattades kraftigt.",
+        "verdict": "Prognosen prickade rätt vinnare men missade helt på marginalerna och underskattade Belgiens offensiva kraft.",
         "score": 3
       },
       "lessons": [
-        "Externa kontroverser bör inte övervärderas som avgörande faktorer om lagets grundläggande styrka och fokus är intakt.",
-        "Var uppmärksam på stora avvikelser mellan xG och faktiska mål, särskilt xG på mål, då det kan indikera överprestation i effektivitet som inte alltid är långsiktigt hållbar.",
-        "Hemmaplansfördel och publikstöd kan inte kompensera för en tydlig kvalitetsbrist mot ett fokuserat topplag i en utslagsmatch."
+        "När xG-siffrorna indikerar en klar dominans för ett lag, bör man vara försiktig med att förvänta sig ett jämnt resultat, även om det finns externa faktorer som kan jämna ut oddsen.",
+        "Underskatta inte ett topplags förmåga att hantera interna kontroverser och leverera på planen, särskilt när individuella nyckelspelare är i toppform.",
+        "Hemmapublikens inverkan kan vara betydande, men den är sällan tillräcklig för att överbrygga en stor kvalitetsmässig skillnad mot ett kliniskt motståndarlag."
       ],
       "predicted": {
         "text": "2–1 Belgien",
@@ -249,8 +243,8 @@
         "winner": "hit",
         "score": "miss"
       },
-      "written": "2026-07-11T06:58:56.438Z",
-      "sourceHash": "7b310d53eb45039f",
+      "written": "2026-07-11T08:58:59.622Z",
+      "sourceHash": "ed6d87058431f8de",
       "generated": true
     },
     "k:95": {
@@ -258,17 +252,17 @@
         "ar",
         "eg"
       ],
-      "headline": "Argentina vände i dramatisk match – Egypten överraskade stort",
-      "lead": "Vår prognos om argentinsk seger höll, men slutresultatet och matchbilden avvek dramatiskt. Egypten visade en imponerande resiliens som vi underskattade.",
+      "headline": "Argentinas sena vändning mot Egypten – xG:n visade vägen",
+      "lead": "Vår prognos om argentinsk seger höll, men slutresultatet och matchbilden överraskade. Egypten, trots sin sargade defensiv, bjöd på ett oväntat starkt motstånd som tvingade fram en dramatisk vändning.",
       "paragraphs": [
-        "Vi förutspådde en relativt komfortabel 2–0-seger för Argentina, men verkligheten blev en nagelbitare. Trots att Argentina dominerade statistiken med 64% bollinnehav, 19 skott och ett xG på 2.84 mot Egyptens 0.89, lyckades Egypten ta ledningen två gånger genom **Yasser Ibrahim** (15') och **Mostafa Zico** (67'). Detta visar att även om Argentina skapade betydligt fler och bättre chanser, var Egypten oerhört kliniska med sina få tillfällen. Scaloni själv medgav att *\"de huvudsakliga problemen låg i bristen på effektivitet att omvandla chanser och vissa defensiva justeringar\"* [[1,2]].",
-        "Den största missen i vår prognos var underskattningen av Egyptens förmåga att mobilisera trots sin \"svårt sargade defensiv\". De visade en imponerande kollektiv styrka och effektivitet, vilket resulterade i två mål från ett lågt xG. Den argentinska tröttheten, som vi nämnde som en brasklapp, verkade också påverka dem mer än väntat i matchinledningen, vilket ledde till de \"defensiva justeringar\" Scaloni refererade till. Det krävdes en sen uppvisning av individuell briljans från **Cristian Romero** (79'), **Lionel Messi** (83') och **Enzo Fernández** (90') för att vända matchen. Messi, med 1.01 xG och ett FotMob-betyg på 8.7, var den avgörande faktorn, men hans bidrag kom först när matchen stod på spel. Egyptisk media hyllade sitt lag för *\"en av deras starkaste matcher\"* [[3,4]] trots förlusten, vilket understryker deras oväntat starka prestation."
+        "Vår förhandsanalys förutspådde en relativt kontrollerad 2–0-seger för Argentina, med en brasklapp för Egyptens förmåga att mobilisera. Facit visade en betydligt mer dramatisk match där Egypten chockade genom att ta ledningen med 2–0 genom **Yasser Ibrahim** (15') och **Mostafa Zico** (67') [[1]]. Detta trots att Argentina dominerade statistiken med 64% bollinnehav och 19 skott mot Egyptens 5. Den interna utvärderingen från Argentinas ledning efter matchen var positiv, de *ansåg att laget hade kontroll och skapade tydliga situationer, men att de främsta problemen låg i bristande effektivitet och vissa defensiva justeringar* [[2,3]].",
+        "Vår tes om argentinsk individuell briljans visade sig stämma, men först i slutminuterna. Mål av **Cristian Romero** (79'), **Lionel Messi** (83') och **Enzo Fernández** (90') säkrade en sen 3–2-seger. xG-siffrorna (2.84–0.89 till Argentinas fördel) indikerar att Argentina förtjänade segern, och att Egyptens två mål kom från betydligt färre kvalificerade chanser. Detta bekräftar att den argentinska dominansen var påtaglig, även om den inte omsattes i mål förrän sent. Egyptens förmåga att överprestera sin xG och hålla nollan så länge var matchens stora överraskning, vilket de arabiska medierna hyllade som en *hedersam insats mot världsmästarna, trots det som de menar var orättvisa domslut* [[4,5]]."
       ],
       "references": [
         {
-          "source": "TyC Sports",
-          "title": "Bildandet av det argentinska landslaget vs. Schweiz, för VM 2026",
-          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPS1FWQ2pkZnpIT1hwOE13RHJ3bUNKVnEydzBvc0Z4YUU0VTFCakp5R1BoTHBLcHFxOHBFQmNXc2RGa3BCU0xoLU85TjlvZHNqa2hETFlZbVMtaTRpQjZnV3VyVGk5QmxVS2U4cGlzdnhCRkxQNDdpRFNuTTRma2E0WjhGOXhwSF90MENuVTVpVWt5cUtfVnYyUlNTMTdWM012VE1LcXh3Ymg4d05JZ3lwYmhjbGU4MjJPTWNNRUY3dkY5WDJqM1E?oc=5"
+          "source": "Página|12",
+          "title": "VIDEO | Egyptens mål att göra 2-0 mot Argentina",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPU2xqQVFRemEtM1Z2U3hKaUpFV18wTXQzeGJzSVlpMXVVcGdBaFJoUVdySVVDNl95RkdISW54VjlCaHhYY0FRZVA5SEF2Q0tMeE9GbHoxUG1sdXEzdXl3cVFRUDloMGR0MGpBMGJRbUlTVkU1QUhkREZNc2tmeWRUYkJxdEVCc1k5NWdBZzFVU1V2LTJ4RlN1UlFFZmhIUQ?oc=5"
         },
         {
           "source": "TyC Sports",
@@ -276,24 +270,29 @@
           "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPbnV1eUs4UThOamxNRmNwc3AwM3Rnc2JyY08zVTdwb045Xy1COWRwQ2h2TDF1TERuZzF6NlNLNDBmMFlPXzJPdTZaVXdsZ0dPbDNSQlBrRXl5YlU4ZkxBOXVyaFdveC1BaE5VT0h0R1lXeHI3QTgzMmFrTE41UUNUUlA2aFFCRnVVUEo1VnFwalR2aklnaUplN0tKM1NieGFsUFZiOHBTcWhNWmRneUJ0dFVSb0p5WEdqN2ZIcVVhbFJ6T2k2WkN1ZXV5Ukp1QQ?oc=5"
         },
         {
-          "source": "اليوم السابع",
-          "title": "Hossam Hassan följer 8 spelare med dubbel nationalitet för att inkludera dem i det egyptiska landslaget",
-          "url": "https://news.google.com/rss/articles/CBMixwNBVV95cUxOWlY2c0tFY01qR0FfUjZ4NUd0NHZVd2RVeDR1SXhRbWNuVlgtU3ZGekUxdTZqX3Y1ejUyTkRTeFFqNkRuTndiVDZvRFREdThoR19tNnJKN092UGQ0NmVtRUdTS0I0SE9nRjlfUFNfRDZWcVl1bUlTUFd0Vy13MWhtYnlIMUtMTDBpQWNLQTd2U05BcTRPc0R2elUyeFhtOHFKZ1BfWHY4NDVPUENucFB5WC1ESC1jQ1dtUUZCTnlTcXkxdG1PbmxuYjZFamNTV0ZpbDlBcXRfWGxENnhMdXh6LXM1dUU0dE00VVNQTXVRdkVIdXpTdlYyRG43N21keWYxQks4NXI1OUZPN0xxTVZFTVVoOUxIb1lqWThhNDdPVlFMVDFkQ2lUeUZUbjdnN2xqTVpOTjdkRUR4YXdvc0JJQ2ZpMFdudWtYczd4c3hiVENBQ1VHSE9zM0VBZFhqSXdsM3FpZTJqaXRUVmFaN1dJalM1cE5NMklMT0gybTlJVG80YWZuRUJfcnpIUDJYNlU5OE92ZWV0cGxIdWhpOHozcUJVbGd2ZnpOV1dZQ1haNVRXWF9TQXlhekhXNlNzZlVBME12R1BFRdIBwgNBVV95cUxNYktjckg3UTJVMGltWUVlWmhTbVNOVjljRy14a0pxQnBvY1Z1WlFBZ2NmWGwwb3RqOVgxYXdoQkdGZUVCWmNFZm0wai1lQ0EtQ09RN1hDcVctSDMzWHV6SEF4R1BVdkhNdl9ZT0FrTzFTWHJLWEh0a25Vc3lhd2tKRWdhYi1oVW9OV21wUTB0V01DYkZSblhBbXF0ZmFydHJWRVV4OGxCaDRuQ2tVT1ZVMHJRWW5ReXhqRVVEaVZZc18xSUl4cGFEdXZMUkE1NE9EX2pBbmRVQjFjdzVySFl0c2UzOUhEeHZXYURCWU1VQ3lVYXAzblFLVmZsUDdTQ0FabTFWS3k5YmJmTExRSk14b2hZSVRxdFRTZG9Uc3hrRFNKT084bDBKcnBUdHl6TzAxeG1jQTJiMTBrUGZENmpnSzNWX05sNE5LU0ZpR0RhbEcxR2RaZjk1dHJnNHZkUG1QVVVxQ1E3WmVvd3ZZX1dhVFFfZlA0bm83a3BmaXVEanNFaXBycUs0OXNmVjFDdnpoZFhHbXczNHRlSk8xaEQ1TGVXNVhoNnFmblBMMFljMjhQeXhHVEJzdFctOUNYSVdOUnc?oc=5"
+          "source": "TyC Sports",
+          "title": "Bildandet av det argentinska landslaget vs. Schweiz, för VM 2026",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPS1FWQ2pkZnpIT1hwOE13RHJ3bUNKVnEydzBvc0Z4YUU0VTFCakp5R1BoTHBLcHFxOHBFQmNXc2RGa3BCU0xoLU85TjlvZHNqa2hETFlZbVMtaTRpQjZnV3VyVGk5QmxVS2U4cGlzdnhCRkxQNDdpRFNuTTRma2E0WjhGOXhwSF90MENuVTVpVWt5cUtfVnYyUlNTMTdWM012VE1LcXh3Ymg4d05JZ3lwYmhjbGU4MjJPTWNNRUY3dkY5WDJqM1E?oc=5"
         },
         {
           "source": "اليوم السابع",
-          "title": "En kontinuerlig populär mottagning...fansen har en dejt med landslaget framför El Alamein Towers på lördag",
-          "url": "https://news.google.com/rss/articles/CBMi9gNBVV95cUxPYmszYVhwVHM2SFUzNjk2T3BWV3F2RkJTRklXNl9yMmoxdUJOSFBrazVTNVhVb2E4ZEU3dHNyazRlWl9VU1J5ajA3ZWM5Z1BSUFZuZ1VGYy0tUkNBS2dVbjlCSmxaVlF6endrUXpFVm9WMXVHRnZWS1phbkpUSGVVeG9RbTJsRVduWjVvQmVMQmlwTlVJWUY3NFVBOWV5bmQ1N2FJS0QyWEtOUVcxOC0zRnlDRHlldktyV0NUTUIzN3ZQS2Npc3BBSnFqby0yV25aY3JMRlVpZVlEd1JHZjJkNURyNzRSbnBIcVZBYXRnQ1MwYzlHTGdZeFhhaW10SkpKd2hwSmpYSjJvUHdNaWw3bDZDb2xKNnV0ai0tWHFrQkZHUFhkLXhQQ0VEZVg2NUtkTVFONl95U1JNbUZPVzgwaEVWSEJfYWszNWM0ZFVEdkRvTVFicHZOY3hiMXJQc2ZFSkF3eEF2akYzQ1Q0SnBvRVlkVWY3OHVHX2pOc3lvekRfdVE3Tm54XzhFUmlBYXA0a0pRakpWcTU0Y1hOcUNqM1BKQzB1dzV3VTlMRUFhZ0lwVDFseFpYTVVLNHFfVVRjbGZGQ1N5QmdVOHVLR3ZSd0FRWEZrTzB0OWl1NW5udEJucDBGQXY2TFY5QVFJdU5jMnpqRTZB0gHwA0FVX3lxTE5HMTVWd2JXSWw3MF9NaXJzcGNDM3gzc2NWS2t6Q1NkRlZxc0JQSGtRQ3Y4ZVBSVlBUdUQtZWtmd3FBWGUxb2k1aHRWUWFudWlyaXl6NEJVVUFKRnc2V2k5VTNzOU5qQVAzZUpqSXpnSmhiMU9iRkR0NFMzejJQTEJzZTc5bDJhcDBoYWtvbFRDOG16ZGNaWng5VnJya1R1aC1XYW12RWZaODhSYU8zT1RGNFpsSGVUYW5PR1FhSHFhUExMMUF4dlItcGVEUWxVQnNlZUJUd2QwUm94SllDZGs1QWJ0T1BtSUxfcjFHNmtsQjV3Wk5tNTFscjYyZENfZ3dZNlA2U0VnSE1vVS03S2tSSkZla1liTFZoMzJfUEFTWXgycWk0cXpoZmZubzk4d3RFd1o4UUxYaFVNS2REcjNOMUdMcE1oSkVEUjVlSG1kdkxMcjBoT2czWmtHeGRlVGdjelRJLVdVN2dBQWgwYlBfTEpJU2hnWkZBQVkzb3hXRHhMaUExTjRRNlpGemszSTZvNmFvaThGcUFUeW9xWnoxd2J5akUyZE53SFRDSjAyT21JOWNTbGdoSlZlNElBdWl6NnVGMk5vYXhxQm1LRHJlRVZQYzhpSEhoSDFzREZTalRpUF9QemkxWUd5czNOQzY?oc=5"
+          "title": "Araberna fortsätter att spela sin symfoni förälskade i faraolaget.. Bahrains ambassadör: Det egyptiska lagets mästare har förtjänat världens respekt och är en källa till …",
+          "url": "https://news.google.com/rss/articles/CBMilgRBVV95cUxQcDd4N3ZaRDF2YzRhR2Itdy12YVowM0hmb1hLS2VlcF9kVnVDNXFaTTdZZC1yVUh1YWo0eHNJcnIyQjBadW53a0l1cHFnekJndDNETUptNlRack1mUnB0cS1BQnNVbEJRUzdiZFJkNmdXMDl6MDVPU1JlNE9oeWZkMmFpRHhFbTNmTTFEeW1XUGlFbU93dHF1ekVsYzRXd0tJUnJKTWlyUHlkOGdVLUtjbDY0WFdIeGs1czFDN2NUMUw0aUhGc3l6LUNGQ24yMjZhMUltNHB1YjY1M20yVkFwS0xRc3R3V3hyWTFNazJtb2hhWjB2Z0VvSnZIZEVMZEV2T0ZMMDdZWXVzcUwyZzRIRFFjaExyZ3JOMktYajhnU3NxNm4zUGF3dEc3SDIyOXNvczh1VzZTWFhVSHpKbVllSmNzUGdMc0FTN1V2ajhtMXR4eTFyTElibWZzMldoOEhwR1FkdWE3OVFIYm5JVndmYWtaRDJWb0JyS1o2N0lNcnJQaHZPeUNpaWx2cXBxenhITEdSNE13ZFZyeUtXMHp6TlNFUlc0U09JY0NhWklNSlhiT2JyVGN4LWRldzFxMHpKVmRwLUoySUFreTI3T28zU3kta2RIc3RIWEcwZlVWZ1RndGxiS0UxbTdzTk5KOThIY1BjNGdkeUtnTms0T2txdGdBSk1NM2VVRHR5V2ZSdTVUTHE4dlHSAZAEQVVfeXFMT0VLOGt5aEV1ZWZKQUpvZ1p1NjNPOHJMNmN6bjVsTnBuaDJFSGxEOUVUdzdNTVF6MXJjYzhKcGI2TU1JWEEtZEc1dHZMdWJkeDZtXzJrYS1ZMlRHZVVDaThDcFAwWTJ0TEtnd2x1ckFPaXk4WDNjb1JldG5fVkNOaHE4U2dvQS1KVzU4Z2VlNnppb1hLUUI5UmJPYjRLaGtPYXFaWEN0ZVU3b0RFay1KZkNyeG0xVTZyQU9mTlNFTmh5T3JFNnZJVTdxRUlpQlJhWUF1ODNqdGxLZmNtRGhjc2VBLURlc3BacWh2ejVMODZmYTdFNzRKMGl2c2JPU2lFTVg1bE9seml4Nk53ekFpOVVoYjVKSUFUdkxiOXJYSlVoaTV4bFpNdnYtLU50Rzlkc3VTaXdPN0ZmaTBHR1d4a1lycms3VmJnMVRUZnloQmhwZEpxeG5HdU1ZREpGelNfU1F6WWlKQ1RER1Rhc2hjSTNWc25BTGtud1dpUzItd1Q0cC1CeEVJVEtmZU9JUU5WSU9QY3RoZGhRd2QzSE9HNERNV2VJUkVsb3ZEMTJvZlJRRTZJMUdNenZmd1ZOZ0R2SUlkU0R0cmdyQmpyZlAzX1Mxd3h4TmZmbU96MTBNQXU2Qzd6a1pncjJ6eXNMSERfSUpZeWZ0bXp2eGM3cmVZWnByUGVSUGozenkySnJfc3lh?oc=5"
+        },
+        {
+          "source": "اليوم السابع",
+          "title": "Hossam Hassan följer 8 spelare med dubbel nationalitet för att inkludera dem i det egyptiska landslaget",
+          "url": "https://news.google.com/rss/articles/CBMixwNBVV95cUxOWlY2c0tFY01qR0FfUjZ4NUd0NHZVd2RVeDR1SXhRbWNuVlgtU3ZGekUxdTZqX3Y1ejUyTkRTeFFqNkRuTndiVDZvRFREdThoR19tNnJKN092UGQ0NmVtRUdTS0I0SE9nRjlfUFNfRDZWcVl1bUlTUFd0Vy13MWhtYnlIMUtMTDBpQWNLQTd2U05BcTRPc0R2elUyeFhtOHFKZ1BfWHY4NDVPUENucFB5WC1ESC1jQ1dtUUZCTnlTcXkxdG1PbmxuYjZFamNTV0ZpbDlBcXRfWGxENnhMdXh6LXM1dUU0dE00VVNQTXVRdkVIdXpTdlYyRG43N21keWYxQks4NXI1OUZPN0xxTVZFTVVoOUxIb1lqWThhNDdPVlFMVDFkQ2lUeUZUbjdnN2xqTVpOTjdkRUR4YXdvc0JJQ2ZpMFdudWtYczd4c3hiVENBQ1VHSE9zM0VBZFhqSXdsM3FpZTJqaXRUVmFaN1dJalM1cE5NMklMT0gybTlJVG80YWZuRUJfcnpIUDJYNlU5OE92ZWV0cGxIdWhpOHozcUJVbGd2ZnpOV1dZQ1haNVRXWF9TQXlhekhXNlNzZlVBME12R1BFRdIBwgNBVV95cUxNYktjckg3UTJVMGltWUVlWmhTbVNOVjljRy14a0pxQnBvY1Z1WlFBZ2NmWGwwb3RqOVgxYXdoQkdGZUVCWmNFZm0wai1lQ0EtQ09RN1hDcVctSDMzWHV6SEF4R1BVdkhNdl9ZT0FrTzFTWHJLWEh0a25Vc3lhd2tKRWdhYi1oVW9OV21wUTB0V01DYkZSblhBbXF0ZmFydHJWRVV4OGxCaDRuQ2tVT1ZVMHJRWW5ReXhqRVVEaVZZc18xSUl4cGFEdXZMUkE1NE9EX2pBbmRVQjFjdzVySFl0c2UzOUhEeHZXYURCWU1VQ3lVYXAzblFLVmZsUDdTQ0FabTFWS3k5YmJmTExRSk14b2hZSVRxdFRTZG9Uc3hrRFNKT084bDBKcnBUdHl6TzAxeG1jQTJiMTBrUGZENmpnSzNWX05sNE5LU0ZpR0RhbEcxR2RaZjk1dHJnNHZkUG1QVVVxQ1E3WmVvd3ZZX1dhVFFfZlA0bm83a3BmaXVEanNFaXBycUs0OXNmVjFDdnpoZFhHbXczNHRlSk8xaEQ1TGVXNVhoNnFmblBMMFljMjhQeXhHVEJzdFctOUNYSVdOUnc?oc=5"
         }
       ],
       "grade": {
-        "verdict": "Vi förutspådde rätt vinnare, men missade helt matchbilden och slutresultatet som blev en dramatisk vändning.",
+        "verdict": "Vi förutspådde rätt vinnare men missade helt på slutresultatet och matchbilden där Egypten överraskade med att ta en 2-0-ledning.",
         "score": 3
       },
       "lessons": [
-        "Underskatta inte ett lags kollektiva förmåga att överprestera sitt xG, särskilt när de hyllas för sin moral och effektivitet trots förlust.",
-        "Väg in att även favoriter kan drabbas av tidig trötthet och defensiva misstag, vilket kan leda till oväntade matchbilder trots statistisk dominans.",
-        "En prognos som bygger på att \"individuell briljans\" ska avgöra behöver specificera när i matchen denna briljans förväntas manifesteras, särskilt om trötthet är en faktor."
+        "Underskatta inte ett lag med sargad defensiv om deras offensiva effektivitet kan överraska, särskilt om motståndaren har slitage.",
+        "När xG tydligt pekar på en förtjänad seger trots ett jämnt eller förlorat resultat, bör man vara försiktig med att överkorrigera prognosen för nästa match, då utfallet kan ha berott på marginaler.",
+        "Ett lag som leder med flera mål trots lågt xG kan vara sårbart för en sen kollaps om motståndaren har hög xG och individuell kvalitet."
       ],
       "predicted": {
         "text": "2–0 Argentina",
@@ -319,8 +318,8 @@
         "winner": "hit",
         "score": "miss"
       },
-      "written": "2026-07-11T06:58:17.800Z",
-      "sourceHash": "3be11ac69e0f0f28",
+      "written": "2026-07-11T08:58:27.564Z",
+      "sourceHash": "54e687beb1b63e06",
       "generated": true
     },
     "k:96": {
@@ -328,19 +327,13 @@
         "ch",
         "co"
       ],
-      "headline": "Prognosen sprack: Schweiz slog Colombia efter straffdrama",
-      "lead": "Vår förhandsprognos om en colombiansk seger med 2–1 sprack totalt. Schweiz stod för en defensiv bragd och vann åttondelsfinalen efter straffar, trots att Colombia skapade de farligaste chanserna.",
+      "headline": "Schweiz chockar Colombia – Prognosen missade helt",
+      "lead": "Vår förhandsprognos om en colombiansk seger visade sig vara helt felaktig. Schweiz stod för en heroisk insats och tog sig vidare till kvartsfinal efter straffdrama, trots att spelet talade emot dem.",
       "paragraphs": [
-        "Vi förutspådde en 2–1-seger för **Colombia**, med brasklappen att **James Rodríguez** form kunde påverka kreativiteten. Vår analys betonade även **Schweiz** tunga avbräck på offensiva nyckelspelare och **Colombias** kamp med influensa och reserelaterat slitage. Utfallet blev dock en mållös match, 0–0 efter full tid, som **Schweiz** vann med 4–3 på straffar. Detta innebär att vår prognos missade både vinnare och slutresultat.",
-        "Den stora anledningen till att matchen inte slutade som förväntat var **Colombias** oförmåga att omvandla sina chanser. De hade ett xG på 1,09 mot **Schweiz** 0,39, vilket tydligt visar att de skapade de farligaste lägena och statistiskt sett borde ha gjort minst ett mål. Särskilt **Jaminton Campaz** brände ett friläge i förlängningen, ett missat läge som senare ledde till hot mot honom och hans familj [[1]]. Den befarade influensan i det colombianska laget, som **James Rodríguez** talade om, tonades ned av reportern Theo González Castaño som *”en lätt förkylning”* [[2]], och verkar inte ha varit avgörande. Däremot var avbräcket på **Johan Manzambi**, **Schweiz** bästa målskytt med tre mål och två assist i VM, högst reellt då han saknades på grund av en knäskada [[3]].",
-        "Trots **Manzambis** frånvaro och **Colombias** chansövertag visade **Schweiz** en imponerande kollektiv styrka och defensiv disciplin. Målvakten **Gregor Kobel** var en gigant, med ett FotMob-betyg på 8.6, och utsågs till matchens bästa spelare av fansen efter att ha räddat straffar [[4]]. Detta var en klassisk \"stulen vinst\" för **Schweiz**, där ett starkt försvar och en avgörande målvakt i straffläggningen övervann ett motstånd som skapade mer. Vårt fokus på **Colombias** individuella briljans och **Schweiz** avbräck ledde till en felaktig bedömning av matchens dynamik och utgång."
+        "Vår förhandsrubrik talade om ett Colombia som trotsade sjukdom och slitage, samt ett Schweiz som sörjde nyckelspelare. Den colombianska influensan var dock mindre allvarlig än befarat, med reportern Theo González Castaño som menade att \"Ein paar Spieler hatten eine leichte Erkältung... aber es ist nichts Ernstes.\" [[1]]. Schweiz saknade visserligen den skadade **Johan Manzambi** [[2]], men detta hindrade dem inte från att hålla nollan. Slutresultatet 0–0 efter full tid var långt ifrån vår tippade 2–1-seger för Colombia. Statistikens xG på 0,39–1,09 indikerar att Colombia skapade betydligt fler och bättre chanser, med **Jaminton Campaz** som hade matchens största xG på 0,36 utan att göra mål. Detta tyder på att Schweiz \"stal\" segern, snarare än att matchen var jämnt spelmässig.",
+        "Schweiz kollektiva försvarsstyrka och en enastående målvaktsprestation från **Gregor Kobel**, som fick FotMob-betyget 8.6 och röstades fram som bästa spelare av fansen [[3]], var avgörande. Trots att Colombia hade mer bollinnehav och nästan dubbelt så många skott, lyckades de inte överlista det schweiziska försvaret. Vår brasklapp om **James Rodriguez** form var relevant, då Colombias kreativitet led. De missade chanserna, särskilt Campaz i matchens slutskede, ledde till hot mot honom och hans familj efteråt [[4,5]], vilket understryker den enorma pressen. Detta var en match där marginaler och individuella prestationer, snarare än enbart spelövertag, avgjorde."
       ],
       "references": [
-        {
-          "source": "AS Colombia",
-          "title": "FCF uttalar sig och begär utredning efter hot mot Campaz",
-          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxObng0RFVKZWZhRGlIR3dlc3YwUEllVnJXOGtIR0FHb3plWkNTUlpVcmYzNVRvel85Q3pLMlhQWVFJdzZGU3NKMkMyeVJWVHI4Z1hSYTR5RExBTktVUjkxbFFULS00blRkckJHM0JLSnc3OFdyRHVQZ3h3TDcyTjNZdVB3RmJmT3Byc3BKaU1ZR0QyTE5jdFB0U2Q5QXQyajV0RWt6T0lwT3UtLXBSakVn0gHDAUFVX3lxTE5qNjlfdlJSaF9HX3R2dU5CQk1aQVJ5TGZSNks0V2xrWjVzbkFQUlpDcmJVam5QMm93MUxjSkU3VTlReEpFVnc4aGZBMkFINFdLLVhmSjRzekZyWDRnc0t1TlBMbmtCWGs2cmdqTV9kNWdXUWhkcEtBVVV2Zlg5MkNmWEVUT2t4czFXN1hER0VWZHBtSTVpMGxJbXZPSFk5Umk1a1JEeXB2MjF2aXhIM2J5WG5nR0dTQlNMM29xMklVNDVLRQ?oc=5"
-        },
         {
           "source": "bluewin.ch",
           "title": "Influensaepidemi bland Nati-motståndare? Colombias reporter kastar ljus över mörkret",
@@ -355,16 +348,26 @@
           "source": "Tages-Anzeiger",
           "title": "Schweiziska landslaget: Fans röstar på straffhjälten Gregor Kobel som den bästa spelaren mot Colombia",
           "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPQ0NsbVlHSUhIeGhVTUNCSzZoR1k5SmRSRmw2aDg2YkVpYUc5cE1ZN0pWRnctY1lOQUk3TDItRlNLWjE3ZXJHVXplaDc4Y2VlZmVWcDVZTDJKWTRWRFdacG5hckRCbHVxc2djOTlyRU5QNkNIMjF3c2JuWFFBQXdBNGVzS2xaaGZVWEhRa0hISjdKNnYxb2s2ejhRMlBBd1B2VFlOLVlsei1rT0k?oc=5"
+        },
+        {
+          "source": "ELTIEMPO.COM",
+          "title": "Colombianska fotbollsförbundet uttalade sig efter hot mot spelaren Jáminton Campaz och hans familj: det krävde att åklagarmyndigheten skulle utreda händelserna",
+          "url": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxNTnBITlo5SFhfSGIzZmJPTU9vS3hhcmJpQ0J2a2VvSzI1WUVrR3JFdmNNTGZ4Z1FqalpZOUc5TVNyMDVyRTJodjMwSXY4UEN2ZjZSQ3JZdDVOZlUzalNuVEZHX1hISEhVQnljeTRFemh1a21LeWk0SDZpajF5VDdRRjVoWnExUG82dWFfNmV3bDZhbjZsT2dUZi1uNWR1WXFpREpVZ3hsc2tMdHhVVFVWbFowSkxBb1ZMZ3lhNlBUNWZYcHF6eEtpQmFkTTd4a2xZZGFjVEhjcDNDWkZBRGthZlMxQkZURHBNeUFfM2swUzIzYVRFdU93R3FlanNYYXp3TkhRYWVZTi1CcWZ2Z3RQWjVGNnlTTmh1ZV9nWFNlSHhNVEwweXRtX9IBrgJBVV95cUxOMUJHUTRGdnY2dDMtZnE5WXRLajAtRUwwZ2IxbWdUaXp3dkV4alM1WDFINVc5dnk2eW9kQ09pRTdlVURiSUZoZTM0OUVnQ2RyREJZVXRxT0dkY2ZGT1JoSXNKZ3UzcGVKUjFqaTgzdmVvYzJHQThET0k5Z0NXcDFFMjRwNWxSUzhyYmlRUGxUeXA1WnhlUVNnQ1JSUW1XeFJDRmU0SnQ3WXh5OFZid1pmWHJHdDVwSEI0c251SG0yWGhhR0JMQXJtelpmS3hfTS1DeUNVc1J6VmZXTlpqdm42LUNNM2x6eFN4OVo5VHNFZHY5c3lPdjZOSm95SzAyanNtNjlFWkJRWWZ6cE9aODJ2TVFoNDF5dEpYeGlCa0JGU2Q5SGtXTVJQRFB4UlFaUQ?oc=5"
+        },
+        {
+          "source": "AS Colombia",
+          "title": "FCF uttalar sig och begär utredning efter hot mot Campaz",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxObng0RFVKZWZhRGlIR3dlc3YwUEllVnJXOGtIR0FHb3plWkNTUlpVcmYzNVRvel85Q3pLMlhQWVFJdzZGU3NKMkMyeVJWVHI4Z1hSYTR5RExBTktVUjkxbFFULS00blRkckJHM0JLSnc3OFdyRHVQZ3h3TDcyTjNZdVB3RmJmT3Byc3BKaU1ZR0QyTE5jdFB0U2Q5QXQyajV0RWt6T0lwT3UtLXBSakVn0gHDAUFVX3lxTE5qNjlfdlJSaF9HX3R2dU5CQk1aQVJ5TGZSNks0V2xrWjVzbkFQUlpDcmJVam5QMm93MUxjSkU3VTlReEpFVnc4aGZBMkFINFdLLVhmSjRzekZyWDRnc0t1TlBMbmtCWGs2cmdqTV9kNWdXUWhkcEtBVVV2Zlg5MkNmWEVUT2t4czFXN1hER0VWZHBtSTVpMGxJbXZPSFk5Umk1a1JEeXB2MjF2aXhIM2J5WG5nR0dTQlNMM29xMklVNDVLRQ?oc=5"
         }
       ],
       "grade": {
-        "verdict": "Vår förhandsprognos missade helt på både vinnare och slutresultat, trots att vi identifierade vissa korrekta premisser.",
+        "verdict": "Vår förhandsprognos missade både vinnare och slutresultat, trots att vi identifierade relevanta faktorer som skador och sjukdom.",
         "score": 1
       },
       "lessons": [
-        "Underskatta inte ett lags kollektiva försvarsförmåga och målvaktsinsats, särskilt i utslagsmatcher, även om de saknar offensiva nyckelspelare.",
-        "Var försiktig med att övervärdera rapporter om mildare sjukdomar i motståndarlag, då de sällan är avgörande för matchbilden om de inte är allvarliga.",
-        "Ett lags högre xG indikerar ofta att de 'förtjänade' att vinna, men det garanterar inte resultatet; oförmåga att omvandla chanser kan leda till 'stulna vinster' för motståndaren, särskilt i straffläggningar."
+        "Underskatta inte ett lags kollektiva defensiva förmåga och målvaktsprestation, särskilt när de står inför offensiva avbräck.",
+        "En prognos baserad på xG kan fortfarande missa det faktiska resultatet på grund av marginaler och enskilda spelares prestationer i avgörande ögonblick.",
+        "Väg in hur yttre faktorer som spelarhot kan påverka ett lags förmåga att prestera under press."
       ],
       "predicted": {
         "text": "2–1 Colombia",
@@ -393,8 +396,8 @@
         "winner": "miss",
         "score": "miss"
       },
-      "written": "2026-07-11T06:57:48.575Z",
-      "sourceHash": "77937810850c2f45",
+      "written": "2026-07-11T08:57:58.926Z",
+      "sourceHash": "812da4c863d07e8a",
       "generated": true
     },
     "k:97": {
@@ -402,23 +405,13 @@
         "fr",
         "ma"
       ],
-      "headline": "Frankrike krossade Marockos dröm – xG avslöjar total dominans",
-      "lead": "Vår prognos träffade rätt vinnare men missade Frankrikes överlägsenhet. Trots en förväntad jämn matchbild visade Frankrike upp en imponerande offensiv kraft som Marocko inte kunde matcha.",
+      "headline": "Frankrike krossade Marockos dröm – xG avslöjar vår missbedömning",
+      "lead": "Vår förhandsprognos prickade rätt vinnare i kvartsfinalen mellan Frankrike och Marocko, men slutresultatet 2–0 till Frankrike var mer övertygande än vi förutspådde.",
       "paragraphs": [
-        "Inför kvartsfinalen mot Marocko förutspådde vi en jämn taktisk duell som Frankrike skulle vinna med 2–1, med en brasklapp för förlängning om Marockos kollektiva försvar lyckades neutralisera Kylian Mbappé och Olise. Facit blev en 2–0-seger för Frankrike, men siffrorna döljer en betydligt större dominans än vad resultatet indikerar. Med ett xG på 3,05 mot Marockos 0,14 var Frankrikes seger inte bara rättvis utan även i underkant. Detta visar att vår förväntan om en ”jämnare utgång än många tror” inte höll, då Frankrike kontrollerade matchen från start till mål.",
-        "Den ”kvävande Boston-hettan” som vi nämnde verkade inte hämma Frankrikes offensiva utveckling under **Didier Deschamps** [[1]]. Istället för en pragmatisk matchbild, som i VM 2022, visade Les Bleus upp en *”friare anfallslinje”* och ett högt presspel [[1]]. Marockos kollektiva försvar, trots en heroisk insats av målvakten **Yassine Bounou** som räddade en straff från **Mbappé** [[2]], kunde inte stå emot trycket. Mål av **Mbappé** och **Ousmane Dembélé** säkrade segern. Marockos förbundskapten **Mohamed Ouahbi** erkände efteråt att *”Frankrike var starkare än oss och det måste vi acceptera”* [[3]], vilket understryker att Atlaslejonen, trots att de var en *”mognare kraft”*, inte räckte till mot ett taktiskt omställt Frankrike."
+        "Inför matchen såg vi fram emot en taktisk duell i Boston-hettan, där Frankrikes individuella briljans skulle möta Marockos kollektiva försvar. Vår brasklapp om att Marocko skulle kunna neutralisera **Mbappé** och **Olise** visade sig dock vara en rejäl missbedömning. Frankrike dominerade stort, vilket **Mohamed Ouahbi**, Marockos förbundskapten, också erkände: \"*Idag var Frankrike starkare än oss och vi måste acceptera det.*\" [[1]]. Marockos bollinnehav på 52% var skenbart; det ledde bara till 5 skott och 1 på mål, jämfört med Frankrikes 22 skott och 8 på mål.",
+        "Den mest talande statistiken är xG-siffrorna: Frankrike noterades för hela 3.05 förväntade mål mot Marockos 0.14. Detta indikerar att Frankrikes 2–0-seger var mer än välförtjänt och att de till och med kunde ha vunnit med större marginal. **Kylian Mbappé** var, som väntat, en nyckelspelare med 1.30 xG och ett mål, och fick matchens högsta FotMob-betyg på 8.6. **Ousmane Dembélé** säkrade segern med sitt 2–0-mål. Vår prognos om en jämnare match, kanske 2–1, missade alltså bredden i Frankrikes dominans och Marockos svårigheter att skapa farliga chanser."
       ],
       "references": [
-        {
-          "source": "The Guardian",
-          "title": "Frankrikes attackerande utveckling under Didier Deschamps klarar senaste Marocko-testet | Raphaël Jucobin",
-          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNbHNtdWlnTHNTbWxiYU1NN3U3S3c0UEowY252b1ZKWS1KczBRX2t3dG00STFSdXF6MW5oMGViMzloXy02UXpCZE9sM0tTVFh2RDROWmtEeDVNR0RFb0pCUmhMZmNDR2lFYXdpbjBzTVRra0ZmcU1kazVLc1dGbVc1Tko2aUtNeXJtcmNmdV9JR2lBTVQzM3cyZFBIT3pnNlJPb3VWdHN0WEdxcjlLMExwSXNIenVMZDM2NEVN?oc=5"
-        },
-        {
-          "source": "lobservateur.info",
-          "title": "Atlas Lions lämnar arenan med högt hållna huvuden | Observatören",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOTndOUGlHVDMwNUJuNUpoNGRzTmRjTEg3ejdBYWRrWVY3S3h1RFY1VXhvZGswQU9XMzZIS055SUp0N3I5a0RadEFZd01CVEVOanFqLWpkbkJYLV9MV19ibE10WFZEc1Zad1VtWjFXTkhvUFM4U1NiR2w5YkY3UE9XQWw3RGRZbWl6U2t2QXN6ZzcxY1ZJWWJVXzdvOFpjMUhseE83MGNB0gFWQVVfeXFMUEN0RHQ4S3g2VTZHclV0VDA3LVlDNUswVWM4VTFpWURpYkRQX1lGWDdzRkwwYVNQNS1GcmNHcUhqaVQ3YlZFZ1RCQWJjR055clRCOTBfZXc?oc=5"
-        },
         {
           "source": "Le Matin.ma",
           "title": "VM 2026: Ouahbi och Atlas Lions accepterar nederlag och ser på framtiden",
@@ -426,13 +419,13 @@
         }
       ],
       "grade": {
-        "verdict": "Rätt vinnare, men underskattade Frankrikes dominans och Marockos svårigheter att skapa chanser.",
+        "verdict": "Vi prickade rätt vinnare men underskattade Frankrikes dominans och fick fel slutresultat.",
         "score": 3
       },
       "lessons": [
-        "En stor skillnad i xG kan indikera en mer ensidig matchbild än vad slutresultatet visar, vilket bör vägas in vid bedömning av lagens prestation.",
-        "Långvariga tränare kan implementera betydande taktiska förändringar som helt omformar ett lags spelstil mellan turneringar.",
-        "Även ett välorganiserat kollektiv kan överväldigas om motståndarens individuella briljans kombineras med en effektiv offensiv taktik."
+        "En hög xG-skillnad är en starkare indikator på matchbild än enbart slutresultatet och bör användas för att kalibrera prognoser om matchdominans.",
+        "Underskatta inte topplagens förmåga att övervinna kollektiva försvar, särskilt när individuella stjärnor är i toppform och kan skapa mycket xG.",
+        "Bollinnehav kan vara missvisande; fokusera mer på kvaliteten i chanserna (xG) för att bedöma ett lags offensiva hot."
       ],
       "predicted": {
         "text": "2–1 Frankrike",
@@ -458,8 +451,8 @@
         "winner": "hit",
         "score": "miss"
       },
-      "written": "2026-07-11T06:57:18.359Z",
-      "sourceHash": "ff4224704d37f6ea",
+      "written": "2026-07-11T08:57:30.230Z",
+      "sourceHash": "dd38760941dcad3f",
       "generated": true
     },
     "k:98": {
@@ -467,57 +460,52 @@
         "es",
         "be"
       ],
-      "headline": "Facit: Spanien vann som förutspått – Merinos sena magi säkrade semifinalplatsen",
-      "lead": "Vår förhandsprognos om en 2–1-seger för Spanien mot Belgien i VM-kvartsfinalen visade sig stämma precis. Matchen var en klassisk duell där spansk dominans till slut avgjorde, trots belgisk effektivitet.",
+      "headline": "Facit: Spaniens mur höll – Merino säkrade 2-1 mot Belgien",
+      "lead": "Vår förhandsprognos om spansk seger med 2–1 stod sig när Spanien avancerade till semifinal. Matchen bekräftade bilden av ett dominerande Spanien mot ett kliniskt, men skadedrabbat, Belgien.",
       "paragraphs": [
-        "Vi förutspådde en spansk seger med 2–1, och det blev exakt så. Vår huvudtes om Spaniens \"mur\" mot Belgiens \"magi\" höll i stort, även om den belgiska offensiven hade svårt att skapa chanser. Spanien dominerade stort med 68% bollinnehav och 17 skott mot Belgiens 5. Den förväntade målstatistiken (xG) på 2,04–0,36 understryker att Spaniens seger var fullt förtjänt. Belgien lyckades dock, som vi varnade för, överprestera sin xG-effektivitet med **Charles De Ketelaere**s mål på bara 0,36 xG totalt [[1,2,3]]. Detta höll matchen spännande längre än vad spelbilden motiverade.",
-        "Matchen inleddes med spansk kontroll. **Fabián Ruiz** gav Spanien ledningen i 30:e minuten efter en retur från **Thibaut Courtois** [[1,2]]. Belgien svarade dock snabbt när **De Ketelaere** nickade in kvitteringen i 41:a minuten [[1,2,3]]. Trots att Spanien skapade fler chanser, med **Lamine Yamal** och **Rodri** som framstående [[2,4]], verkade matchen gå mot förlängning. Men precis som i åttondelsfinalen mot Portugal [[5,6]], klev inhopparen **Mikel Merino** fram och säkrade segern i den 88:e minuten med sitt 0,69 xG-mål efter en retur [[1,2,5,4,6]]. Belgiens förberedelser stördes av **Youri Tielemans** skada under uppvärmningen, vilket tvingade fram en sen ändring i startelvan [[7]]."
+        "Som förväntat dominerade **Spanien** matchbilden med 68% bollinnehav och ett xG på 2,04 mot **Belgiens** 0,36. Vår huvudtes om ett *oslagbart försvar* och en kontrollerande spelstil bekräftades, även om **Fabián Ruiz** 1–0-mål följdes av **Charles De Ketelaeres** kvittering på **Belgiens** *enda farliga chans* [[1]]. Detta visade på den *kliniska offensiv* vi förvarnade om, där **Belgien** överpresterade sitt låga xG. Denna effektivitet, kombinerat med att **Spanien**s xG på mål (2,60) var högre än deras faktiska två mål, gjorde att matchen länge såg ut att gå mot förlängning – precis som vår brasklapp indikerade.",
+        "Avgörande för utfallet var **Belgiens** skadebekymmer, med **Youri Tielemans** borta i uppvärmningen [[2]] och **Thibaut Courtois** skadad under matchen, vilket tvingade in **Senne Lammens** i mål [[3,4]]. Det var just **Lammens** som släppte en retur i den 88:e minuten, vilken **Mikel Merino** – *Spaniens mardröm* [[4]] och *super sub* [[3]] – utnyttjade för att säkra segern. **Merino** hade matchens högsta xG med 0,69 på sitt enda skott. **Rodri** var återigen *sublim* [[5]], medan **Lamine Yamal** utsågs till matchens MVP trots en ojämn insats [[6,5]]. **Spanien**s seger var välförtjänt enligt xG-siffrorna, och vår prognos om både vinnare och resultat höll."
       ],
       "references": [
-        {
-          "source": "Sports Illustrated",
-          "title": "Spanien spelarbetyg mot Belgien: Mer Merino Magic ställer till en aptitretande semifinal",
-          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNSHhxYldQZGYyOC11dmRvcFItSERPbEJDeFd3UnFhNFItSDFqYnFpSy1wS1FTMl9ZbUJZX09xQ0FWSWg0TzRLNVVyUzQwTW5Ra0dzakZUVmZIWHoxODhpdTBQRkJ4N19KQzJiNEczODRxMlJURXNlMlNEem9iOUUzUXR6WGZ4Y2xfbnQzRjRrQkFzalVlQmFHcmpFcXRFd216LTd1WjIxQXBNanFOVG1VeUxMNUJiZw?oc=5"
-        },
-        {
-          "source": "Yahoo Sports",
-          "title": "Spanien vs Belgien spelarbetyg - Vem var matchens man?",
-          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQTHJxbzBqN0tXRTlfREN5RUVnakl2SUd0Y3JzM25LcjM2SHlvNmpQa0JQeFpVNHVPQWVrekpQQzBpZ1hFa0FacXkyQXlZaG4tOHdXVFgtNjh5U0QwV0NpTjdfYWZVdXMzc1BFWXpIVnE1WnNyRTNJSWVRUDJib19jczFhZ0ZqTmc?oc=5"
-        },
         {
           "source": "RTVE.es",
           "title": "Spanien - Belgien: se hela kvartsfinalmatchen vid VM 2026",
           "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQWGUtejhPWUcwbTdPVVFiWFhNLTRaeHlRaV9aYTZycGtfX2c0Nm5RSUd4T0plUGxQSEM2YlpMRFVEQ1dOTkJrZWx1WUNLbXZBdDlmeHkzRjBuS2ZZRmN4WXE5NG1XOWY5ZVFBS2g1bFQ1YlI2bW1WVTdRVVVsTkpHWTFEUVl2VFR6RzJyUGtSTVJ5SmNvV2I2S1BBSGs3NFlTakY0dDQ1TjcycmIzWVZZ?oc=5"
         },
         {
-          "source": "La Vanguardia",
-          "title": "Spaniens noteringar i segern mot Belgien som kvalificerar dem till semifinal",
-          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxORlM0NUpadzl3YlVoZzNhSjJhTXZESUhZNVh2d196alNjVENEc3FlYjNlQXlHX1dmQ0NmQWVPSk1rLXNvWUkzbDhuTTJIRE5yNW5vaVZnaUpGOWVXbGRibVZjeEQ1a3RxTkhBdnJqWUZzZ2N2ajQ0b3dYSFVNQThCUWxaem96UkNveTVyd1FuVkE5dWdHUkVCRlp5ZmdJWDczbFN5VjdkN0RaMTZpaG9TWFh3TTZfdXFTbTJBckRTNllzdEtocXBpLXBBdDdSRFFmZkM2c3l1a3lnZEHSAeABQVVfeXFMTmx1V1Z4NXNvbmE2T0F6Sl9zRS0zaXpqTy0zTTBMdXVTQ24zMURDQWZVQzRoVDZaQXMxN290ZmhDajBVYk1Cano1MndTZW9aQVNsQ1J3Z1FYcWsyOFItQ25aRWFQaU1YMDBJMDFwUldjbXFsNUtMU2RCXzZvaDVpc2thX0pxbGNRRGlPWGxoUjJhb3gtbXZvbDhsc2dOS05KVkNvTkJ5STZMUFptUkxvN2RDb1lhSXNRLXhWaF9RVjhrQjFpVWl5WGJFcVM1ZHBkRFJOa3gtOU1Qb09pSl9uOEQ?oc=5"
-        },
-        {
-          "source": "ABC",
-          "title": "Ge en notis till spelarna i det spanska laget och Luis de la Fuente i segern mot Belgien i VM",
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPa0JyWTNRcm1XRnhvdUl2TUR6RzJDMnMySEwzUXBrUnptaWZHN1A5bW1td0VmV0tzTnVpaHg3cWdyOHlGZkxETWRhRmxhS0xOeUJPT29sMXFZelhTT044c01xNUZzbGVzbXVuQzNORG9uVXgwMWRZa0U1ZU1IckVXalBUNzhFNHR5WmVVQWZTOUFRSDdSeHpRWU8zeEdXZ3V1blk5R2lnQzk0bDQwUlVnZFVwR2JVZnJBY1HSAb8BQVVfeXFMTUZmazZORVI5UWVHS09BMWhRdHRkcXd3Nk4xLWJDQ0Q3R0l4Vm1Oak1DNU05a3I1MzdwZ1Rta0VxU1VTQ19mTWwxZnJIcG83M1ByYnBNcEFtNzlDc0IyZnhsMHFVc3RpOEFFcTJ0ZjdIc0hlVHZHT2JZX0FBaFhYNFFmTnlNdjhoVEpyaWNpcmJRbllodHlkLVgzWXlyZVByNWVXcEtTVlZ0OGd1cnhoY09kNkI2N2ZmX3RnbnpHSW8?oc=5"
-        },
-        {
-          "source": "RTVE.es",
-          "title": "Merino dyker upp igen i det exakta ögonblicket och driver Spanien mot VM-semifinalerna",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPMGtEcU1leHRpTkMxNW1DbDVKeFdXRFVxZGxobFVFV2JoT2phSmVyNC1fNUNHcHMxcjlvQUk3aEswamp0LTVBanVMczhFVDFoS0VaREJwZWFJM0p5WGI0MjBTVEx6SV82QjZuOEpYY3hKWWt3T25heEFqM2VGVXh3VUIza0RobVNLQWt0bWpEeDlyb0tpVWtwUm5SYlR6bmg3bHZxTHB5UG9qNDBlZGo5eGxn?oc=5"
-        },
-        {
           "source": "Cadena SER",
           "title": "Youri Tielemans, skadad i uppvärmningen: viktig förändring i Belgiens elva mot Spanien",
           "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPcmVDY1NTNTVXY0lLRGJBWWpVWFhiVFhTU2tPa2tFOXpOSHB4OGMwMThJMmx6ekhLZzZBdVpfOUhIZ1g1SzUwZC1ZTTFPR1JoejlGWTdINUFzbE1lclBjNC01dHJoS3g2UW00RHhUbGZGeWRyUjVlTmVPMWcxNmFsMDI0LW1GOWxRT2poNm5HWkwzSEpyYldsbFV0clpCQ0NGNUlyanYzSXJ3anI0T0FhODcwMzBrZlMyaGN2LTdCaklnS3VodmxOd21QYlVvY00tTk00cdIB6AFBVV95cUxNM1BoUVZmMWxVYkM4UHg1cGRCLWVWcTRHTFFxRFFyTFFHRElpR2lkdzVzOHJqMmhaRmFPUFo5NkJvVmRpVVVlMmpUa191aTdRekRUOVgwRlRPaFU1cDVLc1pkUjVGaEMxdl9vRXFsY1pfaTlDQlhhdFFrZy1EeGlWR0YxRExNVzE3Ym5QY2R6RTNzSjBXS1JYb0QzMTZYUjZFNU4waG9GbER1RXpiUEd3eGtzTVZoT1B5R3J4dnhrZl9GMEZ5V2NWNy03alZLQmE0Y2Yzb05jMTAtQXVRcms3NWYxVndGN3B6?oc=5"
+        },
+        {
+          "source": "Sports Illustrated",
+          "title": "Spanien spelarbetyg mot Belgien: Mer Merino Magic ställer till en aptitretande semifinal",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNSHhxYldQZGYyOC11dmRvcFItSERPbEJDeFd3UnFhNFItSDFqYnFpSy1wS1FTMl9ZbUJZX09xQ0FWSWg0TzRLNVVyUzQwTW5Ra0dzakZUVmZIWHoxODhpdTBQRkJ4N19KQzJiNEczODRxMlJURXNlMlNEem9iOUUzUXR6WGZ4Y2xfbnQzRjRrQkFzalVlQmFHcmpFcXRFd216LTd1WjIxQXBNanFOVG1VeUxMNUJiZw?oc=5"
+        },
+        {
+          "source": "El Debate",
+          "title": "Den belgiska pressen \"gråter med Courtois\" över VM-utslaget och den franska pressen är inte rädd för Spanien",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNdTRvUUNrUi03MGFlYkEzRWFXTlRXTExvX2ZBMXlmSlpyVGJiWU92anZrZ1luTkJiUjkzcEtRODJWejF1R1podTJRY01GS2pZcjBiWUdJYjNMNE82aHdxZ1FxZFp1eFlTVEtTSmZsQTV0dTBDSkdyaVJWM1psVno2NFNnVmtJbWlFZ29hS0cwWnVkMUYxWDd6RXdiWU41cElDV2FsQUdqb2xXbk81Z2ZBZFQxNzZJaWhDNlplSkNvRGR1QjRJQVFQd041WUFaT3J2OE5GSWVBQ2g3dks4Z01N0gHkAUFVX3lxTE5SeGpMWUJXVm1SdXlEMzhnZ0l2d05YaXVSdDNOTmlwS1BPVTM1Y2JMa09RNnZXNDh2S3EzX1JMb0YyLTV1UlFfbkRQQ2R3d3VSc2F0N2doUVI0NDFJTnRaaEJkLTFtT2lwLWJ0RlU4VTNPX3VjcjgyOFYzM054MFU0RXd2aHh6SndHdTB3bjl6UE9LX2U3VHJ5LXV1RVc5ZS1xVWhTVXJMbXI5RlFiR0Y0UHdrR21fZW5QbHM5RGdsRHpEcm9vU3FmRkpxTW5Eb0FIZkRxQTFraVdLd05lRzFtZXpjdg?oc=5"
+        },
+        {
+          "source": "Onda Cero",
+          "title": "Spaniens anteckningar mot Belgien: Merino kommer i tid och skickar laget till semifinal",
+          "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQTVpuTUhTM040QzdaWUZuRTRmaWx1TzNDWUFrMWh2aS15djN4RlhDWFBFS2w3ek9FSUZYT1U4dDl1cFVLeldUaG81LS1vOFN6ZjNZckhmQnVtaVMtZnBCM2V2STUwOTcwdldXV19NQzU1Ty1tY2h4VXpMaTFfejI0SXFaQkt5TFVMbU5MNHhCUzRhX1cxT053azRmeTVwMHhGaUZ1b3lkVTFoejZneGIxZHBJWG5IZGVXaVo0WXFKYU5jRW5aZTczcktfdzhSVmhSQWk2dGRlNWdtOVdYM3FEVzVHbWl0NE4wd1ZsMXVUcjQwWjjSAfMBQVVfeXFMTVlBRVI0Tk9jUTdES1pVUGwwTnhzbWdNRlZub0cwVDF0TC1FcGRSdzM1Q201SUlsbDhEcUlFWWRtcGF4ZzFReks1bTczOWwza0ZJNW1ULW1yZXVEOFVlUDMxQldMblJvYlotaGVRZW5sTmpxZ0F2dmJfS2czXzFpckdJWUI3dEJGdXVHWW9xMFB1amFzcUxFRmdNdzhxeHhJbFFWZ1o0S3FaV29NY0dXUWZ0UVAtcWhxdG5xNVhHTHVLZld5NUU1WGdkVFJOd1lfRkJtb1ZoR3UxX3UxdHppREhTbTR2V3lCTzR3aFFRakh3Q2xB?oc=5"
+        },
+        {
+          "source": "MARCA",
+          "title": "Lamine Yamal, MVP för matchen mot Belgien",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNRU9ZZER3bmxGTkdxTkw4Q3g5bWh6MHg4REpmS1RrUGZEN0s0Sm1scDljQ0ZkUHZmc2h6dWtwU2R6R1V4YkZIU3A2OXh0NW5hVFpaOWpVc3VZN3RZVk5QMENET09LdHByajQwTmtXaXViUkpyMXlBQ3FvTUJYandVVVI5VFl6emM3bWtIMXBR0gGOAUFVX3lxTFBKQ1dhdDdpNkZxQVJuR25VZzMwSmdWUUtmSHFkR2REbkZseGx6c3JYOVFCUEdnMkxTcmYxQzRrVVZZdkJVYnV0U1lGd2t3OGZ3eU9HSm1ZUUE2bGZoQzI4cVU2dFNFZVZyb3RPZ1RxNGRRMENCWU1qQ2lBbksyOGZNelhjOWJQTUJFQXNpU1E?oc=5"
         }
       ],
       "grade": {
-        "verdict": "Prognosen var korrekt gällande både vinnare och slutresultat, även om vi underskattade Spaniens förmåga att avgöra sent och Belgiens ineffektivitet.",
+        "verdict": "Prognosen träffade rätt både gällande vinnare och slutresultat, även om Belgiens skadebekymmer och en sen avgörande insats påverkade matchbilden.",
         "score": 5
       },
       "lessons": [
-        "Värdera lag som konsekvent överpresterar sin xG-effektivitet, som Belgien i detta fall, men förvänta dig inte att de kan upprätthålla det mot ett statistiskt dominant lag över 90 minuter.",
-        "Lita på att lag med hög xG-produktion och starkt bollinnehav ofta hittar ett sätt att avgöra, även sent i matchen, särskilt om de har pålitliga inhoppare.",
-        "Var uppmärksam på sena skador i uppvärmningen; de kan störa lagets taktik och mentala förberedelse mer än vad som syns på pappret."
+        "Var uppmärksam på hur sena skador, som de på nyckelspelare i uppvärmningen eller under match, kan förändra matchbilden och lagens förmåga att prestera mot sin xG.",
+        "När ett lag dominerar spelmässigt med högt bollinnehav och xG, kan enstaka individuella insatser eller målvaktsmisstag vara avgörande för att bryta dödlägen, även om det inte helt speglar den övergripande matchbilden.",
+        "Analysera xG på mål (xGOT) utöver xG för att bättre bedöma om ett lags ineffektivitet beror på dåliga avslut eller exceptionellt målvaktsspel, vilket kan förfina bedömningen av en 'klinisk offensiv'."
       ],
       "predicted": {
         "text": "2–1 Spanien",
@@ -543,8 +531,8 @@
         "winner": "hit",
         "score": "hit"
       },
-      "written": "2026-07-11T06:56:51.815Z",
-      "sourceHash": "db6e9c70dc2c34de",
+      "written": "2026-07-11T08:57:07.743Z",
+      "sourceHash": "3f71bc718b097f76",
       "generated": true
     }
   }
