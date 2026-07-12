@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-11T23:32:45.544Z",
+    "updatedAt": "2026-07-12T01:08:40.505Z",
     "source": "svt+tv4",
     "matchCount": 100
   },
@@ -2182,21 +2182,33 @@
         }
       }
     },
+    "k:99": {
+      "SVT": {
+        "short": {
+          "url": "https://www.svtplay.se/klipp/KBwaV5k/kvartsfinal-norge-england",
+          "title": "Kvartsfinal: Norge – England",
+          "until": "2026-10-19T05:30:00+02:00"
+        }
+      },
+      "TV4": {
+        "full": {
+          "url": "https://www.tv4play.se/video/42e0beb52c064550b590/norge-england",
+          "title": "Norge - England",
+          "until": "2026-08-10T20:00:00Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/5055379fb376adb960b5/video-hojdpunkter-norge-england",
+          "title": "Höjdpunkter: Norge - England",
+          "until": null
+        }
+      }
+    },
     "k:100": {
       "SVT": {
         "live": {
           "url": "https://www.svtplay.se/video/erQQzk9/fifa-fotbolls-vm-2026/argentina-schweiz",
           "title": "FIFA Fotbolls-VM 2026",
           "until": "2026-08-11T23:59:59+02:00"
-        }
-      }
-    },
-    "k:99": {
-      "TV4": {
-        "full": {
-          "url": "https://www.tv4play.se/video/42e0beb52c064550b590/norge-england",
-          "title": "Norge - England",
-          "until": "2026-08-10T20:00:00Z"
         }
       }
     },
