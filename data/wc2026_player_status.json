@@ -1,9 +1,31 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-12T15:30:56.440Z",
+  "updated": "2026-07-12T17:30:33.603Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
+    "esp-mikel-merino": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Merino beseglar segern efter Courtois skada",
+      "updated": "2026-07-11",
+      "source": {
+        "name": "Foro3D",
+        "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOUlpvaTdubkdEXzJraTA4OFJxbmYtS25PUFNEZW9XMDdqUmVoNXdiQ05LLXV5SWJMaDVCc1lyaDgxQVJGVFQwa2gyZ0ZHMW1Xakw4TzlYdVpuUTNjU2F2UjkzenJELTJqckRUS1BSQ3lDWWdKQkxvMXhqcHdEUWh2YzBycUVOdlFxX0IzejRZRQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "esp-yeremy-pino": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Yeremy Pino om sin skada: \"En lastbil passerade mig framför mig\"",
+      "updated": "2026-07-11",
+      "source": {
+        "name": "MSN",
+        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQSjRUTXpkNEpRTFZKaFRyYnhNQWU4MjBNTy0yX3YyQl9zRnotRjFXdlVxdnRpZlZzNFVTQXY3Tmh5MmxVSEI4SjRUajRubVFJOWRWUnR4QXBsdUNKTlNWaURNX0kxRmxIZS1GVFhHamY3VVkwMjNZaVl4d2N1NEZUM0FyT2tTNmYyTjRPRzM4RGJVNWNuYlJ0bzdCYmdzQklYVXI4OXowOEI2RGNCNjNhNlRxRXkxTlo4TlhhNFo2R3YxQ0di?oc=5"
+      },
+      "origin": "news"
+    },
     "fra-kylian-mbappe": {
       "availability": "doubtful",
       "kind": "injury",
@@ -15,14 +37,36 @@
       },
       "origin": "news"
     },
+    "arg-lionel-messi": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Johan Manzambi missade matchen mellan Argentina och Schweiz på grund av skada men tog Messis tröja",
+      "updated": "2026-07-12",
+      "source": {
+        "name": "TyC Sports",
+        "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNOTJlWmV3cW5BcmYyOXBmQ0FOVXZ4N053VEtvTGZlWktVendxVExoU2RsTWotd01JLUpoSkZPSTBvdWNVMDZ1akFTR05PdEdPMU5wZ01ULWpGTVFqSzJzXzBPdi1tMlJKWUJ3R3F4NGJWNWVCTTFpY294SXFKWWZuVWk0YVdGSjdleGQtUTRUc3ZEMUt0dVktY0psc2MtdU5jMjN5T094U3owVDkxZFM1dXFkcHNHTUtCYTdFNnJ4NA?oc=5"
+      },
+      "origin": "news"
+    },
     "arg-leandro-paredes": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Leandro Paredes var skadad och är tveksam till Argentinas semifinal mot England",
+      "detail": "Leandro Paredes argentinska landslaget: tvivel på grund av skada",
       "updated": "2026-07-12",
       "source": {
-        "name": "LA17",
-        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQb25DVldkM01hbHU5OGEtQk5BVlhQQ2ZYNlNPaDkxSndmQ1BiRFZkY2xfNUZ1Unp0T3FLTzhwdUdQQVZxc1YwdHBrMXVwMjFmZTBjb2VxZnpnU2dFWVNqTVlSR2Rmc09GY2J6MjByMUhaSEpjMEFCbjN0S3JuejhqWWtFSnphMkZBNmRrbUFleDZXVHo3Rl8yOWxIT2EySE1kTG9Lb2llVjh1Q3RhbmVLUGJNT2ZnckI0Z29J?oc=5"
+        "name": "» Cholila Online",
+        "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPWkZkV2NwekJmY2VkVmJEZkU2XzlOTjNVaWJoWGVzREpRNkpRckFuNjJVRUJVR3FOVnNtdUgyQjVsdUdlTTlsVkxfT1g1U3dpQm0tNEk3Nm5sU2FwLTZ2WTdmaldBaDctMzhEeXFsSW5oMjk5bmtJT3UzM0pyQUtYTzAyelF6c1Zib0VnTjAtNk95RGp6MU91Mm9QU1hQLU1SYmZhaGFXNGJzRmhpbmdERmlkZm9ZT3ZsVUt4a1NDNmYxUEIwWHBtRFpYeGVIdV84c05NRm1rbkd0NUZWVGhlekZjRmp4QQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-declan-rice": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Declan Rices skadebekymmer blottade efter att Gary Neville och Ian Wright kommit överens om Englands stjärna",
+      "updated": "2026-07-11",
+      "source": {
+        "name": "The Mirror",
+        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNSmYybnNWMnFHd2k0Y0NONE5zdVNrRG1KXzN6enh1bFhScFdLenpRajg2MWtpQ0dZNTdmUUtBbUp4NGRSTnNfTGw0UnotNkNuTXBUTUVmMFVqZ09RZmFPTlQ1XzVNNGpQY2pnQmhJR0Fva3hHV0xxUlpKREJ1V1R2VkdkcDR3OFppWklLQVhCdkxoZ9IBlwFBVV95cUxOSVItdWJjNlZScXFsejlBNnVMVThjRmYzd1htQTRIanpBWnBJRzJXZTRfVUVFYXRBR2J6LU5fWXdBWkh4d2ZnTGxsQWVjZzdhblNqRERMSXVNZXpfaGlWVUZkdU9tdFFGZ2MzVmR5ZVNlMjJZbk82NUZkbUJvWHMwS2lNWDN1WkZzaUltNERJSnpvMndWZ0Vr?oc=5"
       },
       "origin": "news"
     },
