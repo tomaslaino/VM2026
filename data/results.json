@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-12T01:09:54.281Z",
+    "updatedAt": "2026-07-12T04:41:04.639Z",
     "source": "espn",
     "matchCount": 100,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -507,21 +507,12 @@
       "status": "FINISHED"
     },
     "k:100": {
-      "h": 0,
-      "a": 0,
-      "status": "IN_PLAY"
+      "h": 3,
+      "a": 1,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:100",
-      "status": "IN_PLAY",
-      "minute": 8,
-      "home": "Argentina",
-      "away": "Switzerland",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -2210,7 +2201,7 @@
       "date": "2026-07-12",
       "time": "03:00",
       "utcDate": "2026-07-12T01:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Argentina",
       "away": "Switzerland",
@@ -2247,12 +2238,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "England",
-      "away": "Quarterfinal 4 Winner",
+      "away": "Argentina",
       "homeRef": {
         "group": "L",
         "idx": 0
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "J",
+        "idx": 0
+      }
     },
     "k:103": {
       "date": "2026-07-18",
