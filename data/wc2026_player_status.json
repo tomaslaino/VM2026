@@ -1,76 +1,9 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-11T23:14:45.636Z",
+  "updated": "2026-07-12T00:15:28.249Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
-    "sui-johan-manzambi": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "VM 2026: Bitter Nati nyheter - Manzambi är också skadad mot Argentina",
-      "updated": "2026-07-10",
-      "source": {
-        "name": "SRF",
-        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNZ2VJY2g3enFGMGlvbXowS3lfYkdKSHE2NUFmbTVaSGZfV2NtUmhwR2tOWFowbFNETEhOd0ltQmdBWkw0Um04VDFXT0pkb2FSbkpyNmZDTTd6bDJDRHlSNkZkejJrWTJNX1NmQVJ5YVJfWlRtazFmT0ttVklMY1Z2MldKRHhqeHhDeVlMd0xFbmY0VnhQU3VweVFsWEQyRlFsU3RTQTVrd0piWXQ3VzZQckdQRFZnbmtZYUkyU3dwZlQzdw?oc=5"
-      },
-      "origin": "news"
-    },
-    "esp-mikel-merino": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Merino beseglar segern efter Courtois skada",
-      "updated": "2026-07-11",
-      "source": {
-        "name": "Foro3D",
-        "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOUlpvaTdubkdEXzJraTA4OFJxbmYtS25PUFNEZW9XMDdqUmVoNXdiQ05LLXV5SWJMaDVCc1lyaDgxQVJGVFQwa2gyZ0ZHMW1Xakw4TzlYdVpuUTNjU2F2UjkzenJELTJqckRUS1BSQ3lDWWdKQkxvMXhqcHdEUWh2YzBycUVOdlFxX0IzejRZRQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "fra-kylian-mbappe": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Mbappés fotled, Spanien är inte rädd... Le journal des Bleus",
-      "updated": "2026-07-11",
-      "source": {
-        "name": "20 Minutes",
-        "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPY2ZjQkdyanFjV0dOaVEwUlRpaE90NlVxeHhmNE5Jc0J6ZUVDSDE1bzhXVlUyWHh1Q3l5UVdfOVI1Q29UMlhvazZoYzhtM3FUdmJERmQ0bXduZk5weWpIUW52YW1rX3UyNy1wRGZ4N19iM0lMWElQblBGdFlqZkRuXzFOOGtlbnpya0lGUHgzM1FPaENmaWFvTWpsMDhzbVk0RWVMZmZfdXh6MFFmTDZ4eWN6aFBrWGhRc1YyTWQ1eWxzb0ZSR1lneVpKRmo3X1pnRmZqSw?oc=5"
-      },
-      "origin": "news"
-    },
-    "nor-martin-degaard": {
-      "availability": "doubtful",
-      "kind": "illness",
-      "detail": "Fotbolls-VM: Martin Ødegaard om Norges sjukdom",
-      "updated": "2026-07-08",
-      "source": {
-        "name": "NRK",
-        "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNOGZmQjEzMEJrOFZ4ZThIWlJyX1dKWjdydGFTNWw1NTJidmRhQVNXZTlTR0ZXREU0N3hOZFVuc3hFQ044MFJxcGwtSlczRnNEMEJlbXNuV0tkZlhVcUtsQXZpRlA1V0xXX1V2azN6bWExRjFyNUFOUmRoSl9JYWF1MU53aVJsS1FSR3gzSllpTjg?oc=5"
-      },
-      "origin": "news"
-    },
-    "arg-leandro-paredes": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Scalonis avslöjande om Paredes skada och Schweiz analys",
-      "updated": "2026-07-11",
-      "source": {
-        "name": "TyC Sports",
-        "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPOFAxOERRMHZ3ZmtBRmQ1ZmFfZTBUTkp1WEpZbWp1eHBVMUw0WWpkbVhvb2pKalJ4bUl4U0R4eTBHREpmS0h2WmlrbEdvTmRJTDBuZFZ3c3dVR09kX0U3SHZDQ0V6amVObVQwX2pjNlJGcW1nLS1vNzlQempsM3lEcXdsUVE2ZExVcXBRX2g4SlhOeVJoYUtKcUE3YXVLS1dySk1QQl9fMFFXZjJkSjEzeXdIZXp0TWE2TUVyNXpjM2NhQzF6WVd0YmFRNEhRNEUyRlBUZjZwQQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-declan-rice": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Andra gula kortet i turneringen (mot Ghana och Mexiko)",
-      "updated": "2026-07-06",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760505"
-      },
-      "origin": "cards"
-    },
     "sui-granit-xhaka": {
       "availability": "out",
       "kind": "suspension",
@@ -92,6 +25,18 @@
       "source": {
         "name": "Matchfakta (ESPN)",
         "url": "https://www.espn.com/soccer/match/_/gameId/760508"
+      },
+      "origin": "cards"
+    },
+    "eng-declan-rice": {
+      "availability": "out",
+      "kind": "suspension",
+      "label": "Avstängd",
+      "detail": "Andra gula kortet i turneringen (mot Ghana och Mexiko)",
+      "updated": "2026-07-06",
+      "source": {
+        "name": "Matchfakta (ESPN)",
+        "url": "https://www.espn.com/soccer/match/_/gameId/760505"
       },
       "origin": "cards"
     },
