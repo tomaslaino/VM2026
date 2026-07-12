@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-12T21:11:15.540Z",
+  "updated": "2026-07-12T22:12:00.627Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-mikel-merino": {
@@ -67,17 +67,6 @@
       "source": {
         "name": "TyC Sports",
         "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPcVlPZVRGRGJOZWZQQzdFNGFVYmFOZWdWYzBNcnNsZHU1WEZESmhVLVVZU2phdTNfeG5UaHpnYXoxZHp1Zmd5aEtDYXJsVk9fdjVvUDBVemVXM3RxYmhwbHNXM1NiZE1DQXY1OXZ1S3dBVzZHM1JqTDhMRVhrbWFqeUtjVFhNZTMta0FobFNNUWxsRm9uWWxGMUxwNi05N1lkMTJJd0FPQ2hRdkxHYWtkUlZfYlR4YXlhWHdqdkhPR1lackdjcVEzczh6ZjJOQQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-declan-rice": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Declan Rices skadebekymmer blottade efter att Gary Neville och Ian Wright kommit överens om Englands stjärna",
-      "updated": "2026-07-11",
-      "source": {
-        "name": "The Mirror",
-        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNSmYybnNWMnFHd2k0Y0NONE5zdVNrRG1KXzN6enh1bFhScFdLenpRajg2MWtpQ0dZNTdmUUtBbUp4NGRSTnNfTGw0UnotNkNuTXBUTUVmMFVqZ09RZmFPTlQ1XzVNNGpQY2pnQmhJR0Fva3hHV0xxUlpKREJ1V1R2VkdkcDR3OFppWklLQVhCdkxoZ9IBlwFBVV95cUxOSVItdWJjNlZScXFsejlBNnVMVThjRmYzd1htQTRIanpBWnBJRzJXZTRfVUVFYXRBR2J6LU5fWXdBWkh4d2ZnTGxsQWVjZzdhblNqRERMSXVNZXpfaGlWVUZkdU9tdFFGZ2MzVmR5ZVNlMjJZbk82NUZkbUJvWHMwS2lNWDN1WkZzaUltNERJSnpvMndWZ0Vr?oc=5"
       },
       "origin": "news"
     },
