@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-07-10T22:30:02.511Z",
+    "updatedAt": "2026-07-12T01:30:45.065Z",
     "source": "fotmob",
-    "matchCount": 98
+    "matchCount": 99
   },
   "matches": {
     "g:A:2": {
@@ -13300,6 +13300,157 @@
         }
       },
       "updatedAt": "2026-07-10T22:30:02.109Z"
+    },
+    "k:99": {
+      "fotmobId": 4653852,
+      "teamRating": {
+        "h": 6.7,
+        "a": 7.1
+      },
+      "xg": {
+        "h": 0.77,
+        "a": 0.96
+      },
+      "xgot": {
+        "h": 0.39,
+        "a": 2.9
+      },
+      "players": {
+        "h": {
+          "julian ryerson": 6.8,
+          "david m ller wolfe": 6.3,
+          "sander berge": 7.1,
+          "kristoffer ajer": 6.8,
+          "torbj rn heggem": 6.7,
+          "martin degaard": 7.6,
+          "patrick berg": 6.5,
+          "erling haaland": 6.4,
+          "alexander s rloth": 6.5,
+          "andreas schjelderup": 7.8,
+          "fredrik aursnes": 6.8,
+          "antonio nusa": 6.1,
+          "j rgen strand larsen": 6.1,
+          "leo stigard": 6.3,
+          "oscar bobb": 6.4,
+          "marcus holmgren pedersen": 5.9,
+          "rjan nyland": 7.1
+        },
+        "a": {
+          "jordan pickford": 6.5,
+          "ezri konsa": 7.7,
+          "nico o reilly": 7.6,
+          "elliot anderson": 7.6,
+          "john stones": 7.3,
+          "marc guehi": 6.8,
+          "noni madueke": 6.6,
+          "declan rice": 6.7,
+          "harry kane": 6,
+          "jude bellingham": 9.1,
+          "anthony gordon": 7.5,
+          "morgan rogers": 6.3,
+          "eberechi eze": 6.8,
+          "djed spence": 7,
+          "bukayo saka": 7.5,
+          "reece james": 6.5
+        }
+      },
+      "playerXg": {
+        "h": {
+          "kristoffer ajer": {
+            "xg": 0.09,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "martin degaard": {
+            "xg": 0.03,
+            "xgot": 0.08,
+            "shots": 1,
+            "goals": 0
+          },
+          "patrick berg": {
+            "xg": 0.03,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "erling haaland": {
+            "xg": 0.11,
+            "xgot": 0.06,
+            "shots": 2,
+            "goals": 0
+          },
+          "alexander s rloth": {
+            "xg": 0.21,
+            "xgot": 0,
+            "shots": 2,
+            "goals": 0
+          },
+          "andreas schjelderup": {
+            "xg": 0.02,
+            "xgot": 0.21,
+            "shots": 1,
+            "goals": 1
+          },
+          "fredrik aursnes": {
+            "xg": 0.03,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "antonio nusa": {
+            "xg": 0.16,
+            "xgot": 0.05,
+            "shots": 3,
+            "goals": 0
+          },
+          "oscar bobb": {
+            "xg": 0.09,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          }
+        },
+        "a": {
+          "harry kane": {
+            "xg": 0.1,
+            "xgot": 0.44,
+            "shots": 3,
+            "goals": 0
+          },
+          "jude bellingham": {
+            "xg": 0.52,
+            "xgot": 1.09,
+            "shots": 5,
+            "goals": 2
+          },
+          "morgan rogers": {
+            "xg": 0.02,
+            "xgot": 0.04,
+            "shots": 1,
+            "goals": 0
+          },
+          "eberechi eze": {
+            "xg": 0.03,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "djed spence": {
+            "xg": 0.13,
+            "xgot": 0.76,
+            "shots": 1,
+            "goals": 0
+          },
+          "bukayo saka": {
+            "xg": 0.17,
+            "xgot": 0.57,
+            "shots": 3,
+            "goals": 0
+          }
+        }
+      },
+      "updatedAt": "2026-07-12T01:30:44.661Z"
     }
   }
 }
