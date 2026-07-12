@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-07-11T23:31:16.314Z",
+    "updatedAt": "2026-07-12T01:09:54.281Z",
     "source": "espn",
-    "matchCount": 99,
+    "matchCount": 100,
     "liveCount": 1,
     "apiCalls": 2
   },
@@ -504,17 +504,22 @@
     "k:99": {
       "h": 1,
       "a": 2,
-      "status": "PAUSED"
+      "status": "FINISHED"
+    },
+    "k:100": {
+      "h": 0,
+      "a": 0,
+      "status": "IN_PLAY"
     }
   },
   "live": [
     {
-      "key": "k:99",
-      "status": "PAUSED",
-      "minute": 105,
-      "home": "Norway",
-      "away": "England",
-      "score": "1-2"
+      "key": "k:100",
+      "status": "IN_PLAY",
+      "minute": 8,
+      "home": "Argentina",
+      "away": "Switzerland",
+      "score": "0-0"
     }
   ],
   "fixtures": {
@@ -2188,7 +2193,7 @@
       "date": "2026-07-11",
       "time": "23:00",
       "utcDate": "2026-07-11T21:00Z",
-      "status": "PAUSED",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Norway",
       "away": "England",
@@ -2205,7 +2210,7 @@
       "date": "2026-07-12",
       "time": "03:00",
       "utcDate": "2026-07-12T01:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "Argentina",
       "away": "Switzerland",
@@ -2241,9 +2246,12 @@
       "utcDate": "2026-07-15T19:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Quarterfinal 3 Winner",
+      "home": "England",
       "away": "Quarterfinal 4 Winner",
-      "homeRef": null,
+      "homeRef": {
+        "group": "L",
+        "idx": 0
+      },
       "awayRef": null
     },
     "k:103": {
