@@ -1,31 +1,9 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-12T17:30:33.603Z",
+  "updated": "2026-07-12T19:36:19.670Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
-    "esp-mikel-merino": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Merino beseglar segern efter Courtois skada",
-      "updated": "2026-07-11",
-      "source": {
-        "name": "Foro3D",
-        "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOUlpvaTdubkdEXzJraTA4OFJxbmYtS25PUFNEZW9XMDdqUmVoNXdiQ05LLXV5SWJMaDVCc1lyaDgxQVJGVFQwa2gyZ0ZHMW1Xakw4TzlYdVpuUTNjU2F2UjkzenJELTJqckRUS1BSQ3lDWWdKQkxvMXhqcHdEUWh2YzBycUVOdlFxX0IzejRZRQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "esp-yeremy-pino": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Yeremy Pino om sin skada: \"En lastbil passerade mig framför mig\"",
-      "updated": "2026-07-11",
-      "source": {
-        "name": "MSN",
-        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQSjRUTXpkNEpRTFZKaFRyYnhNQWU4MjBNTy0yX3YyQl9zRnotRjFXdlVxdnRpZlZzNFVTQXY3Tmh5MmxVSEI4SjRUajRubVFJOWRWUnR4QXBsdUNKTlNWaURNX0kxRmxIZS1GVFhHamY3VVkwMjNZaVl4d2N1NEZUM0FyT2tTNmYyTjRPRzM4RGJVNWNuYlJ0bzdCYmdzQklYVXI4OXowOEI2RGNCNjNhNlRxRXkxTlo4TlhhNFo2R3YxQ0di?oc=5"
-      },
-      "origin": "news"
-    },
     "fra-kylian-mbappe": {
       "availability": "doubtful",
       "kind": "injury",
@@ -37,6 +15,28 @@
       },
       "origin": "news"
     },
+    "arg-leandro-paredes": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Cuti Romero och Paredes avslutade matchen mot Schweiz utan skada",
+      "updated": "2026-07-12",
+      "source": {
+        "name": "TyC Sports",
+        "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPcVlPZVRGRGJOZWZQQzdFNGFVYmFOZWdWYzBNcnNsZHU1WEZESmhVLVVZU2phdTNfeG5UaHpnYXoxZHp1Zmd5aEtDYXJsVk9fdjVvUDBVemVXM3RxYmhwbHNXM1NiZE1DQXY1OXZ1S3dBVzZHM1JqTDhMRVhrbWFqeUtjVFhNZTMta0FobFNNUWxsRm9uWWxGMUxwNi05N1lkMTJJd0FPQ2hRdkxHYWtkUlZfYlR4YXlhWHdqdkhPR1lackdjcVEzczh6ZjJOQQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "arg-cristian-romero": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Cuti Romero och Paredes avslutade matchen mot Schweiz utan skada",
+      "updated": "2026-07-12",
+      "source": {
+        "name": "TyC Sports",
+        "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPcVlPZVRGRGJOZWZQQzdFNGFVYmFOZWdWYzBNcnNsZHU1WEZESmhVLVVZU2phdTNfeG5UaHpnYXoxZHp1Zmd5aEtDYXJsVk9fdjVvUDBVemVXM3RxYmhwbHNXM1NiZE1DQXY1OXZ1S3dBVzZHM1JqTDhMRVhrbWFqeUtjVFhNZTMta0FobFNNUWxsRm9uWWxGMUxwNi05N1lkMTJJd0FPQ2hRdkxHYWtkUlZfYlR4YXlhWHdqdkhPR1lackdjcVEzczh6ZjJOQQ?oc=5"
+      },
+      "origin": "news"
+    },
     "arg-lionel-messi": {
       "availability": "doubtful",
       "kind": "injury",
@@ -45,17 +45,6 @@
       "source": {
         "name": "TyC Sports",
         "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNOTJlWmV3cW5BcmYyOXBmQ0FOVXZ4N053VEtvTGZlWktVendxVExoU2RsTWotd01JLUpoSkZPSTBvdWNVMDZ1akFTR05PdEdPMU5wZ01ULWpGTVFqSzJzXzBPdi1tMlJKWUJ3R3F4NGJWNWVCTTFpY294SXFKWWZuVWk0YVdGSjdleGQtUTRUc3ZEMUt0dVktY0psc2MtdU5jMjN5T094U3owVDkxZFM1dXFkcHNHTUtCYTdFNnJ4NA?oc=5"
-      },
-      "origin": "news"
-    },
-    "arg-leandro-paredes": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Leandro Paredes argentinska landslaget: tvivel på grund av skada",
-      "updated": "2026-07-12",
-      "source": {
-        "name": "» Cholila Online",
-        "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPWkZkV2NwekJmY2VkVmJEZkU2XzlOTjNVaWJoWGVzREpRNkpRckFuNjJVRUJVR3FOVnNtdUgyQjVsdUdlTTlsVkxfT1g1U3dpQm0tNEk3Nm5sU2FwLTZ2WTdmaldBaDctMzhEeXFsSW5oMjk5bmtJT3UzM0pyQUtYTzAyelF6c1Zib0VnTjAtNk95RGp6MU91Mm9QU1hQLU1SYmZhaGFXNGJzRmhpbmdERmlkZm9ZT3ZsVUt4a1NDNmYxUEIwWHBtRFpYeGVIdV84c05NRm1rbkd0NUZWVGhlekZjRmp4QQ?oc=5"
       },
       "origin": "news"
     },
