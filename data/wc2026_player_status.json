@@ -1,9 +1,31 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-12T00:15:28.249Z",
+  "updated": "2026-07-12T04:04:56.112Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
+    "sui-johan-manzambi": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "VM 2026: Bitter Nati nyheter - Manzambi är också skadad mot Argentina",
+      "updated": "2026-07-10",
+      "source": {
+        "name": "SRF",
+        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNZ2VJY2g3enFGMGlvbXowS3lfYkdKSHE2NUFmbTVaSGZfV2NtUmhwR2tOWFowbFNETEhOd0ltQmdBWkw0Um04VDFXT0pkb2FSbkpyNmZDTTd6bDJDRHlSNkZkejJrWTJNX1NmQVJ5YVJfWlRtazFmT0ttVklMY1Z2MldKRHhqeHhDeVlMd0xFbmY0VnhQU3VweVFsWEQyRlFsU3RTQTVrd0piWXQ3VzZQckdQRFZnbmtZYUkyU3dwZlQzdw?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-declan-rice": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Declan Rices skadebekymmer blottade efter att Gary Neville och Ian Wright kommit överens om Englands stjärna",
+      "updated": "2026-07-11",
+      "source": {
+        "name": "Mirror",
+        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNSmYybnNWMnFHd2k0Y0NONE5zdVNrRG1KXzN6enh1bFhScFdLenpRajg2MWtpQ0dZNTdmUUtBbUp4NGRSTnNfTGw0UnotNkNuTXBUTUVmMFVqZ09RZmFPTlQ1XzVNNGpQY2pnQmhJR0Fva3hHV0xxUlpKREJ1V1R2VkdkcDR3OFppWklLQVhCdkxoZ9IBlwFBVV95cUxOSVItdWJjNlZScXFsejlBNnVMVThjRmYzd1htQTRIanpBWnBJRzJXZTRfVUVFYXRBR2J6LU5fWXdBWkh4d2ZnTGxsQWVjZzdhblNqRERMSXVNZXpfaGlWVUZkdU9tdFFGZ2MzVmR5ZVNlMjJZbk82NUZkbUJvWHMwS2lNWDN1WkZzaUltNERJSnpvMndWZ0Vr?oc=5"
+      },
+      "origin": "news"
+    },
     "sui-granit-xhaka": {
       "availability": "out",
       "kind": "suspension",
@@ -25,30 +47,6 @@
       "source": {
         "name": "Matchfakta (ESPN)",
         "url": "https://www.espn.com/soccer/match/_/gameId/760508"
-      },
-      "origin": "cards"
-    },
-    "eng-declan-rice": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Andra gula kortet i turneringen (mot Ghana och Mexiko)",
-      "updated": "2026-07-06",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760505"
-      },
-      "origin": "cards"
-    },
-    "eng-jarell-quansah": {
-      "availability": "out",
-      "kind": "suspension",
-      "label": "Avstängd",
-      "detail": "Rött kort i åttondelsfinalen mot Mexiko",
-      "updated": "2026-07-06",
-      "source": {
-        "name": "Matchfakta (ESPN)",
-        "url": "https://www.espn.com/soccer/match/_/gameId/760505"
       },
       "origin": "cards"
     },
