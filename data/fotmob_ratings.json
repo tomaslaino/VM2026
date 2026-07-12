@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-07-12T01:30:45.065Z",
+    "updatedAt": "2026-07-12T05:16:24.549Z",
     "source": "fotmob",
-    "matchCount": 99
+    "matchCount": 100
   },
   "matches": {
     "g:A:2": {
@@ -13451,6 +13451,156 @@
         }
       },
       "updatedAt": "2026-07-12T01:30:44.661Z"
+    },
+    "k:100": {
+      "fotmobId": 4653854,
+      "teamRating": {
+        "h": 7.3,
+        "a": 6.3
+      },
+      "xg": {
+        "h": 2,
+        "a": 0.53
+      },
+      "xgot": {
+        "h": 2.89,
+        "a": 1.11
+      },
+      "players": {
+        "h": {
+          "emiliano martinez": 7.6,
+          "nahuel molina": 6.8,
+          "nicolas tagliafico": 6.9,
+          "leandro paredes": 7.9,
+          "cristian romero": 7.5,
+          "lisandro martinez": 7.8,
+          "rodrigo de paul": 7.1,
+          "enzo fernandez": 7,
+          "lionel messi": 8.8,
+          "julian alvarez": 8.3,
+          "alexis mac allister": 8.3,
+          "nicolas otamendi": 6.5,
+          "lautaro martinez": 7.4,
+          "thiago almada": 7.3,
+          "gonzalo montiel": 6,
+          "jose manuel lopez": 6.9
+        },
+        "a": {
+          "gregor kobel": 6.5,
+          "denis zakaria": 6.3,
+          "ricardo rodriguez": 7.7,
+          "granit xhaka": 6.2,
+          "nico elvedi": 6.8,
+          "manuel akanji": 5.6,
+          "djibril sow": 6.3,
+          "remo freuler": 6.6,
+          "breel embolo": 5.1,
+          "fabian rieder": 6,
+          "dan ndoye": 7.1,
+          "ardon jashari": 6,
+          "miro muheim": 6.1,
+          "eray comert": 6.2,
+          "silvan widmer": 6.6,
+          "zeki amdouni": 5.9
+        }
+      },
+      "playerXg": {
+        "h": {
+          "nahuel molina": {
+            "xg": 0.04,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "cristian romero": {
+            "xg": 0.04,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "lisandro martinez": {
+            "xg": 0.12,
+            "xgot": 0.23,
+            "shots": 2,
+            "goals": 0
+          },
+          "lionel messi": {
+            "xg": 0.26,
+            "xgot": 0.16,
+            "shots": 4,
+            "goals": 0
+          },
+          "julian alvarez": {
+            "xg": 0.1,
+            "xgot": 0.53,
+            "shots": 3,
+            "goals": 1
+          },
+          "alexis mac allister": {
+            "xg": 0.56,
+            "xgot": 0.78,
+            "shots": 4,
+            "goals": 1
+          },
+          "lautaro martinez": {
+            "xg": 0.39,
+            "xgot": 0.86,
+            "shots": 2,
+            "goals": 1
+          },
+          "thiago almada": {
+            "xg": 0.46,
+            "xgot": 0.34,
+            "shots": 3,
+            "goals": 0
+          }
+        },
+        "a": {
+          "denis zakaria": {
+            "xg": 0.02,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "granit xhaka": {
+            "xg": 0.05,
+            "xgot": 0.16,
+            "shots": 3,
+            "goals": 0
+          },
+          "djibril sow": {
+            "xg": 0.02,
+            "xgot": 0.01,
+            "shots": 1,
+            "goals": 0
+          },
+          "breel embolo": {
+            "xg": 0.08,
+            "xgot": 0.61,
+            "shots": 1,
+            "goals": 0
+          },
+          "fabian rieder": {
+            "xg": 0.06,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "dan ndoye": {
+            "xg": 0.28,
+            "xgot": 0.32,
+            "shots": 3,
+            "goals": 1
+          },
+          "ardon jashari": {
+            "xg": 0.01,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          }
+        }
+      },
+      "updatedAt": "2026-07-12T05:16:24.145Z"
     }
   }
 }
