@@ -1,15 +1,23 @@
 {
-  "updated": "2026-07-13T13:59:30.693775+00:00",
+  "updated": "2026-07-13T19:08:53.702979+00:00",
   "source": "the-odds-api.com",
   "market": "VM-vinnare (outright)",
   "teams": [
     {
       "team": "France",
-      "bestOdds": 2.52,
+      "bestOdds": 2.54,
       "bestBook": "Betfair",
-      "avgOdds": 2.47,
+      "avgOdds": 2.49,
       "books": 3,
-      "impliedPct": 40.5
+      "impliedPct": 40.2
+    },
+    {
+      "team": "Spain",
+      "bestOdds": 4.4,
+      "bestBook": "Betfair",
+      "avgOdds": 4.27,
+      "books": 3,
+      "impliedPct": 23.4
     },
     {
       "team": "England",
@@ -18,14 +26,6 @@
       "avgOdds": 4.33,
       "books": 3,
       "impliedPct": 23.1
-    },
-    {
-      "team": "Spain",
-      "bestOdds": 4.6,
-      "bestBook": "Betfair",
-      "avgOdds": 4.4,
-      "books": 3,
-      "impliedPct": 22.7
     },
     {
       "team": "Argentina",
