@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-13T11:34:34.534Z",
+  "updated": "2026-07-13T15:18:09.444Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-mikel-merino": {
@@ -67,6 +67,17 @@
       "source": {
         "name": "TyC Sports",
         "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPcVlPZVRGRGJOZWZQQzdFNGFVYmFOZWdWYzBNcnNsZHU1WEZESmhVLVVZU2phdTNfeG5UaHpnYXoxZHp1Zmd5aEtDYXJsVk9fdjVvUDBVemVXM3RxYmhwbHNXM1NiZE1DQXY1OXZ1S3dBVzZHM1JqTDhMRVhrbWFqeUtjVFhNZTMta0FobFNNUWxsRm9uWWxGMUxwNi05N1lkMTJJd0FPQ2hRdkxHYWtkUlZfYlR4YXlhWHdqdkhPR1lackdjcVEzczh6ZjJOQQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-jude-bellingham": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Skaderädsla för Jude Bellingham när videon dyker upp efter Norges seger",
+      "updated": "2026-07-13",
+      "source": {
+        "name": "The Sun",
+        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNR19UQ1FGcnQwUC12UEZMU0NKUE5vY25iS0pRRVllVXFjc1Y3YUJPSldUYzYya2tBdi0ta0VBandOcjJIb2k3eVlucVRwVFBnai0weUxkOGFaR1FZQ0JucjdvWjR4QlBfR0VrZXhrZXFGQlp2Z0tFeF9tM0hqYUJ6aG1aYnNMNGRNcE90UERhdFV5czZRb2phWUFPWlNGdw?oc=5"
       },
       "origin": "news"
     },
