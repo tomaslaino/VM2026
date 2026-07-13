@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-13T21:26:05.538Z",
+  "updated": "2026-07-13T23:23:50.156Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -48,21 +48,10 @@
       },
       "origin": "news"
     },
-    "arg-lionel-messi": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "En schweizisk spelare missade duellen mot Argentina på grund av en skada och hamnade i Messis tröja",
-      "updated": "2026-07-12",
-      "source": {
-        "name": "Haceinstantes",
-        "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPcnFja3htakhfRk50czhNRFRlZ081LUVzODAzSHA2MzR1b0FMcnJGWmVvVDlKZXpWbXZ4MnRYSHZ1VUM0ZDc0M2pTYlBldkFyUEJ0OXk1bGx4bXNlcHI2TjhTSkRfTHFVRGVycnBPbk9namo5akVYNWtvdWhiWjVIWThKV1I5Rl9mWTRtWUlpazNLLW9NYlpFVENEbjJpeHhlTU5XTHRTaTBXQ3lPaEU2Mkxid3pTS0x2SGdYa1ozd0lHa2tBNTdnU2hmQ0luakhTSEt3NU5BS09WMDhnckRqcjQ1WWpEM0JpbWtmV1Rn0gHzAUFVX3lxTE1TOXhYcEpoMDBad3BkVF9oQUsxV2N3WWVqQVAzaEwzS2tvLTdWZE5NYWRmYndzTXM3a2xPdUdON21xNVBCTjZNQ2hjUFJVbjJyYU5qMVVYTEJ0VHFfa29wbUVVLVNmZThyTllkS2FQZmFlVmNNQTdsRlVNSHI3VGJWTkV1aERiVU1FbzNsYUtzamd4S3dIejNFWnpyOFREQWJ3UDM2QW9XRmNGTGVucDVjNDZJYTcwYWttWTRXSG1sbEZsOG41UjllaVJEeHMzZ1F1NTlHeE1UZDIwbkRZa0l0ZmlMRE5IT1lmcWI1QW9nNVJwZw?oc=5"
-      },
-      "origin": "news"
-    },
     "eng-jude-bellingham": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Jude Bellinghams rädsla för skada ökar när videon visar Englands stjärna efter att Norge har dykt upp",
+      "detail": "Jude Bellinghams rädsla för skada växer när videon av Englands stjärna efter Norges spel yta",
       "updated": "2026-07-13",
       "source": {
         "name": "LADbible",
