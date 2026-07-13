@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-13T15:18:09.444Z",
+  "updated": "2026-07-13T17:26:40.579Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-mikel-merino": {
@@ -12,17 +12,6 @@
       "source": {
         "name": "Foro3D",
         "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOUlpvaTdubkdEXzJraTA4OFJxbmYtS25PUFNEZW9XMDdqUmVoNXdiQ05LLXV5SWJMaDVCc1lyaDgxQVJGVFQwa2gyZ0ZHMW1Xakw4TzlYdVpuUTNjU2F2UjkzenJELTJqckRUS1BSQ3lDWWdKQkxvMXhqcHdEUWh2YzBycUVOdlFxX0IzejRZRQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "esp-yeremy-pino": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Yeremy Pino om sin skada: \"En lastbil passerade mig framför mig\"",
-      "updated": "2026-07-11",
-      "source": {
-        "name": "MSN",
-        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQSjRUTXpkNEpRTFZKaFRyYnhNQWU4MjBNTy0yX3YyQl9zRnotRjFXdlVxdnRpZlZzNFVTQXY3Tmh5MmxVSEI4SjRUajRubVFJOWRWUnR4QXBsdUNKTlNWaURNX0kxRmxIZS1GVFhHamY3VVkwMjNZaVl4d2N1NEZUM0FyT2tTNmYyTjRPRzM4RGJVNWNuYlJ0bzdCYmdzQklYVXI4OXowOEI2RGNCNjNhNlRxRXkxTlo4TlhhNFo2R3YxQ0di?oc=5"
       },
       "origin": "news"
     },
@@ -70,14 +59,36 @@
       },
       "origin": "news"
     },
+    "eng-declan-rice": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup semifinal 2026 mot Argentina",
+      "updated": "2026-07-13",
+      "source": {
+        "name": "Khel Now",
+        "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNNFZRVFdVZUdhc3BGNndQRjNPZnpTcTBQamVrdmVxMEJmaGpYT0Z6enVHVjA4ek1pbjJhcEExcXIwSnpCRzVkcnJhY1FGYlBNOXlvQXhHMXRyaDlzRlhMSk8zUVkwU2QzeGRCbkF5QnZfd0hieTVMZUtseGt3SmE4T084aXU0LXV5ZndyaFMzMUg1T1ZMTXlBT3lNZkp4aUU?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-bukayo-saka": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup semifinal 2026 mot Argentina",
+      "updated": "2026-07-13",
+      "source": {
+        "name": "Khel Now",
+        "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNNFZRVFdVZUdhc3BGNndQRjNPZnpTcTBQamVrdmVxMEJmaGpYT0Z6enVHVjA4ek1pbjJhcEExcXIwSnpCRzVkcnJhY1FGYlBNOXlvQXhHMXRyaDlzRlhMSk8zUVkwU2QzeGRCbkF5QnZfd0hieTVMZUtseGt3SmE4T084aXU0LXV5ZndyaFMzMUg1T1ZMTXlBT3lNZkp4aUU?oc=5"
+      },
+      "origin": "news"
+    },
     "eng-jude-bellingham": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Skaderädsla för Jude Bellingham när videon dyker upp efter Norges seger",
+      "detail": "Jude Bellinghams rädsla för skada växer när videon av Englands stjärna efter Norges spel yta",
       "updated": "2026-07-13",
       "source": {
-        "name": "The Sun",
-        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNR19UQ1FGcnQwUC12UEZMU0NKUE5vY25iS0pRRVllVXFjc1Y3YUJPSldUYzYya2tBdi0ta0VBandOcjJIb2k3eVlucVRwVFBnai0weUxkOGFaR1FZQ0JucjdvWjR4QlBfR0VrZXhrZXFGQlp2Z0tFeF9tM0hqYUJ6aG1aYnNMNGRNcE90UERhdFV5czZRb2phWUFPWlNGdw?oc=5"
+        "name": "LADbible",
+        "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQMGFjRjRWcVFnblZiNC11czFVR3ZXeFZPS3RTWTFVXzJueVU4UUt6OHQ4VVJKSFZfMEFZQkVmbnlSTF8tLTVKM2tDU08tOUhkc1NoczR5VXBxUFRpcG1uclF3TEQwTmxwVWJJeFlQTTZfb1ZEajN2dVFnRWE3ek94ZjlQdzhjSWJEY2gtZy1PbkFNNEpuUEx1YmdLSWZ1T2ZMN3pLYWJCd1YyU1JYNFpCNW41TjFYVGoy?oc=5"
       },
       "origin": "news"
     },
