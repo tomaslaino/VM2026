@@ -1,9 +1,20 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-13T17:26:40.579Z",
+  "updated": "2026-07-13T19:55:43.153Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
+    "esp-lamine-yamal": {
+      "availability": "out",
+      "kind": "other",
+      "detail": "\"Jag förstår inte hatet mot Lamine Yamal\": Elena G Durán bryter ett spjut för det spanska landslagets juvel",
+      "updated": "2026-07-13",
+      "source": {
+        "name": "DAZN",
+        "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPUXMydE81djZyZEFnQWxJY3lRNHJoaUttUWhrQnpjX2E4ZmxNd3VBODByOGp5WElRamF0X3YyU0F1aDhJQjkwTUZHblFqX0xabzRIc0xKVTl0cUxFUU9GTnlpMFdESnFfQU8xdXVhSUpCVW9oYjdEcUMxTE1VamUzNnlNdlg2NjZwZVcwWlByZ2pKdG1wX0JSMk1wRWVncmF4OW9ZNmpXVDdoN1JKTElNVE9VU01SZXdJOEplSTR2cHpfZ1BNUzJKNmdMU0ZWUXZHSmtmemd2d2dHZ0gxVHFnaE9GSWY?oc=5"
+      },
+      "origin": "news"
+    },
     "esp-mikel-merino": {
       "availability": "doubtful",
       "kind": "injury",
@@ -12,6 +23,17 @@
       "source": {
         "name": "Foro3D",
         "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOUlpvaTdubkdEXzJraTA4OFJxbmYtS25PUFNEZW9XMDdqUmVoNXdiQ05LLXV5SWJMaDVCc1lyaDgxQVJGVFQwa2gyZ0ZHMW1Xakw4TzlYdVpuUTNjU2F2UjkzenJELTJqckRUS1BSQ3lDWWdKQkxvMXhqcHdEUWh2YzBycUVOdlFxX0IzejRZRQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "esp-yeremy-pino": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Yeremy Pino om sin skada: \"En lastbil passerade mig framför mig\"",
+      "updated": "2026-07-11",
+      "source": {
+        "name": "MSN",
+        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQSjRUTXpkNEpRTFZKaFRyYnhNQWU4MjBNTy0yX3YyQl9zRnotRjFXdlVxdnRpZlZzNFVTQXY3Tmh5MmxVSEI4SjRUajRubVFJOWRWUnR4QXBsdUNKTlNWaURNX0kxRmxIZS1GVFhHamY3VVkwMjNZaVl4d2N1NEZUM0FyT2tTNmYyTjRPRzM4RGJVNWNuYlJ0bzdCYmdzQklYVXI4OXowOEI2RGNCNjNhNlRxRXkxTlo4TlhhNFo2R3YxQ0di?oc=5"
       },
       "origin": "news"
     },
@@ -84,7 +106,7 @@
     "eng-jude-bellingham": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Jude Bellinghams rädsla för skada växer när videon av Englands stjärna efter Norges spel yta",
+      "detail": "Jude Bellinghams rädsla för skada ökar när videon visar Englands stjärna efter att Norge har dykt upp",
       "updated": "2026-07-13",
       "source": {
         "name": "LADbible",
