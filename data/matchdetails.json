@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-14T18:54:46.323Z",
+    "updatedAt": "2026-07-14T20:14:29.533Z",
     "source": "espn"
   },
   "details": {
@@ -58017,6 +58017,460 @@
         }
       ],
       "updatedAt": "2026-07-12T04:41:04.688Z"
+    },
+    "k:101": {
+      "espnId": "760514",
+      "fmt": 2,
+      "status": "IN_PLAY",
+      "minute": 52,
+      "utcDate": "2026-07-14T19:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 1
+        },
+        "ht": {
+          "h": 0,
+          "a": 1
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 22,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Mikel Oyarzabal",
+          "assist": null,
+          "type": "PENALTY",
+          "score": {
+            "h": 0,
+            "a": 1
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 9,
+          "team": "h",
+          "player": "Adrien Rabiot",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 31,
+          "team": "a",
+          "player": "Marc Cucurella",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 30,
+          "team": "h",
+          "in": "Maxence Lacroix",
+          "out": "William Saliba"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Manu Koné",
+          "out": "Adrien Rabiot"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Mike Maignan",
+              "jersey": "16",
+              "pos": "G",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Jules Koundé",
+              "jersey": "5",
+              "pos": "RB",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Lucas Digne",
+              "jersey": "3",
+              "pos": "LB",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Adrien Rabiot",
+              "jersey": "14",
+              "pos": "LM",
+              "st": {
+                "fc": 2,
+                "gc": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Dayot Upamecano",
+              "jersey": "4",
+              "pos": "CD-R",
+              "st": {
+                "fs": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "William Saliba",
+              "jersey": "17",
+              "pos": "CD-L",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Ousmane Dembélé",
+              "jersey": "7",
+              "pos": "AM-R",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Aurélien Tchouaméni",
+              "jersey": "8",
+              "pos": "RM",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Kylian Mbappé",
+              "jersey": "10",
+              "pos": "F",
+              "st": {
+                "gc": 1
+              }
+            },
+            {
+              "name": "Michael Olise",
+              "jersey": "11",
+              "pos": "AM",
+              "st": {
+                "fc": 1,
+                "fs": 3,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Bradley Barcola",
+              "jersey": "12",
+              "pos": "AM-L",
+              "st": {
+                "gc": 1,
+                "sh": 1
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Brice Samba",
+              "jersey": "1"
+            },
+            {
+              "name": "Robin Risser",
+              "jersey": "23"
+            },
+            {
+              "name": "Ibrahima Konaté",
+              "jersey": "15"
+            },
+            {
+              "name": "Malo Gusto",
+              "jersey": "2"
+            },
+            {
+              "name": "Jean-Philippe Mateta",
+              "jersey": "22"
+            },
+            {
+              "name": "Marcus Thuram",
+              "jersey": "9"
+            },
+            {
+              "name": "Manu Koné",
+              "jersey": "6",
+              "in": true
+            },
+            {
+              "name": "Lucas Hernández",
+              "jersey": "21"
+            },
+            {
+              "name": "Theo Hernández",
+              "jersey": "19"
+            },
+            {
+              "name": "Désiré Doué",
+              "jersey": "20"
+            },
+            {
+              "name": "Rayan Cherki",
+              "jersey": "24"
+            },
+            {
+              "name": "Maghnes Akliouche",
+              "jersey": "25"
+            },
+            {
+              "name": "N'Golo Kanté",
+              "jersey": "13"
+            },
+            {
+              "name": "Warren Zaïre-Emery",
+              "jersey": "18"
+            },
+            {
+              "name": "Maxence Lacroix",
+              "jersey": "26",
+              "in": true,
+              "st": {
+                "fc": 1
+              }
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Unai Simón",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Pedro Porro",
+              "jersey": "12",
+              "pos": "RB",
+              "st": {
+                "sh": 1
+              }
+            },
+            {
+              "name": "Marc Cucurella",
+              "jersey": "24",
+              "pos": "LB",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Fabián Ruiz",
+              "jersey": "8",
+              "pos": "LM",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Pau Cubarsí",
+              "jersey": "22",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Aymeric Laporte",
+              "jersey": "14",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Lamine Yamal",
+              "jersey": "19",
+              "pos": "AM-R",
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Rodri",
+              "jersey": "16",
+              "pos": "RM",
+              "st": {
+                "fc": 2,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Mikel Oyarzabal",
+              "jersey": "21",
+              "pos": "F",
+              "st": {
+                "fs": 1,
+                "sg": 1,
+                "g": 1,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Dani Olmo",
+              "jersey": "10",
+              "pos": "AM",
+              "st": {
+                "fs": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Álex Baena",
+              "jersey": "15",
+              "pos": "AM-L",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "sh": 1
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Alejandro Grimaldo",
+              "jersey": "3"
+            },
+            {
+              "name": "Marc Pubill",
+              "jersey": "2"
+            },
+            {
+              "name": "Ferran Torres",
+              "jersey": "7"
+            },
+            {
+              "name": "Borja Iglesias",
+              "jersey": "26"
+            },
+            {
+              "name": "Marcos Llorente",
+              "jersey": "5"
+            },
+            {
+              "name": "Víctor Muñoz",
+              "jersey": "25"
+            },
+            {
+              "name": "Nico Williams",
+              "jersey": "17"
+            },
+            {
+              "name": "Yéremy Pino",
+              "jersey": "11"
+            },
+            {
+              "name": "Pedri",
+              "jersey": "20"
+            },
+            {
+              "name": "Eric García",
+              "jersey": "4"
+            },
+            {
+              "name": "Gavi",
+              "jersey": "9"
+            },
+            {
+              "name": "Martín Zubimendi",
+              "jersey": "18"
+            },
+            {
+              "name": "Joan García",
+              "jersey": "13"
+            },
+            {
+              "name": "David Raya",
+              "jersey": "1"
+            },
+            {
+              "name": "Mikel Merino",
+              "jersey": "6"
+            }
+          ]
+        }
+      },
+      "referee": "Iván Arcides Barton Cisneros",
+      "venue": "AT&T Stadium, Arlington, Texas",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "46%",
+          "a": "54%"
+        },
+        {
+          "key": "totalShots",
+          "h": "2",
+          "a": "6"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "wonCorners",
+          "h": "3",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "6",
+          "a": "6"
+        },
+        {
+          "key": "offsides",
+          "h": "3",
+          "a": "2"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "0"
+        },
+        {
+          "key": "totalPasses",
+          "h": "239",
+          "a": "293"
+        },
+        {
+          "key": "passPct",
+          "h": "84%",
+          "a": "86%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-14T20:14:29.533Z"
     }
   }
 }
