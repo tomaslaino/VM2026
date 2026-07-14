@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-14T11:05:06.481Z",
+  "updated": "2026-07-14T12:44:35.396Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -18,11 +18,11 @@
     "fra-kylian-mbappe": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Kylian Mbappés skada: Didier Deschamps tillkännager domen inför Frankrike-Spanien!",
+      "detail": "Frankrike-Spanien: Kylian Mbappé skadad! Kommer han att kunna spela semifinalmatchen i VM 2026? Är han förverkad?",
       "updated": "2026-07-14",
       "source": {
-        "name": "Le10Sport",
-        "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQUVY3RFZSal9ySVkzTGdYTXQyWkdNOWhYYnZOQUt3SjFCS05VSHBhUDI1ZVo1Tk5PVnZyYW9RWlhtdWNIUkYxUFJRMFF3enJpT3U0YUJ5ZnZTODJmMkZxX0VwMzc0NmtXdDVYQ1ZSa3h5dDNiTlA1RkpkTzd0b1FXbktrZ2Y3a0llel9TOE9aTmZRd0lhYnVwbUVoNmZfS1dxQ1JFUGx0LXlCZFBqLXFIdV9UMEcyZ29CUGRSSXFLdUVqZHRzMDlSOWtnSF9uOGVGWnc?oc=5"
+        "name": "Serieously",
+        "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQSkpaa2hHbFBMRmZjbnU0TzR0czNoOFFuSDQxbm03MFZfQWhLWlZRQm8tdmhZYXZkOUJKSU9kUFpCZHBwaWhrZFRSNDhKVjFaMy1vTmt1RTNQOWVXcHFnREx6bDlROE9tSFN1ZmZYY1htSjR5SFp1Q1F3dk80dWpnUnkxelI3NmFWWXJ0V01PS1M0S04xRFRnUjlScHFLUUdXU0NnSG5oemZBOUNrb1B2R2VtanBDY1lxTWJIa0FidU5BRDdPSGQxbnZ4emRveGZSbENzMmM4QmszZ0J2eGpHdkdNZG13bjMyQmwxVXVhOA?oc=5"
       },
       "origin": "news"
     },
@@ -40,7 +40,7 @@
     "eng-jude-bellingham": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Jude Bellinghams rädsla för skada växer när videon av Englands stjärna efter Norges spel yta",
+      "detail": "Jude Bellinghams rädsla för skada ökar när videon visar Englands stjärna efter att Norge har dykt upp",
       "updated": "2026-07-13",
       "source": {
         "name": "LADbible",
@@ -73,7 +73,7 @@
     "eng-reece-james": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Reece James redo för World Cup 'crunch time' efter skadeproblem",
+      "detail": "Reece James redo för världscupens \"krittid\" när han siktar in sig på Argentina efter skadeproblem",
       "updated": "2026-07-13",
       "source": {
         "name": "The Independent",
