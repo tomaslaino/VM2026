@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-07-12T05:16:24.549Z",
+    "updatedAt": "2026-07-14T21:27:55.719Z",
     "source": "fotmob",
-    "matchCount": 100
+    "matchCount": 101
   },
   "matches": {
     "g:A:2": {
@@ -13601,6 +13601,141 @@
         }
       },
       "updatedAt": "2026-07-12T05:16:24.145Z"
+    },
+    "k:101": {
+      "fotmobId": 4653855,
+      "teamRating": {
+        "h": 6.3,
+        "a": 7.3
+      },
+      "xg": {
+        "h": 0.3,
+        "a": 1.63
+      },
+      "xgot": {
+        "h": 0.07,
+        "a": 1.57
+      },
+      "players": {
+        "h": {
+          "mike maignan": 5.6,
+          "jules kounde": 6.6,
+          "lucas digne": 6.1,
+          "adrien rabiot": 7.4,
+          "dayot upamecano": 6.4,
+          "william saliba": 5.9,
+          "ousmane dembele": 6.4,
+          "aurelien tchouameni": 6.9,
+          "kylian mbappe": 5.4,
+          "michael olise": 6.3,
+          "bradley barcola": 6.2,
+          "theo hernandez": 6.1,
+          "desire doue": 6.9,
+          "rayan cherki": 6.8,
+          "maxence lacroix": 6.6
+        },
+        "a": {
+          "unai simon": 8.2,
+          "pedro porro": 8.1,
+          "marc cucurella": 7.6,
+          "fabian ruiz": 8,
+          "pau cubarsi": 7.7,
+          "aymeric laporte": 7.4,
+          "lamine yamal": 7.4,
+          "rodri": 7.6,
+          "mikel oyarzabal": 7.7,
+          "dani olmo": 7.3,
+          "alex baena": 6.9,
+          "ferran torres": 6.3,
+          "pedri": 6.2,
+          "mikel merino": 6.5
+        }
+      },
+      "playerXg": {
+        "h": {
+          "adrien rabiot": {
+            "xg": 0.01,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "ousmane dembele": {
+            "xg": 0.06,
+            "xgot": 0.06,
+            "shots": 2,
+            "goals": 0
+          },
+          "aurelien tchouameni": {
+            "xg": 0.06,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "kylian mbappe": {
+            "xg": 0.09,
+            "xgot": 0,
+            "shots": 3,
+            "goals": 0
+          },
+          "bradley barcola": {
+            "xg": 0.02,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "desire doue": {
+            "xg": 0.06,
+            "xgot": 0.01,
+            "shots": 2,
+            "goals": 0
+          }
+        },
+        "a": {
+          "pedro porro": {
+            "xg": 0.53,
+            "xgot": 0.61,
+            "shots": 2,
+            "goals": 1
+          },
+          "fabian ruiz": {
+            "xg": 0.12,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "mikel oyarzabal": {
+            "xg": 0.8,
+            "xgot": 0.96,
+            "shots": 2,
+            "goals": 1
+          },
+          "dani olmo": {
+            "xg": 0.01,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "alex baena": {
+            "xg": 0.08,
+            "xgot": 0,
+            "shots": 2,
+            "goals": 0
+          },
+          "ferran torres": {
+            "xg": 0.06,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "nico williams": {
+            "xg": 0.03,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          }
+        }
+      },
+      "updatedAt": "2026-07-14T21:27:55.315Z"
     }
   }
 }
