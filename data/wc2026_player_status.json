@@ -1,9 +1,20 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-14T09:21:11.438Z",
+  "updated": "2026-07-14T11:05:06.481Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
+    "esp-lamine-yamal": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Lamine Yamal inser att han inte spelar på sin bästa nivå: \"Med skadan jag hade i slutet av säsongen behövs spel för att kunna demonstrera\"",
+      "updated": "2026-07-14",
+      "source": {
+        "name": "DAZN",
+        "url": "https://news.google.com/rss/articles/CBMinAJBVV95cUxQUV9xVnNIS0Q0bnFzUjJZRmtxWlhvY2ZsVlhTcEc1LXMtVjlaNllGRHRweEw0c1lZUkNZQWZhSmJ1U2FsZHZibVhsSW43a2ItM184ZUR0M1IwOGFxM1NTZGFRdnR1eS1vNi1kcVl2a1JkMkl1U2lpLU1NTENHMWhjMGV0enFDUEtaU3VfZDl4c1FTSVZEZzcwQTdDZWJHMFJlLUhNMENHc2ZBWVdSTGFjRmxlWlE3aEJuZUIyM3RKYmZrMkZCWXJ6bWt2WVgtbzFjTDBkeUlrSXFOOWJMZmI1VHNBcGJ0M2hZYUY4WjZtRmdXMm1WSWZBZFRlQXd0UEVULVUwMV9jMnJPNGFNS1YtS1NQZnN2ZE5pYkQ2VA?oc=5"
+      },
+      "origin": "news"
+    },
     "fra-kylian-mbappe": {
       "availability": "doubtful",
       "kind": "injury",
@@ -56,6 +67,17 @@
       "source": {
         "name": "Khel Now",
         "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNNFZRVFdVZUdhc3BGNndQRjNPZnpTcTBQamVrdmVxMEJmaGpYT0Z6enVHVjA4ek1pbjJhcEExcXIwSnpCRzVkcnJhY1FGYlBNOXlvQXhHMXRyaDlzRlhMSk8zUVkwU2QzeGRCbkF5QnZfd0hieTVMZUtseGt3SmE4T084aXU0LXV5ZndyaFMzMUg1T1ZMTXlBT3lNZkp4aUU?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-reece-james": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Reece James redo för World Cup 'crunch time' efter skadeproblem",
+      "updated": "2026-07-13",
+      "source": {
+        "name": "The Independent",
+        "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOMUtmVHlmdjhnd29kSGpuaEs5S1plRFVsZm45bHFpSDJHWUtkcVNSc1BOeV9wajgtWWJfOFkyUVBlcjNYVVNfanRpVkpGTU1yczh6bWV2VGIxOUltTWpsNXdqNWJqUl8xRkdWNkJ0WmtHOUdBaldVTFpRQWYzSnNxTGFlUVpTeHQxUmZiU0R5ZUxVdGNieUZyeDVJRVVJUml0OEZfMjJUQXhzZ2VaV1BkU3RTYU9Td3dYZG5wdmNHUQ?oc=5"
       },
       "origin": "news"
     },
