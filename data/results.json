@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-14T21:17:39.382Z",
+    "updatedAt": "2026-07-14T22:26:39.654Z",
     "source": "espn",
     "matchCount": 101,
     "liveCount": 0,
@@ -2259,9 +2259,12 @@
       "utcDate": "2026-07-18T21:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Semifinal 1 Loser",
+      "home": "France",
       "away": "Semifinal 2 Loser",
-      "homeRef": null,
+      "homeRef": {
+        "group": "I",
+        "idx": 0
+      },
       "awayRef": null
     },
     "k:104": {
@@ -2270,9 +2273,12 @@
       "utcDate": "2026-07-19T19:00Z",
       "status": "TIMED",
       "matchday": null,
-      "home": "Semifinal 1 Winner",
+      "home": "Spain",
       "away": "Semifinal 2 Winner",
-      "homeRef": null,
+      "homeRef": {
+        "group": "H",
+        "idx": 0
+      },
       "awayRef": null
     }
   },
