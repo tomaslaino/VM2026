@@ -1,17 +1,17 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-14T06:31:50.776Z",
+  "updated": "2026-07-14T09:21:11.438Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
-    "esp-mikel-merino": {
+    "fra-kylian-mbappe": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Merino beseglar segern efter Courtois skada",
-      "updated": "2026-07-11",
+      "detail": "Kylian Mbappés skada: Didier Deschamps tillkännager domen inför Frankrike-Spanien!",
+      "updated": "2026-07-14",
       "source": {
-        "name": "Foro3D",
-        "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOUlpvaTdubkdEXzJraTA4OFJxbmYtS25PUFNEZW9XMDdqUmVoNXdiQ05LLXV5SWJMaDVCc1lyaDgxQVJGVFQwa2gyZ0ZHMW1Xakw4TzlYdVpuUTNjU2F2UjkzenJELTJqckRUS1BSQ3lDWWdKQkxvMXhqcHdEUWh2YzBycUVOdlFxX0IzejRZRQ?oc=5"
+        "name": "Le10Sport",
+        "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQUVY3RFZSal9ySVkzTGdYTXQyWkdNOWhYYnZOQUt3SjFCS05VSHBhUDI1ZVo1Tk5PVnZyYW9RWlhtdWNIUkYxUFJRMFF3enJpT3U0YUJ5ZnZTODJmMkZxX0VwMzc0NmtXdDVYQ1ZSa3h5dDNiTlA1RkpkTzd0b1FXbktrZ2Y3a0llel9TOE9aTmZRd0lhYnVwbUVoNmZfS1dxQ1JFUGx0LXlCZFBqLXFIdV9UMEcyZ29CUGRSSXFLdUVqZHRzMDlSOWtnSF9uOGVGWnc?oc=5"
       },
       "origin": "news"
     },
@@ -26,21 +26,10 @@
       },
       "origin": "news"
     },
-    "fra-kylian-mbappe": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "VIDEO: Inga tecken på fotledsskada för Kylian Mbappé: Fransk superstjärna skämtar med Thierry Henry och Michael Olise inför VM-semifinalen mot Spanien",
-      "updated": "2026-07-12",
-      "source": {
-        "name": "Goal.com",
-        "url": "https://news.google.com/rss/articles/CBMi3gJBVV95cUxQck11RFpjNnFvY1ZCeHRfYk5CaXB2WFNEQkxtLUstTGFSNzJiQnVEN3dIRnk2ZHF1RDR2aC1odjRwck0wdXJXTG5TSWxTbDdWWlkzUTl5a2dLanBUZ2VaVk1tS0ZMUU0wNEk2NGdNXzNzSUUzRVFwLXhDcXQ5c2Jab2FiSVJFQUEyZ19DS09nWmlXMHdXOFluLUFQMVlnamdRSDRxTEY2Y05QNTB4d1BRdXdzdk1fby1mcTRhVE40LWpqVnR1d1E2ZndNYWY5dTNfX1VSN09LTFhaMW9iVldQLUY4b0FCclA0b00ydkYwd1J6amdLOFowazNCTjVnYTM2LUxjd0dOWjRPSHBpNU4teG5aUjNxNklkZE0yckpPYk82d2pjeVh6Y1JVSHFqblRkbVBuTE5qVGJES3R0R1JiM2s3MWtXakVUa21sWDRSNDktN1NqSjZkSjIwcnc4QQ?oc=5"
-      },
-      "origin": "news"
-    },
     "eng-jude-bellingham": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Jude Bellinghams rädsla för skada växer när videon visar Englands stjärna efter att Norge har dykt upp",
+      "detail": "Jude Bellinghams rädsla för skada växer när videon av Englands stjärna efter Norges spel yta",
       "updated": "2026-07-13",
       "source": {
         "name": "LADbible",
@@ -51,7 +40,7 @@
     "eng-declan-rice": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup 2026 semifinal mot Argentina",
+      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup semifinal 2026 mot Argentina",
       "updated": "2026-07-13",
       "source": {
         "name": "Khel Now",
@@ -62,7 +51,7 @@
     "eng-bukayo-saka": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup 2026 semifinal mot Argentina",
+      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup semifinal 2026 mot Argentina",
       "updated": "2026-07-13",
       "source": {
         "name": "Khel Now",
