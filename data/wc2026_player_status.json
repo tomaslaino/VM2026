@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-14T18:34:48.569Z",
+  "updated": "2026-07-14T20:35:06.217Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -12,6 +12,17 @@
       "source": {
         "name": "DAZN",
         "url": "https://news.google.com/rss/articles/CBMinAJBVV95cUxPSXBrUE9WMDJLb1VOUExzaEMtYk9OQWstbzJUSDY1RmFaZEhqUzZYYnVVblpmZmtVbmV1LUlvWUtwTHRhY3VWckRMMzJOcWdRc3E5RUlmRm9oaDBMYmFiQUJfaEIzQnBWQXBOMDU4am91d3FLbW01U0JWSnZVSHRrSlg4WEpJZ0hXc0pDZno0bHBGZ3ZXOGdVWk1GZldXWXNfZDZlRDMxdlNVanNxMEFJRGllbEtwSXNWaUVLV3FuN0NjWXBfM0libm5HaUVXeFE0TzJ3OE5DX2d5Tkl0eHgxelc2S29KTTlGNTlGQ3dDcXZFdEJubm5XaDRqT0Nram1oamYxdFFIRkNlTl9jOVRnTW1HMlQyX1Nsek00aw?oc=5"
+      },
+      "origin": "news"
+    },
+    "fra-william-saliba": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Frankrike-Spanien live: Blues hamnade efter i halvtid på en straff, William Saliba lämnade med en skada",
+      "updated": "2026-07-14",
+      "source": {
+        "name": "parismatch.com",
+        "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNR1ViV05ybHAzcjJVZ2luYTNzN0x3cXdYRHpUNldsUEVKV19KM0lMY2hBTURkQUEzQzRvcWNuenIxaVNjZUYtSFBBbVFvQ1pMSjA1UWR3UWo1NHJ4TmpnOE9aSEFycW5WZFQwUDBYcXp6bFRoZ3Z1WnNiQUFHV3h2NmNkN2pvZEROWEZtQy1PSmVOalFqZTVjam81X1FLUnpydU45WVJZR2RReXpBNXJSOGZ0VG9XWlJSUy1kZi1fbXQyLVpMU19WT0lPU2k0bU1iUXl2alRHM1RZT3RvQTc2eGlB?oc=5"
       },
       "origin": "news"
     },
@@ -37,21 +48,10 @@
       },
       "origin": "news"
     },
-    "fra-michael-olise": {
-      "availability": "out",
-      "kind": "suspension",
-      "detail": "Frankrike-Spanien: Michael Olise avstängd av Fifa?",
-      "updated": "2026-07-14",
-      "source": {
-        "name": "Sports.fr",
-        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQcmNIR1FiUHhyMnhkZXFoTGJUSUdrLWNXb3VKU0RjS1RfU0gwTGNOWWZIb3c3UEJxM2wtbU1idWhhelVJVkhvWDBkVHVMUjU1NjkxbWxwZG03Zzc4Z2xPb1Zudmk1R0FMSXpBbVFoWWZ5ZzNoU0pIR2tYZ3c4WGdFVzRScHVvblhiVENpVUxUNjBwZjlHNzZ3aWJ0T2VxOGR1WTVKakg4U3h2MGNKdjJF?oc=5"
-      },
-      "origin": "news"
-    },
     "eng-jude-bellingham": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Jude Bellinghams rädsla för skada ökar när videon visar Englands stjärna efter att Norge har dykt upp",
+      "detail": "Jude Bellinghams rädsla för skada växer när videon visar Englands stjärna efter att Norge har dykt upp",
       "updated": "2026-07-13",
       "source": {
         "name": "LADbible",
@@ -62,7 +62,7 @@
     "eng-declan-rice": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup semifinal 2026 mot Argentina",
+      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup 2026 semifinal mot Argentina",
       "updated": "2026-07-13",
       "source": {
         "name": "Khel Now",
@@ -73,7 +73,7 @@
     "eng-bukayo-saka": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup semifinal 2026 mot Argentina",
+      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup 2026 semifinal mot Argentina",
       "updated": "2026-07-13",
       "source": {
         "name": "Khel Now",
@@ -84,7 +84,7 @@
     "eng-reece-james": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Reece James redo för World Cup 'crunch time' efter skadeproblem",
+      "detail": "Reece James redo för världscupens \"krittid\" när han siktar in sig på Argentina efter skadeproblem",
       "updated": "2026-07-13",
       "source": {
         "name": "The Independent",
