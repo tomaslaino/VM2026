@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-14T03:42:06.068Z",
+  "updated": "2026-07-14T06:31:50.776Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-mikel-merino": {
@@ -15,32 +15,32 @@
       },
       "origin": "news"
     },
-    "fra-kylian-mbappe": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Mbappé 48 timmar från Spanien: varför hans fotled verkligen oroar Deschamps",
-      "updated": "2026-07-12",
+    "fra-michael-olise": {
+      "availability": "out",
+      "kind": "suspension",
+      "detail": "Frankrike-Spanien: Michael Olise avstängd av Fifa?",
+      "updated": "2026-07-14",
       "source": {
-        "name": "INFO.FR",
-        "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9QYlh2YVh6eTlJZVVadEQ2Wk52Nk5BaEZoeEwzV0Q5SFJNQ2pTd3haMHhDamM3cUxLOHhIV0xHN1B3N2JtdGRMMFZ2Wl93c0VCcnVkYWlENGRuZGgtTmI4RkEyQ3IxUG5vSktreDd1S2ZiMnpxRWc?oc=5"
+        "name": "Sports.fr",
+        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQcmNIR1FiUHhyMnhkZXFoTGJUSUdrLWNXb3VKU0RjS1RfU0gwTGNOWWZIb3c3UEJxM2wtbU1idWhhelVJVkhvWDBkVHVMUjU1NjkxbWxwZG03Zzc4Z2xPb1Zudmk1R0FMSXpBbVFoWWZ5ZzNoU0pIR2tYZ3c4WGdFVzRScHVvblhiVENpVUxUNjBwZjlHNzZ3aWJ0T2VxOGR1WTVKakg4U3h2MGNKdjJF?oc=5"
       },
       "origin": "news"
     },
-    "arg-lionel-messi": {
+    "fra-kylian-mbappe": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "En schweizisk spelare missade duellen mot Argentina på grund av en skada och hamnade i Messis tröja",
+      "detail": "VIDEO: Inga tecken på fotledsskada för Kylian Mbappé: Fransk superstjärna skämtar med Thierry Henry och Michael Olise inför VM-semifinalen mot Spanien",
       "updated": "2026-07-12",
       "source": {
-        "name": "Haceinstantes",
-        "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPcnFja3htakhfRk50czhNRFRlZ081LUVzODAzSHA2MzR1b0FMcnJGWmVvVDlKZXpWbXZ4MnRYSHZ1VUM0ZDc0M2pTYlBldkFyUEJ0OXk1bGx4bXNlcHI2TjhTSkRfTHFVRGVycnBPbk9namo5akVYNWtvdWhiWjVIWThKV1I5Rl9mWTRtWUlpazNLLW9NYlpFVENEbjJpeHhlTU5XTHRTaTBXQ3lPaEU2Mkxid3pTS0x2SGdYa1ozd0lHa2tBNTdnU2hmQ0luakhTSEt3NU5BS09WMDhnckRqcjQ1WWpEM0JpbWtmV1Rn0gHzAUFVX3lxTE1TOXhYcEpoMDBad3BkVF9oQUsxV2N3WWVqQVAzaEwzS2tvLTdWZE5NYWRmYndzTXM3a2xPdUdON21xNVBCTjZNQ2hjUFJVbjJyYU5qMVVYTEJ0VHFfa29wbUVVLVNmZThyTllkS2FQZmFlVmNNQTdsRlVNSHI3VGJWTkV1aERiVU1FbzNsYUtzamd4S3dIejNFWnpyOFREQWJ3UDM2QW9XRmNGTGVucDVjNDZJYTcwYWttWTRXSG1sbEZsOG41UjllaVJEeHMzZ1F1NTlHeE1UZDIwbkRZa0l0ZmlMRE5IT1lmcWI1QW9nNVJwZw?oc=5"
+        "name": "Goal.com",
+        "url": "https://news.google.com/rss/articles/CBMi3gJBVV95cUxQck11RFpjNnFvY1ZCeHRfYk5CaXB2WFNEQkxtLUstTGFSNzJiQnVEN3dIRnk2ZHF1RDR2aC1odjRwck0wdXJXTG5TSWxTbDdWWlkzUTl5a2dLanBUZ2VaVk1tS0ZMUU0wNEk2NGdNXzNzSUUzRVFwLXhDcXQ5c2Jab2FiSVJFQUEyZ19DS09nWmlXMHdXOFluLUFQMVlnamdRSDRxTEY2Y05QNTB4d1BRdXdzdk1fby1mcTRhVE40LWpqVnR1d1E2ZndNYWY5dTNfX1VSN09LTFhaMW9iVldQLUY4b0FCclA0b00ydkYwd1J6amdLOFowazNCTjVnYTM2LUxjd0dOWjRPSHBpNU4teG5aUjNxNklkZE0yckpPYk82d2pjeVh6Y1JVSHFqblRkbVBuTE5qVGJES3R0R1JiM2s3MWtXakVUa21sWDRSNDktN1NqSjZkSjIwcnc4QQ?oc=5"
       },
       "origin": "news"
     },
     "eng-jude-bellingham": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Jude Bellinghams rädsla för skada växer när videon av Englands stjärna efter Norges spel yta",
+      "detail": "Jude Bellinghams rädsla för skada växer när videon visar Englands stjärna efter att Norge har dykt upp",
       "updated": "2026-07-13",
       "source": {
         "name": "LADbible",
@@ -51,7 +51,7 @@
     "eng-declan-rice": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup semifinal 2026 mot Argentina",
+      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup 2026 semifinal mot Argentina",
       "updated": "2026-07-13",
       "source": {
         "name": "Khel Now",
@@ -62,7 +62,7 @@
     "eng-bukayo-saka": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup semifinal 2026 mot Argentina",
+      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup 2026 semifinal mot Argentina",
       "updated": "2026-07-13",
       "source": {
         "name": "Khel Now",
