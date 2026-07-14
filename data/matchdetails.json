@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-14T20:14:29.533Z",
+    "updatedAt": "2026-07-14T21:17:39.415Z",
     "source": "espn"
   },
   "details": {
@@ -58021,15 +58021,15 @@
     "k:101": {
       "espnId": "760514",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 52,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-14T19:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 0,
-          "a": 1
+          "a": 2
         },
         "ht": {
           "h": 0,
@@ -58051,6 +58051,18 @@
             "h": 0,
             "a": 1
           }
+        },
+        {
+          "minute": 58,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Pedro Porro",
+          "assist": "Dani Olmo",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 2
+          }
         }
       ],
       "bookings": [
@@ -58064,6 +58076,12 @@
           "minute": 31,
           "team": "a",
           "player": "Marc Cucurella",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 86,
+          "team": "h",
+          "player": "Kylian Mbappé",
           "card": "YELLOW"
         }
       ],
@@ -58079,6 +58097,54 @@
           "team": "h",
           "in": "Manu Koné",
           "out": "Adrien Rabiot"
+        },
+        {
+          "minute": 57,
+          "team": "h",
+          "in": "Désiré Doué",
+          "out": "Bradley Barcola"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Theo Hernández",
+          "out": "Lucas Digne"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Rayan Cherki",
+          "out": "Michael Olise"
+        },
+        {
+          "minute": 74,
+          "team": "a",
+          "in": "Ferran Torres",
+          "out": "Mikel Oyarzabal"
+        },
+        {
+          "minute": 78,
+          "team": "a",
+          "in": "Mikel Merino",
+          "out": "Dani Olmo"
+        },
+        {
+          "minute": 78,
+          "team": "a",
+          "in": "Pedri",
+          "out": "Fabián Ruiz"
+        },
+        {
+          "minute": 84,
+          "team": "a",
+          "in": "Marcos Llorente",
+          "out": "Pedro Porro"
+        },
+        {
+          "minute": 84,
+          "team": "a",
+          "in": "Nico Williams",
+          "out": "Álex Baena"
         }
       ],
       "penalties": [],
@@ -58091,7 +58157,7 @@
               "jersey": "16",
               "pos": "G",
               "st": {
-                "gc": 1
+                "gc": 2
               }
             },
             {
@@ -58099,9 +58165,9 @@
               "jersey": "5",
               "pos": "RB",
               "st": {
-                "fc": 1,
+                "fc": 2,
                 "fs": 1,
-                "gc": 1
+                "gc": 2
               }
             },
             {
@@ -58111,7 +58177,7 @@
               "st": {
                 "fc": 1,
                 "fs": 1,
-                "gc": 1
+                "gc": 2
               }
             },
             {
@@ -58130,7 +58196,7 @@
               "pos": "CD-R",
               "st": {
                 "fs": 1,
-                "gc": 1
+                "gc": 2
               }
             },
             {
@@ -58146,7 +58212,10 @@
               "jersey": "7",
               "pos": "AM-R",
               "st": {
-                "gc": 1
+                "fs": 1,
+                "gc": 2,
+                "sg": 2,
+                "sh": 2
               }
             },
             {
@@ -58154,7 +58223,9 @@
               "jersey": "8",
               "pos": "RM",
               "st": {
-                "gc": 1
+                "fs": 1,
+                "gc": 2,
+                "sh": 1
               }
             },
             {
@@ -58162,7 +58233,10 @@
               "jersey": "10",
               "pos": "F",
               "st": {
-                "gc": 1
+                "fc": 1,
+                "fs": 1,
+                "gc": 2,
+                "sh": 3
               }
             },
             {
@@ -58172,7 +58246,7 @@
               "st": {
                 "fc": 1,
                 "fs": 3,
-                "gc": 1
+                "gc": 2
               }
             },
             {
@@ -58213,7 +58287,12 @@
             {
               "name": "Manu Koné",
               "jersey": "6",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 2,
+                "fs": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Lucas Hernández",
@@ -58221,15 +58300,27 @@
             },
             {
               "name": "Theo Hernández",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true,
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Désiré Doué",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true,
+              "st": {
+                "fs": 1,
+                "gc": 1,
+                "sg": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Rayan Cherki",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true
             },
             {
               "name": "Maghnes Akliouche",
@@ -58248,7 +58339,8 @@
               "jersey": "26",
               "in": true,
               "st": {
-                "fc": 1
+                "fc": 2,
+                "gc": 1
               }
             }
           ]
@@ -58259,14 +58351,20 @@
             {
               "name": "Unai Simón",
               "jersey": "23",
-              "pos": "G"
+              "pos": "G",
+              "st": {
+                "fs": 1,
+                "sv": 3
+              }
             },
             {
               "name": "Pedro Porro",
               "jersey": "12",
               "pos": "RB",
               "st": {
-                "sh": 1
+                "sg": 1,
+                "g": 1,
+                "sh": 2
               }
             },
             {
@@ -58302,7 +58400,7 @@
               "jersey": "19",
               "pos": "AM-R",
               "st": {
-                "fc": 1,
+                "fc": 3,
                 "fs": 1
               }
             },
@@ -58311,8 +58409,8 @@
               "jersey": "16",
               "pos": "RM",
               "st": {
-                "fc": 2,
-                "fs": 1
+                "fc": 4,
+                "fs": 3
               }
             },
             {
@@ -58331,7 +58429,9 @@
               "jersey": "10",
               "pos": "AM",
               "st": {
-                "fs": 1,
+                "fc": 1,
+                "fs": 2,
+                "a": 1,
                 "sh": 1
               }
             },
@@ -58341,8 +58441,8 @@
               "pos": "AM-L",
               "st": {
                 "fc": 1,
-                "fs": 1,
-                "sh": 1
+                "fs": 2,
+                "sh": 2
               }
             }
           ],
@@ -58357,7 +58457,12 @@
             },
             {
               "name": "Ferran Torres",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Borja Iglesias",
@@ -58365,7 +58470,8 @@
             },
             {
               "name": "Marcos Llorente",
-              "jersey": "5"
+              "jersey": "5",
+              "in": true
             },
             {
               "name": "Víctor Muñoz",
@@ -58373,7 +58479,11 @@
             },
             {
               "name": "Nico Williams",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true,
+              "st": {
+                "sh": 1
+              }
             },
             {
               "name": "Yéremy Pino",
@@ -58381,7 +58491,8 @@
             },
             {
               "name": "Pedri",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true
             },
             {
               "name": "Eric García",
@@ -58405,54 +58516,55 @@
             },
             {
               "name": "Mikel Merino",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true
             }
           ]
         }
       },
       "referee": "Iván Arcides Barton Cisneros",
       "venue": "AT&T Stadium, Arlington, Texas",
-      "attendance": null,
+      "attendance": 70176,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "46%",
-          "a": "54%"
+          "h": "49%",
+          "a": "51%"
         },
         {
           "key": "totalShots",
-          "h": "2",
-          "a": "6"
+          "h": "10",
+          "a": "10"
         },
         {
           "key": "shotsOnTarget",
-          "h": "0",
-          "a": "1"
-        },
-        {
-          "key": "wonCorners",
-          "h": "3",
-          "a": "1"
-        },
-        {
-          "key": "foulsCommitted",
-          "h": "6",
-          "a": "6"
-        },
-        {
-          "key": "offsides",
           "h": "3",
           "a": "2"
         },
         {
+          "key": "wonCorners",
+          "h": "7",
+          "a": "1"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "11",
+          "a": "12"
+        },
+        {
+          "key": "offsides",
+          "h": "4",
+          "a": "5"
+        },
+        {
           "key": "saves",
           "h": "0",
-          "a": "0"
+          "a": "3"
         },
         {
           "key": "totalPasses",
-          "h": "239",
-          "a": "293"
+          "h": "472",
+          "a": "500"
         },
         {
           "key": "passPct",
@@ -58461,7 +58573,7 @@
         },
         {
           "key": "yellowCards",
-          "h": "1",
+          "h": "2",
           "a": "1"
         },
         {
@@ -58470,7 +58582,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-14T20:14:29.533Z"
+      "updatedAt": "2026-07-14T21:17:39.415Z"
     }
   }
 }
