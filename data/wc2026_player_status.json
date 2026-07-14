@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-14T15:06:29.596Z",
+  "updated": "2026-07-14T16:42:11.520Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -11,7 +11,7 @@
       "updated": "2026-07-14",
       "source": {
         "name": "DAZN",
-        "url": "https://news.google.com/rss/articles/CBMinAJBVV95cUxQUV9xVnNIS0Q0bnFzUjJZRmtxWlhvY2ZsVlhTcEc1LXMtVjlaNllGRHRweEw0c1lZUkNZQWZhSmJ1U2FsZHZibVhsSW43a2ItM184ZUR0M1IwOGFxM1NTZGFRdnR1eS1vNi1kcVl2a1JkMkl1U2lpLU1NTENHMWhjMGV0enFDUEtaU3VfZDl4c1FTSVZEZzcwQTdDZWJHMFJlLUhNMENHc2ZBWVdSTGFjRmxlWlE3aEJuZUIyM3RKYmZrMkZCWXJ6bWt2WVgtbzFjTDBkeUlrSXFOOWJMZmI1VHNBcGJ0M2hZYUY4WjZtRmdXMm1WSWZBZFRlQXd0UEVULVUwMV9jMnJPNGFNS1YtS1NQZnN2ZE5pYkQ2VA?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMinAJBVV95cUxPSXBrUE9WMDJLb1VOUExzaEMtYk9OQWstbzJUSDY1RmFaZEhqUzZYYnVVblpmZmtVbmV1LUlvWUtwTHRhY3VWckRMMzJOcWdRc3E5RUlmRm9oaDBMYmFiQUJfaEIzQnBWQXBOMDU4am91d3FLbW01U0JWSnZVSHRrSlg4WEpJZ0hXc0pDZno0bHBGZ3ZXOGdVWk1GZldXWXNfZDZlRDMxdlNVanNxMEFJRGllbEtwSXNWaUVLV3FuN0NjWXBfM0libm5HaUVXeFE0TzJ3OE5DX2d5Tkl0eHgxelc2S29KTTlGNTlGQ3dDcXZFdEJubm5XaDRqT0Nram1oamYxdFFIRkNlTl9jOVRnTW1HMlQyX1Nsek00aw?oc=5"
       },
       "origin": "news"
     },
@@ -51,10 +51,10 @@
     "eng-jude-bellingham": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Jude Bellinghams rädsla för skada växer när videon av Englands stjärna efter Norges spel yta",
+      "detail": "Jude Bellinghams rädsla för skada ökar när videon visar Englands stjärna efter att Norge har dykt upp",
       "updated": "2026-07-13",
       "source": {
-        "name": "ladbible.com",
+        "name": "LADbible",
         "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQMGFjRjRWcVFnblZiNC11czFVR3ZXeFZPS3RTWTFVXzJueVU4UUt6OHQ4VVJKSFZfMEFZQkVmbnlSTF8tLTVKM2tDU08tOUhkc1NoczR5VXBxUFRpcG1uclF3TEQwTmxwVWJJeFlQTTZfb1ZEajN2dVFnRWE3ek94ZjlQdzhjSWJEY2gtZy1PbkFNNEpuUEx1YmdLSWZ1T2ZMN3pLYWJCd1YyU1JYNFpCNW41TjFYVGoy?oc=5"
       },
       "origin": "news"
