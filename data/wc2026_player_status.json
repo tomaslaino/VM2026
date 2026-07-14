@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-14T12:44:35.396Z",
+  "updated": "2026-07-14T15:06:29.596Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -26,6 +26,17 @@
       },
       "origin": "news"
     },
+    "fra-aurelien-tchouameni": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Aurélien Tchouaméni, den allvarliga skadan!",
+      "updated": "2026-07-14",
+      "source": {
+        "name": "Sports.fr",
+        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPbEJDQXR3NzNBUkFJUVZDZDRkOC04WE1WMWNTRXJTS3JkVHB1c1dxbmk3T2FxenBseDQ5MHNFYWVYdURnOHFCRjRILUNNeGtaRzZxZGsycVVlVHAyeHFEZThPQm53QXhVdkNMSGVXc01TUUdmSnVmWVhOUW8xcVBzd201MnJoRWFJ?oc=5"
+      },
+      "origin": "news"
+    },
     "fra-michael-olise": {
       "availability": "out",
       "kind": "suspension",
@@ -40,10 +51,10 @@
     "eng-jude-bellingham": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Jude Bellinghams rädsla för skada ökar när videon visar Englands stjärna efter att Norge har dykt upp",
+      "detail": "Jude Bellinghams rädsla för skada växer när videon av Englands stjärna efter Norges spel yta",
       "updated": "2026-07-13",
       "source": {
-        "name": "LADbible",
+        "name": "ladbible.com",
         "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQMGFjRjRWcVFnblZiNC11czFVR3ZXeFZPS3RTWTFVXzJueVU4UUt6OHQ4VVJKSFZfMEFZQkVmbnlSTF8tLTVKM2tDU08tOUhkc1NoczR5VXBxUFRpcG1uclF3TEQwTmxwVWJJeFlQTTZfb1ZEajN2dVFnRWE3ek94ZjlQdzhjSWJEY2gtZy1PbkFNNEpuUEx1YmdLSWZ1T2ZMN3pLYWJCd1YyU1JYNFpCNW41TjFYVGoy?oc=5"
       },
       "origin": "news"
@@ -73,7 +84,7 @@
     "eng-reece-james": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Reece James redo för världscupens \"krittid\" när han siktar in sig på Argentina efter skadeproblem",
+      "detail": "Reece James redo för World Cup 'crunch time' efter skadeproblem",
       "updated": "2026-07-13",
       "source": {
         "name": "The Independent",
