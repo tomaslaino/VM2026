@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-15T11:54:58.363Z",
+  "updated": "2026-07-15T14:17:13.991Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-pedro-porro": {
@@ -67,6 +67,17 @@
       "source": {
         "name": "Khel Now",
         "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNNFZRVFdVZUdhc3BGNndQRjNPZnpTcTBQamVrdmVxMEJmaGpYT0Z6enVHVjA4ek1pbjJhcEExcXIwSnpCRzVkcnJhY1FGYlBNOXlvQXhHMXRyaDlzRlhMSk8zUVkwU2QzeGRCbkF5QnZfd0hieTVMZUtseGt3SmE4T084aXU0LXV5ZndyaFMzMUg1T1ZMTXlBT3lNZkp4aUU?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-reece-james": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Reece James redo för World Cup 'crunch time' efter skadeproblem",
+      "updated": "2026-07-13",
+      "source": {
+        "name": "The Independent",
+        "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOMUtmVHlmdjhnd29kSGpuaEs5S1plRFVsZm45bHFpSDJHWUtkcVNSc1BOeV9wajgtWWJfOFkyUVBlcjNYVVNfanRpVkpGTU1yczh6bWV2VGIxOUltTWpsNXdqNWJqUl8xRkdWNkJ0WmtHOUdBaldVTFpRQWYzSnNxTGFlUVpTeHQxUmZiU0R5ZUxVdGNieUZyeDVJRVVJUml0OEZfMjJUQXhzZ2VaV1BkU3RTYU9Td3dYZG5wdmNHUQ?oc=5"
       },
       "origin": "news"
     },
