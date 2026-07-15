@@ -1,17 +1,17 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-14T22:27:42.681Z",
+  "updated": "2026-07-15T00:11:13.045Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-pedro-porro": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Pedro Porro, fantastiskt spel, mål och möjlig förlust på grund av skada i VM-finalen: \"Låt oss se återhämtningen\"",
+      "detail": "Tester kommer att genomföras på Pedro Porro för att utesluta en skada",
       "updated": "2026-07-14",
       "source": {
-        "name": "El Desmarque",
-        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPcWNUVUpqa2l0WUQxOUdCME5IZkV0NDhFa2hCZ1VndzZiVF9BYUN4Y1d6dTZqdWplUG5mNHlFOU4xVExOUGl4eTRLdmNJZWtYVkZtMlRUaXFwUmdGdzY2ZGNkbmkxNTNsZ3pvNlpOM0ZwcTVWMVgzQ3BEVDV6RV9nNEh2RnFfN0hhOFAxR0VQX2x2Zzl5V3dVSGt2cjZiTDltNHhnS1M4cGVURVNXWlRTVjF3?oc=5"
+        "name": "Mundo Deportivo",
+        "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOU1M3YXZZdzh3Xy1kMGZXc0s4eDN0REQyTmRSRW5GSHoxVUVPaXdaZjZoVGQxYmFaVVBoQ2xaOXNNelNicGJ2SFNvZDEtaXdCTzhnWHJjM0lhamdtMld4ZjhOVmIzaWdlcFEtZEJUcnJJcGJ6NHRVYXYtOTVORlluWTRxRmdLTWNPUmdrVHlfeS0zTkhEOGpKR0dfaW9PQjlwMTAzTVFrMi1sZVRxeEtwVVlvTGpfRzdYS0U3UG1FUdIBzAFBVV95cUxOUWl5RmxyYUZhQ3Z2VHhobXZ3aU1GTXFmeHVGSE44S01reDdYaDVPSFhWRHdDS3hnQ2x4VWpQZ0ZUcVFpY1ZqWGl3ajZzTGlER2lfSUFCT1V4ZFhadnAzc2FycS1LNDVVZm84bkwwY3UweUNReEtOZm5PS1kxWlN3U1B2cGNUTTZMcEV3dlh1N1F0VFhjaXlvYjJhTnlaRnVHcWNzQ3ZJS3FyQnpwMDhmWmlkU1J0Z2pfa2FPZEcydlF6cVY2RFZGMGpUT3o?oc=5"
       },
       "origin": "news"
     },
