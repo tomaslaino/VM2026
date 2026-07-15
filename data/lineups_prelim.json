@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-15T17:53:33.284Z",
+    "updatedAt": "2026-07-15T20:01:03.573Z",
     "source": "365scores",
     "matchCount": 1
   },
@@ -128,7 +128,7 @@
         ]
       },
       "a": {
-        "formation": "4-4-2",
+        "formation": "4-1-4-1",
         "starters": [
           {
             "name": "Emiliano Martinez",
@@ -156,34 +156,34 @@
             "pos": "RB"
           },
           {
-            "name": "Enzo Fernandez",
-            "jersey": "24",
-            "pos": "LM"
-          },
-          {
-            "name": "Alexis Mac Allister",
-            "jersey": "20",
-            "pos": "CM"
-          },
-          {
             "name": "Leandro Paredes",
             "jersey": "5",
-            "pos": "CM"
-          },
-          {
-            "name": "Giuliano Simeone",
-            "jersey": "17",
-            "pos": "RM"
+            "pos": "DM"
           },
           {
             "name": "Julian Alvarez",
             "jersey": "9",
-            "pos": "LF"
+            "pos": "AM-L"
+          },
+          {
+            "name": "Alexis Mac Allister",
+            "jersey": "20",
+            "pos": "AM"
+          },
+          {
+            "name": "Enzo Fernandez",
+            "jersey": "24",
+            "pos": "AM"
+          },
+          {
+            "name": "Giuliano Simeone",
+            "jersey": "17",
+            "pos": "AM-R"
           },
           {
             "name": "Lionel Messi",
             "jersey": "10",
-            "pos": "RF"
+            "pos": "ST"
           }
         ],
         "bench": [
@@ -249,7 +249,7 @@
           }
         ]
       },
-      "updatedAt": "2026-07-15T17:53:32.984Z"
+      "updatedAt": "2026-07-15T20:01:03.272Z"
     }
   }
 }
