@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-15T21:27:06.786Z",
+  "updated": "2026-07-15T23:26:12.859Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-pedro-porro": {
@@ -34,28 +34,6 @@
       "source": {
         "name": "MSN",
         "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOQzRyTGhjTXZTMlB2b1ZXUGlDTlowNmdSRG5ySV9kbG5mUTBVcWgxeWdVOXVFNGREOVlGT0k4ZWlONEVMaEwxUklZUnpvazVpb0tpc29NczBPUllLLXNqZHV4VVFNM1BMSnJVRkJHbXZxR2NheFB3NDdRT3hMRUl3TW4yVVVGaEV2Z0F2SWZpRHNESEVWYVpMYWQ4ZkV0dEV2a2Rjcm8zTFFtNHgybmZ6U2JNdzVUYmt3WWVoY3dpOV9pZWtpVVhpeUZNeWtXd2VfWmlmelUzdjVGb18tTk90c2ZCcUVrdw?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-jude-bellingham": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Skaderädsla för Jude Bellingham när videon dyker upp efter Norges seger",
-      "updated": "2026-07-13",
-      "source": {
-        "name": "The Irish Sun",
-        "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNbHVYdHZMLUxJR2tXUVk4bW50a0ZqVC1acC1DRUVESnVmaEtycFI2S2p2RWhYUU5sMW0yckRxR2xINTB1Qy0yT0I2VzF3SHh4dzE1ZHVaTFJGN1lGR1NGN3hCNDFDdXVyR24zRURiaUljd1BZRjNEYmltSEE5Zmk2RlozMDJXTzB2ekNhRmNkSk54Z2xlTDF0di1B?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-declan-rice": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup semifinal 2026 mot Argentina",
-      "updated": "2026-07-13",
-      "source": {
-        "name": "Khel Now",
-        "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNNFZRVFdVZUdhc3BGNndQRjNPZnpTcTBQamVrdmVxMEJmaGpYT0Z6enVHVjA4ek1pbjJhcEExcXIwSnpCRzVkcnJhY1FGYlBNOXlvQXhHMXRyaDlzRlhMSk8zUVkwU2QzeGRCbkF5QnZfd0hieTVMZUtseGt3SmE4T084aXU0LXV5ZndyaFMzMUg1T1ZMTXlBT3lNZkp4aUU?oc=5"
       },
       "origin": "news"
     },
