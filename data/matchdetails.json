@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-15T20:43:12.303Z",
+    "updatedAt": "2026-07-15T21:41:35.903Z",
     "source": "espn"
   },
   "details": {
@@ -58587,15 +58587,15 @@
     "k:102": {
       "espnId": "760515",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 81,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-15T19:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
           "h": 1,
-          "a": 0
+          "a": 2
         },
         "ht": {
           "h": 0,
@@ -58617,6 +58617,30 @@
             "h": 1,
             "a": 0
           }
+        },
+        {
+          "minute": 85,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Enzo Fernández",
+          "assist": "Lionel Messi",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 1
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 2,
+          "team": "a",
+          "scorer": "Lautaro Martínez",
+          "assist": "Lionel Messi",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 2
+          }
         }
       ],
       "bookings": [
@@ -58636,6 +58660,12 @@
           "minute": 51,
           "team": "a",
           "player": "Cristian Romero",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Rodrigo De Paul",
           "card": "YELLOW"
         }
       ],
@@ -58681,6 +58711,24 @@
           "team": "h",
           "in": "Dan Burn",
           "out": "Reece James"
+        },
+        {
+          "minute": 82,
+          "team": "h",
+          "in": "Nico O'Reilly",
+          "out": "Declan Rice"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Ivan Toney",
+          "out": "John Stones"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Marcus Rashford",
+          "out": "Djed Spence"
         }
       ],
       "penalties": [],
@@ -58694,6 +58742,7 @@
               "pos": "G",
               "st": {
                 "fs": 1,
+                "gc": 2,
                 "sv": 3
               }
             },
@@ -58711,7 +58760,8 @@
               "jersey": "25",
               "pos": "LB",
               "st": {
-                "fs": 1
+                "fs": 1,
+                "gc": 2
               }
             },
             {
@@ -58720,7 +58770,8 @@
               "pos": "LM",
               "st": {
                 "fc": 2,
-                "fs": 4
+                "fs": 4,
+                "gc": 2
               }
             },
             {
@@ -58728,6 +58779,7 @@
               "jersey": "5",
               "pos": "CD-R",
               "st": {
+                "gc": 2,
                 "sh": 1
               }
             },
@@ -58737,7 +58789,8 @@
               "pos": "CD-L",
               "st": {
                 "fc": 1,
-                "fs": 1
+                "fs": 1,
+                "gc": 2
               }
             },
             {
@@ -58747,6 +58800,7 @@
               "st": {
                 "fc": 2,
                 "fs": 1,
+                "gc": 2,
                 "a": 1,
                 "sh": 1
               }
@@ -58766,6 +58820,7 @@
               "pos": "F",
               "st": {
                 "fs": 1,
+                "gc": 2,
                 "sh": 1
               }
             },
@@ -58774,8 +58829,9 @@
               "jersey": "10",
               "pos": "AM",
               "st": {
-                "fc": 2,
-                "fs": 4
+                "fc": 3,
+                "fs": 4,
+                "gc": 2
               }
             },
             {
@@ -58822,7 +58878,12 @@
             },
             {
               "name": "Dan Burn",
-              "jersey": "15"
+              "jersey": "15",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "gc": 2
+              }
             },
             {
               "name": "Dean Henderson",
@@ -58830,16 +58891,21 @@
             },
             {
               "name": "Marcus Rashford",
-              "jersey": "11"
+              "jersey": "11",
+              "in": true
             },
             {
               "name": "Ivan Toney",
-              "jersey": "22"
+              "jersey": "22",
+              "in": true
             },
             {
               "name": "Ezri Konsa",
               "jersey": "2",
-              "in": true
+              "in": true,
+              "st": {
+                "gc": 2
+              }
             },
             {
               "name": "Kobbie Mainoo",
@@ -58847,7 +58913,11 @@
             },
             {
               "name": "Nico O'Reilly",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true,
+              "st": {
+                "gc": 2
+              }
             }
           ]
         },
@@ -58859,6 +58929,7 @@
               "jersey": "23",
               "pos": "G",
               "st": {
+                "fs": 1,
                 "gc": 1,
                 "sv": 1
               }
@@ -58928,7 +58999,9 @@
                 "fc": 3,
                 "fs": 1,
                 "gc": 1,
-                "sh": 2
+                "sg": 1,
+                "g": 1,
+                "sh": 4
               }
             },
             {
@@ -58936,8 +59009,9 @@
               "jersey": "10",
               "pos": "F",
               "st": {
-                "fs": 1,
+                "fs": 2,
                 "gc": 1,
+                "a": 2,
                 "sh": 1
               }
             },
@@ -58949,7 +59023,7 @@
                 "fs": 1,
                 "gc": 1,
                 "sg": 1,
-                "sh": 2
+                "sh": 3
               }
             },
             {
@@ -58973,7 +59047,12 @@
             {
               "name": "Lautaro Martínez",
               "jersey": "22",
-              "in": true
+              "in": true,
+              "st": {
+                "sg": 1,
+                "g": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Marcos Senesi",
@@ -59029,7 +59108,10 @@
             {
               "name": "Rodrigo De Paul",
               "jersey": "7",
-              "in": true
+              "in": true,
+              "st": {
+                "sh": 1
+              }
             },
             {
               "name": "José Manuel López",
@@ -59040,31 +59122,31 @@
       },
       "referee": "Ismail Elfath",
       "venue": "Mercedes-Benz Stadium, Atlanta, Georgia",
-      "attendance": null,
+      "attendance": 68239,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "35%",
-          "a": "65%"
+          "h": "36%",
+          "a": "64%"
         },
         {
           "key": "totalShots",
           "h": "5",
-          "a": "10"
+          "a": "15"
         },
         {
           "key": "shotsOnTarget",
           "h": "2",
-          "a": "3"
+          "a": "5"
         },
         {
           "key": "wonCorners",
           "h": "2",
-          "a": "5"
+          "a": "6"
         },
         {
           "key": "foulsCommitted",
-          "h": "9",
+          "h": "11",
           "a": "15"
         },
         {
@@ -59079,18 +59161,18 @@
         },
         {
           "key": "totalPasses",
-          "h": "284",
-          "a": "522"
+          "h": "325",
+          "a": "590"
         },
         {
           "key": "passPct",
-          "h": "87%",
+          "h": "84%",
           "a": "91%"
         },
         {
           "key": "yellowCards",
           "h": "1",
-          "a": "2"
+          "a": "3"
         },
         {
           "key": "redCards",
@@ -59098,7 +59180,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-15T20:43:12.302Z"
+      "updatedAt": "2026-07-15T21:41:35.903Z"
     }
   }
 }

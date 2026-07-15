@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-15T20:43:12.260Z",
+    "updatedAt": "2026-07-15T21:41:35.864Z",
     "source": "espn",
     "matchCount": 102,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -518,20 +518,11 @@
     },
     "k:102": {
       "h": 1,
-      "a": 0,
-      "status": "IN_PLAY"
+      "a": 2,
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:102",
-      "status": "IN_PLAY",
-      "minute": 76,
-      "home": "England",
-      "away": "Argentina",
-      "score": "1-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -2254,7 +2245,7 @@
       "date": "2026-07-15",
       "time": "21:00",
       "utcDate": "2026-07-15T19:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "England",
       "away": "Argentina",
@@ -2274,12 +2265,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "France",
-      "away": "Semifinal 2 Loser",
+      "away": "England",
       "homeRef": {
         "group": "I",
         "idx": 0
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "L",
+        "idx": 0
+      }
     },
     "k:104": {
       "date": "2026-07-19",
@@ -2288,12 +2282,15 @@
       "status": "TIMED",
       "matchday": null,
       "home": "Spain",
-      "away": "Semifinal 2 Winner",
+      "away": "Argentina",
       "homeRef": {
         "group": "H",
         "idx": 0
       },
-      "awayRef": null
+      "awayRef": {
+        "group": "J",
+        "idx": 0
+      }
     }
   },
   "standings": {
