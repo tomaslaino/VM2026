@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-15T14:17:13.991Z",
+  "updated": "2026-07-15T15:57:50.520Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-pedro-porro": {
@@ -28,19 +28,19 @@
     },
     "fra-william-saliba": {
       "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Frankrike-Spanien: stort slag för Blues, William Saliba lämnar med skada",
+      "kind": "other",
+      "detail": "Oro för Arsenal och det franska laget: William Saliba kunde spela biljard",
       "updated": "2026-07-14",
       "source": {
-        "name": "Foot National",
-        "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOUWZkYXZ3bUZhUWs2ODZXYnNmN0FXbERlTGZ3emhuZUpXLTdPNW9sUlROODlGU2hiOVFEVUZ5a2l5RDc2SUxIX01IM0JxTG5MbGVYcHBQZjZVOVdsZm50MC1vNEs1NjFtMmNsd1dPNTNxVi16ZFB5REZma21MUENWdUw3ekxGVXpvR0RxYnd6QXFfUFdycVJ1WmVDYkNESkNlNy13b0pQTUs0QnkzbGowZklPRUQzZDZvMElmaFJsQWk4eVFXMk44?oc=5"
+        "name": "Zamin.uz",
+        "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPWXVIZDdPZWRUcnk0cUQ4eld0YWV1V1RlbGRyOEloX21iWldMcTN2QllFSEZrTmNGcld2dmtIb3NrNDZUYWxrZHd0LTFYN01MbC15bmxmTDY5aVlmbi01UUZfZUlvRThPcElQQjFRTFpTbUJZSURRQlVxQU45RDRZRnBiTFl3TFI1cnNvakxfa3pOWkU1XzFneWx4UXA0emt5QXI3UlFYdE1aVnVQT012YTlzcEZtUExDWWMxT054SVFQNWtqWkdfbg?oc=5"
       },
       "origin": "news"
     },
     "eng-jude-bellingham": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Jude Bellinghams rädsla för skada växer när videon av Englands stjärna efter Norges spel yta",
+      "detail": "Jude Bellinghams rädsla för skada växer när videon visar Englands stjärna efter att Norge har dykt upp",
       "updated": "2026-07-13",
       "source": {
         "name": "LADbible",
@@ -51,7 +51,7 @@
     "eng-declan-rice": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup semifinal 2026 mot Argentina",
+      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup 2026 semifinal mot Argentina",
       "updated": "2026-07-13",
       "source": {
         "name": "Khel Now",
@@ -62,22 +62,11 @@
     "eng-bukayo-saka": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup semifinal 2026 mot Argentina",
+      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup 2026 semifinal mot Argentina",
       "updated": "2026-07-13",
       "source": {
         "name": "Khel Now",
         "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNNFZRVFdVZUdhc3BGNndQRjNPZnpTcTBQamVrdmVxMEJmaGpYT0Z6enVHVjA4ek1pbjJhcEExcXIwSnpCRzVkcnJhY1FGYlBNOXlvQXhHMXRyaDlzRlhMSk8zUVkwU2QzeGRCbkF5QnZfd0hieTVMZUtseGt3SmE4T084aXU0LXV5ZndyaFMzMUg1T1ZMTXlBT3lNZkp4aUU?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-reece-james": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Reece James redo för World Cup 'crunch time' efter skadeproblem",
-      "updated": "2026-07-13",
-      "source": {
-        "name": "The Independent",
-        "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOMUtmVHlmdjhnd29kSGpuaEs5S1plRFVsZm45bHFpSDJHWUtkcVNSc1BOeV9wajgtWWJfOFkyUVBlcjNYVVNfanRpVkpGTU1yczh6bWV2VGIxOUltTWpsNXdqNWJqUl8xRkdWNkJ0WmtHOUdBaldVTFpRQWYzSnNxTGFlUVpTeHQxUmZiU0R5ZUxVdGNieUZyeDVJRVVJUml0OEZfMjJUQXhzZ2VaV1BkU3RTYU9Td3dYZG5wdmNHUQ?oc=5"
       },
       "origin": "news"
     },
