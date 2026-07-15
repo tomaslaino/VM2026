@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-15T19:43:25.425Z",
+  "updated": "2026-07-15T21:27:06.786Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-pedro-porro": {
@@ -40,11 +40,11 @@
     "eng-jude-bellingham": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Jude Bellinghams rädsla för skada ökar när videon visar Englands stjärna efter att Norge har dykt upp",
+      "detail": "Skaderädsla för Jude Bellingham när videon dyker upp efter Norges seger",
       "updated": "2026-07-13",
       "source": {
-        "name": "LADbible",
-        "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQMGFjRjRWcVFnblZiNC11czFVR3ZXeFZPS3RTWTFVXzJueVU4UUt6OHQ4VVJKSFZfMEFZQkVmbnlSTF8tLTVKM2tDU08tOUhkc1NoczR5VXBxUFRpcG1uclF3TEQwTmxwVWJJeFlQTTZfb1ZEajN2dVFnRWE3ek94ZjlQdzhjSWJEY2gtZy1PbkFNNEpuUEx1YmdLSWZ1T2ZMN3pLYWJCd1YyU1JYNFpCNW41TjFYVGoy?oc=5"
+        "name": "The Irish Sun",
+        "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNbHVYdHZMLUxJR2tXUVk4bW50a0ZqVC1acC1DRUVESnVmaEtycFI2S2p2RWhYUU5sMW0yckRxR2xINTB1Qy0yT0I2VzF3SHh4dzE1ZHVaTFJGN1lGR1NGN3hCNDFDdXVyR24zRURiaUljd1BZRjNEYmltSEE5Zmk2RlozMDJXTzB2ekNhRmNkSk54Z2xlTDF0di1B?oc=5"
       },
       "origin": "news"
     },
