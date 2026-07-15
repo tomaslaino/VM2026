@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-15T15:57:50.520Z",
+  "updated": "2026-07-15T17:43:27.545Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-pedro-porro": {
@@ -40,7 +40,7 @@
     "eng-jude-bellingham": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Jude Bellinghams rädsla för skada växer när videon visar Englands stjärna efter att Norge har dykt upp",
+      "detail": "Jude Bellinghams rädsla för skada ökar när videon visar Englands stjärna efter att Norge har dykt upp",
       "updated": "2026-07-13",
       "source": {
         "name": "LADbible",
@@ -51,7 +51,7 @@
     "eng-declan-rice": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup 2026 semifinal mot Argentina",
+      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup semifinal 2026 mot Argentina",
       "updated": "2026-07-13",
       "source": {
         "name": "Khel Now",
@@ -62,7 +62,7 @@
     "eng-bukayo-saka": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup 2026 semifinal mot Argentina",
+      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup semifinal 2026 mot Argentina",
       "updated": "2026-07-13",
       "source": {
         "name": "Khel Now",
