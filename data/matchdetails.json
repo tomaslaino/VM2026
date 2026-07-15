@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-15T19:41:17.304Z",
+    "updatedAt": "2026-07-15T20:43:12.303Z",
     "source": "espn"
   },
   "details": {
@@ -58583,6 +58583,522 @@
         }
       ],
       "updatedAt": "2026-07-14T21:17:39.415Z"
+    },
+    "k:102": {
+      "espnId": "760515",
+      "fmt": 2,
+      "status": "IN_PLAY",
+      "minute": 81,
+      "utcDate": "2026-07-15T19:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 1,
+          "a": 0
+        },
+        "ht": {
+          "h": 0,
+          "a": 0
+        },
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [
+        {
+          "minute": 55,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Anthony Gordon",
+          "assist": "Morgan Rogers",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "minute": 37,
+          "team": "h",
+          "player": "Elliot Anderson",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 42,
+          "team": "a",
+          "player": "Lisandro Martínez",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 51,
+          "team": "a",
+          "player": "Cristian Romero",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [
+        {
+          "minute": 64,
+          "team": "a",
+          "in": "Nico González",
+          "out": "Leandro Paredes"
+        },
+        {
+          "minute": 72,
+          "team": "h",
+          "in": "Ezri Konsa",
+          "out": "Anthony Gordon"
+        },
+        {
+          "minute": 72,
+          "team": "a",
+          "in": "Gonzalo Montiel",
+          "out": "Nahuel Molina"
+        },
+        {
+          "minute": 72,
+          "team": "a",
+          "in": "Rodrigo De Paul",
+          "out": "Giuliano Simeone"
+        },
+        {
+          "minute": 72,
+          "team": "a",
+          "in": "Nicolás Otamendi",
+          "out": "Lisandro Martínez"
+        },
+        {
+          "minute": 81,
+          "team": "a",
+          "in": "Lautaro Martínez",
+          "out": "Nicolás Tagliafico"
+        },
+        {
+          "minute": 82,
+          "team": "h",
+          "in": "Dan Burn",
+          "out": "Reece James"
+        }
+      ],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Jordan Pickford",
+              "jersey": "1",
+              "pos": "G",
+              "st": {
+                "fs": 1,
+                "sv": 3
+              }
+            },
+            {
+              "name": "Reece James",
+              "jersey": "24",
+              "pos": "RB",
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Djed Spence",
+              "jersey": "25",
+              "pos": "LB",
+              "st": {
+                "fs": 1
+              }
+            },
+            {
+              "name": "Elliot Anderson",
+              "jersey": "8",
+              "pos": "LM",
+              "st": {
+                "fc": 2,
+                "fs": 4
+              }
+            },
+            {
+              "name": "John Stones",
+              "jersey": "5",
+              "pos": "CD-R",
+              "st": {
+                "sh": 1
+              }
+            },
+            {
+              "name": "Marc Guéhi",
+              "jersey": "6",
+              "pos": "CD-L",
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Morgan Rogers",
+              "jersey": "17",
+              "pos": "AM-R",
+              "st": {
+                "fc": 2,
+                "fs": 1,
+                "a": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Declan Rice",
+              "jersey": "4",
+              "pos": "RM",
+              "st": {
+                "sg": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Harry Kane",
+              "jersey": "9",
+              "pos": "F",
+              "st": {
+                "fs": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Jude Bellingham",
+              "jersey": "10",
+              "pos": "AM",
+              "st": {
+                "fc": 2,
+                "fs": 4
+              }
+            },
+            {
+              "name": "Anthony Gordon",
+              "jersey": "18",
+              "pos": "AM-L",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "sg": 1,
+                "g": 1,
+                "sh": 1
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Jordan Henderson",
+              "jersey": "14"
+            },
+            {
+              "name": "Noni Madueke",
+              "jersey": "20"
+            },
+            {
+              "name": "Eberechi Eze",
+              "jersey": "21"
+            },
+            {
+              "name": "Ollie Watkins",
+              "jersey": "19"
+            },
+            {
+              "name": "Bukayo Saka",
+              "jersey": "7"
+            },
+            {
+              "name": "Trevoh Chalobah",
+              "jersey": "12"
+            },
+            {
+              "name": "James Trafford",
+              "jersey": "23"
+            },
+            {
+              "name": "Dan Burn",
+              "jersey": "15"
+            },
+            {
+              "name": "Dean Henderson",
+              "jersey": "13"
+            },
+            {
+              "name": "Marcus Rashford",
+              "jersey": "11"
+            },
+            {
+              "name": "Ivan Toney",
+              "jersey": "22"
+            },
+            {
+              "name": "Ezri Konsa",
+              "jersey": "2",
+              "in": true
+            },
+            {
+              "name": "Kobbie Mainoo",
+              "jersey": "16"
+            },
+            {
+              "name": "Nico O'Reilly",
+              "jersey": "3"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-1-4-1",
+          "starters": [
+            {
+              "name": "Emiliano Martínez",
+              "jersey": "23",
+              "pos": "G",
+              "st": {
+                "gc": 1,
+                "sv": 1
+              }
+            },
+            {
+              "name": "Nahuel Molina",
+              "jersey": "26",
+              "pos": "RB",
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Nicolás Tagliafico",
+              "jersey": "3",
+              "pos": "LB",
+              "st": {
+                "fs": 3,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Leandro Paredes",
+              "jersey": "5",
+              "pos": "DM",
+              "st": {
+                "fc": 2,
+                "gc": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Cristian Romero",
+              "jersey": "13",
+              "pos": "CD-R",
+              "st": {
+                "fc": 2,
+                "fs": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Lisandro Martínez",
+              "jersey": "6",
+              "pos": "CD-L",
+              "st": {
+                "fc": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Giuliano Simeone",
+              "jersey": "17",
+              "pos": "RM",
+              "st": {
+                "fc": 5,
+                "fs": 1,
+                "gc": 1
+              }
+            },
+            {
+              "name": "Enzo Fernández",
+              "jersey": "24",
+              "pos": "CM-R",
+              "st": {
+                "fc": 3,
+                "fs": 1,
+                "gc": 1,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Lionel Messi",
+              "jersey": "10",
+              "pos": "F",
+              "st": {
+                "fs": 1,
+                "gc": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Alexis Mac Allister",
+              "jersey": "20",
+              "pos": "CM-L",
+              "st": {
+                "fs": 1,
+                "gc": 1,
+                "sg": 1,
+                "sh": 2
+              }
+            },
+            {
+              "name": "Julián Álvarez",
+              "jersey": "9",
+              "pos": "LM",
+              "st": {
+                "fs": 1,
+                "gc": 1,
+                "sg": 1,
+                "sh": 3
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Gonzalo Montiel",
+              "jersey": "4",
+              "in": true
+            },
+            {
+              "name": "Lautaro Martínez",
+              "jersey": "22",
+              "in": true
+            },
+            {
+              "name": "Marcos Senesi",
+              "jersey": "2"
+            },
+            {
+              "name": "Facundo Medina",
+              "jersey": "25"
+            },
+            {
+              "name": "Nico González",
+              "jersey": "15",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "sg": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Juan Musso",
+              "jersey": "1"
+            },
+            {
+              "name": "Valentín Barco",
+              "jersey": "8"
+            },
+            {
+              "name": "Gerónimo Rulli",
+              "jersey": "12"
+            },
+            {
+              "name": "Giovani Lo Celso",
+              "jersey": "11"
+            },
+            {
+              "name": "Nicolás Otamendi",
+              "jersey": "19",
+              "in": true
+            },
+            {
+              "name": "Nico Paz",
+              "jersey": "18"
+            },
+            {
+              "name": "Thiago Almada",
+              "jersey": "16"
+            },
+            {
+              "name": "Exequiel Palacios",
+              "jersey": "14"
+            },
+            {
+              "name": "Rodrigo De Paul",
+              "jersey": "7",
+              "in": true
+            },
+            {
+              "name": "José Manuel López",
+              "jersey": "21"
+            }
+          ]
+        }
+      },
+      "referee": "Ismail Elfath",
+      "venue": "Mercedes-Benz Stadium, Atlanta, Georgia",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "35%",
+          "a": "65%"
+        },
+        {
+          "key": "totalShots",
+          "h": "5",
+          "a": "10"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "2",
+          "a": "3"
+        },
+        {
+          "key": "wonCorners",
+          "h": "2",
+          "a": "5"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "9",
+          "a": "15"
+        },
+        {
+          "key": "offsides",
+          "h": "1",
+          "a": "3"
+        },
+        {
+          "key": "saves",
+          "h": "3",
+          "a": "1"
+        },
+        {
+          "key": "totalPasses",
+          "h": "284",
+          "a": "522"
+        },
+        {
+          "key": "passPct",
+          "h": "87%",
+          "a": "91%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "1",
+          "a": "2"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-15T20:43:12.302Z"
     }
   }
 }
