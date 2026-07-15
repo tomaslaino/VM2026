@@ -1,12 +1,12 @@
 {
   "meta": {
-    "updatedAt": "2026-07-15T16:42:59.546Z",
+    "updatedAt": "2026-07-15T17:53:33.284Z",
     "source": "365scores",
     "matchCount": 1
   },
   "lineups": {
     "k:102": {
-      "status": "probable",
+      "status": "confirmed",
       "gameId": 4769722,
       "kickoff": "2026-07-15T19:00Z",
       "h": {
@@ -18,14 +18,9 @@
             "pos": "G"
           },
           {
-            "name": "Nico O'Reilly",
-            "jersey": "3",
+            "name": "Djed Spence",
+            "jersey": "25",
             "pos": "LB"
-          },
-          {
-            "name": "John Stones",
-            "jersey": "5",
-            "pos": "CB"
           },
           {
             "name": "Marc Guéhi",
@@ -33,18 +28,23 @@
             "pos": "CB"
           },
           {
-            "name": "Ezri Konsa",
-            "jersey": "2",
-            "pos": "RB"
+            "name": "John Stones",
+            "jersey": "5",
+            "pos": "CB"
           },
           {
-            "name": "Declan Rice",
-            "jersey": "4",
-            "pos": "DM"
+            "name": "Reece James",
+            "jersey": "24",
+            "pos": "RB"
           },
           {
             "name": "Elliot Anderson",
             "jersey": "8",
+            "pos": "DM"
+          },
+          {
+            "name": "Declan Rice",
+            "jersey": "4",
             "pos": "DM"
           },
           {
@@ -78,20 +78,24 @@
             "jersey": "23"
           },
           {
-            "name": "Trevoh Chalobah",
-            "jersey": "12"
-          },
-          {
             "name": "Dan Burn",
             "jersey": "15"
           },
           {
-            "name": "Reece James",
-            "jersey": "24"
+            "name": "Trevoh Chalobah",
+            "jersey": "12"
           },
           {
-            "name": "Djed Spence",
-            "jersey": "25"
+            "name": "Ezri Konsa",
+            "jersey": "2"
+          },
+          {
+            "name": "Nico O'Reilly",
+            "jersey": "3"
+          },
+          {
+            "name": "Jordan Henderson",
+            "jersey": "14"
           },
           {
             "name": "Kobbie Mainoo",
@@ -102,29 +106,29 @@
             "jersey": "21"
           },
           {
-            "name": "Bukayo Saka",
-            "jersey": "7"
-          },
-          {
             "name": "Noni Madueke",
             "jersey": "20"
+          },
+          {
+            "name": "Bukayo Saka",
+            "jersey": "7"
           },
           {
             "name": "Marcus Rashford",
             "jersey": "11"
           },
           {
-            "name": "Ollie Watkins",
-            "jersey": "19"
-          },
-          {
             "name": "Ivan Toney",
             "jersey": "22"
+          },
+          {
+            "name": "Ollie Watkins",
+            "jersey": "19"
           }
         ]
       },
       "a": {
-        "formation": "4-1-3-2",
+        "formation": "4-4-2",
         "starters": [
           {
             "name": "Emiliano Martinez",
@@ -152,24 +156,24 @@
             "pos": "RB"
           },
           {
-            "name": "Leandro Paredes",
-            "jersey": "5",
-            "pos": "DM"
-          },
-          {
-            "name": "Nicolas Gonzalez",
-            "jersey": "15",
-            "pos": "AM-L"
-          },
-          {
             "name": "Enzo Fernandez",
             "jersey": "24",
-            "pos": "AM"
+            "pos": "LM"
           },
           {
             "name": "Alexis Mac Allister",
             "jersey": "20",
-            "pos": "AM-R"
+            "pos": "CM"
+          },
+          {
+            "name": "Leandro Paredes",
+            "jersey": "5",
+            "pos": "CM"
+          },
+          {
+            "name": "Giuliano Simeone",
+            "jersey": "17",
+            "pos": "RM"
           },
           {
             "name": "Julian Alvarez",
@@ -192,28 +196,28 @@
             "jersey": "12"
           },
           {
-            "name": "Marcos Senesi",
-            "jersey": "2"
+            "name": "Facundo Medina",
+            "jersey": "25"
           },
           {
             "name": "Nicolas Otamendi",
             "jersey": "19"
           },
           {
-            "name": "Facundo Medina",
-            "jersey": "25"
+            "name": "Marcos Senesi",
+            "jersey": "2"
           },
           {
             "name": "Gonzalo Montiel",
             "jersey": "4"
           },
           {
-            "name": "Rodrigo De Paul",
-            "jersey": "7"
-          },
-          {
             "name": "Valentin Barco",
             "jersey": "8"
+          },
+          {
+            "name": "Rodrigo De Paul",
+            "jersey": "7"
           },
           {
             "name": "Exequiel Palacios",
@@ -228,12 +232,12 @@
             "jersey": "18"
           },
           {
-            "name": "Giuliano Simeone",
-            "jersey": "17"
-          },
-          {
             "name": "Thiago Almada",
             "jersey": "16"
+          },
+          {
+            "name": "Nicolas Gonzalez",
+            "jersey": "15"
           },
           {
             "name": "Jose Manuel Lopez",
@@ -245,7 +249,7 @@
           }
         ]
       },
-      "updatedAt": "2026-07-15T16:42:59.245Z"
+      "updatedAt": "2026-07-15T17:53:32.984Z"
     }
   }
 }
