@@ -1,31 +1,9 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-16T14:29:15.841Z",
+  "updated": "2026-07-16T16:47:11.398Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
-    "esp-pedro-porro": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Tester kommer att genomföras på Pedro Porro för att utesluta en skada",
-      "updated": "2026-07-14",
-      "source": {
-        "name": "Mundo Deportivo",
-        "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOUWl5RmxyYUZhQ3Z2VHhobXZ3aU1GTXFmeHVGSE44S01reDdYaDVPSFhWRHdDS3hnQ2x4VWpQZ0ZUcVFpY1ZqWGl3ajZzTGlER2lfSUFCT1V4ZFhadnAzc2FycS1LNDVVZm84bkwwY3UweUNReEtOZm5PS1kxWlN3U1B2cGNUTTZMcEV3dlh1N1F0VFhjaXlvYjJhTnlaRnVHcWNzQ3ZJS3FyQnpwMDhmWmlkU1J0Z2pfa2FPZEcydlF6cVY2RFZGMGpUT3rSAcwBQVVfeXFMTlFpeUZscmFGYUN2dlR4aG12d2lNRk1xZnh1RkhOOEtNa3g3WGg1T0hYVkR3Q0t4Z0NseFVqUGdGVHFRaWNWalhpd2o2c0xpREdpX0lBQk9VeGRYWnZwM3NhcnEtSzQ1VWZvOG5MMGN1MHlDUXhLTmZuT0tZMVpTd1NQdnBjVE02THBFd3ZYdTdRdFRYY2l5b2IyYU55WkZ1R3Fjc0N2SUtxckJ6cDA4ZlppZFNSdGdqX2thT2RHMnZRenFWNkRWRjBqVE96?oc=5"
-      },
-      "origin": "news"
-    },
-    "esp-lamine-yamal": {
-      "availability": "doubtful",
-      "kind": "other",
-      "detail": "Den oroande bilden av Lamine Yamal som haltar efter Frankrike - Spanien som slår larm inför finalen: \"Han har inte log ens när han såg sin lillebror\"",
-      "updated": "2026-07-14",
-      "source": {
-        "name": "COPE",
-        "url": "https://news.google.com/rss/articles/CBMinAJBVV95cUxOdklEVlB6SVMzR05SanFkMzVpekF4SVJOdUpDTUpucXhRUmhkaExQTHhDT0RCSHNqdlZjZXBNYVB1UU10b0F3OWlhLTMwTkxwdWJpdGx3M2FhS2JfS0xsNUlMYVdKTDdXOU9WSmdBcWJQZjdyMVRTY0pQOXF3YVppWWQ4eC1sRm4yV25iWXJwNjB0RTlzTlBCSnFkR3QzNEJHTG5oNTFIMFZHNnRPcUJDcXVXV2J1c3JLZzk3WFR3dzBIVDAtSElEYXdGc0FKUVBPdlM3ZHhFckRISzYtb0pIWnM3c3NITzg2aW54Y2VMUTlVaXI1eVJSWWlFblk1MmFid2JPdW9taFI3Y3FrcjBYcEJfWktOWGdWRnYwTNIBogJBVV95cUxPVWlPaGF0NUExNmVWS2dEUG9KTU1mNFNsZGxmWnRlMVM4c21paWs5VzZjeE9iZGlvSXMzTEdSdHZ4clI5M0ltLUNxWENldjlnbkR2ZTdvVlRWNWo3TDdlTGY4NTI5MkVIdHU4N3BLcVBIRldVS0lnWm5uYlRWZVFWdi11dUpMbnA2aF9aWENOSUNYSnphWWlNV3F4QjFJMENoTzVDSjRhc1dLZnFLN2o2dVVyQklsWjh5TkczSFhqM29UX1VjMG1velB5RGdRWkVudFlFUjFEZzVPNGJyVjhLOVQyMjh2ODd1NXRzeW4tcDBGUkFqMEFmMDBNWXFkYV81U1BseXpqbUNXc0VRTmhUdThOZ29OOC1xdU5HOVdkc2FBZw?oc=5"
-      },
-      "origin": "news"
-    },
     "fra-william-saliba": {
       "availability": "doubtful",
       "kind": "injury",
