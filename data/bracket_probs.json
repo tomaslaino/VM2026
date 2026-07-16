@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-16T13:15:10.390Z",
+  "updated": "2026-07-16T18:53:37.317Z",
   "nSims": 40000,
   "note": "Genererad av scripts/prob/gen_bracket_probs.mjs – samma motor (assets/bracketengine.js), data och seed som sidans lokala beräkning.",
   "slotLabels": {
@@ -157,8 +157,8 @@
         "Spain": 1
       },
       {
-        "USA": 0.5002,
-        "Bosnia-Herzegovina": 0.4998
+        "USA": 0.5011,
+        "Bosnia-Herzegovina": 0.499
       },
       {
         "Belgium": 1
@@ -173,8 +173,8 @@
         "Mexico": 1
       },
       {
-        "England": 0.5023,
-        "DR Congo": 0.4977
+        "DR Congo": 0.5002,
+        "England": 0.4999
       },
       {
         "Argentina": 1
@@ -200,17 +200,17 @@
         "Spain": 1
       },
       {
-        "Belgium": 0.4984,
-        "USA": 0.2522,
-        "Bosnia-Herzegovina": 0.2494
+        "Belgium": 0.4989,
+        "USA": 0.2519,
+        "Bosnia-Herzegovina": 0.2492
       },
       {
         "Norway": 1
       },
       {
-        "England": 0.5023,
-        "DR Congo": 0.2506,
-        "Mexico": 0.2472
+        "England": 0.4999,
+        "DR Congo": 0.2503,
+        "Mexico": 0.2499
       },
       {
         "Argentina": 1
@@ -227,10 +227,10 @@
         "Spain": 1
       },
       {
-        "England": 0.5023,
-        "Norway": 0.2502,
-        "DR Congo": 0.1249,
-        "Mexico": 0.1227
+        "England": 0.4999,
+        "Norway": 0.2498,
+        "DR Congo": 0.1258,
+        "Mexico": 0.1245
       },
       {
         "Argentina": 1
@@ -249,10 +249,10 @@
         "France": 1
       },
       {
-        "England": 0.5023,
-        "Norway": 0.25,
-        "DR Congo": 0.1248,
-        "Mexico": 0.1225
+        "England": 0.4999,
+        "Norway": 0.2497,
+        "DR Congo": 0.1257,
+        "Mexico": 0.1244
       }
     ]
   },
@@ -260,8 +260,8 @@
     "Mexico": {
       "r32": 1,
       "r16": 1,
-      "qf": 0.2472,
-      "sf": 0.1227,
+      "qf": 0.2499,
+      "sf": 0.1245,
       "final": 0.0001,
       "win": 0
     },
@@ -315,8 +315,8 @@
     },
     "Bosnia-Herzegovina": {
       "r32": 1,
-      "r16": 0.4998,
-      "qf": 0.2494,
+      "r16": 0.499,
+      "qf": 0.2492,
       "sf": 0,
       "final": 0,
       "win": 0
@@ -355,8 +355,8 @@
     },
     "USA": {
       "r32": 1,
-      "r16": 0.5002,
-      "qf": 0.2522,
+      "r16": 0.5011,
+      "qf": 0.2519,
       "sf": 0,
       "final": 0,
       "win": 0
@@ -452,7 +452,7 @@
     "Belgium": {
       "r32": 1,
       "r16": 1,
-      "qf": 0.4984,
+      "qf": 0.4989,
       "sf": 0,
       "final": 0,
       "win": 0
@@ -487,7 +487,7 @@
       "qf": 1,
       "sf": 1,
       "final": 1,
-      "win": 0.8343
+      "win": 0.8373
     },
     "Uruguay": {
       "r32": 0,
@@ -533,7 +533,7 @@
       "r32": 1,
       "r16": 1,
       "qf": 1,
-      "sf": 0.2502,
+      "sf": 0.2498,
       "final": 0.0001,
       "win": 0
     },
@@ -551,7 +551,7 @@
       "qf": 1,
       "sf": 1,
       "final": 0.9996,
-      "win": 0.1657
+      "win": 0.1627
     },
     "Austria": {
       "r32": 1,
@@ -603,17 +603,17 @@
     },
     "DR Congo": {
       "r32": 1,
-      "r16": 0.4977,
-      "qf": 0.2506,
-      "sf": 0.1249,
+      "r16": 0.5002,
+      "qf": 0.2503,
+      "sf": 0.1258,
       "final": 0.0001,
       "win": 0
     },
     "England": {
       "r32": 1,
-      "r16": 0.5023,
-      "qf": 0.5023,
-      "sf": 0.5023,
+      "r16": 0.4999,
+      "qf": 0.4999,
+      "sf": 0.4999,
       "final": 0,
       "win": 0
     },
