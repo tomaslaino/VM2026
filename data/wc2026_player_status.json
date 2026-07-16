@@ -1,17 +1,28 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-16T21:29:42.787Z",
+  "updated": "2026-07-16T23:15:46.214Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
+    "esp-lamine-yamal": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Det spanska laget höll andan när Yamal ådrog sig en skada.",
+      "updated": "2026-07-16",
+      "source": {
+        "name": "Vietnam.vn",
+        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNbmc3VjVSUWN0T19NY1p2bE1XdWpsazJkMGRmR2x2QzdpSVRkMjA2NVkxNUJzdENpSnFqdC1HNk1HcHhmaFk4TVlndmZGTzlVQVN5dllhZkR5MXR5MlNPblp1VlJoT2pMNC1yUGltWHR4eXlJQ3pPNmlqTzN5YWwzazBxVnI1TUJC?oc=5"
+      },
+      "origin": "news"
+    },
     "fra-william-saliba": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Franska laget: domen är ute för William Saliba, skadad mot Spanien",
+      "detail": "Franska laget – William Saliba: Detta galna avslöjande om sin skada",
       "updated": "2026-07-16",
       "source": {
-        "name": "Foot National",
-        "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNc1RndjJNWS00MVpleXJJRkRJcGozYTBIX3RpcXZWcXY3cXNuM1UxQng4S3lsbUVhc1ZIZ3BPQUlCSDl1UW02M0VKZEM1eF9sNmd3My1RcHFDV1pmV1VzZTduMlZOSUtybEJxQXRTV044QUhKS0NYTUFrRUE0amcyVzh1R2p2QXBzalBrZS1FQ3V2VVIxdUNNdmxseGt4X3d0YkJSZTB5aWZmUFZ0aENQRDdWMUpxY184TGZ2dEkwczZPYmVwNTNwbDRPbE1EOUJDY2Z5bkhtM1htVW1sN3FJ?oc=5"
+        "name": "Le10Sport",
+        "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPbkMxTHF6S0FvWWVKam1FM28tSl9URF9wR1F0dE5zSnNSNDFDQ0QzOUZpeDFycjdDalpVNUI2Z2lUU2x4WVphX2VTbzlLSTh2bWxVSExaWExjZERzOVk0RGtzdDN3alIxbWZYSlplOUtYbkZDY09EanZaOXNQZVJLVHR2dUs2VUdrbklEUUN1Vlh2VGN3STBwMU1DeV9YbVktSmJRcjVrajlRa21VdjlBYm9JZXhRTHlMc0xhRmN5T2l0cjg?oc=5"
       },
       "origin": "news"
     },
