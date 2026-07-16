@@ -1,17 +1,17 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-16T18:36:25.877Z",
+  "updated": "2026-07-16T20:16:01.099Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "fra-william-saliba": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "VM 2026: Efter William Saliba är en annan spelare från Frankrikes lag skadad",
+      "detail": "Franska laget: Willlam Saliba spelade VM med bruten rygg",
       "updated": "2026-07-16",
       "source": {
-        "name": "Le10Sport",
-        "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQZDRqVnpnd0FOS2U3R2lSN29MYUowbWxHTEhid09IZ0kySmtybWgtWk9MVnBVdExYdjhtNDdtRFh2WmhjVHVkZ25kbGFHek1xR2d5YnNHRERLMTR6VHR6Yml5aF9aeHlGdGJKQVh3UmlpWnNqTU1DZE5sSDRzMEZtTTR1TmhtRnZvTWpqbGg2a2xUNW1XenRDWEFpSUt1NEF3b1J1cG9fa1Z0bFhhTnYyNF9haFJFMExzTXFhRWNDYTNqdWFhX2x3bmtYamdWa0s0a3ZvTS04b201dw?oc=5"
+        "name": "RMC Sport",
+        "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNa09uQmMyM1NPZ1JJczRFV29KQmsxc21YQk5VbERucS1kRG5nNEVKdzBzbEFnM0hIbGItRHlmamZETjNsTkpSR19uOTdldmV6bUlKdHByWXdKOGRtSGt6UFNJMmVxUFZMSjg5aXR1cE1VSi1DMUFPamQxVUhZN3NfREd2M2hwOEdZb3V6NzZRcHZNV2s1YzBlLURuSUJCclgxSXcxcXZkSFBMSURFaDJHRkJKZ2RJNXVqUGNpSGZXckNsbTZZMHI5MnFwY3J1NHhKc0E?oc=5"
       },
       "origin": "news"
     },
