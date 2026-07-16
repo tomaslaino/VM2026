@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-16T06:39:12.586Z",
+  "updated": "2026-07-16T09:33:41.302Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-pedro-porro": {
@@ -28,19 +28,19 @@
     },
     "fra-william-saliba": {
       "availability": "doubtful",
-      "kind": "injury",
-      "detail": "\"Min rygg är död\": William Salibas nödrop innan hans skadeutträde mot Spanien",
-      "updated": "2026-07-15",
+      "kind": "other",
+      "detail": "Franska laget – Stort slag för William Saliba, en mycket lång frånvaro hägrar",
+      "updated": "2026-07-16",
       "source": {
-        "name": "Tribuna.com",
-        "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOUEtrbUFrei02SjhUcG5LV0w1WmlXeWJ3TlRxSkw3UEd4Y21LWlFucEh4TDljRmhFSEh0WHd0NEYzcjFUMzA2dXVBX01ueGdNYU5ldTF3MzBlamNvTFV0MnNqVWhzbXV4bi1lTXVUWklLbUxsbzZuOXkzQ0F5QW5jQUdDdldZTlUzbHdaZ1g4Z2Fia25jQzBpOXhqZXEwcGIxQmtwNmV4R3FHLU1XTnJ5dHNqNXk2SXVTQmFOaFJMel9OYWpIYUY0MdIBzgFBVV95cUxPcml4b2ZQNUZEZVZUeEk4Q09BZW1yaGwydWhRb2c4c2JYUmV0Y29FOGg0ZEhzTFY5eXdYNHRTR1dOZ21NcjY3WVBPbjVUWGFRTllsM3E2Qk5zV19iYnJDMG9KYUx2R0F6eWZEWXkyRF9pUUdRcmp6Nm92VTBtNUpTVDBJVG9xZ3pyWVd5bmxMVE9tcVZYZlE0NHVndkxINWVyb09RS1hkODJHdmx4OW1JWWhfdld6dS1ObnJOdlFjVTFJYXJqX2ZhQ0k1V05nZw?oc=5"
+        "name": "MadeInFOOT",
+        "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPcTh2M1YwRmhWalNMNUlhRktqYjBESzdyV0lENHV1RHZGMFMyRUFBalFiTEJBRXpfSnJUUTVTYnZNQUxQaXFxeTl2RzkyNmp2bV9Mc1ltWkRqWHBZam5CbGdNaklZY1Q1RTZKZUo1bjZBUVNZOWx4RHNZSE1od1JCT1VZNzJfVHh6RXpqV3BXeFRNdXpFV2YwMGkxRWpfXzlFWWFYaXR2eUNRTmM1MW9ncUI3N245ZXAweGMxTFgzbXlEVGYybTUzUjVZYnJvaWlILTkxN1hSLUpORTFMTXlOd0tfVQ?oc=5"
       },
       "origin": "news"
     },
     "eng-bukayo-saka": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup 2026 semifinal mot Argentina",
+      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup semifinal 2026 mot Argentina",
       "updated": "2026-07-13",
       "source": {
         "name": "Khel Now",
