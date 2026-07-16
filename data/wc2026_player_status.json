@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-16T11:57:08.908Z",
+  "updated": "2026-07-16T14:29:15.841Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-pedro-porro": {
@@ -34,17 +34,6 @@
       "source": {
         "name": "Le10Sport",
         "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQZDRqVnpnd0FOS2U3R2lSN29MYUowbWxHTEhid09IZ0kySmtybWgtWk9MVnBVdExYdjhtNDdtRFh2WmhjVHVkZ25kbGFHek1xR2d5YnNHRERLMTR6VHR6Yml5aF9aeHlGdGJKQVh3UmlpWnNqTU1DZE5sSDRzMEZtTTR1TmhtRnZvTWpqbGg2a2xUNW1XenRDWEFpSUt1NEF3b1J1cG9fa1Z0bFhhTnYyNF9haFJFMExzTXFhRWNDYTNqdWFhX2x3bmtYamdWa0s0a3ZvTS04b201dw?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-bukayo-saka": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Rice & Saka - Englands skadenyheter inför FIFA World Cup 2026 semifinal mot Argentina",
-      "updated": "2026-07-13",
-      "source": {
-        "name": "Khel Now",
-        "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNNFZRVFdVZUdhc3BGNndQRjNPZnpTcTBQamVrdmVxMEJmaGpYT0Z6enVHVjA4ek1pbjJhcEExcXIwSnpCRzVkcnJhY1FGYlBNOXlvQXhHMXRyaDlzRlhMSk8zUVkwU2QzeGRCbkF5QnZfd0hieTVMZUtseGt3SmE4T084aXU0LXV5ZndyaFMzMUg1T1ZMTXlBT3lNZkp4aUU?oc=5"
       },
       "origin": "news"
     },
