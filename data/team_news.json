@@ -1,11 +1,19 @@
 {
-  "updated": "2026-07-17T14:16:09.180Z",
+  "updated": "2026-07-17T16:02:41.780Z",
   "source": "Google News RSS – respektive lands medier (lokala sökfrågor per lag)",
   "note": "Byggd av server/scripts/syncTeamNews.js. Originalrubrik i title, svensk sammanfattning i title_sv.",
   "teams": {
     "mx": {
       "edition": "MX:es-419",
       "items": [
+        {
+          "title": "Loco Abreu confirmó el refuerzo que Rafa Márquez traería para México",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNQXNkZU9hSXBNOFpqczFiMElET3M1d2RYQUlNbFlWUlF2SU4zbGtHaVNhWXJ6MkZZMDRxRjBkVG9id0NreDdCaU1CY0Jvb0JCRjZZckwxZTZ5VW9WT3BrRHJNZXFMLXF4TndhRkE5UDJkbHRjTklaOHotVTNOYUpMSmZPZ0FlZmozeTBqajZRbDNaMHFXZ1AzQ200bWpXVlllV3VINVFKMVlJZ2lrWFBjMzdUQmFFZklORGloLS0zVkJtRXp4ZkdFS0R3?oc=5",
+          "source": "TUDN",
+          "published": "2026-07-17T13:34:20.000Z",
+          "lang": "es",
+          "title_sv": "Loco Abreu bekräftade den förstärkning som Rafa Márquez skulle ta med till Mexiko"
+        },
         {
           "title": "Sebastián Abreu adelantó el refuerzo que tendrá Rafael Márquez en la Selección Mexicana",
           "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQVEFUUE9xVlZiRDh5a1RjckttT29KSkMyTFg1dWlIXzdYZ0lvclNpeFhGeVNDNGhha1lhTWo3U3hhZjcydGwxalVuZl8zSFJRb2xINWFJYk1uakVFWVRNVUZNTzJIcXBRSDdxc0hRajNBWWhZNjctYjNMN1NDV0xCSFhXVWs2RFdJYV9hSFVMRF85VFc1cUtGQkNGdTFMWVVQU0NQSl9OZE9lYW5KQWpfVk1pM2E5N2dRTkZ6YTdYZzJKOUk3Uk1BaA?oc=5",
@@ -23,6 +31,14 @@
           "title_sv": "De delar opublicerade videor av koncentrationen av det mexikanska landslaget i VM 2026"
         },
         {
+          "title": "La broma “pesada” que se hicieron los jugadores de la Selección Mexicana en el Mundial 2026",
+          "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNRjVkTGg3eTBTcVVsWU5ycGhwZERDXy1IZ21ZUDRiUGJINGhYUEVLb2hXQ2tYaFZkM1VrZFNCVTlCZFJMTjVFelQ2X2FnR3ZLb1JkVXM3QnpwWGxfUWlFWV9JVHZTYjl2UTZ1UEJQdmRlRHFlc3BUaVkxemFzLW9SWnVtVml4ZEtWc21naV95UzNxREZqeEFtWGZDNERERElfYk1mdDNpczdsS0hRYWkxVGpxRkNQRW5NRUNTLVIzR0ktdmduSU5YNWtXaWtHMDMxbWpsTktGT2HSAfMBQVVfeXFMTm1HdG1SYVdjcXZhZmpFTUZURmM5RTlGbUxVTUVpa0VKbXlxT3B0OXRhWWZoenpNNVdCbTQtbzFwcTlhd1FzNGUxVmtJeHpzYlE2RnZNZi01WV8wUThoZXZjeHpXM2czYnZWc0Z3RHdJaFE4QTdHT19lcUZpd1IxM241cW9xeGFaaGc1RkdvbGQzc294Si1LS0hKanFQdmhsdldXdXc3bERfc0VuRlNtOEdJbTZiSFJDRlVQdk1xalBrZ0hwNHFFNlRSNGgzZS1rSjJmeE1VSDdTRUtwMEtTSzdPM3BsWk0wVlRXajFDNXFwMnVz?oc=5",
+          "source": "Infobae",
+          "published": "2026-07-16T15:20:00.000Z",
+          "lang": "es",
+          "title_sv": "Det \"elaka\" skämtet som de mexikanska landslagsspelarna gjorde vid VM 2026"
+        },
+        {
           "title": "Juan Manuel Lillo, exauxiliar de Guardiola, se uniría al cuerpo técnico de Rafa Márquez en la Selección Mexica",
           "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQYmJIdjk2VXdGTWR0VjB4RjdqWU02LUIydTZLUS1HT1p6RnZtNUxFeVc5TDhxaVlQU0ZHd05MVWxKY01vMVN0d0puZUZ2aG0yc3BUNnhGY2h4MW1XUEFqaW9vcmpqMEN5UHZBNHYzZG5Id0R4TG94cHF6MHJ3RzJ6Vk1lQkRnYXQyQnRubnBubE5aSkxaWV9UcFJIUjQxTGVSQ05ZaXZXT0JoMG5lZ1BNSHZHZEw4ajRoaFhPZTh1TzhVZ2VOdFJ3OUhLaWhhOXfSAc8BQVVfeXFMT2RvYkRBbWxjUUpIazBnZzVSYUpVd18wN2x6ZjNoVDlVd3lRWDVxU25iZ2RGanY0WVhEV3ZsQ1Q2UHRnM18zR1pNZVBZaER6ZmZVOHFacEwwT0N2T2tmc2NjNEVzQV9YRmMwdmR1VEZMakx4MWVWR2ZyejJFNnRxRkpTTGlTVzNvMW9OVXhvVWJvTTh4cW5YRkdpVWlCd055YXl6V2RUd0JFM1dfVjg5SzBkeVdrclBCdGhpUkR0dzltN1g3c1JLMWpaRkxBZmFV?oc=5",
           "source": "Milenio",
@@ -37,22 +53,6 @@
           "published": "2026-07-15T19:17:21.000Z",
           "lang": "es",
           "title_sv": "Det mexikanska landslaget fick in 15 miljoner i VM 2026"
-        },
-        {
-          "title": "CANTERANA GUERRERA CONVOCADA A LA SELECCIÓN MEXICANA SUB 16",
-          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNUHhjN29wVERTUHhCSDV1NHJrR3h5ejZBTTZ2RUJUUldPcHM3dm0tbTc0dUowZEZzam4tLUQ0LXF2U3lEWjNKQVVNdFV5V1h0dUxXZk1OZE1sbEtFRVRLV2lhQy1jeXVVVnR4NXVnblA0RXg4TWhGLXh3aU0zNWtNSU9VY0p6OE1qdnR6azNsRU5qR0p2ckYtWG1n?oc=5",
-          "source": "Santos Laguna",
-          "published": "2026-07-15T17:18:24.000Z",
-          "lang": "es",
-          "title_sv": "GUERRERA QUARTER FLICKA KALDES TILL MEXIKANSKA UTB-16 NATIONALLAGET"
-        },
-        {
-          "title": "¿Por qué Gilberto Mora no fue convocado a la Selección Mexicana Sub-20?",
-          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQQ2dGRTNlYnJ1eU5tWkZ3eExIWFZLbEJlQ0puOEpsRnpncTFET1pWalJ5bk9NSFkxcW1XTnNSUUROX3NVVDZHa2d4NVhDcGhxOWRWRlBiY0d6N19kZndXQWIzaGNCaDRPVy1MNElzbExXNHcxY3FqeDdMbDhqVHZOMV90NXlzQTVvOG94MVpjVWJhQzdvR09aeGVmYWtiUHZYVHAyZkRiOU1iQW5hWnJ6Yi1iTm9WVkdZUW1QRGRXY23SAcYBQVVfeXFMTjJxdzRtUUdReTA5d1RQSF9IaV9KcXhkUDNTakp5c29iSUotREMzRzRiUERKM01ZdnZ5VjVWdzlscnRUc1lWZWZWNm9Cd3JMSHI4dFRyYkkyYkVFWlJUM3pQMTZHV2xJUGhiMHJWOGF0dG81bDdXdGF0VkJMMVVhWEc5dEpHRDNKdzg1WU1jMVdNQnYxSzdPZlRIXzFUS0FTWnp0bXR4UEpOUzQ0OVBGNzcwdDNkaFJKN1licWpsVlZWZTM1cWdB?oc=5",
-          "source": "El Informador",
-          "published": "2026-07-15T03:21:20.000Z",
-          "lang": "es",
-          "title_sv": "Varför kallades inte Gilberto Mora upp till det mexikanska U-20-landslaget?"
         }
       ]
     },
@@ -61,11 +61,19 @@
       "items": [
         {
           "title": "\"축구인들 모두 각성해야\"…기성용, 한국 축구 향한 일침 - 머니투데이",
-          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBpOXVJT2dzZDVrU3dRb1I2ekZ3UENvd09PNS10aVB5Wm9xMFR3eWoyNkF2OUhBcXNzdHpPSXFwVVJ4UzBOR3o5OVMzWEVfbExrYVV4LU40ZG1BWDBxMXBHMmNjSXNLZWNMVGdN0gFwQVVfeXFMTV9kUS1oaTItWVpWLTIwZFVaLWxyRzZ1VXllbVJRRXp4b3RUcWM0OU1mUXRjQS1jYmx1VEJ0bXprMm44MWx3S1ZRaTg0RlZpZDB6ODZoLS05cWx3YUw0UnZheGhMVUhQQW5sUnhmcnBXag?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1fZFEtaGkyLVlaVi0yMGRVWi1sckc2dVV5ZW1SUUV6eG90VHFjNDlNZlF0Y0EtY2JsdVRCdG16azJuODFsd0tWUWk4NEZWaWQwejg2aC0tOXFsd2FMNFJ2YXhoTFVIUEFubFJ4ZnJwV2rSAXBBVV95cUxNX2RRLWhpMi1ZWlYtMjBkVVotbHJHNnVVeWVtUlFFenhvdFRxYzQ5TWZRdGNBLWNibHVUQnRtemsybjgxbHdLVlFpODRGVmlkMHo4NmgtLTlxbHdhTDRSdmF4aExVSFBBbmxSeGZycFdq?oc=5",
           "source": "머니투데이",
           "published": "2026-07-17T12:43:52.000Z",
           "lang": "ko",
           "title_sv": "\"Alla fotbollsspelare måste vakna upp\"... Ki Sung-Yong, en varning till koreansk fotboll - Money Today"
+        },
+        {
+          "title": "'스페인 초신성' 야말, 팀 훈련 제외…월드컵 결승전 결장하나?",
+          "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9MMGZIM3Y2LV9Pc1ZEX044WU1HNHpHczZnWFdrb01IUVZMcEJCMUxqVE81QlFzR0xtMFE0WDc4REdVSDlLWkp1M3g0Tk00eVk?oc=5",
+          "source": "v.daum.net",
+          "published": "2026-07-17T12:11:50.000Z",
+          "lang": "ko",
+          "title_sv": "'Spanish Supernova' Yamal utesluten från teamträning... Kommer han att missa världscupfinalen?"
         },
         {
           "title": "축구의 신, 19년 전 직접 씻긴 아기와 '운명의 맞대결'",
@@ -84,34 +92,50 @@
           "title_sv": "Kwon Chang-hoon flyttar till Indonesiska Persien Jakarta... En måltid med regissören Shin Tae-yong"
         },
         {
+          "title": "기성용, '올림픽 조기탈락' 소신 \"韓축구 개혁 필요..축구인들 반성해야\"(유퀴즈)[순간포착]",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPVGFNVDhhZzg0YlotaGdnN2ViM2o4UDNFSUZEdzJuVWdBYVN6RXN1QWxvV2dCd0pVdENkS1B3RTNSSzRlNXAzX2k5c1hMel9Bb3pvWExKQ0VORjZ1UHE4eUx1OGFWWjNJSmFxMnJIenVnTTVVYUd2dW5JUGprd29iczM5QU9WMWpuUm96al80bw?oc=5",
+          "source": "조선일보",
+          "published": "2026-07-17T08:34:00.000Z",
+          "lang": "ko",
+          "title_sv": "Ki Sung-yuengs tankar om \"tidig eliminering från OS\": \"Koreansk fotboll måste reformeras... fotbollsspelare måste reflektera\" (You Quiz) [Fånga ögonblicket]"
+        },
+        {
           "title": "‘포클랜드 우리땅’ 현수막 아르헨, 결승 앞두고 FIFA 징계 위기",
           "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBrWUFVYVJsR3haRUsyekNmWUNpai1zVmJRY3Nfalk0Vl8yMl9IajY2YlFOV0x2ZldZN3BFbWwxcXpzY2hTUldMa2J4bDdrS1U?oc=5",
           "source": "v.daum.net",
           "published": "2026-07-17T00:57:07.000Z",
           "lang": "ko",
           "title_sv": "Banan \"Falklands är vårt land\", Argentina möter disciplinära åtgärder från FIFA inför finalen"
-        },
-        {
-          "title": "결승 앞둔 아르헨 ‘뜨악’…펼쳐 든 현수막에 FIFA 징계 위기",
-          "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9fU1BUejEyU3NjcVdoaHhVQWtwakdIbDVpdWdlYURFOWtOaUQ0X3lCQVBKNF9WQ0diQkhLY2dVdm1HNFE2S1pocnNwVkN3S3JWdzA3elVR?oc=5",
-          "source": "중앙일보",
-          "published": "2026-07-17T00:55:06.000Z",
-          "lang": "ko",
-          "title_sv": "Argentinsk \"Teak\" inför finalen... FIFA:s disciplinära kris på grund av uppfälld banderoll"
-        },
-        {
-          "title": "[한강로에서] 축구에 ‘정치 태클’은 반칙이다",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5yT0plYVBBVmlDSm1wVjl2aHE0ODZaYkhIbmREM0FYakttanFGSW5Ba0JQakYtcmp1UjNuR3BBdFJkOE0zTnlYTU9TUHB2TldpZ3RLVHVicHdoelRiR2VFQmw5ZXBaS2FncGM2YkZ3cWRBQU3SAXNBVV95cUxOck9KZWFQQVZpQ0ptcFY5dmhxNDg2WmJISG5kRDNBWGpLbWpxRkluQWtCUGpGLXJqdVIzbkdwQXRSZDhNM055WE1PU1Bwdk5XaWd0S1R1YnB3aHpUYkdlRUJsOWVwWkthZ3BjNmJGd3FkQUFN?oc=5",
-          "source": "시사저널",
-          "published": "2026-07-17T00:05:28.000Z",
-          "lang": "ko",
-          "title_sv": "[På Hangangro] \"Politisk tackling\" är ett foul i fotboll"
         }
       ]
     },
     "za": {
       "edition": "ZA:en",
       "items": [
+        {
+          "title": "Community honours Bafana Bafana star and Stellenbosch son Jayden Adams",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNNURjNzFtVnYtSko0dVhtZ1FyU21MaDE2RGl0SlFOcFhwbTRPU3F1dXNjOGRoTHJSXzBzV1E4eUljYzVxTVBTR21jcElTQTRHSWQxNHRnWEM1dXNXOTRoMmZ0QTFTNExtTWFheG00UlNjTnR4TDZTWnk1SzhpbWlLVlkweHpaaHlHTEZLTHZQbHpSOVhHemlfUGVBOTR6azlrVmE4b3U2VjNKQ28?oc=5",
+          "source": "novanews.co.za",
+          "published": "2026-07-17T13:47:43.000Z",
+          "lang": "en",
+          "title_sv": "Community hedrar Bafana Bafana-stjärnan och Stellenbosch-sonen Jayden Adams"
+        },
+        {
+          "title": "Bafana Bafana World Cup exploits sees surge up FIFA rankings",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE16TGFCbHF0QTlNeDFvbTliQjdLUG9lMzZ3SFpWSERBNzlKVWNCODd1U1NTdk9EZHk4cnRhYUljb3hpMWlmVDNpcUxfemtfRkRCby04b0Z3UHFNelZnbkU0VG83OUllTktuVnNxZFVxNXJqbHlfQUFrejJKVmQwUQ?oc=5",
+          "source": "independentonsaturday.co.za",
+          "published": "2026-07-17T12:48:14.000Z",
+          "lang": "en",
+          "title_sv": "Bafana Bafana World Cup bedrifter ser en kraftig ökning av FIFA-rankingen"
+        },
+        {
+          "title": "Bafana Bafana World Cup exploits sees surge up FIFA rankings",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNQXA4ME4tYTdHZ1dIcWJVM1JSaTdkbDhFS2FybDJRU2NaQUhZOWdhdGU0M0N2QnJRNzJrcVF4azhNaHhCN0YtdWc3SzdDOUZQUXg1SC1XazZ1MXJaWE5oeU9mUDh3ZXlxTDVwWVMweVBDN2JpOFl6ZU9VNGI2YjIzdEVuWTJvQjFSNDVEMU1kcmJIUUpLdzhDMzdCcXM5TFNkeC1HTGlXbEc4MGlUSUQ4?oc=5",
+          "source": "IOL",
+          "published": "2026-07-17T12:45:00.000Z",
+          "lang": "en",
+          "title_sv": "Bafana Bafana World Cup bedrifter ser en kraftig ökning av FIFA-rankingen"
+        },
         {
           "title": "Ex-Bafana Bafana star closing in on sensational Sundowns return!",
           "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNczJqQTR0ZnVsazhtbmdMQ2lldUgtc1ppR1ozOENfaE9iQjNuT01aLURoY09HT2lYU256cUJwMWFMUEhJVXJiSmdnY0dLbDFiS0ZidXhudS1JbXFwNUltbl9XQzlhOWxyS0FhR0JtMlhPOVl2cEhRWVZxRFJ6VTMzc1JSb3o1VWVrSVFsMEJ4c0VIWTJWa2xkZkdvVQ?oc=5",
@@ -135,30 +159,6 @@
           "published": "2026-07-16T20:18:20.000Z",
           "lang": "en",
           "title_sv": "SA seniora herr- och damlandslag som skördar frukterna av sina senaste prestationer"
-        },
-        {
-          "title": "South Africa Honors Jayden Adams After His Tragic Death Following Playing in the World Cup With the Bafana Bafana",
-          "url": "https://news.google.com/rss/articles/CBMingJBVV95cUxObm1JUnU2czBfYnk1ZkFqUXgyM1hYOUpVcTJYWGtwMkFNT2txQjVIbXdJVVNBbDNTSHF4VnAzNlhjTnRZTTdPN0V6QkV6UlRKS2lQY3VpbFZlUXZIVFpqczN2VTNpTVI2LW5TNV9IWGZ6UWYwVDgxOXBlUEtfYlhWaFNVaWRwSzZfZ2pGWWZxX3VqOFJhbXB1WWd4QVFZZWFBRkY2clJsNUk0YnRrOUpfdmJVQXlyYm1KU3J5T0kxY2ItQy1HUkNSWnppQ2hyZVhHZHdHZS16NDFrcmJMbzZzRUlRQ2UtS2Zsbm5aUjlqR0hyelo0TmZNSkV5WGtMRDV0RUQxSHJRc2xZN3ZkWGRqaWtEcUZLTllDNkNkWWdR?oc=5",
-          "source": "beIN SPORTS",
-          "published": "2026-07-16T14:52:43.000Z",
-          "lang": "en",
-          "title_sv": "Sydafrika hedrar Jayden Adams efter hans tragiska död efter att ha spelat i VM med Bafana Bafana"
-        },
-        {
-          "title": "Jayden Adams memorial: Sundowns, Bafana teammates pay tribute to 'midfield maestro'",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQZmJrTHFhV3FvVjhXMXJCTUZkdzdVMm5MWUVaLWFwNk5PMVRxRlR0Um9HaElmeGxLWVU1UjNzclQ3YXJCU3ZaOEdWYWVwMndRZnBkaFR6TE9JV0ZlbU9CYWxPZ09NU09kS3QzZEx3R1ZjX2VaUTVHcktyOHR2eWVZOE9wckhGSW9fenBpY1d5XzVuX2NZX1gzM0toY21RX1lvS29kZ2F4ZGJXazF4di1NN0FB?oc=5",
-          "source": "EWN",
-          "published": "2026-07-16T13:03:25.000Z",
-          "lang": "en",
-          "title_sv": "Jayden Adams minnesmärke: Sundowns, Bafana-lagkamrater hyllar \"mittfältsmaestro\""
-        },
-        {
-          "title": "Kasi to the World: Matuludi’s Journey to Bafana Bafana",
-          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOdXVqV3VBREUxN2wtWDZycXE2enZNeUlic1hHdm5mdXJqLTF2Ym5aVXMzYzhBSndpNHBtRWZoaUpqTmZiNDNhd0hyN2ZpY1QzWTFEUjhDUGo5VTMwR2JpUHpFU3dZSW03NGdUNmJSRVZYUzB3WDB2ZnFSQ0czdk13UERJdlN2LXNtalFtTE1fRExPem5FZGdqRmdrM1Fxbnc?oc=5",
-          "source": "Soccer Laduma",
-          "published": "2026-07-16T10:59:00.000Z",
-          "lang": "en",
-          "title_sv": "Matuludis resa till Bafana Bafana"
         }
       ]
     },
@@ -219,6 +219,14 @@
       "edition": "CA:en",
       "items": [
         {
+          "title": "Who did Jesse Marsch call up to CanMNT U-20 squad? Here's a rundown of each player",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOcmRwSUF5Mk9oVlZzekpsb29SbXZaelpTbUxzVi00QUV5Y20tTEl4NHJiWDZyZnh2LWdUS3pCUzVBZWhJTDBSUjh0cS11X3ZDZk5uSDRyak5KbW9rSmZlNXRwU0g4SmlycHJvTUF5WkpMOGE2UENuYWhxcnFNamxwU2VXT0tkLXh1a2s3Uk9Edmg1c2JtdkxoMzRiY3Z4T2ZySEpwY2FBUQ?oc=5",
+          "source": "OneSoccer",
+          "published": "2026-07-17T15:05:24.000Z",
+          "lang": "en",
+          "title_sv": "Vem kallade Jesse Marsch till CanMNT U-20-truppen? Här är en sammanfattning av varje spelare"
+        },
+        {
           "title": "MEDIA CALL: Alphonso Davies Out For June 12, Promise To Make CanMNT 🇨🇦 World Cup + More 🎙️ Humber Bridge (WUw08vBrpE)",
           "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9zVlZfRXNTaXN0UlM2WVFJaWJQQjJIZnExa1JBVjF1NjRsSjRzZVFpTm81S1NiRmNUUzIxWFdyVXI5aVExYjYzZC1pRUVVV0J1TVZHa2MtMzdTSUU?oc=5",
           "source": "Mshale",
@@ -235,6 +243,14 @@
           "title_sv": "Club Brugge Tajon Buchanan PÅGÅR SÄSONGEN FÖRSTA! CanMNT Nyheter! Aktuellt silverpris maj 2026 (podmlH3j3l)"
         },
         {
+          "title": "Canada Soccer Originals | On Guard: CANMNT | Jesse Marsch Sitdown Teaser Apple Ios 26.5 Update (FqMep4lJFO)",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9qTHk3akxYSFZoaXZFcFd6eUw5ejlUWXNiSTJyZXRzRFpxOVgwLVdqb283ZjNNNV84dmwzS3ZfUFJEaFZSc0NNclNONExXeUhGTmQzNDRoaWFBQ0U?oc=5",
+          "source": "Mshale",
+          "published": "2026-07-17T05:43:36.000Z",
+          "lang": "en",
+          "title_sv": "Kanada Fotboll Originals | På vakt: CANMNT | Jesse Marsch Sitdown Teaser Apple Ios 26.5 Update (FqMep4lJFO)"
+        },
+        {
           "title": "MATCH PREVIEW: CanMNT 🇨🇦 Vs. Bosnia-Herzegovina 🇧🇦 (Ep. 2) | Bet365 FOR THE WIN 🏆 Passaggio A Livello (fWMqsOeEO9)",
           "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE42RjB1Q2ExR2JoOTRTVFVvS1VzLTVjTXh0dU9MZ3I5eEZISlJkdHlBUVk4bmxlYUlzTEpDelMtNkJ0cXNfVXZKbHBiUWctcXlGbDNJX2lUMWV3QkZYQndMaA?oc=5",
           "source": "Mshale",
@@ -249,22 +265,6 @@
           "published": "2026-07-17T00:15:03.000Z",
           "lang": "en",
           "title_sv": "6 VECKOR UT!? Hur ska Bayern, CanMNT 🇨🇦 hantera Alphonso Davies senaste skada nu? 😰 Scarlett Johansson (6FPUAMW4R7)"
-        },
-        {
-          "title": "Atletico Ottawa finalizing deal to sell CanMNT prospect Noah Abatneh to Sweden's Helsingborgs: report",
-          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPZVI3enA2dGY3M3JXNFF6SjV6NWlGVFVFbkJfeVpnYk1xU3plWEJ3S1RJeXpwdmZPcUJMaGxBc284b1pETUR1aXQ3cGhLSDRERmVGN3Y4aWJxeUhpbGZ2eWh3eFJEcWV1bDFDM25yYmhsSGlJRjhKWnhub1lFbTRLLUxwSXFRQzhVUEJUUHpMZ2dvanNQUG02dmg3ZFp2dGpLMWlNVF9wbDFWLW9wcDluMF9PcTFEZU5fdU5zdHhHRUVpQnhtTGVydUFEdEUwdEpMbXlrWGk3bDJRTDg?oc=5",
-          "source": "Canadian Soccer Daily -",
-          "published": "2026-07-16T23:42:59.000Z",
-          "lang": "en",
-          "title_sv": "Atletico Ottawa slutför affär om att sälja CanMNT-prospekt Noah Abatneh till svenska Helsingborgs: rapport"
-        },
-        {
-          "title": "Alistair Johnston once again shows quiet importance to CanMNT with solid 2026 World up showing",
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPRlk0Wi05ZUx6WEtsaF83UmhxVG1DRi1XU29ybTBPWWc5ZUZBbzQyYkNGSldFdVNmVWRHS3c0VTdaOXoyeVR2RlJEN2NpcVJsdk9EYWRzeGV2Mmx5cEh1TTlGOXFSNXlPZGpYT1R2Q3ExSEMtOS1hSHUyVjNfNm9FRFVIQ3hBLUFXOFdUZmFqcGRRbWpMZ2pSRms4VllqWTRXMnpyMkZtLUpjNjRJcHVHeGtnX0JLTUlhdEE?oc=5",
-          "source": "OneSoccer",
-          "published": "2026-07-16T19:18:31.000Z",
-          "lang": "en",
-          "title_sv": "Alistair Johnston visar återigen en tyst betydelse för CanMNT med solid världsuppvisning 2026"
         }
       ]
     },
@@ -349,14 +349,6 @@
           "title_sv": "Sebastian Soria fortsätter en säsong till vid 43 års ålder!"
         },
         {
-          "title": "9 مهاجمين في تشكيلة قطر للمونديال",
-          "url": "https://news.google.com/rss/articles/CBMirANBVV95cUxOQTZkVGhKdzB6X09QNFhaMExFNEhJekVXc1lVT282dmZqVzFBdlhDZThNV1RVTGlwVC0xYW9OTTg5Rm5FQkVxZE1zZmNqYWlfWGJlTk1ucUExYWxybmZJM18waXdHcjdhYVlaejNSS2ZvUk82Y3FIRzhEQ28yWUxsUExjaVhQMnh5VWYwNEZSU3l1THNkLURRY0RGR2lUWFRpckE5bGtvRFZzNHh4NFBReEltN1ZaTlVkUHJwa2tkWElDa0RvWktLb1YySFF2dHlNeE9yUFhHdzJtN3lha3Vac2hINk1lRUJNUXBNNmZfZ0lZd0VwUW9DWGlGc2pNeXVKeG96NDljemxwWjVEcUdqQVM5T0VvSDhJX2t1ZFlwc1ZidEpLME1fNnBVbGVzZ2thRDNIeGxwRTU5bzJ6Z1VsLWN6YkRwVE5aa29hbE95SXZaOWRzZUNpYUo3d1p4SDQwTUN0eHpqYU1qZDdLbUswczh1RnlPcG5jUTRmd3pOeFh2M052dWdHUjN4QXI4S3FhRGJaSXl2SWVQN2xjMWdpNWVkbG1VM09nM0hueQ?oc=5",
-          "source": "الشرق الأوسط",
-          "published": "2026-07-16T17:26:37.000Z",
-          "lang": "ar",
-          "title_sv": "9 anfallare i Qatars VM-trupp"
-        },
-        {
           "title": "المعز يعود لقائمة قطر بعد غياب طويل... ولوبيتغي يدرس خيارات تحضيرية",
           "url": "https://news.google.com/rss/articles/CBMiigVBVV95cUxQV3RZMktPaWpMWkc2T2dleTNHYmo3ZHl4MGpfWk9tMmNzb3FYd1ZqMlVYLUhvVnc0QVZYSFBjeTU2T1hzZmpZeVBhSlJnNWJTZUxXVDN5RFE1dTVPdGpvYlB5WVQxMUkyRFh2Yjk0SlBxTkFwdXJuT29PcXA4YmFFYlVMX3FjaS1RMTRpZEJfNEVPbzZ2NU92SFJQdGVEY3dUN0hxZmpaVjJDQS1WOGtwMnZFN3BQWEp3Sm4xX0E3ZGkzNS1pTmRvM3FnYnVVbXVzZUw0VGQteUQ0b3dEb21ocm5GdkVFSjlMb0FhLTBXRU9VUC1FbzNjTWIyTXBqT2VObWxScFpsTi1YSllzck51TDNSSXJPZWY0M1EtMmk0Tkd6NHJHdEltZVZuTDloaVg1RW92T1h4SHd1azByeXZONE1zOEo5ZUdBcy1MNDhqcUQwdnNLVUptR3R4bXpJTm5VUldZa3FaUHkwdEY4M0c2WnE2eDdTUjh5cm1QUkxpdEpFQUI2OXNWaTdRTnhYSnBxdUFIUl9QOUVaNExnV3lWeHRHT3VmRGM0Ti15VmtKZTFwcmRsZEtheHNuUEdnQTRYTU5IYU5QVHFPZjVScFJ1bHg4NThQS0xuNUpjZENkeEhGNTZEdzc2QVExMUFjSXB1NFZTWGFxMzJDUnJkU3piQ2FNOE9oc2lPSFhMeFMxdTRYZzE4Zl8ycFQyMGItVUZ0VExQMW9EUi1hbS12NE1fczAxNEdjSUtNdXlBRWJDSjZKN1NwTHJYZmRBc3JwSU9NdVlqTjd5UXhtTGFMbFYxRmdmdVpWUW5OSVNZLU05SlFaS185c1hZUV9MVGxGS2NROVpQMXYtZWJXZw?oc=5",
           "source": "الشرق الأوسط",
@@ -371,6 +363,14 @@
           "published": "2026-07-15T17:09:00.000Z",
           "lang": "ar",
           "title_sv": "Shabab Al-Yad förlorar mot Iran i Asian Cup"
+        },
+        {
+          "title": "الأخضر الشاب يقسو على عُمان بـ (40-27) في ضربة بداية المعترك الآسيوي المؤهل لكأس العالم",
+          "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9acGExaVVYSmt2a2UwaDdKUXBPTTdMMmFNa0lNckIxRXVZWGVVdVVsbE1GZG1wUmN4T3FHNVRxcGNQcFY0ak1PTlluMVdvdXM?oc=5",
+          "source": "صحيفة مكة الإلكترونية",
+          "published": "2026-07-15T17:03:14.000Z",
+          "lang": "ar",
+          "title_sv": "Den unga gröna mannen slog Oman med 40-27 i den inledande kicken av den asiatiska VM-kvalstriden."
         }
       ]
     },
@@ -391,12 +391,28 @@
       "edition": "BR:pt-419",
       "items": [
         {
-          "title": "A Seleção Brasileira de Vôlei foi derrotada pelos Estados Unidos por 3 sets a 0, nesta quinta-feira (16), em Chicago, pela terceira e última semana da fase classificatória da Liga das Nações Masculina. Ainda na briga por uma vaga na fase final da competiçã",
-          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBPdXA3TkxfUG84ZUw1UnV4bGU5UU00WjVnMi1jczhCdTRuMXVsblVfa09IM0tpS2p6NUJYLVpTRTI3clRnUV91RTJHd2tqa2tCcXc?oc=5",
-          "source": "instagram.com",
-          "published": "2026-07-17T02:45:24.000Z",
+          "title": "Seleção Brasileira de Futebol de Cegos é convocada para VI Fase de Treinamento",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNU2ZDVkt2SXVRUVhHSlpwcm9NZEduemdYUTlYYjNla2pqLTEzNW1fdzJ0QnA1ME5CaVd2OUpHMFRmVmUzODRESDREU08tbVNSNm4yTmRlcTZFd1RYRFdRYy1acWdKRXVTejRBWTZNZEVINFdJODR6cDB2azFabVYyek5IVC1WMEh0d0k5SDRNZ09ZR2hBQ2dkcXoybG1IZkpXS1ByOQ?oc=5",
+          "source": "Confederação Brasileira de Desportos de Deficientes Visuais — CBDV",
+          "published": "2026-07-17T14:41:04.000Z",
           "lang": "pt",
-          "title_sv": "Det brasilianska volleybollaget besegrades av USA med 3 set till 0, i torsdags (16), i Chicago, under den tredje och sista veckan i kvalfasen av Men's Nations League …"
+          "title_sv": "Brazilian Blind Football Team kallade in till VI Training Phase"
+        },
+        {
+          "title": "Seleção Brasileira feminina de vôlei sentado garante vaga em Los Angeles 2028 com vice em Mundial",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPb09tdzdNMDAyaVJhWEVKdjAySEwwWDE5UHUyRWhDU2prakVuOF84NFBBZHJjdkZCRS1ocXg5MklRTlNRSmNZZGxrUU91WnFzMHhISXI4Z2U0dnIzQW9NOVM3WkFMOVpPMlJHZ0FJSzFOTzJ4NlJ5S0d1MjBPVzJyY3ZMZGJtdmRjYUhVUU9EMjA4VlJnTldBRWwyU29kSTlBTHYyS2RFdGF4VllWM3BES1VpSUIxcmQtNGxpUHBCZ2RVRXBw?oc=5",
+          "source": "Comitê Paralímpico Brasileiro",
+          "published": "2026-07-17T14:15:26.000Z",
+          "lang": "pt",
+          "title_sv": "Brasilianska sittande volleybollag för kvinnor säkrar plats i Los Angeles 2028 med tvåa i världscupen"
+        },
+        {
+          "title": "CBF traça novo ciclo da Seleção Brasileira com metas para Copa América e Mundial de 2030",
+          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQWXEtOUd6WG91cnhpemNfQ2lKTXlxb2k3dHQydk5rOS05blNuOTFLUE00ajZ1NWpFQW14RS1ZUk1GNmoxcWNvWDdIancxbW0tVEYxLXZ2dHpPQ3hZWXVWTmRfT0h2SlljTGpLODh5YVVBLVRaNk5mY0FVYVRzb2FydmVxLW1xNjYxRERCYTd2Y1NnaXlYU3JIRUp1T2ZYZW9jQ1ZMc0IxUXc3RXV0dWNVZTI5WmtFZTk2Y3hwWVZMY0lOT1FrQmZJaTJEem5wV0JpN3puR0ExWWV4Zw?oc=5",
+          "source": "Muita Informação",
+          "published": "2026-07-17T00:07:19.000Z",
+          "lang": "pt",
+          "title_sv": "CBF skisserar en ny cykel för det brasilianska laget med mål för Copa América och VM 2030"
         },
         {
           "title": "Guardiola abre o jogo sobre Seleção Brasileira, Ancelotti e Neymar: 'Eu amaria'",
@@ -421,28 +437,20 @@
           "published": "2026-07-16T20:33:00.000Z",
           "lang": "pt",
           "title_sv": "Guardiola avslöjar vad han hörde från brasilianare om Seleção och gör en bekännelse: \"Jag skulle älska att ha tränat Neymar"
-        },
-        {
-          "title": "Seleção Brasileira de rúgbi em cadeira de rodas é convocada para disputa do Mundial, no CT Paralímpico",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPY3hNakVSckxXMDl6Q1ZPcGVXUHFRTkZTcWZLYzMtNkhUS2xlcDFoWXpxVG12MGZSTFNDb0VHYkhzdjhPdktIa3BURHkxNGRRY2xWSS1YOVV4UDE0MGlPU1prUWhWNXdLQURGcWZqUEhpSm9NbWVIZlJUUV9kME9GWV9iS3AxRFRZQU5wd3A4bno1RHduU0RZcFMzaFByTFVMeFBXX1Q2clF2b09HRDk3aDFnbUd5UlB6SVE0bEFUX1dxZDV0U09PSzFB?oc=5",
-          "source": "Comitê Paralímpico Brasileiro",
-          "published": "2026-07-16T19:32:53.000Z",
-          "lang": "pt",
-          "title_sv": "Det brasilianska laget i rullstolsrugby kallas för att tävla i världscupen vid Paralympics CT"
-        },
-        {
-          "title": "Seleção Brasileira de vôlei sentado feminino vai à final e busca bicampeonato mundial em Hangzhou",
-          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNanl0dmVScE1MVkgzQzdEVW9QVDdGcTVCa01sWUsxQldJNHVJMWtTOV9aTVF1QzJ4VlZXOHRWMVRGMzE4VkFUZkRpQkxpOVlxV29ZQ29LWWJSYnRlZmVveExScU5yNll3NHNKbUtpV2RPVXRJWm5BckZZcFkyQmpDQXk0bnJUMWluc1A1NF9tSHItajEtUlRrcG9uZ0pERG8yUHR5SUZhTlJpYnkxQ1R1VENJc1V3M29hbm0yQzhpN3FpM3FN?oc=5",
-          "source": "Comitê Paralímpico Brasileiro",
-          "published": "2026-07-16T17:59:42.000Z",
-          "lang": "pt",
-          "title_sv": "Brasilianska sittande volleybollag för kvinnor når finalen och söker två världsmästerskap i Hangzhou"
         }
       ]
     },
     "ma": {
       "edition": "MA:fr",
       "items": [
+        {
+          "title": "Mondial 2026 : la FRMF fait bloc derrière les Lions de l'Atlas",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNNmREX2NGTVhJSEZXSE5EbXBEcnZET20xdlJ0MlE0RGpkZllDYy10MkhhUVRoci1GUjVPVHp0aFFZNTNacG5oUlk4MGdpY1ZXRzlYSXFSQTVmRW1pdTFJdnVQLWllWVhBMENtc0twMHhzWVIxbWJFUk54LUVEaURiYXBpdC14bWdjTkE4T3JuY2hvTW5Hd1Vn0gGcAUFVX3lxTE05S0kzMVlpZWFXd1NQRUtnXzJfV2Jrb2RKcHBNeFY3YjlfWlhpWk5oTmk2Q2c5Y0RYeWFsdkdGa3UtQ3c0a3VyaTZjVHNwLXc2N3FKQTNlMFY1RFNCWTREWmt5MXUwaUxSTXNzUzdHMDNoSXpNSDZ3WkdLQ1BpczB6dFpJeU9xRUpEbkFNMkNIMWJUcDdBdktpdFpDXw?oc=5",
+          "source": "Le Matin.ma",
+          "published": "2026-07-17T13:43:00.000Z",
+          "lang": "fr",
+          "title_sv": "VM 2026: FRMF förenar sig bakom Atlas Lions"
+        },
         {
           "title": "Coupe du monde 2026: le Maroc a tranché, Ouahbi confirmé à la tête des Lions de l'Atlas malgré l'élimination en quarts",
           "url": "https://news.google.com/rss/articles/CBMilwJBVV95cUxQU1YtVmxsbkRPaUVwdGVKblhqRFN2Ym14VnlXT3NramxFc3g2QTA2OVhnX3lZQXFLY2dvaEhVRG9UbHpVUWJHNHVuejhDMzE4anJoazNhVEJrX093WndOUkhORXpKSUF5ZEI5RHpKX0ZWVFZaWHBuUWpqSWdvaXZUaUZJSkpKb1ZTSWNhWXdjelRqWmpBcHZDcXRTZmptZkxlQTB3aFlaWVdwendlQ25CUUJYMjdnai1lZ01LRk45b1VVMEJPR1lDMTVwTnB3eWJ1WGdTNlhoTmhzdEViR2FrbnYzMU52OE1jTU1LMzNXQ3FOUnFkM1VpWjFaSmUwQVRiTzkya1hwZGhra3NKRlZ2YVVrQi1uQms?oc=5",
@@ -468,34 +476,34 @@
           "title_sv": "Mohamed Ouahbi höll i spetsen för Atlas Lions"
         },
         {
+          "title": "Mondial 2026 : Achraf Hakimi et Brahim Diaz prennent enfin la parole !",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPQnVJc2lMRjdjQm1LN3p6UXlTTzFJNkl0VEVldHlrY1VtWHZpUHJzWlZYdGtDNUFUQmpuWmZtY09sMzdSa3VFQ0JvbUloNE9CZnIzV3F6VGZhdVJjZ0pKMHFya0ZaNlRYdGktcWQ3NXJnQlp0cS1RNjFtMG90Z2xXYk1YZ21KZGlVUkdkbkg1cHVEU3Y4RkhjLTl4TkdrZWRNREFHbVFn0gGmAUFVX3lxTE9CdUlzaUxGN2NCbUs3enpReVNPMUk2SXRURWV0eWtjVW1YdmlQcnNaVlh0a0M1QVRCam5aZm1jT2wzN1JrdUVDQm9tSWg0T0JmcjNXcXpUZmF1UmNnSkowcXJrRlo2VFh0aS1xZDc1cmdCWnRxLVE2MW0wb3RnbFdiTVhnbUpkaVVSR2RuSDVwdURTdjhGSGMtOXhOR2tlZE1EQUdtUWc?oc=5",
+          "source": "Le Matin.ma",
+          "published": "2026-07-16T13:35:00.000Z",
+          "lang": "fr",
+          "title_sv": "VM 2026: Achraf Hakimi och Brahim Diaz talar äntligen!"
+        },
+        {
           "title": "Mondial 2026 : pour Brahim Díaz, «le meilleur reste à venir»",
           "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNMmRYVFdYSmdwSVRyTWxKWGVIQ1EwTlJuNlRUYzl4S3B1T0h6YmhlU0RkelNHdlZ2cXExTnZ0RWhVVkRfNU1XTVRZUWxVb0hEdVB4ODJlMm9NLU9JYTRIM05FN1FrbmhZakhZenNOVmg3b1RwQVlTd2N2dDFrb181Yksxd21XdmRNTEt2ZlJqb0VGVS11MjRRZlFB?oc=5",
           "source": "H24info",
           "published": "2026-07-16T13:05:01.000Z",
           "lang": "fr",
           "title_sv": "VM 2026: för Brahim Díaz, \"det bästa är ännu att komma\""
-        },
-        {
-          "title": "Lions de l’Atlas: la FRMF renouvelle sa confiance à Mohamed Ouahbi",
-          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQMjJGazJrWUZUaGdrV1hmT3U0bDQxUUxCam9PYWczc2VMZ2JoRUlsa1ZwdllzeGVzWFJVUXNXOUdpNURrRDV3emJVb0Frcm53REVmMWFwekhvd3FxRE9ITDNNbWpjZC02LXJRTjZPbWFITDZfajFWY21IUG01OWtFcEE1SWplVVR1WVNGbmh5YjBHSkZucG5zNmgwNENueXJBLUF1eGtfX0lvN2JlUER2THZua2ZKQ1gyU0k1N3Q1RkdwZw?oc=5",
-          "source": "Le360 Sport",
-          "published": "2026-07-16T08:30:00.000Z",
-          "lang": "fr",
-          "title_sv": "Lions of the Atlas: FRMF förnyar sitt förtroende för Mohamed Ouahbi"
-        },
-        {
-          "title": "Performances des Lions de l’Atlas : M. Ouahbi entre fierté et ambitions",
-          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQVkRDeGFoNzZqMGxBa2VvSkRlOUY5N3Z0dGdXeWN6U0pmbTd0ekJxYVNnNnVoOFVEcS0zVDE1LVZHVTBqem1Sd1Npbmk2UmROdUxfVHN3OUZ2MUNvSE5VVGtUVUw5b3VfZnM4MzVHUGZKNHJVa3EwbFZGa21SZ1hzZFdzTFVfR3FyS3VEd3VGNzVfNjJOR2R5N1hBdF8?oc=5",
-          "source": "Perspectives Med",
-          "published": "2026-07-16T05:50:31.000Z",
-          "lang": "fr",
-          "title_sv": "Atlas Lions uppträdande: Mr. Ouahbi mellan stolthet och ambitioner"
         }
       ]
     },
     "gb-sct": {
       "edition": "GB:en",
       "items": [
+        {
+          "title": "3 Liverpool legends listed among managerial favorites for Scotland job",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNcGZEMExjSnpwYzQ3Ny1aSkhrcWp5T3pLVDNFZlNodEpIb0w1a3liTHA2YjY0VHJBQ21QdUhfSm9NY1lNSVpZcTJyTzJSd2ZYVC1pRlo0RFFyN1dxM2RGTUJ3dUxjbUU0WC0tNnJrUWZULVJ4TGI0ajJqcnRRLS16OXpnZFZSWmNfcWZxUVJuQ1J2WWdGWDJKa2ZB0gGfAUFVX3lxTE9NOUxyTFU5QnlWeFUwbEVKMTRucHg1U1ZyQ2lNLXQxYzhoS0dpX3hLeWM0QnliSE1XZUJKWjhuTk1PWVRsdFpvS291NkgzRGpGRHhWbDloZnBZS0c0Y3ZNZEtramprX3FVbTk4cDdUVEVpa2ptcElYcExFVng5YVpTdU51akVEUW1BckxMeThKZFNUdHVMdm4wemtVMk12MA?oc=5",
+          "source": "Liverpool.com",
+          "published": "2026-07-17T15:02:39.000Z",
+          "lang": "en",
+          "title_sv": "3 Liverpool-legender listade bland chefsfavoriter för Skottlandsjobb"
+        },
         {
           "title": "Trojan Crates Proud to Have Supported Scotland's FIFA World Cup Journey",
           "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOWEZUYzJSaFJqaUV6ZUJabExybkV2YnhlU1hrVks2dFJ0ZVhXLWNvM3lqbWdqVndZbUhhbUh1WXZJbi1vWDJ5UC16QnpGbktDMTZIWndpcURjXzEzLXVzVVBpd1d3eUZtVjF5bEU0R0JsZGxFcjd4cTRaejdkcThYOTlQcTByWHUxTnRBNV9aZnViNmZ1cjBxOW5mRXZiajBkZnE3WlBBOElHZw?oc=5",
@@ -535,20 +543,20 @@
           "published": "2026-07-16T09:19:13.000Z",
           "lang": "en",
           "title_sv": "Craig Gordon: Hearts, Celtic, Sunderland och Skottlands målvaktsmästarskap, tillkännager pensionering"
-        },
-        {
-          "title": "Hearts legend Craig Gordon announces retirement from football in emotional video",
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQemVBdy1qZ19zVno0aTd6SzFpekZCU3ltdHdGdDByZDFOcVJ5MTlDN19YNVFNVnBTR2FiOGRHd3hVUEVwQmpfVzN4ZUtWMVZ1aWp6S2VMZHA1VS1NM0l5V040WjBlNkx2cUlvWV9KYmFoRkNCOVZibDEzZzBIRjRXRnFXbzM0dTVHUjRRRGVIUWF3VkJmdTlPdjM4UURQeG4tMmhzRHpNQkJoSTZtdm10VA?oc=5",
-          "source": "Hearts Standard",
-          "published": "2026-07-16T09:07:47.000Z",
-          "lang": "en",
-          "title_sv": "Hearts-legenden Craig Gordon tillkännager pensionering från fotboll i en känslosam video"
         }
       ]
     },
     "ht": {
       "edition": "FR:fr",
       "items": [
+        {
+          "title": "Foot- Sélection: Sébastien Migné : « Le sentiment du devoir accompli »",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQM3VQTlBlSUx2QjJsRlJpT1M2dlhSMWhaRjRycjFqS19wTUFOS1Bsam5JVjB5MDNNdmYxZGxPUzkxVThDZG1xSWhZOWVZVlRBNjR4ODEtYjRxdktfeDkwcktpcnNuZ1U0ZlNpV01JOFBmcndONnQ4b1ZUWmhhN2xiMXQ4dkR5d0FLSW1XNjF6dw?oc=5",
+          "source": "Haiti-Tempo",
+          "published": "2026-07-15T17:40:29.000Z",
+          "lang": "fr",
+          "title_sv": "Fotval: Sébastien Migné: \"Pliktkänslan fullbordad\""
+        },
         {
           "title": "Gabon : un sélectionneur du Mondial 2026 nommé sur le banc des Panthères !",
           "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOS0ZjZ3k4bmNweTk5Z1FhU3FJSV9SZTlPZk5JRUw1bmF4SVBlRDM1NlViU0Y0eTZNOEkxYkxhamRTTVUzUE9GUWQ1TzRBOEdlYmtQamNCbmRyS3BPZnV2SWY4VVRVc045NVZVbFF2eEVuYWZZWDN6MGFKMXVuYWFVWkkta1VVMGJKNWV0a2MwQUhmSU03NkJKTzJOSF91dw?oc=5",
@@ -588,20 +596,20 @@
           "published": "2026-07-15T15:53:12.000Z",
           "lang": "fr",
           "title_sv": "Sébastien Migné studsar tillbaka i Gabon och tar kontroll över Panthers"
-        },
-        {
-          "title": "Sébastien Migné est le nouveau sélectionneur du Gabon",
-          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQYW1DZnNzS3dkc1RlQmJUbWN1Z2JWYWpqcVAwRWluNm0zdlRWdHgwT2swNDRuOHhkcWlCYUoxYnFLMzZYQlI3cWhQWXRTT3NDdDMtSTgyVzJNMUhKT2F5V2xBLVdJc0hnRkt6WWpkS29CVExVM0l5aGR4QXlwWnV1MGt1Qmx0U3dkVU1nY0FBaw?oc=5",
-          "source": "Dailysports",
-          "published": "2026-07-15T15:05:50.000Z",
-          "lang": "fr",
-          "title_sv": "Sébastien Migné är Gabons nya tränare"
         }
       ]
     },
     "us": {
       "edition": "US:en",
       "items": [
+        {
+          "title": "Mauricio Pochettino to make decision on USMNT future next week",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPampYbEFTSWg0ZGxoS20tZHdyYmRPUUUzMmtja2JQVGpBLWJOZkcyRW5mUHg2VUFvRllpWERMUkJhMy1Hem5zb2lvb2l1VS13WmNOTkFsYk9EOXhBR3FURlhCcTJDNkg0dU9tSHBqaFlGZXBNSDM2RG43elp2RXJMWm1QNVp3OG1NTDFhLV9HakZOT0NCc2hydnVkOG4yRVlvQjBDQlBkUQ?oc=5",
+          "source": "ESPN",
+          "published": "2026-07-17T10:03:00.000Z",
+          "lang": "en",
+          "title_sv": "Mauricio Pochettino ska fatta beslut om USMNT-framtiden nästa vecka"
+        },
         {
           "title": "Tim Ream: USMNT was in 'shock' at poor showing in World Cup exit",
           "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQRGNadk9VTjYzQWFQcVp4bDRCTlBSbTBjTldETlZIWm1YRGVXM2hzNzJZdEJ2S2dCVDVYT0VKNXZjeDdYeEltQmJjMGRZczg5akFoS1d1VWlJdW9Nblh2VjZFb1k0bnByMkdJR2tjeGJxelNEaTRrUlI2R1N2VjVIbnBDUkVOUnBRSVBZN3VOLTZyVE9R?oc=5",
@@ -641,20 +649,20 @@
           "published": "2026-07-15T07:08:00.000Z",
           "lang": "en",
           "title_sv": "Vem ska träna USMNT härnäst? 11 potentiella ersättare för Pochettino"
-        },
-        {
-          "title": "Matt Freese: World Cup elimination is motivation to improve",
-          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQamRGQ1FnbTREc1ExRkpteXVxMXpReWRGRWJlQ2R3bUoxQXMyYnhVeklvdFBybWZBTzUwbndTd1R2U1JCSW9SeExueTktbG5UdzBGMzZpd3c4NGtNV3pxWWw2OWVlZjlmOUpHVGY0NmhVMGVJTmpNVDZ4Z3drZnZOdEo1RjY3Vjc4aklpa3pqek9LeTY0NnRZd0VzZlJwNXNuYjAzaEE0Mmk?oc=5",
-          "source": "ESPN",
-          "published": "2026-07-14T21:44:00.000Z",
-          "lang": "en",
-          "title_sv": "Matt Freese: Kritik av USMNT World Cup-spel \"gör ont i mitt hjärta\""
         }
       ]
     },
     "py": {
       "edition": "PY:es-419",
       "items": [
+        {
+          "title": "Joe Hart criticó a Paraguay, pero Inglaterra terminó haciendo lo mismo ante Argentina",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQNzZ3ZDRzVnctTWxHc0JlR2d4WGtNY3M4ZFFmMmdpeGhfOFNQNlhlZHlrV1JPZFB4VEJsZVIybWVIUUtSU2VUNnk3Zk8tTlZaYjQzam5FUmdyeUVQQV9EUmVEN1NHR0w1aEQ2bVh4QWlYakJNSzlCVm02X1FfSVhsRFlmX2wtUUxXckJ2VEhzNlcxT3RsQlc3OFNzM01VUDdZamFpemtaUUhiV1hKRDVOWFQ4S2hlUDE4M0tzME5uRGx2UjFCSHo3VGtB?oc=5",
+          "source": "VS Sports",
+          "published": "2026-07-17T14:10:46.000Z",
+          "lang": "es",
+          "title_sv": "Joe Hart kritiserade Paraguay, men England gjorde detsamma mot Argentina"
+        },
         {
           "title": "#VsSportsSomos26 | Seguimiento Al Bus De La Albirroja Hasta El Defensores@somosvssports Robbie Keane (t04LA9RISs)",
           "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5Ua2t0d09Qd21yaHd0M01TUEpqT2YyeF96enFoeXJPNV9UMEg0X1BjQmRIaXNOTDhEMFdJNzExbEpjQkVNU29Ka1NNWGdseG1mZGwydGYyNVVUcE5McXBTcg?oc=5",
@@ -694,14 +702,6 @@
           "published": "2026-07-15T12:07:23.000Z",
           "lang": "es",
           "title_sv": "Damián Bobadilla: \"Det är den största bedriften i min karriär\""
-        },
-        {
-          "title": "Itá declara \"ciudadano ilustre\" a José María Canale",
-          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOQjNQWkQ5YUpyVmVRZGhyNlY0b1dleDE2OVBjMnNXRnVJLVRjOHAwclJnakxEZkplRTB4ZnFxeGhub0lUSVhMcGQ4cjA3VG5kWHlERlNYSHNFOXZ6dlgxaE9PR3N5SE5iRXY1Z2xqZkRSVmx5NXFMZE5DV2dBLWFmZlZGQ3lMXzRESDJ6NEV3UlJ0dGdsZXhlYUFoRQ?oc=5",
-          "source": "VS Sports",
-          "published": "2026-07-15T09:59:44.000Z",
-          "lang": "es",
-          "title_sv": "Itá förklarar José María Canale en \"berömd medborgare\""
         }
       ]
     },
@@ -815,10 +815,26 @@
       "edition": "DE:de",
       "items": [
         {
-          "title": "Final-Coaches als Vorbilder: Hätte DFB-Team mehr Wück statt Nagelsmann gebraucht?",
-          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNWFpZd0xUWFBzVXZuR2NMSXlsUEp5WEFYbHAzb1VyOXJSTF90NHVXNVZocXRfbFA4UWZBY001M0pMdnVZNEhRZmFJNDlldmJKTDBFSWY5VjE1M01sdi16RXdpZ204aHhxZnlmdkc1bVc3Ni1pQ1hMejNxdTNqZXJyNzE4ZWZsd213OVpyemhlT2ZJQnI3bHIxWkZ3RXFhb3A3R19ndXhERTZUeWtGVFRHa2dOMWlhR2ZDMHpGS2x5RQ?oc=5",
+          "title": "Kimmich nervte Kollegen: Erschreckende Zustände über DFB-Team enthüllt",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOUEprOEZZQmRiMVRvb0VxNmFhVkx1MTJvWUkwc3g0MlFNaGdBanFHMC03NkJRU1FpelFUUTRxOVJSTUY3WUNnbFZkUFJHVmxRVmlmb09JMTY1VWhMZ0xoU2hwZTNGNDFZV3F5elVCRU9qbmJPUzRvYUx6b0ktbGNPanVsMVp3MFdkVmNmYXNZTTdXemhnUE1pelBNeFJjdXRqeGFUZGNZWFVYdkxsUWNUOXlwRkJkUQ?oc=5",
           "source": "OneFootball",
-          "published": "2026-07-17T09:24:00.000Z",
+          "published": "2026-07-17T13:49:37.000Z",
+          "lang": "de",
+          "title_sv": "Kimmich irriterade kollegor: chockerande förhållanden om DFB-teamet avslöjade"
+        },
+        {
+          "title": "DFB-News: U19-Kapitän Onyeka fordert mehr Spielzeit für Talente",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPbnZ4UXBtUURCTGtyTS1yTUpMMF8tZFZGMm1HMFZSc0llOFlYckQzc3FPNUZZclBBNnlsb3BVSHRrX3ZBeEZsM3NNM2ZCbFpNUk9tcmVFaV9oUzQyNUJXUHVjUW9kV0RxRV9aSFBSQ2hVczA1NHJRdGZTZDdOME5jeEZmVXFSaG5vbHh4MGFLQzg2QnVVdG96YkpsVHNub3RyaHBycWtHblJRRGc0WE9oczJTU3ZWT2w0TWpyag?oc=5",
+          "source": "sportschau.de",
+          "published": "2026-07-17T11:34:29.000Z",
+          "lang": "de",
+          "title_sv": "DFB-nyheter: U19-kaptenen Onyeka efterlyser mer speltid för duktiga spelare"
+        },
+        {
+          "title": "Final-Coaches als Vorbilder: Hätte DFB-Team mehr Wück statt Nagelsmann gebraucht?",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOdlNCdjZPN2tNeHQwUVRIdE5iVzdmMzA2a0g5V1g3VHJQRTRWNTJHYjBwWHVuQXBwZ244cndfTUZXU1llX183TDZvbEE2ZUZnQlFfUGIzd1lWR0FYeGFQSW5YVjRYT2d3bmR2TGNNa3NsWmx5d1BfVWZkamtFdjBKekpSR0JOeExIVktZcFJUMWtoZ0gwOTE1OWdWbjBIZUVxM1Q1ZDZpdzUwMTQ3VFdDaDhSejJfV3B2eG1feC05U2IxbDF4?oc=5",
+          "source": "OneFootball",
+          "published": "2026-07-17T09:24:07.000Z",
           "lang": "de",
           "title_sv": "Slutliga tränare som förebilder: Hade DFB-laget behövt mer Wück istället för Nagelsmann?"
         },
@@ -845,22 +861,6 @@
           "published": "2026-07-16T17:46:00.000Z",
           "lang": "de",
           "title_sv": "Klopp står inför en enorm uppgift: VM-semifinalerna ger dåliga nyheter för DFB-laget"
-        },
-        {
-          "title": "„Die Verräter 2026“: Max Kruse – einst gefeierter DFB-Star, nun „Verräter“",
-          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPSDBhTHYzRkRjVTJHa0x6ZjNrN1BvdTBnNU16eFRHZUYzUlByaWZfa0o5VFRyQ1VmX3FIVmhPV1NQSFBHRHNiSERkTlBySVZRQ0Rua1RWOGZfOVV4dlV6OU1JLXIxTngzTjN2eExtM1R2SHpTajJIVjdEUUVCMmY1US1vUWdPTnVuMXZrUjZNRlRacWV6cW9FLUxvbUFhOEVBb1FFYlhlcHVqZjdRR1FyNUhXekNKeUJZSkxTb1JuRXB4UHlJQmlyWDBEa3pBNVE?oc=5",
-          "source": "Saarbrücker Zeitung",
-          "published": "2026-07-16T13:44:00.000Z",
-          "lang": "de",
-          "title_sv": "\"The Traitors 2026\": Max Kruse - en gång hyllad DFB-stjärna, nu \"förrädare\""
-        },
-        {
-          "title": "\"Ich-AGs\", \"Ego-Shooter\", \"Bocklose\"! Jürgen Klopp steht eine Herkulesaufgabe als Bundestrainer bevor",
-          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPTnlPb05pNHZpRmdMMWZwWEhtdmtLYVF4dHJiS2JERXlYeWMxbDROejUzWTJMWTVEUkJVWjJLYTAtZC1PS1VySjBrYS1yUDFYZTYwdGszTDR3dmtVMXdSOC1jY21SLUtzRFl4U2xnbGtZTndRT2ZfeXdWU0NPdE5rVWl0MEZkNkNZQ18tcnNwdFBrbG04MFdPVmJScTQzQWdTY2hreS1GdFphUG95WjZHa1hZc1R2Wkg5UG45UFFaMUVtNmk5NGdPTDBxZzFUZXBGU05PX3lmSldtbVdLcEIxVlZrc2E?oc=5",
-          "source": "SPOX",
-          "published": "2026-07-16T10:19:00.000Z",
-          "lang": "de",
-          "title_sv": "\"I-AGs\", \"ego shooters\", \"ovilliga\"! Jürgen Klopp står inför en herkulisk uppgift som nationell tränare"
         }
       ]
     },
@@ -974,22 +974,6 @@
       "edition": "NL:nl",
       "items": [
         {
-          "title": "Programma WK voetbal | Waar en hoe laat zijn de finale Spanje - Argentinië en troostfinale Frankrijk - Engeland?",
-          "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQMjJFTFNJNXczZUJCdW41R0F5cEJwb2g5UlgwS1ItbTcySV9qaGlsLXBZQzRwMUpOeEQteTZLZm9RTXlWUEFfZkxNTVF1N1lHbnN4UTFocXp3QnBfb0NhUkhnUkFzR3F3LXJUN3pmYk0xM1p1Wm5XelJ3UVl0NndqM3Q5eHBsLTdzXzVKR2FWcEgwZ3lPSXhjckJYQzhObHJzc2VETlp2d2JEZFlIekJLWWJrX211Rk1UUkdDdFdMeC0wblNMc3dCZ2ZveUpvR1dEQkxNZS1CRkttaWVpS3ZKMEtpMWE2Vzc5ZWFBcmdnYXFDejctXzJIa0E4OA?oc=5",
-          "source": "Sportnieuws.nl",
-          "published": "2026-07-17T09:59:53.000Z",
-          "lang": "nl",
-          "title_sv": "Fotbolls-VM-program | Var och vilken tid är Spanien - Argentina-finalen och Frankrike - Englands tröstfinal?"
-        },
-        {
-          "title": "Dick Advocaat moet contract voor het leven krijgen als bondscoach van Curaçao: 'Laat hem het lekker bepalen'",
-          "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQV0RiTFhwUE5mOXJicXo0Q0NhMWhhSThKeFZhUFQ3Mk85dTY5eUk5MEZ0MGNfTUJpbmt2eHJhS01lY3JfTnV1Nk5uQXk1azF3bWw3TFJsM0kzaUt4SmNQYm0zZmloQ2lYR25zcndOXzRMbVJtSngzXzJfeGNhRWdRalh2a25ETTdUYkRiZUpEMVRQNHVHNS1RRkNmMzA5cko2YU5ZUUxIcUxHYU1XemNDcG1sRkFwbHdxNkRMejE1UExVWEpKN2Rxa21aTHR0c0NhTE1mMjhaRWE4MlFKRllIb002dmhLNjVjVlpHby1lb21zcmRvTlduR0ZBUQ?oc=5",
-          "source": "Sportnieuws.nl",
-          "published": "2026-07-17T02:00:00.000Z",
-          "lang": "nl",
-          "title_sv": "Dick Advocaat borde få ett livstidskontrakt som nationell tränare för Curaçao: \"Låt honom bestämma\""
-        },
-        {
           "title": "HERBELEEF. Duitsland toont geen genade voor WK-debutant Curaçao: 7-1",
           "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQYTdjc2I4V01vQ3h0MlVJV3FBa0Q2TFBFRjNxQ29WaWlXM3RiQjlzUnFrSmdJaWo1Vy1GNm1MNENnQkVjd05Jekhka3pqQllDbGRvOEdVdUZycDFtcFYwT2FNbzI4UkdlbmtjSmJUVmo5VXR2eXAzLWx3TUUzcnRqODdpQ1lHQ3pIR1A5bEFJclBTaTZuVnVDb0hxQmJfQmR1NnhpUTNkeV9qamlDUXpRZzNVQVp4OG40ZFp2TWluRQ?oc=5",
           "source": "Nieuwsblad",
@@ -1006,6 +990,14 @@
           "title_sv": "VM har gett invånarna på Curaçao stolthet och självförtroende. \"Många förstår inte att vi fortfarande dansar när vi förlorar med 7-1\""
         },
         {
+          "title": "Programma WK voetbal | Waar en hoe laat zijn de finale Spanje - Argentinië en troostfinale Frankrijk - Engeland?",
+          "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQMjJFTFNJNXczZUJCdW41R0F5cEJwb2g5UlgwS1ItbTcySV9qaGlsLXBZQzRwMUpOeEQteTZLZm9RTXlWUEFfZkxNTVF1N1lHbnN4UTFocXp3QnBfb0NhUkhnUkFzR3F3LXJUN3pmYk0xM1p1Wm5XelJ3UVl0NndqM3Q5eHBsLTdzXzVKR2FWcEgwZ3lPSXhjckJYQzhObHJzc2VETlp2d2JEZFlIekJLWWJrX211Rk1UUkdDdFdMeC0wblNMc3dCZ2ZveUpvR1dEQkxNZS1CRkttaWVpS3ZKMEtpMWE2Vzc5ZWFBcmdnYXFDejctXzJIa0E4OA?oc=5",
+          "source": "Sportnieuws.nl",
+          "published": "2026-07-16T07:00:00.000Z",
+          "lang": "nl",
+          "title_sv": "Fotbolls-VM-program | Var och vilken tid är Spanien - Argentina-finalen och Frankrike - Englands tröstfinal?"
+        },
+        {
           "title": "Amerika beschiet schip onder vlag van Curaçao, zou onderweg zijn naar Iran",
           "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPVFo0RG8yTGQ3SXFTdXQ0Ti1ybmVqeHZLNzBFNW5tbkxoUEVUc1pvMU5sLTFZR1Y0dV9qMjVQWHBIZlFzNTFaU01QNVYxaXljNkpjMW9CSzduanBIT2NxellwVnUxRjRHcFBpWWUzLWczVmJkYWN1S0QzeW9wYU0yVmJ6N1NTVjVTODhIS1RkR2ktcWlkV2pQcjBnZTBkdU9RNkk5dlNnWEdlbnY5M25tRHdxRHFpb0U?oc=5",
           "source": "RTL.nl",
@@ -1020,6 +1012,14 @@
           "published": "2026-07-15T19:08:35.000Z",
           "lang": "nl",
           "title_sv": "Chris Woerts har stora nyheter om Dick Advocaat: tränaren kommer att fortsätta som nationell tränare för Curaçao"
+        },
+        {
+          "title": "Dick Advocaat (78) sluit langer verblijf als bondscoach Curaçao niet uit",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOWGRmY1Roc2xna2JzcmZncDJYZThFYzNNanNaVHhPSndNcnVWMi1WVElsbFhTdkpEZ3pSaDJFeHB1ZGNIazlrenZJLUZlX1F6cDN2QjZhSEYydlhOVlU4cnlRZXZ2MlE3NFk2dTh2Q3c4N2hpRDFzYkxZU1BRUlVMRjQ2VmhIQVlieDVtemVyaUYydmlCWXllNmMxel8xcmwwOHZrOEpQZzlWOVNpLU9qaWI3eXh1bEE5OWtJREpXcGZJZw?oc=5",
+          "source": "De Telegraaf",
+          "published": "2026-07-15T12:59:34.000Z",
+          "lang": "nl",
+          "title_sv": "Dick Advocaat (78) utesluter inte en längre sejour som Curaçaos förbundskapten"
         }
       ]
     },
@@ -1033,14 +1033,6 @@
           "published": "2026-07-17T12:30:50.000Z",
           "lang": "nl",
           "title_sv": "Daryl Janmaat trots eliminering: \"Apelsinvalet starkare än Marocko\""
-        },
-        {
-          "title": "Programma WK voetbal | Waar en hoe laat zijn de finale Spanje - Argentinië en troostfinale Frankrijk - Engeland?",
-          "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQMjJFTFNJNXczZUJCdW41R0F5cEJwb2g5UlgwS1ItbTcySV9qaGlsLXBZQzRwMUpOeEQteTZLZm9RTXlWUEFfZkxNTVF1N1lHbnN4UTFocXp3QnBfb0NhUkhnUkFzR3F3LXJUN3pmYk0xM1p1Wm5XelJ3UVl0NndqM3Q5eHBsLTdzXzVKR2FWcEgwZ3lPSXhjckJYQzhObHJzc2VETlp2d2JEZFlIekJLWWJrX211Rk1UUkdDdFdMeC0wblNMc3dCZ2ZveUpvR1dEQkxNZS1CRkttaWVpS3ZKMEtpMWE2Vzc5ZWFBcmdnYXFDejctXzJIa0E4OA?oc=5",
-          "source": "Sportnieuws.nl",
-          "published": "2026-07-17T09:59:53.000Z",
-          "lang": "nl",
-          "title_sv": "Fotbolls-VM-program | Var och vilken tid är Spanien - Argentina-finalen och Frankrike - Englands tröstfinal?"
         },
         {
           "title": "Drie Oranje-spelers dreigen af te zwaaien: ‘En dat zijn niet de minste’",
@@ -1073,12 +1065,28 @@
           "published": "2026-07-16T15:11:57.000Z",
           "lang": "nl",
           "title_sv": "Malacia har nästa steg och Orange i åtanke: \"Jag vill flyga igen\""
+        },
+        {
+          "title": "Supportersfeesten, nieuwe wereldsterren en formidabele ’kleine’ ploegen: er viel tijdens het WK 2026 ook genoeg te genieten",
+          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxOYzVBSGx1TThjV3AwTVNmRnVNV3I2ZFNWWkhVOC1NOTV4OVhGcGlfbG1HWFNac0pCbnNrY05KZ1k1U1E4elkzay1ZREpzbTZsNUtLaHdaaE84SnVrOXdONzRVSEhGLWtUOE1fSVZrX25PXzdOaXlfWXhaVG5YZlo5Tk5OMENPNkU4RjlYR0tnX2tMNVFYMTlSYUFQaUNzWnNaVGNiWVAtUGhTV2c1WV9UNU44cGM3Q1BwWDVfZ2V6cHdmbl94TEFMVjE1WVpSa3hSMFd4Z3hBWWl2QzRPdElGMTlSUmJHT2hlZ1laRlFrbm1CS2lBQ0dEZFVaYkJfSk5OeDR3?oc=5",
+          "source": "De Telegraaf",
+          "published": "2026-07-16T12:30:00.000Z",
+          "lang": "nl",
+          "title_sv": "Supporterfester, nya världsstjärnor och formidabla \"små\" lag: det fanns mycket att njuta av under VM 2026"
         }
       ]
     },
     "jp": {
       "edition": "JP:ja",
       "items": [
+        {
+          "title": "FIFAワールドカップ2026｜出場国一覧｜試合日程・結果・順位表・放送・配信・実況・解説｜日本代表",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9HUXppMGo2SGFoSGhhd08zMjhjZVF3aHlvOWpPTnhtMXAxNkFEZ3dVT2xCQzhLZ3llekpORF9MazB5UU85MllIcFdpZ0QxeTlNeGdtR0N4eHdQa1FST3ZWWG4tcFpyQjNRbU5lTlMzQXVZOEE?oc=5",
+          "source": "サッカーキング",
+          "published": "2026-07-17T13:33:13.000Z",
+          "lang": "ja",
+          "title_sv": "Fotbolls-VM 2026 | Lista över deltagande länder | Matchschema/resultat/tabellställningar/sändning/distribution/livekommentar/kommentar | Japans landslag"
+        },
         {
           "title": "サッカー日本代表・塩貝健人、芸能界ネットワークにネット驚愕「大物や」「すごいメンバーに愛されてる」（ENCOUNT）",
           "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE51bkxsb3hFeVhLRGlsSDdrUFlYTGRTRy1EVFFnX1dRSlNDYmdhS0xBRExBWVpFemIwRzRMTTNycDNEME5DdmVKVXBxdWFYeXpIbndMZF82c19HdVYwM01Nb3ZWaTZHYmhhQkFUbHNwc0VuN0ptN2ItZDhVOUJYblU?oc=5",
@@ -1088,20 +1096,12 @@
           "title_sv": "Medlemmen i Japans fotbollslandslag Kento Shiogai är chockad på internet av underhållningsbranschens nätverk: \"Han är en stor kille\" \"Han är så älskad av medlemmarna\" …"
         },
         {
-          "title": "【更新版】放送日程（決勝トーナメント）＆試合動画まとめ【FIFAワールドカップ2026】",
-          "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBtamR6b0c5Nm95T2hyQzRpXzFyZTBzOHQ0M0pueG93Sk5STkE3Y3BkX252cmJtMENVUGNOMExSaUkzUWtramxISTZEeGxucGhFMzdkZHlyOEMybDkzbXc?oc=5",
-          "source": "NHK",
-          "published": "2026-07-17T10:52:52.000Z",
+          "title": "サッカー日本代表・塩貝健人、芸能界ネットワークにネット驚愕「大物や」「すごいメンバーに愛されてる」 (ENCOUNT)",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOSDVHRXFmRU43cTBYSG5CSkxudUhMc2J2cHFZMUJnaGxjTjRNVi1rMjg0bWt2ZDZVTDlZTW0wNzR0WmROM1dZSEpHRU95UjYtS0FGSTYyTF9JX1BHNHUyaWZld1BqaHl4NzRBYnYyV2UzcmIxZ0VCSVZxNDcxLWwyYjM4ckVSY0NyWWpxY2R3?oc=5",
+          "source": "Yahoo!ニュース",
+          "published": "2026-07-17T11:10:46.000Z",
           "lang": "ja",
-          "title_sv": "[Uppdaterad version] Sändningsschema (slutlig turnering) & matchvideosammanfattning [FIFA World Cup 2026]"
-        },
-        {
-          "title": "【決勝トーナメント表】FIFAワールドカップ2026",
-          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNRUhTeDVfSllKMkRrUmloQzlwakUtcm1vQmwwR0M2QXFRc1hvNzVabHZqZUtTZnhncmpOYXFNcE9yTHJBR3BnV1BJSXlEX1l0dU5IWU55aERGQ0RjQVFDYVpqMklmYWUtQy1xQnNwR3kwajcxdlV6cmhDQ3g5Y1NTT0NfWEdxMHVMY0h6Um81dldLRzJxNmZDcjlUbk1YcFpfZUx4WkNsbDFYdmo2SFUw?oc=5",
-          "source": "Goal.com",
-          "published": "2026-07-17T09:42:51.000Z",
-          "lang": "ja",
-          "title_sv": "[Slutturneringstabell] FIFA World Cup 2026"
+          "title_sv": "Medlemmen i Japans fotbollslandslag Kento Shiogai är chockad på internet av underhållningsbranschens nätverk: \"Han är en stor kille\" \"Han är så älskad av medlemmarna\" …"
         },
         {
           "title": "サッカー日本代表 鈴木彩艶 地元で思い語る さいたま",
@@ -1112,20 +1112,20 @@
           "title_sv": "Medlemmen i Japans fotbollslandslag Ayane Suzuki berättar om sin hemstad i Saitama"
         },
         {
-          "title": "FIFAワールドカップ2026｜出場国一覧｜試合日程・結果・順位表・放送・配信・実況・解説｜日本代表",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9HUXppMGo2SGFoSGhhd08zMjhjZVF3aHlvOWpPTnhtMXAxNkFEZ3dVT2xCQzhLZ3llekpORF9MazB5UU85MllIcFdpZ0QxeTlNeGdtR0N4eHdQa1FST3ZWWG4tcFpyQjNRbU5lTlMzQXVZOEE?oc=5",
-          "source": "サッカーキング",
-          "published": "2026-07-17T07:19:04.000Z",
-          "lang": "ja",
-          "title_sv": "Fotbolls-VM 2026 | Lista över deltagande länder | Matchschema/resultat/tabellställningar/sändning/distribution/livekommentar/kommentar | Japans landslag"
-        },
-        {
           "title": "「5時に夢中！」金曜はゲストデー！元サッカー日本代表・永島昭浩さん登場！カミカミ選手権",
           "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFB5THZPdUt1QUlGMFUzcTlKTkJDUlA0YTRiaTBoM0VLWUpfWmp1dzB2ZGpIenh1WjZ1ZTdyRG05VHRYa3BMZUxXbktXRnFvdmtxcEN5SFpZQS03ekNld0hvMlg5em5UaXkyR0xoRm93?oc=5",
           "source": "TOKYO MX",
           "published": "2026-07-17T02:55:00.000Z",
           "lang": "ja",
           "title_sv": "\"Bli galen vid 5-tiden!\" Fredag är gästens dag! Japans före detta fotbollsspelare Akihiro Nagashima dyker upp! Kamikami mästerskap"
+        },
+        {
+          "title": "【ワールドカップ】サッカー日本代表で明らかになった課題を福田正博が指摘「リードしている時に前に出られない」",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQQTdBdEI4dmszcFFDLUMyMThpZFNsdk8zcWhZVTdXbzJ1V0xhVEZXVHA0T2ZyY2lWbG9vbjBJOHhzLURLeFpMeUJYbDh5enRhdUZrM1BpblV5RlpLNlpnRG5RUkZMcjVfdlpVQ29PRTBEaUpUc21NcjV3REdmbmtGc2Y2SUlJd1JC?oc=5",
+          "source": "Yahoo!ニュース",
+          "published": "2026-07-16T22:17:48.000Z",
+          "lang": "ja",
+          "title_sv": "[VM] Masahiro Fukuda påpekar problemet som avslöjats av det japanska fotbollslandslaget: \"Vi kan inte gå framåt när vi är i ledningen.\""
         }
       ]
     },
@@ -1142,7 +1142,7 @@
         },
         {
           "title": "نهضة بركان المغربي يؤكد مغادرة الشعباني لتدريب منتخب تونس",
-          "url": "https://news.google.com/rss/articles/CBMi3wNBVV95cUxNQWQ4dV9PSzB1ZzNMZ3d0d3Y4cWdCQ2tuUFY2SWsxMmsyUl92ekp6LUUtRmtUU1k4OUtfek1kOTFsWjlXNlhiZzF1LWExM1dKNXREYXpvSHpwX3ptVmN2VnJib2lpX0VDZ0EtOFhuWi1DdGg0TV95ZkctWVprSGtDZ1NpZlJCcXU0akthYVl1cXgweWxSMVludTlLa1RqYldpa3puOFZ2ckk5SEtmRHBfcGZEUDhiMllqd2FjMjhfZFBiQ3REMXBTeS1yMVZNeTlGZ1M0c2xYbkhWLUFhcXgwczJVbDh3SXFvX0dkYi1MUWl1TE1OUmxlaGcyQ3Q1dTFEU1RSVmdJTUhtMmNSdFNKZE10QkxoVWhfWm1hTGQ3c2dUUndfSjI0VnVYWnZJQlNqZS1SX1E1N1VzVDY3RE1KMWZldmcxUWh5SG1HVTFxOURaSHdldW9KdkZRX2tCWndCSk1Danp6UDRlRDZVSTBfY2pOU2lRVUZEUmxUTEZDMG1mLTlXeWJYdXRnMV9odFVWaVV6eWowRWNzX3ZwSnEzRUljZ3BFbzY0UWdXWENYRkZ1T2VMVzU3eldjZkkweU04dWdncXMxVG5QazdQdFBEOVMxRUJLdlpxMzlNdE5ZWdIB3wNBVV95cUxNQWQ4dV9PSzB1ZzNMZ3d0d3Y4cWdCQ2tuUFY2SWsxMmsyUl92ekp6LUUtRmtUU1k4OUtfek1kOTFsWjlXNlhiZzF1LWExM1dKNXREYXpvSHpwX3ptVmN2VnJib2lpX0VDZ0EtOFhuWi1DdGg0TV95ZkctWVprSGtDZ1NpZlJCcXU0akthYVl1cXgweWxSMVludTlLa1RqYldpa3puOFZ2ckk5SEtmRHBfcGZEUDhiMllqd2FjMjhfZFBiQ3REMXBTeS1yMVZNeTlGZ1M0c2xYbkhWLUFhcXgwczJVbDh3SXFvX0dkYi1MUWl1TE1OUmxlaGcyQ3Q1dTFEU1RSVmdJTUhtMmNSdFNKZE10QkxoVWhfWm1hTGQ3c2dUUndfSjI0VnVYWnZJQlNqZS1SX1E1N1VzVDY3RE1KMWZldmcxUWh5SG1HVTFxOURaSHdldW9KdkZRX2tCWndCSk1Danp6UDRlRDZVSTBfY2pOU2lRVUZEUmxUTEZDMG1mLTlXeWJYdXRnMV9odFVWaVV6eWowRWNzX3ZwSnEzRUljZ3BFbzY0UWdXWENYRkZ1T2VMVzU3eldjZkkweU04dWdncXMxVG5QazdQdFBEOVMxRUJLdlpxMzlNdE5ZWQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMi2gNBVV95cUxPLUU5XzFIdWZBWGx2dTN0bXRSaG5KdWpuMkp2bG9PSk9JSTRrQUswVFZ4bXVnTnBEb3c4YVVsN0pVd0hzMVhoeVBqTjlIUXo1QzhuMUEzb3otbnpYZUREVUplYk92ZXRJaXlqcUxqeTk1dDNZT294bnFWYnJWeHI1V1FUQ2t0ejdFMUdLZnp0UUFyRXkzOVFhRllybG5fZzJFeFJQQzBSVVZ5VXVCNk9xTERfZ3hBWWp5WDgxODNhcGNyNGdvQmZnbldSZzAxSGZTak5YM0RYWkZmYkoxWm9SaGFMZFZwakxtTGdLTS1xaG95OU80ZXE3SGxQR0wzUEM1OHRCRVlHVjFWM0dSYjBfcW8tcmk2d2Nwd1FnQVpjc2hRV0tHN3lDZzlRV3RUaFo5dkxsZEdRTk51enMwRmpNcEJ2aDQwbE44Uk1nVmJ6eDZ4a2N1ZFBuQkl5Qnc0YU9TdEk2X2QzeGtJUXVfX1ZJdkFzbFFVRzFHbkJZbE1nQnl4YTllcDhtRkxyTzBBVFc1TV95eWo0NmFjZ2IwWmRtUW1hTjlIQ2hUNjR4UV9zWG1YdXlhTjBtVG1WblN1X1NTREdwb3pWaXRrWjJHcW1NaXVFb3Z5dkpLNGfSAd8DQVVfeXFMTUFkOHVfT0swdWczTGd3dHd2OHFnQkNrblBWNklrMTJrMlJfdnpKei1FLUZrVFNZODlLX3pNZDkxbFo5VzZYYmcxdS1hMTNXSjV0RGF6b0h6cF96bVZjdlZyYm9paV9FQ2dBLThYblotQ3RoNE1feWZHLVlaa0hrQ2dTaWZSQnF1NGpLYWFZdXF4MHlsUjFZbnU5S2tUamJXaWt6bjhWdnJJOUhLZkRwX3BmRFA4YjJZandhYzI4X2RQYkN0RDFwU3ktcjFWTXk5RmdTNHNsWG5IVi1BYXF4MHMyVWw4d0lxb19HZGItTFFpdUxNTlJsZWhnMkN0NXUxRFNUUlZnSU1IbTJjUnRTSmRNdEJMaFVoX1ptYUxkN3NnVFJ3X0oyNFZ1WFp2SUJTamUtUl9RNTdVc1Q2N0RNSjFmZXZnMVFoeUhtR1UxcTlEWkh3ZXVvSnZGUV9rQlp3QkpNQ2p6elA0ZUQ2VUkwX2NqTlNpUVVGRFJsVExGQzBtZi05V3liWHV0ZzFfaHRVVmlVenlqMEVjc192cEpxM0VJY2dwRW82NFFnV1hDWEZGdU9lTFc1N3pXY2ZJMHlNOHVnZ3FzMVRuUGs3UHRQRDlTMUVCS3ZacTM5TXROWVk?oc=5",
           "source": "العربي الجديد",
           "published": "2026-07-17T11:57:12.000Z",
           "lang": "ar",
@@ -1194,6 +1194,22 @@
           "title_sv": "Så går Sverige till EM 2028 - här är alla förutsättningar - Fotbolls-EM"
         },
         {
+          "title": "\"Därför vinner Sverige sin VM-kvalgrupp\"",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQM1RCcTFnb0dsb29neDhnQk9LVHhZQ0JjOWtaU1o3eEJFbzhhTDRSejBtNi1IUjJselNrWjlmZlpNTTJhdExRZE5SNTJjYVAzaWlMdG8xdjgzRTNoYlBCelRvNHA2SnNOamdIanJBbjN5MmE0WTNOMW1ySDZMQ1ViVDFsYUZjbG9TTjQzNXpn?oc=5",
+          "source": "Fotbollskanalen",
+          "published": "2026-07-16T22:12:29.000Z",
+          "lang": "sv",
+          "title_sv": "\"Därför vinner Sverige sin VM-kvalgrupp\""
+        },
+        {
+          "title": "\"Efter Zlatan-vibbar - Sverige löser VM-biljetten\"",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQYUJHczlaZlo5WmJvbFpfUUxWanBPM20zZ2hGS21adHEyQmJrYVRQTFVTMFVGRjN1Qk5lMmdnN29hSWt2cTQxQXZWVE1ZbmZ3aEo1dmNsSDRsWXM3aHFLQUdpMDJfU0VEd0p4VkFSOWs0SnFNbFNrZjVTQXMzczVfZE1XV3IyMWdrR3JNX1VHeUJOdkVGUWtLc3ZNZHo0VlpvUFZJ?oc=5",
+          "source": "Fotbollskanalen",
+          "published": "2026-07-16T01:12:18.000Z",
+          "lang": "sv",
+          "title_sv": "\"Efter Zlatan-vibbar - Sverige löser VM-biljetten\""
+        },
+        {
           "title": "Lasersvärd från ”Star wars” sålt för miljonbelopp",
           "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQTWtBRll6NjVqS2E1X1lkZTB3NlhHYk1FeExPaXVFRngyMFo3VXR0YzRmanlFMnpWUGdRcUlZLWc3d2NsaDRKblpTS1ZEeHRhM2RaejctMG1XLUszNUhMblE1bFg5SWRwNUxKblpBNVYtSk1DZE0zeTZ2VGxLZnFEUXRZYnJFZ1N1RTdGbms3N01rdw?oc=5",
           "source": "Nyheter24",
@@ -1216,22 +1232,6 @@
           "published": "2026-07-15T17:03:05.000Z",
           "lang": "sv",
           "title_sv": "Kval till fotbolls-VM: Så ser du avgörandet på TV4 och C More"
-        },
-        {
-          "title": "Rasmus om bröderna: \"Jag ville inte...\"",
-          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNQUpOZzBaZnhyT0NIWFdGRVZwNjVLRE5pSHN6NFVGeXczS0NzbjhpUF9PRk9fd0dCVVF5V3M0YUt3VG9MQnFiN2w4QldlQThIai10aWJGVmVldDlWVV9ONHcyLThxZk5hMmZmWHBDM3UxZ2ZHR0RCbnp4Z0pzYmc5dUlRa3BPLVJoMThUb3BhaEY?oc=5",
-          "source": "Nyheter24",
-          "published": "2026-07-15T15:03:00.000Z",
-          "lang": "sv",
-          "title_sv": "Rasmus om bröderna: \"Jag ville inte...\""
-        },
-        {
-          "title": "Expertens dom - därför kniper Sverige en VM-biljett - Oddset",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPbVNJdWQwUHYzWUVRelhJVWt2bzVqdzJ3QUZRekU5TFAzYnhyVlpxZzBoUTZPckFlaGxzVk95WkNEN3IzcEplbENhZnRkaXJmcExnZFZ6ZVFVYW5UY1dqMnd2SVBwbHBNdWhod3pCdGVkQk5YY01vbTZUQTFGWVJFVVZVb1JkOWRCeWNReGJ6eXBMZVpvOWE5RFFmUnc3QQ?oc=5",
-          "source": "Fotbollskanalen",
-          "published": "2026-07-14T18:15:36.000Z",
-          "lang": "sv",
-          "title_sv": "Expertens dom - därför kniper Sverige en VM-biljett - Oddset"
         }
       ]
     },
@@ -1358,6 +1358,14 @@
       "edition": "NZ:en",
       "items": [
         {
+          "title": "From Portugal to Paraguay: The All Whites on the move after the World Cup",
+          "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOamRQRTVuMWh1RU5SNm5JWWxIN3R1MXlKQk01TnR1RXVYS1JCeUc5WlB3U01wQ0dMejVNVDRWaTFSSFVGcEs3UmpHeXpZMFM0ei16VXNKYmFNcVh5REtFMmlja3pCRkxNTEtTcEd1RmlfVENfZ1VtZEN3dldmUU1lWGF0dTRJbFpOWXFpM25hM2VaRmRULXRfRXd3dEt2RVpuUnpVaENJOXlTNGR0dEtjUXpBLWlQVTJva3RUQTMyeV9raE4zSTFMYU5QOTFoRW9nZU1TZ2tPam9tVDM2TUU3WEFQbWpZUTcxUzlZRVE3MnhWNVBSd1RpSw?oc=5",
+          "source": "NZ Herald",
+          "published": "2026-07-17T14:53:14.000Z",
+          "lang": "en",
+          "title_sv": "Från Portugal till Paraguay: The All Whites på gång efter VM"
+        },
+        {
           "title": "Kiwi Football Fix: Tim Payne Real Madrid Club De Fútbol (nFMvp8vdoA)",
           "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBZWDBXeW9lZzluZGhKd1VVM3E0MEdGak56U1ZLbktSYldaZ196b3NiejJsWkJLRUhyaXgweG9Wc2Q0eXJyVWc5bmtmYnUwWi1XUGpHYkloTkhHengzRXpSTw?oc=5",
           "source": "Mshale",
@@ -1396,20 +1404,36 @@
           "published": "2026-07-16T03:11:39.000Z",
           "lang": "en",
           "title_sv": "All Whites mittfältare Sarpreet Singh skriver på för andra klassens portugisiska klubb"
-        },
-        {
-          "title": "All Whites midfielder Sarpreet Singh signs for Portugese club after World Cup 'dream'",
-          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNcGpWbkJTOVdtd1o3dkxqZm8yNGdjdlBPUmptSGgwT0FBei1nMnc1M1hTZUpkTl9LQW9OYlJuMU53ZUJmVXM5SENUcHpBb1NiU1lrdWcxdzBWaXVwb0V6blBKY2FMa1lpcU5pM2YwRU9ud0I5TG96bUVtTDFJT3NpY3dPTUY3TlBOTDZXZmFqb3RDREI0RWhQVkNwU205MFB4cVpYSTF0ZE10bndKZzdsaEdBdHp3eS1XOFc5aEhqdFI0bXNi?oc=5",
-          "source": "Waikato Times",
-          "published": "2026-07-16T01:25:45.000Z",
-          "lang": "en",
-          "title_sv": "All Whites mittfältare Sarpreet Singh skriver på för portugisisk klubb efter VM-dröm"
         }
       ]
     },
     "es": {
       "edition": "ES:es",
       "items": [
+        {
+          "title": "El mensaje de futbolistas palestinos a la selección española que ya han visto más de medio millón de personas: \"Así como alzasteis la bandera...\"",
+          "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQTjAta1UxRzhkNjJKc01KTTJSNVB6Vk5Zck5OTkRzUFl3UU1NdHNkZ1VJSkNOZmtrbW1PajVwTUQ1QzlBQXplYmoyT3hXQ21mWE9WcXEtQVd2U2FuOFdyYm1UTFFYcTRWZE9ZSlVhYVF4X2prNklaT0JxaUJieWt4a21hVWJPWWRxVDExV0Nqc3VuRmJoaGs1YXVhZDNrMDBOUkFyRGhtbGFjVjhocE1JVjZXZ0ZDMEoxbHJodG04R0hXTGtscTE1QmxLSGduQ016VzNxaFAwaEJKWmp5WG5YSFZwZVFzQ2hGc0lZNHZwV005c1XSAYcCQVVfeXFMUFU1TnZaUlgtYzlySFBCMHlsMENJTnlJVGFOVGZZVzNUSzdwUUhaREg2ZFRtQnpvTWtmNDZPTTNvbzhraXp5VVNXcTU1M1Q2VUxXRXJhVWdqelhzdldrRkFoR1lIdXlobHRPU1V1RXBzTWhDNWNEUG1fWHZDMXFOemF6SVZYSm5uYmZUZUhfakZhcm0wajJqUlJFXzFXeXAtQkNDZkRiQThyeHFEeE91YlI2ZmtiUzFpSmlpTmplLXJyNVg1V3NOelBIbG9zZFQxTUJWUFYyQWo2U3pZdVZMX01DS2NCWFN3bXNYSDc2Q2pXb1dtbUFCNko1dVBVUDcxaDc1UzJWWVU?oc=5",
+          "source": "El HuffPost",
+          "published": "2026-07-17T15:50:35.000Z",
+          "lang": "es",
+          "title_sv": "Budskapet från palestinska fotbollsspelare till det spanska laget som redan har setts av mer än en halv miljon människor: \"Precis som du hissade flaggan...\""
+        },
+        {
+          "title": "La desesperación de Bildu ante el seguimiento de la selección española en el País Vasco",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOV3F6Z0lRNHktQUNtMm5nMEJpRUphOEZzM3VJZmlXVHJ2OVl0S1hvSjlnd1FQV01ZMG5Pb1NlTGJDN0lWWEVPcVpmck9KdFNDcEY3M2o1a0RRYndfeDFaUzNHN0NRUE5MWmdQSGtlSzBBWHJYLTh5UzhyM1Q3OU10akNNckxZMTFDbTFrMWtLZ1JhT2lhNVZjMHdwekc0S1hOeDEzbE5lUDg0dE9WWndZOFJ2NVAycWk5dDlvRkhYUUV1S2V3QlFJZEhJcGlQc1BEWjVF0gHeAUFVX3lxTE1YR0h3QlZiZHlURHZ6OHJLZXpNNUF1bGVsMlZoUjZWclNWM0l6QjIwYVRxRndoZUNXYkRvVWQybm0xT0x3SnNkRjE3M0E5a3R6dU84U3hHYkJ3dk1PbGltbmo2ejF6SWdqdlNMTmctMTlVc2ZIQTZYc3R2MWhHUTJQUmxVT0dxV1ZEQVQ5WGphdEJsc2x5azgxLTNzWXlKR3JBWVpCVktWeXRBRmJ2TkVlMmJhelA3S1F1clB1aGUxOWN5WDNaazIyVFdQSmlMRC1zYzRBalBVT2I2YnVKdw?oc=5",
+          "source": "Libertad Digital",
+          "published": "2026-07-17T12:07:37.000Z",
+          "lang": "es",
+          "title_sv": "Bildus förtvivlan över övervakningen av det spanska laget i Baskien"
+        },
+        {
+          "title": "Cuánto dinero se lleva España y los jugadores de la selección por ganar el Mundial 2026",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPTjlzelg0RG9Vc3ByU2JXLTNhVHZ4MXZnSU1kNDluMXJIUEdTTnA0ZzNKQWhvcjB1bWMxQklpM21yUy1BVldobGJLRTFMcmgyanprTC1XT2VyaGNHMEU3clBIaTlEWTZ0dkFFcm5ocXFPbFk0ZTAxTEpBTlZIRm82TDJfLXVhWm5aTjRqMEh3NmJNSDF4OUk5WFhiREJfTWh2M2VCd1NyUXlGeV9EWmp1OFp5b0F6V2JRWXc?oc=5",
+          "source": "El Confidencial",
+          "published": "2026-07-17T11:46:00.000Z",
+          "lang": "es",
+          "title_sv": "Hur mycket pengar får Spanien och landslagsspelarna för att vinna VM 2026?"
+        },
         {
           "title": "Si la Selección gana el Mundial, lo celebrará el lunes por la tarde en Madrid",
           "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOUG1CT3FQT0ttUE5abTNsYlFsOGt3VXdNNEJub1ROaUZLVE01SE53TFV2cXZIdnlITFh4dkVQNlN0YmVrSF9aOXB5di0zai1qZFlEOFdyRTlHWDFPY0lRRmdxeEl2TVhiUXlzWWV5UGM4a2VTcmlUeHh3c0l4Vlg5OHRZbEtfc3YtbmVaMEhnRVZ5dXBQMHNfZE9mMW1NRDZBV1pSTnNfTzd1NlRUM2hqZjRhTFVEWEtz0gHMAUFVX3lxTFBlX00wZHROWEUydS1keFJ1dDkyVXJQYVZXMDltYlRISzBqblhPdmt2ZFdGR2lnTDhSOXZOMm5OZkVfRkNiaGNSRWZxSUg4TE1nQ1VWRFZfYk5wcUdFV1F1LWVGOUZzQldPMEdsNWUwcGNzSTdGSVh4b2JSUlAxdG00VEkzTzA2WG84aFg2bU9DRm5ubGhfNGh4RkdEQ3NPWVdHUEJxb2pJODBYaUc2VTZQSmJsSzdXa2V0Tm5vYlFqZF85RlhJTkw5SWFhVw?oc=5",
@@ -1433,30 +1457,6 @@
           "published": "2026-07-17T11:23:19.000Z",
           "lang": "es",
           "title_sv": "Det spanska laget efter autonom gemenskap: var varje spelare kommer ifrån och vilken som bidrar mest till Spanien"
-        },
-        {
-          "title": "El recorrido de la selección española si gana el Mundial ante Argentina: De Moncloa a Cibeles en autobús el lunes a la tarde",
-          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQZk40bGRMX28tRFR5T0FHbXNwNGM2SURHY052SUlUYTloSm5WaFhXeGZjVEFhXzE3QzRGcHJ3OWRXamlqd2JPdlU4TGlnVDNiQmkyWTd5bTVwQWs5NzZkMXhPc1RRc011RWRNMEd3QmNYNzlvNFVNckNqVU9sQnlwVHZ1bHJMRHZLRl9vam5fTlBKVktIclBNal9NY3hoaG9MN0F4RkE5Ymlrd2Uyd1EyeDhQYS02TVYwZnJuQTZGa0lGX2h1VGh4OWYxWVZWZ9IB0wFBVV95cUxOdHFhdmFuRklPUGpyZlpRUWY4bzNQb25LZTktSktrRFRzV09wcVFUUlNHTFhGaFFETzhvQ3ljbGZQZUptNmhibXVsUHY2MndxNFc1aS1iVVNkNnhLS3pWLWY4R2VJYnFVV1FkUTE1U2FySi1Yc3RaVTFScFF5ZWxSSThjUG9ISGozLUJGelBPaXkySzR5dHpZVWFXWWNpd0dudllBMnhrS29sTXhib2FMYXpraHN3YjVLVTlra3M0UGZ0WWJleWRGanRreEhIck0xVGEw?oc=5",
-          "source": "La Vanguardia",
-          "published": "2026-07-17T11:13:03.000Z",
-          "lang": "es",
-          "title_sv": "Det spanska lagets rutt om det vinner VM mot Argentina: Från Moncloa till Cibeles med buss på måndag eftermiddag"
-        },
-        {
-          "title": "Esnáider apunta el futbolista diferencial de España ante Argentina: \"Tiene la misma recuperación que Paredes, pero juega mejor\"",
-          "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxPTnBJQWpvODVhcDdvTEFSZVFadXZlSmx2ckZpdExWUHpVTldFbm9xdmRHRGpzZ1ZkN3VNcGdfRFl5M1kzVDdMZWNjc0dRQkY2bmd4QU1qek5FMWEzQkJuLVh3aUJrR1RRYWhnekNTUzlIR1o1Y0FCWlQ5b1RRNm81Mkt4elRWb2lGc1F0eWQwc0JURDZGcjEzWXp4czNiZFBWeTRZQy1zRWRlQTVtUEVVcndEdlFCalVJem9Bdk1KRnh3SFkya0pzdGxTSjlKUXJNT1pBZVZXb1RmaTl0N2dtS21HUk1sTzNSTnhqNWdYa3drY0doam56N0lXb1NlcFh1bFZwdnZQeXpILWRPa3d0ZWJkbWljX2thR1FoaURQQkFUNklnWXFJN1liY0pOd9IBrgJBVV95cUxPTnBJQWpvODVhcDdvTEFSZVFadXZlSmx2ckZpdExWUHpVTldFbm9xdmRHRGpzZ1ZkN3VNcGdfRFl5M1kzVDdMZWNjc0dRQkY2bmd4QU1qek5FMWEzQkJuLVh3aUJrR1RRYWhnekNTUzlIR1o1Y0FCWlQ5b1RRNm81Mkt4elRWb2lGc1F0eWQwc0JURDZGcjEzWXp4czNiZFBWeTRZQy1zRWRlQTVtUEVVcndEdlFCalVJem9Bdk1KRnh3SFkya0pzdGxTSjlKUXJNT1pBZVZXb1RmaTl0N2dtS21HUk1sTzNSTnhqNWdYa3drY0doam56N0lXb1NlcFh1bFZwdnZQeXpILWRPa3d0ZWJkbWljX2thR1FoaURQQkFUNklnWXFJN1liY0pOdw?oc=5",
-          "source": "Cadena SER",
-          "published": "2026-07-17T10:18:30.000Z",
-          "lang": "es",
-          "title_sv": "Esnáider påpekar Spaniens differentiella fotbollsspelare mot Argentina: \"Han har samma återhämtning som Paredes, men han spelar bättre\""
-        },
-        {
-          "title": "Guardiola se niega a apoyar a la selección en la final del Mundial pese a haber jugado 47 partidos en ella",
-          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQRlhkSk41OFFBY2tYbk0zWGN4dzI0T2dwUHI3aGFxNVdnTkFIX1c5WXVLSnMwQ2dQSTNqUnpJSGRYTW1MU0Jmd0V3QVJZNnJwNkJLVzhlMk85SEZSSmFoLXB3Y0wxaTQ3RjB0eXF2NmZVN011Ml96cjJlQlRLQUhvd191bXA1MHJibVJRM3YzN2VweTlsNTlERXVrdldnU05ab2FuMjN0R3NVWEpPa3lIdXRUeUJXaHJCSUxuUVlnd2ZsUUNKRW4wM1dVcW9Wb2psWTlOR1hnUGxaRjdSOWp2eVNhTS0tbjIxcFprMtIB8gFBVV95cUxOZjVHR2pOUUYyb1ByOVhGNXdEbUVrVUtXaGpJbWdhSWdnUC1DMVk0Mlh5V3ViQzN6YlRxaXFXUEZJR0lnNGlGQUZUdk9oTjdJODYxdC1adkhmT044YjBnejg1NXl4c2wxSDdNQVhHcTlPMzlhdXh0TXFYbERVbkhNWDlDNC03ODFEUjVxV2JoQjdWUEdRWjRvdEI5LUZZTVJzNTkwQXYza2N2Vldua2lnZkxTaUEwcjhyNGhaRmJDNzlrclhuNnFjMEJSNFAxeURiWFFSd0JVVUpPQTNZLXNud3ktNnM2eVQ2NjBGOGpXeS1WQQ?oc=5",
-          "source": "El Debate",
-          "published": "2026-07-17T09:09:19.000Z",
-          "lang": "es",
-          "title_sv": "Guardiola vägrar stödja laget i VM-finalen trots att han har spelat 47 matcher i den"
         }
       ]
     },
@@ -1571,7 +1571,7 @@
       "items": [
         {
           "title": "Como Cabo Verde ganhou o título que mais importa no Mundial, segundo Seu Jorge",
-          "url": "https://news.google.com/rss/articles/CBMi4ANBVV95cUxQd3MwNmVsOVRwMG42R1BlMk84d3BrVW00SHY2bDl4S0dUYXZGdnRMclM4clRCcHVST2FBOFFYbF9famVjakdVWkVkOWcxd2dLLVYxNmZjcmhuNzVsTnRNREY5dGJGV3dwX0FTcDlXakJwbWx4QkQwM19XNWRWYkkzaW16djJTRW9ybE1SUjJXSjNFa1N5THZ6MzJITTV6YW5rT283NG9RXzFiT3FSQ0ZCU0NwVTA3eTBSU2g1OTRUdlBxZVFWR21lVnhVcEpYTVlkU0FpQ0NySWV1NmJKdjhRbVlSOGJtRnhIS0h1REdIUUZrMkVDdHpnQXlFbDZpdjFWZnlJcVM1bHVWOVRlcGZwaDJjcDVwM182OTNpR1JxYVhXUU96LVZwSDVubGF0V0d4YUVqWHJpSDRJc0EwWlJmcWp0Q0RNSmltX2JCbFM0T1hpUjdMb2R6Qjl1ZGJNNUdVOWRpUWJWWElJeDF1WW5xVk5mSXdVVmd5SXdXcUpzY2lWempMWFg3Uk11ZDFLRHJkU3BIM3dsVG5CUkZhWjIwWms4dWs1TGtfWXU3QlhDUTNuV3B5TDYzbWgwM2dDdmtzaVpKTFNhY2lwRjZqeDJXTnBKT3U0SVRTNS1IQzVxTUQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQMTRabGFvVE5rNjl0WG1HRlktZDhHQmtrOEJKOE1qaEZyaWcwUVFWOGZQX21BVTE1WDBpU2FUVkFsNlBWcjdyLUFUa0ljcGhtV2hYTEQ1aTJJX2FZOHBiaVE0b1dkTTFiN1E5b08xOVFCaXVjcXlHN0VTdlVPVWU0dFFwQXViaXlRWlRpRXhJdHBCSVJnSzBVVnROeElVQUM4WjF0Z2V4c0IxM0FzQm5acENqV1hPQVhBRzVfeVR4NnhRTjVacXN2QlVrZWVRWlRQa3FGbkpGT3JSMUh4?oc=5",
           "source": "Expresso",
           "published": "2026-07-17T05:30:00.000Z",
           "lang": "pt",
@@ -1623,6 +1623,30 @@
       "edition": "FR:fr",
       "items": [
         {
+          "title": "Coupe du monde : La composition probable de l'Equipe de France face à l'Angleterre",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNOWJOM2YyY2xJNl85cmNqM1l5S2pMWnhrZkc4SnZBZmkwLTZGdE9wd2ZKc2ctTHVIcFF4QVJMNmZWRWh5XzI2cllvSVBNOTdoT1Y2ek9oelpLTXRGWjJUUVNTcGFfc0RPT1hsZFRPTmozUzFHdDI2Vl96WWdaRWxOTU13aVo5NFNfaTJiNm5qa3lKS0UzR1ZFWlRBNVFYeVVTZDNoeU51aVB3d2dkdlZKbG10ZmZMUGNZT0Y3TTVjOA?oc=5",
+          "source": "CANAL+",
+          "published": "2026-07-17T15:11:01.000Z",
+          "lang": "fr",
+          "title_sv": "VM: Den troliga sammansättningen av Frankrikes lag mot England"
+        },
+        {
+          "title": "INFO RMC SPORT. Equipe de France: les derniers ajustements en cours avant l’arrivée de Zinedine Zidane à la tête des Bleus",
+          "url": "https://news.google.com/rss/articles/CBMinwJBVV95cUxOSm8zR2Izek81eE5LZUZpMjdUTWZDb1BmQi1RUHJzVW9jTWp5eGU4VWgzUXJiNExaM1RSbGxucWtjTXh0RXFNZ1h1bjgyTzNXcVpzLTRGZVFVMzgxYl8yVlNKWjlKY1A2bVdkWWUzcE0yYjhwN3BNRXpDbTNDLW16LXp4czFuY3pWMXROZTFYeHFwSFVjZDdwUnRKSmNpamRiRENVVkFjTXU0RnRfbEJ3b3dDUUFDMzJIRDRCYUR1ZWE1OTVJeUI5RXA1MktodTk4Mm9MeThvNEU0d1c5YUJwV3dRaUJka1c3c2U5SjYwajJ2QnRJd0dDYTRwVXI4emoxcGdFVFB6RGhYc2RrNkN5WnJtZlJPSVpQbFp1cmJHYw?oc=5",
+          "source": "RMC Sport",
+          "published": "2026-07-17T14:32:40.000Z",
+          "lang": "fr",
+          "title_sv": "RMC SPORTINFO. Franska laget: de sista justeringarna pågår innan Zinedine Zidane kommer i spetsen för Blues"
+        },
+        {
+          "title": "Equipe de France: Adrien Rabiot, problème confirmé chez les Bleus",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOY1JYaXdrM2xpZTBoRUpfVk81WlVYQ0dCZWFBQVJKRlM4cGJIZVNRTlhpUy1RLWJ4ZmlEWUN1bmt6eFpVZXozT2dWcjJpTkUwVkkwN1hRNEtvbEVUN29paUFGYnZKQkRkQUd2M3kwQUxXVGE3WDVFUmpCc01VRUxOaC1kN0JvZ2JFb1NVZVNzRFo3UDVhaF9EUFplTWVZNTNWNy1yaG04QUltdncxLUNUNm9ZaS1neEphNkdaTXZ2Tkl1d2VxOVE?oc=5",
+          "source": "Sports.fr",
+          "published": "2026-07-17T10:44:39.000Z",
+          "lang": "fr",
+          "title_sv": "Franska laget: Adrien Rabiot, problem bekräftat med Blues"
+        },
+        {
           "title": "France-Espagne : la demi-finale à rejouer à cause de l’arbitrage ? Des supporters français lancent une pétition",
           "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNR21HZVVWN0dQVVRhRkdkSHJTWXBLZkVwQVdjdjJ4QlFQSmhYNTgxU1lRb19nZlFmZi1UQi1UZm9jbDBObjFrQjhhZF90eVQ5b1JZRnltNUVKN1l6azJlVmVYdkdGUF9DTGdMNHM4S2ZtY3pnU2tCMVB1VnUtdzBlR0U5SDU4NDBzdElDSW9LX0tBRldxMkd2SVdBUnpBVFRDS3lZR05UeU5jSVE0WGdJbVdaWFRSMlBzUm1Eam9FNXlhdTU2WVpESWtERzlqWF9mTzNMSWZ1QUNVcFZ2UXNVYVNTZHdwWVp2alFrNzhETXRHOHJILXRJZi1qU28xZVU4?oc=5",
           "source": "Le Figaro",
@@ -1645,36 +1669,20 @@
           "published": "2026-07-17T06:15:05.000Z",
           "lang": "fr",
           "title_sv": "Franska laget: spelarna förstod inte två mycket omtvistade val av Didier Deschamps"
-        },
-        {
-          "title": "Coupe du monde - Les Bleus espéraient une soirée libre avant France-Angleterre, Didier Deschamps a dit non",
-          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPNWRaT0ZFMDdsRmRJbHV4TWcxOVZJbDB5REpXb01TR1YzUFBhWWJVRXU1Q3VuMTJ1ME9JZk9tU3hpX293Q01QTkctb28wcUoza0xpQ09KUTFLYXdCV0lhc0hkRklkR1FXc01uYUJCVVpNQ2hyRVFCTWhnQkNlT2ZmWUVPcndHZFJ0eUxPWUNMdWlLWEhMdUNNMHBOc1JZSU5NT0VsRmtHNWFKSHg5UF9SdFdveDJBTmZGY29aZVA2Qk5qa1I3VUdldlVfRnN1NEliVnFhc0VHSlB0cFlWX1R4aG95WDladDFjbmNhbXBkelQ1UE5SVDkw?oc=5",
-          "source": "L'Équipe",
-          "published": "2026-07-17T05:25:00.000Z",
-          "lang": "fr",
-          "title_sv": "VM – Blues hoppades på en ledig kväll innan Frankrike-England, Didier Deschamps sa nej"
-        },
-        {
-          "title": "Coupe du monde 2026 : compositions probables, stade, diffusion TV… Tout savoir sur le match pour la 3e place entre la France et l’Angleterre",
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOSEc5cjdrYmdoSEJOdU9Eei1hNWl4dlV0SDNra3BPQmU3V20wTWczWkdZbDgzNnV1VUptcTBoYjVWWjg4RUhjSjhHYTl4NFAyc0t3eGZwNUFFQThzWXJnbTFlWUo0YkNfX3BWOTl1NVlfcUVIOGZjV1JlVHJhNWNNblN6YzVhSlMyOGxzRDY1bE1GZTY5Wm8ycGV1Wnk4d1pERU9rTlREa19rczhSOGQtelhxRW5JSDZpamfSAb8BQVVfeXFMTklmb0ViN1dXUmFQUlhmektkN1ZIRWVJNXY0UGV0eHNudXgwZm9nOTB5UjJYb0VidjNPa1ptT0VXT2p0SVZWS3VIS0xid3ZpTTFOek0yZHVvR0cxWElPYzgyOEExb2RVRnJQX0oxSVZBMWFXS0hzenJiLU92U0xFUzR4em53MjgxM3VWUHVjdkFTVGxQVGZ3Z3JGYnJXSjRKLTNnakJseV9la3pLTlRPU3NiZ2c3djc4anpPRmsyVk0?oc=5",
-          "source": "CNews",
-          "published": "2026-07-17T05:14:00.000Z",
-          "lang": "fr",
-          "title_sv": "VM 2026: troliga laguppställningar, stadion, TV-sändning... Allt du behöver veta om matchen om 3:e platsen mellan Frankrike och England"
-        },
-        {
-          "title": "Date, staff, salaire… Ce que l’on sait (ou pas) de l’arrivée probable de Zinédine Zidane à la tête de l’équipe de France",
-          "url": "https://news.google.com/rss/articles/CBMirAJBVV95cUxQYW0wSkV6c3h4WkxtdElkelNtUnJtRmlrSzF1eDJwcXBmR0V6Skp4ZUl4ekJGZnQ4akhsWGVMWDJCSFYxYkhJQ3hXdUV5MEtfSndoOVREa2JKZnN2ZVVQVmpVNk9FM0c5eGM2UE9uTU1lbUlLZnZhUF9YelozeUI1bmpETmo1WUFXZkZoWjhwSlJKWUYxN0dUbFg1OTdOdVV1cjEyVllNbjZPdFFHUk1sUDNPOFNfN2FFdkV3ZlgxM28wRjlsVEw5SDRNZGh0QUpRMW1VUDdrVHo4cDNaTFNDSkNYcWp3bDBJaGRDbmFIQWo5Y3c5LWQ2aWU1TXhrV2w2RlBxa0h2UGxjdjhQc29YQWN6X1VaTHNyRHZ4U0xzTFRsXzNaRzJGdDlMM0c?oc=5",
-          "source": "Ouest-France",
-          "published": "2026-07-16T16:24:07.000Z",
-          "lang": "fr",
-          "title_sv": "Lön, första match... Vad vi vet (eller inte) om den troliga ankomsten av Zidane i spetsen för det franska laget"
         }
       ]
     },
     "sn": {
       "edition": "SN:fr",
       "items": [
+        {
+          "title": "Alerte ! Le Sénégal perd 3 places au classement FIFA !",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNckNiTXgxUlVCLVJXbXJ2cVAxX2RxeGltZFUzTW15V190R2FJSnJDd3M4V2FtMnVYQnYzWFJicDFPYVp2bU83cDY5dGk5RjlvS2ZGbWVaZEdZakJPT3FDd1o5UEtBSGhvcmtzVmhGT3VLUks4VzRYOUMwVnN1dzkzMC1hNUlwV041MTZCU0xQOXh4T2xoY3c?oc=5",
+          "source": "Afrique Sports",
+          "published": "2026-07-17T12:34:48.000Z",
+          "lang": "fr",
+          "title_sv": "Varning! Senegal tappar 3 platser i FIFA-rankingen!"
+        },
         {
           "title": "« Échec des Lions au Mondial 2026 » : la responsabilité de Bassirou Diomaye Faye remise en question",
           "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPMjdnaE1PcmZWOEJHSEpQVzI2TXkxUkR4ZTh4dS1YWFNBNk5PZVYzRy12OHdISFZ5WFUySGR0UUlQOVVhdmJQOWs2TXdMT2UyWWdjTnZsZ1RKYXZUOWZGdDE5ZUFZVHlzc0taOThiMjRBaHJDd3doLWdDQXdQbVpKSTJtc1VkNFhwZTFMeVRVQmpVTnN4NGdYWHFhRFNqMF9IYXRPeFhvU1dmMXFicU1mekNaVnVsMVc4WjFES0tlaGpyR1E2a0ZLdjRab0ljSkE?oc=5",
@@ -1692,6 +1700,14 @@
           "title_sv": "\"Det är en realitet\": Romain Molina bekräftar ett avslöjande från president Abdoulaye Fall (FSF)"
         },
         {
+          "title": "CAN 2025 : la FSF rassure avant la décision attendue du TAS",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPQnA3TjVLcU81NWh3dUVkZG1CQ0JjMlU3blEyX3ZhU1FnVUpXbFpWYXpVUlRZaWxYSEFQMjgyZVhoVzNXeUZiajVPWVRiclNtamFnV3RlVVBZa2ZKSlZkWktWbVFHSURSOV9iSlZrbGFvUDVGY2dYSFN5UWtENnNaV1pydzRVQWY2X3VLY3NJbTZWSHcwY2kzVDdaVQ?oc=5",
+          "source": "Afrique Sports",
+          "published": "2026-07-17T08:25:12.000Z",
+          "lang": "fr",
+          "title_sv": "CAN 2025: FSF lugnar inför det förväntade beslutet från CAS"
+        },
+        {
           "title": "Le Bayern Munich a tranché pour Bara Sapoko Ndiaye",
           "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQUVNLdlZyRmxvQnZSVWJyd2ZPeU5vX2MzTEpsWUF0Q2dsMjdOT0dIRi1KLVFEcWRWbXpzOWRmV0dVTlBtMDRqQ2FTQ0YyX1N0V2lHMEVWOE9IZnd2Sll3LUFhTHkxOEtqS3pBS005MmxvWWRhQkhxRmxhR25kZ184Wnd0U29ZbkVVUWVYbmp4dDFSZw?oc=5",
           "source": "Afrique Sports",
@@ -1706,22 +1722,6 @@
           "published": "2026-07-17T04:59:34.000Z",
           "lang": "fr",
           "title_sv": "VM 2026: skandalen som skakar senegalesisk fotboll"
-        },
-        {
-          "title": "Calendrier Sénégal African Nations Championship Qualification 2024",
-          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNTnBtakYzcGQyb2ljdnNKdU1FZng4MGlSS2pENWlpUlA5Y0ZjMXpJZ3VLYi1NZ25zSmlsVEM1WkFJNGYxWGR6RnlVTWVLa2ptOVNmVXhTbVM0RUl6VnZHTkhEZ2FYbm5maGNDaHFFVUtmbnN4empXZXpvYTh0dkNpcFNTVjlBTmdlbk54cG5MNm41YTVISjVncA?oc=5",
-          "source": "Tribuna.com",
-          "published": "2026-07-16T16:05:25.000Z",
-          "lang": "fr",
-          "title_sv": "Kalender Senegal African Nations Championship Qualification 2024"
-        },
-        {
-          "title": "Sénégal : le ministère des Sports interdit à la FSF de communiquer au sujet du Mondial",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOQUFTM1JMeGh0MzA1TXhuY3U0OUM2TWtJcmNQNmdmNVVob3F3MVZEdXpUTVlTeEJZa3BtNDVfNTFhNm5SeVJNY244ck1sVE5YSDZEdk42clM4Rk8zMl9fWjEzSElLSDdTd0V5Q2hQcC1xNWxCZkZRc1UxSmFtbjRmTUR5T0dLZnNvRUVaZGpxTjZpYTdTX2dyUGdCbTM0M3N1OEhoQjREMzNxMXJXS2pxLW9tTUM?oc=5",
-          "source": "L'Union Sonapresse",
-          "published": "2026-07-16T15:39:03.000Z",
-          "lang": "fr",
-          "title_sv": "Senegal: Idrottsministeriet förbjuder FSF att kommunicera om fotbolls-VM"
         }
       ]
     },
@@ -1761,26 +1761,42 @@
           "title_sv": "Fotbolls-VM, Ullevaal Stadium | Reagerar starkt på det norska VM-uttalandet"
         },
         {
-          "title": "– Han er et hemmelig våpen",
-          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQcWdvY3dOMFBUa04yY1dNaHQxVWttR04xLVRGSTVhWElqLXppNmNhQWhmZ3FmVncwd2k2dEJTSUZLT2FDOWRINVg4NUFxNFU3TzY0VjlaRGZRenEwMjgyZm1vRXhPdEluVVhxTGtia2IyTnM2WVVjLThWZ2NmZlBzcUZ2dXB6NTVtV0RSWFFBRjdMUjJ0SDdNc0YtZDdOSDB5RHNUT0R1MU0?oc=5",
-          "source": "Nettavisen",
-          "published": "2026-07-15T10:41:38.000Z",
-          "lang": "no",
-          "title_sv": "– Han är ett hemligt vapen"
-        },
-        {
           "title": "Her møter Haaland kampflyene",
           "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1qYkNQOEN5OWw5SEp4ODdWbjNSUEVrdjlVcjRmc1haMXlUTFUwV2t1WnowelBYa2dZNTZOek9oT0d5Z095T2lzZmRoTFpnNGVFbm53RGRBR2ZZQXNySzU5eWZQcU0xSlcxNTk4Rm9pajI4RzFubUg0?oc=5",
           "source": "Dagbladet",
           "published": "2026-07-14T22:01:09.000Z",
           "lang": "no",
           "title_sv": "Här möter Haaland stridsflygen"
+        },
+        {
+          "title": "Over 157.000 mobiltelefoner i Oslo sentrum",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOY2E4c3BmQ2k4RUpkWVRjLUdGMHZfZHlRV1NxM005ZlhDX2xQWjBpWVpMMW50TTNhdUVPb1ZwLWNWZlMyX19QaHVQSmtrelc2Tk1pT05zbHNzSmFiaUpVVnNCdXFFXzdWTTFYQXRMUkhBNTVmYW5sZkthRGhuMVAwUmk5UFlpQnFj?oc=5",
+          "source": "Dagbladet",
+          "published": "2026-07-14T22:01:09.000Z",
+          "lang": "no",
+          "title_sv": "Över 157 000 mobiltelefoner i centrala Oslo"
         }
       ]
     },
     "iq": {
       "edition": "EG:ar",
       "items": [
+        {
+          "title": "رياضة ديالى تحصد المراكز الاولى في بطولة منتخبات العراق للقوة البدنية",
+          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBsVi1vOHhvMHlGVTdqeFFHZmhNZzQzbF9zVVQyOVFaLTFlVnlrWjBuOHM4NUlMdEhwZklzcWRZcVJULU1kUS11eGNvRklLTFVCV3FJZEV0UTkxMFpIM0FXWUdUcw?oc=5",
+          "source": "الوكالة الوطنية العراقية للأنباء| نينا",
+          "published": "2026-07-17T15:42:31.000Z",
+          "lang": "ar",
+          "title_sv": "Diyala Sports vinner förstaplatsen i det irakiska landslagets mästerskap i fysisk styrka"
+        },
+        {
+          "title": "أيمن حسين يحدد موعد حسم مستقبله.. مفاجأة تنتظر الجماهير!",
+          "url": "https://news.google.com/rss/articles/CBMi7ANBVV95cUxPSEFxYjU3Y0I3cFhPZG9xc0FjZHRBNnNsY3V6cGJ0SXF1TXZYNi1QTHIzZGJndXlEcWpmYXc3QktfRWhmUjdrcXZtSUlzYXJSb3hFTmlJNGtYQVZZLVd2UFN4eDlaemVLUXFJMjhZTTJQUWJfc3RBWEExZXZtSWRSeGpGbWZ0R2R0UTBBSjVNOWpwanhQUGFoQ09kcklQVkZtR2lBclFJWlpwV0JzLUpfTkkySHE0aEF1dVE5X1pGSGpDWmEyMmQ1bkdLWkNrYmRHb080ZnlxOFg1MkhBNmZXTkdibzVyV1d5S1hUb3JCRXdVRWdWREt2WFVQa1AyTzRBSFR4bk9yVDlSWThQdldwcnNkVkpDQk81RVVoYkNMTjZwajFQdTFCQ1pyaWdyRnhxVmgyRWNpLXFsT3VSaFFyVEFQbV9oR0ZwRG4xejdwWUJmb2lDUDVCS3RoRjB5VXg4ZXY1MXN2dXFhRVdoU1NOSi1qcG9NT1AzaTZ2dU9yZnVaY1p5M2ltOWVNb3hnbEtDVXBOZ0ZzeWpqX2JtUkItV2dYR1FQRzVmTFVTYnBBYWxVQ2NpYWlhUk8wVHZSMC1DTXQ0ZjE0ZzZiczlYR3AwZlJuLU1fdmdXWjl1dzFKUnhXWmI1bmY5cThIZ3Q?oc=5",
+          "source": "winwin.com",
+          "published": "2026-07-17T13:44:24.000Z",
+          "lang": "ar",
+          "title_sv": "Ayman Hussein bestämmer datumet för sin framtid...en överraskning väntar fansen!"
+        },
         {
           "title": "Al-Aalem",
           "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE9ueXh0YkdSMUhBR0tSeWt1MmdKZld6NVdVb1lBNkJTMUxGdEN3MEdValoxY1I5QW9TWWNrTDRqX2Rjdw?oc=5",
@@ -1812,28 +1828,28 @@
           "published": "2026-07-17T05:49:51.000Z",
           "lang": "ar",
           "title_sv": "AFC tillkännager datumen för Iraks matcher i kvalmatcherna för Asian Junior Cup"
-        },
-        {
-          "title": "الاتحاد الآسيوي يعلن مواعيد مباريات العراق في تصفيات كأس آسيا للناشئات",
-          "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE0wdGp4ZE5rZVRHTUVQbDZHcG1idGhqU2dIeVd0cU5qVl9SU1JBajVqQ2VFaXJiLTNFMll2ZlpuWUxxNlhXalRCWmdfQ2VuMmxO0gFKQVVfeXFMUG1QYTRaT29aU2xMNVlJVUxqUDJlaVI4VUMtNVBHenJJaXBQU2NrUGpQRWhXR19kc3pHUWxPbWNFZU1VTTlVOHlPOWc?oc=5",
-          "source": "هذا اليوم",
-          "published": "2026-07-17T05:48:03.000Z",
-          "lang": "ar",
-          "title_sv": "AFC tillkännager datumen för Iraks matcher i kvalmatcherna för Asian Women's Cup"
-        },
-        {
-          "title": "ديشامب يوجه تحذيرًا بشأن مبابي بعد ثلاثية فرنسا أمام العراق ويعترف: أحب القسوة مع اللاعبين",
-          "url": "https://news.google.com/rss/articles/CBMizAVBVV95cUxPOFdVdHlXeGUwdHluUXZmLTl2eTRWdHVqbE1TdF9pRTFuVlhJTUhxV2hJWlNJOWRCWmtUV0JDd3NwWS1PeFZCSTdVb1dtMERQdFZick1WSjdWclFMOU0zc0Iyai02X29OSFJoazlLTEdtYWlGcnhVbVVEakx0WXpLTXNVd1p4YWVPNHFfUzJORnNDVUQ3SkVnSlJST0dZVkhUNFN3Vm1SbFR4QWtFNlptdkc2eEk3QlpPWDhWVzNMbkl4LXVDMml2dDdyWUxmVUpOZGtrQURNY29PLWJPLUtjTXhMeXJDZW50TGNTYTg0VzFNMUV3UTRUWHFaLW41RFZmaDBYMTNrYTY5Sy1XM3NmdlJXeGpnV3lhR3JVU2pqMXJpOGlTMF9KQ3c0YXN1MTY0WHp2OVptZzJwQ0diWk9aSGFkLVBFX1ZNcENSNG9fUzdkdEtHeHJlS19La3pfY1hsZTN5a21kM2JidVl1THRSRHFRUEJkRkMzbmoyaUtONkh0Z1ZydnMxb213WEt4UzZKdkdVZXNzU1h5RzFpaE5sTUpVUE5CQ3R0QkdvS0F2ZUJrQ0NGVk5UOFhicEJPR2tpbTFMS29nR3pKM2FvYVpNOEdZZzdEeDBBVll1OHdnbGpIdkozWEdQdlZNMW5VcGR2QUdMeWh5T2RMMnAtVllxQk9EcnV3aG9Yc1hBbVI4WGVFNzBHME5QU2w5THZCXzJQM3RSVm83OUtWczBmd2VTaDNhSmN5YzJlbUNFaVpyczhMN056d0tEZjViaFBFakp3WUlvM3F4R25Wakh6NHhtTDl3ZGxZMWFoVlM5WFJLNjB3dkppVklBT2dTa2dVa0VPckNJdmxNZnJqU21jX0I5VDJNSk9nYnl4OHc2b0Jvd1AyUDF2SXFZSmVKbEtBd2p3U1hoQUdfaGVndFR4MzhHVGJrcnNWU1JKeUtjRQ?oc=5",
-          "source": "MSN",
-          "published": "2026-07-17T00:03:12.000Z",
-          "lang": "ar",
-          "title_sv": "Deschamps utfärdar en varning om Mbappe efter Frankrikes hattrick mot Irak och erkänner: Jag gillar grymhet med spelare"
         }
       ]
     },
     "ar": {
       "edition": "AR:es-419",
       "items": [
+        {
+          "title": "Con qué camiseta jugará la Selección argentina ante España en la final del Mundial 2026",
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOQmpadFJPWDBiY1FkaTVvaVFuYU85ZzEydEZfS3lGNjdiM1BtdmVNREtDeWRoN2VCNHk2VXdjSk8yY1A4RUJGQjVoa001TFFJV1ZZT1V5V2pVYjN0NW5BX093anpUZGNGTVREMUFlU0dTYkxFcGZIblM4V1ZjLWM2TkxPdmRITmVfV1d2NVEtZk9UQkVHalFGZkNmRmZOREFHa0pQMHRGRGdOQ3lBa05hTVFaNnVVaS1hWlB4MEw3MnFla3FRWTB1WlZ2bGd4c284MzNlYUVoUFlFR3hoSjhqSUk3Z0M0Z9IB-gFBVV95cUxPR1BiOFRSVFhPVTNtOTZvU00zTGV1d0pZQ3lHUlVOZTJlS3VHeUd1UHZUTzh4S1pkWEhMekczTHh4SUxoNkpHcjRwemZZZ3cwNmNialdaZjZsNUtOVVVlNEota2w0bERCbmtickxSRkJMb2FJUWxaZ2gwWHNpd2NCeUhHVUk4Ulg2U0NjTHJERGhNdnh4aFlYM0o2VTZzQmFoTUJVcTUwX1dYVFpwb0wwNlp1VzBqc1g0ZWVsT04ta05CSUVzbzB4TzNFWEpfNGdPalRMU1JjUGNsU2drYWNlOTJ3U0swUjRlXzQ4bkRBWmo0N3BOdEwxMXNB?oc=5",
+          "source": "TN",
+          "published": "2026-07-17T14:47:50.000Z",
+          "lang": "es",
+          "title_sv": "Med vilken tröja kommer det argentinska landslaget att spela mot Spanien i VM-finalen 2026?"
+        },
+        {
+          "title": "Así será la indumentaria de Argentina para la final ante España en el Mundial",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQZlgwWE9RMWRRRkRKb2gyYzFncG5NQ09sRFljVGdrS2JuRFRHNFE4NDJEZ3NnamJCQVlESi1WY2JtZUhkNkFhOXpSNkI5VjhGSW5HN0lPNnJwQkpqUjFSTXNBY28yTnZDSURsSjhTTnYya21FclJwM19mV2NRZTdSR1EyRGo5cGhZa0QybS1heHc0V215TXEwN3EwVmdXeDh3cVNUZ1BZRm9YOXloNmJOS2d6MkVjenl5ZldQTkdSaDFkZFROdDJvam1MVlhrNHc1cUY0?oc=5",
+          "source": "TyC Sports",
+          "published": "2026-07-17T13:59:00.000Z",
+          "lang": "es",
+          "title_sv": "Detta blir Argentinas dräkt för finalen mot Spanien i VM"
+        },
         {
           "title": "Las cinco canciones que la selección argentina eligió para motivarse en la previa de la semifinal contra Inglaterra",
           "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQS0IyaU9DREF1U0c5V2wxbmF1WXlEV3hjeVZkWDdJU1pnWExLclkwUWxidkpLay16SDFDYlBvR1czV1lhbzN2ZW9pQWZGTU9hT0hJcEdjenVSbVBtQllXbDdSSnlNQld3UVNCbkNYUUNaWXVxR1ljdUM0SkV2RjFkUFh4Q2VYdGJ2dEFncjZvQkRKYjNES1BPdERvcVQ1N1JjUjhQZzRuU0dCX19ZbERZRUVsaDZYN3hQNWVjT2Fvd3ptdnRhdVh6aDBCUVNuQXBITjNyVHpqY2RRZWxlV0ZlZTl0UElPNWgxOXc?oc=5",
@@ -1843,12 +1859,20 @@
           "title_sv": "De fem låtarna som det argentinska laget valde för att motivera sig själva inför semifinalen mot England"
         },
         {
-          "title": "Así será la indumentaria de Argentina para la final ante España en el Mundial",
-          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQZlgwWE9RMWRRRkRKb2gyYzFncG5NQ09sRFljVGdrS2JuRFRHNFE4NDJEZ3NnamJCQVlESi1WY2JtZUhkNkFhOXpSNkI5VjhGSW5HN0lPNnJwQkpqUjFSTXNBY28yTnZDSURsSjhTTnYya21FclJwM19mV2NRZTdSR1EyRGo5cGhZa0QybS1heHc0V215TXEwN3EwVmdXeDh3cVNUZ1BZRm9YOXloNmJOS2d6MkVjenl5ZldQTkdSaDFkZFROdDJvam1MVlhrNHc1cUY0?oc=5",
-          "source": "TyC Sports",
-          "published": "2026-07-17T12:07:06.000Z",
+          "title": "Vuelo especial para la Scaloneta: la Selección volará este lunes a la Argentina",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxORXVoT0JUZWFjLTVpa2hCSHpRVUMwa0pwT0FESXhSdmtiMUVSZUsxekZDSU1USkVxd3dNWFlLTnpSb1llVGpkU09qQjRzOHlrdmlibkMxSXFfcE1fOWJFLWI2OC1VRFEyS1ZuTlJFZjFxd1hXRWNId1N3aXNpMThGdklPTTVESU5SWjNVOUxTb0dPMFlFc05FWnhPRmQzd3ZyWTRxUmdOOXh0ZnpqMUM4NNIBtgFBVV95cUxQMThtU2l1Z0JrTmEzOG1KSXNUdDdWeUJWSEhYRVluVkVCTi16emhzRC0yenFHSWZHd2Jra2JqczM1UFdYY084aXJBQ3NYR2RvQzRfNTFJOWZJN2VScFVmT2xEbUVZNFNCalhiaTdtNHQ2bVVDeV96S0xnc0k5V25JbnBnMm55cVdicjZFcjJBelIxYU1pZ212VTlPaW8tb0k1bFR4dG04aWRUajZuZU1UcS1jekhOdw?oc=5",
+          "source": "MDZ Online",
+          "published": "2026-07-17T10:56:00.000Z",
           "lang": "es",
-          "title_sv": "Detta blir Argentinas dräkt för finalen mot Spanien i VM"
+          "title_sv": "Specialflyg för Scaloneta: landslaget flyger till Argentina på måndag"
+        },
+        {
+          "title": "Arman el operativo retorno de la Selección: vuelo el lunes, feriado en carpeta y a la espera de la AFA",
+          "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPV2ZFV0xWUE93TTNJWkhvZEhiZTJoTkd2UXNvbGZGeDR0YW1YWWg3N25uYjlDQmI0VVJzSnBmVkJyT0V1aEVmNTJwVlhETHZGOVlTdE4tSHktNmlSQzRKb0JFLVZjRHFfQUwzVzRyLUJFcWp5RGduWXZZS0hwR2ZWNlVNSl9aMG1FYVVtU2c0QkczbDFWMWs2V2FneTNVcElMaEFYMDUtekxYSEVLc1N4UUVSSHRrWWVjV3V1U01XMngxYmxaU1ZpSkd3YlIwSUczZUR6bHRoQ3ljWXg4dlRiSHpjdlV6Y3d0YUVFR2RKZkg?oc=5",
+          "source": "Diario El Día de La Plata",
+          "published": "2026-07-17T10:56:00.000Z",
+          "lang": "es",
+          "title_sv": "De satte upp den operativa återkomsten av landslaget: flyg på måndag, semester i pipelinen och väntan på AFA"
         },
         {
           "title": "Todos hablan de España: qué dijeron los jugadores de la Selección Argentina en la previa de la final del Mundial 2026",
@@ -1857,36 +1881,20 @@
           "published": "2026-07-17T09:01:08.000Z",
           "lang": "es",
           "title_sv": "Alla pratar om Spanien: vad de argentinska landslagsspelarna sa inför VM-finalen 2026"
-        },
-        {
-          "title": "Argentina, en el Mundial 2026: figuras, cómo juega, historia y mucho más",
-          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxONmF4Vkxxc19oRDZFZHJwazg4VGEzNzJTa0VMbGk3LWIwV1phQWdnU1VZX1hLWEJfcFVINjRMZkZoblB1WFFkMDJWQXE0SlZKZTJLSENteVZTcDN6UUNlV1hQcmFKUVMweWNoUnh2WlRtZXRqMzVudERrVFlJQWZDenMwNm1pd3lWT3hnVzRicUpwRW1RSjhyVDRhaUFrYklUMWpBWHZzX2tmcHlpR0R2X0FIaEtyZw?oc=5",
-          "source": "ESPN Argentina",
-          "published": "2026-07-17T08:43:10.000Z",
-          "lang": "es",
-          "title_sv": "Argentina, i VM 2026: siffror, hur de spelar, historia och mycket mer"
-        },
-        {
-          "title": "El Gobierno ya se prepara para el operativo de llegada de la selección y espera saber qué define la AFA",
-          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPSW9Bak5USVIwWlV0MHBUTkJPSDFCOE5mTHJqWTBWQTlmV0RmcGxCZnpWQlhMWjFsR1daZklyWTV2ZUtfbVdjekM4TGU5UFYzLXlKanI4RDRVWm9lMVVPTkFKUEdYUk5nNU5ma01HR1JyWkluaEt0M2tPbDJrcnpjN3BYdzRqczhmcHo3RmRJRnJkMVljYVgwZnQ0dXZndkhYWTJBMktQaWVZLWhTdnFoTzZrVF9YU29SSEVzRFFzZ3Jxc3BWNDFPclVIQXR2eHNhbklKNVJBaXhCeWtGQ09nQlJPQQ?oc=5",
-          "source": "La Nación",
-          "published": "2026-07-17T06:50:00.000Z",
-          "lang": "es",
-          "title_sv": "Regeringen förbereder redan för lagets ankomstoperation och hoppas få veta vad AFA definierar"
-        },
-        {
-          "title": "La selección argentina llegó a Nueva Jersey tras un inconveniente climático que retrasó su vuelo y ya piensa en España",
-          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNcUNhZThuZDBrTDVjU2NFMVN4WjFwNXA0S2tWWG50YjM4dzNpaXB6dVhHbFBKSkNVSVF6ZW4zQWNrSmp2Mk8wdER6SURoeE14YURUXzNsSThGaF9KSmc3YWdwc2tiV2Q5bmtQejZMX3Z5MVdiZWNWZ1QweWppeGVYZ0hTWEZpcXk0bHNXN1A3bUNzRkFKTFlUM1kzTjgyZlV1dGRQWm9IUmQ2VmlGclN5eGdYM0JLWWYzWU1aOVNlOTVhOHVTRENqYjU4MWNEQkdaN0MyY1R3MVRhVFVpUUFfMlQtTQ?oc=5",
-          "source": "La Nación",
-          "published": "2026-07-17T06:05:00.000Z",
-          "lang": "es",
-          "title_sv": "Det argentinska laget anlände till New Jersey efter ett väderproblem som försenade deras flygning och tänker redan på Spanien"
         }
       ]
     },
     "at": {
       "edition": "AT:de",
       "items": [
+        {
+          "title": "Besuch bei der WM - Babler nennt Alaba, Laimer und Co. „Spielerinnen“",
+          "url": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE5ZeE1taV9PWkp1T2phd3JUdG1wRW1YajB2azNqQ2dPSkxnQ2FQdXhZRkU3R0pBZTB1ZGNFSEtlektYOWJaV3lR?oc=5",
+          "source": "Kronen Zeitung",
+          "published": "2026-07-17T11:32:00.000Z",
+          "lang": "de",
+          "title_sv": "Besök på VM - Babler kallar Alaba, Laimer och Co. för \"spelare\""
+        },
         {
           "title": "Der ÖFB-Kader für die WM 2030?",
           "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPU0lyVFJoSVNNb29mTmw0bHpnSklrT1J4emY2SzBDcV9kN181ZllEa1N4ejExem4wQTJiS3FkYjdUZVV5ZDdtcEdqLWhIdnVJZXk2M0s0WS1mTjNpV0Y1LVphaTN3MXB3cHZqWFhKaFhSN1dNVmtXNzRUZEdrX0FaSzY2cHlVZWJlTkFxalpkR2c5Q3QyMXBQNGRUYl9JUUl6Q1FVY3lmVQ?oc=5",
@@ -1926,14 +1934,6 @@
           "published": "2026-07-13T08:47:48.000Z",
           "lang": "de",
           "title_sv": "\"Olidlig rasism\" - Spaniens tidigare premiärminister Rajoy kritiserades för kommentarer mot Frankrikes landslag"
-        },
-        {
-          "title": "Nach WM-Debakel: Übernimmt Ex-Stürmer Forlán Nationalteam?",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPWE1ic1ZzUHpfM2ktQTRjUjM2OS04YTdrTTVWbzZHZXdISzVaUkNGNDNGSG9VajRuYkRBQl9CQm45b3FxWFN2al9KZ1FXZDgyQktaRi16X1RScUVQbHBYS0JhcFpuR010eG1rUktoMS1iSkJJeW5WbURwcnFBRXJ6cjlkNVcwTlBGbjNCX3YwTUoxQlBncklWcXl0bzZBaTZ3ajFIT1d3QlRhXzJiMG04TzB3?oc=5",
-          "source": "LAOLA1",
-          "published": "2026-07-13T05:48:00.000Z",
-          "lang": "de",
-          "title_sv": "Efter VM-debaclet: Kommer ex-anfallaren Forlán att ta över landslaget?"
         }
       ]
     },
@@ -1955,14 +1955,6 @@
           "published": "2026-07-17T11:40:00.000Z",
           "lang": "fr",
           "title_sv": "ASSE: den otroliga historien om Ivan Gazidis innan han kom till de gröna"
-        },
-        {
-          "title": "🇩🇿 Le Président Tebboune Reçoit Les Verts Avant Leur Départ Pour Le Mondial 2026 Aux 🇺🇸 ! Mitchell Starc (HmwhdORLaC)",
-          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE0wbGVoYVB1dnZFZjRsUFVEUzM3RnNDZ1JCWndNZndNMF82RTg3MkZyT25Wb083bDFBRmhJdjBWQy1Sb0hUV3VteFBzY0xnRG9ucnJFQmFHY2lVMXBpaXE5dg?oc=5",
-          "source": "Mshale",
-          "published": "2026-07-17T09:59:17.000Z",
-          "lang": "fr",
-          "title_sv": "🇩🇿 President Tebboune tar emot de gröna innan deras avresa till VM 2026 i 🇺🇸! Mitchell Starc (HmwhdORLaC)"
         },
         {
           "title": "Algérie : La FAF met Petkovic face à ses responsabilités",
@@ -1987,6 +1979,14 @@
           "published": "2026-07-16T13:00:00.000Z",
           "lang": "fr",
           "title_sv": "ASSE: åtta avgångar, den stora saneringen börjar bland de gröna!"
+        },
+        {
+          "title": "Algérie-Maroc en Ligue des nations africaine ? La CAF répond",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQRU11MG5yWlNrMUlwQ2pVRmEtUnB0Zk9md2hqNnJrR21DUURXVzd2V0x2QUpNVkFWM0lfOFVfd1Uta0RvNU16dkJYZFBmWnVvVlNONGtXMllRa0Q1RHpkMzFsLVNMaHRaSzhUQmJDRUo1RXBRV0xVWXdsd3k2T1BrLV85dmo2T2thT3ZVV1d3?oc=5",
+          "source": "Fennec Football",
+          "published": "2026-07-16T03:02:42.000Z",
+          "lang": "fr",
+          "title_sv": "Algeriet-Marocko i Afrikanska Nationernas Förbund? CAF svarar"
         }
       ]
     },
@@ -2008,6 +2008,14 @@
           "published": "2026-07-16T18:02:44.000Z",
           "lang": "ar",
           "title_sv": "En ny digital prestation för det jordanska landslaget på väg till Electronic Sports World Cup"
+        },
+        {
+          "title": "بادو الزاكي يرحب بإمكانية تدريب الأردن: \"عرض النشامى لا يُرفض\"",
+          "url": "https://news.google.com/rss/articles/CBMiwAJBVV95cUxQQl9VaVhEV242b19MS0JsZlV1Y3N3WDZ4U3pRcWY0MXJuWW14YUgySmtMcnNIUm9BeFgweGx5WEdqSHo3Y2lxeURlRUVzZFhQbmZELUwtdHpucktDTFBUUWR6Y2plSVhYelRFcHFVaEh4bjBPZm1wck02YzlNcDFOOEozOEJZb1VqckdCRVU2MEQ5OHNpNzR6a1poWjdUclF4d2lHOV9pS2E5OXlqTU1EdzZyNHA0dW5RZy1UcFlxdUtoVkFLMW9sVWI0QjhxSFRHWFBWZWlUamdub3hNVW56Rm8xaERHR0FNZVpiNG5Xc1pUT1E2VnRIWDZQV2RKZ2t4Mk1Pdm9IVGVMbGgzU245X1M0eldpRUJjSzU5STRJc19vMW5hQ29rSzFuVHFBV0xMS2RZNnJWNlRVZUdoYkRERw?oc=5",
+          "source": "radiomars.ma",
+          "published": "2026-07-16T17:18:35.000Z",
+          "lang": "ar",
+          "title_sv": "Badou Al-Zaki välkomnar möjligheten att träna Jordan: \"Al-Nashamas erbjudande kan inte avvisas.\""
         },
         {
           "title": "بادو الزاكي يعلق على إمكانية تدريبه المنتخب الأردني",
@@ -2032,14 +2040,6 @@
           "published": "2026-07-16T09:39:14.000Z",
           "lang": "ar",
           "title_sv": "\"Khalefa Salami ... ett bra tränarnamn som välkomnar ledarskapet för Al-Nashama\""
-        },
-        {
-          "title": "الجالية الأردنية في أميركا تؤكد دعمها للمنتخب الأردني",
-          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5VR3pRZWd0TDBYRUFMdzNGS3dHQ25STk1ZcU9LelhTVE9CcXVram1GMjdSMkV2S01OVkU4bUVGYkZObFhRdFIzMzFZMmhiVWhBQWJmRUZ0MU1lZUFQZnJHaF9KN0lBV0R4ZXNJcVlB?oc=5",
-          "source": "وكالة الانباء الاردنية",
-          "published": "2026-07-16T07:40:38.000Z",
-          "lang": "ar",
-          "title_sv": "Det jordanska samfundet i Amerika bekräftar sitt stöd för det jordanska landslaget"
         }
       ]
     },
@@ -2174,6 +2174,14 @@
           "title_sv": "Mercato: Cédric Bakambu friade till Brasilien"
         },
         {
+          "title": "Sébastien Desabre frappé par un deuil : le sélectionneur des Léopards perd son père au soir de l’élimination de la RDC",
+          "url": "https://news.google.com/rss/articles/CBMipgJBVV95cUxQdUU4YmQtV3NBb0s4RmxsWDBoZ3JMVURmN2ZnZy1NNVFLcXI4TlJrem9zeWVLTmdoNXotS3NwNzdlcnRrdHk4NWRjWHkyVU8tamtDOWFQeTlsMkk3blBXbmhYYXVUZDVjYnBPbVBZOEgydXRWOEZoTUtFb2dadEM2SC14TXp2UXlpMW1zRjBfWUtpOVpOcmFEaFpYZzVMRzZncVdvYnVqY2xiOGNmNFJjdE96cWMwWnQ2TGoyaWpQMnloR3p4RVRCT0lSRXpCeHJGclQwXzByVUlabzM1MUtuZjVrYi1vZm42em1HSm5ETjBvczN5LVlVV3Fub2R3bUt3M3hfc3NnaDVrNHd6ZGQzYjZacGEzOWt3WE85eHU1dERkZUlGZ2c?oc=5",
+          "source": "MSN",
+          "published": "2026-07-17T01:02:12.000Z",
+          "lang": "fr",
+          "title_sv": "Sébastien Desabre drabbas av sorg: Leopards tränare förlorar sin far på kvällen då Demokratiska republiken Kongo försvann"
+        },
+        {
           "title": "🔴EN DIRECT/ RDC - DANEMARK : Les Léopards Sortent L'artillerie Lourde Avec Un Groupe Au Complet ! Casini (14zfWn5qbd)",
           "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1ucndIcjJzZE5GS2FBX2thNDgtMEtWTGh4Y0w3X0FjZjEyWWFQSVlUYkk4QmhPcURHUTBzbDE5VVhaelhKdDBFSFdYSW5rVF9IcWYzOENkRk5TYjRRV3ROOQ?oc=5",
           "source": "Mshale",
@@ -2204,14 +2212,6 @@
           "published": "2026-07-11T02:52:21.000Z",
           "lang": "fr",
           "title_sv": "Football-Congo Cup: Eliterna eliminerar VClub (3-0) på straffar"
-        },
-        {
-          "title": "Coupe du monde 2026 : Félix Tshisekedi aux côtés des Léopards pour le choc historique face au Portugal",
-          "url": "https://news.google.com/rss/articles/CBMi-AJBVV95cUxNV1ZpNWxwb0NUdEpMWmxKd0tIM1oyQngyc0E0cjU0WTAzdV9VM2tvdGp5aVhnTGNtVkR6RV9zeDg5UGN1cTVJVUpuMXdobnRKSXJfT1U3NGRnNmFmbkFhWWEyUXBTMHZNUmswRlExZGIwM1RuZTNQTV8wNU9VX3RGN183RWxROFhHTXlmLU9ERzJUXy0yV0h3ZUwzaTRnRXUwTkotMXVud052bC0xMXU3dERza1VpQ3FsdXEwS3p6aElfenB4LUdxUUJ2NmJCMjdybkhSQ1AtOEF0Wmh4aFlhUTRfcS1OUkxMeWZFTHFVdjl3VkpKZmNlTk5fb2x3bkY0OHE2MGxIbVJCMG1NaDg3QU5HclhLSHFoWW5OTlRNYnJCcmg5TXdnR3VKVkZ6T0gzSUtsNy1HUWJIZERyR2pRay1pbmlPYmwxRVctNUtjclpIZW1ISDVNX0d5QjBLZkRnZEhySldQcHRPcmZPMFAxX1ZWSl9mTjlQ?oc=5",
-          "source": "MSN",
-          "published": "2026-07-10T21:01:52.000Z",
-          "lang": "fr",
-          "title_sv": "VM 2026: Félix Tshisekedi tillsammans med Leopards för den historiska sammandrabbningen mot Portugal"
         }
       ]
     },
@@ -2339,11 +2339,11 @@
       "items": [
         {
           "title": "President Mahama Praises Black Stars After World Cup Run, Calls for Team Continuity | Ghana News",
-          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE8xWU9IOFN4OWhDYTJhdklBNnNuR2xyR1ZEX2tZemw2Z3RGMU1tTFJfTjdSRzBrR3NfdUpGSTlJTHpwZHdhb0xLR0xSSm00dzJyeGlGUXJ2WnhNQXZQN1c2dDlEY9IBXEFVX3lxTE5RNDR5RENYd25ZcmE0dlc5TnNSTmJ4bEhIRHNhUXZsWW95R1k2XzlkSHlOakhqZ1RNTGdncG91V01FazRTXzhlRXhVT0tvN3NfZGtEM1NGemlQV0JG?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5TekFwMXBtb200YUNqdTB0cGFESG1QakhYYU9MaEYtdWU2a1ZoNGVGelFlWXJPT21kRjVVeUxDYXZrTmFVT0ZxYmN3S3pHWGthMzJFWEdnYnJvMlVBRXdMS3FhUdIBXEFVX3lxTE5RNDR5RENYd25ZcmE0dlc5TnNSTmJ4bEhIRHNhUXZsWW95R1k2XzlkSHlOakhqZ1RNTGdncG91V01FazRTXzhlRXhVT0tvN3NfZGtEM1NGemlQV0JG?oc=5",
           "source": "Modern Ghana",
-          "published": "2026-07-17T13:47:12.000Z",
+          "published": "2026-07-17T14:39:20.000Z",
           "lang": "en",
-          "title_sv": "President Mahama lovordar Black Stars efter World Cup Run, kräver kontinuitet i laget | Ghana nyheter"
+          "title_sv": "President Mahama berömmer Black Stars efter World Cup Run, kräver kontinuitet i laget | Ghana nyheter"
         },
         {
           "title": "Mahama gives review of Black Stars' showing at 2026 World Cup",
@@ -2352,14 +2352,6 @@
           "published": "2026-07-17T13:05:47.000Z",
           "lang": "en",
           "title_sv": "Mahama ger en recension av Black Stars visning vid VM 2026"
-        },
-        {
-          "title": "Black Stars performed admirably well at World Cup, says President Mahama",
-          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOalpFOU5qNWRLZEstM1Y0ZHB3MnNwQzIyYWFaRWxFVnphZzRFS2xJNVh3SGljQ01ZaG84T0c3U21LeHZ5ZWpJTzN1cGVBNGt0cmdzNjZveE1KNURpMTgtV0pEVWxrX21raVhVQ18xdGlJM3puUGFOVV8wNUpXN1NiWEJLV0c1WGtDeUpVUjBEN25kRDNVemRoYW1yWm9Rd0k?oc=5",
-          "source": "GhanaSoccernet",
-          "published": "2026-07-17T12:40:42.000Z",
-          "lang": "en",
-          "title_sv": "Black Stars presterade beundransvärt bra i VM, säger president Mahama"
         },
         {
           "title": "President Mahama hails Black Stars for surpassing World Cup expectations",
@@ -2384,6 +2376,14 @@
           "published": "2026-07-17T08:44:42.000Z",
           "lang": "en",
           "title_sv": "VM 2026: Kwasi Sibo hyllar Black Stars engagemang trots exit"
+        },
+        {
+          "title": "Jonathan Sowah agrees three-year return to Singida Black Stars",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNclBGeXp3c2V3Y2tjcmFMQ3BlMnFId1ViNlJVQ3FNc0Rva3B1ZFVZMmVQZFRuMjVROXIwNUd5V1YzWFZzOEc0SWxuZGFTU1pad0ZTbFE4cWlPOF9jSl9vWk1MYkdwNG9HS3QtU3VZNUdsZ0wzX25aOVdtNmhPYmZKWk5jb2Jhbm12VjREd3cxZHNZWEk?oc=5",
+          "source": "GhanaSoccernet",
+          "published": "2026-07-17T00:22:28.000Z",
+          "lang": "en",
+          "title_sv": "Jonathan Sowah går med på tre års återkomst till Singida Black Stars"
         }
       ]
     }
