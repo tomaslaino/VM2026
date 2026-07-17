@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-17T14:10:01.073Z",
+  "updated": "2026-07-17T15:52:00.345Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -11,7 +11,7 @@
       "updated": "2026-07-17",
       "source": {
         "name": "El Imparcial",
-        "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNdW5OcVAxYUM2ajY2SXhVb0xadllsdHVCNkFtU2lUd2pXRl9BN0dSOEZJT2tlNThVc1dJbmtUd0JNUG9XdUZ0R0d2NXc3MXpfcklocEhyd1JxYm9lb191MFliRkdYZ182Y2xxc09IVk9YYWo1WTlZZnN3NUIyTmczTk5BR01renN2TzE3RkJISXQ1R1lpY01lbDE4V1ZlcE9Nb3ppYVJCR1kwSDIxalJGVTRlZENZWUNhTE9zTW1CTTQzY0E5SHpySGdYLUJHT2k4NXU5M3JfVm50LURHVTExSzFETXLSAf8BQVVfeXFMUGRyXzZITWFYdVRzbHk1a2dBck5oNWFZQkZkUjQzSXo3V2VTbnF1QkRUUXhNdzVCU05NaXNNc3NmVzlBaHJPNV9XdXZJR3VWeDRwTUp1Tlg4YjNkTHlZZGVSNng4RXprM2hIZ3NfWXFib3BCZUhKVExZeEMzUEF3Q3hYUklRcnlhSkkwOVVkMjFqa1ExRmJReDl3R2pCUWJYa0o4RE4tRzFCRkl1QjE5QWZJeThfcWh3NFFVekpWdmpnZnBHZFZSdG1Wak1nbjNNWEtRSUVkck1tbGVDU0E4cVd5UkpUSUNETXVBbWh6OTF4UjZ5OHVINGJwOUV2ZW9F?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxQZHJfNkhNYVh1VHNseTVrZ0FyTmg1YVlCRmRSNDNJejdXZVNucXVCRFRReE13NUJTTk1pc01zc2ZXOUFock81X1d1dklHdVZ4NHBNSnVOWDhiM2RMeVlkZVI2eDhFemszaEhnc19ZcWJvcEJlSEpUTFl4QzNQQXdDeFhSSVFyeWFKSTA5VWQyMWprUTFGYlF4OXdHakJRYlhrSjhETi1HMUJGSXVCMTlBZkl5OF9xaHc0UVV6SlZ2amdmcEdkVlJ0bVZqTWduM01YS1FJRWRyTW1sZUNTQThxV3lSSlRJQ0RNdUFtaHo5MXhSNnk4dUg0YnA5RXZlb0XSAf8BQVVfeXFMUGRyXzZITWFYdVRzbHk1a2dBck5oNWFZQkZkUjQzSXo3V2VTbnF1QkRUUXhNdzVCU05NaXNNc3NmVzlBaHJPNV9XdXZJR3VWeDRwTUp1Tlg4YjNkTHlZZGVSNng4RXprM2hIZ3NfWXFib3BCZUhKVExZeEMzUEF3Q3hYUklRcnlhSkkwOVVkMjFqa1ExRmJReDl3R2pCUWJYa0o4RE4tRzFCRkl1QjE5QWZJeThfcWh3NFFVekpWdmpnZnBHZFZSdG1Wak1nbjNNWEtRSUVkck1tbGVDU0E4cVd5UkpUSUNETXVBbWh6OTF4UjZ5OHVINGJwOUV2ZW9F?oc=5"
       },
       "origin": "news"
     },
@@ -29,7 +29,7 @@
     "eng-reece-james": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Englands laguppställning vs Frankrike: Förutspådd XI för VM 2026 på tredje plats i slutspelet efter Reece James skadestöt",
+      "detail": "Englands laguppställning vs Frankrike: Förutspådd XI för VM 2026 på tredje plats i slutspelet efter Reece James skada",
       "updated": "2026-07-16",
       "source": {
         "name": "Sports Mole",
