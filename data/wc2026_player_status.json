@@ -1,17 +1,17 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-17T11:47:48.904Z",
+  "updated": "2026-07-17T14:10:01.073Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
       "availability": "doubtful",
-      "kind": "other",
-      "detail": "Lamine Yamals promenad genom New York efter den oro han lämnade under träningen med Spanien",
+      "kind": "injury",
+      "detail": "Är Lamine Yamal skadad? Spanien förklarar varför man tränade separat inför finalen mot Argentina",
       "updated": "2026-07-17",
       "source": {
-        "name": "El Desmarque",
-        "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQbEVvTDVZYjVjdW1BOV9oeVJ4R2pmTGhBeWZTby1tbjkxN0YwdVFiRUpIS2tUN1dhR3d4dVcyTml2LTU1R2ZsVmxRdjJQYUtVVnJuTnBMY2J1LWI2TngyY1YtVjV1UDdqY2VDYzVVUjB4NW5sYV94ZXgxQjliZk42VE5yS1hqajdDUUlYbXd1X2hfVmtfSFFxTkU5THRwVDRocVVJT1oySHpPMHNMSUp5Mzh0Uk5IbGRVeWMxUTJvTWN3Mm02Y2ZjR2V6NHIxUQ?oc=5"
+        "name": "El Imparcial",
+        "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNdW5OcVAxYUM2ajY2SXhVb0xadllsdHVCNkFtU2lUd2pXRl9BN0dSOEZJT2tlNThVc1dJbmtUd0JNUG9XdUZ0R0d2NXc3MXpfcklocEhyd1JxYm9lb191MFliRkdYZ182Y2xxc09IVk9YYWo1WTlZZnN3NUIyTmczTk5BR01renN2TzE3RkJISXQ1R1lpY01lbDE4V1ZlcE9Nb3ppYVJCR1kwSDIxalJGVTRlZENZWUNhTE9zTW1CTTQzY0E5SHpySGdYLUJHT2k4NXU5M3JfVm50LURHVTExSzFETXLSAf8BQVVfeXFMUGRyXzZITWFYdVRzbHk1a2dBck5oNWFZQkZkUjQzSXo3V2VTbnF1QkRUUXhNdzVCU05NaXNNc3NmVzlBaHJPNV9XdXZJR3VWeDRwTUp1Tlg4YjNkTHlZZGVSNng4RXprM2hIZ3NfWXFib3BCZUhKVExZeEMzUEF3Q3hYUklRcnlhSkkwOVVkMjFqa1ExRmJReDl3R2pCUWJYa0o4RE4tRzFCRkl1QjE5QWZJeThfcWh3NFFVekpWdmpnZnBHZFZSdG1Wak1nbjNNWEtRSUVkck1tbGVDU0E4cVd5UkpUSUNETXVBbWh6OTF4UjZ5OHVINGJwOUV2ZW9F?oc=5"
       },
       "origin": "news"
     },
