@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-17T07:31:10.508Z",
+  "updated": "2026-07-17T10:15:10.120Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -23,6 +23,17 @@
       "source": {
         "name": "kickfootball.fr",
         "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNYXd3SzBPVW9uc1dhWEg1akFjNkh0bHF1OGg1V0dpWkNELWZ0RmZMOThXM1pnVGMxUzB0ZTZPWTJIQWY5bXoyb3F4N0IxZjJHczhrTHBBWlI2WWpsenFyaVExT05nbFJGcGhzYS1KS1owd21McDhQV2s4aTlLaHhzSkx3bTNWTVRXUWdYOEZieXVFRWZTQ19tRDVWWmNNaTA0Smk0MmdKckNzTU8yU2JrNmVEX0swTE9saWQ2UjFB0gHDAUFVX3lxTE5GeVRnT3g3RDNRT25xWXYyMUJtWkQ0VFBNUHBVZF9La2VKQmdVRXpfRmZISU5iX3o0dGlGQkZBeXAyRk9mTnAyLXA1X2E0ZEN4cEc3dmpLSHBOMm9wcTNmNm45WnhTY3l1ekQ4a2pqT09tRzFTZm5STTFaMHVrei1ROGJndTlvdG5na0wzMEMwRF8wbVNmWlhzMVFYU05mekpOYk9LeDF4eDBueU5pSEVKcUtlZmNJdldjcUEwWVRZM05xQQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-reece-james": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Englands laguppställning vs Frankrike: Förutspådd XI för VM 2026 på tredje plats i slutspelet efter Reece James skadestöt",
+      "updated": "2026-07-16",
+      "source": {
+        "name": "Sports Mole",
+        "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPZFhyaE45RU9qMjkzay1aclBMcEhhcFJsYTE1eXdvbndLcWxOYnM5ZmdpNGhmdGxJLVVZbnh0b0s4aEc1Y3JuS2QyalJwSnVWWGhnU0loQlZQWGc4eGVMWXVCemlBRG9yTmp5dTYxOWRNeXJHbC1OQVJvQ3I1WEJzTXVzbWRqN0ozZmx3Tkk5S3lSUWV6ek1nQlJNWE1RX2dJdTVwZGc4bG93Q2NzNjlMeU9tNEpGQW4yZFJ3cVBBQTNpMTMxaFo1S0N1RVp3Z0JSakNLYllFSV96am1kbFIw?oc=5"
       },
       "origin": "news"
     },
