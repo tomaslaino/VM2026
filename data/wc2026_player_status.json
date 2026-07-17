@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-17T04:32:43.766Z",
+  "updated": "2026-07-17T07:31:10.508Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -18,11 +18,11 @@
     "fra-william-saliba": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "William Saliba spelade VM trots bruten rygg",
-      "updated": "2026-07-16",
+      "detail": "Franska laget: William Saliba spelade VM med bruten rygg",
+      "updated": "2026-07-17",
       "source": {
-        "name": "Le Parisien",
-        "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxOa09CSnhSSkdaMVhjTzByS2ttMFltOFRqUkpCVjd3NE9rYzlZMWozTjlucmVYcGJwNkNzNGdwNzRoVTkxZmdENzFYZVB1RXI0THpQZzUyLVZqQ1NwRHZDUjJINnFrelRlNi1OWW0wV0tDS0d6cFZVaVR3b2h1WVpoVFh1VkZTSHlYVnQ5ZWZmQzdKS200QWlLeUhqVk13a041UDlmUFBYSmM1dkJibjJoU0JlUWRiMC1IV180Sjk2dHl1WGdNZVZfRmI5b2FMWDE2WXo2VWZEekYwZGVfMFAwTHBoYVhTeGJDWmhodnJ0aFR3YzRKMU9ZbDUtXzY?oc=5"
+        "name": "kickfootball.fr",
+        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNYXd3SzBPVW9uc1dhWEg1akFjNkh0bHF1OGg1V0dpWkNELWZ0RmZMOThXM1pnVGMxUzB0ZTZPWTJIQWY5bXoyb3F4N0IxZjJHczhrTHBBWlI2WWpsenFyaVExT05nbFJGcGhzYS1KS1owd21McDhQV2s4aTlLaHhzSkx3bTNWTVRXUWdYOEZieXVFRWZTQ19tRDVWWmNNaTA0Smk0MmdKckNzTU8yU2JrNmVEX0swTE9saWQ2UjFB0gHDAUFVX3lxTE5GeVRnT3g3RDNRT25xWXYyMUJtWkQ0VFBNUHBVZF9La2VKQmdVRXpfRmZISU5iX3o0dGlGQkZBeXAyRk9mTnAyLXA1X2E0ZEN4cEc3dmpLSHBOMm9wcTNmNm45WnhTY3l1ekQ4a2pqT09tRzFTZm5STTFaMHVrei1ROGJndTlvdG5na0wzMEMwRF8wbVNmWlhzMVFYU05mekpOYk9LeDF4eDBueU5pSEVKcUtlZmNJdldjcUEwWVRZM05xQQ?oc=5"
       },
       "origin": "news"
     },
