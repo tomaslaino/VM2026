@@ -1,17 +1,17 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-17T10:15:10.120Z",
+  "updated": "2026-07-17T11:47:48.904Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
       "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Det spanska laget höll andan när Yamal ådrog sig en skada.",
-      "updated": "2026-07-16",
+      "kind": "other",
+      "detail": "Lamine Yamals promenad genom New York efter den oro han lämnade under träningen med Spanien",
+      "updated": "2026-07-17",
       "source": {
-        "name": "Vietnam.vn",
-        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNbmc3VjVSUWN0T19NY1p2bE1XdWpsazJkMGRmR2x2QzdpSVRkMjA2NVkxNUJzdENpSnFqdC1HNk1HcHhmaFk4TVlndmZGTzlVQVN5dllhZkR5MXR5MlNPblp1VlJoT2pMNC1yUGltWHR4eXlJQ3pPNmlqTzN5YWwzazBxVnI1TUJC?oc=5"
+        "name": "El Desmarque",
+        "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQbEVvTDVZYjVjdW1BOV9oeVJ4R2pmTGhBeWZTby1tbjkxN0YwdVFiRUpIS2tUN1dhR3d4dVcyTml2LTU1R2ZsVmxRdjJQYUtVVnJuTnBMY2J1LWI2TngyY1YtVjV1UDdqY2VDYzVVUjB4NW5sYV94ZXgxQjliZk42VE5yS1hqajdDUUlYbXd1X2hfVmtfSFFxTkU5THRwVDRocVVJT1oySHpPMHNMSUp5Mzh0Uk5IbGRVeWMxUTJvTWN3Mm02Y2ZjR2V6NHIxUQ?oc=5"
       },
       "origin": "news"
     },
