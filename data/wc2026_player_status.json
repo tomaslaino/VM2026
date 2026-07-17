@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-17T21:12:25.765Z",
+  "updated": "2026-07-17T22:10:44.208Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -15,36 +15,14 @@
       },
       "origin": "news"
     },
-    "fra-dayot-upamecano": {
-      "availability": "doubtful",
-      "kind": "other",
-      "detail": "Frankrike-England: Maignan förväntas starta, Upamecano osäker",
-      "updated": "2026-07-17",
-      "source": {
-        "name": "Le Parisien",
-        "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPNW5DblplZ1VDeUJjbnpYVDhUUUdOTnZFSWZEWTlZbzRqV05zT1RRdjhSdWZLanN3cHkxVHkzcUh5WnpMWEZPVGpmTVJUWWFkbWRjbk9RZlJpRlU1X2R4ZDEtOXUxTXA5emFPZ0lOR1ExV194bXZQTk1EcTZjcEJXdEVkbnc0WUprQndtV1Q3alpHenZQdW9wSExLY29iT0RzT3A5RGNzeEhhSW9VdlRzMzFIdjdLR2d4VHdzVzZSQXNETThTbkhxZkh5MWl2LXk4T2dSenRVUUtJcDFXcE9WZWtKXy1ZaHJ1NW84b0o4NEVNQnFyUS1R?oc=5"
-      },
-      "origin": "news"
-    },
-    "fra-mike-maignan": {
-      "availability": "doubtful",
-      "kind": "other",
-      "detail": "Frankrike-England: Maignan förväntas starta, Upamecano osäker",
-      "updated": "2026-07-17",
-      "source": {
-        "name": "Le Parisien",
-        "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPNW5DblplZ1VDeUJjbnpYVDhUUUdOTnZFSWZEWTlZbzRqV05zT1RRdjhSdWZLanN3cHkxVHkzcUh5WnpMWEZPVGpmTVJUWWFkbWRjbk9RZlJpRlU1X2R4ZDEtOXUxTXA5emFPZ0lOR1ExV194bXZQTk1EcTZjcEJXdEVkbnc0WUprQndtV1Q3alpHenZQdW9wSExLY29iT0RzT3A5RGNzeEhhSW9VdlRzMzFIdjdLR2d4VHdzVzZSQXNETThTbkhxZkh5MWl2LXk4T2dSenRVUUtJcDFXcE9WZWtKXy1ZaHJ1NW84b0o4NEVNQnFyUS1R?oc=5"
-      },
-      "origin": "news"
-    },
     "fra-william-saliba": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Franska laget: William Saliba spelade VM med bruten rygg",
+      "detail": "Allvaret i Salibas skada tonades medvetet ned, men fakta har nu kommit fram",
       "updated": "2026-07-17",
       "source": {
-        "name": "kickfootball.fr",
-        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNYXd3SzBPVW9uc1dhWEg1akFjNkh0bHF1OGg1V0dpWkNELWZ0RmZMOThXM1pnVGMxUzB0ZTZPWTJIQWY5bXoyb3F4N0IxZjJHczhrTHBBWlI2WWpsenFyaVExT05nbFJGcGhzYS1KS1owd21McDhQV2s4aTlLaHhzSkx3bTNWTVRXUWdYOEZieXVFRWZTQ19tRDVWWmNNaTA0Smk0MmdKckNzTU8yU2JrNmVEX0swTE9saWQ2UjFB0gHDAUFVX3lxTE5GeVRnT3g3RDNRT25xWXYyMUJtWkQ0VFBNUHBVZF9La2VKQmdVRXpfRmZISU5iX3o0dGlGQkZBeXAyRk9mTnAyLXA1X2E0ZEN4cEc3dmpLSHBOMm9wcTNmNm45WnhTY3l1ekQ4a2pqT09tRzFTZm5STTFaMHVrei1ROGJndTlvdG5na0wzMEMwRF8wbVNmWlhzMVFYU05mekpOYk9LeDF4eDBueU5pSEVKcUtlZmNJdldjcUEwWVRZM05xQQ?oc=5"
+        "name": "Goal.com",
+        "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOaEd4VEtzME1lT2wxZC1zbWp1NFBvSVV6b2ZIa1pRbVdFMUc1aVRCeHlBX0F2NUM4aDduN1MyNV9DbTlMb2JxLUMyMTM1MXVTMXVnY2xsSEppbVJVN1RvYVVfZzBLSkhPSTB3X05KNnk0MW1jazZWYkdiS2NaLXZIcDl4eVpDTk5wblplRGowMzgzc3FyVDI0VU5oUDl5WVFNRmN5VkRCRVF3Y2pGcV9iTVpNSjhrU1N3RFh0bGZ2ei15NEZtVHNWQlI1SWVKLXozWEl6OVU1VDFwYW1TLUlHZS1WVVRKZw?oc=5"
       },
       "origin": "news"
     },
