@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-11T21:03:31.242Z",
+  "updated": "2026-07-17T10:27:06.687Z",
   "note": "Handskrivna svenska löptextsammanfattningar per kommande match till matchmodalens ”Senaste nytt”-flik. Underlag: ländernas egna medier (samma artiklar som i team_news.json) + internationella förhandsartiklar. Skrivs om inför varje ny omgång; saknas en match faller fliken tillbaka till rubriklistan.",
   "matches": {
     "k:89": {
@@ -927,6 +927,88 @@
       "predictionNote": "Den extrema värmen i Dallas kan gynna det mer defensivt organiserade laget och öka sannolikheten för ett lågt resultat och förlängning.",
       "written": "2026-07-11T19:53:49.977Z",
       "refsHash": "000e5e0210ff55df",
+      "generated": true
+    },
+    "k:103": {
+      "teams": [
+        "fr",
+        "gb-eng"
+      ],
+      "headline": "Bronsmatch med tunga avbräck och heta känslor: Deschamps sista dans mot kritiserat England",
+      "lead": "Trots att ingen vill spela den, har bronsmatchen mellan Frankrike och England flera tunga insatser. Didier Deschamps sista match som förbundskapten och kampen om Guldskon sätter tonen för en het uppgörelse i Miami.",
+      "paragraphs": [
+        "Bronsmatchen mellan Frankrike och England har oväntat höga insatser. För Frankrike är det **Didier Deschamps** sista match som förbundskapten efter 14 år, och hans spelare är motiverade till ett värdigt avsked [[1,2,3]]. **Kylian Mbappé** jagar dessutom Guldskon med sina åtta mål, i delad ledning med Lionel Messi [[1,4,5]]. England söker revansch efter semifinalförlusten mot Argentina och vill undvika en tredje bronsförlust [[6,4]].",
+        "Frankrike har visat klinisk effektivitet framåt (16 mål på 14,00 xG, +2,00) och ett starkt försvar (4 insläppta på 5,46 xGA, +1,46). Dock är mittbacken **William Saliba** ett tungt avbräck; han har spelat med en ryggfraktur och kan bli borta i månader efter att ha tvingats av planen i semifinalen mot Spanien [[7]]. Detta skapar defensiv osäkerhet.",
+        "England har en ännu högre offensiv effektivitet (14 mål på 11,38 xG, +2,62) men ett mer sårbart försvar (8 insläppta på 6,79 xGA, –1,21). Förbundskapten **Thomas Tuchel** kritiserades hårt efter semifinalförlusten mot Argentina (1–2) för taktiska beslut som gjorde laget för passivt [[8,9]]. Högerbacken **Reece James** missar troligen matchen på grund av en ny muskelskada [[10]]. Trots avbräcken har England starka offensiva kort i **Jude Bellingham** och **Harry Kane**, båda med sex mål [[10,5]].",
+        "Miamis värme och höga luftfuktighet, med vätskepauser, kan gynna det mer disciplinerade laget [[11]]. Frankrike är favoriter enligt oddsen (-205) [[5]] och har ett historiskt övertag i de senaste nio mötena, inklusive kvartsfinalsegern i VM 2022 [[12,6]]. Trots Salibas frånvaro och värmen, väntas Frankrikes kollektiva styrka och Deschamps motivation avgöra mot Englands defensiva sårbarhet och Tuchels ifrågasatta taktik.",
+        "Slutsats: Frankrikes starka försvar och Deschamps sista match ger dem en psykologisk fördel. Englands defensiva sårbarhet, trots deras kliniska anfall, blir svår att övervinna i värmen. Frankrike vinner en tät match."
+      ],
+      "references": [
+        {
+          "source": "The New York Times",
+          "title": "Frankrike vs England megaförhandsvisning: Förutsägelser, formguide, nyckelspelare och mer",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNcEFieldtaFQ3RDQ3YnBhcHVacjZMNnBLRFR3NWdUV2ZIeHl5MlpkcGFCaHF5WGlWZTl3Qm5UYVFqQm1IeFdLdXVCSmdRYlhtT0dYWTJRSEo3M1BKNk50RXY3NHVkRXdNMUQybnhZY2lmSWdxUG1vei1mdklTbVlUZEJGSU0tZ2ppTm1lbWpTYXV6dWFmb3hZ?oc=5"
+        },
+        {
+          "source": "RMC Sport",
+          "title": "Frankrike-England: Deschamps vägrade låta Blues åka ut till Miami innan den lilla finalen",
+          "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPdW9MYWtpb1lkTzNfczEtMW8tU1F4X05oWEtLQmV5STRMbjh5NVcyM3N4OGhEWXpGQWNic3gwRXlSSUlMTmtfNEowdXFmUi1GejBEbGFyV3E1bVhYOUFKdEFfbF9ac3ZwWDlWN1FtOXRQU1N0RTlweUlXMi1Iczd3Mlo4VkVQZHRCOEFrellZWXB1ZVl0QlVFRWlCTWpITmdjdkRjbUx2T1RvSWRKN2wzSG9ySTR0Z1BCdFR3cWhqaHJHVF9Wa0Roa0FsWTVZQncwc2FQREhJV2c1b3lCdWJUb1hYQ0xqMGgwdjl5WVEwRXk4dTZ0SFl1eVlaaw?oc=5"
+        },
+        {
+          "source": "Le Devoir",
+          "title": "Vad är insatserna för den \"lilla finalen\" mellan Frankrike och England?",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOZ0pGMUxlOEJpRUNrVmg1UFRDQ1hUd3JDSkpvTG9acFgzbS1GWk41STQ1akZPb3lBVFh4cUUyd21Ic2ZCSFRzbjZfTXk5ZEhfY0NDV01wdzFubXhyenVNenJWMUlTTUNSQmRmOGJUWFVQckNkUWp6cFp2YkpnUXBaUXE4aG1LRE9DQVNoWmxqUEhkeVU?oc=5"
+        },
+        {
+          "source": "London Evening Standard",
+          "title": "Varför är det ett slutspel på tredje plats i världscupen? England vs Frankrike redo för \"bronsfinal\"",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNeFd2RnJhQjVMMnNqOEl3LWpmNnp4WjNtTkZXNEZNMm1vSmN3dGUwSVA2QVAxTjk5OTE1R2dVQWVOQUctVm1GUHZWcHVYMVJTa1VvWHUzc2FWR1BoUGtzckFNZUlfSHRmeGhWcVlHQ0NDbUctSmlKQUVlejNBOTNEdWUyQUNYeG9VeXpGZld0VDFNUFp6NW41MFNhV0FQVDFFbW1qQlNwU1F0QndJbEwtM1pkaTZvbFY3Wnc?oc=5"
+        },
+        {
+          "source": "FOX Sports",
+          "title": "VM 2026 tredjeplatsodds: Frankrike gynnas framför England",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPMUY3QU9xZkF0WDAzX1ZuNEFLZjBxNlNzUXdhSnNSUFVxUExla1Y4bHN2ZVlnQzhuVjV1REZMYjBXVW9xSUNVbkxmejBBMGNlVFNVcDFESG9KX0E5bVVEMmNRR0t6Z0lid2NYZG1nRjRNXzZJUGF1alpaZC1xUGRDNnB1dXE3UUQzQ19jZkJscmjSAZABQVVfeXFMUGd4NUxtSG9GMW51a2h6anlrbjhEYWtvTmpHTlJUOEJIazFkbF9qWVdvd3E1S0YwU2l1bDRPRHVnaXh3VlUwSklfR2p3TW1TQXR3dXJoWElrWHRtekRCQ2g5ZE9iV0hWU0M1bUdwWFViZmZNUTAtSEUtd2g3ZjdNTXJEaVRkWGpoQXlmcHZDdWdF?oc=5"
+        },
+        {
+          "source": "TF1 Info",
+          "title": "VM 2026: Frankrikes lag kommer att utmana England i matchen om 3:e plats",
+          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPTDhqOEpNbEpRVWJncVpqa0REbTJOXzVLZ2JrWEpzakJlNkFRdDR1UUtnZ1BBck0xZnREa1ZNdzNRNUZTMEtTOXNJV1hJcVR4NlpNWHVhaGthMEJPTzZLeDlHaVRGNVdDTi1OM3RLUXVvT2xsTTRfVHpLOTRCbkJuUnhRY3JYNEdrR1dmX1RyNXI0Mmt6dmhtZi13YWN2UmNUazZrd3g0RElac1VUR1JWYThuSWlsUjcwSDBVb1NVOEk5VE10U2FOYi1neko?oc=5"
+        },
+        {
+          "source": "kickfootball.fr",
+          "title": "William Saliba (Frankrike) – osäker: Franska laget: William Saliba spelade VM med bruten rygg",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNYXd3SzBPVW9uc1dhWEg1akFjNkh0bHF1OGg1V0dpWkNELWZ0RmZMOThXM1pnVGMxUzB0ZTZPWTJIQWY5bXoyb3F4N0IxZjJHczhrTHBBWlI2WWpsenFyaVExT05nbFJGcGhzYS1KS1owd21McDhQV2s4aTlLaHhzSkx3bTNWTVRXUWdYOEZieXVFRWZTQ19tRDVWWmNNaTA0Smk0MmdKckNzTU8yU2JrNmVEX0swTE9saWQ2UjFB0gHDAUFVX3lxTE5GeVRnT3g3RDNRT25xWXYyMUJtWkQ0VFBNUHBVZF9La2VKQmdVRXpfRmZISU5iX3o0dGlGQkZBeXAyRk9mTnAyLXA1X2E0ZEN4cEc3dmpLSHBOMm9wcTNmNm45WnhTY3l1ekQ4a2pqT09tRzFTZm5STTFaMHVrei1ROGJndTlvdG5na0wzMEMwRF8wbVNmWlhzMVFYU05mekpOYk9LeDF4eDBueU5pSEVKcUtlZmNJdldjcUEwWVRZM05xQQ?oc=5"
+        },
+        {
+          "source": "Sky Sports",
+          "title": "VM 2026: England 1-2 Argentina - Tre lejon förlorar semifinalen efter en fantastisk sen vändning av innehavarna",
+          "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxOUDZ4ZTRTbkxCTVNYLV9FUVo3cTlQNFpKbUJTay1kZGJDb0djZF90UXN2alRta0N3akdpNGh5T0VvUERzOGE4LUd4N1BfYlJWeGJ0eG9CWlA1OHVhM0tvcWNEUjFFSXRUYVVlTmRJd0ZVbUstV1FLSUR0RGllaW1aNkNPV2x6WnNadFQ5NGJISlN0YUdWRlRDQzFKcVZzZ3RuYnhWejVwR1B6TFBzYWVxdTlIdGNaaVVxdmdHbWFycXZiZVN6Mno1Sk55RzAtSUF4UUZmUElBTHFpMHNzV0lqXzBnOHdOMURaZUZuNFY5VHA1b3l3X0lfam5KTGk?oc=5"
+        },
+        {
+          "source": "Sky Sports",
+          "title": "England utanför VM: De stora frågorna som Thomas Tuchel och de tre lejonen ställs inför efter att ha förlorat mot Argentina",
+          "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxNazBrVVhQX0xXNmczaWtGZ3QyUGV6SkFrb2RYN09YN0FJOWJzcVM2Z1V2d0ViWktzZHdKRlI2cXFjRkNXZDUwYzdfakhRdzBFdlFSVE5mUUR0ZzdTUFRnTDJ4c25pV2g1cDVScHl6S045cWJ1Z3ZqRlVZOWc2dGpiV1ItNjFMSnRRcTJkd0NEWEVoNHg0d1gzWThCUEV4MFFoQlEwTU5NN1JEckJZcVc4eW00c3RSMXFDdElhODgtQmNYSHNUSFh6VDluOUppWGNNcmtmb0Q5M0FKcFVfVEQyeDdPcHpPOFdDNlFRd2dUVU1XMXFBTnJfLXJNNkg?oc=5"
+        },
+        {
+          "source": "Sports Mole",
+          "title": "Reece James (England) – osäker: Englands laguppställning vs Frankrike: Förutspådd XI för VM 2026 på tredje plats i slutspelet efter Reece James skadestöt",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPZFhyaE45RU9qMjkzay1aclBMcEhhcFJsYTE1eXdvbndLcWxOYnM5ZmdpNGhmdGxJLVVZbnh0b0s4aEc1Y3JuS2QyalJwSnVWWGhnU0loQlZQWGc4eGVMWXVCemlBRG9yTmp5dTYxOWRNeXJHbC1OQVJvQ3I1WEJzTXVzbWRqN0ozZmx3Tkk5S3lSUWV6ek1nQlJNWE1RX2dJdTVwZGc4bG93Q2NzNjlMeU9tNEpGQW4yZFJ3cVBBQTNpMTMxaFo1S0N1RVp3Z0JSakNLYllFSV96am1kbFIw?oc=5"
+        },
+        {
+          "source": "FOX Sports",
+          "title": "Norge vs England VM kvartsfinaler Väderuppdatering, prognos",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPYXZBUTdJM0FvYzVsNWVpdnlxYzZnSF85MnJXdFRvX3E2Q2pLZTZwX3BwWDlEeU9yMVllbm80ZHRzZ2NmNEVCYWNrWFFhelhzMU1CTkFmNkQ4WmRoajRKaXcyWHhDTktUVzRJNFdXZHBua19TWUx0aGdYTGUxNV9OMkdmdmY1Rm5Oakw4ZnlTUGVXV1N6UXlmU0FGdHd6UkNEdWszZlJIcUlhd9IBqgFBVV95cUxPeVpXNzQ0cnJpTnZJNUxjb0lma2tYR3BsZGVlLW1LWFpWZ2d3SEtyUUxMVzVKb2NVV3pHQ2RpTzRyQ3EwLXN3U2xhNmc1QWdwRHI2eFVQcXRxWnFRZDI5a1lyX3lBaDNDYUhHUHozOHMyUzFzNDRNZ19odU11aHV1WUpBdEdVY1lGQ1h1YzFoYWszSDdlWTdlTkE3c2xhaURGTV80QkZtdjdxUQ?oc=5"
+        },
+        {
+          "source": "CNews",
+          "title": "VM 2026: troliga laguppställningar, stadion, TV-sändning... Allt du behöver veta om matchen om 3:e platsen mellan Frankrike och England",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOSEc5cjdrYmdoSEJOdU9Eei1hNWl4dlV0SDNra3BPQmU3V20wTWczWkdZbDgzNnV1VUptcTBoYjVWWjg4RUhjSjhHYTl4NFAyc0t3eGZwNUFFQThzWXJnbTFlWUo0YkNfX3BWOTl1NVlfcUVIOGZjV1JlVHJhNWNNblN6YzVhSlMyOGxzRDY1bE1GZTY5Wm8ycGV1Wnk4d1pERU9rTlREa19rczhSOGQtelhxRW5JSDZpamfSAb8BQVVfeXFMTklmb0ViN1dXUmFQUlhmektkN1ZIRWVJNXY0UGV0eHNudXgwZm9nOTB5UjJYb0VidjNPa1ptT0VXT2p0SVZWS3VIS0xid3ZpTTFOek0yZHVvR0cxWElPYzgyOEExb2RVRnJQX0oxSVZBMWFXS0hzenJiLU92U0xFUzR4em53MjgxM3VWUHVjdkFTVGxQVGZ3Z3JGYnJXSjRKLTNnakJseV9la3pLTlRPU3NiZ2c3djc4anpPRmsyVk0?oc=5"
+        }
+      ],
+      "prediction": "2–1 Frankrike",
+      "predictionNote": "Englands förmåga att överträffa sitt xG och Bellingham/Kanes individuella briljans kan vända matchen, särskilt om Frankrike påverkas av Salibas avbräck.",
+      "written": "2026-07-17T10:26:21.534Z",
+      "refsHash": "2d956f12f6bf2aff",
       "generated": true
     }
   }
