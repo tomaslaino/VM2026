@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-18T19:38:03.059Z",
+  "updated": "2026-07-18T21:10:36.289Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -18,44 +18,33 @@
     "fra-william-saliba": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Kan han missa färre matcher än väntat? Skadedetaljerna i Saliba avslöjade",
+      "detail": "Franska laget: Den nya vändningen på William Salibas skada!",
       "updated": "2026-07-18",
       "source": {
-        "name": "Dailysports",
-        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPVVdoOEdrMXpRVUpoQWs4NnpBTC1FMVoxMUNCZ2tJZmVOaTVBZmd4NnVNUFRDZ0N1M2haY0JsLWYxUUZtVDN3QU5hRkFSZGFSU0VZTVhCcnlRV3dHUmNHMW1tbE5RX2VWemE2Y056YlVGQ1ROaW1nTlZSMzl5RmVKOHFFTmZGUzE1eFFoaFRqbFJQSVFSWXd3T25qZzJjLXFhUE5vLWpXUE4wOEV0S2xtQ3ZhUklsY2xrcDN4WWQzblE?oc=5"
-      },
-      "origin": "news"
-    },
-    "fra-dayot-upamecano": {
-      "availability": "doubtful",
-      "kind": "other",
-      "detail": "Frankrike-England: Maignan förväntas starta, Upamecano osäker",
-      "updated": "2026-07-18",
-      "source": {
-        "name": "MSN",
-        "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQZE9xQkJ3Q2hCSkhiUjk4R1VaX3N1QkVOODJHLWtrV3VodzJQZjJtbFV2YjVTdHl5YmVhbzhZQTNNcTlBMDB5VzJOZGRrV3hyckpYM1VQSFlta2tDSktNR2tDVkRfN0lRQm9rV3g3b2QxUDRmQjdDNnczZVZJUVIwSGRCdHU3TkNwTlJ0Ym50MXpYemRYNENIS1ZvNjd2cGxhOUhYalhCYnpZTlNVNHlvbmQ1aTZRc0dKN0taeklKcVNOdU1wUE5KczlhUFdrMkZFNExhRFpyS05zRUZSZk9VOVE4eXRSSktaNkhjRzQ1cjQxZw?oc=5"
-      },
-      "origin": "news"
-    },
-    "fra-mike-maignan": {
-      "availability": "doubtful",
-      "kind": "other",
-      "detail": "Frankrike-England: Maignan förväntas starta, Upamecano osäker",
-      "updated": "2026-07-18",
-      "source": {
-        "name": "MSN",
-        "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQZE9xQkJ3Q2hCSkhiUjk4R1VaX3N1QkVOODJHLWtrV3VodzJQZjJtbFV2YjVTdHl5YmVhbzhZQTNNcTlBMDB5VzJOZGRrV3hyckpYM1VQSFlta2tDSktNR2tDVkRfN0lRQm9rV3g3b2QxUDRmQjdDNnczZVZJUVIwSGRCdHU3TkNwTlJ0Ym50MXpYemRYNENIS1ZvNjd2cGxhOUhYalhCYnpZTlNVNHlvbmQ1aTZRc0dKN0taeklKcVNOdU1wUE5KczlhUFdrMkZFNExhRFpyS05zRUZSZk9VOVE4eXRSSktaNkhjRzQ1cjQxZw?oc=5"
+        "name": "Le10Sport",
+        "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOaGNPZ0RjM1dnaFVqRmlpSGlpTXJyV2syV05vSVhRQmw0NkhVZWRfazNBOFpBb0pjNVo5RVE3ZHd1RFFadE91Qk4xNHM0QzF3X3pMLXlhcUIzUUVYdE43TDRpZWdHeTJPN3ExZHZzSHdEQkhhOE84dDNacUViODFRSF9kS3dOSlJaV3FWc0k5OXpGOEdGSEdNLXNBWVBGVEswcUxiN29ac0wxZDVId0ZVMUY1RnNUeGZHdXYyUEpPbzFKUzNGaTNpbjIwbw?oc=5"
       },
       "origin": "news"
     },
     "arg-giuliano-simeone": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Det här är historien om Giuliano Simeones övervinna: skadan som nästan avslutade hans karriär och hans revansch i det argentinska landslaget",
+      "detail": "Detta är den gripande historien om Giuliano Simeones övervinna: skadan som nästan avslutade hans karriär och hans revansch i det argentinska landslaget",
       "updated": "2026-07-18",
       "source": {
         "name": "Diario Río Negro",
         "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxNc3BrWDJsQldXWmNVbWVqVlJiMjIyckkxTG44TGJEZS1GRHRFbU9uUmV4MjdyWnNPZVBQWkJhZVljTHJFMU4yVTZGSHZpUXhmVllsSDk0NFNVUTdNdnRKYmNVbDlMOW1aR1JTUUpHdWMtWWc2SXlxMVhFQ00tRW0wS2Ixdll4VkFTQ0JMOE1oMTlJbGg4cjlEZEVNdmEzSnVvVjZiZmllaXo4V1VJY1dfNmdrMEhyNnhETzVXT3dqbVRuMlY4TmNQM241ZUZoSDNoY09CemlfS0RGNUZld0htVW9PRndjMDEyYmhiNkxubG52bFlnSEVZbW9iR0NTNjExbkZwSHlka0Q?oc=5"
+      },
+      "origin": "news"
+    },
+    "eng-kobbie-mainoo": {
+      "availability": "doubtful",
+      "kind": "other",
+      "detail": "England släpper uttalande om Kobbie Mainoos frånvaro mot Frankrike",
+      "updated": "2026-07-18",
+      "source": {
+        "name": "The Sun",
+        "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOano5ZnVFdklPSGFtZmpQNFZKS0g0NXZrM182OTlzWXQxb2FxdkJ5VUxJNlc2cURXaWlqNk1MUzNXMTkwNzRFWUNPUzZqc1FyWDh3WksyaEVPWWY4NVQ4aURzMG1TY1c3NVB0SHpiekZ2MWVXaFhNbmpGVDV0RkpFSUNZY2taODdQa1ppbFlRdUNnT28?oc=5"
       },
       "origin": "news"
     },
