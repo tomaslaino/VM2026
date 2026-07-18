@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-18T21:10:36.289Z",
+  "updated": "2026-07-18T22:11:22.603Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -40,7 +40,7 @@
     "eng-kobbie-mainoo": {
       "availability": "doubtful",
       "kind": "other",
-      "detail": "England släpper uttalande om Kobbie Mainoos frånvaro mot Frankrike",
+      "detail": "Englands pressmeddelande om Kobbie Mainoos frånvaro mot Frankrike",
       "updated": "2026-07-18",
       "source": {
         "name": "The Sun",
