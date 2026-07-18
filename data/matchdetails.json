@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-18T22:28:36.365Z",
+    "updatedAt": "2026-07-18T23:31:37.579Z",
     "source": "espn"
   },
   "details": {
@@ -59185,15 +59185,15 @@
     "k:103": {
       "espnId": "760516",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 65,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-18T21:00Z",
       "duration": "REGULAR",
-      "winner": null,
+      "winner": "AWAY_TEAM",
       "score": {
         "ft": {
-          "h": 2,
-          "a": 4
+          "h": 4,
+          "a": 6
         },
         "ht": {
           "h": 0,
@@ -59275,6 +59275,54 @@
             "h": 2,
             "a": 4
           }
+        },
+        {
+          "minute": 66,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Kylian Mbappé",
+          "assist": "Michael Olise",
+          "type": "REGULAR",
+          "score": {
+            "h": 3,
+            "a": 4
+          }
+        },
+        {
+          "minute": 87,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Bukayo Saka",
+          "assist": null,
+          "type": "PENALTY",
+          "score": {
+            "h": 3,
+            "a": 5
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 6,
+          "team": "h",
+          "scorer": "Ousmane Dembélé",
+          "assist": "Dayot Upamecano",
+          "type": "REGULAR",
+          "score": {
+            "h": 4,
+            "a": 5
+          }
+        },
+        {
+          "minute": 90,
+          "injuryTime": 8,
+          "team": "a",
+          "scorer": "Jude Bellingham",
+          "assist": null,
+          "type": "REGULAR",
+          "score": {
+            "h": 4,
+            "a": 6
+          }
         }
       ],
       "bookings": [],
@@ -59308,6 +59356,36 @@
           "team": "a",
           "in": "Ollie Watkins",
           "out": "Marcus Rashford"
+        },
+        {
+          "minute": 79,
+          "team": "a",
+          "in": "Elliot Anderson",
+          "out": "Ivan Toney"
+        },
+        {
+          "minute": 79,
+          "team": "a",
+          "in": "Jude Bellingham",
+          "out": "Eberechi Eze"
+        },
+        {
+          "minute": 83,
+          "team": "a",
+          "in": "Reece James",
+          "out": "Jarell Quansah"
+        },
+        {
+          "minute": 90,
+          "team": "h",
+          "in": "Jules Koundé",
+          "out": "Malo Gusto"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "in": "Trevoh Chalobah",
+          "out": "Marc Guéhi"
         }
       ],
       "penalties": [],
@@ -59320,8 +59398,8 @@
               "jersey": "16",
               "pos": "G",
               "st": {
-                "gc": 4,
-                "sv": 3
+                "gc": 6,
+                "sv": 4
               }
             },
             {
@@ -59329,9 +59407,9 @@
               "jersey": "2",
               "pos": "RB",
               "st": {
-                "fc": 1,
-                "fs": 1,
-                "gc": 4
+                "fc": 2,
+                "fs": 2,
+                "gc": 5
               }
             },
             {
@@ -59347,8 +59425,9 @@
               "jersey": "14",
               "pos": "LM",
               "st": {
+                "fc": 2,
                 "fs": 1,
-                "gc": 4,
+                "gc": 6,
                 "sh": 1
               }
             },
@@ -59368,7 +59447,7 @@
               "pos": "CD-L",
               "st": {
                 "fc": 1,
-                "gc": 4
+                "gc": 6
               }
             },
             {
@@ -59376,9 +59455,10 @@
               "jersey": "11",
               "pos": "AM-R",
               "st": {
-                "gc": 4,
-                "a": 1,
-                "sh": 1
+                "fc": 1,
+                "gc": 6,
+                "a": 2,
+                "sh": 3
               }
             },
             {
@@ -59386,7 +59466,7 @@
               "jersey": "18",
               "pos": "RM",
               "st": {
-                "gc": 4,
+                "gc": 6,
                 "sh": 1
               }
             },
@@ -59395,11 +59475,11 @@
               "jersey": "10",
               "pos": "F",
               "st": {
-                "gc": 4,
+                "gc": 6,
                 "a": 1,
-                "sg": 2,
-                "g": 1,
-                "sh": 4
+                "sg": 4,
+                "g": 2,
+                "sh": 8
               }
             },
             {
@@ -59447,9 +59527,10 @@
               "in": true,
               "st": {
                 "fc": 2,
+                "gc": 2,
                 "sg": 1,
                 "g": 1,
-                "sh": 1
+                "sh": 2
               }
             },
             {
@@ -59458,7 +59539,11 @@
             },
             {
               "name": "Jules Koundé",
-              "jersey": "5"
+              "jersey": "5",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Brice Samba",
@@ -59471,7 +59556,14 @@
             {
               "name": "Dayot Upamecano",
               "jersey": "4",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 1,
+                "gc": 2,
+                "a": 1,
+                "sg": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Ousmane Dembélé",
@@ -59479,8 +59571,10 @@
               "in": true,
               "st": {
                 "fs": 1,
-                "sg": 1,
-                "sh": 1
+                "gc": 2,
+                "sg": 2,
+                "g": 1,
+                "sh": 2
               }
             },
             {
@@ -59490,7 +59584,11 @@
             {
               "name": "Lucas Digne",
               "jersey": "3",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 2,
+                "gc": 2
+              }
             },
             {
               "name": "Lucas Hernández",
@@ -59510,8 +59608,8 @@
               "jersey": "13",
               "pos": "G",
               "st": {
-                "gc": 2,
-                "sv": 3
+                "gc": 4,
+                "sv": 5
               }
             },
             {
@@ -59520,8 +59618,8 @@
               "pos": "RB",
               "st": {
                 "fc": 1,
-                "fs": 1,
-                "gc": 2
+                "fs": 2,
+                "gc": 3
               }
             },
             {
@@ -59530,8 +59628,8 @@
               "pos": "LB",
               "st": {
                 "fc": 2,
-                "fs": 1,
-                "gc": 2
+                "fs": 2,
+                "gc": 4
               }
             },
             {
@@ -59540,7 +59638,7 @@
               "pos": "DM",
               "st": {
                 "fc": 1,
-                "gc": 2,
+                "gc": 4,
                 "a": 1,
                 "sg": 1,
                 "g": 1,
@@ -59553,7 +59651,7 @@
               "pos": "CD-R",
               "st": {
                 "fc": 1,
-                "gc": 2,
+                "gc": 4,
                 "sg": 1,
                 "g": 1,
                 "sh": 1
@@ -59565,7 +59663,8 @@
               "pos": "CD-L",
               "st": {
                 "fc": 1,
-                "gc": 2
+                "fs": 1,
+                "gc": 3
               }
             },
             {
@@ -59573,11 +59672,11 @@
               "jersey": "7",
               "pos": "RM",
               "st": {
-                "fs": 1,
-                "gc": 2,
-                "sg": 3,
-                "g": 2,
-                "sh": 4
+                "fs": 2,
+                "gc": 4,
+                "sg": 4,
+                "g": 3,
+                "sh": 5
               }
             },
             {
@@ -59585,8 +59684,9 @@
               "jersey": "17",
               "pos": "CM-R",
               "st": {
-                "fs": 1,
-                "gc": 2
+                "fs": 2,
+                "gc": 4,
+                "sh": 1
               }
             },
             {
@@ -59594,8 +59694,8 @@
               "jersey": "22",
               "pos": "F",
               "st": {
-                "fs": 2,
-                "gc": 2,
+                "fs": 3,
+                "gc": 3,
                 "sg": 1,
                 "sh": 2
               }
@@ -59607,7 +59707,7 @@
               "st": {
                 "fc": 1,
                 "fs": 1,
-                "gc": 2,
+                "gc": 3,
                 "a": 1,
                 "sh": 3
               }
@@ -59630,7 +59730,15 @@
             },
             {
               "name": "Jude Bellingham",
-              "jersey": "10"
+              "jersey": "10",
+              "in": true,
+              "st": {
+                "fs": 1,
+                "gc": 1,
+                "sg": 2,
+                "g": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Harry Kane",
@@ -59642,11 +59750,19 @@
             },
             {
               "name": "Trevoh Chalobah",
-              "jersey": "12"
+              "jersey": "12",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Elliot Anderson",
-              "jersey": "8"
+              "jersey": "8",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "James Trafford",
@@ -59674,14 +59790,19 @@
             },
             {
               "name": "Reece James",
-              "jersey": "24"
+              "jersey": "24",
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Ollie Watkins",
               "jersey": "19",
               "in": true,
               "st": {
-                "gc": 2,
+                "fc": 1,
+                "gc": 4,
                 "sh": 1
               }
             }
@@ -59690,52 +59811,52 @@
       },
       "referee": "Jesús Valenzuela",
       "venue": "Hard Rock Stadium, Miami Gardens, Florida",
-      "attendance": null,
+      "attendance": 64478,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "43%",
-          "a": "57%"
+          "h": "46%",
+          "a": "54%"
         },
         {
           "key": "totalShots",
-          "h": "10",
-          "a": "15"
+          "h": "19",
+          "a": "19"
         },
         {
           "key": "shotsOnTarget",
-          "h": "5",
-          "a": "8"
+          "h": "9",
+          "a": "11"
         },
         {
           "key": "wonCorners",
-          "h": "2",
+          "h": "3",
           "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "7",
-          "a": "7"
+          "h": "14",
+          "a": "8"
         },
         {
           "key": "offsides",
-          "h": "2",
-          "a": "3"
-        },
-        {
-          "key": "saves",
           "h": "3",
           "a": "3"
         },
         {
+          "key": "saves",
+          "h": "4",
+          "a": "5"
+        },
+        {
           "key": "totalPasses",
-          "h": "317",
-          "a": "411"
+          "h": "444",
+          "a": "517"
         },
         {
           "key": "passPct",
-          "h": "90%",
-          "a": "92%"
+          "h": "91%",
+          "a": "91%"
         },
         {
           "key": "yellowCards",
@@ -59748,7 +59869,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-18T22:28:36.364Z"
+      "updatedAt": "2026-07-18T23:31:37.579Z"
     }
   }
 }
