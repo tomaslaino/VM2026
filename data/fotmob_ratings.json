@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updatedAt": "2026-07-15T22:27:31.208Z",
+    "updatedAt": "2026-07-18T23:41:19.948Z",
     "source": "fotmob",
-    "matchCount": 102
+    "matchCount": 103
   },
   "matches": {
     "g:A:2": {
@@ -13862,6 +13862,165 @@
         }
       },
       "updatedAt": "2026-07-15T22:27:30.804Z"
+    },
+    "k:103": {
+      "fotmobId": 4653857,
+      "teamRating": {
+        "h": 6.2,
+        "a": 7.3
+      },
+      "xg": {
+        "h": 2.8,
+        "a": 2.89
+      },
+      "xgot": {
+        "h": 4.02,
+        "a": 4.79
+      },
+      "players": {
+        "h": {
+          "mike maignan": 4.6,
+          "malo gusto": 5.1,
+          "theo hernandez": 4.9,
+          "adrien rabiot": 4.9,
+          "ibrahima konate": 4.5,
+          "maxence lacroix": 5.9,
+          "michael olise": 8.6,
+          "warren zaire emery": 4.7,
+          "kylian mbappe": 9,
+          "rayan cherki": 6.2,
+          "desire doue": 5.4,
+          "bradley barcola": 7.5,
+          "dayot upamecano": 7.3,
+          "ousmane dembele": 7.9,
+          "lucas digne": 6.5
+        },
+        "a": {
+          "dean henderson": 6.5,
+          "jarell quansah": 5.9,
+          "djed spence": 6.9,
+          "declan rice": 8.3,
+          "ezri konsa": 7.4,
+          "marc guehi": 7.4,
+          "bukayo saka": 9.7,
+          "morgan rogers": 7.5,
+          "ivan toney": 6.9,
+          "eberechi eze": 8.1,
+          "marcus rashford": 7.9,
+          "jude bellingham": 7.9,
+          "elliot anderson": 6.2,
+          "ollie watkins": 6.5
+        }
+      },
+      "playerXg": {
+        "h": {
+          "adrien rabiot": {
+            "xg": 0.06,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "michael olise": {
+            "xg": 0.47,
+            "xgot": 0,
+            "shots": 3,
+            "goals": 0
+          },
+          "warren zaire emery": {
+            "xg": 0.02,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "kylian mbappe": {
+            "xg": 1.39,
+            "xgot": 1.94,
+            "shots": 8,
+            "goals": 2
+          },
+          "rayan cherki": {
+            "xg": 0.04,
+            "xgot": 0.12,
+            "shots": 1,
+            "goals": 0
+          },
+          "bradley barcola": {
+            "xg": 0.4,
+            "xgot": 0.84,
+            "shots": 2,
+            "goals": 1
+          },
+          "dayot upamecano": {
+            "xg": 0.03,
+            "xgot": 0.27,
+            "shots": 1,
+            "goals": 0
+          },
+          "ousmane dembele": {
+            "xg": 0.39,
+            "xgot": 0.85,
+            "shots": 2,
+            "goals": 1
+          }
+        },
+        "a": {
+          "declan rice": {
+            "xg": 0.04,
+            "xgot": 0.29,
+            "shots": 1,
+            "goals": 1
+          },
+          "ezri konsa": {
+            "xg": 0.1,
+            "xgot": 0.48,
+            "shots": 1,
+            "goals": 1
+          },
+          "bukayo saka": {
+            "xg": 1.49,
+            "xgot": 2.2,
+            "shots": 5,
+            "goals": 3
+          },
+          "morgan rogers": {
+            "xg": 0.08,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          },
+          "ivan toney": {
+            "xg": 0.11,
+            "xgot": 0.42,
+            "shots": 2,
+            "goals": 0
+          },
+          "eberechi eze": {
+            "xg": 0.08,
+            "xgot": 0,
+            "shots": 3,
+            "goals": 0
+          },
+          "marcus rashford": {
+            "xg": 0.52,
+            "xgot": 0.3,
+            "shots": 3,
+            "goals": 0
+          },
+          "jude bellingham": {
+            "xg": 0.42,
+            "xgot": 1.1,
+            "shots": 2,
+            "goals": 1
+          },
+          "ollie watkins": {
+            "xg": 0.05,
+            "xgot": 0,
+            "shots": 1,
+            "goals": 0
+          }
+        }
+      },
+      "updatedAt": "2026-07-18T23:41:19.544Z"
     }
   }
 }
