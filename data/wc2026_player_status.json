@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-18T15:26:41.301Z",
+  "updated": "2026-07-18T17:27:34.680Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -18,11 +18,11 @@
     "fra-william-saliba": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Saliba, bruten rygg sedan mars: varför Blues medicinska personal är i bryggan",
+      "detail": "Franska laget: skadad i ryggen kunde William Saliba undvika operation",
       "updated": "2026-07-18",
       "source": {
-        "name": "INFO.FR",
-        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE8ycFJrdmVmMkNzclRGd2k1dVFYUllpVkRVTHFXQnVMLTVrVVZGNFpla0o4LUJwNFBQOUhQaWxFV2ZhQVZOc2xLdktUN0FGbmpMLXJxS2RWXzExRlFETjhMQng0RDVWb3U2bHFya3FHeGZ0ODNpT1EzOA?oc=5"
+        "name": "Foot National",
+        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNMEhVS1FVeThXaE9tRzBQQ04xaC1jNTB0YVpUMzlUM0dJZ0M1ak5OY2ZaRVB0cHpjQWRXeWtQUDNmczcwTUU1LVYxbUpPZjZVTHRIbk00MVBTTWRSQlJISV8ySUtNWGJxbWU2emdlR01IWFkzWGtyenBUTTkzeGVXY0p6WjcwWmJEd0Fwck5DOHFwX1pjazB4SU5BdnBiRkE1d3FwS2dLNklfakpDTEE5MGczdDkxZWhvQ0hEQWJmQllkSTdF?oc=5"
       },
       "origin": "news"
     },
