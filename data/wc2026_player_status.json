@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-17T23:12:48.295Z",
+  "updated": "2026-07-18T00:13:56.721Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -29,7 +29,7 @@
     "eng-reece-james": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Englands laguppställning vs Frankrike: Förutspådd XI för VM 2026 på tredje plats i slutspelet efter Reece James skadestöt",
+      "detail": "Englands laguppställning vs Frankrike: Förutspådd XI för VM 2026 på tredje plats i slutspelet efter Reece James skada",
       "updated": "2026-07-16",
       "source": {
         "name": "Sports Mole",
