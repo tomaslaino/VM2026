@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-18T00:13:56.721Z",
+  "updated": "2026-07-18T03:39:56.781Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -18,18 +18,29 @@
     "fra-william-saliba": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Allvaret i Salibas skada tonades medvetet ned, men fakta har nu kommit fram",
+      "detail": "\"Hans skada blev inte värre\": Didier Deschamps klargör William Salibas exit mot Spanien",
       "updated": "2026-07-17",
       "source": {
-        "name": "Goal.com",
-        "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOaEd4VEtzME1lT2wxZC1zbWp1NFBvSVV6b2ZIa1pRbVdFMUc1aVRCeHlBX0F2NUM4aDduN1MyNV9DbTlMb2JxLUMyMTM1MXVTMXVnY2xsSEppbVJVN1RvYVVfZzBLSkhPSTB3X05KNnk0MW1jazZWYkdiS2NaLXZIcDl4eVpDTk5wblplRGowMzgzc3FyVDI0VU5oUDl5WVFNRmN5VkRCRVF3Y2pGcV9iTVpNSjhrU1N3RFh0bGZ2ei15NEZtVHNWQlI1SWVKLXozWEl6OVU1VDFwYW1TLUlHZS1WVVRKZw?oc=5"
+        "name": "Tribuna.com",
+        "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQNHJLNi1rM2tQTHRCa1N1UDdDTEdicU9lS3M2ZkF6UkpOX2NiTXc2ZXVzYnBqcFZQWDN5cERWbGhSX00tRW9vTXpkQVhURHdaeU1hSEF4d3JoMl9IcXRNTDR0X3Ytd1NwMXhnTlh4bTV6T3VvX1hoTnN2NUxVUFZiSTZURF9CcFF1MUpSbEdiRlQxeXRhV1djZ192TnVxU2tVQW1zYjVVTTVQNFJXbm8tOVNFSHJJVzRvTV83ZkF5cTNYUWdKYnZN0gHMAUFVX3lxTFA1MnlCZ0ZScnFQdl8zcVZqWktCU2ozc21JODluajU5eXEwTXJDbVJoOWozdVlFdWpCcXdSejRGc0d2WnFyMVNiUVQ1LTNxTHB0bFlqWU5henNlRG4zYmhXX3hMODd0TnpPcHZRRDBGLXRzZ0E0empsQlh3NzVmcUJRR21OU25Pc3Q3QjNxQ2F6c2daNlVTa0JVUlQxU0UweUdEN0QwQUozWWxZRmZzQ3VsblQ3ZWszTnA5cnJKWE0xNm5xbVh0elB1SG1reQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "fra-brice-samba": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Brice Samba är skadad utanför Frankrike-England för 3:e plats i världscupen",
+      "updated": "2026-07-17",
+      "source": {
+        "name": "L'Équipe",
+        "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPSGtKU2c5eWd4d0wtSk5nUkhwLVl3Vmg4ckxmajV6dkl6OUhqUVFpbXU0OVRqMkZaTjhpeFhmRkRUdE1VTHNjejhCNnJWWVRPb2pDX3lBNVBmVl9RSUFxZDhwWTlyeENXTFd5d2VIbU9BaEtMODJXd003RklOUUZMMFJpeFFDMmNOeU5RX0ZKemZCejluZnBnbkJ0WnJsTERBYm1NTGlrQXBDY1BpR0NnS05OMEFCZnZaMzg5RmFDWkdlMEtxOXc2NDB4Tk5TZXZkckt0MTJnbXZ4ZnF4Unc?oc=5"
       },
       "origin": "news"
     },
     "eng-reece-james": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Englands laguppställning vs Frankrike: Förutspådd XI för VM 2026 på tredje plats i slutspelet efter Reece James skada",
+      "detail": "Englands laguppställning vs Frankrike: Förutspådd XI för VM 2026 på tredje plats i slutspelet efter Reece James skadestöt",
       "updated": "2026-07-16",
       "source": {
         "name": "Sports Mole",
