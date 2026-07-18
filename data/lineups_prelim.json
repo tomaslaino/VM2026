@@ -1,12 +1,12 @@
 {
   "meta": {
-    "updatedAt": "2026-07-18T10:38:10.021Z",
+    "updatedAt": "2026-07-18T20:11:02.768Z",
     "source": "365scores",
     "matchCount": 2
   },
   "lineups": {
     "k:103": {
-      "status": "probable",
+      "status": "confirmed",
       "gameId": 4773214,
       "kickoff": "2026-07-18T21:00Z",
       "h": {
@@ -38,18 +38,18 @@
             "pos": "RB"
           },
           {
+            "name": "Adrien Rabiot",
+            "jersey": "14",
+            "pos": "DM"
+          },
+          {
             "name": "Warren Zaire-Emery",
             "jersey": "18",
             "pos": "DM"
           },
           {
-            "name": "N'Golo Kanté",
-            "jersey": "13",
-            "pos": "DM"
-          },
-          {
-            "name": "Bradley Barcola",
-            "jersey": "12",
+            "name": "Désiré Doué",
+            "jersey": "20",
             "pos": "AM-L"
           },
           {
@@ -74,6 +74,14 @@
             "jersey": "23"
           },
           {
+            "name": "Brice Samba",
+            "jersey": "1"
+          },
+          {
+            "name": "William Saliba",
+            "jersey": "17"
+          },
+          {
             "name": "Dayot Upamecano",
             "jersey": "4"
           },
@@ -90,6 +98,10 @@
             "jersey": "21"
           },
           {
+            "name": "N'Golo Kanté",
+            "jersey": "13"
+          },
+          {
             "name": "Aurélien Tchouaméni",
             "jersey": "8"
           },
@@ -98,48 +110,39 @@
             "jersey": "6"
           },
           {
-            "name": "Adrien Rabiot",
-            "jersey": "14"
-          },
-          {
-            "name": "Désiré Doué",
-            "jersey": "20"
-          },
-          {
             "name": "Maghnes Akliouche",
             "jersey": "25"
+          },
+          {
+            "name": "Bradley Barcola",
+            "jersey": "12"
           },
           {
             "name": "Ousmane Dembélé",
             "jersey": "7"
           },
           {
-            "name": "Marcus Thuram",
-            "jersey": "9"
-          },
-          {
             "name": "Jean Philippe Mateta",
             "jersey": "22"
+          },
+          {
+            "name": "Marcus Thuram",
+            "jersey": "9"
           }
         ]
       },
       "a": {
-        "formation": "4-1-2-3",
+        "formation": "4-1-4-1",
         "starters": [
           {
-            "name": "Jordan Pickford",
-            "jersey": "1",
+            "name": "Dean Henderson",
+            "jersey": "13",
             "pos": "G"
           },
           {
-            "name": "Nico O'Reilly",
-            "jersey": "3",
+            "name": "Djed Spence",
+            "jersey": "25",
             "pos": "LB"
-          },
-          {
-            "name": "Ezri Konsa",
-            "jersey": "2",
-            "pos": "CB"
           },
           {
             "name": "Marc Guéhi",
@@ -147,73 +150,78 @@
             "pos": "CB"
           },
           {
-            "name": "Djed Spence",
-            "jersey": "25",
+            "name": "Ezri Konsa",
+            "jersey": "2",
+            "pos": "CB"
+          },
+          {
+            "name": "Jarell Quansah",
+            "jersey": "26",
             "pos": "RB"
           },
           {
-            "name": "Kobbie Mainoo",
-            "jersey": "16",
+            "name": "Declan Rice",
+            "jersey": "4",
             "pos": "DM"
-          },
-          {
-            "name": "Morgan Rogers",
-            "jersey": "17",
-            "pos": "AM-L"
-          },
-          {
-            "name": "Eberechi Eze",
-            "jersey": "21",
-            "pos": "AM-R"
           },
           {
             "name": "Marcus Rashford",
             "jersey": "11",
-            "pos": "LF"
+            "pos": "AM-L"
           },
           {
-            "name": "Harry Kane",
-            "jersey": "9",
+            "name": "Morgan Rogers",
+            "jersey": "17",
+            "pos": "AM"
+          },
+          {
+            "name": "Eberechi Eze",
+            "jersey": "21",
+            "pos": "AM"
+          },
+          {
+            "name": "Bukayo Saka",
+            "jersey": "7",
+            "pos": "AM-R"
+          },
+          {
+            "name": "Ivan Toney",
+            "jersey": "22",
             "pos": "ST"
-          },
-          {
-            "name": "Noni Madueke",
-            "jersey": "20",
-            "pos": "RF"
           }
         ],
         "bench": [
           {
-            "name": "Dean Henderson",
-            "jersey": "13"
+            "name": "Jordan Pickford",
+            "jersey": "1"
           },
           {
             "name": "James Trafford",
             "jersey": "23"
           },
           {
-            "name": "John Stones",
-            "jersey": "5"
+            "name": "Dan Burn",
+            "jersey": "15"
           },
           {
             "name": "Trevoh Chalobah",
             "jersey": "12"
           },
           {
-            "name": "Dan Burn",
-            "jersey": "15"
-          },
-          {
-            "name": "Jarell Quansah",
-            "jersey": "26"
+            "name": "John Stones",
+            "jersey": "5"
           },
           {
             "name": "Reece James",
             "jersey": "24"
           },
           {
-            "name": "Declan Rice",
-            "jersey": "4"
+            "name": "Nico O'Reilly",
+            "jersey": "3"
+          },
+          {
+            "name": "Jordan Henderson",
+            "jersey": "14"
           },
           {
             "name": "Elliot Anderson",
@@ -224,24 +232,24 @@
             "jersey": "10"
           },
           {
-            "name": "Bukayo Saka",
-            "jersey": "7"
+            "name": "Noni Madueke",
+            "jersey": "20"
           },
           {
             "name": "Anthony Gordon",
             "jersey": "18"
           },
           {
-            "name": "Ollie Watkins",
-            "jersey": "19"
+            "name": "Harry Kane",
+            "jersey": "9"
           },
           {
-            "name": "Ivan Toney",
-            "jersey": "22"
+            "name": "Ollie Watkins",
+            "jersey": "19"
           }
         ]
       },
-      "updatedAt": "2026-07-18T10:38:08.872Z"
+      "updatedAt": "2026-07-18T20:11:01.692Z"
     },
     "k:104": {
       "status": "probable",
