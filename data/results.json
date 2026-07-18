@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-18T20:35:03.891Z",
+    "updatedAt": "2026-07-18T21:32:06.777Z",
     "source": "espn",
-    "matchCount": 102,
-    "liveCount": 0,
+    "matchCount": 103,
+    "liveCount": 1,
     "apiCalls": 2
   },
   "results": {
@@ -520,9 +520,23 @@
       "h": 1,
       "a": 2,
       "status": "FINISHED"
+    },
+    "k:103": {
+      "h": 0,
+      "a": 2,
+      "status": "IN_PLAY"
     }
   },
-  "live": [],
+  "live": [
+    {
+      "key": "k:103",
+      "status": "IN_PLAY",
+      "minute": 32,
+      "home": "France",
+      "away": "England",
+      "score": "0-2"
+    }
+  ],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -2262,7 +2276,7 @@
       "date": "2026-07-18",
       "time": "23:00",
       "utcDate": "2026-07-18T21:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "matchday": null,
       "home": "France",
       "away": "England",
