@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-18T06:26:16.810Z",
+  "updated": "2026-07-18T09:06:43.795Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -34,6 +34,28 @@
       "source": {
         "name": "L'Équipe",
         "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPSGtKU2c5eWd4d0wtSk5nUkhwLVl3Vmg4ckxmajV6dkl6OUhqUVFpbXU0OVRqMkZaTjhpeFhmRkRUdE1VTHNjejhCNnJWWVRPb2pDX3lBNVBmVl9RSUFxZDhwWTlyeENXTFd5d2VIbU9BaEtMODJXd003RklOUUZMMFJpeFFDMmNOeU5RX0ZKemZCejluZnBnbkJ0WnJsTERBYm1NTGlrQXBDY1BpR0NnS05OMEFCZnZaMzg5RmFDWkdlMEtxOXc2NDB4Tk5TZXZkckt0MTJnbXZ4ZnF4Unc?oc=5"
+      },
+      "origin": "news"
+    },
+    "fra-dayot-upamecano": {
+      "availability": "doubtful",
+      "kind": "other",
+      "detail": "Frankrike-England: information från Blues senaste träning, med Maignan som förväntas starta och Upamecano osäker",
+      "updated": "2026-07-17",
+      "source": {
+        "name": "Le Parisien",
+        "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPNW5DblplZ1VDeUJjbnpYVDhUUUdOTnZFSWZEWTlZbzRqV05zT1RRdjhSdWZLanN3cHkxVHkzcUh5WnpMWEZPVGpmTVJUWWFkbWRjbk9RZlJpRlU1X2R4ZDEtOXUxTXA5emFPZ0lOR1ExV194bXZQTk1EcTZjcEJXdEVkbnc0WUprQndtV1Q3alpHenZQdW9wSExLY29iT0RzT3A5RGNzeEhhSW9VdlRzMzFIdjdLR2d4VHdzVzZSQXNETThTbkhxZkh5MWl2LXk4T2dSenRVUUtJcDFXcE9WZWtKXy1ZaHJ1NW84b0o4NEVNQnFyUS1R?oc=5"
+      },
+      "origin": "news"
+    },
+    "fra-mike-maignan": {
+      "availability": "doubtful",
+      "kind": "other",
+      "detail": "Frankrike-England: information från Blues senaste träning, med Maignan som förväntas starta och Upamecano osäker",
+      "updated": "2026-07-17",
+      "source": {
+        "name": "Le Parisien",
+        "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPNW5DblplZ1VDeUJjbnpYVDhUUUdOTnZFSWZEWTlZbzRqV05zT1RRdjhSdWZLanN3cHkxVHkzcUh5WnpMWEZPVGpmTVJUWWFkbWRjbk9RZlJpRlU1X2R4ZDEtOXUxTXA5emFPZ0lOR1ExV194bXZQTk1EcTZjcEJXdEVkbnc0WUprQndtV1Q3alpHenZQdW9wSExLY29iT0RzT3A5RGNzeEhhSW9VdlRzMzFIdjdLR2d4VHdzVzZSQXNETThTbkhxZkh5MWl2LXk4T2dSenRVUUtJcDFXcE9WZWtKXy1ZaHJ1NW84b0o4NEVNQnFyUS1R?oc=5"
       },
       "origin": "news"
     },
