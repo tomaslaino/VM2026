@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-18T17:27:34.680Z",
+  "updated": "2026-07-18T19:38:03.059Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "esp-lamine-yamal": {
@@ -18,22 +18,33 @@
     "fra-william-saliba": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Franska laget: skadad i ryggen kunde William Saliba undvika operation",
+      "detail": "Kan han missa färre matcher än väntat? Skadedetaljerna i Saliba avslöjade",
       "updated": "2026-07-18",
       "source": {
-        "name": "Foot National",
-        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNMEhVS1FVeThXaE9tRzBQQ04xaC1jNTB0YVpUMzlUM0dJZ0M1ak5OY2ZaRVB0cHpjQWRXeWtQUDNmczcwTUU1LVYxbUpPZjZVTHRIbk00MVBTTWRSQlJISV8ySUtNWGJxbWU2emdlR01IWFkzWGtyenBUTTkzeGVXY0p6WjcwWmJEd0Fwck5DOHFwX1pjazB4SU5BdnBiRkE1d3FwS2dLNklfakpDTEE5MGczdDkxZWhvQ0hEQWJmQllkSTdF?oc=5"
+        "name": "Dailysports",
+        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPVVdoOEdrMXpRVUpoQWs4NnpBTC1FMVoxMUNCZ2tJZmVOaTVBZmd4NnVNUFRDZ0N1M2haY0JsLWYxUUZtVDN3QU5hRkFSZGFSU0VZTVhCcnlRV3dHUmNHMW1tbE5RX2VWemE2Y056YlVGQ1ROaW1nTlZSMzl5RmVKOHFFTmZGUzE1eFFoaFRqbFJQSVFSWXd3T25qZzJjLXFhUE5vLWpXUE4wOEV0S2xtQ3ZhUklsY2xrcDN4WWQzblE?oc=5"
       },
       "origin": "news"
     },
-    "fra-brice-samba": {
+    "fra-dayot-upamecano": {
       "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Skadad är Brice Samba borta från matchen mellan Frankrike och England om 3:e plats i världscupen",
-      "updated": "2026-07-17",
+      "kind": "other",
+      "detail": "Frankrike-England: Maignan förväntas starta, Upamecano osäker",
+      "updated": "2026-07-18",
       "source": {
-        "name": "L'Équipe",
-        "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPSGtKU2c5eWd4d0wtSk5nUkhwLVl3Vmg4ckxmajV6dkl6OUhqUVFpbXU0OVRqMkZaTjhpeFhmRkRUdE1VTHNjejhCNnJWWVRPb2pDX3lBNVBmVl9RSUFxZDhwWTlyeENXTFd5d2VIbU9BaEtMODJXd003RklOUUZMMFJpeFFDMmNOeU5RX0ZKemZCejluZnBnbkJ0WnJsTERBYm1NTGlrQXBDY1BpR0NnS05OMEFCZnZaMzg5RmFDWkdlMEtxOXc2NDB4Tk5TZXZkckt0MTJnbXZ4ZnF4Unc?oc=5"
+        "name": "MSN",
+        "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQZE9xQkJ3Q2hCSkhiUjk4R1VaX3N1QkVOODJHLWtrV3VodzJQZjJtbFV2YjVTdHl5YmVhbzhZQTNNcTlBMDB5VzJOZGRrV3hyckpYM1VQSFlta2tDSktNR2tDVkRfN0lRQm9rV3g3b2QxUDRmQjdDNnczZVZJUVIwSGRCdHU3TkNwTlJ0Ym50MXpYemRYNENIS1ZvNjd2cGxhOUhYalhCYnpZTlNVNHlvbmQ1aTZRc0dKN0taeklKcVNOdU1wUE5KczlhUFdrMkZFNExhRFpyS05zRUZSZk9VOVE4eXRSSktaNkhjRzQ1cjQxZw?oc=5"
+      },
+      "origin": "news"
+    },
+    "fra-mike-maignan": {
+      "availability": "doubtful",
+      "kind": "other",
+      "detail": "Frankrike-England: Maignan förväntas starta, Upamecano osäker",
+      "updated": "2026-07-18",
+      "source": {
+        "name": "MSN",
+        "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQZE9xQkJ3Q2hCSkhiUjk4R1VaX3N1QkVOODJHLWtrV3VodzJQZjJtbFV2YjVTdHl5YmVhbzhZQTNNcTlBMDB5VzJOZGRrV3hyckpYM1VQSFlta2tDSktNR2tDVkRfN0lRQm9rV3g3b2QxUDRmQjdDNnczZVZJUVIwSGRCdHU3TkNwTlJ0Ym50MXpYemRYNENIS1ZvNjd2cGxhOUhYalhCYnpZTlNVNHlvbmQ1aTZRc0dKN0taeklKcVNOdU1wUE5KczlhUFdrMkZFNExhRFpyS05zRUZSZk9VOVE4eXRSSktaNkhjRzQ1cjQxZw?oc=5"
       },
       "origin": "news"
     },
