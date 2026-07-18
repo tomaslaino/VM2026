@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-18T21:32:06.822Z",
+    "updatedAt": "2026-07-18T22:28:36.365Z",
     "source": "espn"
   },
   "details": {
@@ -59186,16 +59186,19 @@
       "espnId": "760516",
       "fmt": 2,
       "status": "IN_PLAY",
-      "minute": 32,
+      "minute": 65,
       "utcDate": "2026-07-18T21:00Z",
       "duration": "REGULAR",
       "winner": null,
       "score": {
         "ft": {
-          "h": 0,
-          "a": 2
+          "h": 2,
+          "a": 4
         },
-        "ht": null,
+        "ht": {
+          "h": 0,
+          "a": 4
+        },
         "rt": null,
         "et": null,
         "pen": null
@@ -59224,10 +59227,89 @@
             "h": 0,
             "a": 2
           }
+        },
+        {
+          "minute": 37,
+          "injuryTime": null,
+          "team": "a",
+          "scorer": "Bukayo Saka",
+          "assist": "Marcus Rashford",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 3
+          }
+        },
+        {
+          "minute": 45,
+          "injuryTime": 1,
+          "team": "a",
+          "scorer": "Bukayo Saka",
+          "assist": "Eberechi Eze",
+          "type": "REGULAR",
+          "score": {
+            "h": 0,
+            "a": 4
+          }
+        },
+        {
+          "minute": 48,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Kylian Mbappé",
+          "assist": "Michael Olise",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 4
+          }
+        },
+        {
+          "minute": 54,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Bradley Barcola",
+          "assist": "Kylian Mbappé",
+          "type": "REGULAR",
+          "score": {
+            "h": 2,
+            "a": 4
+          }
         }
       ],
       "bookings": [],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Ousmane Dembélé",
+          "out": "Rayan Cherki"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Bradley Barcola",
+          "out": "Désiré Doué"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Lucas Digne",
+          "out": "Theo Hernández"
+        },
+        {
+          "minute": 45,
+          "team": "h",
+          "in": "Dayot Upamecano",
+          "out": "Ibrahima Konaté"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Ollie Watkins",
+          "out": "Marcus Rashford"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -59238,7 +59320,8 @@
               "jersey": "16",
               "pos": "G",
               "st": {
-                "gc": 2
+                "gc": 4,
+                "sv": 3
               }
             },
             {
@@ -59248,7 +59331,7 @@
               "st": {
                 "fc": 1,
                 "fs": 1,
-                "gc": 2
+                "gc": 4
               }
             },
             {
@@ -59256,7 +59339,7 @@
               "jersey": "19",
               "pos": "LB",
               "st": {
-                "gc": 2
+                "gc": 4
               }
             },
             {
@@ -59264,7 +59347,9 @@
               "jersey": "14",
               "pos": "LM",
               "st": {
-                "gc": 2
+                "fs": 1,
+                "gc": 4,
+                "sh": 1
               }
             },
             {
@@ -59272,8 +59357,9 @@
               "jersey": "15",
               "pos": "CD-R",
               "st": {
-                "fc": 1,
-                "gc": 2
+                "fc": 2,
+                "fs": 1,
+                "gc": 4
               }
             },
             {
@@ -59282,7 +59368,7 @@
               "pos": "CD-L",
               "st": {
                 "fc": 1,
-                "gc": 2
+                "gc": 4
               }
             },
             {
@@ -59290,7 +59376,9 @@
               "jersey": "11",
               "pos": "AM-R",
               "st": {
-                "gc": 2
+                "gc": 4,
+                "a": 1,
+                "sh": 1
               }
             },
             {
@@ -59298,7 +59386,7 @@
               "jersey": "18",
               "pos": "RM",
               "st": {
-                "gc": 2,
+                "gc": 4,
                 "sh": 1
               }
             },
@@ -59307,8 +59395,11 @@
               "jersey": "10",
               "pos": "F",
               "st": {
-                "gc": 2,
-                "sh": 2
+                "gc": 4,
+                "a": 1,
+                "sg": 2,
+                "g": 1,
+                "sh": 4
               }
             },
             {
@@ -59316,7 +59407,8 @@
               "jersey": "24",
               "pos": "AM",
               "st": {
-                "gc": 2,
+                "fs": 1,
+                "gc": 4,
                 "sg": 1,
                 "sh": 1
               }
@@ -59326,8 +59418,9 @@
               "jersey": "20",
               "pos": "AM-L",
               "st": {
-                "fs": 1,
-                "gc": 2
+                "fc": 1,
+                "fs": 2,
+                "gc": 4
               }
             }
           ],
@@ -59350,7 +59443,14 @@
             },
             {
               "name": "Bradley Barcola",
-              "jersey": "12"
+              "jersey": "12",
+              "in": true,
+              "st": {
+                "fc": 2,
+                "sg": 1,
+                "g": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Jean-Philippe Mateta",
@@ -59370,11 +59470,18 @@
             },
             {
               "name": "Dayot Upamecano",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true
             },
             {
               "name": "Ousmane Dembélé",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true,
+              "st": {
+                "fs": 1,
+                "sg": 1,
+                "sh": 1
+              }
             },
             {
               "name": "N'Golo Kanté",
@@ -59382,7 +59489,8 @@
             },
             {
               "name": "Lucas Digne",
-              "jersey": "3"
+              "jersey": "3",
+              "in": true
             },
             {
               "name": "Lucas Hernández",
@@ -59402,7 +59510,8 @@
               "jersey": "13",
               "pos": "G",
               "st": {
-                "sv": 1
+                "gc": 2,
+                "sv": 3
               }
             },
             {
@@ -59410,19 +59519,28 @@
               "jersey": "26",
               "pos": "RB",
               "st": {
-                "fc": 1
+                "fc": 1,
+                "fs": 1,
+                "gc": 2
               }
             },
             {
               "name": "Djed Spence",
               "jersey": "25",
-              "pos": "LB"
+              "pos": "LB",
+              "st": {
+                "fc": 2,
+                "fs": 1,
+                "gc": 2
+              }
             },
             {
               "name": "Declan Rice",
               "jersey": "4",
               "pos": "DM",
               "st": {
+                "fc": 1,
+                "gc": 2,
                 "a": 1,
                 "sg": 1,
                 "g": 1,
@@ -59434,6 +59552,8 @@
               "jersey": "2",
               "pos": "CD-R",
               "st": {
+                "fc": 1,
+                "gc": 2,
                 "sg": 1,
                 "g": 1,
                 "sh": 1
@@ -59442,27 +59562,42 @@
             {
               "name": "Marc Guéhi",
               "jersey": "6",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "fc": 1,
+                "gc": 2
+              }
             },
             {
               "name": "Bukayo Saka",
               "jersey": "7",
               "pos": "RM",
               "st": {
-                "sh": 1
+                "fs": 1,
+                "gc": 2,
+                "sg": 3,
+                "g": 2,
+                "sh": 4
               }
             },
             {
               "name": "Morgan Rogers",
               "jersey": "17",
-              "pos": "CM-R"
+              "pos": "CM-R",
+              "st": {
+                "fs": 1,
+                "gc": 2
+              }
             },
             {
               "name": "Ivan Toney",
               "jersey": "22",
               "pos": "F",
               "st": {
-                "fs": 2
+                "fs": 2,
+                "gc": 2,
+                "sg": 1,
+                "sh": 2
               }
             },
             {
@@ -59472,7 +59607,9 @@
               "st": {
                 "fc": 1,
                 "fs": 1,
-                "sh": 1
+                "gc": 2,
+                "a": 1,
+                "sh": 3
               }
             },
             {
@@ -59480,7 +59617,9 @@
               "jersey": "11",
               "pos": "LM",
               "st": {
-                "sh": 1
+                "a": 1,
+                "sg": 2,
+                "sh": 3
               }
             }
           ],
@@ -59539,7 +59678,12 @@
             },
             {
               "name": "Ollie Watkins",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true,
+              "st": {
+                "gc": 2,
+                "sh": 1
+              }
             }
           ]
         }
@@ -59550,48 +59694,48 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "51%",
-          "a": "49%"
+          "h": "43%",
+          "a": "57%"
         },
         {
           "key": "totalShots",
-          "h": "4",
-          "a": "5"
+          "h": "10",
+          "a": "15"
         },
         {
           "key": "shotsOnTarget",
-          "h": "1",
-          "a": "2"
+          "h": "5",
+          "a": "8"
         },
         {
           "key": "wonCorners",
-          "h": "1",
-          "a": "2"
+          "h": "2",
+          "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "3",
-          "a": "2"
+          "h": "7",
+          "a": "7"
         },
         {
           "key": "offsides",
-          "h": "1",
-          "a": "2"
+          "h": "2",
+          "a": "3"
         },
         {
           "key": "saves",
-          "h": "0",
-          "a": "1"
+          "h": "3",
+          "a": "3"
         },
         {
           "key": "totalPasses",
-          "h": "153",
-          "a": "144"
+          "h": "317",
+          "a": "411"
         },
         {
           "key": "passPct",
           "h": "90%",
-          "a": "93%"
+          "a": "92%"
         },
         {
           "key": "yellowCards",
@@ -59604,7 +59748,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-18T21:32:06.821Z"
+      "updatedAt": "2026-07-18T22:28:36.364Z"
     }
   }
 }
