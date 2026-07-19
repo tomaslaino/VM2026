@@ -1,31 +1,9 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-19T22:13:17.964Z",
+  "updated": "2026-07-19T23:23:55.464Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
-    "arg-cristian-romero": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Cuti Romeros skada som lämnade honom utanför VM-finalen mellan Argentina och Spanien",
-      "updated": "2026-07-19",
-      "source": {
-        "name": "Diario 13 San Juan",
-        "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNMkdYX1ZnMjdXRWJfbHdyOERYRkFiS3FfbEl3YVJqbDdmWVJVVXpVaGppcDItb2RPSWpTeDQ4RnlGeVE1NTFkdXJIdG10ZGNOT0xpa050Y3hPVWptM2o2eGtPZE9URVJZOEYxWlVBWlJQX2JnbWFLOXg3NXBwbEp0X1pYZUxkNDJVMHdoRHVkMjhMQktHNHp1ajhpRUU4eERSMkZJOTM3aUd5S21hQWFaYTZQVXBTZjBKdzVsd1g3Sm04RnZlWE4tZjAzY3NhQWRncnFEekUwak1KLXNybU1PdFUta0M3LWNodFV0cnNR0gH8AUFVX3lxTFBXdTlwY1JjbllpZTNydkpUU0tydzFld3JSdlo5U25tV3hDY2x5QUwwNDUzUl8yZ0d6cm9mV3BtZGNGQnZxUFBGbThyTHlXbTk2MDNOS1hBMWhnSjlrV0VhbjVmcWRENTl0RzFFLXBiLUg4eUVSRDhSZXJpTzFyZFRhZzhNTzBWRVItaW4yS1J3SE5XU3BNalpZeVV2VGlVRzhjZXQ3RGxtalBhR2JhNC04MXVUZC1ycV9vWklBTTJhTGtYUS1nbFB6SjN2VTE4VXYxSzF0VWs3TDY3ak9VNXVJbGladkZOeWtPZXZ3RG1ZTDVmSXlOU1dmTFlqeQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "arg-lisandro-martinez": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Hårt slag för det argentinska landslaget: Lisandro Martínez drog sig skadad från finalen mot Spanien",
-      "updated": "2026-07-19",
-      "source": {
-        "name": "Perfil",
-        "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOdmo4VFhMazBkQ1U5b05jN2kweDU1V25PRlB1QnhYS2U1V2NfaTdyS0xwTVBKTTZzenpuaHZxRmVKUzNWUl9nSC1kcV9NV2FYWTRXcWVnbVYzelh3Sm5MTGdHZG9JeDFXN3BoUlBZSF9oa1JRQThJYS05YkZhMWlZWlhucm1BeHV3NFRiYzFHMndpR3NKVFlteVdweDg0Q0g3eUlmdnBQTnNLaldBNGdFZ3QxV1dlejM0TlBCVTFpZFdyN2xxbUFlVlFYMWZWcGFVeE9qWUFteGlQNEFtblBYWTZISEFKZw?oc=5"
-      },
-      "origin": "news"
-    },
     "bra-lucas-paqueta": {
       "availability": "out",
       "kind": "injury",
