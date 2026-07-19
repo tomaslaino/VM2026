@@ -1,17 +1,39 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-19T19:37:36.998Z",
+  "updated": "2026-07-19T21:11:34.709Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
-    "arg-giuliano-simeone": {
+    "arg-cristian-romero": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Detta är den gripande historien om Giuliano Simeones övervinna: skadan som nästan avslutade hans karriär och hans revansch i det argentinska landslaget",
-      "updated": "2026-07-18",
+      "detail": "Video: Cuti Romeros skada som lämnade honom utanför VM-finalen mellan Argentina och Spanien",
+      "updated": "2026-07-19",
       "source": {
-        "name": "Diario Río Negro",
-        "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxNc3BrWDJsQldXWmNVbWVqVlJiMjIyckkxTG44TGJEZS1GRHRFbU9uUmV4MjdyWnNPZVBQWkJhZVljTHJFMU4yVTZGSHZpUXhmVllsSDk0NFNVUTdNdnRKYmNVbDlMOW1aR1JTUUpHdWMtWWc2SXlxMVhFQ00tRW0wS2Ixdll4VkFTQ0JMOE1oMTlJbGg4cjlEZEVNdmEzSnVvVjZiZmllaXo4V1VJY1dfNmdrMEhyNnhETzVXT3dqbVRuMlY4TmNQM241ZUZoSDNoY09CemlfS0RGNUZld0htVW9PRndjMDEyYmhiNkxubG52bFlnSEVZbW9iR0NTNjExbkZwSHlka0Q?oc=5"
+        "name": "Infobae",
+        "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQcENwODZraEt2Z3FuSFRtd3h0UkxlT2M1UDFhelBLa2wxM3JIUEJDYlpMUnBadDJNRi1fNWUwcEwtNEo0RWthZkZubDRzOXliejdDZlJKUzFSa2lWcjRoOWl2OUM5cWM5MFlYblpLcHhHWjB2N0EybGY1SHg3dzlFRkxlZnkzUFlUQkVBblFXX0pqbUJmX0VDZjRxVDFCLUtrRWlaNHowMXZDLUx6bVBJNy1hcWlaUUd0VGJydnRRMnNadmxyNV80emlDdU5OR2dzZ0o1N0NGUXFuSk3SAfYBQVVfeXFMTXBZVXotVVFnN0JaZHdDbGJvcllIVVp2SGpuMEFnMWM4V3pzYjkzd2VyOUQ5TnZESEhseDhJdm9Vc3NnR2kxX1VUSGpDN0Q2dHJoakQzOHpmT0JfWGRLbW52enMwS3YzcU1iT1oxc3otNU55aHNPY29xaWxPU0syYjdDVV9VYXY1M3dBdERuQnB4d19pOElCM1BVajVmMnZvb3VEeGVpVXBpWnJ5XzVXczJlZ3ljdzkwSkNYT2FFYVJkV3ZpSkJJMUlWTlMtem9oSlQ2V0xORDZuclAtZ25hUDY0WWVETkNlT2M3LUpRZEdPWnFUenln?oc=5"
+      },
+      "origin": "news"
+    },
+    "arg-lisandro-martinez": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Lisandro Martínez lämnade VM-finalen 2026 gråtande på grund av skada: Argentina förlorade sin försvarsledare mycket tidigt i matchen",
+      "updated": "2026-07-19",
+      "source": {
+        "name": "El Imparcial",
+        "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxQYnNfT1VHTVFxaDRjaDkxaWRPN1NSTHlZcGFqM1JPek5jcXJUOTk2SzQwc2hKNGpiZXRTaEZsWjU3Zk9XTlRFaHp2YzhUNXNsQUdkeGt5M2JsM1FUNTY2LTJoVVBVelk2SGJRUDZZR2t0dFMzb29lRFVXRW9sMHpUM3ZlZnRLaHZ0M1Ftd1Vpb2JQNVRzelRiS2JjeENYaUwzcGoydUlURGE1ejFvT3JfYzN3Q2JfQTBBZGVaSURfcVRSU2ZNdC1mOFRGMGk5SHhtWGJkSFgxWnczV2xzd3h6dFdwOXNlaWtXVDhQRy1FZmR3R0hsZmE0V1RFcTRoaU9TNzNURE9MUEQyejhaa1JHR2RPWdIBrgJBVV95cUxOM0xvZDZqTnBzaEwtT2FseGhJMnRtV3FscWNZYkxuS1paRElNdFREWU1HOEVSem5SeWk2a2xUQ2J2ZUpaWDVnSnB3QkNGT1RtMUs4R3Zyanh2UlRfWEJoRThkTnhDMk43aXYyMXNZT0toVmJsWEY1aDJRZC1fdEsyTkxrbVNVb0R1VWFQNFZ4dzg3ODdCVnUzWXpGR2huclAwSzNOZFlCNkRMZTVOWU1pM2x1NHVHODlOLTBjYjlibnZtU0VDYmh4UF84WWdTY1hQQ1FSSldLZmxEMU5CZkZVNTYzY2pRNjdBdUQ1NnVJX3hkd2lCNmFKdmEtRTZQdHhQWVJ3ZmhLbFlSamgxZ3J2MXlpYk1BZEhEWmhoa1d6WWZ3akM2N2t1UERyYzBNQQ?oc=5"
+      },
+      "origin": "news"
+    },
+    "arg-nicolas-otamendi": {
+      "availability": "doubtful",
+      "kind": "injury",
+      "detail": "Otamendi gick in. Dåliga nyheter för Argentina: Lisandro Martínez var skadad",
+      "updated": "2026-07-19",
+      "source": {
+        "name": "La Voz del Interior",
+        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNa3ZjTXlfZ0ZLbERxeS1yLWdwNVlQQmJrZ3BDUzUza1lfcGtRMjhvWW1UYXJaLUxsU3FCM1kwenQ2eHB0M0daR1BEQm9obUVwb1Y5cWVmX3dnSWxyQ0RiZEFITkJyZmhFd2FTaHVLWk5GZFVxN0x2VERjUHB6QzczT3I0dDF5R3hHdEo1cnRUeTRSOXZfRFByQTNfR0IyY1VUMmJ4OTd3VnJyV1lCclNV?oc=5"
       },
       "origin": "news"
     },
