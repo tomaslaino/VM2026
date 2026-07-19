@@ -1,53 +1,9 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-18T23:14:55.383Z",
+  "updated": "2026-07-19T00:14:12.672Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
-    "esp-lamine-yamal": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Är Lamine Yamal skadad? Spanien förklarar varför man tränade separat inför finalen mot Argentina",
-      "updated": "2026-07-17",
-      "source": {
-        "name": "El Imparcial",
-        "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxQZHJfNkhNYVh1VHNseTVrZ0FyTmg1YVlCRmRSNDNJejdXZVNucXVCRFRReE13NUJTTk1pc01zc2ZXOUFock81X1d1dklHdVZ4NHBNSnVOWDhiM2RMeVlkZVI2eDhFemszaEhnc19ZcWJvcEJlSEpUTFl4QzNQQXdDeFhSSVFyeWFKSTA5VWQyMWprUTFGYlF4OXdHakJRYlhrSjhETi1HMUJGSXVCMTlBZkl5OF9xaHc0UVV6SlZ2amdmcEdkVlJ0bVZqTWduM01YS1FJRWRyTW1sZUNTQThxV3lSSlRJQ0RNdUFtaHo5MXhSNnk4dUg0YnA5RXZlb0XSAf8BQVVfeXFMUGRyXzZITWFYdVRzbHk1a2dBck5oNWFZQkZkUjQzSXo3V2VTbnF1QkRUUXhNdzVCU05NaXNNc3NmVzlBaHJPNV9XdXZJR3VWeDRwTUp1Tlg4YjNkTHlZZGVSNng4RXprM2hIZ3NfWXFib3BCZUhKVExZeEMzUEF3Q3hYUklRcnlhSkkwOVVkMjFqa1ExRmJReDl3R2pCUWJYa0o4RE4tRzFCRkl1QjE5QWZJeThfcWh3NFFVekpWdmpnZnBHZFZSdG1Wak1nbjNNWEtRSUVkck1tbGVDU0E4cVd5UkpUSUNETXVBbWh6OTF4UjZ5OHVINGJwOUV2ZW9F?oc=5"
-      },
-      "origin": "news"
-    },
-    "fra-william-saliba": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Franska laget: Den nya vändningen på William Salibas skada!",
-      "updated": "2026-07-18",
-      "source": {
-        "name": "Le10Sport",
-        "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOaGNPZ0RjM1dnaFVqRmlpSGlpTXJyV2syV05vSVhRQmw0NkhVZWRfazNBOFpBb0pjNVo5RVE3ZHd1RFFadE91Qk4xNHM0QzF3X3pMLXlhcUIzUUVYdE43TDRpZWdHeTJPN3ExZHZzSHdEQkhhOE84dDNacUViODFRSF9kS3dOSlJaV3FWc0k5OXpGOEdGSEdNLXNBWVBGVEswcUxiN29ac0wxZDVId0ZVMUY1RnNUeGZHdXYyUEpPbzFKUzNGaTNpbjIwbw?oc=5"
-      },
-      "origin": "news"
-    },
-    "arg-giuliano-simeone": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Detta är den gripande historien om Giuliano Simeones övervinna: skadan som nästan avslutade hans karriär och hans revansch i det argentinska landslaget",
-      "updated": "2026-07-18",
-      "source": {
-        "name": "Diario Río Negro",
-        "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxNc3BrWDJsQldXWmNVbWVqVlJiMjIyckkxTG44TGJEZS1GRHRFbU9uUmV4MjdyWnNPZVBQWkJhZVljTHJFMU4yVTZGSHZpUXhmVllsSDk0NFNVUTdNdnRKYmNVbDlMOW1aR1JTUUpHdWMtWWc2SXlxMVhFQ00tRW0wS2Ixdll4VkFTQ0JMOE1oMTlJbGg4cjlEZEVNdmEzSnVvVjZiZmllaXo4V1VJY1dfNmdrMEhyNnhETzVXT3dqbVRuMlY4TmNQM241ZUZoSDNoY09CemlfS0RGNUZld0htVW9PRndjMDEyYmhiNkxubG52bFlnSEVZbW9iR0NTNjExbkZwSHlka0Q?oc=5"
-      },
-      "origin": "news"
-    },
-    "eng-kobbie-mainoo": {
-      "availability": "doubtful",
-      "kind": "other",
-      "detail": "Englands pressmeddelande om Kobbie Mainoos frånvaro mot Frankrike",
-      "updated": "2026-07-18",
-      "source": {
-        "name": "The Sun",
-        "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOano5ZnVFdklPSGFtZmpQNFZKS0g0NXZrM182OTlzWXQxb2FxdkJ5VUxJNlc2cURXaWlqNk1MUzNXMTkwNzRFWUNPUzZqc1FyWDh3WksyaEVPWWY4NVQ4aURzMG1TY1c3NVB0SHpiekZ2MWVXaFhNbmpGVDV0RkpFSUNZY2taODdQa1ppbFlRdUNnT28?oc=5"
-      },
-      "origin": "news"
-    },
     "bra-lucas-paqueta": {
       "availability": "out",
       "kind": "injury",
