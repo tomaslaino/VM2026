@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-19T20:34:02.029Z",
+    "updatedAt": "2026-07-19T21:31:11.199Z",
     "source": "espn"
   },
   "details": {
@@ -59875,9 +59875,9 @@
       "espnId": "760517",
       "fmt": 2,
       "status": "IN_PLAY",
-      "minute": 56,
+      "minute": 100,
       "utcDate": "2026-07-19T19:00Z",
-      "duration": "REGULAR",
+      "duration": "EXTRA_TIME",
       "winner": null,
       "score": {
         "ft": {
@@ -59889,7 +59889,10 @@
           "a": 0
         },
         "rt": null,
-        "et": null,
+        "et": {
+          "h": 0,
+          "a": 0
+        },
         "pen": null
       },
       "goals": [],
@@ -59905,6 +59908,24 @@
           "team": "a",
           "player": "Leandro Paredes",
           "card": "YELLOW"
+        },
+        {
+          "minute": 82,
+          "team": "a",
+          "player": "Enzo Fernández",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Cristian Romero",
+          "card": "YELLOW"
+        },
+        {
+          "minute": 90,
+          "team": "a",
+          "player": "Enzo Fernández",
+          "card": "RED"
         }
       ],
       "subs": [
@@ -59919,6 +59940,60 @@
           "team": "a",
           "in": "Leandro Paredes",
           "out": "Nico González"
+        },
+        {
+          "minute": 58,
+          "team": "a",
+          "in": "Nahuel Molina",
+          "out": "Gonzalo Montiel"
+        },
+        {
+          "minute": 62,
+          "team": "h",
+          "in": "Ferran Torres",
+          "out": "Mikel Oyarzabal"
+        },
+        {
+          "minute": 62,
+          "team": "h",
+          "in": "Pedri",
+          "out": "Fabián Ruiz"
+        },
+        {
+          "minute": 70,
+          "team": "a",
+          "in": "Facundo Medina",
+          "out": "Cristian Romero"
+        },
+        {
+          "minute": 70,
+          "team": "a",
+          "in": "Giuliano Simeone",
+          "out": "Rodrigo De Paul"
+        },
+        {
+          "minute": 75,
+          "team": "h",
+          "in": "Nico Williams",
+          "out": "Álex Baena"
+        },
+        {
+          "minute": 75,
+          "team": "h",
+          "in": "Mikel Merino",
+          "out": "Dani Olmo"
+        },
+        {
+          "minute": 99,
+          "team": "h",
+          "in": "Martín Zubimendi",
+          "out": "Rodri"
+        },
+        {
+          "minute": 99,
+          "team": "h",
+          "in": "Eric García",
+          "out": "Aymeric Laporte"
         }
       ],
       "penalties": [],
@@ -59936,8 +60011,8 @@
               "jersey": "12",
               "pos": "RB",
               "st": {
-                "fc": 2,
-                "fs": 1
+                "fc": 3,
+                "fs": 2
               }
             },
             {
@@ -59945,6 +60020,7 @@
               "jersey": "24",
               "pos": "LB",
               "st": {
+                "fs": 1,
                 "sh": 1
               }
             },
@@ -59956,14 +60032,22 @@
             {
               "name": "Pau Cubarsí",
               "jersey": "22",
-              "pos": "CD-R"
+              "pos": "CD-R",
+              "st": {
+                "fs": 2,
+                "sg": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Aymeric Laporte",
               "jersey": "14",
               "pos": "CD-L",
               "st": {
-                "fs": 1
+                "fc": 1,
+                "fs": 2,
+                "sg": 1,
+                "sh": 1
               }
             },
             {
@@ -59973,8 +60057,8 @@
               "st": {
                 "fc": 1,
                 "fs": 1,
-                "sg": 1,
-                "sh": 1
+                "sg": 2,
+                "sh": 3
               }
             },
             {
@@ -59983,7 +60067,8 @@
               "pos": "RM",
               "st": {
                 "fc": 2,
-                "fs": 3
+                "fs": 3,
+                "sh": 1
               }
             },
             {
@@ -60003,7 +60088,9 @@
               "pos": "AM",
               "st": {
                 "fc": 1,
-                "fs": 2
+                "fs": 2,
+                "sg": 1,
+                "sh": 2
               }
             },
             {
@@ -60025,11 +60112,17 @@
             },
             {
               "name": "Martín Zubimendi",
-              "jersey": "18"
+              "jersey": "18",
+              "in": true
             },
             {
               "name": "Nico Williams",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true,
+              "st": {
+                "sg": 2,
+                "sh": 2
+              }
             },
             {
               "name": "Borja Iglesias",
@@ -60037,7 +60130,14 @@
             },
             {
               "name": "Ferran Torres",
-              "jersey": "7"
+              "jersey": "7",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 2,
+                "sg": 1,
+                "sh": 2
+              }
             },
             {
               "name": "Víctor Muñoz",
@@ -60045,11 +60145,22 @@
             },
             {
               "name": "Pedri",
-              "jersey": "20"
+              "jersey": "20",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "sg": 1,
+                "sh": 1
+              }
             },
             {
               "name": "Mikel Merino",
-              "jersey": "6"
+              "jersey": "6",
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 2
+              }
             },
             {
               "name": "Marc Pubill",
@@ -60077,7 +60188,8 @@
             },
             {
               "name": "Eric García",
-              "jersey": "4"
+              "jersey": "4",
+              "in": true
             }
           ]
         },
@@ -60089,7 +60201,7 @@
               "jersey": "23",
               "pos": "G",
               "st": {
-                "sv": 3
+                "sv": 11
               }
             },
             {
@@ -60107,7 +60219,7 @@
               "pos": "LB",
               "st": {
                 "fc": 3,
-                "fs": 1
+                "fs": 2
               }
             },
             {
@@ -60115,6 +60227,7 @@
               "jersey": "24",
               "pos": "CM-R",
               "st": {
+                "fc": 3,
                 "fs": 1
               }
             },
@@ -60145,7 +60258,7 @@
               "pos": "CM-L",
               "st": {
                 "fc": 2,
-                "fs": 1
+                "fs": 2
               }
             },
             {
@@ -60162,7 +60275,8 @@
               "jersey": "10",
               "pos": "CF-R",
               "st": {
-                "fs": 3
+                "fc": 1,
+                "fs": 4
               }
             },
             {
@@ -60184,7 +60298,7 @@
               "jersey": "5",
               "in": true,
               "st": {
-                "fc": 1
+                "fc": 4
               }
             },
             {
@@ -60198,11 +60312,16 @@
             {
               "name": "Nicolás Otamendi",
               "jersey": "19",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 1,
+                "fs": 2
+              }
             },
             {
               "name": "Nahuel Molina",
-              "jersey": "26"
+              "jersey": "26",
+              "in": true
             },
             {
               "name": "Giovani Lo Celso",
@@ -60210,7 +60329,11 @@
             },
             {
               "name": "Giuliano Simeone",
-              "jersey": "17"
+              "jersey": "17",
+              "in": true,
+              "st": {
+                "fc": 2
+              }
             },
             {
               "name": "José Manuel López",
@@ -60234,7 +60357,8 @@
             },
             {
               "name": "Facundo Medina",
-              "jersey": "25"
+              "jersey": "25",
+              "in": true
             },
             {
               "name": "Nico Paz",
@@ -60249,28 +60373,28 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "61%",
-          "a": "39%"
+          "h": "68%",
+          "a": "33%"
         },
         {
           "key": "totalShots",
-          "h": "4",
+          "h": "16",
           "a": "0"
         },
         {
           "key": "shotsOnTarget",
-          "h": "3",
+          "h": "11",
           "a": "0"
         },
         {
           "key": "wonCorners",
-          "h": "2",
+          "h": "9",
           "a": "1"
         },
         {
           "key": "foulsCommitted",
-          "h": "11",
-          "a": "11"
+          "h": "16",
+          "a": "21"
         },
         {
           "key": "offsides",
@@ -60280,30 +60404,30 @@
         {
           "key": "saves",
           "h": "0",
-          "a": "3"
+          "a": "11"
         },
         {
           "key": "totalPasses",
-          "h": "402",
-          "a": "260"
+          "h": "722",
+          "a": "356"
         },
         {
           "key": "passPct",
-          "h": "89%",
-          "a": "81%"
+          "h": "90%",
+          "a": "79%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "2"
+          "a": "3"
         },
         {
           "key": "redCards",
           "h": "0",
-          "a": "0"
+          "a": "1"
         }
       ],
-      "updatedAt": "2026-07-19T20:34:02.029Z"
+      "updatedAt": "2026-07-19T21:31:11.199Z"
     }
   }
 }
