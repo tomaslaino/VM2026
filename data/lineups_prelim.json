@@ -1,12 +1,12 @@
 {
   "meta": {
-    "updatedAt": "2026-07-19T11:28:17.765Z",
+    "updatedAt": "2026-07-19T18:35:48.287Z",
     "source": "365scores",
     "matchCount": 1
   },
   "lineups": {
     "k:104": {
-      "status": "probable",
+      "status": "confirmed",
       "gameId": 4773219,
       "kickoff": "2026-07-19T19:00Z",
       "h": {
@@ -70,20 +70,20 @@
         ],
         "bench": [
           {
-            "name": "David Raya",
-            "jersey": "1"
-          },
-          {
             "name": "Joan García",
             "jersey": "13"
           },
           {
-            "name": "Marc Pubill",
-            "jersey": "2"
+            "name": "David Raya",
+            "jersey": "1"
           },
           {
             "name": "Eric Garcia",
             "jersey": "4"
+          },
+          {
+            "name": "Marc Pubill",
+            "jersey": "2"
           },
           {
             "name": "Marcos Llorente",
@@ -98,6 +98,10 @@
             "jersey": "18"
           },
           {
+            "name": "Pedri",
+            "jersey": "20"
+          },
+          {
             "name": "Mikel Merino",
             "jersey": "6"
           },
@@ -106,28 +110,24 @@
             "jersey": "9"
           },
           {
-            "name": "Pedri",
-            "jersey": "20"
-          },
-          {
             "name": "Yeremy Pino",
             "jersey": "11"
-          },
-          {
-            "name": "Nico Williams",
-            "jersey": "17"
           },
           {
             "name": "Víctor Muñoz",
             "jersey": "25"
           },
           {
-            "name": "Ferran Torres",
-            "jersey": "7"
+            "name": "Nico Williams",
+            "jersey": "17"
           },
           {
             "name": "Borja Iglesias",
             "jersey": "26"
+          },
+          {
+            "name": "Ferran Torres",
+            "jersey": "7"
           }
         ]
       },
@@ -155,23 +155,23 @@
             "pos": "CB"
           },
           {
-            "name": "Nahuel Molina",
-            "jersey": "26",
+            "name": "Gonzalo Montiel",
+            "jersey": "4",
             "pos": "RB"
+          },
+          {
+            "name": "Nicolas Gonzalez",
+            "jersey": "15",
+            "pos": "LM"
           },
           {
             "name": "Enzo Fernandez",
             "jersey": "24",
-            "pos": "LM"
+            "pos": "CM"
           },
           {
             "name": "Alexis Mac Allister",
             "jersey": "20",
-            "pos": "CM"
-          },
-          {
-            "name": "Leandro Paredes",
-            "jersey": "5",
             "pos": "CM"
           },
           {
@@ -200,20 +200,24 @@
             "jersey": "12"
           },
           {
-            "name": "Marcos Senesi",
-            "jersey": "2"
+            "name": "Facundo Medina",
+            "jersey": "25"
           },
           {
             "name": "Nicolas Otamendi",
             "jersey": "19"
           },
           {
-            "name": "Facundo Medina",
-            "jersey": "25"
+            "name": "Marcos Senesi",
+            "jersey": "2"
           },
           {
-            "name": "Gonzalo Montiel",
-            "jersey": "4"
+            "name": "Nahuel Molina",
+            "jersey": "26"
+          },
+          {
+            "name": "Leandro Paredes",
+            "jersey": "5"
           },
           {
             "name": "Valentin Barco",
@@ -236,10 +240,6 @@
             "jersey": "17"
           },
           {
-            "name": "Nicolas Gonzalez",
-            "jersey": "15"
-          },
-          {
             "name": "Thiago Almada",
             "jersey": "16"
           },
@@ -253,7 +253,7 @@
           }
         ]
       },
-      "updatedAt": "2026-07-19T11:28:17.463Z"
+      "updatedAt": "2026-07-19T18:35:47.986Z"
     }
   }
 }
