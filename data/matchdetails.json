@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-19T21:31:11.199Z",
+    "updatedAt": "2026-07-19T22:30:00.333Z",
     "source": "espn"
   },
   "details": {
@@ -59874,14 +59874,14 @@
     "k:104": {
       "espnId": "760517",
       "fmt": 2,
-      "status": "IN_PLAY",
-      "minute": 100,
+      "status": "FINISHED",
+      "minute": null,
       "utcDate": "2026-07-19T19:00Z",
       "duration": "EXTRA_TIME",
-      "winner": null,
+      "winner": "HOME_TEAM",
       "score": {
         "ft": {
-          "h": 0,
+          "h": 1,
           "a": 0
         },
         "ht": {
@@ -59890,12 +59890,25 @@
         },
         "rt": null,
         "et": {
-          "h": 0,
+          "h": 1,
           "a": 0
         },
         "pen": null
       },
-      "goals": [],
+      "goals": [
+        {
+          "minute": 106,
+          "injuryTime": null,
+          "team": "h",
+          "scorer": "Ferran Torres",
+          "assist": "Nico Williams",
+          "type": "REGULAR",
+          "score": {
+            "h": 1,
+            "a": 0
+          }
+        }
+      ],
       "bookings": [
         {
           "minute": 41,
@@ -59926,6 +59939,12 @@
           "team": "a",
           "player": "Enzo Fernández",
           "card": "RED"
+        },
+        {
+          "minute": 111,
+          "team": "a",
+          "player": "Alexis Mac Allister",
+          "card": "YELLOW"
         }
       ],
       "subs": [
@@ -59994,6 +60013,12 @@
           "team": "h",
           "in": "Eric García",
           "out": "Aymeric Laporte"
+        },
+        {
+          "minute": 102,
+          "team": "a",
+          "in": "Marcos Senesi",
+          "out": "Julián Álvarez"
         }
       ],
       "penalties": [],
@@ -60012,7 +60037,7 @@
               "pos": "RB",
               "st": {
                 "fc": 3,
-                "fs": 2
+                "fs": 3
               }
             },
             {
@@ -60020,7 +60045,8 @@
               "jersey": "24",
               "pos": "LB",
               "st": {
-                "fs": 1,
+                "fc": 1,
+                "fs": 2,
                 "sh": 1
               }
             },
@@ -60034,7 +60060,7 @@
               "jersey": "22",
               "pos": "CD-R",
               "st": {
-                "fs": 2,
+                "fs": 3,
                 "sg": 1,
                 "sh": 1
               }
@@ -60055,10 +60081,10 @@
               "jersey": "19",
               "pos": "AM-R",
               "st": {
-                "fc": 1,
+                "fc": 2,
                 "fs": 1,
                 "sg": 2,
-                "sh": 3
+                "sh": 4
               }
             },
             {
@@ -60120,8 +60146,10 @@
               "jersey": "17",
               "in": true,
               "st": {
+                "fc": 2,
+                "a": 1,
                 "sg": 2,
-                "sh": 2
+                "sh": 3
               }
             },
             {
@@ -60135,8 +60163,9 @@
               "st": {
                 "fc": 1,
                 "fs": 2,
-                "sg": 1,
-                "sh": 2
+                "sg": 2,
+                "g": 1,
+                "sh": 3
               }
             },
             {
@@ -60159,7 +60188,8 @@
               "in": true,
               "st": {
                 "fc": 1,
-                "fs": 2
+                "fs": 3,
+                "sh": 1
               }
             },
             {
@@ -60189,7 +60219,10 @@
             {
               "name": "Eric García",
               "jersey": "4",
-              "in": true
+              "in": true,
+              "st": {
+                "fc": 1
+              }
             }
           ]
         },
@@ -60201,6 +60234,7 @@
               "jersey": "23",
               "pos": "G",
               "st": {
+                "gc": 1,
                 "sv": 11
               }
             },
@@ -60218,8 +60252,9 @@
               "jersey": "3",
               "pos": "LB",
               "st": {
-                "fc": 3,
-                "fs": 2
+                "fc": 5,
+                "fs": 3,
+                "gc": 1
               }
             },
             {
@@ -60257,8 +60292,9 @@
               "jersey": "20",
               "pos": "CM-L",
               "st": {
-                "fc": 2,
-                "fs": 2
+                "fc": 3,
+                "fs": 2,
+                "gc": 1
               }
             },
             {
@@ -60276,7 +60312,9 @@
               "pos": "CF-R",
               "st": {
                 "fc": 1,
-                "fs": 4
+                "fs": 4,
+                "gc": 1,
+                "sh": 1
               }
             },
             {
@@ -60298,7 +60336,9 @@
               "jersey": "5",
               "in": true,
               "st": {
-                "fc": 4
+                "fc": 4,
+                "fs": 1,
+                "gc": 1
               }
             },
             {
@@ -60315,13 +60355,17 @@
               "in": true,
               "st": {
                 "fc": 1,
-                "fs": 2
+                "fs": 4,
+                "gc": 1
               }
             },
             {
               "name": "Nahuel Molina",
               "jersey": "26",
-              "in": true
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Giovani Lo Celso",
@@ -60332,7 +60376,9 @@
               "jersey": "17",
               "in": true,
               "st": {
-                "fc": 2
+                "fc": 3,
+                "gc": 1,
+                "sh": 1
               }
             },
             {
@@ -60345,7 +60391,12 @@
             },
             {
               "name": "Marcos Senesi",
-              "jersey": "2"
+              "jersey": "2",
+              "in": true,
+              "st": {
+                "fs": 1,
+                "gc": 1
+              }
             },
             {
               "name": "Lautaro Martínez",
@@ -60358,7 +60409,10 @@
             {
               "name": "Facundo Medina",
               "jersey": "25",
-              "in": true
+              "in": true,
+              "st": {
+                "gc": 1
+              }
             },
             {
               "name": "Nico Paz",
@@ -60369,36 +60423,36 @@
       },
       "referee": "Slavko Vincici",
       "venue": "MetLife Stadium, East Rutherford, New Jersey",
-      "attendance": null,
+      "attendance": 80663,
       "stats": [
         {
           "key": "possessionPct",
-          "h": "68%",
-          "a": "33%"
+          "h": "65%",
+          "a": "35%"
         },
         {
           "key": "totalShots",
-          "h": "16",
-          "a": "0"
+          "h": "20",
+          "a": "2"
         },
         {
           "key": "shotsOnTarget",
-          "h": "11",
+          "h": "12",
           "a": "0"
         },
         {
           "key": "wonCorners",
           "h": "9",
-          "a": "1"
+          "a": "4"
         },
         {
           "key": "foulsCommitted",
-          "h": "16",
-          "a": "21"
+          "h": "21",
+          "a": "25"
         },
         {
           "key": "offsides",
-          "h": "2",
+          "h": "4",
           "a": "1"
         },
         {
@@ -60408,18 +60462,18 @@
         },
         {
           "key": "totalPasses",
-          "h": "722",
-          "a": "356"
+          "h": "852",
+          "a": "464"
         },
         {
           "key": "passPct",
-          "h": "90%",
-          "a": "79%"
+          "h": "89%",
+          "a": "77%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "3"
+          "a": "4"
         },
         {
           "key": "redCards",
@@ -60427,7 +60481,7 @@
           "a": "1"
         }
       ],
-      "updatedAt": "2026-07-19T21:31:11.199Z"
+      "updatedAt": "2026-07-19T22:30:00.332Z"
     }
   }
 }

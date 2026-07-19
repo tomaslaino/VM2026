@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updatedAt": "2026-07-19T21:31:11.160Z",
+    "updatedAt": "2026-07-19T22:30:00.285Z",
     "source": "espn",
     "matchCount": 104,
-    "liveCount": 1,
+    "liveCount": 0,
     "apiCalls": 2
   },
   "results": {
@@ -527,21 +527,12 @@
       "status": "FINISHED"
     },
     "k:104": {
-      "h": 0,
+      "h": 1,
       "a": 0,
-      "status": "IN_PLAY"
+      "status": "FINISHED"
     }
   },
-  "live": [
-    {
-      "key": "k:104",
-      "status": "IN_PLAY",
-      "minute": 90,
-      "home": "Spain",
-      "away": "Argentina",
-      "score": "0-0"
-    }
-  ],
+  "live": [],
   "fixtures": {
     "g:A:2": {
       "date": "2026-06-11",
@@ -2298,7 +2289,7 @@
       "date": "2026-07-19",
       "time": "21:00",
       "utcDate": "2026-07-19T19:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": null,
       "home": "Spain",
       "away": "Argentina",
