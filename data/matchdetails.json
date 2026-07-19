@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-19T18:31:39.765Z",
+    "updatedAt": "2026-07-19T19:48:27.948Z",
     "source": "espn"
   },
   "details": {
@@ -59870,6 +59870,399 @@
         }
       ],
       "updatedAt": "2026-07-18T23:31:37.579Z"
+    },
+    "k:104": {
+      "espnId": "760517",
+      "fmt": 2,
+      "status": "IN_PLAY",
+      "minute": 42,
+      "utcDate": "2026-07-19T19:00Z",
+      "duration": "REGULAR",
+      "winner": null,
+      "score": {
+        "ft": {
+          "h": 0,
+          "a": 0
+        },
+        "ht": null,
+        "rt": null,
+        "et": null,
+        "pen": null
+      },
+      "goals": [],
+      "bookings": [
+        {
+          "minute": 41,
+          "team": "a",
+          "player": "Lisandro Martínez",
+          "card": "YELLOW"
+        }
+      ],
+      "subs": [],
+      "penalties": [],
+      "lineups": {
+        "h": {
+          "formation": "4-2-3-1",
+          "starters": [
+            {
+              "name": "Unai Simón",
+              "jersey": "23",
+              "pos": "G"
+            },
+            {
+              "name": "Pedro Porro",
+              "jersey": "12",
+              "pos": "RB",
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Marc Cucurella",
+              "jersey": "24",
+              "pos": "LB"
+            },
+            {
+              "name": "Fabián Ruiz",
+              "jersey": "8",
+              "pos": "LM"
+            },
+            {
+              "name": "Pau Cubarsí",
+              "jersey": "22",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Aymeric Laporte",
+              "jersey": "14",
+              "pos": "CD-L"
+            },
+            {
+              "name": "Lamine Yamal",
+              "jersey": "19",
+              "pos": "AM-R",
+              "st": {
+                "fc": 1,
+                "fs": 1,
+                "sg": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Rodri",
+              "jersey": "16",
+              "pos": "RM",
+              "st": {
+                "fc": 2,
+                "fs": 2
+              }
+            },
+            {
+              "name": "Mikel Oyarzabal",
+              "jersey": "21",
+              "pos": "F",
+              "st": {
+                "fs": 1,
+                "sg": 1,
+                "sh": 1
+              }
+            },
+            {
+              "name": "Dani Olmo",
+              "jersey": "10",
+              "pos": "AM",
+              "st": {
+                "fc": 1,
+                "fs": 2
+              }
+            },
+            {
+              "name": "Álex Baena",
+              "jersey": "15",
+              "pos": "AM-L",
+              "st": {
+                "fc": 1,
+                "fs": 1
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Alejandro Grimaldo",
+              "jersey": "3"
+            },
+            {
+              "name": "Martín Zubimendi",
+              "jersey": "18"
+            },
+            {
+              "name": "Nico Williams",
+              "jersey": "17"
+            },
+            {
+              "name": "Borja Iglesias",
+              "jersey": "26"
+            },
+            {
+              "name": "Ferran Torres",
+              "jersey": "7"
+            },
+            {
+              "name": "Víctor Muñoz",
+              "jersey": "25"
+            },
+            {
+              "name": "Pedri",
+              "jersey": "20"
+            },
+            {
+              "name": "Mikel Merino",
+              "jersey": "6"
+            },
+            {
+              "name": "Marc Pubill",
+              "jersey": "2"
+            },
+            {
+              "name": "Gavi",
+              "jersey": "9"
+            },
+            {
+              "name": "David Raya",
+              "jersey": "1"
+            },
+            {
+              "name": "Marcos Llorente",
+              "jersey": "5"
+            },
+            {
+              "name": "Yéremy Pino",
+              "jersey": "11"
+            },
+            {
+              "name": "Joan García",
+              "jersey": "13"
+            },
+            {
+              "name": "Eric García",
+              "jersey": "4"
+            }
+          ]
+        },
+        "a": {
+          "formation": "4-4-2",
+          "starters": [
+            {
+              "name": "Emiliano Martínez",
+              "jersey": "23",
+              "pos": "G",
+              "st": {
+                "sv": 2
+              }
+            },
+            {
+              "name": "Gonzalo Montiel",
+              "jersey": "4",
+              "pos": "RB",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Nicolás Tagliafico",
+              "jersey": "3",
+              "pos": "LB",
+              "st": {
+                "fc": 3,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Enzo Fernández",
+              "jersey": "24",
+              "pos": "CM-R",
+              "st": {
+                "fs": 1
+              }
+            },
+            {
+              "name": "Cristian Romero",
+              "jersey": "13",
+              "pos": "CD-R"
+            },
+            {
+              "name": "Lisandro Martínez",
+              "jersey": "6",
+              "pos": "CD-L",
+              "st": {
+                "fc": 1
+              }
+            },
+            {
+              "name": "Rodrigo De Paul",
+              "jersey": "7",
+              "pos": "RM"
+            },
+            {
+              "name": "Alexis Mac Allister",
+              "jersey": "20",
+              "pos": "CM-L",
+              "st": {
+                "fc": 2,
+                "fs": 1
+              }
+            },
+            {
+              "name": "Julián Álvarez",
+              "jersey": "9",
+              "pos": "CF-L",
+              "st": {
+                "fc": 2
+              }
+            },
+            {
+              "name": "Lionel Messi",
+              "jersey": "10",
+              "pos": "CF-R",
+              "st": {
+                "fs": 2
+              }
+            },
+            {
+              "name": "Nico González",
+              "jersey": "15",
+              "pos": "LM",
+              "st": {
+                "fs": 1
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Exequiel Palacios",
+              "jersey": "14"
+            },
+            {
+              "name": "Leandro Paredes",
+              "jersey": "5"
+            },
+            {
+              "name": "Valentín Barco",
+              "jersey": "8"
+            },
+            {
+              "name": "Gerónimo Rulli",
+              "jersey": "12"
+            },
+            {
+              "name": "Nicolás Otamendi",
+              "jersey": "19"
+            },
+            {
+              "name": "Nahuel Molina",
+              "jersey": "26"
+            },
+            {
+              "name": "Giovani Lo Celso",
+              "jersey": "11"
+            },
+            {
+              "name": "Giuliano Simeone",
+              "jersey": "17"
+            },
+            {
+              "name": "José Manuel López",
+              "jersey": "21"
+            },
+            {
+              "name": "Thiago Almada",
+              "jersey": "16"
+            },
+            {
+              "name": "Marcos Senesi",
+              "jersey": "2"
+            },
+            {
+              "name": "Lautaro Martínez",
+              "jersey": "22"
+            },
+            {
+              "name": "Juan Musso",
+              "jersey": "1"
+            },
+            {
+              "name": "Facundo Medina",
+              "jersey": "25"
+            },
+            {
+              "name": "Nico Paz",
+              "jersey": "18"
+            }
+          ]
+        }
+      },
+      "referee": "Slavko Vincici",
+      "venue": "MetLife Stadium, East Rutherford, New Jersey",
+      "attendance": null,
+      "stats": [
+        {
+          "key": "possessionPct",
+          "h": "64%",
+          "a": "36%"
+        },
+        {
+          "key": "totalShots",
+          "h": "2",
+          "a": "0"
+        },
+        {
+          "key": "shotsOnTarget",
+          "h": "2",
+          "a": "0"
+        },
+        {
+          "key": "wonCorners",
+          "h": "2",
+          "a": "0"
+        },
+        {
+          "key": "foulsCommitted",
+          "h": "6",
+          "a": "9"
+        },
+        {
+          "key": "offsides",
+          "h": "2",
+          "a": "1"
+        },
+        {
+          "key": "saves",
+          "h": "0",
+          "a": "2"
+        },
+        {
+          "key": "totalPasses",
+          "h": "286",
+          "a": "166"
+        },
+        {
+          "key": "passPct",
+          "h": "90%",
+          "a": "80%"
+        },
+        {
+          "key": "yellowCards",
+          "h": "0",
+          "a": "1"
+        },
+        {
+          "key": "redCards",
+          "h": "0",
+          "a": "0"
+        }
+      ],
+      "updatedAt": "2026-07-19T19:48:27.947Z"
     }
   }
 }
