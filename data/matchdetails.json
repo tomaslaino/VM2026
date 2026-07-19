@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-19T19:48:27.948Z",
+    "updatedAt": "2026-07-19T20:34:02.029Z",
     "source": "espn"
   },
   "details": {
@@ -59875,7 +59875,7 @@
       "espnId": "760517",
       "fmt": 2,
       "status": "IN_PLAY",
-      "minute": 42,
+      "minute": 56,
       "utcDate": "2026-07-19T19:00Z",
       "duration": "REGULAR",
       "winner": null,
@@ -59884,7 +59884,10 @@
           "h": 0,
           "a": 0
         },
-        "ht": null,
+        "ht": {
+          "h": 0,
+          "a": 0
+        },
         "rt": null,
         "et": null,
         "pen": null
@@ -59896,9 +59899,28 @@
           "team": "a",
           "player": "Lisandro Martínez",
           "card": "YELLOW"
+        },
+        {
+          "minute": 52,
+          "team": "a",
+          "player": "Leandro Paredes",
+          "card": "YELLOW"
         }
       ],
-      "subs": [],
+      "subs": [
+        {
+          "minute": 44,
+          "team": "a",
+          "in": "Nicolás Otamendi",
+          "out": "Lisandro Martínez"
+        },
+        {
+          "minute": 45,
+          "team": "a",
+          "in": "Leandro Paredes",
+          "out": "Nico González"
+        }
+      ],
       "penalties": [],
       "lineups": {
         "h": {
@@ -59914,14 +59936,17 @@
               "jersey": "12",
               "pos": "RB",
               "st": {
-                "fc": 1,
+                "fc": 2,
                 "fs": 1
               }
             },
             {
               "name": "Marc Cucurella",
               "jersey": "24",
-              "pos": "LB"
+              "pos": "LB",
+              "st": {
+                "sh": 1
+              }
             },
             {
               "name": "Fabián Ruiz",
@@ -59936,7 +59961,10 @@
             {
               "name": "Aymeric Laporte",
               "jersey": "14",
-              "pos": "CD-L"
+              "pos": "CD-L",
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Lamine Yamal",
@@ -59955,7 +59983,7 @@
               "pos": "RM",
               "st": {
                 "fc": 2,
-                "fs": 2
+                "fs": 3
               }
             },
             {
@@ -59963,6 +59991,7 @@
               "jersey": "21",
               "pos": "F",
               "st": {
+                "fc": 1,
                 "fs": 1,
                 "sg": 1,
                 "sh": 1
@@ -59982,8 +60011,10 @@
               "jersey": "15",
               "pos": "AM-L",
               "st": {
-                "fc": 1,
-                "fs": 1
+                "fc": 4,
+                "fs": 1,
+                "sg": 1,
+                "sh": 1
               }
             }
           ],
@@ -60058,7 +60089,7 @@
               "jersey": "23",
               "pos": "G",
               "st": {
-                "sv": 2
+                "sv": 3
               }
             },
             {
@@ -60066,7 +60097,8 @@
               "jersey": "4",
               "pos": "RB",
               "st": {
-                "fc": 1
+                "fc": 1,
+                "fs": 2
               }
             },
             {
@@ -60102,7 +60134,10 @@
             {
               "name": "Rodrigo De Paul",
               "jersey": "7",
-              "pos": "RM"
+              "pos": "RM",
+              "st": {
+                "fs": 1
+              }
             },
             {
               "name": "Alexis Mac Allister",
@@ -60118,7 +60153,8 @@
               "jersey": "9",
               "pos": "CF-L",
               "st": {
-                "fc": 2
+                "fc": 3,
+                "fs": 1
               }
             },
             {
@@ -60126,7 +60162,7 @@
               "jersey": "10",
               "pos": "CF-R",
               "st": {
-                "fs": 2
+                "fs": 3
               }
             },
             {
@@ -60145,7 +60181,11 @@
             },
             {
               "name": "Leandro Paredes",
-              "jersey": "5"
+              "jersey": "5",
+              "in": true,
+              "st": {
+                "fc": 1
+              }
             },
             {
               "name": "Valentín Barco",
@@ -60157,7 +60197,8 @@
             },
             {
               "name": "Nicolás Otamendi",
-              "jersey": "19"
+              "jersey": "19",
+              "in": true
             },
             {
               "name": "Nahuel Molina",
@@ -60208,28 +60249,28 @@
       "stats": [
         {
           "key": "possessionPct",
-          "h": "64%",
-          "a": "36%"
+          "h": "61%",
+          "a": "39%"
         },
         {
           "key": "totalShots",
-          "h": "2",
+          "h": "4",
           "a": "0"
         },
         {
           "key": "shotsOnTarget",
-          "h": "2",
+          "h": "3",
           "a": "0"
         },
         {
           "key": "wonCorners",
           "h": "2",
-          "a": "0"
+          "a": "1"
         },
         {
           "key": "foulsCommitted",
-          "h": "6",
-          "a": "9"
+          "h": "11",
+          "a": "11"
         },
         {
           "key": "offsides",
@@ -60239,22 +60280,22 @@
         {
           "key": "saves",
           "h": "0",
-          "a": "2"
+          "a": "3"
         },
         {
           "key": "totalPasses",
-          "h": "286",
-          "a": "166"
+          "h": "402",
+          "a": "260"
         },
         {
           "key": "passPct",
-          "h": "90%",
-          "a": "80%"
+          "h": "89%",
+          "a": "81%"
         },
         {
           "key": "yellowCards",
           "h": "0",
-          "a": "1"
+          "a": "2"
         },
         {
           "key": "redCards",
@@ -60262,7 +60303,7 @@
           "a": "0"
         }
       ],
-      "updatedAt": "2026-07-19T19:48:27.947Z"
+      "updatedAt": "2026-07-19T20:34:02.029Z"
     }
   }
 }
