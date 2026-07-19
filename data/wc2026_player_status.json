@@ -1,39 +1,28 @@
 {
   "tournament": "FIFA World Cup 2026",
   "source": "Officiell matchdata (ESPN) för avstängningar + respektive lands medier via Google Nyheter för skador/frågetecken",
-  "updated": "2026-07-19T21:11:34.709Z",
+  "updated": "2026-07-19T22:13:17.964Z",
   "note": "Spelartillgänglighet inför lagets nästa match, per spelar-id (samma id som data/wc2026_players.json). availability: 'out' (spelar inte) eller 'doubtful' (osäker). kind: 'injury' | 'suspension' | 'illness' | 'other'. source: {name, url} – ESPN-matchsidan för avstängningar, nyhetsartikeln för skador. Genereras av server/scripts/syncAvailability.js; poster med manual: true bevaras alltid.",
   "statuses": {
     "arg-cristian-romero": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Video: Cuti Romeros skada som lämnade honom utanför VM-finalen mellan Argentina och Spanien",
+      "detail": "Cuti Romeros skada som lämnade honom utanför VM-finalen mellan Argentina och Spanien",
       "updated": "2026-07-19",
       "source": {
-        "name": "Infobae",
-        "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQcENwODZraEt2Z3FuSFRtd3h0UkxlT2M1UDFhelBLa2wxM3JIUEJDYlpMUnBadDJNRi1fNWUwcEwtNEo0RWthZkZubDRzOXliejdDZlJKUzFSa2lWcjRoOWl2OUM5cWM5MFlYblpLcHhHWjB2N0EybGY1SHg3dzlFRkxlZnkzUFlUQkVBblFXX0pqbUJmX0VDZjRxVDFCLUtrRWlaNHowMXZDLUx6bVBJNy1hcWlaUUd0VGJydnRRMnNadmxyNV80emlDdU5OR2dzZ0o1N0NGUXFuSk3SAfYBQVVfeXFMTXBZVXotVVFnN0JaZHdDbGJvcllIVVp2SGpuMEFnMWM4V3pzYjkzd2VyOUQ5TnZESEhseDhJdm9Vc3NnR2kxX1VUSGpDN0Q2dHJoakQzOHpmT0JfWGRLbW52enMwS3YzcU1iT1oxc3otNU55aHNPY29xaWxPU0syYjdDVV9VYXY1M3dBdERuQnB4d19pOElCM1BVajVmMnZvb3VEeGVpVXBpWnJ5XzVXczJlZ3ljdzkwSkNYT2FFYVJkV3ZpSkJJMUlWTlMtem9oSlQ2V0xORDZuclAtZ25hUDY0WWVETkNlT2M3LUpRZEdPWnFUenln?oc=5"
+        "name": "Diario 13 San Juan",
+        "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNMkdYX1ZnMjdXRWJfbHdyOERYRkFiS3FfbEl3YVJqbDdmWVJVVXpVaGppcDItb2RPSWpTeDQ4RnlGeVE1NTFkdXJIdG10ZGNOT0xpa050Y3hPVWptM2o2eGtPZE9URVJZOEYxWlVBWlJQX2JnbWFLOXg3NXBwbEp0X1pYZUxkNDJVMHdoRHVkMjhMQktHNHp1ajhpRUU4eERSMkZJOTM3aUd5S21hQWFaYTZQVXBTZjBKdzVsd1g3Sm04RnZlWE4tZjAzY3NhQWRncnFEekUwak1KLXNybU1PdFUta0M3LWNodFV0cnNR0gH8AUFVX3lxTFBXdTlwY1JjbllpZTNydkpUU0tydzFld3JSdlo5U25tV3hDY2x5QUwwNDUzUl8yZ0d6cm9mV3BtZGNGQnZxUFBGbThyTHlXbTk2MDNOS1hBMWhnSjlrV0VhbjVmcWRENTl0RzFFLXBiLUg4eUVSRDhSZXJpTzFyZFRhZzhNTzBWRVItaW4yS1J3SE5XU3BNalpZeVV2VGlVRzhjZXQ3RGxtalBhR2JhNC04MXVUZC1ycV9vWklBTTJhTGtYUS1nbFB6SjN2VTE4VXYxSzF0VWs3TDY3ak9VNXVJbGladkZOeWtPZXZ3RG1ZTDVmSXlOU1dmTFlqeQ?oc=5"
       },
       "origin": "news"
     },
     "arg-lisandro-martinez": {
       "availability": "doubtful",
       "kind": "injury",
-      "detail": "Lisandro Martínez lämnade VM-finalen 2026 gråtande på grund av skada: Argentina förlorade sin försvarsledare mycket tidigt i matchen",
+      "detail": "Hårt slag för det argentinska landslaget: Lisandro Martínez drog sig skadad från finalen mot Spanien",
       "updated": "2026-07-19",
       "source": {
-        "name": "El Imparcial",
-        "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxQYnNfT1VHTVFxaDRjaDkxaWRPN1NSTHlZcGFqM1JPek5jcXJUOTk2SzQwc2hKNGpiZXRTaEZsWjU3Zk9XTlRFaHp2YzhUNXNsQUdkeGt5M2JsM1FUNTY2LTJoVVBVelk2SGJRUDZZR2t0dFMzb29lRFVXRW9sMHpUM3ZlZnRLaHZ0M1Ftd1Vpb2JQNVRzelRiS2JjeENYaUwzcGoydUlURGE1ejFvT3JfYzN3Q2JfQTBBZGVaSURfcVRSU2ZNdC1mOFRGMGk5SHhtWGJkSFgxWnczV2xzd3h6dFdwOXNlaWtXVDhQRy1FZmR3R0hsZmE0V1RFcTRoaU9TNzNURE9MUEQyejhaa1JHR2RPWdIBrgJBVV95cUxOM0xvZDZqTnBzaEwtT2FseGhJMnRtV3FscWNZYkxuS1paRElNdFREWU1HOEVSem5SeWk2a2xUQ2J2ZUpaWDVnSnB3QkNGT1RtMUs4R3Zyanh2UlRfWEJoRThkTnhDMk43aXYyMXNZT0toVmJsWEY1aDJRZC1fdEsyTkxrbVNVb0R1VWFQNFZ4dzg3ODdCVnUzWXpGR2huclAwSzNOZFlCNkRMZTVOWU1pM2x1NHVHODlOLTBjYjlibnZtU0VDYmh4UF84WWdTY1hQQ1FSSldLZmxEMU5CZkZVNTYzY2pRNjdBdUQ1NnVJX3hkd2lCNmFKdmEtRTZQdHhQWVJ3ZmhLbFlSamgxZ3J2MXlpYk1BZEhEWmhoa1d6WWZ3akM2N2t1UERyYzBNQQ?oc=5"
-      },
-      "origin": "news"
-    },
-    "arg-nicolas-otamendi": {
-      "availability": "doubtful",
-      "kind": "injury",
-      "detail": "Otamendi gick in. Dåliga nyheter för Argentina: Lisandro Martínez var skadad",
-      "updated": "2026-07-19",
-      "source": {
-        "name": "La Voz del Interior",
-        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNa3ZjTXlfZ0ZLbERxeS1yLWdwNVlQQmJrZ3BDUzUza1lfcGtRMjhvWW1UYXJaLUxsU3FCM1kwenQ2eHB0M0daR1BEQm9obUVwb1Y5cWVmX3dnSWxyQ0RiZEFITkJyZmhFd2FTaHVLWk5GZFVxN0x2VERjUHB6QzczT3I0dDF5R3hHdEo1cnRUeTRSOXZfRFByQTNfR0IyY1VUMmJ4OTd3VnJyV1lCclNV?oc=5"
+        "name": "Perfil",
+        "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOdmo4VFhMazBkQ1U5b05jN2kweDU1V25PRlB1QnhYS2U1V2NfaTdyS0xwTVBKTTZzenpuaHZxRmVKUzNWUl9nSC1kcV9NV2FYWTRXcWVnbVYzelh3Sm5MTGdHZG9JeDFXN3BoUlBZSF9oa1JRQThJYS05YkZhMWlZWlhucm1BeHV3NFRiYzFHMndpR3NKVFlteVdweDg0Q0g3eUlmdnBQTnNLaldBNGdFZ3QxV1dlejM0TlBCVTFpZFdyN2xxbUFlVlFYMWZWcGFVeE9qWUFteGlQNEFtblBYWTZISEFKZw?oc=5"
       },
       "origin": "news"
     },
