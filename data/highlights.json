@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-19T21:28:38.579Z",
+    "updatedAt": "2026-07-19T22:29:23.635Z",
     "source": "svt+tv4",
     "matchCount": 104
   },
@@ -52,13 +52,6 @@
           "url": "https://www.svtplay.se/klipp/eXv1Pgb/grupp-b-qatar-schweiz",
           "title": "Grupp B: Qatar – Schweiz",
           "until": "2026-10-19T05:30:00+02:00"
-        }
-      },
-      "TV4": {
-        "short": {
-          "url": "https://www.tv4play.se/klipp/663ed2cf0e58fd1b4dc0/video-hojdpunkter-qatar-schweiz",
-          "title": "Höjdpunkter: Qatar - Schweiz",
-          "until": null
         }
       }
     },
@@ -447,11 +440,6 @@
     },
     "g:D:2": {
       "SVT": {
-        "full": {
-          "url": "https://www.svtplay.se/video/ep55LgR/fifa-fotbolls-vm-2026/usa-australien",
-          "title": "FIFA Fotbolls-VM 2026",
-          "until": "2026-07-19T23:59:59+02:00"
-        },
         "long": {
           "url": "https://www.svtplay.se/klipp/KN3PZBd/utokade-hojdpunkter-usa-australien",
           "title": "Utökade höjdpunkter: USA – Australien",
@@ -473,11 +461,6 @@
     },
     "g:C:5": {
       "SVT": {
-        "full": {
-          "url": "https://www.svtplay.se/video/e2ddxBD/fifa-fotbolls-vm-2026/skottland-marocko",
-          "title": "FIFA Fotbolls-VM 2026",
-          "until": "2026-07-19T23:59:59+02:00"
-        },
         "long": {
           "url": "https://www.svtplay.se/klipp/e5dbBEx/utokade-hojdpunkter-skottland-marocko",
           "title": "Utökade höjdpunkter: Skottland – Marocko",
@@ -2145,6 +2128,11 @@
           "url": "https://www.tv4play.se/video/3409159f191f32176df9/spanien-argentina",
           "title": "Spanien - Argentina",
           "until": "2026-08-18T17:30:00Z"
+        },
+        "short": {
+          "url": "https://www.tv4play.se/klipp/1b60f2aab647a28c09d2/video-hojdpunkter-spanien-argentina",
+          "title": "Höjdpunkter: Spanien - Argentina",
+          "until": null
         }
       }
     },
