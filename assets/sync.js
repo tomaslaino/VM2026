@@ -33,6 +33,9 @@
   }
 
   function pollIntervalMs() {
+    // Arkivläge: turneringen är färdigspelad och datafilerna fryser – polla
+    // mycket glest (en omladdning hämtar ändå alltid färskt underlag).
+    if (Date.now() > Date.parse("2026-07-20T12:00:00Z")) return 1800000;
     if (USE_BACKEND) {
       var now = new Date();
       var start = new Date("2026-06-11T00:00:00Z");

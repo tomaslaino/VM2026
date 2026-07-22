@@ -569,6 +569,15 @@
   // Auto-ESPN-brickans innehåll (klass/text/titel) utifrån synkstatusen.
   // Delas av footer-badgen (#syncBadge) och slutspelets footer-kapsel.
   function syncBadgeState() {
+    // Arkivläge: finalen är spelad och synkarna avstängda – visa en lugn
+    // arkivbricka i stället för poll-status ("Hämtar…"/"Ingen backend").
+    // getRes är spoilermedveten, så en dold final ger vanlig status.
+    if (isPlayed(getRes("k:104"))) {
+      return {
+        cls: "archive", text: "Arkiv · VM 2026",
+        title: "Turneringen är färdigspelad. Alla resultat, all statistik och alla analyser är sparade – sajten uppdateras inte längre."
+      };
+    }
     if (autoSync.status === "ok" && autoSync.updatedAt) {
       return {
         cls: "ok", text: "Auto · ESPN",
@@ -598,7 +607,7 @@
       // till vid varje bakgrundspoll (remove/add av klassen nollar gradienten).
       if (el.hidden) el.hidden = false;
       if (!el.classList.contains(st.cls)) {
-        el.classList.remove("pending", "ok", "error");
+        el.classList.remove("pending", "ok", "error", "archive");
         el.classList.add(st.cls);
       }
       if (el.textContent !== st.text) el.textContent = st.text;
@@ -1260,18 +1269,28 @@
   /* ---------- Startsida (Hem) ---------- */
   function renderHome() {
     var ctx = getCtx();
-    var html = '<div class="home-layout">' +
-      '<div class="home-intro">' +
-        '<span class="home-kicker"><span class="hk-dot" aria-hidden="true"></span>Fotbolls-VM 2026 · USA · Mexiko · Kanada</span>' +
-        '<h2>Gräver grav</h2>' +
-        '<p>VM 2026 i realtid och en värdig begravning för de svenska och uruguayanska VM-drömmarna.</p>' +
-      '</div>' +
-      focusHero(ctx) +
-      recentMatchesPanel(ctx) +
+    var fin = finaleState(ctx);
+    var intro = fin
+      ? '<div class="home-intro">' +
+          '<span class="home-kicker home-kicker--done"><span class="hk-dot" aria-hidden="true"></span>Fotbolls-VM 2026 · 11 juni – 19 juli · Färdigspelat</span>' +
+          '<h2>Gräver grav</h2>' +
+          '<p>VM 2026 är färdigspelat och sajten har övergått till arkivläge: hela turneringen – varje match, mål, graf och analys – ligger kvar att gräva i. Och gravarna? De vårdas för evigt.</p>' +
+        '</div>'
+      : '<div class="home-intro">' +
+          '<span class="home-kicker"><span class="hk-dot" aria-hidden="true"></span>Fotbolls-VM 2026 · USA · Mexiko · Kanada</span>' +
+          '<h2>Gräver grav</h2>' +
+          '<p>VM 2026 i realtid och en värdig begravning för de svenska och uruguayanska VM-drömmarna.</p>' +
+        '</div>';
+    var html = '<div class="home-layout' + (fin ? " is-finale" : "") + '">' +
+      intro +
+      (fin
+        ? finaleHero(fin, ctx) + finaleStatsPanel(ctx)
+        : focusHero(ctx) + recentMatchesPanel(ctx)) +
       teamsSpotlightStrip(ctx) +
+      (fin ? finaleEpilogue() : "") +
       '</div>';
     var wrote = setViewHtml(html);
-    if (wrote) updateNextCountdown();
+    if (wrote && !fin) updateNextCountdown();
     return wrote;
   }
 
@@ -1609,7 +1628,7 @@
       '<span class="sync-badge ' + sb.cls + '" title="' + esc(sb.title) + '">' + esc(sb.text) + '</span>' +
       'Data: FIFA &amp; Wikipedia · Resultat &amp; statistik: ' +
       '<a href="https://www.espn.com/soccer/" target="_blank" rel="noopener">ESPN</a>' +
-      ' · Tider kan ändras – <a href="https://www.fifa.com/" target="_blank" rel="noopener">FIFA.com</a>' +
+      ' · <a href="https://www.fifa.com/" target="_blank" rel="noopener">FIFA.com</a>' +
       '</span></div>';
     html += '</div></div></div></div>';
 
@@ -5288,6 +5307,276 @@
     }
     h += '</section>';
     return h;
+  }
+
+  /* ====================================================================
+     Avslutningen – startsidan i arkivläge
+     När finalen (match 104) är färdigspelad och inte spoilerdold byter
+     startsidan skepnad: mästarhjälte med prispall, "Turneringen i siffror"
+     (räknas fram ur results/matchdetails – inga hårdkodade siffror) och
+     ett slutord med vägar vidare in i arkivet.
+  ==================================================================== */
+
+  /** Finalens upplösta post om VM är färdigspelat och avgjort, annars null.
+      Spoilerskyddet respekteras: den som valt en brytpunkt före finalen får
+      den vanliga startsidan utan mästare. */
+  function finaleState(ctx) {
+    var fin = ctx.resolved[104];
+    if (!fin || !fin.winner || !fin.winner.team || !fin.winner.decided) return null;
+    if (isSpoilerHidden("k:104")) return null;
+    return fin;
+  }
+
+  /** Mästarhjälten: världsmästaren i jätteformat, finalresultatet (klickbart →
+      matchmodalen) och prispallen. */
+  function finaleHero(fin, ctx) {
+    var champ = fin.winner.team;
+    var silver = fin.loser && fin.loser.team;
+    var bronzeRes = ctx.resolved[103];
+    var bronze = bronzeRes && bronzeRes.winner && bronzeRes.winner.decided ?
+      bronzeRes.winner.team : null;
+    var det = focusDetails["k:104"];
+    var r = fin.result || {};
+    var when = whenLabels(fin.match);
+
+    var suffix = "";
+    if (det && det.duration === "PENALTY_SHOOTOUT") suffix = " efter straffar";
+    else if (det && det.duration === "EXTRA_TIME") suffix = " efter förlängning";
+    else if (r.pw) suffix = " efter straffar";
+
+    var scorers = "";
+    if (det && det.goals && det.goals.length) {
+      scorers = det.goals.map(function (g) {
+        return (g.scorer || "Mål") + " " + goalMinuteToken(g);
+      }).join(", ");
+    }
+
+    // Arenanamnet ur matchdetaljerna ("MetLife Stadium, East Rutherford, …")
+    // är rikare än spelschemats korta ort – ta stadiondelen före första kommat.
+    var venue = det && det.venue ? String(det.venue).split(",")[0] : (fin.match.venue || "");
+    var meta = when.dateLabel + (venue ? " · " + venue : "") +
+      (det && det.attendance ? " · " + svNum(det.attendance) + " åskådare" : "");
+
+    var open = matchOpenAttr("k:104");
+    var h = '<section class="focus-hero finale-hero" aria-label="Världsmästare 2026">';
+    h += '<div class="fin-inner">';
+    h += '<span class="fin-star" aria-hidden="true">★</span>';
+    h += '<span class="fh-eyebrow fin-eyebrow">Världsmästare 2026</span>';
+    h += teamOpenBtn(champ,
+      '<span class="fin-flag">' + flagImg(champ.iso) + '</span>' +
+      '<span class="fin-champ-name">' + esc(teamSvDisplay(champ)) + '</span>',
+      "fin-champ");
+    h += '<div class="fin-final' + open.cls + '"' + open.attr +
+      ' title="Öppna finalen – mål, statistik och facit">' +
+      '<span class="fin-final-res"><b>Finalen:</b> ' +
+        esc(teamSvFixture(fin.home.team)) + '–' + esc(teamSvFixture(fin.away.team)) +
+        ' <b>' + r.h + '–' + r.a + '</b>' + esc(suffix) + '</span>' +
+      (scorers ? '<span class="fin-final-scorers">⚽ ' + esc(scorers) + '</span>' : '') +
+      '<span class="fin-final-meta">' + esc(meta) + '</span>' +
+      '</div>';
+
+    function podiumStep(team, place, cls) {
+      if (!team) return "";
+      return teamOpenBtn(team,
+        '<span class="fin-step-flag">' + flagImg(team.iso) + '</span>' +
+        '<span class="fin-step-name">' + esc(teamSvFixture(team)) + '</span>' +
+        '<span class="fin-step-block" aria-hidden="true">' + place + '</span>',
+        "fin-step " + cls);
+    }
+    h += '<div class="fin-podium" aria-label="Pallplatserna">' +
+      podiumStep(silver, "2", "fin-silver") +
+      podiumStep(champ, "1", "fin-gold") +
+      podiumStep(bronze, "3", "fin-bronze") +
+      '</div>';
+    h += '</div></section>';
+    return h;
+  }
+
+  /** Lagen (h/a) bakom en resultatnyckel – för skyttekungens flagga m.m. */
+  function finTeamsForKey(ctx, key) {
+    var ko = /^k:(\d+)$/.exec(key);
+    if (ko) {
+      var res = ctx.resolved[parseInt(ko[1], 10)];
+      return res && res.bothTeams ? { h: res.home.team, a: res.away.team } : null;
+    }
+    var g = /^g:([A-L]):(\d+)$/.exec(key);
+    if (g) {
+      var i = parseInt(g[2], 10);
+      var pair = RR[Math.floor(i / 2)][i % 2];
+      var grp = WC.groups[g[1]];
+      return grp ? { h: grp[pair[0]], a: grp[pair[1]] } : null;
+    }
+    return null;
+  }
+
+  /** Turneringsfakta ur results + matchdetails. Grundsiffrorna (matcher/mål)
+      finns alltid; resten fylls på när matchdetaljerna laddats. */
+  function finaleFacts(ctx) {
+    var f = {
+      matches: 0, goals: 0, detailed: 0,
+      att: 0, attN: 0, attMax: null,
+      reds: 0, et: 0, pens: 0, owns: 0,
+      maxGoals: null, firstMs: null, lastMs: null,
+      venues: {}, scorers: {}, assists: {}
+    };
+    function eat(key, label) {
+      var raw = rawRes(key);
+      if (!isPlayed(raw)) return;
+      f.matches++;
+      var det = focusDetails[key];
+      if (!det || det.status !== "FINISHED") {
+        f.goals += (raw.h || 0) + (raw.a || 0);
+        return;
+      }
+      f.detailed++;
+      var ft = det.score && det.score.ft;
+      var tot = ft ? ft.h + ft.a : (raw.h || 0) + (raw.a || 0);
+      f.goals += tot;
+      if (det.venue) f.venues[det.venue] = true;
+      if (det.utcDate) {
+        var ms = Date.parse(det.utcDate);
+        if (isFinite(ms)) {
+          if (f.firstMs == null || ms < f.firstMs) f.firstMs = ms;
+          if (f.lastMs == null || ms > f.lastMs) f.lastMs = ms;
+        }
+      }
+      if (det.attendance) {
+        f.att += det.attendance;
+        f.attN++;
+        if (!f.attMax || det.attendance > f.attMax.att) {
+          f.attMax = { att: det.attendance, venue: det.venue || "", label: label };
+        }
+      }
+      if (det.duration === "EXTRA_TIME" || det.duration === "PENALTY_SHOOTOUT") f.et++;
+      if (det.duration === "PENALTY_SHOOTOUT" || (det.score && det.score.pen)) f.pens++;
+      (det.bookings || []).forEach(function (b) {
+        if (b && (b.card === "RED" || b.card === "YELLOW_RED")) f.reds++;
+      });
+      var teams = finTeamsForKey(ctx, key);
+      if (!f.maxGoals || tot > f.maxGoals.tot) {
+        f.maxGoals = { tot: tot, ft: ft, teams: teams, label: label };
+      }
+      (det.goals || []).forEach(function (g) {
+        if (!g) return;
+        if (g.type === "OWN") { f.owns++; return; }
+        var side = g.team === "a" ? "a" : "h";
+        var team = teams && teams[side];
+        if (g.scorer) {
+          var s = f.scorers[g.scorer] || (f.scorers[g.scorer] = { n: 0, team: team });
+          s.n++;
+        }
+        if (g.assist) {
+          var a2 = f.assists[g.assist] || (f.assists[g.assist] = { n: 0, team: team });
+          a2.n++;
+        }
+      });
+    }
+    WC.groupLetters.forEach(function (L) {
+      for (var i = 0; i < 6; i++) eat("g:" + L + ":" + i, "Grupp " + L);
+    });
+    WC.knockout.forEach(function (mt) { eat("k:" + mt.m, koRoundLabel(mt)); });
+    return f;
+  }
+
+  /** Bäst i en {namn: {n, team}}-karta (flest först; vid delning första hittade
+      + antal medtävlare). */
+  function finTop(map) {
+    var best = null;
+    Object.keys(map).forEach(function (name) {
+      var e = map[name];
+      if (!best || e.n > best.n) best = { name: name, n: e.n, team: e.team, ties: 0 };
+      else if (e.n === best.n) best.ties++;
+    });
+    return best;
+  }
+
+  function svNum(n) { return Number(n).toLocaleString("sv-SE"); }
+
+  function finTile(value, label, sub, flagIso) {
+    return '<div class="fin-tile">' +
+      '<span class="fin-tile-value">' +
+        (flagIso ? '<span class="fin-tile-flag">' + flagImg(flagIso) + '</span>' : '') +
+        value + '</span>' +
+      '<span class="fin-tile-label">' + esc(label) + '</span>' +
+      (sub ? '<span class="fin-tile-sub">' + esc(sub) + '</span>' : '') +
+      '</div>';
+  }
+
+  /** "Turneringen i siffror" – räknas fram ur underlaget vid varje rendering. */
+  function finaleStatsPanel(ctx) {
+    var f = finaleFacts(ctx);
+    if (!f.matches) return "";
+    var tiles = "";
+
+    var days = f.firstMs != null && f.lastMs != null ?
+      Math.round((f.lastMs - f.firstMs) / 86400000) + 1 : null;
+    var nVenues = Object.keys(f.venues).length;
+    var matchSub = days ?
+      days + " dagar · " + nVenues + " arenor · 3 värdländer" : "USA · Mexiko · Kanada";
+    tiles += finTile(svNum(f.matches), "Matcher", matchSub);
+
+    var perMatch = (f.goals / f.matches).toFixed(2).replace(".", ",");
+    tiles += finTile(svNum(f.goals), "Mål",
+      perMatch + " per match" + (f.owns ? " · " + f.owns + " självmål" : ""));
+
+    var topScorer = finTop(f.scorers);
+    if (topScorer) {
+      tiles += finTile(svNum(topScorer.n), "Skyttekung",
+        topScorer.name + (topScorer.team ? ", " + teamSvFixture(topScorer.team) : "") +
+        (topScorer.ties ? " m.fl." : ""),
+        topScorer.team && topScorer.team.iso);
+    }
+    var topAssist = finTop(f.assists);
+    if (topAssist) {
+      tiles += finTile(svNum(topAssist.n), "Assistkung",
+        topAssist.name + (topAssist.team ? ", " + teamSvFixture(topAssist.team) : "") +
+        (topAssist.ties ? " m.fl." : ""),
+        topAssist.team && topAssist.team.iso);
+    }
+    if (f.attN) {
+      tiles += finTile(svNum(f.att), "Åskådare totalt",
+        svNum(Math.round(f.att / f.attN)) + " i snitt per match");
+      if (f.attMax) {
+        tiles += finTile(svNum(f.attMax.att), "Publikrekord", f.attMax.venue);
+      }
+    }
+    if (f.maxGoals && f.maxGoals.tot && f.maxGoals.ft) {
+      var mgSub = (f.maxGoals.teams ?
+        teamSvFixture(f.maxGoals.teams.h) + "–" + teamSvFixture(f.maxGoals.teams.a) + " · " : "") +
+        f.maxGoals.label + " · " + f.maxGoals.tot + " mål";
+      tiles += finTile(f.maxGoals.ft.h + "–" + f.maxGoals.ft.a, "Målrikaste matchen", mgSub);
+    }
+    if (f.detailed) {
+      tiles += finTile(svNum(f.reds), "Röda kort",
+        f.et + " förlängningar · " + f.pens + " straffavgöranden");
+    }
+
+    return '<section class="fin-stats" aria-label="Turneringen i siffror">' +
+      '<div class="fin-stats-head"><span class="fh-eyebrow">Turneringen i siffror</span></div>' +
+      '<div class="fin-grid">' + tiles + '</div>' +
+      '</section>';
+  }
+
+  /** Slutordet: kort epilog + vägar vidare in i arkivet. */
+  function finaleEpilogue() {
+    return '<section class="fin-epilogue" aria-label="Slutord">' +
+      '<span class="fh-eyebrow">Slutord</span>' +
+      '<h3 class="fin-ep-title">Tack för i sommar</h3>' +
+      '<p>Sommaren 2026 fick sitt slut: Spanien är världsmästare efter att ha avgjort ' +
+        'finalen mot Argentina i förlängningen, och England tröstade sig med brons ' +
+        'efter tidernas galnaste bronsmatch. De svenska och uruguayanska VM-drömmarna ' +
+        'begravdes långt tidigare – gravarna här ovanför vårdas för evigt.</p>' +
+      '<p>Sajten ligger kvar som ett arkiv. Varje match går fortfarande att öppna – ' +
+        'mål för mål, laguppställningar, statistik och xG, redaktionens förhandsanalyser ' +
+        'och facit. Slutspelsträdet står kvar precis som det slutade, och i kalendern ' +
+        'hittar du repriserna.</p>' +
+      '<div class="fin-cta-row">' +
+        '<button type="button" class="fin-cta" data-nav="bracket">Slutspelsträdet</button>' +
+        '<button type="button" class="fin-cta" data-nav="players">Hela statistiken</button>' +
+        '<button type="button" class="fin-cta" data-nav="calendar">Alla matcher &amp; repriser</button>' +
+      '</div>' +
+      '<p class="fin-ep-sign">Vila i frid, VM-drömmar. Vi ses 2030.</p>' +
+      '</section>';
   }
 
   /* ---------- "Nyligen spelat" ----------
