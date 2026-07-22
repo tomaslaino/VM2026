@@ -14,8 +14,9 @@ name: Synka facit (Post-match-analys)
 # Saknas nyckeln loggar skriptet och avslutar utan fel.
 
 on:
-  schedule:
-    - cron: "7,37 * * * *"
+  # VM 2026 är färdigspelat – cron-schemat borttaget 2026-07-22. Facit för
+  # k:99/k:100/k:101/k:103 saknas ännu (Gemini-anropen felade från Actions
+  # sedan 11 juli); backfill körs lokalt med npm run sync:reviews + nyckel.
   workflow_dispatch: # Manuell körning från Actions-fliken.
     inputs:
       force:

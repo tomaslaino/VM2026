@@ -6,8 +6,8 @@ name: Uppdatera VM-trupper
 # Push av filen triggar ev. automatisk deploy (Vercel/Netlify) – inget extra deploysteg behövs.
 
 on:
-  schedule:
-    - cron: "0 6 * * *"
+  # VM 2026 är färdigspelat – cron-schemat borttaget 2026-07-22.
+  # Kör manuellt via workflow_dispatch vid behov.
   workflow_dispatch:
 
 permissions:

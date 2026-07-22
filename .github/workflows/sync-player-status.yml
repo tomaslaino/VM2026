@@ -8,8 +8,8 @@ name: Synka spelartillgänglighet
 # Körs varje timme (fram till 2026-07-19) samt manuellt.
 
 on:
-  schedule:
-    - cron: "23 * * * *"
+  # VM 2026 är färdigspelat – cron-schemat borttaget 2026-07-22.
+  # Kör manuellt via workflow_dispatch vid behov.
   workflow_dispatch: {}
 
 permissions:

@@ -5,10 +5,8 @@ name: Synka landslagsnyheter
 # data/team_news.json som matchmodalens inför-snack läser.
 
 on:
-  schedule:
-    # Varannan timme – nyhetsflödet behöver inte vara sekundfärskt och
-    # Google Nyheter ska inte hamras i onödan.
-    - cron: "41 */2 * * *"
+  # VM 2026 är färdigspelat – cron-schemat borttaget 2026-07-22.
+  # Kör manuellt via workflow_dispatch vid behov.
   workflow_dispatch: {} # Tillåt manuell körning från Actions-fliken.
 
 concurrency:

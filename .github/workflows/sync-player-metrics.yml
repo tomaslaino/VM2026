@@ -7,11 +7,8 @@ name: Synka spelarmetrik
 # så varje körning fyller på det som saknas eller ändrats.
 
 on:
-  schedule:
-    # En gång om dygnet (03:17 UTC) – marknadsvärden och säsongsstatistik ändras
-    # långsamt, och körningen gör många anrop mot Transfermarkt/Wikipedia som
-    # inte ska hamras. En full körning tar en dryg timme.
-    - cron: "17 3 * * *"
+  # VM 2026 är färdigspelat – cron-schemat borttaget 2026-07-22.
+  # Kör manuellt via workflow_dispatch vid behov.
   workflow_dispatch: {} # Tillåt manuell körning från Actions-fliken.
 
 concurrency:

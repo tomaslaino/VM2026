@@ -8,10 +8,8 @@ name: Synka FotMob-spelarbetyg
 # så bara nytillkomna matcher hämtas. Filen skrivs bara om vid faktisk ändring.
 
 on:
-  schedule:
-    # Var 30:e minut – nya slutresultat + FotMob hinner sätta färdiga betyg
-    # en stund efter slutsignal. Skriptet committar bara vid faktisk ändring.
-    - cron: "*/30 * * * *"
+  # VM 2026 är färdigspelat – cron-schemat borttaget 2026-07-22.
+  # Kör manuellt via workflow_dispatch vid behov.
   workflow_dispatch: {} # Tillåt manuell körning från Actions-fliken.
 
 concurrency:

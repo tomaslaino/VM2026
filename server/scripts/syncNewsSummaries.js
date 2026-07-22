@@ -45,6 +45,7 @@
     GEMINI_API_KEY=... node server/scripts/syncNewsSummaries.js
     node server/scripts/syncNewsSummaries.js --dry-run --match k:91
 */
+import "dotenv/config"; // lokal körning läser GEMINI_API_KEY ur .env; i Actions vinner injicerade secrets
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";

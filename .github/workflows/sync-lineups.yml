@@ -5,11 +5,8 @@ name: Synka troliga startelvor
 # matchmodalens "Laguppställning"-flik läser före avspark.
 
 on:
-  schedule:
-    # Var 15:e minut – troliga elvor ändras sällan men slår om till
-    # "bekräftad" ~1 timme före avspark, och det vill vi fånga snabbt.
-    # Skriptet skriver bara om filen (→ commit) när något faktiskt ändrats.
-    - cron: "*/15 * * * *"
+  # VM 2026 är färdigspelat – cron-schemat borttaget 2026-07-22.
+  # Kör manuellt via workflow_dispatch vid behov.
   workflow_dispatch: {} # Tillåt manuell körning från Actions-fliken.
 
 concurrency:

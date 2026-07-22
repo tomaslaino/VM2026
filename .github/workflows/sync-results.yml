@@ -5,12 +5,8 @@ name: Synka VM-resultat
 # data/matchdetails.json som sidan (GitHub Pages) läser direkt.
 
 on:
-  schedule:
-    # Varje minut – skriptet self-throttlar (shouldSyncNow): hämtar ESPN varje
-    # körning när en match är live/snart/nyligen, men hoppar över API-anropet i
-    # lugna perioder (matchdag max var 5:e min, idle var 30:e). Resultatet:
-    # tätare uppdateringar under matcher utan onödiga anrop däremellan.
-    - cron: "* * * * *"
+  # VM 2026 är färdigspelat – cron-schemat borttaget 2026-07-22.
+  # Kör manuellt via workflow_dispatch vid behov.
   workflow_dispatch: {} # Tillåt manuell körning från Actions-fliken.
 
 # Undvik överlappande körningar.

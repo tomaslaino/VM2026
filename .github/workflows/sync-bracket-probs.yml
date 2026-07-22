@@ -21,8 +21,8 @@ name: Synka slutspelssannolikheter
 # sidan fungerar ändå, men med äldre/modellerade i stället för färska odds.
 
 on:
-  schedule:
-    - cron: "0 */6 * * *"     # färska odds var 6:e timme
+  # VM 2026 är färdigspelat – cron-schemat borttaget 2026-07-22.
+  # Kör manuellt via workflow_dispatch vid behov.
   repository_dispatch:
     types: [results-updated]  # omräkning direkt vid nya resultat (ingen API-kostnad)
   workflow_dispatch: {}

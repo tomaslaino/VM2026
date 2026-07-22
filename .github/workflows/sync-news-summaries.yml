@@ -12,8 +12,8 @@ name: Synka matchartiklar (Senaste nytt)
 # Saknas nyckeln loggar skriptet och avslutar utan fel.
 
 on:
-  schedule:
-    - cron: "13,43 * * * *"
+  # VM 2026 är färdigspelat – cron-schemat borttaget 2026-07-22.
+  # Kör manuellt via workflow_dispatch vid behov.
   workflow_dispatch: # Manuell körning från Actions-fliken.
     inputs:
       force:
