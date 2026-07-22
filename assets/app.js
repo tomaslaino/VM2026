@@ -273,6 +273,10 @@
     var v = ui("spoilerCutoff", null);
     return typeof v === "number" ? v : null;
   }
+  /* Är turneringen färdigspelad? (finalen har ett riktigt, ospoilrat resultat).
+     Styr arkivläget: headerkontrollen heter då "Reprisläge" och det rullande
+     dygnsskyddet ("Senaste dygnet") faller bort eftersom det inte döljer något. */
+  function tournamentOver() { return isPlayed(rawRes("k:104")); }
 
   /* Tidpunkt (ms, UTC) då en match med given avspark avslöjas: exakt 24 timmar
      efter avspark. */
@@ -1272,9 +1276,9 @@
     var fin = finaleState(ctx);
     var intro = fin
       ? '<div class="home-intro">' +
-          '<span class="home-kicker home-kicker--done"><span class="hk-dot" aria-hidden="true"></span>Fotbolls-VM 2026 · 11 juni – 19 juli · Färdigspelat</span>' +
+          '<span class="home-kicker home-kicker--done"><span class="hk-dot" aria-hidden="true"></span>Fotbolls-VM 2026 · 11 juni – 19 juli</span>' +
           '<h2>Gräver grav</h2>' +
-          '<p>VM 2026 är färdigspelat och sajten har övergått till arkivläge: hela turneringen – varje match, mål, graf och analys – ligger kvar att gräva i. Och gravarna? De vårdas för evigt.</p>' +
+          '<p>Turneringen är färdigspelad. Hela VM ligger kvar att gräva i.</p>' +
         '</div>'
       : '<div class="home-intro">' +
           '<span class="home-kicker"><span class="hk-dot" aria-hidden="true"></span>Fotbolls-VM 2026 · USA · Mexiko · Kanada</span>' +
@@ -5557,23 +5561,14 @@
       '</section>';
   }
 
-  /** Slutordet: kort epilog + vägar vidare in i arkivet. */
+  /** Slutordet: en stram avslutningsband – rubrik, vägar in i arkivet, signatur. */
   function finaleEpilogue() {
     return '<section class="fin-epilogue" aria-label="Slutord">' +
-      '<span class="fh-eyebrow">Slutord</span>' +
       '<h3 class="fin-ep-title">Tack för i sommar</h3>' +
-      '<p>Sommaren 2026 fick sitt slut: Spanien är världsmästare efter att ha avgjort ' +
-        'finalen mot Argentina i förlängningen, och England tröstade sig med brons ' +
-        'efter tidernas galnaste bronsmatch. De svenska och uruguayanska VM-drömmarna ' +
-        'begravdes långt tidigare – gravarna här ovanför vårdas för evigt.</p>' +
-      '<p>Sajten ligger kvar som ett arkiv. Varje match går fortfarande att öppna – ' +
-        'mål för mål, laguppställningar, statistik och xG, redaktionens förhandsanalyser ' +
-        'och facit. Slutspelsträdet står kvar precis som det slutade, och i kalendern ' +
-        'hittar du repriserna.</p>' +
       '<div class="fin-cta-row">' +
         '<button type="button" class="fin-cta" data-nav="bracket">Slutspelsträdet</button>' +
-        '<button type="button" class="fin-cta" data-nav="players">Hela statistiken</button>' +
-        '<button type="button" class="fin-cta" data-nav="calendar">Alla matcher &amp; repriser</button>' +
+        '<button type="button" class="fin-cta" data-nav="players">Statistiken</button>' +
+        '<button type="button" class="fin-cta" data-nav="calendar">Matcher &amp; repriser</button>' +
       '</div>' +
       '<p class="fin-ep-sign">Vila i frid, VM-drömmar. Vi ses 2030.</p>' +
       '</section>';
@@ -6912,12 +6907,12 @@
     }
     var m = spoilerCutoffMatch(list, spoilerCutoffMs());
     var count = n === 0 ? "" :
-      ' <span class="spoiler-status-hide">Döljer ' + n + (n === 1 ? " match." : " matcher.") + "</span>";
+      ' <span class="spoiler-status-hide">' + n + (n === 1 ? " match döljs." : " matcher döljs.") + "</span>";
     if (m) {
       var lbl = (m.edt ? m.edt + "  " : "") + m.label;
-      return 'Döljer fr.o.m. <strong>' + esc(lbl) + "</strong> – den matchen och senare döljs." + count;
+      return 'Dolt från <strong>' + esc(lbl) + "</strong> och framåt." + count;
     }
-    return n === 0 ? "Inget döljs just nu." : ("Döljer allt från din brytpunkt." + count);
+    return n === 0 ? "Inget döljs just nu." : ("Dolt från din brytpunkt och framåt." + count);
   }
   function updateSpoilerStatus(list) {
     var el = document.getElementById("spoilerStatus");
@@ -6926,20 +6921,35 @@
   function renderSpoilerPanel() {
     var panel = document.getElementById("spoilerPanel");
     if (!panel) return;
+    var archive = tournamentOver();
     var mode = spoilerMode();
     var list = spoilerScheduleList();
     var cutoff = spoilerCutoffMs();
     var selDate = (mode === "custom" && cutoff != null) ? spoilerCutoffDate(list, cutoff) : null;
     if (!selDate) selDate = spoilerDefaultDate(list);
 
+    // Arkivläge: "Senaste dygnet" döljer inget när VM är slut – erbjud bara
+    // Visa allt / Dölj från en vald match, med en kort förklaring.
+    var opts, intro = "", title;
+    if (archive) {
+      title = "Reprisläge";
+      intro = '<p class="spoiler-panel-intro">Ska du se om matcher? Dölj resultat, tabeller och statistik från en vald match och framåt.</p>';
+      opts = spoilerOptionRow("off", mode !== "custom", "Visa allt") +
+        spoilerOptionRow("custom", mode === "custom", "Dölj från en match");
+    } else {
+      title = "Spoilerskydd";
+      opts = spoilerOptionRow("off", mode === "off", "Visa allt") +
+        spoilerOptionRow("auto", mode === "auto", "Senaste dygnet") +
+        spoilerOptionRow("custom", mode === "custom", "Välj brytpunkt");
+    }
+
     var html = '<div class="spoiler-panel-head">' +
-        '<h3 id="spoilerPanelTitle">Spoilerskydd</h3>' +
+        '<h3 id="spoilerPanelTitle">' + esc(title) + '</h3>' +
         '<button type="button" class="spoiler-panel-close" data-spoiler-close title="Stäng" aria-label="Stäng">×</button>' +
       '</div>' +
+      intro +
       '<div class="spoiler-opts" role="radiogroup" aria-labelledby="spoilerPanelTitle">' +
-        spoilerOptionRow("off", mode === "off", "Visa allt") +
-        spoilerOptionRow("auto", mode === "auto", "Senaste dygnet") +
-        spoilerOptionRow("custom", mode === "custom", "Välj brytpunkt") +
+        opts +
       '</div>' +
       '<div class="spoiler-pick"' + (mode === "custom" ? "" : " hidden") + '>' +
         '<label class="spoiler-field"><span>Datum</span>' +
@@ -7017,6 +7027,9 @@
   function setupSpoilerControl() {
     var btn = document.getElementById("spoilerBtn");
     if (!btn) return;
+    // Arkivläge: det rullande dygnsskyddet är meningslöst när VM är slut –
+    // migrera ett sparat auto-läge till av (annars visas ett tomt "24 h").
+    if (tournamentOver() && spoilerMode() === "auto") setUi("spoilerOn", false);
     syncSpoilerBtnLabel();
     btn.addEventListener("click", function (e) {
       e.stopPropagation(); // egen toggle – låt inte onDocClick stänga direkt

@@ -1606,30 +1606,24 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
 }
 .fin-tile-sub { font-size: 12.5px; line-height: 1.35; color: var(--ink-soft); }
 
-/* Slutordet: epilog + vägar vidare in i arkivet. */
+/* Slutordet: ett stramt, centrerat avslutningsband – ingen kortyta, bara en
+   fin linje uppåt, rubrik, vägar in i arkivet och signaturen. */
 .fin-epilogue {
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, .1);
-  background: linear-gradient(180deg, rgba(20, 36, 60, .82), rgba(11, 21, 38, .86));
-  -webkit-backdrop-filter: blur(20px) saturate(1.2);
-  backdrop-filter: blur(20px) saturate(1.2);
-  box-shadow: 0 30px 70px -28px rgba(0, 0, 0, .9), inset 0 1px 0 rgba(255, 255, 255, .07);
-  padding: clamp(20px, 3vw, 32px) clamp(18px, 3vw, 32px);
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: clamp(12px, 1.8vw, 18px);
+  margin-top: clamp(6px, 1.4vw, 14px);
+  padding: clamp(24px, 3.6vw, 42px) 20px clamp(6px, 1.6vw, 14px);
+  border-top: 1px solid rgba(255, 255, 255, .08);
 }
 .fin-ep-title {
-  margin: 10px 0 12px;
+  margin: 0;
   font-family: var(--display);
-  font-size: clamp(30px, 4.4vw, 46px); font-weight: 800;
-  line-height: .95; letter-spacing: .01em; text-transform: uppercase;
+  font-size: clamp(26px, 3.6vw, 40px); font-weight: 800;
+  line-height: 1; letter-spacing: .01em; text-transform: uppercase;
   padding-top: .06em;
   color: var(--bone);
 }
-.fin-epilogue p {
-  margin: 0 0 12px; max-width: 74ch;
-  font-size: clamp(14px, 1.6vw, 16px); line-height: 1.6;
-  color: #d4e2f1;
-}
-.fin-cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 6px; }
+.fin-cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
 .fin-cta {
   appearance: none; cursor: pointer;
   padding: 10px 18px;
@@ -1649,7 +1643,7 @@ a.fh-watch:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px;
   outline-offset: 2px;
 }
 .fin-ep-sign {
-  margin-top: 6px;
+  margin: 2px 0 0;
   font-style: italic;
   color: color-mix(in srgb, var(--ink-soft) 70%, var(--gold));
 }
